@@ -6,8 +6,6 @@ order: 1.2
 
 ## Simple Example
 
-_required_
-
 Unit testing is a fundamental part of software developmenet. The underlying idea is tests the smallest units of code, in isolation from others. This makes it easy to refactor, add new features, or track down bugs. Vue's [single-file components](./single-file-components.html), it is straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other people to understand what your component does.
 
 This simple example tests whether some text is rendered:
@@ -30,6 +28,7 @@ export default {
 ```
 
 ```js
+import { shallow } from 'vue-test-utils'
 // render the component
 const wrapper = shallow(Hello)
 // assert the text is rendered
@@ -41,6 +40,7 @@ This contrived example isn't very useful, but it demonstrates the general idea o
 ## Details about the Value
 
 _required_
+
 
 1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
 2. Show examples of common missteps and how they can be avoided.
