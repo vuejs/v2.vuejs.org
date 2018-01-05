@@ -45,57 +45,177 @@ export default {
 
 ```js
 import { shallow } from 'vue-test-utils'
-// render the component
-const wrapper = shallow(Hello)
-// assert the text is rendered
-expect(wrapper.text()).toEqual('Hello World!')
+
+test('Foo', () => {
+  // render the component
+  const wrapper = shallow(Hello)
+
+  // assert the error is rendered
+  expect(wrapper.find('error').exists()).toBe(true)
+
+  // update the name to be long enough
+  wrapper.setData({
+    username: {
+      'Lachlan'
+    }
+  })
+
+  // assert the error has gone away
+  expect(wrapper.find('error').exists()).toBe(false)
+})
 ```
 
-This contrived example isn't very useful, but it demonstrates the general idea of unit testing Vue components: render the component, and make assertions to check if the markup matches the state of the component.
+This simple example shown how to test whether an error message is rendered based on the length of the username. It demonstrates the general idea of unit testing Vue components: render the component, and make assertions to check if the markup matches the state of the component.
 
 ## Details about the Value
 
-_required_
-
-1. Why test?
+#### Why test?
 Component unit tests have lots of great points:
 - Provide documentation on how the component should behave
 - Save time over testing manually
-- Catch bugs before they impact users
+- Reduce bugs in new features
+- Improve design
+- Facilitate refactoring
 
-1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2. Show examples of common missteps and how they can be avoided.
-3. Show very simple code samples of good and bad patterns.
+The benefits of automated testing are great and it what allows large teams of developers to maintain complex codebases. 
+
+#### Getting started
+
+[vue-test-utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The (vue-cli)[https://github.com/vuejs/vue-cli] webpack template comes with either Karma or Jest, both well supported test runners, and there are some (guides)[https://vue-test-utils.vuejs.org/en/guides/] in the `vue-test-utils` documentation.
+
+
 4. Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
 
 ## Real-World Example
 
-_required_
+Unit tests should be
+- Fast to run
+- Easy to understand
+- Only test a _single unit of work_
 
-Demonstrate the code that would power a common or interesting use case, either by:
-1. Walking through a few terse examples of setup, or
-2. Embedding a codepen/jsfiddle example
+Let's say we want to test this component. It shows a greeting, and asks for a username. If the username is less than seven letters, an error is displayed.
 
-If you choose to do the latter, you should still talk through what it is and does.
+```html
+<template>
+  <div>
+    <div class="message">
+      {{ message }}
+    </div>
+    Enter your username: <input v-model="usernane">
+    <div 
+      v-if="error"
+      class="error"
+    >
+      Please enter a username with at least seven letters.
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Foo',
+
+  data () {
+    return {
+      message: 'Hello World',
+      username: ''
+    }
+  },
+
+  computed: {
+    error () {
+      return this,username.length < 7
+    }
+  }
+}
+</script>
+```
+
+And our first attempt at at test:
+
+*Bad:*
+```js
+describe('Foo', () => {
+  it('renders a message and responds correctly to user input', () => {
+      const wrapper = shallow(Foo, {
+    data: {
+      message: 'Hello World',
+      username: ''
+    }
+  })
+
+  expect(wrapper.find('.message').text()).toEqual('Hello World')
+  expect(wrapper.find('.error').exists()).toBeTruthy()
+  wrapper.setData({ username: 'Lachlan'  })
+  expect(wrapper.find('.error').exists()).toBeFalsey()
+  })
+})
+```
+
+There are some problems with the above:
+- a single test is making assertions about different things
+- difficult to tell the different states the component can be in, and what should be rendered
+
+The below example improves the test by:
+- only making one assertion per `it` block
+- having short, clear test descriptions
+- providing only the minimum data requires for the test
+
+*Good:*
+```js
+describe('Foo', () => {
+  it('renders a message', () => {
+    const wrapper = shallow(Foo, {
+      data: {
+        message: 'Hello World'
+      }
+    })
+
+    expect(wrapper.find('.message').text()).toEqual('Hello World')
+  })
+
+  it('renders error when username is less than 7 characters', () => {
+    const wrapper = shallow(Foo, {
+      data: {
+        username: ''
+      }
+    })
+
+    expect(wrapper.find('.error').exists()).toBeTruthy()
+  })
+
+  it('does not render error when username is 7 characters or more', () => {
+    const wrapper = shallow(Foo, {
+      data: {
+        username: 'Lachlan'
+      }
+    })
+
+    expect(wrapper.find('.error').exists()).toBeFalsey()
+  })
+})
+```
 
 ## Additional Context
 
-_optional_
+Thee above test is fairly simple, but in practise Vue components often have other behaviors you want to test, such as:
 
-It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
+- making API calls
+- committing or dispatching mutations or actions with a `Vuex` store
+- testing interaction
+
+`vue-test-utils` and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component. 
+
+Snapshot tests save the markup of your Vue component, and compare to the new one generated each time the test runs. If something changes, the developer is notified, and can decide if the change was intentional (the component was updated) or accidentally (the component is behaving incorrectly).
+
+End to end tests involve ensure a number of components interact together well. They are more high level. Some examples might be testing if a user can sign up, log in, and update their username. These are slowly to run than unit tests or snapshot tests.
+
+Unit tests are most useful during development, either to help a developer think about how to design a component, or refactor an existing component, and are often run every time code is changed. 
+
+Higher level tests, such as end to end tests, run much slower. These usually run pre-deploy, to ensure the everything is still working together correctly.
+
+More information about testing Vue components can be found in [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) by core team member [Edd Yerburgh](https://eddyerburgh.me/).
 
 ## When To Avoid This Pattern
 
-_optional_
-
-This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
-
-## Alternative Patterns
-
-_optional, except when the section above is provided_
-
-This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
-
-## Thank you
-
-It takes time to contribute to documentation, and if you spend the time to submit a PR this section of our docs, you do so with our gratitude.
+Unit testing is an important part of any serious application. At first, when the vision of an application is not clear, unit testing might slow down development, but once a vision is established and real users will be interacting with the application, unit tests (and other types of automated tests) are absolutely essential to ensure the codebase is maintainable and scalable.
