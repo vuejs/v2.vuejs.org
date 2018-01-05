@@ -592,7 +592,7 @@ type: api
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object | [key: Array]}`
+- **Type:** `{ [key: string]: string | Function | Object | Array}`
 
 - **Details:**
 
@@ -630,17 +630,11 @@ type: api
         immediate: true
       },
       e: [
-        function handle1 (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
-        },
-        function handle2 (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
-        }
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
       ],
       // watch vm.e.f's value: {g: 5}
-      'e.f': function (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
-      }
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
