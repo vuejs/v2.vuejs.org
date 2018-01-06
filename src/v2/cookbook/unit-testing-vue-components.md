@@ -138,7 +138,6 @@ The things that we should test are:
 
 And our first attempt at at test:
 
-*Bad:*
 ```js
 import { shallow } from 'vue-test-utils'
 
@@ -173,7 +172,7 @@ The below example improves the test by:
 - having short, clear test descriptions
 - providing only the minimum data requires for the test
 
-*Good:*
+*Updated test*:
 ```js
 import { shallow } from 'vue-test-utils'
 
