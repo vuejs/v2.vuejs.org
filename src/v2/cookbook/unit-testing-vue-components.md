@@ -124,17 +124,24 @@ export default {
 
   computed: {
     error () {
-      return this,username.length < 7
+      return this.username.length < 7
     }
   }
 }
 </script>
 ```
 
+The things that we should test are:
+- is the `message` rendered?
+- if `error` is `true`, `<div class="error"`> should be present
+- if `error` is `false`, `<div class="error"`> should not be present
+
 And our first attempt at at test:
 
 *Bad:*
 ```js
+import { shallow } from 'vue-test-utils'
+
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
       const wrapper = shallow(Foo, {
@@ -144,8 +151,13 @@ describe('Foo', () => {
     }
   })
 
+  // see if the message renders
   expect(wrapper.find('.message').text()).toEqual('Hello World')
+
+  // assert the error is rendered
   expect(wrapper.find('.error').exists()).toBeTruthy()
+
+  // update the username and assert error is longer rendered
   wrapper.setData({ username: 'Lachlan'  })
   expect(wrapper.find('.error').exists()).toBeFalsey()
   })
@@ -163,6 +175,8 @@ The below example improves the test by:
 
 *Good:*
 ```js
+import { shallow } from 'vue-test-utils'
+
 describe('Foo', () => {
   it('renders a message', () => {
     const wrapper = shallow(Foo, {
