@@ -350,7 +350,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-Este é um exemplo fictício, mas conseguimos separar nossa aplicação em duas pequenas unidades, sendo que o componente filho está razoavelmente bem desacoplado do componente pai graças à funcionalidade de `props`. Ppodemos agora melhorar nosso componente `<todo-item>` com _template_ e lógica mais complexos, sem afetar o restante.
+Este é um exemplo fictício, mas conseguimos separar nossa aplicação em duas pequenas unidades, sendo que o componente filho está razoavelmente bem desacoplado do componente pai graças à funcionalidade de `props`. Podemos agora melhorar nosso componente `<todo-item>` com _template_ e lógica mais complexos, sem afetar o restante.
 
 Em uma aplicação grande, é essencial dividir todo o aplicativo em componentes para tornar o desenvolvimento gerenciável. Falaremos mais sobre componentes [futuramente neste guia](components.html), mas aqui está um exemplo (imaginário) da aparência que o _template_ de um aplicativo poderia ter com o uso de componentes:
 
