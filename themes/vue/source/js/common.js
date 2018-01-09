@@ -146,13 +146,9 @@
   function initVideoModal () {
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    if (!modalButton || !videoWrapper) {
-      return
-    }
     var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
-
 
     modalButton.addEventListener('click', function(event) {
       event.stopPropagation()
