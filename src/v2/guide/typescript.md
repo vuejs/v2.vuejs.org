@@ -41,7 +41,9 @@ TypeScript를 사용해 Vue를 개발하려면 [Visual Studio Code](https://code
 
 [싱글 파일 컴포넌트](./single-file-components.html) (SFCs)를 사용하는 경우 훌륭한 [Vetur extension](https://github.com/vuejs/vetur)를 사용해 TypeScript 유추를 제공합니다. 싱글 파일 컴포넌트 및 기타 많은 훌륭한 기능을 제공합니다.
 
-## 기본 사용
+또한 [WebStorm](https://www.jetbrains.com/webstorm/)은 타입스크립트와 Vue.js를 모두 지원합니다.
+
+## 기본 사용법
 
 Vue 컴포넌트 옵션안에서 TypeScript를 사용하려면 `Vue.component` 또는 `Vue.extend`로 컴포넌트를 정의해야합니다.
 
@@ -150,25 +152,25 @@ Vue의 선언 파일의 순환 특성때문에 TypeScript는 특정 메서드의
 import Vue, { VNode } from 'vue'
 
 const Component = Vue.extend({
-  data() {
+  data () {
     return {
       msg: 'Hello'
     }
   },
   methods: {
-    // `this` 때문에 주석이 필요합니다.
-    greet(): string {
+    // `this` 때문에 리턴 타입에 어노테이션이 필요합니다.
+    greet (): string {
       return this.msg + ' world'
     }
   },
   computed: {
-    // 주석 필요
+    // 어노테이션 필요
     greeting(): string {
       return this.greet() + '!'
     }
   },
   // `createElement`가 유추되었지만 `render`는 리턴 타입을 필요로 합니다.
-  render(createElement): VNode {
+  render (createElement): VNode {
     return createElement('div', this.greeting)
   }
 })

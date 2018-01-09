@@ -24,9 +24,10 @@ React와 Vue는 많은 공통점을 공유합니다.
 
 React 팀의 Dan Abramov 덕분에 React 커뮤니티는 [이러한 균형을 이루는데 도움](https://github.com/vuejs/vuejs.org/issues/364)이 되었습니다. 그는 우리가 최종 결과에 대해 [모두 만족할 때까지](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)이 문서를 수정하는 데 도움이되는 시간과 상당한 전문성을 지극히 관대했습니다.
 
-### 성능 분석
+### 런타임 퍼포먼스
 
-지금까지 테스트 한 모든 실제 시나리오에서 Vue는 React보다 월등히 우수합니다. 놀라셨다면, 더 읽어보십시오. 우리는 왜 그런지(그리고 심지어는 React 팀과 협력하여 개발 된 벤치 마크를 포함시켰습니다.)를 분석 할 것입니다.
+React와 Vue 모두 비슷하게 빠르므로 속도는 선택에 있어 결정적인 요인이 되지는 않을 것입니다. 특정 측정 항목에 대해서는 매우 간단한 컴포넌트 트리를 사용하여 원시 렌더링/업데이트 성능에 초점을 맞추는 [써드파티 벤치 마크](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)를 확인하십시오.
+
 
 #### 렌더링 성능
 
@@ -230,7 +231,7 @@ Angular 1은 스코프간 양방향 바인딩을 사용하는 반면 Vue는 컴�
 
 Vue는 디렉티브와 컴포넌트를 명확하게 구분합니다. 지시어는 DOM 조작만 캡슐화 하기 위한 것이고 컴포넌트는 자체 뷰와 데이터 로직이 있는 자체의 포함 단위입니다. Angular에서는 이 둘 사이에 많은 혼란이 있습니다.
 
-### 성능
+### 런타임 퍼포먼스
 
 Vue는 더 나은 성능을 가지며 변경에 대한 검사를 하지 않기 때문에 훨씬 쉽게 최적화 할 수 있습니다. Angular 1은 감시자가 많으면 느려집니다. 범위가 변경 될 때마다 이러한 모든 감시자를 다시 평가해야하기 때문입니다. 또한 일부 감시자가 다른 업데이트를 트리거하는 경우 다이제스트 주기를 여러 번 실행하여 "안정화"해야 할 수도 있습니다. Angular 사용자는 다이제스트 주기를 벗어나기 위해 종종 숨겨진 기술에 의지해야하며 경우에 따라 많은 감시자와 함께 범위를 최적화 할 수있는 방법이 없습니다.
 
@@ -250,9 +251,11 @@ Angular는 TypeScript가 필수적입니다. 문서 또한 TypeScript 기반입�
 
 Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterprise-usage)에도 매우 적합하며 [공식 Typings](https://github.com/vuejs/vue/tree/dev/types) 및 [공식 decorator](https://github.com/vuejs/vue-class-component)를 통해 TypeScript와 함께 사용할 수도 있습니다.
 
-### 규모와 성능
+### 런타임 퍼포먼스
 
-성능면에서 볼 때 두 프레임워크는 모두 매우 빠르며 실제 사용 사례의 데이터가 충분하지는 않아 결론을 내지 못합니다. 그러나 일부 숫자를 확인하려는 경우 Vue 2.0은 이 [써드파티 벤치 마크](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)에 따라 Angular 2보다 앞서있는 것으로 보입니다.
+두 프레임워크 모두 빠르며 비슷한 벤치마크 결과를 보여줍니다. [브라우저에 초점을 맞춘 분석](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)을 보면 더욱 상세하게 비교를 하실 수 있을 것입니다. 그러나 속도는 선택할 때 큰 영향을 줄 것으로 생각되지 않습니다.
+
+### 용량
 
 최신 [AOT compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)과 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking)을 포함한 Angular는 크기가 매우 작어졌습니다. 그럼에도 불구하고 모든 기능을 갖춘 Vue 2 프로젝트(~30kb gzipped)는 `angular-cli`(~130kb gzipped)보다 훨씬 작습니다.
 
@@ -276,7 +279,7 @@ Ember는 높은 찬사를 받는 완전한 기능의 프레임워크입니다. �
 
 - Vue의 템플릿 문법은 JavaScript 표현식의 모든 기능을 활용하지만 Handlebars의 표현식 및 헬퍼 문법은 의도적으로 비교할 때 매우 제한적입니다.
 
-- 성능 측면에서 Vue는 Ember 2.0의 최신 Glimmer 엔진 업데이트 이후에도 Ember보다 [월등히](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) 뛰어납니다. Vue는 업데이트를 자동으로 일괄 처리하지만 Ember에서는 성능이 중요한 상황에서 실행 루프를 수동으로 관리해야합니다.
+- 성능 측면에서 Vue는 Ember 2.0의 최신 Glimmer 엔진 업데이트 이후에도 Ember보다 [월등히](http://www.stefankrause.net/js-frameworks-benchmark7/table.html) 뛰어납니다. Vue는 업데이트를 자동으로 일괄 처리하지만 Ember에서는 성능이 중요한 상황에서 실행 루프를 수동으로 관리해야합니다.
 
 ## Knockout
 

@@ -2,11 +2,8 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.13
+gz_size: "30.67"
 ---
 
 ### 호환성 정보
@@ -15,7 +12,10 @@ Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 **지�
 
 ### 릴리즈 노트
 
+최신 안정 버전: {{vue_version}}
+
 각 버전에 대한 자세한 릴리즈 노트는 [GitHub](https://github.com/vuejs/vue/releases)에서 보실 수 있습니다.
+
 
 ## Vue Devtools
 

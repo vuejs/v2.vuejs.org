@@ -36,7 +36,34 @@ Vue.filter('capitalize', function (value) {
 })
 ```
 
-필터의 함수는 항상 표현식의 값(이전 체이닝의 결과)를 첫번째 전달인자로 받습니다. 위의 예제에서 `capitalize` 필터 함수는 `message`가 첫번째 전달인자로 받습니다.
+아래는 `capitalize`를 사용한 예제입니다.
+
+{% raw %}
+<div id="example_1" class="demo">
+  <input type="text" v-model="message">
+  <p>{{ message | capitalize }}</p>
+</div>
+<script>
+  new Vue({
+    el: '#example_1',
+    data: function () {
+      return {
+        message: 'john'
+      }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+  })
+</script>
+{% endraw %}
+
+필터의 함수는 항상 첫 번째 전달인자로 표현식의 값(이전 체이닝의 결과)을 받습니다. 위 예제에서, `capitalize` 필터 함수는 `message`의 값을 전달인자로받습니다.
+
 
 필터는 체이닝 할 수 있습니다.
 

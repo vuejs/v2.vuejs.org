@@ -83,7 +83,7 @@ type: api
   
   > 2.4.0에서 이 훅은 Vue의 사용자 정의 이벤트 핸들러가 발생하는 에러를 감지합니다.
 
-  > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/)를 제공합니다.
+  > 오류 추적 서비스인 [Sentry](https://sentry.io/for/vue/)와 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 은 공식적으로 Vue를 지원합니다.
 
 ### warnHandler
 
@@ -174,7 +174,7 @@ type: api
 
 ## 전역 API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **전달인자:**
   - `{Object} options`
@@ -213,7 +213,7 @@ type: api
 
 - **참고:** [컴포넌트](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **전달인자:**
   - `{Function} [callback]`
@@ -230,13 +230,19 @@ type: api
   Vue.nextTick(function () {
     // DOM이 업데이트 되었습니다
   })
+
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
   > 2.1.0에 새로 생겼습니다: 콜백이 없고, Promise를 지원하는 환경에서 Promise를 반환합니다. Vue는 Promise 폴리필을 제공하지 않습니다. 그러므로 Promise를 지원하지 않는 (IE 등) 브라우저에서 사용하려면 폴리필을 직접 해야합니다.
 
 - **참고:** [비동기 갱신 큐](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -254,7 +260,7 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -273,7 +279,7 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -304,7 +310,7 @@ type: api
 
 - **참고:** [사용자 정의 디렉티브](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -324,7 +330,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -347,7 +353,7 @@ type: api
 
 - **참고:** [컴포넌트](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **전달인자:**
   - `{Object | Function} plugin`
@@ -360,7 +366,7 @@ type: api
 
 - **참고:** [플러그인](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **전달인자:**
   - `{Object} mixin`
@@ -371,7 +377,7 @@ type: api
 
 - **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **전달인자:**
   - `{string} template`
@@ -395,7 +401,7 @@ type: api
 
 - **참고:** [렌더 함수](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
 
@@ -593,7 +599,7 @@ if (version === 2) {
 
 ### watch
 
-- **타입:** `{ [key: string]: string | Function | Object }`
+- **타입:** `{ [key: string]: string | Function | Object | Array}`
 
 - **상세:**
 
@@ -607,7 +613,12 @@ if (version === 2) {
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -624,7 +635,13 @@ if (version === 2) {
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
@@ -1426,7 +1443,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 데이터
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **전달인자:**
   - `{string | Function} expOrFn`
@@ -1494,7 +1511,7 @@ if (version === 2) {
   // 콜백은`a`의 현재 값으로 즉시 시작됩니다.
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -1509,7 +1526,7 @@ if (version === 2) {
 
 - **참고:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -1523,7 +1540,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 이벤트
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **전달인자:**
   - `{string | Array<string>} event` (객체는 2.2.0버전 이상에서만 지원)
@@ -1543,7 +1560,7 @@ if (version === 2) {
   // => "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **전달인자:**
   - `{string} event`
@@ -1553,7 +1570,7 @@ if (version === 2) {
 
   사용자 이벤트를 한번만 듣습니다. 리스너는 한번 호출되면 제거됩니다.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **전달인자:**
   - `{string} [event]`
@@ -1567,7 +1584,7 @@ if (version === 2) {
   - 이벤트만 인자로 전달 받는 경우 해당 이벤트의 모든 리스너를 제거합니다.
   - 이벤트와 콜백을 전달 받으면 특정 콜백에 대한 리스너만 제거합니다.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **전달인자:**
   - `{string} event`
@@ -1577,7 +1594,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 라이프사이클
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **전달인자:**
   - `{Element | string} [elementOrSelector]`
@@ -1615,13 +1632,13 @@ if (version === 2) {
   - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
   - [서버측 렌더링](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **사용방법:**
 
   Vue 인스턴스를 강제로 다시 렌더링합니다. 모든 하위 컴포넌트에는 영향이 미치지 않으며, 슬롯 그 자체가 삽입된 슬롯 자체 및 하위 컴포넌트에만 영향을 미칩니다.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **전달인자:**
   - `{Function} [callback]`
@@ -1657,7 +1674,7 @@ if (version === 2) {
   - [Vue.nextTick](#Vue-nextTick)
   - [비동기 업데이트 큐](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **사용방법:**
 
@@ -1697,6 +1714,8 @@ if (version === 2) {
   엘리먼트의 `innerHTML`을 업데이트 합니다. **내용은 일반 HTML으로 삽입되므로 Vue 템플릿으로 컴파일 되지 않습니다.** `v-html`을 사용하여 템플릿을 작성하려는 경우 컴포넌트를 사용하여 솔루션을 다시 생각해 보십시오.
 
   <p class="tip">  웹사이트에서 임의의 HTML을 동적으로 렌더링하면 [XSS 공격](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 이어질 수 있으므로 매우 위험할 수 있습니다. 신뢰할 수 있는 컨텐츠에만 `v-html`을 사용하고 사용자가 제공한 컨텐츠에는 **절대로** 사용하지 마십시오</p>
+
+  <p class="tip">[싱글 파일 컴포넌트](../guide/single-file-components.html) 내부에서 `scoped` 스타일은 `v-html` 내부에는 적용되지 않습니다. HTML이 Vue 템플릿 컴파일러를 거치지 않기 때문입니다. 범위를 가지는 CSS로 `v-html`을 가리키려면 [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html)을 추가하거나 BEM같은 범위 지정 CSS 전략을 사용하세요.</p>
 
 - **예제:**
 
@@ -2133,16 +2152,25 @@ if (version === 2) {
 
 ### slot-scope
 
+> 2.5.0+ 이후 추가
+
 - **예상됨:** `함수 전달인자 표현식`
 
 - **사용법:**
 
-  엘리먼트 또는 컴포넌트가 지정된 슬롯으로 표시하는데 사용됩니다. 속성 값은 함수 서명의 전달인자 위치에 나타날 수 있는 유효한 JavaScript 표현식이어야합니다. 즉, 지원되는 환경에서 ES2015 디스트럭처링을 사용할 수 있습니다.
+  엘리먼트 또는 컴포넌트가 지정된 슬롯으로 표시하는데 사용됩니다. 속성 값은 함수 서명의 전달인자 위치에 나타날 수 있는 유효한 JavaScript 표현식이어야합니다. 즉, 지원되는 환경에서 ES2015 디스트럭처링을 사용할 수 있습니다. 2.5.0 이후에는 [`scope`](#scope-replaced)의 대안으로 사용합니다.
 
-  This attribute does not support dynamic binding.
   이 속성은 동적 바인딩을 지원하지 않습니다.
 
 - **함께 보기:** [범위를 가지는 슬롯](../guide/components.html#Scoped-Slots)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ### is
 
@@ -2202,8 +2230,7 @@ if (version === 2) {
   - `appear` - boolean, 초기 렌더링에서 트랜지션 적용 여부를 정합니다. 기본값은 `false` 입니다.
   - `css` - boolean, CSS 트랜지션 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
   - `type` - string, 트랜지션 종료 타이밍을 결정하기 위해 대기할 트랜지션 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
-  - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
+  - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생하는 방식입니다.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string

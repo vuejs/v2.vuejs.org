@@ -8,7 +8,7 @@ order: 3
 
 모든 Vue 앱은 `Vue` 함수로 새 **Vue 인스턴스**를 만드는 것부터 시작합니다.
 
-``` js
+```js
 var vm = new Vue({
   // 옵션
 })
@@ -23,13 +23,13 @@ Vue 앱은 `new Vue`를 통해 만들어진 `루트 Vue 인스턴스`로 구성�
 
 ```
 Root Instance
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 확장된 인스턴스를 만들수는 있으나 대개 템플릿에서 사용자 지정 엘리먼트로 선언적으로 작성하는 것이 좋습니다. 나중에 [컴포넌트 시스템](components.html)에 대해 자세히 설명합니다. 지금은 모든 Vue 컴포넌트가 본질적으로 확장된 Vue 인스턴스라는 것을 알아야 합니다.
@@ -61,13 +61,13 @@ vm.a // => 3
 
 데이터가 변경되면 화면은 다시 렌더링됩니다. `data`의 속성은 인스턴스가 생성될때 있었다면 **반응형**입니다. 즉 다음과 같이 새 속성을 추가합니다.
 
-``` js
+```js
 vm.b = 'hi'
 ```
 
 `b`가 변경되도 화면이 갱신되지 않습니다. 반응형 속성이 필요하면 나중에 이 속성이 필요한 것을 알고, 값을 지정하지 않은채로 초기화만 하면 됩니다.
 
-``` js
+```js
 data: {
   newTodoText: '',
   visitCount: 0,
@@ -77,9 +77,38 @@ data: {
 }
 ```
 
-Vue 인스턴스는 데이터 이외에도 많은 인스턴스 속성 및 메소드를 제공합니다. 이는 `$` 접두어로 사용자 정의 속성과 구별합니다.
+이것 상황의 유일한 예외는 `Object.freeze ()`를 사용하는 경우입니다. 이는 기존 속성이 변경되는 것을 막아 반응성 시스템이 추적할 수 없다는 것을 을 의미합니다.
 
-``` js
+```js
+var obj = {
+  foo: 'bar'
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+})
+```
+
+```html
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- obj.foo는 더이상 변하지 않습니다! -->
+  <button @click="obj.foo = 'baz'">Change it</button>
+</div>
+```
+
+Vue 인스턴스는 데이터 속성 이외에도 유용한 인스턴스 속성 및 메소드를 제공합니다. 다른 사용자 정의 속성과 구분하기 위해 `$` 접두어를 붙였습니다. 
+
+예:
+
+```js
 var data = { a: 1 }
 var vm = new Vue({
   el: '#example',
@@ -101,7 +130,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 각 Vue 인스턴스는 데이터 관찰을 설정하고, 템플릿을 컴파일하고, 인스턴스를 DOM에 마운트하고, 데이터가 변경 될 때 DOM을 업데이트해야 할 때 일련의 초기화 단계를 거칩니다. 그 과정에서 사용자 정의 로직을 실행할 수있는 **라이프사이클 훅** 도 호출됩니다. 예를 들어, [`created`](../api/#created) 훅은 인스턴스가 생성된 후에 호출됩니다. 예:
 
-``` js
+```js
 new Vue({
   data: {
     a: 1
@@ -115,10 +144,6 @@ new Vue({
 ```
 
 인스턴스 라이프사이클의 여러 단계에서 호출될 다른 훅도 있습니다. 그 예로 [`mounted`](../api/#mounted),[`updated`](../api/#updated) 및 [`destroyed`](../api/#destroyed)가 있습니다. 모든 라이프사이클 훅은 `this` 컨텍스트가 호출하는 Vue 인스턴스를 가리키며 호출됩니다. Vue 세계에서 "컨트롤러"의 컨셉이 어디에 있는지 궁금할 수 있습니다. 답은 컨트롤러가 없습니다. 컴포넌트의 사용자 지정 로직은 이러한 라이프사이클 훅으로 분할됩니다.
-
-<p class="tip">
-`created: () => console.log(this.a)` 또는 `vm.$watch('a', newValue => this.myMethod())`에 [화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 을 사용지 마세요. 화살표 함수는 부모 컨텍스트에 바인딩 되기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a` 또는 `this.myMethod`는 정의되지 않습니다.
- </p>
 
 ## 라이프사이클 다이어그램
 

@@ -312,17 +312,19 @@ new Vue({
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
-// 체크 하면:
-vm.toggle === vm.a
-// 체크하지 않으면:
-vm.toggle === vm.b
+// 체크된 경우
+vm.toggle === 'yes'
+// 체크 되지 않은 경우
+vm.toggle === 'no'
 ```
+
+<p class="tip">`true-value` 와 `false-value` 속성은 폼 전송시 체크되지 않은 박스를 포함하지 않기 때문에 입력의 `value` 속성에 영향을 미치지 않습니다. 두 값 중 하나가 폼을 통해 전송 되려면 (예 : '예' 또는 '아니요') 라디오를 대신 사용하십시오.</p>
 
 ### 라디오
 

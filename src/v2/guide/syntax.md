@@ -33,29 +33,46 @@ Mustache 태그는 해당 데이터 객체의 `msg` 속성 값으로 대체됩�
 이중 중괄호(mustaches)는 HTML이 아닌 일반 텍스트로 데이터를 해석합니다. 실제 HTML을 출력하려면 `v-html` 디렉티브를 사용해야 합니다.
 
 ``` html
-<div v-html="rawHtml"></div>
+<p>Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
-이 div의 내용은 일반 HTML로 해석되는 `rawHtml` 속성의 값으로 대체됩니다. 데이터 바인딩은 무시됩니다. Vue는 문자열 기반 템플릿 엔진이 아니기 때문에 `v-html`을 사용하여 템플릿 부분을 작성할 수 없습니다. 대신 컴포넌트는 UI 재사용 및 구성을 위한 기본 단위로 사용합니다.
+{% raw %}
+<div id="example1" class="demo">
+  <p>Using mustaches: {{ rawHtml }}</p>
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+<script>
+new Vue({
+  el: '#example1',
+  data: function () {
+  	return {
+  	  rawHtml: '<span style="color: red">This should be red.</span>'
+  	}
+  }
+})
+</script>
+{% endraw %}
 
+`span`의 내용은 `rawHtml`로 대체됩니다. 이 때 데이터 바인딩은 무시됩니다. Vue는 문자열 기반 템플릿 엔지니이 아니기 때문에 `v-html`을 이용해 템플릿을 사용할 수 없습니다. 이와 달리 컴포넌트는 UI 재사용 및 구성을 위한 기본 단위로 사용하는 것을 추천합니다.
 
 <p class="tip">웹사이트에서 임의의 HTML을 동적으로 렌더링하려면 [XSS 취약점](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 쉽게 이어질 수 있으므로 매우 위험할 가능성이 있습니다. 신뢰할 수 있는 콘텐츠에서는 HTML 보간만 사용하고 사용자가 제공한 콘텐츠에서는 **절대** 사용하면 안됩니다.</p>
 
-### 속성
-
-Mustaches는 HTML 속성으로 사용할 수 없으며 대신 [v-bind 디렉티브](../api/#v-bind)를 사용해야 합니다.
+Mustaches는 HTML 속성에서 사용할 수 없습니다. 대신 [v-bind 디렉티브](../api/#v-bind)를 사용하세요:
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속성이 제거됩니다.
+boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 다르게 작동합니다.
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
-### JavaScript 표현식 사용하기
+`isButtonDisabled`가 `null`, `undefined` 또는`false`의 값을 가지면 `disabled` 속성은 렌더링 된`<button>`엘리먼트에 포함되지 않습니다.
+
+### JavaScript 표현식 사용
 
 지금까지 템플릿의 간단한 속성 키에만 바인딩했습니다. 그러나 실제로 Vue.js는 모든 데이터 바인딩 내에서 JavaScript 표현식의 모든 기능을 지원합니다.
 

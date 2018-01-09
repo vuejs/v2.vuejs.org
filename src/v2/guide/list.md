@@ -330,7 +330,7 @@ Vue.set(vm.userProfile, 'age', 27)
 인스턴스 메소드인 `vm.$set`를 사용할 수도 있습니다. 이는 전역 `Vue.set`의 별칭입니다.
 
 ``` js
-this.$set(this.userProfile, 'age', 27)
+vm.$set(this.userProfile, 'age', 27)
 ```
 
 때로는 `Object.assign()`이나 `_.extend()`를 사용해 기존의 객체에 새 속성을 할당할 수 있습니다. 이 경우 두 객체의 속성을 사용해 새 객체를 만들어야 합니다.

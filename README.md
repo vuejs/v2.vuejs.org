@@ -4,13 +4,23 @@ This site is built with [hexo](http://hexo.io/). Site content is written in Mark
 
 ## Developing
 
-Start a dev server at `localhost:4000`:
-
-```
-$ npm install -g hexo-cli
+``` bash
 $ npm install
-$ hexo server
+$ npm start # dev server at http://localhost:4000
 ```
+
+## Deploying
+
+The site is deployed using GitHub pages, therefore you need push access to the vuejs.org repo to run the deploy script:
+
+``` bash
+$ npm run deploy
+```
+
+If you are working on a fork and deploying to a different URL, you need to update the following accordingly:
+
+- `url` and `deploy` sections in `_config.yml`
+- `src/CNAME`
 
 ## On Translations
 
@@ -62,6 +72,13 @@ Russian translation is maintained by Translation Gang.
 Spanish translation is maintained by VueJS-ES.
 
 * Translation Repo - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
+
+### Persian (Farsi)
+
+Persian translation is maintained by VueJS-fa.
+
+* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
 
 ### Want to help with the translation?
 

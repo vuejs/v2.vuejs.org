@@ -1,0 +1,588 @@
+1
+00:00:00,000 --> 00:00:02,418
+- Over the last 10 years
+our web pages have become
+
+2
+00:00:02,418 --> 00:00:05,600
+more dynamic and powerful
+thanks to JavaScript.
+
+3
+00:00:05,600 --> 00:00:07,541
+We've moved a lot of
+code that was normally on
+
+4
+00:00:07,541 --> 00:00:10,120
+the server side into our browsers,
+
+5
+00:00:10,120 --> 00:00:13,051
+leaving us with thousands
+of lines of JavaScript code
+
+6
+00:00:13,051 --> 00:00:15,691
+connecting to various HTML and CSS files
+
+7
+00:00:15,691 --> 00:00:17,821
+with no formal organization.
+
+8
+00:00:17,821 --> 00:00:19,781
+This is why more and
+more developers are using
+
+9
+00:00:19,781 --> 00:00:23,948
+JavaScript frameworks like,
+Angular, React, or Vue.
+
+10
+00:00:24,821 --> 00:00:27,829
+Vue is an approachable,
+versatile, and performant
+
+11
+00:00:27,829 --> 00:00:29,860
+JavaScript framework
+that helps you create
+
+12
+00:00:29,860 --> 00:00:33,381
+a more maintainable,
+and testable code base.
+
+13
+00:00:33,381 --> 00:00:36,229
+Vue is a progressive JavaScript 
+framework, which means,
+
+14
+00:00:36,229 --> 00:00:38,621
+if you have an existing
+server-side application,
+
+15
+00:00:38,621 --> 00:00:41,627
+you can plug Vue into just
+one part of your application
+
+16
+00:00:41,627 --> 00:00:44,381
+that needs a richer, more
+interactive experience.
+
+17
+00:00:44,381 --> 00:00:46,269
+Or, if you want to build
+more business logic
+
+18
+00:00:46,269 --> 00:00:48,240
+into your frontend from the get go,
+
+19
+00:00:48,240 --> 00:00:50,611
+Vue has the core libraries
+and the ecosystem
+
+20
+00:00:50,611 --> 00:00:52,421
+you'll need to scale.
+
+21
+00:00:52,421 --> 00:00:53,829
+Like other frontend frameworks,
+
+22
+00:00:53,829 --> 00:00:55,960
+Vue allows you to take a
+web page and split it up
+
+23
+00:00:55,960 --> 00:01:00,000
+into reusable components,
+each having its own HTML,
+
+24
+00:01:00,000 --> 00:01:02,291
+CSS, and JavaScript needed to render
+
+25
+00:01:02,291 --> 00:01:04,269
+that piece of the page.
+
+26
+00:01:04,269 --> 00:01:06,260
+Next, we'll take a look
+at Vue in action by
+
+27
+00:01:06,260 --> 00:01:08,301
+building a product inventory page,
+
+28
+00:01:08,301 --> 00:01:10,187
+but stay tuned to the end of the video
+
+29
+00:01:10,187 --> 00:01:13,571
+for a message from
+Vue's creator, Evan You.
+
+30
+00:01:13,571 --> 00:01:15,301
+We won't be teaching you how to use Vue,
+
+31
+00:01:15,301 --> 00:01:16,981
+but we'll introduce a couple key concepts
+
+32
+00:01:16,981 --> 00:01:19,460
+that make Vue so useful.
+
+33
+00:01:19,460 --> 00:01:21,200
+As with many JavaScript applications,
+
+34
+00:01:21,200 --> 00:01:24,272
+we start from the need to
+display data on to our web page.
+
+35
+00:01:24,272 --> 00:01:26,591
+With Vue, it starts out really simple.
+
+36
+00:01:26,591 --> 00:01:29,745
+We include the Vue library,
+create a Vue instance,
+
+37
+00:01:29,745 --> 00:01:33,673
+and plug into our root
+element with the ID of app.
+
+38
+00:01:33,673 --> 00:01:36,032
+E L stands for element.
+
+39
+00:01:36,032 --> 00:01:39,505
+We'll also move our data inside an object
+
+40
+00:01:39,505 --> 00:01:41,993
+and change X into an expression
+
+41
+00:01:41,993 --> 00:01:44,544
+with the double curly braces.
+
+42
+00:01:44,544 --> 00:01:46,945
+As you can see, it works.
+
+43
+00:01:46,945 --> 00:01:50,695
+Pretty cool, but the magic of
+Vue starts when data changes.
+
+44
+00:01:50,695 --> 00:01:51,975
+If we jump into the console,
+
+45
+00:01:51,975 --> 00:01:54,735
+we change the value of our product.
+
+46
+00:01:54,735 --> 00:01:57,324
+Notice that as soon as the
+value of product changed,
+
+47
+00:01:57,324 --> 00:01:59,953
+Vue automatically updated our HTML.
+
+48
+00:01:59,953 --> 00:02:01,745
+This is because Vue is reactive,
+
+49
+00:02:01,745 --> 00:02:03,273
+meaning that when our data changes,
+
+50
+00:02:03,273 --> 00:02:05,193
+Vue takes care of updating all the places
+
+51
+00:02:05,193 --> 00:02:07,255
+we're using it in our web page.
+
+52
+00:02:07,255 --> 00:02:10,305
+This works with any kind
+of data, not just strings.
+
+53
+00:02:10,305 --> 00:02:11,604
+So instead of a single product,
+
+54
+00:02:11,604 --> 00:02:14,604
+let's use an array of products.
+
+55
+00:02:14,604 --> 00:02:17,865
+Then we'll update our
+H2 to an unordered list,
+
+56
+00:02:17,865 --> 00:02:20,535
+and create a new list item
+for each product in the array
+
+57
+00:02:20,535 --> 00:02:22,618
+using Vue's v-for directive.
+
+58
+00:02:24,353 --> 00:02:26,615
+This way, each product
+gets its own list item
+
+59
+00:02:26,615 --> 00:02:28,495
+as you see here.
+
+60
+00:02:28,495 --> 00:02:30,352
+This is still a little contrived though.
+
+61
+00:02:30,352 --> 00:02:32,312
+So let's start with our list empty
+
+62
+00:02:32,312 --> 00:02:34,815
+and fetch our products from an actual API
+
+63
+00:02:34,815 --> 00:02:37,433
+which could be coming
+from a database somewhere.
+
+64
+00:02:37,433 --> 00:02:38,863
+When our app is created,
+
+65
+00:02:38,863 --> 00:02:41,866
+we'll fetch the latest
+products from this API.
+
+66
+00:02:41,866 --> 00:02:43,199
+All you need to take from it is that
+
+67
+00:02:43,199 --> 00:02:45,063
+we're fetching our list of products
+
+68
+00:02:45,063 --> 00:02:46,923
+and updating them in our data.
+
+69
+00:02:46,923 --> 00:02:48,281
+As you can see on our web page,
+
+70
+00:02:48,281 --> 00:02:51,435
+each list item is showing
+the object it returned.
+
+71
+00:02:51,435 --> 00:02:53,474
+Well, it's not human readable yet,
+
+72
+00:02:53,474 --> 00:02:56,265
+so let's change the way it's displayed.
+
+73
+00:02:56,265 --> 00:02:59,643
+We'll print out quantity and name.
+
+74
+00:02:59,643 --> 00:03:02,265
+And there it is, printing out nicely.
+
+75
+00:03:02,265 --> 00:03:03,563
+We might want to call attention to the
+
+76
+00:03:03,563 --> 00:03:05,675
+items that have quantity zero.
+
+77
+00:03:05,675 --> 00:03:09,595
+So let's add a little span
+with the text, out of stock.
+
+78
+00:03:09,595 --> 00:03:13,334
+This should only appear if
+our item quantity equals zero.
+
+79
+00:03:13,334 --> 00:03:16,134
+We're going to use the v-if directive.
+
+80
+00:03:16,134 --> 00:03:20,362
+Because our jacket has quantity
+of zero, it's out of stock.
+
+81
+00:03:20,362 --> 00:03:22,081
+What if we wanted to
+print out the total number
+
+82
+00:03:22,081 --> 00:03:24,641
+of products under our list?
+
+83
+00:03:24,641 --> 00:03:26,468
+To make this work, we need to create
+
+84
+00:03:26,468 --> 00:03:29,570
+a computed property called totalProducts
+
+85
+00:03:29,570 --> 00:03:34,228
+which returns the total
+quantity of our products.
+
+86
+00:03:34,228 --> 00:03:36,490
+If you're not familiar
+with JavaScript reduce,
+
+87
+00:03:36,490 --> 00:03:40,468
+it's adding up all the
+quantities from each product.
+
+88
+00:03:40,468 --> 00:03:41,851
+As you can see, over in our browser,
+
+89
+00:03:41,851 --> 00:03:45,308
+it's properly adding
+up all the quantities.
+
+90
+00:03:45,308 --> 00:03:47,588
+Here in the browser, I
+want to show you Vue's
+
+91
+00:03:47,588 --> 00:03:51,380
+Chrome plugin where we
+can see our array of data
+
+92
+00:03:51,380 --> 00:03:53,547
+and inspect it right here.
+
+93
+00:03:55,108 --> 00:03:57,460
+Since we're in the console, just for fun,
+
+94
+00:03:57,460 --> 00:03:59,850
+let's pop the last item out of the array
+
+95
+00:03:59,850 --> 00:04:01,828
+and see what happens.
+
+96
+00:04:01,828 --> 00:04:04,359
+As you can see, not only
+is our list updated,
+
+97
+00:04:04,359 --> 00:04:07,940
+but our total as well, as you would hope.
+
+98
+00:04:07,940 --> 00:04:10,410
+Next, let's add some
+interactivity to this page
+
+99
+00:04:10,410 --> 00:04:12,346
+through the use of a button.
+
+100
+00:04:12,346 --> 00:04:14,490
+We'll create an add
+button for each product
+
+101
+00:04:14,490 --> 00:04:15,850
+and when a click occurs,
+
+102
+00:04:15,850 --> 00:04:18,850
+we'll increment the quantity by one.
+
+103
+00:04:19,959 --> 00:04:22,279
+Back in the browser, notice
+how when we add an item,
+
+104
+00:04:22,279 --> 00:04:25,159
+not only does the total
+inventory get updated,
+
+105
+00:04:25,159 --> 00:04:27,780
+but also if we increment
+our jacket product,
+
+106
+00:04:27,780 --> 00:04:30,300
+our out of stock notice goes away.
+
+107
+00:04:30,300 --> 00:04:31,860
+Clicking this button a million times
+
+108
+00:04:31,860 --> 00:04:33,890
+is going to get tiring,
+so what if we wanted to
+
+109
+00:04:33,890 --> 00:04:37,719
+write in the quantity of
+jackets or hiking socks?
+
+110
+00:04:37,719 --> 00:04:40,580
+We just create a new input
+field and bind it to our
+
+111
+00:04:40,580 --> 00:04:43,867
+product quantity field
+with the v-model directive
+
+112
+00:04:43,867 --> 00:04:46,519
+specifying that it is always a number.
+
+113
+00:04:46,519 --> 00:04:48,060
+You'll notice now, I can input the total
+
+114
+00:04:48,060 --> 00:04:52,450
+quantity of each item and
+it gets updated immediately.
+
+115
+00:04:52,450 --> 00:04:54,500
+I can even set the quantity back to zero
+
+116
+00:04:54,500 --> 00:04:57,899
+and I get my out of stock statement.
+
+117
+00:04:57,899 --> 00:05:01,232
+And my add buttons still work just fine.
+
+118
+00:05:02,259 --> 00:05:03,999
+If we were building a larger application,
+
+119
+00:05:03,999 --> 00:05:05,839
+we might want to split
+things up at this point
+
+120
+00:05:05,839 --> 00:05:09,290
+into their own components and files.
+
+121
+00:05:09,290 --> 00:05:11,827
+Vue even has a command line interface
+
+122
+00:05:11,827 --> 00:05:15,828
+which makes it simple to
+start real projects quickly.
+
+123
+00:05:15,828 --> 00:05:18,879
+We might even use single
+file Vue components
+
+124
+00:05:18,879 --> 00:05:21,770
+which contain their own HTML, JavaScript,
+
+125
+00:05:21,770 --> 00:05:23,687
+and Scoped CSS, or SCSS.
+
+126
+00:05:25,599 --> 00:05:28,926
+- Hi, I'm Evan You, the creator of Vue.js.
+
+127
+00:05:28,926 --> 00:05:31,587
+What you've seen here
+barely scratched the surface
+
+128
+00:05:31,587 --> 00:05:33,065
+of what Vue can do.
+
+129
+00:05:33,065 --> 00:05:34,856
+There's so much more in the ecosystem
+
+130
+00:05:34,856 --> 00:05:36,555
+to help you build, organize,
+
+131
+00:05:36,555 --> 00:05:39,076
+and scale your frontend applications.
+
+132
+00:05:39,076 --> 00:05:42,457
+To get a better taste, read
+our documentation today.
+
+133
+00:05:42,457 --> 00:05:44,708
+I think you'll enjoy the View.

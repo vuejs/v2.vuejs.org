@@ -2,9 +2,10 @@
 @import "_header"
 @import "_sidebar"
 @import "_sponsor"
+@import "_modal"
 
 $width = 900px
-$space = 50px
+$space = 40px
 
 body
   background-color: darken($light, 10%)
@@ -26,10 +27,10 @@ body
       display: none
 
 #hero
-  padding: $space 40px
+  padding: $space 40px 30px
   background-color: #fff
   .inner
-    max-width: $width
+    max-width: $width * 1.4
     margin: 0 auto
   .left, .right
     display: inline-block
@@ -60,8 +61,8 @@ body
     letter-spacing: .1em
     min-width: 8em
     text-align: center
-    &:first-child
-      margin-right: 1em
+    &:not(:last-child)
+      margin-right: 1%
   .social-buttons
     list-style-type: none
     padding: 0
@@ -69,6 +70,21 @@ body
       display: inline-block
       vertical-align: middle
       margin-right: 15px
+
+#special-sponsor
+  background-color: #fff
+  text-align: center
+  padding-bottom: 30px
+  a
+    color $light
+  span, img
+    display: inline-block
+    vertical-align: middle
+  img
+    width: 150px
+    position: relative
+    top: -3px
+    margin: 15px
 
 #highlights
   background-color: #fff
@@ -97,6 +113,11 @@ body
   padding: $space 0
   color: #fff
   text-align: center
+  .social-icon
+    margin 0 5px
+    svg
+      width 18px
+      height 18px
   a
     font-weight: 700
     color: #fff
@@ -127,6 +148,11 @@ body
       display: block
     .button
       font-size: .9em
+  #special-sponsor
+    span
+      display: block
+    img
+      width: 125px
   #highlights
     .point
       display: block

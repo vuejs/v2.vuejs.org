@@ -513,6 +513,14 @@ Vue.component('my-component', {
 
 > 주의 : 2.3.0 이전 버전에서, 함수형 컴포넌트에서 props을 받아들이려면 `props` 옵션이 필요합니다. 2.3.0 이상에서는 `props` 옵션을 생략할 수 있으며, 컴포넌트 노드에서 발견된 모든 속성은 암시적으로 props으로 추출됩니다.
 
+2.5.0+ 이후로, [싱글 파일 컴포넌트](single-file-components.html)를 사용하는 경우, 템플릿 기반의 함수형 컴포넌트를 정의할 수 있습니다.
+
+``` js
+<template functional>
+</template>
+```
+
+Everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: 전달받은 props에 대한 객체
 - `children`: VNode 자식의 배열

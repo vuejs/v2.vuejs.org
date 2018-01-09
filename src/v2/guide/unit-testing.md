@@ -61,8 +61,8 @@ describe('MyComponent', () => {
 
   // 인스턴스를 마운트하고 출력된 결과를 검사합니다.
   it('renders the correct message', () => {
-    const Ctor = Vue.extend(MyComponent)
-    const vm = new Ctor().$mount()
+    const Constructor = Vue.extend(MyComponent)
+    const vm = new Constructor().$mount()
     expect(vm.$el.textContent).toBe('bye!')
   })
 })
@@ -92,8 +92,8 @@ import MyComponent from './MyComponent.vue'
 
 // 렌더링 된 텍스트를 마운트하고 반환하는 헬퍼 함수
 function getRenderedText (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData: propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 

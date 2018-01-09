@@ -187,7 +187,7 @@ methods: {
 <form v-on:submit.prevent></form>
 
 <!-- 이벤트 리스너를 추가할 때 캡처모드를 사용합니다 -->
-<!--  즉, 내부 엘리먼트를 대상으로 하는 이벤트가 해당 엘리먼트에서 처리되기 전에 여기서 처리합니다. -->
+<!-- 즉, 내부 엘리먼트를 대상으로 하는 이벤트가 해당 엘리먼트에서 처리되기 전에 여기서 처리합니다. -->
 <div v-on:click.capture="doThis">...</div>
 
 
@@ -207,16 +207,27 @@ methods: {
 
 네이티브 DOM 이벤트에 독점적인 다른 수식어와 달리,`.once` 수식어는 [컴포넌트 이벤트](components.html#Using-v-on-with-Custom-Events)에서도 사용할 수 있습니다. 아직 컴포넌트에 대해 읽지 않았더라도 지금 당장은 걱정하지 마십시오.
 
+> 2.3.0+ 이후 추가됨
+
+``` html
+<!-- 스크롤의 기본 이벤트를 취소할 수 없습니다. -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+추가로, Vue는 `.passive` 수식어를 제공합니다. 특히 모바일 환경에서 성능향상에 도움이 됩니다. 예를 들어, 브라우저는 핸들러가 `event.preventDefault()`를 호출할지 알지 못하므로 프로세스가 완료된 후 스크롤 합니다. `.passive` 수식어는 이 이벤트가 기본 동작을 멈추지 않는다는 것을 브라우저에 알릴 수 있습니다.
+
+<p class="tip">`.passive`와 `.prevent`를 함께 사용하지 마세요. 패시브 핸들러는 기본 이벤트를 막지 않습니다.</p>
+
 ## 키 수식어
 
 키보드 이벤트를 청취할 때, 종종 공통 키 코드를 확인해야 합니다. Vue는 키 이벤트를 수신할 때 `v-on`에 대한 키 수식어를 추가할 수 있습니다.
 
 ``` html
-<!-- keyCode가 13일 때만 vm.submit()을 호출합니다 -->
+<!-- keyCode가 13일 때만 `vm.submit()`을 호출합니다  -->
 <input v-on:keyup.13="submit">
 ```
 
-모든 keyCode들을 기억하는 것은 번거롭기 때문에 Vue는 가장 일반적으로 사용되는 키의 별칭을 제공합니다.
+`keyCode`를 모두 기억하는 것은 힘듭니다. 그래서 Vue는 자주 사용하는 키의 알리아스를 제공합니다.
 
 ``` html
 <!-- 위와 같습니다 -->
@@ -241,7 +252,7 @@ methods: {
 또한 전역 `config.keyCodes` 객체를 통해 [사용자 지정 키 수식어 별칭을 지정할 수 있습니다.](../api/#keyCodes)
 
 ``` js
-// v-on:keyup.f1 이 가능합니다
+// `v-on:keyup.f1`을 사용할 수 있습니다.
 Vue.config.keyCodes.f1 = 112
 ```
 
@@ -299,6 +310,9 @@ Vue.config.keyCodes.f1 = 112
 
 <!-- Ctrl 키만 눌려있을 때만 실행됩니다. -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- 아래 코드는 시스템 키가 눌리지 않은 상태인 경우에만 작동합니다. -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### 마우스 버튼 수식어

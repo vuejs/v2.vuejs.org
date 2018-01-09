@@ -1,4 +1,12 @@
 site_description: "Vue.js - 상호 작용하는 인터페이스 구축을 위한 직관적이고, 빠르고, 구성 가능한 MVVM"
 google_analytics: UA-89623208-1
 root_domain: vuejs.org
-vue_version: 2.5.1
+vue_version: 2.5.13
+
+platinum_sponsors:
+  - url: https://stdlib.com
+    img: stdlib.png
+  - url: http://tooltwist.com/
+    img: tooltwist.png
+  - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
+    img: vueschool.png

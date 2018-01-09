@@ -1,4 +1,5 @@
 @import "_common"
+@import "_api"
 @import "_animations"
 @import "_header"
 @import "_demo"
@@ -51,6 +52,10 @@
   h1
     margin: 0 0 1em
   h2, h3
+    pointer-events: none
+    a
+      pointer-events: auto
+      color: $dark
     &:before
       content: ""
       display: block
@@ -61,11 +66,9 @@
     margin: $h2-margin-top 0 .8em
     padding-bottom: .7em
     border-bottom: 1px solid $border
-    z-index: -1
   h3
     margin: $h3-margin-top 0 1.2em
     position: relative
-    z-index: -1
     &:after
       content: "#"
       color: $green

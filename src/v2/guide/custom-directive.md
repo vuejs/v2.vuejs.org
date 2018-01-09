@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-페이지가 로드되면 해당 엘리먼트는 포커스를 얻습니다. 사실, 이 페이지를 방문한 이후 다른것을 클릭하지 않았다면 이 input 엘리먼트에 포커스가 되어 있어야 합니다.(참고: 모바일 사파리에서는 작동하지 않습니다.) 이제 이 작업을 수행하는 디렉티브를 작성하겠습니다.
+페이지가 로드되면 해당 엘리먼트는 포커스를 얻습니다. (참고: `autofocus`는 모바일 사파리에서 작동하지 않습니다.) 사실, 이 페이지를 방문한 이후 다른것을 클릭하지 않았다면 이 input 엘리먼트에 포커스가 되어 있어야 합니다.(참고: 모바일 사파리에서는 작동하지 않습니다.) 이제 이 작업을 수행하는 디렉티브를 작성하겠습니다.
 
 ``` js
 // 전역 사용자 정의 디렉티브 v-focus 등록
@@ -85,7 +85,24 @@ directives: {
 
 <p class="tip">`el` 이외에 이 인자들을 읽기 전용으로 취급하고 절대 수정하면 안됩니다. 훅에서 정보를 공유해야 하는 경우 엘리먼트의 [데이터셋](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)을 통해 정보를 공유하는 것이 좋습니다.</p>
 
-다음 속성 중 일부를 사용하는 사용자 지정 디렉티브의 예제 입니다.
+## 디렉티브 훅 전달인자
+
+디렉티브 훅은 다음을 전달인자로 사용할 수 있습니다.
+
+- `el`: 디렉티브가 바인딩된 엘리먼트. 이 것을 사용하면 DOM 조작을 할 수 있습니다.
+- `binding`: 아래의 속성을 가진 객체입니다.
+  - `name`: 디렉티브 이름, `v-` 프리픽스가 없습니다.
+  - `value`: 디렉티브에서 전달받은 값. 예를 들어 `v-my-directive="1 + 1"`인 경우 value는 `2` 입니다.
+  - `oldValue`: 이전 값. `update`와 `componentUdated`에서만 사용할 수 있습니다. 이를 통해 값이 변경되었는지 확인할 수 있습니다.
+  - `expression`: 표현식 문자열. 예를 들어 `v-my-directive="1 + 1"`이면, 표현식은 `"1 + 1"` 입니다.
+  - `arg`: 디렉티브의 전달인자, 있는 경우에만 존재합니다. 예를 들어 `v-my-directive:foo` 이면  `"foo"` 입니다.
+  - `modifiers`: 포함된 수식어 객체, 있는 경우에만 존재합니다. 예를 들어 `v-my-directive.foo.bar`이면, 수식어 객체는 `{ foo: true, bar: true }`입니다.
+- `vnode`: Vue 컴파일러가 만든 버추얼 노드. [VNode API](../api/#VNode-Interface)에 전체 설명이 있습니다.
+- `oldVnode`: 이전의 버추얼 노드. `update`와 `componentUdated`에서만 사용할 수 있습니다.
+
+<p class="tip">`el` 뿐만아니라 모든 전달인자는 읽기 전용으로 사용하여야 합니다. 절대 변경하면 안됩니다. 훅을 통해 이 정보들을 전달하는 경우, 엘리먼트의 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)을 이용하면 됩니다.</p>
+
+위 특성 중 일부를 사용하는 사용자 정의 디렉티브 예제입니다.
 
 ``` html
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
