@@ -104,7 +104,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-이것은 항상 `errorClass`를 적용하지만 `isActive`가 `true`일 때 `activeClass`만 적용됩니다.
+이것은 항상 `errorClass`를 적용하고 `isActive`가 `true`일 때만 `activeClass`를 적용합니다.
 
 그러나 여러 조건부 클래스가 있는 경우 장황해질 수 있습니다. 그래서 배열 구문 내에서 객체 구문을 사용할 수 있습니다.
 
