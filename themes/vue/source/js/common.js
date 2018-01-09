@@ -186,7 +186,7 @@
       window.location.assign(
         'https://' +
         version +
-        (version && '.') +
+        (version && '-') +
         'cn.vuejs.org/' + section + '/'
       )
     })
