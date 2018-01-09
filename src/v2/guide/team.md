@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: 认识团队
 type: guide
 order: 803
 ---
@@ -113,7 +113,7 @@ order: 803
   <div class="team">
 
     <h2 id="the-core-team">
-      The Core Team
+      核心团队
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -126,21 +126,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>谁在我附近</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      无法获取你的位置。
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Vue 及其生态系统，是在一个国际化的团队的引导下发展壮大的，这里列出部分团队成员的信息。
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      核心团队将按照他们与你的距离排序。
     </p>
 
     <vuer-profile
@@ -153,7 +153,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      社区伙伴
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -166,21 +166,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>谁在我附近</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      无法获取你的位置。
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      一些 Vue 社区成员使得 Vue 生态变得十分丰富，有必要在此特别提及。我们与这些主要合作伙伴建立了更加亲密的关系，经常与他们就即将到来的功能和新闻进行协作。
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      社区伙伴将按照他们与你的距离排序。
     </p>
 
     <vuer-profile
