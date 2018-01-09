@@ -28,7 +28,7 @@
         if (ulNode.tagName === 'UL') {
           var specNode = document.createElement('li')
           var specLink = createSourceSearchPath(titleNode.textContent)
-          specNode.innerHTML = '<a href="' + specLink + '" target="_blank">Source</a>'
+          specNode.innerHTML = '<a href="' + specLink + '" target="_blank">源代码</a>'
           ulNode.appendChild(specNode)
         }
       })
@@ -144,12 +144,9 @@
   * Modal Video Player
   */
   function initVideoModal () {
-    if (typeof Vimeo === 'undefined') return
-
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    var iframe = document.querySelector('iframe');
-    var player = new Vimeo.Player(iframe);
+    var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
 
@@ -159,7 +156,7 @@
       videoModal.classList.toggle('open')
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
-      player.play()
+      videoWrapper.innerHTML = '<iframe style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="http://player.youku.com/embed/XMzMwMTYyODMyNA==" frameborder="0" allowfullscreen></iframe>'
     })
 
     document.body.addEventListener('click', function(e) {
@@ -167,7 +164,7 @@
         videoModal.classList.remove('open')
         document.body.classList.remove('stop-scroll')
         document.body.removeChild(overlay)
-        player.unload()
+        videoWrapper.innerHTML = ''
       }
     })
   }
@@ -377,6 +374,9 @@
 
     function makeHeaderClickable (header) {
       var link = header.querySelector('a')
+      if (!link) {
+        return
+      }
       link.setAttribute('data-scroll', '')
 
       // transform DOM structure from
