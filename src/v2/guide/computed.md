@@ -213,7 +213,7 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // whenever question changes, this function will run
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
@@ -271,7 +271,7 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
