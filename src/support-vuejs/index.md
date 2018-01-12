@@ -1,3 +1,7 @@
+---
+sponsors: true
+---
+
 # Support Vue.js Development
 
 Vue.js is an MIT licensed open source project and completely free to use.

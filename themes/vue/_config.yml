@@ -10,3 +10,29 @@ platinum_sponsors:
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
+  - url: https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar
+    img: datacamp.png
+
+gold_sponsors:
+  - url: https://laravel.com
+    img: laravel.png
+  - url: https://htmlburger.com
+    img: htmlburger.png
+  - url: https://starter.someline.com/
+    img: someline.png
+  - url: http://monterail.com/
+    img: monterail.png
+  - url: https://anymod.com
+    img: anymod.png
+  - url: https://www.frontenddeveloperlove.com/
+    img: frontend-love.png
+  - url: https://onsen.io/vue/
+    img: onsen-ui.png
+  - url: https://vuetifyjs.com
+    img: vuetify.png
+  - url: https://neds.com.au/
+    img: neds.png
+  - url: https://vuejobs.com/?ref=vuejs
+    img: vuejobs.png
+  - url: https://leanpub.com/vuejs2
+    img: tmvuejs2.png
