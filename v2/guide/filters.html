@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Filters</h1>
   
-  <p>Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: <strong>mustache interpolations and <code>v-bind</code> expressions</strong> (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol:</p>
+  
+    <p>Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: <strong>mustache interpolations and <code>v-bind</code> expressions</strong> (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- in mustaches --&gt;</span></span><br><span class="line">&#123;&#123; message | capitalize &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- in v-bind --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">"rawId | formatId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>You can define local filters in a component’s options:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  capitalize: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">    value = value.toString()</span><br><span class="line">    <span class="keyword">return</span> value.charAt(<span class="number">0</span>).toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -888,6 +892,7 @@
 <p>Here <code>filterA</code> is defined as a function taking three arguments. The value of <code>message</code> will be passed into the first argument. The plain string <code>&#39;arg1&#39;</code> will be passed into the <code>filterA</code> as its second argument, and the value of expression <code>arg2</code> will be evaluated and passed in as the third argument.</p>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/plugins.html">Plugins</a></span>
@@ -896,7 +901,7 @@
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

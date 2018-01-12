@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Reactivity in Depth</h1>
   
-  <p>Now it’s time to take a deep dive! One of Vue’s most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.</p>
+  
+    <p>Now it’s time to take a deep dive! One of Vue’s most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.</p>
 <h2 id="How-Changes-Are-Tracked"><a href="#How-Changes-Are-Tracked" class="headerlink" title="How Changes Are Tracked"></a>How Changes Are Tracked</h2><p>When you pass a plain JavaScript object to a Vue instance as its <code>data</code> option, Vue will walk through all of its properties and convert them to getter/setters using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>. This is an ES5-only and un-shimmable feature, which is why Vue doesn’t support IE8 and below.</p>
 <p>The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a> for a more inspection-friendly interface.</p>
 <p>Every component instance has a corresponding <strong>watcher</strong> instance, which records any properties “touched” during the component’s render as dependencies. Later on when a dependency’s setter is triggered, it notifies the watcher, which in turn causes the component to re-render.</p>
@@ -875,13 +879,14 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">'example'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      message: <span class="string">'not updated'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    updateMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.message = <span class="string">'updated'</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; 'not updated'</span></span><br><span class="line">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; 'updated'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
   
+  
     <div class="guide-links">
       
       
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>List Rendering</h1>
   
-  <h2 id="Mapping-an-Array-to-Elements-with-v-for"><a href="#Mapping-an-Array-to-Elements-with-v-for" class="headerlink" title="Mapping an Array to Elements with v-for"></a>Mapping an Array to Elements with <code>v-for</code></h2><p>We can use the <code>v-for</code> directive to render a list of items based on an array. The <code>v-for</code> directive requires a special syntax in the form of <code>item in items</code>, where <code>items</code> is the source data array and <code>item</code> is an <strong>alias</strong> for the array element being iterated on:</p>
+  
+    <h2 id="Mapping-an-Array-to-Elements-with-v-for"><a href="#Mapping-an-Array-to-Elements-with-v-for" class="headerlink" title="Mapping an Array to Elements with v-for"></a>Mapping an Array to Elements with <code>v-for</code></h2><p>We can use the <code>v-for</code> directive to render a list of items based on an array. The <code>v-for</code> directive requires a special syntax in the form of <code>item in items</code>, where <code>items</code> is the source data array and <code>item</code> is an <strong>alias</strong> for the array element being iterated on:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"example-1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123; <span class="attr">message</span>: <span class="string">'Foo'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">message</span>: <span class="string">'Bar'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>Result:</p>
@@ -1108,6 +1112,7 @@ new Vue({
 
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/conditional.html">Conditional Rendering</a></span>
@@ -1118,7 +1123,7 @@ new Vue({
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Event Handling</h1>
   
-  <h2 id="Listening-to-Events"><a href="#Listening-to-Events" class="headerlink" title="Listening to Events"></a>Listening to Events</h2><p>We can use the <code>v-on</code> directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
+  
+    <h2 id="Listening-to-Events"><a href="#Listening-to-Events" class="headerlink" title="Listening to Events"></a>Listening to Events</h2><p>We can use the <code>v-on</code> directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
 <p>For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"counter += 1"</span>&gt;</span>Add 1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>The button above has been clicked &#123;&#123; counter &#125;&#125; times.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -937,7 +941,7 @@ new Vue({
 <p>New in 2.3.0+</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- the scroll event will not cancel the default scroll behavior --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:scroll.passive</span>=<span class="string">"onScroll"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>In addition to these modifiers, Vue provides <code>.passive</code> modifier to improve the performance on mobile especially.<br>For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call <code>event.preventDefault()</code> within its handler.<br><code>.passive</code> modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.</p>
+<p>In addition to these modifiers, Vue provides <code>.passive</code> modifier to improve the performance on mobile especially. For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call <code>event.preventDefault()</code> within its handler. <code>.passive</code> modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.</p>
 <p class="tip">Don’t use <code>.passive</code> and <code>.prevent</code> together. Passive handler can’t prevent default event.</p>
 
 <h2 id="Key-Modifiers"><a href="#Key-Modifiers" class="headerlink" title="Key Modifiers"></a>Key Modifiers</h2><p>When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for <code>v-on</code> when listening for key events:</p>
@@ -1008,6 +1012,7 @@ new Vue({
 </ol>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/list.html">List Rendering</a></span>
@@ -1018,7 +1023,7 @@ new Vue({
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

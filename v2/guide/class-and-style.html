@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Class and Style Bindings</h1>
   
-  <p>A common need for data binding is manipulating an element’s class list and its inline styles. Since they are both attributes, we can use <code>v-bind</code> to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when <code>v-bind</code> is used with <code>class</code> and <code>style</code>. In addition to strings, the expressions can also evaluate to objects or arrays.</p>
+  
+    <p>A common need for data binding is manipulating an element’s class list and its inline styles. Since they are both attributes, we can use <code>v-bind</code> to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when <code>v-bind</code> is used with <code>class</code> and <code>style</code>. In addition to strings, the expressions can also evaluate to objects or arrays.</p>
 <h2 id="Binding-HTML-Classes"><a href="#Binding-HTML-Classes" class="headerlink" title="Binding HTML Classes"></a>Binding HTML Classes</h2><h3 id="Object-Syntax"><a href="#Object-Syntax" class="headerlink" title="Object Syntax"></a>Object Syntax</h3><p>We can pass an object to <code>v-bind:class</code> to dynamically toggle classes:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>The above syntax means the presence of the <code>active</code> class will be determined by the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy" target="_blank" rel="noopener">truthiness</a> of the data property <code>isActive</code>.</p>
@@ -908,6 +912,7 @@
 <p>This will only render the last value in the array which the browser supports. In this example, it will render <code>display: flex</code> for browsers that support the unprefixed version of flexbox.</p>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/computed.html">Computed Properties and Watchers</a></span>
@@ -918,7 +923,7 @@
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,12 +852,14 @@
   
     <h1>Routing</h1>
   
-  <h2 id="Official-Router"><a href="#Official-Router" class="headerlink" title="Official Router"></a>Official Router</h2><p>For most Single Page Applications, it’s recommended to use the officially-supported <a href="https://github.com/vuejs/vue-router" target="_blank" rel="noopener">vue-router library</a>. For more details, see vue-router’s <a href="https://router.vuejs.org/" target="_blank" rel="noopener">documentation</a>.</p>
+  
+    <h2 id="Official-Router"><a href="#Official-Router" class="headerlink" title="Official Router"></a>Official Router</h2><p>For most Single Page Applications, it’s recommended to use the officially-supported <a href="https://github.com/vuejs/vue-router" target="_blank" rel="noopener">vue-router library</a>. For more details, see vue-router’s <a href="https://router.vuejs.org/" target="_blank" rel="noopener">documentation</a>.</p>
 <h2 id="Simple-Routing-From-Scratch"><a href="#Simple-Routing-From-Scratch" class="headerlink" title="Simple Routing From Scratch"></a>Simple Routing From Scratch</h2><p>If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> NotFound = &#123; <span class="attr">template</span>: <span class="string">'&lt;p&gt;Page not found&lt;/p&gt;'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> Home = &#123; <span class="attr">template</span>: <span class="string">'&lt;p&gt;home page&lt;/p&gt;'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> About = &#123; <span class="attr">template</span>: <span class="string">'&lt;p&gt;about page&lt;/p&gt;'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = &#123;</span><br><span class="line">  <span class="string">'/'</span>: Home,</span><br><span class="line">  <span class="string">'/about'</span>: About</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    currentRoute: <span class="built_in">window</span>.location.pathname</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ViewComponent () &#123;</span><br><span class="line">      <span class="keyword">return</span> routes[<span class="keyword">this</span>.currentRoute] || NotFound</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  render (h) &#123; <span class="keyword">return</span> h(<span class="keyword">this</span>.ViewComponent) &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out <a href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example" target="_blank" rel="noopener">this example app</a>.</p>
 <h2 id="Integrating-3rd-Party-Routers"><a href="#Integrating-3rd-Party-Routers" class="headerlink" title="Integrating 3rd-Party Routers"></a>Integrating 3rd-Party Routers</h2><p>If there’s a 3rd-party router you prefer to use, such as <a href="https://github.com/visionmedia/page.js" target="_blank" rel="noopener">Page.js</a> or <a href="https://github.com/flatiron/director" target="_blank" rel="noopener">Director</a>, integration is <a href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs" target="_blank" rel="noopener">similarly easy</a>. Here’s a <a href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs" target="_blank" rel="noopener">complete example</a> using Page.js.</p>
 
+  
   
     <div class="guide-links">
       
@@ -864,7 +869,7 @@
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

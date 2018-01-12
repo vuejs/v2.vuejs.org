@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Custom Directives</h1>
   
-  <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In addition to the default set of directives shipped in core (<code>v-model</code> and <code>v-show</code>), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:</p>
+  
+    <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In addition to the default set of directives shipped in core (<code>v-model</code> and <code>v-show</code>), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:</p>
 
 <div id="simplest-directive-example" class="demo">
   <input v-focus="">
@@ -935,6 +939,7 @@ new Vue({
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.directive(<span class="string">'demo'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(binding.value.color) <span class="comment">// =&gt; "white"</span></span><br><span class="line">  <span class="built_in">console</span>.log(binding.value.text)  <span class="comment">// =&gt; "hello!"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/mixins.html">Mixins</a></span>
@@ -945,7 +950,7 @@ new Vue({
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

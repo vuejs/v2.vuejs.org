@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>State Management</h1>
   
-  <h2 id="Official-Flux-Like-Implementation"><a href="#Official-Flux-Like-Implementation" class="headerlink" title="Official Flux-Like Implementation"></a>Official Flux-Like Implementation</h2><p>Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a>: our own Elm-inspired state management library. It even integrates into <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>, providing zero-setup access to time travel.</p>
+  
+    <h2 id="Official-Flux-Like-Implementation"><a href="#Official-Flux-Like-Implementation" class="headerlink" title="Official Flux-Like Implementation"></a>Official Flux-Like Implementation</h2><p>Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a>: our own Elm-inspired state management library. It even integrates into <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>, providing zero-setup access to time travel.</p>
 <h3 id="Information-for-React-Developers"><a href="#Information-for-React-Developers" class="headerlink" title="Information for React Developers"></a>Information for React Developers</h3><p>If you’re coming from React, you may be wondering how vuex compares to <a href="https://github.com/reactjs/redux" target="_blank" rel="noopener">redux</a>, the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via <a href="https://github.com/egoist/revue" target="_blank" rel="noopener">simple bindings</a>. Vuex is different in that it <em>knows</em> it’s in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.</p>
 <h2 id="Simple-State-Management-from-Scratch"><a href="#Simple-State-Management-from-Scratch" class="headerlink" title="Simple State Management from Scratch"></a>Simple State Management from Scratch</h2><p>It is often overlooked that the source of truth in Vue applications is the raw <code>data</code> object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sourceOfTruth = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vmA = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: sourceOfTruth</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vmB = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: sourceOfTruth</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -866,6 +870,7 @@
 <p>This brings us full circle back to <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a>, so if you’ve read this far it’s probably time to try it out!</p>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/routing.html">Routing</a></span>
@@ -876,7 +881,7 @@
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

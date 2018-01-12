@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -319,7 +322,8 @@
     
   
   
-  <h2 id="Global-Config"><a href="#Global-Config" class="headerlink" title="Global Config"></a>Global Config</h2><p><code>Vue.config</code> is an object containing Vue’s global configurations. You can modify its properties listed below before bootstrapping your application:</p>
+  
+    <h2 id="Global-Config"><a href="#Global-Config" class="headerlink" title="Global Config"></a>Global Config</h2><p><code>Vue.config</code> is an object containing Vue’s global configurations. You can modify its properties listed below before bootstrapping your application:</p>
 <h3 id="silent"><a href="#silent" class="headerlink" title="silent"></a>silent</h3><ul>
 <li><p><strong>Type:</strong> <code>boolean</code></p>
 </li>
@@ -652,13 +656,13 @@
 </li>
 </ul>
 <h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><ul>
-<li><p><strong>Type:</strong> <code>{ [key: string]: string | Function | Object }</code></p>
+<li><p><strong>Type:</strong> <code>{ [key: string]: string | Function | Object | Array}</code></p>
 </li>
 <li><p><strong>Details:</strong></p>
 <p>An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call <code>$watch()</code> for each entry in the object at instantiation.</p>
 </li>
 <li><p><strong>Example:</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span>,</span><br><span class="line">    c: <span class="number">3</span>,</span><br><span class="line">    d: <span class="number">4</span></span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    a: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'new: %s, old: %s'</span>, val, oldVal)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// string method name</span></span><br><span class="line">    b: <span class="string">'someMethod'</span>,</span><br><span class="line">    <span class="comment">// deep watcher</span></span><br><span class="line">    c: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      deep: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// the callback will be called immediately after the start of the observation</span></span><br><span class="line">    d: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      immediate: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.a = <span class="number">2</span> <span class="comment">// =&gt; new: 2, old: 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span>,</span><br><span class="line">    c: <span class="number">3</span>,</span><br><span class="line">    d: <span class="number">4</span>,</span><br><span class="line">    e: &#123;</span><br><span class="line">      f: &#123;</span><br><span class="line">        g: <span class="number">5</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    a: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'new: %s, old: %s'</span>, val, oldVal)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// string method name</span></span><br><span class="line">    b: <span class="string">'someMethod'</span>,</span><br><span class="line">    <span class="comment">// deep watcher</span></span><br><span class="line">    c: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      deep: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// the callback will be called immediately after the start of the observation</span></span><br><span class="line">    d: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      immediate: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    e: [</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">handle1</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">handle2</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// watch vm.e.f's value: &#123;g: 5&#125;</span></span><br><span class="line">    <span class="string">'e.f'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">val, oldVal</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.a = <span class="number">2</span> <span class="comment">// =&gt; new: 2, old: 1</span></span><br></pre></td></tr></table></figure>
 <p class="tip">Note that <strong>you should not use an arrow function to define a watcher</strong> (e.g. <code>searchQuery: newValue =&gt; this.updateAutocomplete(newValue)</code>). The reason is arrow functions bind the parent context, so <code>this</code> will not be the Vue instance as you expect and <code>this.updateAutocomplete</code> will be undefined.</p>
 </li>
 <li><p><strong>See also:</strong> <a href="#vm-watch">Instance Methods / Data - vm.$watch</a></p>
@@ -1799,8 +1803,9 @@
 </ul>
 
   
+  
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

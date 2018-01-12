@@ -275,6 +275,9 @@
         <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
           <img src="/images/vueschool.png">
         </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
         </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -849,7 +852,8 @@
   
     <h1>Form Input Bindings</h1>
   
-  <h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>You can use the <code>v-model</code> directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, <code>v-model</code> is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.</p>
+  
+    <h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>You can use the <code>v-model</code> directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, <code>v-model</code> is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.</p>
 <p class="tip"><code>v-model</code> will ignore the initial <code>value</code>, <code>checked</code> or <code>selected</code> attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the <code>data</code> option of your component.</p>
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an <a href="https://en.wikipedia.org/wiki/Input_method" target="_blank" rel="noopener">IME</a> (Chinese, Japanese, Korean etc.), you’ll notice that <code>v-model</code> doesn’t get updated during IME composition. If you want to cater for these updates as well, use <code>input</code> event instead.</p>
@@ -1043,6 +1047,7 @@ new Vue({
 <p>HTML’s built-in input types won’t always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with <code>v-model</code>! To learn more, read about <a href="components.html#Form-Input-Components-using-Custom-Events">custom inputs</a> in the Components guide.</p>
 
   
+  
     <div class="guide-links">
       
         <span>← <a href="/v2/guide/events.html">Event Handling</a></span>
@@ -1053,7 +1058,7 @@ new Vue({
     </div>
   
   <div class="footer">
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){

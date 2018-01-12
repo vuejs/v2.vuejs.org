@@ -724,6 +724,16 @@ body.docs #nav {
   filter: none;
   opacity: 1;
 }
+.content .platinum {
+  text-align: center;
+}
+.content .platinum a {
+  display: inline-block;
+  margin: 20px;
+}
+.content .platinum img {
+  width: 250px;
+}
 .content .sponsor-section {
   text-align: center;
   margin-top: 0;
@@ -731,7 +741,7 @@ body.docs #nav {
 }
 .content .patreon-sponsors a,
 .content .patreon-sponsors img {
-  width: 120px;
+  width: 140px;
   display: inline-block;
   vertical-align: middle;
 }

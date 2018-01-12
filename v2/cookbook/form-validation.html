@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Form Validation — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/cookbook/form-validation.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Form Validation — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Form Validation — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>window.PAGE_TYPE = "cookbook"</script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png">
+    <span>Vue.js</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/style-guide/" class="nav-link">Style Guide</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
+    </ul></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Core Libraries</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
+      <li><a href="https://curated.vuejs.org/" class="nav-link" target="_blank">Vue Curated</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://jp.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Français</a></li>
+    <li><a href="https://vi.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Tiếng Việt</a></li>
+  </ul>
+</li>
+
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/style-guide/" class="nav-link">Style Guide</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
+    </ul></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Core Libraries</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
+      <li><a href="https://curated.vuejs.org/" class="nav-link" target="_blank">Vue Curated</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://jp.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Français</a></li>
+    <li><a href="https://vi.vuejs.org/v2/cookbook/form-validation.html" class="nav-link" target="_blank">Tiếng Việt</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+    <div class="list">
+      <div class="main-sponsor">
+        <span>Platinum Sponsors</span>
+        <div>
+        <a href="https://stdlib.com" target="_blank" class="logo">
+          <img src="/images/stdlib.png">
+        </a>
+        <a href="http://tooltwist.com/" target="_blank" class="logo">
+          <img src="/images/tooltwist.png">
+        </a>
+        <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+          <img src="/images/vueschool.png">
+        </a>
+        <a href="https://datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar" target="_blank" class="logo">
+          <img src="/images/datacamp.png">
+        </a>
+        </div>
+      </div>
+      <a class="become-backer" href="/support-vuejs">
+        Become a Sponsor
+      </a>
+      <h2>
+        Cookbook
+        
+      </h2>
+      <ul class="menu-root">
+  
+    
+    
+    
+      
+      <!-- Move cookbook sections here once they have -->
+      <!-- at least one recipe -->
+    
+    <li>
+      <a href="/v2/cookbook/index.html" class="sidebar-link">Introduction</a>
+    </li>
+  
+    
+    
+    
+      
+        <li><h3>Vue Instance</h3></li>
+      
+      <!-- Move cookbook sections here once they have -->
+      <!-- at least one recipe -->
+    
+    <li>
+      <a href="/v2/cookbook/adding-instance-properties.html" class="sidebar-link">Adding Instance Properties</a>
+    </li>
+  
+    
+    
+    
+      
+      <!-- Move cookbook sections here once they have -->
+      <!-- at least one recipe -->
+    
+    <li>
+      <a href="/v2/cookbook/form-validation.html" class="sidebar-link current">Form Validation</a>
+    </li>
+  
+    
+    
+    
+      
+      <!-- Move cookbook sections here once they have -->
+      <!-- at least one recipe -->
+    
+    <li>
+      <a href="/v2/cookbook/cookbook-contributions.html" class="sidebar-link">Cookbook Contributions</a>
+    </li>
+  
+  
+    <li><h3>Components</h3></li>
+    <li><h4>Form Inputs</h4></li>
+    <li><h4>3rd-Party Integrations</h4></li>
+    <li><h3>Transitions</h3></li>
+    <li><h3>Directives</h3></li>
+    <li><h3>Vue Router</h3></li>
+    <li><h3>Vuex</h3></li>
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content cookbook with-sidebar ">
+  
+    
+      <div id="ad">
+  <script>
+    (function () {
+      var s = document.createElement('script')
+      s.setAttribute('async', '')
+      s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+      s.id = '_carbonads_js'
+      document.getElementById('ad').appendChild(s)
+    })()
+  </script>
+</div>
+
+    
+  
+  
+    <h1>Form Validation</h1>
+  
+  
+    <h2 id="Simple-Example"><a href="#Simple-Example" class="headerlink" title="Simple Example"></a>Simple Example</h2><p>Form validation is natively supported by the browser, but sometimes different browsers will handle things in a manner which makes relying on it a bit tricky. Even when validation is supported perfectly, there may be times when custom validations are needed and a more manual, Vue-based solution may be more appropriate. Let’s begin with a simple example.</p>
+<p>Given a form of three fields, make two required. Let’s look at the HTML first:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"app"</span> @<span class="attr">submit</span>=<span class="string">"checkForm"</span> <span class="attr">action</span>=<span class="string">"https://vuejs.org/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"errors.length"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span>Please correct the following error(s):<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"error in errors"</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>Name<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">v-model</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"age"</span>&gt;</span>Age<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">id</span>=<span class="string">"age"</span> <span class="attr">v-model</span>=<span class="string">"age"</span> <span class="attr">min</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"movie"</span>&gt;</span>Favorite Movie<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"movie"</span> <span class="attr">id</span>=<span class="string">"movie"</span> <span class="attr">v-model</span>=<span class="string">"movie"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Star Wars<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Vanilla Sky<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Atomic Blonde<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Let’s cover it from the top. The form tag has an ID that we’ll be using for the Vue component. There’s a submit handler that you’ll see in a bit, and the action is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).</p>
+<p>Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified. </p>
+<p>The final thing to note is that each of the three fields has a corresponding v-model to connect them to values we will work with in the JavaScript. Now let’s look at that.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    errors:[],</span><br><span class="line">    name:<span class="literal">null</span>,</span><br><span class="line">    age:<span class="literal">null</span>,</span><br><span class="line">    movie:<span class="literal">null</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    checkForm:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.name &amp;&amp; <span class="keyword">this</span>.age) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">this</span>.errors = [];</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.name) <span class="keyword">this</span>.errors.push(<span class="string">"Name required."</span>);</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.age) <span class="keyword">this</span>.errors.push(<span class="string">"Age required."</span>);</span><br><span class="line">      e.preventDefault();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Fairly short and simple. We default an array to hold errors and set null values for the three form fields. The checkForm logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that’s really it. You can run the demo below. Don’t forget that on a successful submission it’s going to POST to a temporary URL.</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/GObpZM/" target="_blank" rel="noopener">form validation 1</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster" target="_blank" rel="noopener">@cfjedimaster</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="Using-Custom-Validation"><a href="#Using-Custom-Validation" class="headerlink" title="Using Custom Validation"></a>Using Custom Validation</h2><p>For the second example, the second text field (age) was switched to email which will be validated with a bit of custom logic. The code is taken from the StackOverflow question, <a href="https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript" target="_blank" rel="noopener">How to validate email address in JavaScript?</a>. This is an awesome question because it makes your most intense Facebook political/religious argument look like a slight disagreement over who makes the best beer. Seriously - it’s insane. Here is the HTML, even though it’s really close to the first example.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"app"</span> @<span class="attr">submit</span>=<span class="string">"checkForm"</span> <span class="attr">action</span>=<span class="string">"https://vuejs.org/"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">novalidate</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"errors.length"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span>Please correct the following error(s):<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"error in errors"</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>Name<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">v-model</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"email"</span>&gt;</span>Email<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">id</span>=<span class="string">"email"</span> <span class="attr">v-model</span>=<span class="string">"email"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"movie"</span>&gt;</span>Favorite Movie<span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"movie"</span> <span class="attr">id</span>=<span class="string">"movie"</span> <span class="attr">v-model</span>=<span class="string">"movie"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Star Wars<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Vanilla Sky<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>Atomic Blonde<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>While the change here is small, note the <code>novalidate=&quot;true&quot;</code> on top. This is important because the browser will attempt to validate the email address in the field when type=”email”. Frankly it may make more sense to trust the browser in this case, but as we wanted an example with custom validation, we’re disabling it. Here’s the updated JavaScript.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    errors:[],</span><br><span class="line">    name:<span class="literal">null</span>,</span><br><span class="line">    email:<span class="literal">null</span>,</span><br><span class="line">    movie:<span class="literal">null</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    checkForm:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.errors = [];</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.name) <span class="keyword">this</span>.errors.push(<span class="string">"Name required."</span>);</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.email) &#123;</span><br><span class="line">        <span class="keyword">this</span>.errors.push(<span class="string">"Email required."</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="keyword">this</span>.validEmail(<span class="keyword">this</span>.email)) &#123;</span><br><span class="line">        <span class="keyword">this</span>.errors.push(<span class="string">"Valid email required."</span>);        </span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.errors.length) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      e.preventDefault();</span><br><span class="line">    &#125;,</span><br><span class="line">    validEmail:<span class="function"><span class="keyword">function</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> re = <span class="regexp">/^(([^&lt;&gt;()\[\]\\.,;:\s@"]+(\.[^&lt;&gt;()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;</span><br><span class="line">    <span class="keyword">return</span> re.test(email);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>As you can see, we’ve added <code>validEmail</code> as a new method and it is simply called from <code>checkForm</code>. You can play with this example here:</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqNXZ/" target="_blank" rel="noopener">form validation 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster" target="_blank" rel="noopener">@cfjedimaster</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="Another-Example-of-Custom-Validation"><a href="#Another-Example-of-Custom-Validation" class="headerlink" title="Another Example of Custom Validation"></a>Another Example of Custom Validation</h2><p>For the third example, we’ve built something you’ve probably seen in survey apps. The user is asked to spend a “budget” for a set of features for a new Star Destroyer model. The total must equal 100. First, the HTML.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"app"</span> @<span class="attr">submit</span>=<span class="string">"checkForm"</span> <span class="attr">action</span>=<span class="string">"https://vuejs.org/"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">novalidate</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"errors.length"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span>Please correct the following error(s):<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"error in errors"</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    Given a budget of 100 dollars, indicate how much</span><br><span class="line">    you would spend on the following features for the</span><br><span class="line">    next generation Star Destroyer. Your total must sum up to 100.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"weapons"</span> <span class="attr">v-model.number</span>=<span class="string">"weapons"</span>&gt;</span> Weapons <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"shields"</span> <span class="attr">v-model.number</span>=<span class="string">"shields"</span>&gt;</span> Shields <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"coffee"</span> <span class="attr">v-model.number</span>=<span class="string">"coffee"</span>&gt;</span> Coffee <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"ac"</span> <span class="attr">v-model.number</span>=<span class="string">"ac"</span>&gt;</span> Air Conditioning <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"mousedroids"</span> <span class="attr">v-model.number</span>=<span class="string">"mousedroids"</span>&gt;</span> Mouse Droids <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    Current Total: &#123;&#123;total&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Note the set of inputs covering the five different features. Note the addition of .number to the v-model attribute. This tells Vue to cast the value to a number when you use it. However, there is a bug with this feature such that when the value is blank, it turns back into a string. You’ll see the workaround below. To make it a bit easier for the user, we also added a current total right below so they can see, in real time, what their total is. Now let’s look at the JavaScript.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    errors:[],</span><br><span class="line">    weapons:<span class="number">0</span>,</span><br><span class="line">    shields:<span class="number">0</span>,</span><br><span class="line">    coffee:<span class="number">0</span>,</span><br><span class="line">    ac:<span class="number">0</span>,</span><br><span class="line">    mousedroids:<span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">     total:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="comment">//must parse cuz Vue turns empty value to string</span></span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">Number</span>(<span class="keyword">this</span>.weapons)+</span><br><span class="line">         <span class="built_in">Number</span>(<span class="keyword">this</span>.shields)+</span><br><span class="line">         <span class="built_in">Number</span>(<span class="keyword">this</span>.coffee)+</span><br><span class="line">         <span class="built_in">Number</span>(<span class="keyword">this</span>.ac+<span class="keyword">this</span>.mousedroids);</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    checkForm:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.errors = [];</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.total != <span class="number">100</span>) <span class="keyword">this</span>.errors.push(<span class="string">"Total must be 100!"</span>);</span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.errors.length) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      e.preventDefault();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>We set up the total value as a computed value, and outside of that bug I ran into, it was simple enough to setup. My checkForm method now just needs to see if the total is 100 and that’s it. You can play with this here:</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqGoy/" target="_blank" rel="noopener">form validation 3</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster" target="_blank" rel="noopener">@cfjedimaster</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="Server-side-Validation"><a href="#Server-side-Validation" class="headerlink" title="Server-side Validation"></a>Server-side Validation</h2><p>In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick <a href="http://openwhisk.apache.org/" target="_blank" rel="noopener">OpenWhisk</a> serverless action to do the validation. While it isn’t terribly important, here is the logic:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// bad product names: vista,empire,mbp</span></span><br><span class="line">        <span class="keyword">let</span> badNames = [<span class="string">'vista'</span>,<span class="string">'empire'</span>,<span class="string">'mbp'</span>];</span><br><span class="line">        <span class="keyword">if</span>(badNames.includes(args.name)) reject(&#123;<span class="attr">error</span>:<span class="string">'Existing product'</span>&#125;);</span><br><span class="line">        resolve(&#123;<span class="attr">status</span>:<span class="string">'ok'</span>&#125;);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Basically any name but “vista”, “empire”, and “mbp” are acceptable. Ok, so let’s look at the form.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"app"</span> @<span class="attr">submit</span>=<span class="string">"checkForm"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"errors.length"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span>Please correct the following error(s):<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"error in errors"</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>New Product Name: <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">v-model</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>There isn’t anything special here. So let’s go on to the JavaScript.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> apiUrl = <span class="string">'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name='</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  data:&#123;</span><br><span class="line">    errors:[],</span><br><span class="line">    name:<span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    checkForm:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      e.preventDefault();</span><br><span class="line">      <span class="keyword">this</span>.errors = [];</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.name === <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.errors.push(<span class="string">"Product name is required."</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fetch(apiUrl+<span class="built_in">encodeURIComponent</span>(<span class="keyword">this</span>.name))</span><br><span class="line">        .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">        .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span>(res.error) &#123;</span><br><span class="line">            <span class="keyword">this</span>.errors.push(res.error);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// redirect to a new url, or do something on success</span></span><br><span class="line">            alert(<span class="string">'ok!'</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>We start off with a variable representing the URL of the API that is running on OpenWhisk. Now look at <code>checkForm</code>. In this version, we always prevent the form from submitting (which, by the way, could be done in the HTML with Vue as well). You can see a basic check on <code>this.name</code> being empty, and then we hit the API. If it’s bad, we add an error as before. If it’s good, right now we do nothing (just an alert), but you could navigate the user to a new page with the product name in the URL, or do other actions as well. You can run this demo below:</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/BmgzeM/" target="_blank" rel="noopener">form validation 4</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster" target="_blank" rel="noopener">@cfjedimaster</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="Alternative-Patterns"><a href="#Alternative-Patterns" class="headerlink" title="Alternative Patterns"></a>Alternative Patterns</h2><p>While this cookbook entry focused on doing form validation “by hand”, there are, of course, some great Vue libraries that will handle a lot of this for you. Switching to a prepackage library may impact the final size of your application, but the benefits could be tremendous. You have code that is (most likely) heavily tested and also updated on a regular basis. Some examples of form validation libraries for Vue  include:</p>
+<ul>
+<li><a href="https://github.com/monterail/vuelidate" target="_blank" rel="noopener">vuelidate</a></li>
+<li><a href="http://vee-validate.logaretm.com/" target="_blank" rel="noopener">VeeValidate</a></li>
+</ul>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/cookbook/form-validation.md" target="_blank">
+      Edit this page on Github!
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] }
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>
