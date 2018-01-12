@@ -36,3 +36,13 @@ gold_sponsors:
     img: vuejobs.png
   - url: https://leanpub.com/vuejs2
     img: tmvuejs2.png
+
+bronze_sponsors:
+  - url: http://tighten.co/
+    img: http://i.imgur.com/T7fQYLT.png
+  - url: https://alligator.io
+    img: https://alligator.io/images/alligator-logo.svg
+  - url: https://www.accelebrate.com/
+    img: https://www.accelebrate.com/assets/images/accelebrate_logo@2x.png
+  - url: https://pullstring.com
+    img: https://i.imgur.com/hQHW6TB.png
