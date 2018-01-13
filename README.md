@@ -11,16 +11,9 @@ $ npm start # dev server at http://localhost:4000
 
 ## Deploying
 
-The site is deployed using GitHub pages, therefore you need push access to the vuejs.org repo to run the deploy script:
+The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
 
-``` bash
-$ npm run deploy
-```
-
-If you are working on a fork and deploying to a different URL, you need to update the following accordingly:
-
-- `url` and `deploy` sections in `_config.yml`
-- `src/CNAME`
+If you are the maintainer of a community translation fork and would like to deploy via Netlify instead of GitHub pages, you can first deploy to Netlify yourself and then ping @yyx990803 in an issue to request a DNS update.
 
 ## On Translations
 
