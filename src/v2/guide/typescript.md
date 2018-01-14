@@ -85,20 +85,20 @@ export default class MyComponent extends Vue {
 }
 ```
 
-## Augmenting Types for Use with Plugins
+## 扩充类型以配合插件使用(Augmenting Types for Use with Plugins)
 
-Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+插件(plugins)可能会添加 Vue 的全局/实例属性和组件选项。在这种情况下，为了使插件可以在 TypeScript 中正常编译，需要类型声明。幸运的是，TypeScript 有一个名为[模块补充(module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)的特性，可以扩充现有的类型。
 
-For example, to declare an instance property `$myProperty` with type `string`:
+例如，如果想要声明一个 `string` 类型的实例属性 `$myProperty`：
 
 ``` ts
-// 1. Make sure to import 'vue' before declaring augmented types
+// 1. 请确保在声明扩充的类型之前 import 'vue'
 import Vue from 'vue'
 
-// 2. Specify a file with the types you want to augment
-//    Vue has the constructor type in types/vue.d.ts
+// 2. 为想要扩充的类型指定一个文件
+//    在 types/vue.d.ts 中有 Vue 构造函数的类型
 declare module 'vue/types/vue' {
-  // 3. Declare augmentation for Vue
+  // 3. 为 Vue 声明扩充属性
   interface Vue {
     $myProperty: string
   }
