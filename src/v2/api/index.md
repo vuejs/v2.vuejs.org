@@ -44,7 +44,7 @@ type: api
 
   The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **See also:** [Custom Merge Strategies](../guide/composition.html#Custom-Merge-Strategies)
 
 ### devtools
 
@@ -372,7 +372,7 @@ type: api
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **See also:** [Global Mixins](../guide/composition.html#Global-Mixins)
 
 ### Vue.compile( template )
 
@@ -967,7 +967,7 @@ type: api
   // => 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **See also:** [Mixins](../guide/composition.html#Mixins)
 
 ### extends
 
@@ -990,6 +990,8 @@ type: api
     ...
   }
   ```
+
+  - **See also:** [Extension](../guide/composition.html#Extension)
 
 ### provide / inject
 
