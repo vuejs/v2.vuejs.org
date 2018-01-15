@@ -184,7 +184,7 @@ new Vue({
 
 <p class="tip">注意 `v-show` 不支持 `<template>` 元素。</p>
 
-## `v-if` vs `v-show`
+## `v-if` 和 `v-show`
 
 `v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
 
