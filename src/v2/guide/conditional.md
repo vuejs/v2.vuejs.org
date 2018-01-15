@@ -1,65 +1,65 @@
 ---
-title: 条件渲染
+title: 根据条件进行渲染
 type: guide
 order: 7
 ---
 
 ## `v-if`
 
-在字符串模板中，如 Handlebars ，我们得像这样写一个条件块：
+在字符串模板中，例如 Handlebars，我们会像这样去写条件块(conditional block)：
 
 ``` html
 <!-- Handlebars 模板 -->
 {{#if ok}}
-  <h1>Yes</h1>
+  <h1>是</h1>
 {{/if}}
 ```
 
-在 Vue.js ，我们使用 `v-if` 指令实现同样的功能：
+在 Vue 中，我们使用 `v-if` 指令实现同样的功能：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 ```
 
-也可以用 `v-else` 添加一个 "else 块"：
+还可以用 `v-else` 添加一个 "else 块"：
 
 ``` html
-<h1 v-if="ok">Yes</h1>
-<h1 v-else>No</h1>
+<h1 v-if="ok">是</h1>
+<h1 v-else>否</h1>
 ```
 
-### 在 `<template>` 上使用 `v-if` - 根据条件归类
+### 在 `<template>` 上使用 `v-if` 进行条件分组
 
-因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 `<template>` 元素当做包装元素，并在上面使用 `v-if`，最终的渲染结果不会包含它。
+由于 `v-if` 是一个指令，因此必须将其附加到一个单独的元素上。但是如果我们想要切换多个元素呢？在这种场景中，我们可以将 `<template>` 元素，作为多个元素的无形容器(invisible wrapper)，然后在这个容器上使用 `v-if`。最终渲染结果将不会包含 `<template>` 元素。
 
 ``` html
 <template v-if="ok">
-  <h1>Title</h1>
-  <p>Paragraph 1</p>
-  <p>Paragraph 2</p>
+  <h1>标题</h1>
+  <p>段落 1</p>
+  <p>段落 2</p>
 </template>
 ```
 
 ### `v-else`
 
-可以用 `v-else` 指令给 `v-if` 添加一个 "else" 块：
+可以使用 `v-else` 指令来表示和 `v-if` 对应的“else 块”：
 
 ``` html
 <div v-if="Math.random() > 0.5">
-  Sorry
+  现在你可以看到我
 </div>
 <div v-else>
-  Not sorry
+  现在你看不到我
 </div>
 ```
 
-`v-else` 元素必须紧跟在 `v-if` 元素或者 `v-else-if`的后面——否则它不能被识别。
+`v-else` 元素必须紧跟在 `v-if` 或 `v-else-if` 元素之后 - 否则无法识别它。
 
 ### `v-else-if`
 
 > 2.1.0+ 新增
 
-`v-else-if`，顾名思义，用作 `v-if` 的 `else-if` 块。可以链式的多次使用：
+`v-else-if`，顾名思义，就是 `v-if` 之后的“else-if 块”。可以多次链式地调用：
 
 ```html
 <div v-if="type === 'A'">
@@ -72,44 +72,44 @@ order: 7
   C
 </div>
 <div v-else>
-  Not A/B/C
+  非 A/B/C
 </div>
 ```
 
-与 `v-else` 相似，`v-else-if` 必须跟在 `v-if` 或者 `v-else-if`之后。
+和 `v-else` 类似，`v-else-if` 元素必须紧跟在 `v-if` 或 `v-else-if` 元素之后。
 
-### 使用 `key` 控制元素的可重用
+### 使用 `key` 控制元素是否可复用
 
-Vue 尝试尽可能高效的渲染元素，通常会复用已有元素而不是从头开始渲染。这么做除了使 Vue 更快之外还可以得到一些好处。如下例，当允许用户在不同的登录方式之间切换:
+Vue 会尽可能高效地渲染元素，通常会复用已渲染元素，而不是从头重新渲染。这样的实现方式，除了有助于使 Vue 变得非常快之外，还具有一些额外的优势。举例说明，如果你想要根据多种登录类型，来切换用户界面：
 
 ``` html
 <template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username">
+  <label>用户名</label>
+  <input placeholder="请输入用户名">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address">
+  <label>邮箱</label>
+  <input placeholder="请输入邮箱">
 </template>
 ```
 
-在代码中切换 `loginType` 不会删除用户已经输入的内容，两个模板由于使用了相同的元素，`<input>` 会被复用，仅仅是替换了他们的 `placeholder`。
+然后，在上面的代码中，切换 `loginType` 不会清除用户已经输入的内容。这是由于两个模板使用的是相同的元素，所以 `<input>` 并不会被替换 - 替换的只是元素的 `placeholder`。
 
-自己动手试一试,输入一些文本，然后点击 「Toggle login type」 进行切换
+不妨自己动手测试一下，在 input 中输入一些文本，然后按下切换按钮：
 
 {% raw %}
 <div id="no-key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username">
+      <label>用户名</label>
+      <input placeholder="请输入用户名">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address">
+      <label>邮箱</label>
+      <input placeholder="请输入邮箱">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">切换登录类型</button>
 </div>
 <script>
 new Vue({
@@ -126,34 +126,34 @@ new Vue({
 </script>
 {% endraw %}
 
-这样也不总是符合实际需求，所以 Vue 提供一种方式让你可以自己决定是否要复用元素。你要做的是添加一个属性 `key` ，`key` 必须带有唯一的值。
+但是这样有时并不符合实际需求，所以 Vue 为如下所述的情况提供了一种方式：“这两个元素是完全独立的 - 请不要复用它们”。那就是为它们添加一个具有不同值的 `key` 属性：
 
 ``` html
 <template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+  <label>用户名</label>
+  <input placeholder="请输入用户名" key="username-input">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <label>邮箱</label>
+  <input placeholder="请输入邮箱" key="email-input">
 </template>
 ```
 
-现在输入文本将会在每次切换时重新渲染。自己动手试一试。
+现在，这些 input 将会在每次切换时从头重新渲染。自己动手测试一下：
 
 {% raw %}
 <div id="key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <label>用户名</label>
+      <input placeholder="请输入用户名" key="username-input">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <label>邮箱</label>
+      <input placeholder="请输入邮箱" key="email-input">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">切换登录类型</button>
 </div>
 <script>
 new Vue({
@@ -170,7 +170,7 @@ new Vue({
 </script>
 {% endraw %}
 
-注意, `<label>` 元素仍然会被复用，因为没有被添加了 `key` 属性。
+注意，`<label>` 元素仍然被有效地复用，因为它们没有 `key` 属性。
 
 ## `v-show`
 
@@ -194,12 +194,12 @@ new Vue({
 
 一般来说， `v-if` 有更高的切换消耗而 `v-show` 有更高的初始渲染消耗。因此，如果需要频繁切换使用 `v-show` 较好，如果在运行时条件不大可能改变则使用 `v-if` 较好。
 
-## `v-if` with `v-for`
+## `v-if` 与 `v-for` 一起使用
 
 当与 `v-if` 一起使用时，`v-for` 具有比 `v-if` 更高的优先级。 相关的详细信息，请参阅<a href="../guide/list.html#V-for-and-v-if">列表渲染指南</a>。
 
 ***
 
-> 原文：http://vuejs.org/guide/conditional.html
+> 原文：https://vuejs.org/v2/guide/conditional.html
 
 ***
