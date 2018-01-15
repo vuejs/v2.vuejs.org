@@ -105,14 +105,14 @@ declare module 'vue/types/vue' {
 }
 ```
 
-After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+在你的项目中，使用上面作为声明文件（例如 `my-property.d.ts`）的代码后，你就可以在 Vue 实例上使用 `$myProperty` 了。
 
 ```ts
 var vm = new Vue()
-console.log(vm.$myProperty) // This should compile successfully
+console.log(vm.$myProperty) // 这里可以成功编译
 ```
 
-You can also declare additional global properties and component options:
+还可以声明额外的全局属性和组件选项：
 
 ```ts
 import Vue from 'vue'
@@ -125,7 +125,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-// ComponentOptions is declared in types/options.d.ts
+// 在 types/options.d.ts 中声明 ComponentOptions
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     myOption?: string
@@ -133,13 +133,13 @@ declare module 'vue/types/options' {
 }
 ```
 
-The above declarations allow the following code to be compiled:
+以上声明，可以使下面的代码成功编译：
 
 ```ts
-// Global property
+// 全局属性
 console.log(Vue.$myGlobal)
 
-// Additional component option
+// 额外的组件选项
 var vm = new Vue({
   myOption: 'Hello'
 })
