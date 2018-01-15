@@ -75,6 +75,7 @@
 * 【记录】https://github.com/docschina/vuejs.org/pull/380
 
 ### 2018.01.16
+* 【更新】合并 cn.vuejs.org 的风格指南文档
 * 【重新校对】`根据条件进行渲染`。
 * 【记录】https://github.com/docschina/vuejs.org/pull/386
 
