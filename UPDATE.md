@@ -1,5 +1,62 @@
 ## 更新记录
 
+### 2017.06.15
+* 【重新校对】`介绍`
+* 【重新校对】`Vue 实例`
+* 【记录】https://github.com/docschina/vuejs.org/pull/350
+
+### 2017.06.29
+* 【重新翻译】`安装`
+* 【重新校对】`状态间的过渡`
+* 【记录】https://github.com/docschina/vuejs.org/pull/357
+
+### 2017.07.05
+* 【部分校对】`render 函数 & jsx`
+* 【记录】https://github.com/docschina/vuejs.org/pull/359
+
+### 2017.07.07
+* 【重新校对】`列表渲染`
+* 【记录】https://github.com/docschina/vuejs.org/pull/360
+
+### 2017.07.11
+* 【重新校对】`自定义指令`
+* 【记录】https://github.com/docschina/vuejs.org/pull/361
+
+### 2017.07.30
+* 【重新校对】`组件`
+* 【记录】https://github.com/docschina/vuejs.org/pull/361
+
+### 2017.08.01
+* 【更新】合并 vuejs.org 的 master 分支
+* 【记录】https://github.com/docschina/vuejs.org/pull/366
+
+### 2017.08.04
+* 【重新校对】`Mixin`
+* 【重新校对】`编写插件`
+* 【更新】合并 cn.vuejs.org 的 API 文档
+* 【记录】https://github.com/docschina/vuejs.org/pull/367
+* 【记录】https://github.com/docschina/vuejs.org/pull/368
+
+### 2017.08.09
+* 【重新校对】`模板语法`
+* 【记录】https://github.com/docschina/vuejs.org/pull/369
+
+### 2017.08.23
+* 【重新校对】`computed 属性和 watcher`
+* 【记录】https://github.com/docschina/vuejs.org/pull/371
+
+### 2017.08.23
+* 【重新校对】`class 和 style 绑定`
+* 【记录】https://github.com/docschina/vuejs.org/pull/373
+
+### 2017.09.06
+* 【更新】合并 vuejs.org 的 master 分支
+* 【记录】https://github.com/docschina/vuejs.org/pull/375
+
+### 2017.09.15
+* 【更新】合并 vuejs.org 的 master 分支
+* 【记录】https://github.com/docschina/vuejs.org/pull/376
+
 ### 2017.12.29
 * 【更新】将文档服务迁移至腾讯云企业级服务器
 
@@ -20,3 +77,6 @@
 ### 2018.01.16
 * 【重新校对】`根据条件进行渲染`。
 * 【记录】https://github.com/docschina/vuejs.org/pull/386
+
+## 重新校对情况
+
