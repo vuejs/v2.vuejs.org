@@ -29,6 +29,7 @@ order: 0
 - Vue.js 技术栈 5 群 `348109803`
 - Vue.js 技术栈 6 群 `621662814`
 - Vue.js 技术栈 7 群 `479672448`
+- Vue.js 技术栈 8 群 `302093657` [点击加入](//shang.qq.com/wpa/qunwpa?idkey=22de3f3b4d9c2a857b44c7000dac2d05856d2a62ac8ee45febd61f5973af5ef7)
 
 ## 给我们提建议
 
