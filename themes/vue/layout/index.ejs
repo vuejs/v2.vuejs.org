@@ -16,8 +16,13 @@
         Framework JavaScript<br>linh động
       </h1>
       <p>
-        <a class="button" href="<%- url_for("/v2/guide/") %>">BẮT ĐẦU</a>
-        <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
+        <a id="modal-player" class="button has-icon" href="javascript:;">
+          <%- partial('icons/play') %>
+          TẠI SAO CHỌN VUE.JS?</a>
+        <a class="button white" href="<%- url_for("/v2/guide/") %>">BẮT ĐẦU</a>
+        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank">
+          <%- partial('icons/github-dark') %>
+          GITHUB</a>
       </p>
     </div>
   </div>
@@ -25,7 +30,7 @@
 
 <div id="special-sponsor">
   <a href="https://stdlib.com/" target="_blank">
-    <span>Sponsored by</span>
+    <span>Tài trợ bởi</span>
     <img src="/images/stdlib.png">
     <span>Function as a Service Platform and Library</span>
   </a>
@@ -68,10 +73,24 @@
 </div>
 
 <div id="footer">
+    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
+      <%- partial('icons/github') %>
+    </a>
+    <a class="social-icon" href="https://twitter.com/vuejs" target="_blank">
+      <%- partial('icons/twitter') %>
+    </a>
+    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank">
+      <%- partial('icons/medium') %>
+    </a>
+  </p>
   <p>
     Phát hành với giấy phép <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a><br>
     Bản quyền &copy; 2014-<%- new Date().getFullYear() %> Evan You
   </p>
+</div>
+
+<div id="video-modal" class="modal">
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 </div>
 
 <script>

@@ -21,7 +21,11 @@
   <% if (page.title.trim()) { %>
     <h1><%- page.title %></h1>
   <% } %>
-  <%- page.content %>
+  <% if (page.sponsors) { %>
+    <%- partial('sponsors-page') %>
+  <% } else { %>
+    <%- page.content %>
+  <% } %>
   <% if (page.type === 'guide') { %>
     <div class="guide-links">
       <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
@@ -33,7 +37,9 @@
     </div>
   <% } %>
   <div class="footer">
-    <%- partial('partials/ad-text') %>
+    <%_ if (!page.sponsors) { _%>
+      <%- partial('partials/ad-text') %>
+    <%_ } _%>
     Phát hiện lỗi hoặc muốn đóng góp vào nội dung?
     <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
       Chỉnh sửa trang này trên GitHub!

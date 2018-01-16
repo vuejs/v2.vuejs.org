@@ -493,7 +493,7 @@ new Vue({
 
 Component mà ta vừa viết còn khá đơn giản - nó không quản lí trạng thái, không theo dõi trạng thái được truyền vào, và không có bất kì phương thức vòng đời (life-cycle method) nào. Thật sự nó chỉ là một hàm với vài thuộc tính (prop).
 
-Trong những trường hợp như thế, ta có thể đánh dấu component là `functional`. Một function component (component thuần chức năng) không có trạng thái (stateless – không có `data`), không có đối tượng (instanceless – không có ngữ cảnh `this`), và trông như thế này:
+Trong những trường hợp như thế, ta có thể đánh dấu component là `functional`. Một functional component (component thuần chức năng) không có trạng thái (stateless – không có `data`), không có đối tượng (instanceless – không có ngữ cảnh `this`), và trông như thế này:
 
 ``` js
 Vue.component('my-component', {
@@ -511,6 +511,13 @@ Vue.component('my-component', {
 ```
 
 > Trong các phiên bản trước 2.3.0, tùy chọn `props` là bắt buộc nếu bạn muốn nhận props trong một functional component. Từ phiên bản 2.3.0 trở về sau, bạn có thể bỏ qua tùy chọn `props`, và khi đó tất cả các thuộc tính tìm thấy trên component node sẽ được trích xuất ngầm thành props.
+
+Từ bản 2.5.0 trở đi, nếu bạn đang dùng [single-file component](single-file-components.html), functional component dựa trên template có thể được khai báo như sau:
+
+```js
+<template functional>
+</template>
+```
 
 Mọi thứ mà component cần được truyền vào thông qua `context`, một object chứa:
 

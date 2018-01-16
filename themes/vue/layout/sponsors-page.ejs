@@ -1,0 +1,120 @@
+<h1>Sponsor Vue.js Development</h1>
+
+<p>
+Vue.js is an MIT licensed open source project and completely free to use.
+However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+</p>
+
+<h2 id="One-time-Donations">One-time Donations</h2>
+
+<p>We accept donations through these channels:</p>
+
+<div id="one-time-donations">
+  <a href="https://www.paypal.me/evanyou" target="_blank">
+    <img src="/images/paypal.png" style="width:100px">
+  </a>
+  <a href="#btc"><%- partial('icons/btc') %> BTC</a>
+  <a href="#bch"><%- partial('icons/bch') %> BCH</a>
+  <a href="#eth"><%- partial('icons/eth') %> ETH</a>
+  <a href="#ltc"><%- partial('icons/ltc') %> LTC
+  </a>
+</div>
+
+<div id="coin-details" v-if="type && coins[type]">
+  <p>{{ coins[type].name }} Address:<br>{{ coins[type].address }}</p>
+  <img :src="'/images/coin-' + type + '.png'">
+</div>
+<script>
+var coins = new Vue({
+  el: '#coin-details',
+  data: {
+    type: window.location.hash.slice(1),
+    coins: {
+      btc: {
+        name: 'Bitcoin',
+        address: '14MEpy5a9MwDZa9CUzrfDhTU8dy2KKJ5mU'
+      },
+      bch: {
+        name: 'Bitcoin Cash',
+        address: '15gftB3fwumFRWGWFhVzTgc4nhM5w1F2Tu'
+      },
+      eth: {
+        name: 'Ethereum',
+        address: '0x3411356C1f0Bf5D859464eD2AC54DD2C222519B7'
+      },
+      ltc: {
+        name: 'Litecoin',
+        address: 'LUcHis3B8SFtEeZtuCaZoqsyN9XFAKmbCP'
+      }
+    }
+  }
+})
+window.addEventListener('hashchange', function () {
+  coins.type = window.location.hash.slice(1)
+})
+</script>
+
+<h2 id="Recurring-Pledges">Recurring Pledges</h2>
+
+<p>
+Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.
+</p>
+
+<ul>
+  <li>
+    <a href="https://www.patreon.com/evanyou" target="_blank">Become a backer or sponsor via Patreon</a> (goes directly to support Evan You's full-time work on Vue)
+  </li>
+  <li>
+    <a href="https://opencollective.com/vuejs">Become a backer or sponsor via OpenCollective</a> (goes into a fund with transparent expense models supporting community efforts and events)
+  </li>
+</ul>
+
+<h2>Current Premium Sponsors:</h2>
+
+<h3>Platinum</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>OpenCollective Platinum</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 3; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>Patreon Gold</h3>
+
+<p class="patreon-sponsors sponsor-section">
+<%_ for (const sponsor of theme.gold_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>OpenCollective Gold</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<p>
+If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: <b>it ensures the project that your product relies on stays healthy and actively maintained.</b> It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+</p>
+
+<p>
+If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+</p>

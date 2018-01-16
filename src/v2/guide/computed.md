@@ -211,7 +211,7 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // bất cứ lúc nào câu hỏi thay đổi, hàm bên dưới sẽ chạy
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Đang chờ bạn đặt xong câu hỏi...'
       this.getAnswer()
     }
@@ -264,7 +264,7 @@ var watchExampleVM = new Vue({
     answer: 'Không thể trả lời nếu bạn chưa đặt câu hỏi!'
   },
   watch: {
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Đang chờ bạn đặt xong câu hỏi...'
       this.getAnswer()
     }

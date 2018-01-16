@@ -8,6 +8,8 @@ order: 11
 
 Component là một trong những tính năng mạnh nhất của Vue. Với component, chúng ta có thể mở rộng những phần tử HTML cơ bản để đóng gói (encapsulate) code có thể tái sử dụng. Nói một cách tổng quát, component là những phần tử web tùy biến (custom element) đã được trình biên dịch của Vue đính kèm các hành vi (behavior) vào. Trong một số trường hợp, component cũng có thể xuất hiện dưới dạng một phần tử HTML bình thường với một thuộc tính `is` đặc biệt.
 
+Mỗi component đều là một đối tượng Vue, và do đó sẽ nhận cùng một object `options` (trừ một số tùy chọn dành riêng cho root) và cung cấp cùng một hệ thống hook vòng đời. 
+
 ## Sử dụng component
 
 ### Đăng kí ở cấp toàn cục

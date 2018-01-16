@@ -57,9 +57,21 @@ a.button
   transition: all .15s ease
   box-sizing: border-box
   border: 1px solid lighten($green, 8%)
+  &.has-icon
+    position: relative
+    text-indent: 1.4em;
+    > svg
+      position: absolute
+      left: 0.4em
+      top: 0.4em
+      width: 2em
   &.white
     background-color: #fff
     color: $green
+  &.gray
+    background-color: #f6f6f6
+    color: $light
+    border-color: #f6f6f6
 
 .highlight
   overflow-x: auto

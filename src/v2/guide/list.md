@@ -331,7 +331,7 @@ Vue.set(vm.userProfile, 'age', 800)
 Bạn cũng có thể dùng phương thức đối tượng (instance method) `vm.$set`, một alias cho phương thức toàn cục `Vue.set`:
 
 ``` js
-this.$set(this.userProfile, 'age', 800)
+vm.$set(this.userProfile, 'age', 800)
 ```
 
 Đôi khi bạn cũng muốn thêm vài thuộc tính cùng lúc vào một object có sẵn, sử dụng `Object.assign()` hoặc `_.extend()`. Trong những trường hợp này, nên tạo một object mới với các thuộc tính từ hai object kia. Có nghĩa là thay vì:

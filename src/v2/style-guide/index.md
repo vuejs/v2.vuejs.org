@@ -305,6 +305,165 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
+### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+
+**Never use `v-if` on the same element as `v-for`.**
+
+There are two common cases where this can be tempting:
+
+- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+
+- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+Will be evaluated similar to:
+
+``` js
+this.users.map(function (user) {
+  if (user.isActive) {
+    return user.name
+  }
+})
+```
+
+So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
+
+By iterating over a computed property instead, like this:
+
+``` js
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+      return user.isActive
+    })
+  }
+}
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+We get the following benefits:
+
+- The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
+- Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
+- Logic is now decoupled from the presentation layer, making maintenance (change/extension of logic) much easier.
+
+We get similar benefits from updating:
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+to:
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+By moving the `v-if` to a container element, we're no longer checking `shouldShowUsers` for _every_ user in the list. Instead, we check it once and don't even evaluate the `v-for` if `shouldShowUsers` is false.
+
+{% raw %}</details>{% endraw %}
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Component style scoping <sup data-p="a">essential</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
@@ -1310,6 +1469,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
+
 ## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
 
@@ -1557,10 +1717,16 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 #### Good
 
 ``` html
-<div v-if="error" key="search-status">
+<div
+  v-if="error"
+  key="search-status"
+>
   Error: {{ error }}
 </div>
-<div v-else key="search-results">
+<div 
+  v-else 
+  key="search-results"
+>
   {{ results }}
 </div>
 ```

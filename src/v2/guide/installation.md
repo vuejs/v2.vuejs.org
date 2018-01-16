@@ -2,11 +2,8 @@
 title: Cài đặt
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.13
+gz_size: "30.67"
 ---
 
 ### Khả năng tương thích
@@ -14,6 +11,8 @@ ro_gz_size: "21.04"
 Do sử dụng một số tính năng ECMAScript 5 không được hỗ trợ trên IE8, Vue **không** hỗ trợ IE8 và các phiên bản thấp hơn. Tuy nhiên Vue hỗ trợ [mọi trình duyệt tương thích với ECMAScript 5](http://caniuse.com/#feat=es5).
 
 ### Ghi chú phát hành
+
+Phiên bản ổn định mới nhất: {{vue_version}}
 
 Mọi ghi chú chi tiết về các bản phát hành của mỗi phiên bản đều có trên [GitHub](https://github.com/vuejs/vue/releases).
 

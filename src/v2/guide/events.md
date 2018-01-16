@@ -216,7 +216,18 @@ Trong rất nhiều trường hợp, chúng ta cần gọi `event.preventDefault
 <a v-on:click.once="donateKidney"></a>
 ```
 
-Không như các modifier khác, vốn chỉ dùng được cho các sự kiện DOM native, modifier `.once` cũng có thể dùng cho các [sự kiện component](components.html#Using-v-on-with-Custom-Events). Nếu bạn chưa đọc về component, có thể bỏ qua và quay lại sau.
+Không như các modifier khác, vốn chỉ dùng được cho các sự kiện DOM native, modifier `.once` cũng có thể dùng cho các [sự kiện component](components.html#Su-dung-v-on-voi-cac-su-kien-tuy-bien). Nếu bạn chưa đọc về component, có thể bỏ qua và quay lại sau.
+
+> Từ phiên bản 2.3.0 trở đi
+
+``` html
+<!-- sự kiện scroll sẽ không chặn hành vi scroll mặc định -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+Ngoài những modifier kể trên, Vue còn cung cấp thêm modifier `.passive` để cải thiện hiệu năng, nhất là trên nền tảng di động. Ví dụ, khi thực hiện cuộn trang (scroll), trình duyệt sẽ chỉ cuộn sau khi hàm xử lí được hoàn tất, vì trình duyệt không biết sự kiện có gọi `event.preventDefault()` để chặn hành vi mặc định bên trong hàm xử lí hay không. Chúng ta có thể dùng modifier `.passive` để thông báo trước cho trình duyệt biết rằng sự kiện sẽ không chặn hành vi mặc định.
+
+<p class="tip">Đừng dùng `.passive` và `.prevent` chung với nhau, vì `.passive` không thể chặn sự kiện mặc định.</p>
 
 ## Key modifier
 
@@ -307,6 +318,9 @@ Modifier `.exact` (chính xác) có thể được sử dụng kết hợp với
 
 <!-- onClick chỉ được gọi nếu chỉ phím Ctrl được nhấn -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### Modifier cho phím chuột

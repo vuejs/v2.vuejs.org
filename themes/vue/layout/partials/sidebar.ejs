@@ -5,13 +5,14 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Nhà tài trợ bạch kim</span><br>
-        <a href="https://stdlib.com" target="_blank" class="logo">
-          <img src="<%- url_for("/images/stdlib.png") %>">
+        <span>Nhà tài trợ bạch kim</span>
+        <div>
+        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
+        <a href="<%- sponsor.url %>" target="_blank" class="logo">
+          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
         </a>
-        <a href="http://tooltwist.com/" target="_blank" class="logo">
-          <img src="<%- url_for("/images/tooltwist.png") %>">
-        </a>
+        <%_ } _%>
+        </div>
       </div>
       <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
         Trở thành nhà tài trợ

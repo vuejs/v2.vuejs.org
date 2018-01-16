@@ -2,9 +2,10 @@
 @import "_header"
 @import "_sidebar"
 @import "_sponsor"
+@import "_modal"
 
 $width = 900px
-$space = 50px
+$space = 40px
 
 body
   background-color: darken($light, 10%)
@@ -29,7 +30,7 @@ body
   padding: $space 40px 30px
   background-color: #fff
   .inner
-    max-width: $width
+    max-width: $width * 1.4
     margin: 0 auto
   .left, .right
     display: inline-block
@@ -60,8 +61,8 @@ body
     letter-spacing: .1em
     min-width: 8em
     text-align: center
-    &:first-child
-      margin-right: 1em
+    &:not(:last-child)
+      margin-right: 1%
   .social-buttons
     list-style-type: none
     padding: 0
@@ -111,6 +112,11 @@ body
   padding: $space 0
   color: #fff
   text-align: center
+  .social-icon
+    margin 0 5px
+    svg
+      width 18px
+      height 18px
   a
     font-weight: 700
     color: #fff

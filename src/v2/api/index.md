@@ -83,7 +83,7 @@ type: api
 
   > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
 ### warnHandler
 
@@ -175,7 +175,7 @@ type: api
 
 ## Global API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **Arguments:**
   - `{Object} options`
@@ -214,7 +214,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -231,13 +231,19 @@ type: api
   Vue.nextTick(function () {
     // DOM updated
   })
+
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
   > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -254,7 +260,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -270,7 +276,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -301,7 +307,7 @@ type: api
 
 - **See also:** [Custom Directives](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -321,7 +327,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -344,7 +350,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **Arguments:**
   - `{Object | Function} plugin`
@@ -357,7 +363,7 @@ type: api
 
 - **See also:** [Plugins](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **Arguments:**
   - `{Object} mixin`
@@ -368,7 +374,7 @@ type: api
 
 - **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **Arguments:**
   - `{string} template`
@@ -391,7 +397,7 @@ type: api
 
 - **See also:** [Render Functions](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
 
@@ -586,7 +592,7 @@ type: api
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **Type:** `{ [key: string]: string | Function | Object | Array}`
 
 - **Details:**
 
@@ -600,7 +606,12 @@ type: api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -617,7 +628,13 @@ type: api
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
@@ -1412,7 +1429,7 @@ type: api
 
 ## Instance Methods / Data
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **Arguments:**
   - `{string | Function} expOrFn`
@@ -1479,7 +1496,7 @@ type: api
   // `callback` is fired immediately with current value of `a`
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -1494,7 +1511,7 @@ type: api
 
 - **See also:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -1508,7 +1525,7 @@ type: api
 
 ## Instance Methods / Events
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.0+)
@@ -1528,7 +1545,7 @@ type: api
   // => "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **Arguments:**
   - `{string} event`
@@ -1538,7 +1555,7 @@ type: api
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.2+)
@@ -1554,7 +1571,7 @@ type: api
 
   - If both event and callback are given, remove the listener for that specific callback only.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **Arguments:**
   - `{string} event`
@@ -1564,7 +1581,7 @@ type: api
 
 ## Instance Methods / Lifecycle
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **Arguments:**
   - `{Element | string} [elementOrSelector]`
@@ -1602,13 +1619,13 @@ type: api
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **Usage:**
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -1644,7 +1661,7 @@ type: api
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **Usage:**
 

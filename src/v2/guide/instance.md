@@ -10,7 +10,7 @@ order: 3
 
 Một ứng dụng Vue luôn được bắt đầu bằng cách khởi tạo một **đối tượng Vue** (Vue instance) sử dụng hàm `Vue`:
 
-``` js
+```js
 var vm = new Vue({
   // các tùy chọn
 })
@@ -23,14 +23,14 @@ Khi khởi tạo một đối tượng Vue, bạn truyền vào một object **`
 Một ứng dụng Vue bao gồm một **đối tượng Vue gốc** (**root Vue instance**) được tạo với lệnh `new Vue`. Ứng dụng này cũng thường được sắp xếp thành một cây gồm các component lồng nhau và tái sử dụng được. Ví dụ, cây component của một ứng dụng todo có thể trông như thế này:
 
 ```
-Root Vue instance
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+Root Instance
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 Chúng ta sẽ nói chi tiết về [hệ thống component](components.html) sau. Hiện tại, bạn chỉ cần biết rằng một component Vue cũng là một đối tượng Vue và do đó cũng nhận cùng một object `options` (trừ một số tùy chọn chỉ dành riêng cho root).
@@ -69,7 +69,7 @@ vm.b = 'Aloha'
 
 thì những thay đổi với `b` sẽ không kích hoạt thay đổi trên view. Vì thế, nếu bạn biết là sau này mình sẽ cần một thuộc tính nào đó nhưng khi khởi tạo Vue thì thuộc tính này là rỗng hoặc chưa tồn tại, bạn cần gán cho nó một giá trị ban đầu, ví dụ như thế này:
 
-``` js
+```js
 data: {
   newTodoText: '',
   visitCount: 0,
@@ -79,9 +79,36 @@ data: {
 }
 ```
 
+Ngoại lệ duy nhất ở đây là việc sử dụng `Object.freeze()`. `Object.freeze()` ngăn không cho những thuộc tính sẵn có bị chỉnh sửa, cũng có nghĩa là hệ thống reactivity không thể _theo dõi_ các thay đổi xảy ra.
+
+```js
+var obj = {
+  foo: 'bar'
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+})
+```
+
+```html
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- obj.foo sẽ không thay đổi -->
+  <button @click="obj.foo = 'baz'">Thay đổi</button>
+</div>
+```
+
 Ngoài `data`, một đối tượng Vue cũng hỗ trợ một số thuộc tính và phương thức đối tượng (instance properties & methods) hữu dụng khác. Các thuộc tính và phương thức này được bắt đầu bằng kí hiệu `$` để phân biệt với thuộc tính và phương thức do người dùng định nghĩa. Ví dụ:
 
-``` js
+```js
 var data = { a: 1 }
 var vm = new Vue({
   el: '#example',
@@ -105,7 +132,7 @@ Khi được khởi tạo, một đối tượng Vue sẽ đi qua nhiều bướ
 
 Ví dụ, hook [`created`](../api/#created) có thể được dùng để thực thi code sau khi một đối tượng được khởi tạo:
 
-``` js
+```js
 new Vue({
   data: {
     a: 1

@@ -309,17 +309,19 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
 // when checked:
-vm.toggle === vm.a
+vm.toggle === 'yes'
 // when unchecked:
-vm.toggle === vm.b
+vm.toggle === 'no'
 ```
+
+<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
 
 ### Radio
 

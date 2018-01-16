@@ -446,8 +446,8 @@ Vue.component('animated-integer', {
 
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
-        .onUpdate(function () {
-          vm.tweeningValue = this.tweeningValue.toFixed(0)
+        .onUpdate(function (object) {
+          vm.tweeningValue = object.tweeningValue.toFixed(0)
         })
         .start()
 

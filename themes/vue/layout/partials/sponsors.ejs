@@ -1,65 +1,35 @@
 <h3>Tài trợ trên Patreon</h3>
 
-<a href="http://tooltwist.com/" target="_blank" style="width: 160px;">
-  <img src="<%- url_for("/images/tooltwist.png") %>" style="width: 160px;">
+<%_ for (const sponsor of theme.platinum_sponsors.slice(1)) {_%>
+<a href="<%- sponsor.url %>" target="_blank" style="width: 160px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;">
 </a>
+<%_ } _%>
 <br>
 <br>
-<a href="https://deepstreamhub.com" target="_blank" style="width: 130px; top: 1px;">
-  <img src="<%- url_for("/images/deepstream.png") %>" style="width: 130px;">
+<%_ for (const sponsor of theme.gold_sponsors) {_%>
+<a href="<%- sponsor.url %>" target="_blank" style="width: 120px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 120px;">
 </a>
-<a href="https://jsfiddle.net/" target="_blank">
-  <img src="<%- url_for("/images/jsfiddle.png") %>">
-</a>
-<a href="https://laravel.com/" target="_blank">
-  <img src="<%- url_for("/images/laravel.png") %>">
-</a>
-<a href="https://chaitin.cn" target="_blank" style="top: -1px;">
-  <img src="<%- url_for("/images/chaitin.png") %>">
-</a>
-<a href="https://htmlburger.com" target="_blank">
-  <img src="<%- url_for("/images/htmlburger.png") %>">
-</a>
-<a href="https://starter.someline.com/" target="_blank" style="top: -2px;">
-  <img src="<%- url_for("/images/someline.png") %>">
-</a>
-<a href="http://monterail.com/" target="_blank">
-  <img src="<%- url_for("/images/monterail.png") %>">
-</a>
-<a href="https://www.2mhost.com/" target="_blank" style="width: 90px;">
-  <img src="<%- url_for("/images/2mhost.png") %>" style="width: 90px;">
-</a>
-<a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="width: 80px; top: 4px;">
-  <img src="<%- url_for("/images/vuejobs.svg") %>" style="width: 80px;">
-</a>
-<a href="https://leanpub.com/vuejs2" target="_blank">
-  <img src="<%- url_for("/images/tmvuejs2.png") %>">
-</a>
-<a href="https://component.io" target="_blank" style="width: 120px; top: 1px;">
-  <img src="<%- url_for("/images/component_io.png") %>" style="width: 120px;">
-</a>
-<a href="https://www.xfive.co/" target="_blank" style="width: 65px;">
-  <img src="<%- url_for("/images/xfive.png") %>" style="width: 65px;">
-</a>
-<a href="http://www.frontenddevelopermeetups.com/" target="_blank" style="width: 100px;">
-  <img src="<%- url_for("/images/frontend-meetups.png") %>" style="width: 100px">
-</a>
-<a href="https://onsen.io/vue/" target="_blank" style="width: 105px;">
-  <img src="<%- url_for("/images/onsen-ui.png") %>" style="width: 105px;">
-</a>
-<a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs.org&utm_campaign=vuejs_patreon" target="_blank" style="width: 100px;">
-  <img src="<%- url_for("/images/vuejsadmin.png") %>" style="width: 100px;">
-</a>
+<%_ } _%>
 <br>
 
 <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Trở thành nhà tài trợ!</a>
 
 <div class="open-collective-sponsors">
-  <h3>Tài trợ trên OpenCollective</h3>
+  <h3>Nhà tài trợ trên OpenCollective</h3>
   <h4>Bạch kim</h4>
-  <a href="https://opencollective.com/vuejs/tiers/platinumsponsors/0/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/1/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/2/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/3/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/4/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/5/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/5/avatar.svg"></a>
+  <%_ for (let i = 0; i < 3; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+  <%_ } _%>
   <h4>Vàng</h4>
-  <a href="https://opencollective.com/vuejs/tiers/goldsponsors/0/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/1/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/2/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/3/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/4/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/5/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/5/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/6/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/6/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/7/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/7/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/8/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/8/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/9/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/9/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/10/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/10/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/11/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/11/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/12/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/12/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/13/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/13/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/14/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/14/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/15/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/15/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/16/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/16/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/17/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/17/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/18/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/18/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/19/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/19/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/20/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/20/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/21/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/21/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/22/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/22/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/23/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/23/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/24/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/24/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/25/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/25/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/26/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/26/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/27/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/27/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/28/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/28/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/29/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/29/avatar.svg"></a>
+  <%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
+  </a>
+  <%_ } _%>
 </div>
 
 <script>
