@@ -6,7 +6,7 @@ order: 1.2
 
 ## Simple Example
 
-Unit testing is a fundamental part of software developmenet. The underlying idea is tests the smallest units of code, in isolation from others. This makes it easy to refactor, add new features, or track down bugs. Vue's [single-file components](./single-file-components.html), it is straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other people to understand what your component does.
+Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](./single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
 
 This simple example tests whether some text is rendered:
 
@@ -65,26 +65,22 @@ test('Foo', () => {
 })
 ```
 
-This simple example shown how to test whether an error message is rendered based on the length of the username. It demonstrates the general idea of unit testing Vue components: render the component, and make assertions to check if the markup matches the state of the component.
+The above code snippet shows how to test whether an error message is rendered based on the length of the username. It demonstrates the general idea of unit testing Vue components: render the component, and assert that the markup matches the state of the component.
 
-## Details about the Value
+## Why test?
 
-#### Why test?
-Component unit tests have lots of great points:
+Component unit tests have lots of benefits:
 - Provide documentation on how the component should behave
 - Save time over testing manually
 - Reduce bugs in new features
 - Improve design
 - Facilitate refactoring
 
-The benefits of automated testing are great and it what allows large teams of developers to maintain complex codebases. 
+Automated testing allows large teams of developers to maintain complex codebases. 
 
 #### Getting started
 
 [vue-test-utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The (vue-cli)[https://github.com/vuejs/vue-cli] webpack template comes with either Karma or Jest, both well supported test runners, and there are some (guides)[https://vue-test-utils.vuejs.org/en/guides/] in the `vue-test-utils` documentation.
-
-
-4. Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
 
 ## Real-World Example
 
@@ -93,7 +89,7 @@ Unit tests should be
 - Easy to understand
 - Only test a _single unit of work_
 
-Let's say we want to test this component. It shows a greeting, and asks for a username. If the username is less than seven letters, an error is displayed.
+Let's say we want to test the following component. It shows a greeting, and asks for a username. If the username is less than seven letters, an error is displayed.
 
 ```html
 <template>
@@ -225,7 +221,7 @@ End to end tests involve ensure a number of components interact together well. T
 
 Unit tests are most useful during development, either to help a developer think about how to design a component, or refactor an existing component, and are often run every time code is changed. 
 
-Higher level tests, such as end to end tests, run much slower. These usually run pre-deploy, to ensure the everything is still working together correctly.
+Higher level tests, such as end to end tests, run much slower. These usually run pre-deploy, to ensure each part of the system is working together correctly.
 
 More information about testing Vue components can be found in [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) by core team member [Edd Yerburgh](https://eddyerburgh.me/).
 
