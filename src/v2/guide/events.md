@@ -1,19 +1,19 @@
 ---
-title: 事件处理器
+title: 事件处理
 type: guide
 order: 9
 ---
 
 ## 监听事件
 
-可以用 `v-on` 指令监听 DOM 事件来触发一些 JavaScript 代码。
+我们可以使用 `v-on` 指令监听 DOM 事件，并在事件被触发时执行一些 JavaScript 代码。
 
-示例：
+例如：
 
 ``` html
 <div id="example-1">
   <button v-on:click="counter += 1">增加 1</button>
-  <p>这个按钮被点击了 {{ counter }} 次。</p>
+  <p>上面的按钮被点击了 {{ counter }} 次。</p>
 </div>
 ```
 ``` js
@@ -30,7 +30,7 @@ var example1 = new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button v-on:click="counter += 1">增加 1</button>
-  <p>这个按钮被点击了 {{ counter }} 次。</p>
+  <p>上面的按钮被点击了 {{ counter }} 次。</p>
 </div>
 <script>
 var example1 = new Vue({
@@ -42,15 +42,15 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## 方法事件处理器
+## 定义在 methods 对象中的事件处理器
 
-许多事件处理程序的逻辑会很复杂，所以把 JavaScript 代码都保存在 `v-on` 指令的属性值中是行不通的做法。这就是为什么 `v-on` 也可以接收要调用的方法名。
+由于许多事件处理器的逻辑很复杂，所以把 JavaScript 代码都保存在 `v-on` 属性的值中是不可行的做法。这就是为什么 `v-on` 还可以接收要调用的方法名。
 
 示例：
 
 ``` html
 <div id="example-2">
-  <!-- `greet` 是在下面定义的方法名 -->
+  <!-- `greet` 是在下面 methods 中定义的方法名 -->
   <button v-on:click="greet">Greet</button>
 </div>
 ```
@@ -64,9 +64,9 @@ var example2 = new Vue({
   // 在 `methods` 对象中定义方法
   methods: {
     greet: function (event) {
-      // `this` 在方法里指当前 Vue 实例
+      // methods 里的方法中的 `this` 指 Vue 实例
       alert('Hello ' + this.name + '!')
-      // `event` 是原生 DOM 事件
+      // `event` 是原始 DOM 事件对象
       if (event) {
         alert(event.target.tagName)
       }
@@ -74,7 +74,7 @@ var example2 = new Vue({
   }
 })
 
-// 也可以用 JavaScript 直接调用方法
+// 也可以在 JavaScript 中通过 Vue 实例直接调用方法
 example2.greet() // => 'Hello Vue.js!'
 ```
 
@@ -102,9 +102,9 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## 内联处理器方法
+## 定义在行内的事件处理器
 
-除了直接绑定到一个方法，也可以用内联 JavaScript 语句：
+除了直接绑定到方法名，我们还可以在行内 JavaScript 语句中使用 methods 方法：
 
 ``` html
 <div id="example-3">
@@ -141,7 +141,7 @@ new Vue({
 </script>
 {% endraw %}
 
-有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
+在行内语句的事件处理器中，有时我们也需要访问原始 DOM 事件对象。可以使用特殊的 `$event` 变量将它传递给一个方法：
 
 ``` html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
@@ -153,7 +153,7 @@ new Vue({
 // ...
 methods: {
   warn: function (message, event) {
-    // 现在，我们可以访问原生事件对象
+    // 现在，我们可以访问原始事件对象
     if (event) event.preventDefault()
     alert(message)
   }
