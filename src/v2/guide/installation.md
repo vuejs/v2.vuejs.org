@@ -34,9 +34,17 @@ Chỉ cần tải file thư viện về rồi sử dụng nó trong thẻ script
 
 ### CDN
 
-Nên dùng: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), nó sẽ trỏ tới bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+Chúng tôi khuyến khích trỏ đến một phiên bản cụ thể mà bạn có thể tự thay đổi nếu cần:
+
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+```
+
+Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
 
 Ngoài ra, bạn cũng có thể sử dụng [unpkg](https://unpkg.com/vue) hoặc [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs cần nhiều thời gian để đồng bộ nên có thể nó chưa phải phiên bản mới nhất).
+
+Nhớ đọc thêm về [các bản build khác nhau của Vue](#giai-thich-ve-cac-ban-build) và sử dụng bản Vue production khi publish bản production cho trang web hoặc app của bạn, thay `vue.js` bằng `vue.min.js`. Đây là bản nhỏ hơn, được tối ưu về tốc độ. 
 
 ## NPM
 

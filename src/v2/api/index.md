@@ -327,6 +327,8 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
+- **See also:** [Filters](../guide/filters.html)
+
 ### Vue.component( id, [definition] )
 
 - **Arguments:**
@@ -792,11 +794,9 @@ type: api
 
 - **Details:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
-
-  **This hook is not called during server-side rendering.**
+  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 

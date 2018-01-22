@@ -27,7 +27,7 @@ filters: {
 }
 ```
 
-hoặc định nghĩa ở cấp toàn cục:
+hoặc định nghĩa ở cấp toàn cục trước khi khởi tạo một đối tượng Vue:
 
 ``` js
 /** Viết hoa chữ đầu tiên */
@@ -35,6 +35,10 @@ Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
+})
+
+new Vue({
+  // ...
 })
 ```
 

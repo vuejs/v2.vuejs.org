@@ -197,6 +197,7 @@ order: 803
     'Annecy, Pháp': [45.899247, 6.129384],
     'Alicante, Tây Ban Nha' : [38.346543, -0.483838],
     'Bangalore, Ấn Độ': [12.971599, 77.594563],
+    'Bắc Kinh, Trung Quốc': [39.904200, 116.407396],
     'Bordeaux, Pháp': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, Trung Quốc': [30.572815, 104.066801],
@@ -600,7 +601,7 @@ order: 803
     {
       name: 'kingwl',
       title: 'New Bee',
-      city: 'Beijin, China',
+      city: 'Bắc Kinh, Trung Quốc',
       languages: ['zh'],
       work: {
         role: 'Software Development Engineer',

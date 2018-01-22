@@ -220,14 +220,19 @@ Không như các modifier khác, vốn chỉ dùng được cho các sự kiện
 
 > Từ phiên bản 2.3.0 trở đi
 
-``` html
-<!-- sự kiện scroll sẽ không chặn hành vi scroll mặc định -->
+Vue cũng cung cấp modifier `.passive`, tương ứng với [tùy chọn `passive` cho `addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters).
+
+```html
+<!-- 
+hành vi mặc định của sự kiện scroll (cuộn trang) sẽ xảy ra 
+ngay lập tức, thay vì đợi `onScroll` hoàn tất.
+-->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-Ngoài những modifier kể trên, Vue còn cung cấp thêm modifier `.passive` để cải thiện hiệu năng, nhất là trên nền tảng di động. Ví dụ, khi thực hiện cuộn trang (scroll), trình duyệt sẽ chỉ cuộn sau khi hàm xử lí được hoàn tất, vì trình duyệt không biết sự kiện có gọi `event.preventDefault()` để chặn hành vi mặc định bên trong hàm xử lí hay không. Chúng ta có thể dùng modifier `.passive` để thông báo trước cho trình duyệt biết rằng sự kiện sẽ không chặn hành vi mặc định.
+Modifier `.passive` đặc biệt hữu ích để cải thiện hiệu năng của ứng dụng trên các thiết bị di động.
 
-<p class="tip">Đừng dùng `.passive` và `.prevent` chung với nhau, vì `.passive` không thể chặn sự kiện mặc định.</p>
+<p class="tip">Đừng dùng `.passive` và `.prevent` cùng nhau, vì `.prevent` sẽ không có hiệu lực, và trình duyệt có thể sẽ bật cảnh báo. Nên nhớ rằng `.passive` thông báo cho trình duyệt biết rằng bạn _không muốn_ ngăn chặn hành vi mặc định của sự kiện.</p>
 
 ## Key modifier
 

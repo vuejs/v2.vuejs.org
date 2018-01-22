@@ -33,7 +33,36 @@ var component = new Component() // => "Mixin xin chào!"
 
 ## Hợp nhất các tùy chọn
 
-Khi một mixin và component chứa những tùy chọn trùng nhau, những tùy chọn này sẽ được merge (hợp nhất) bằng cách sử dụng các chiến lược thích hợp. Ví dụ, những hàm hook trùng tên với nhau được merge vào trong một mảng để tất cả những hàm hook đó đều được gọi. Thêm vào đó, những hook trong mixin sẽ được gọi **trước** những hook trong component:
+Khi một mixin và component chứa những tùy chọn trùng nhau, những tùy chọn này sẽ được merge (hợp nhất) bằng cách sử dụng các chiến lược thích hợp. 
+
+Ví dụ, những object `data` sẽ được merge sâu một cấp (shallow merge), và khi có xung đột thì data của component sẽ được ưu tiên.
+
+``` js
+var mixin = {
+  data: function () {
+    return {
+      message: 'chào anh',
+      foo: 'abc'
+    }
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'chào chị',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "chào chị", foo: "abc", bar: "def" }
+  }
+})
+```
+
+Những hàm hook trùng tên với nhau được merge vào trong một mảng để tất cả những hàm hook đó đều được gọi. Thêm vào đó, những hook trong mixin sẽ được gọi **trước** những hook trong component:
 
 ``` js
 var mixin = {
