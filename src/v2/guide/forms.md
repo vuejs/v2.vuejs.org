@@ -10,19 +10,19 @@ order: 10
 
 <p class="tip">`v-model` 会忽略所有表单元素中 `value`, `checked` 或 `selected` 属性上初始设置的值，而总是将 Vue 实例中的 data 作为真实数据来源。因此你应该在 JavaScript 端的组件 `data` 选项中声明这些初始值，而不是 HTML 端。</p>
 
-<p class="tip" id="vmodel-ime-tip">对于需要[输入法编辑器](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），要注意的是，在 IME 字母组合窗口输入时 `v-model` 并不会更新。如果你想在此期间满足更新需求，请使用 `input` 事件。</p>
+<p class="tip" id="vmodel-ime-tip">对于需要使用[输入法](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），你会发现，在输入法字母组合窗口输入时，`v-model` 并不会触发数据更新。如果你想在此输入过程中，满足更新数据的需求，请使用 `input` 事件。</p>
 
-### 文本
+### 单行文本(text)
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="编辑">
+<p>message 是：{{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="message" placeholder="编辑">
+  <p>message 是：{{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -34,21 +34,21 @@ new Vue({
 </script>
 {% endraw %}
 
-### 多行文本
+### 多行文本(multiple text)
 
 ``` html
-<span>Multiline message is:</span>
+<span>多行 message 是：</span>
 <p style="white-space: pre-line;">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="添加多行"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+  <span>多行 message 是：</span>
   <p style="white-space: pre-line;">{{ message }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="添加多行"></textarea>
 </div>
 <script>
 new Vue({
@@ -61,12 +61,12 @@ new Vue({
 {% endraw %}
 
 {% raw %}
-<p class="tip">在 textarea 中插值 (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) 并不会生效。使用 <code>v-model</code> 来替代。</p>
+<p class="tip">在 textarea 中插值（<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>）并不会生效。使用 <code>v-model</code> 来替代。</p>
 {% endraw %}
 
-### 复选框
+### checkbox
 
-单个勾选框，逻辑值：
+单选 checkbox，绑定到布尔值：
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -87,7 +87,7 @@ new Vue({
 </script>
 {% endraw %}
 
-多个勾选框，绑定到同一个数组：
+多选 checkbox，绑定到同一个数组：
 
 ``` html
 <div id='example-3'>
@@ -98,7 +98,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>勾选的名字是：{{ checkedNames }}</span>
 </div>
 ```
 
@@ -120,7 +120,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>勾选的名字是：{{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -132,7 +132,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 单选按钮
+### radio
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -141,7 +141,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>选中的是：{{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -151,7 +151,7 @@ new Vue({
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>选中的是：{{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -163,18 +163,18 @@ new Vue({
 </script>
 {% endraw %}
 
-### 选择列表
+### select
 
-单选列表:
+单选 select：
 
 ``` html
 <select v-model="selected">
-  <option disabled value="">Please select one</option>
+  <option disabled value="">请选择其中一项</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -187,12 +187,12 @@ new Vue({
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
+    <option disabled value="">请选择其中一项</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -204,9 +204,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">如果 `v-model` 表达式的初始值未能匹配任何选项，`<select>` 元素将被渲染为“未选中”状态。在 iOS 中，这会使用户无法选择第一个选项。因为这样的情况下，iOS 不会触发 change 事件。因此，更推荐像上面这样提供一个值为空的禁用选项。</p>
+<p class="tip">如果 `v-model` 表达式的初始值，不能与任何 option 选项匹配，`<select>` 元素将会渲染为“未选中”状态。在 iOS 中，这会导致用户无法选中第一项，因为在这种“未选中”状态的情况下，iOS 不会触发 change 事件。因此，推荐按照上面的示例，预先提供一个值为空字符串的禁用状态的 option 选项。</p>
 
-多选列表（绑定到一个数组）：
+多选 select（绑定到一个数组）：
 
 ``` html
 <select v-model="selected" multiple>
@@ -215,7 +215,7 @@ new Vue({
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -225,7 +225,7 @@ new Vue({
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -237,7 +237,7 @@ new Vue({
 </script>
 {% endraw %}
 
-动态选项，用 `v-for` 渲染：
+使用 `v-for` 渲染动态的 option：
 
 ``` html
 <select v-model="selected">
@@ -245,7 +245,7 @@ new Vue({
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -267,7 +267,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
