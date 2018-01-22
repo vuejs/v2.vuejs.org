@@ -207,16 +207,18 @@ methods: {
 
 > 2.3.0+ 新增
 
+Vue 还提供了 `.passive `修饰符，对应 [`addEventListener` 的 `passive` 选项](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters)。
+
 ``` html
-<!-- 滚动事件不会取消默认的滚动行为 -->
+<!-- 滚动事件的默认行为（滚动）将立即发生， -->
+<!-- 而不是等待 `onScroll` 完成后才发生， -->
+<!-- 以防在滚动事件的处理程序中含有 `event.preventDefault()` 调用 -->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-除了以上这些修饰符，Vue 提供了 `.passive` 修饰符，用于改善性能，特别是在移动端。
-例如，执行滚动时，浏览器将在完成该过程后才确定是否滚动，因为，浏览器并不知道在滚动事件的处理程序中，是否调用过 `event.preventDefault()`。
-`.passive` 修饰符可以用来预先告诉浏览器，这个事件不会取消默认事件行为。
+`.passive` 修饰符对于提高移动设备的性能尤其有用。
 
-<p class="tip">不要将 `.passive` 和 `.prevent` 放在一起使用。passive 处理函数无法阻止默认事件。</p>
+<p class="tip">不要将 `.passive` 和 `.prevent` 放在一起使用，因为 `.prevent` 将被忽略，并且浏览器可能会显示一条警告。记住，`.passive` 会向浏览器传达的意思是，你_并不_希望阻止事件的默认行为。</p>
 
 ## 按键修饰符(Key Modifiers)
 

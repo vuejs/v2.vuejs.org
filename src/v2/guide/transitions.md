@@ -48,10 +48,10 @@ new Vue({
 
 ``` css
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
-  opacity: 0
+  opacity: 0;
 }
 ```
 

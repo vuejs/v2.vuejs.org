@@ -146,7 +146,11 @@
   function initVideoModal () {
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    if (!modalButton || !videoModal) return
+
+    if (!modalButton || !videoModal) {
+      return
+    }
+
     var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
@@ -374,9 +378,6 @@
 
     function makeHeaderClickable (header) {
       var link = header.querySelector('a')
-      if (!link) {
-        return
-      }
       link.setAttribute('data-scroll', '')
 
       // transform DOM structure from

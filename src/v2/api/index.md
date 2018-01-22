@@ -274,7 +274,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **参考：** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -326,6 +326,8 @@ type: api
   // getter，返回已注册的过滤器
   var myFilter = Vue.filter('my-filter')
   ```
+
+- **参考：** [Filters](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -592,7 +594,7 @@ type: api
 
 ### watch
 
-- **类型：** `{ [key: string]: string | Function | Object }`
+- **类型：** `{ [key: string]: string | Function | Object | Array}`
 
 - **详细：**
 
@@ -606,7 +608,12 @@ type: api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -623,7 +630,13 @@ type: api
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
@@ -781,11 +794,9 @@ type: api
 
 - **详细：**
 
-  数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。
+  在 DOM 被 patch 之前调用数据修改。这是在 DOM 更新之前，访问已有 DOM 的最佳时机，例如，手动地移除之前添加的事件监听器。
 
-  你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。
-
-  **该钩子在服务器端渲染期间不被调用。**
+  **在服务器端渲染期间不会调用这个钩子函数，因为在服务器端只执行初始渲染。**
 
 - **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -2137,7 +2148,7 @@ type: api
 
   This attribute does not support dynamic binding.
 
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+- **参考：** [Scoped Slots](../guide/components.html#Scoped-Slots)
 
 ### scope <sup>replaced</sup>
 
