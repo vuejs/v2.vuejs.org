@@ -295,13 +295,13 @@ new Vue({
 <!-- `toggle` 的值是 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- 当选中时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 内的文本；如果 value=""，选中时 selected 值是空字符串） -->
+<!-- 当选中时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 元素内的文本） -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-然而，有时可能需要把 value 与 Vue 实例上的一个动态属性绑定在一起。这时我们可以通过 `v-bind` 来实现。此外，使用 `v-bind` 允许我们将 input 元素的值绑定到非字符串值。
+然而，有时可能需要把 value 与 Vue 实例上的一个动态属性绑定在一起。这时我们可以通过 `v-bind` 来实现。`v-bind` 还允许我们将 input 元素的值绑定到非字符串值。
 
 ### checkbox
 
@@ -315,13 +315,13 @@ new Vue({
 ```
 
 ``` js
-// 当选中时：
+// 选中时：
 vm.toggle === 'yes'
-// 当没有选中时：
+// 没有选中时：
 vm.toggle === 'no'
 ```
 
-<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
+<p class="tip">`true-value` 和 `false-value` 属性不会影响到 input 元素的 `value` 属性，这是因为浏览器在提交表单时，并不会包含未被选中的 checkbox 的值。如果要确保表单中，这两个值的一个能够被提交（例如 "yes" 或 "no"），请换用类型是 radio 的 input 元素。</p>
 
 ### radio
 
@@ -330,7 +330,7 @@ vm.toggle === 'no'
 ```
 
 ``` js
-// 当选中时
+// 选中时
 vm.pick === vm.a
 ```
 
@@ -344,7 +344,7 @@ vm.pick === vm.a
 ```
 
 ``` js
-// 当选中时：
+// 选中时：
 typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
@@ -353,36 +353,36 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+默认情况下，`v-model` 会在每次 `input` 事件触发之后，将数据同步至 input 元素中（除了[上述](#vmodel-ime-tip)提到的输入法组合文字时不会）。可以添加 `lazy` 修饰符，从而转为在触发 `change` 事件后同步：
 
 ``` html
-<!-- 在 "change" 而不是 "input" 事件中更新 -->
+<!-- 在触发 "change" 事件后同步，而不是在触发 "input" 事件后更新 -->
 <input v-model.lazy="msg" >
 ```
 
 ### `.number`
 
-如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
+如果想要将用户的输入，自动转换为 Number 类型（译注：如果转换结果为 NaN 则返回字符串类型的输入值），可以在 `v-model` 之后添加一个 `number` 修饰符，来处理输入值：
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
+这通常很有用，因为即使是在 `type="number"` 时，HTML 中 input 元素也总是返回一个字符串类型的值。
 
 ### `.trim`
 
-如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
+如果想要将用户的输入，自动过滤掉首尾空格，可以在 `v-model` 之后添加一个 `trim` 修饰符，来处理输入值：
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## 在组件中使用 `v-model`
+## 在组件上使用 `v-model`
 
 > 如果你还不熟悉 Vue 组件，现在先跳过此处。
 
-HTML 内置的输入框类型并不能满足需求。幸运的是，Vue 组件允许使用完全自定义的行为来构建可重用的输入框。这些输入框甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入](components.html#使用自定义事件的表单输入组件)。
+HTML 内置的输入框类型有时并不总能满足需求。幸运的是，Vue 允许使用完全自定义的行为来构建可重用的输入框组件。这些输入框甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入框](components.html#使用自定义事件的表单输入组件(Form Input Components using Custom Events))。
 
 ***
 

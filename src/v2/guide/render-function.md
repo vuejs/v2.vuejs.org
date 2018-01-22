@@ -1,5 +1,5 @@
 ---
-title: render 函数 & JSX
+title: render 函数 & jsx
 type: guide
 order: 303
 ---
