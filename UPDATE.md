@@ -81,6 +81,7 @@
 
 ### 2018.01.22
 * 【更新】合并 vuejs.org 的 master 分支
+* 【记录】https://github.com/docschina/vuejs.org/commit/83b9abbfb32c6ad47ce6e8cc8ce5ad8153bad4c3
 * 【重新校对】`事件处理器`事件修饰符(Event Modifiers)以上的部分。
 * 【重新校对】`表单 input 绑定`。
 * 【记录】https://github.com/docschina/vuejs.org/pull/388
