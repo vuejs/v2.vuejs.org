@@ -1,14 +1,14 @@
 ---
-title: 表单控件绑定
+title: 表单 input 绑定
 type: guide
 order: 10
 ---
 
 ## 基础用法
 
-你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
+可以通过使用 `v-model` 指令，在表单 input 和 textarea 元素上创建双向数据绑定。`v-model` 指令可以根据 input 的 type 类型，自动地以正确的方式更新元素。虽然略显神奇，然而本质上 `v-model` 不过是「通过监听用户的 input 事件来更新数据」的语法糖，以及对一些边界情况做特殊处理。
 
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+<p class="tip">`v-model` 会忽略所有表单元素中 `value`, `checked` 或 `selected` 属性上初始设置的值，而总是将 Vue 实例中的 data 作为真实数据来源。因此你应该在 JavaScript 端的组件 `data` 选项中声明这些初始值，而不是 HTML 端。</p>
 
 <p class="tip" id="vmodel-ime-tip">对于需要[输入法编辑器](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），要注意的是，在 IME 字母组合窗口输入时 `v-model` 并不会更新。如果你想在此期间满足更新需求，请使用 `input` 事件。</p>
 
@@ -204,7 +204,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">如果 `v-model` 表达式的初始值未能匹配任何选项，`<select>` 元素将被渲染为“未选中”状态。在 iOS 中，这会使用户无法选择第一个选项。因为这样的情况下，iOS 不会触发 change 事件。因此，更推荐像上面这样提供一个值为空的禁用选项。</p>
 
 多选列表（绑定到一个数组）：
 
