@@ -79,5 +79,10 @@
 * 【重新校对】`根据条件进行渲染`。
 * 【记录】https://github.com/docschina/vuejs.org/pull/386
 
+### 2018.01.22
+* 【重新校对】`事件处理器`事件修饰符(Event Modifiers)以上的部分。
+* 【重新校对】`表单 input 绑定`。
+* 【记录】https://github.com/docschina/vuejs.org/pull/388
+
 ## 重新校对情况
 
