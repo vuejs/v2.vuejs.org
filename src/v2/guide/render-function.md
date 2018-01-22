@@ -207,7 +207,7 @@ createElement(
   },
   // 自定义指令。
   // 注意，由于 Vue 会追踪旧值，
-  // 所以不能对绑定的旧值设值
+  // 所以不能对`绑定`的`旧值`设值
   directives: [
     {
       name: 'my-custom-directive',

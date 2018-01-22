@@ -21,7 +21,11 @@
   <% if (page.title.trim()) { %>
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
-  <%- page.content %>
+  <% if (page.sponsors) { %>
+    <%- partial('sponsors-page') %>
+  <% } else { %>
+    <%- page.content %>
+  <% } %>
   <% if (page.type === 'guide') { %>
     <div class="guide-links">
       <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
@@ -33,8 +37,11 @@
     </div>
   <% } %>
   <div class="footer">
+    <%_ if (!page.sponsors) { _%>
+      <%- partial('partials/ad-text') %>
+    <%_ } _%>
     发现错误？想参与编辑？
-    <a href="https://github.com/docschina/vuejs.org/blob/cn/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
       在 Github 上编辑此页！
     </a>
   </div>

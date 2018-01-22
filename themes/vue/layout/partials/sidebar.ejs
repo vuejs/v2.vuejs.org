@@ -4,6 +4,19 @@
       <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
+      <div class="main-sponsor">
+        <span>白金赞助商</span>
+        <div>
+        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
+        <a href="<%- sponsor.url %>" target="_blank" class="logo">
+          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+        </a>
+        <%_ } _%>
+        </div>
+      </div>
+      <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+        成为赞助者
+      </a>
       <h2>
         <%-
           type === 'api'
