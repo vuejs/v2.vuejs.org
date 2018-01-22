@@ -33,14 +33,14 @@ mustache 标签将会被替换为 data 对象上对应的 `msg` 属性的值。�
 双花括号语法，会将数据中的 HTML 转为纯文本后再进行插值。为了输出真正的 HTML，你需要使用 `v-html` 指令：
 
 ``` html
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>使用双花括号语法：{{ rawHtml }}</p>
+<p>使用 v-html 指令：<span v-html="rawHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Using mustaches: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>使用双花括号语法：{{ rawHtml }}</p>
+  <p>使用 v-html 指令：<span v-html="rawHtml"></span></p>
 </div>
 <script>
 new Vue({

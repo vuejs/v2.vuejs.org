@@ -1,28 +1,28 @@
 ---
-title: 表单控件绑定
+title: 表单 input 绑定
 type: guide
 order: 10
 ---
 
 ## 基础用法
 
-你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
+可以通过使用 `v-model` 指令，在表单 input 和 textarea 元素上创建双向数据绑定。`v-model` 指令可以根据 input 的 type 类型，自动地以正确的方式更新元素。虽然略显神奇，然而本质上 `v-model` 不过是「通过监听用户的 input 事件来更新数据」的语法糖，以及对一些边界情况做特殊处理。
 
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+<p class="tip">`v-model` 会忽略所有表单元素中 `value`, `checked` 或 `selected` 属性上初始设置的值，而总是将 Vue 实例中的 data 作为真实数据来源。因此你应该在 JavaScript 端的组件 `data` 选项中声明这些初始值，而不是 HTML 端。</p>
 
-<p class="tip" id="vmodel-ime-tip">对于需要[输入法编辑器](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），要注意的是，在 IME 字母组合窗口输入时 `v-model` 并不会更新。如果你想在此期间满足更新需求，请使用 `input` 事件。</p>
+<p class="tip" id="vmodel-ime-tip">对于需要使用[输入法](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），你会发现，在输入法字母组合窗口输入时，`v-model` 并不会触发数据更新。如果你想在此输入过程中，满足更新数据的需求，请使用 `input` 事件。</p>
 
-### 文本
+### 单行文本(text)
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="编辑">
+<p>message 是：{{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="message" placeholder="编辑">
+  <p>message 是：{{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -34,21 +34,21 @@ new Vue({
 </script>
 {% endraw %}
 
-### 多行文本
+### 多行文本(multiple text)
 
 ``` html
-<span>Multiline message is:</span>
+<span>多行 message 是：</span>
 <p style="white-space: pre-line;">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="添加多行"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+  <span>多行 message 是：</span>
   <p style="white-space: pre-line;">{{ message }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="添加多行"></textarea>
 </div>
 <script>
 new Vue({
@@ -61,12 +61,12 @@ new Vue({
 {% endraw %}
 
 {% raw %}
-<p class="tip">在 textarea 中插值 (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) 并不会生效。使用 <code>v-model</code> 来替代。</p>
+<p class="tip">在 textarea 中插值（<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>）并不会生效。使用 <code>v-model</code> 来替代。</p>
 {% endraw %}
 
-### 复选框
+### checkbox
 
-单个勾选框，逻辑值：
+单选 checkbox，绑定到布尔值：
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -87,7 +87,7 @@ new Vue({
 </script>
 {% endraw %}
 
-多个勾选框，绑定到同一个数组：
+多选 checkbox，绑定到同一个数组：
 
 ``` html
 <div id='example-3'>
@@ -98,7 +98,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>勾选的名字是：{{ checkedNames }}</span>
 </div>
 ```
 
@@ -120,7 +120,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>勾选的名字是：{{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -132,7 +132,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 单选按钮
+### radio
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -141,7 +141,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>选中的是：{{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -151,7 +151,7 @@ new Vue({
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>选中的是：{{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -163,18 +163,18 @@ new Vue({
 </script>
 {% endraw %}
 
-### 选择列表
+### select
 
-单选列表:
+单选 select：
 
 ``` html
 <select v-model="selected">
-  <option disabled value="">Please select one</option>
+  <option disabled value="">请选择其中一项</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -187,12 +187,12 @@ new Vue({
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
+    <option disabled value="">请选择其中一项</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -204,9 +204,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">如果 `v-model` 表达式的初始值，不能与任何 option 选项匹配，`<select>` 元素将会渲染为“未选中”状态。在 iOS 中，这会导致用户无法选中第一项，因为在这种“未选中”状态的情况下，iOS 不会触发 change 事件。因此，推荐按照上面的示例，预先提供一个 value 为空字符串的禁用状态的 option 选项。</p>
 
-多选列表（绑定到一个数组）：
+多选 select（绑定到一个数组）：
 
 ``` html
 <select v-model="selected" multiple>
@@ -215,7 +215,7 @@ new Vue({
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -225,7 +225,7 @@ new Vue({
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -237,7 +237,7 @@ new Vue({
 </script>
 {% endraw %}
 
-动态选项，用 `v-for` 渲染：
+使用 `v-for` 渲染动态的 option：
 
 ``` html
 <select v-model="selected">
@@ -245,7 +245,7 @@ new Vue({
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>选中的是：{{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -267,7 +267,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>选中的是：{{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -284,26 +284,26 @@ new Vue({
 </script>
 {% endraw %}
 
-## 绑定 value
+## 与 value 属性绑定
 
-对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
+对于 radio, checkbox 和 select 的 option 选项，通常可以将 `v-model` 与值是静态字符串的 value 属性关联在一起（或者，在 checkbox 中，绑定到布尔值）：
 
 ``` html
-<!-- 当选中时，`picked` 为字符串 "a" -->
+<!-- 当选中时，`picked` 的值是字符串 "a"（译者注：如果没有 value 属性，选中时值是 null） -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` 为 true 或 false -->
+<!-- `toggle` 的值是 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- 当选中时，`selected` 为字符串 "abc" -->
+<!-- 当选中时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 元素内的文本） -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
+然而，有时可能需要把 value 与 Vue 实例上的一个动态属性绑定在一起。这时我们可以通过 `v-bind` 来实现。`v-bind` 还允许我们将 input 元素的值绑定到非字符串值。
 
-### 复选框
+### checkbox
 
 ``` html
 <input
@@ -315,74 +315,74 @@ new Vue({
 ```
 
 ``` js
-// 当选中时：
+// 选中时：
 vm.toggle === 'yes'
-// 当没有选中时：
+// 没有选中时：
 vm.toggle === 'no'
 ```
 
-<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
+<p class="tip">`true-value` 和 `false-value` 属性不会影响到 input 元素的 `value` 属性，这是因为浏览器在提交表单时，并不会包含未被选中的 checkbox 的值。如果要确保表单中，这两个值的一个能够被提交（例如 "yes" 或 "no"），请换用类型是 radio 的 input 元素。</p>
 
-### 单选按钮
+### radio
 
 ``` html
 <input type="radio" v-model="pick" v-bind:value="a">
 ```
 
 ``` js
-// 当选中时
+// 选中时
 vm.pick === vm.a
 ```
 
-### 选择列表设置
+### select 选项
 
 ``` html
 <select v-model="selected">
-    <!-- 内联对象字面量 -->
+  <!-- 内联对象字面量 -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// 当选中时：
+// 选中时：
 typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
 
-## 修饰符
+## 修饰符(modifiers)
 
 ### `.lazy`
 
-在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+默认情况下，`v-model` 会在每次 `input` 事件触发之后，将数据同步至 input 元素中（除了[上述](#vmodel-ime-tip)提到的输入法组合文字时不会）。可以添加 `lazy` 修饰符，从而转为在触发 `change` 事件后同步：
 
 ``` html
-<!-- 在 "change" 而不是 "input" 事件中更新 -->
+<!-- 在触发 "change" 事件后同步，而不是在触发 "input" 事件后更新 -->
 <input v-model.lazy="msg" >
 ```
 
 ### `.number`
 
-如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
+如果想要将用户的输入，自动转换为 Number 类型（译注：如果转换结果为 NaN 则返回字符串类型的输入值），可以在 `v-model` 之后添加一个 `number` 修饰符，来处理输入值：
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
+这通常很有用，因为即使是在 `type="number"` 时，HTML 中 input 元素也总是返回一个字符串类型的值。
 
 ### `.trim`
 
-如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
+如果想要将用户的输入，自动过滤掉首尾空格，可以在 `v-model` 之后添加一个 `trim` 修饰符，来处理输入值：
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## 在组件中使用 `v-model`
+## 在组件上使用 `v-model`
 
 > 如果你还不熟悉 Vue 组件，现在先跳过此处。
 
-HTML 内置的输入框类型并不能满足需求。幸运的是，Vue 组件允许使用完全自定义的行为来构建可重用的输入框。这些输入框甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入](components.html#使用自定义事件的表单输入组件)。
+HTML 内置的几种 input 类型有时并不总能满足需求。幸运的是，使用 Vue 可以创建出可复用的输入框组件，并且能够完全自定义组件的行为。这些输入框组件甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入框](components.html#使用自定义事件的表单输入组件(Form Input Components using Custom Events))。
 
 ***
 
