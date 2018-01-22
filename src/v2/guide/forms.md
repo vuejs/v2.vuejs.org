@@ -204,7 +204,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">如果 `v-model` 表达式的初始值，不能与任何 option 选项匹配，`<select>` 元素将会渲染为“未选中”状态。在 iOS 中，这会导致用户无法选中第一项，因为在这种“未选中”状态的情况下，iOS 不会触发 change 事件。因此，推荐按照上面的示例，预先提供一个值为空字符串的禁用状态的 option 选项。</p>
+<p class="tip">如果 `v-model` 表达式的初始值，不能与任何 option 选项匹配，`<select>` 元素将会渲染为“未选中”状态。在 iOS 中，这会导致用户无法选中第一项，因为在这种“未选中”状态的情况下，iOS 不会触发 change 事件。因此，推荐按照上面的示例，预先提供一个 value 为空字符串的禁用状态的 option 选项。</p>
 
 多选 select（绑定到一个数组）：
 
@@ -284,26 +284,26 @@ new Vue({
 </script>
 {% endraw %}
 
-## 绑定 value
+## 与 value 属性绑定
 
-对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
+对于 radio, checkbox 和 select 的 option 选项，通常可以将 `v-model` 与值是静态字符串的 value 属性关联在一起（或者，在 checkbox 中，绑定到布尔值）：
 
 ``` html
-<!-- 当选中时，`picked` 为字符串 "a" -->
+<!-- 当选中时，`picked` 的值是字符串 "a"（译者注：如果没有 value 属性，选中时值是 null） -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` 为 true 或 false -->
+<!-- `toggle` 的值是 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- 当选中时，`selected` 为字符串 "abc" -->
+<!-- 当选中时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 内的文本；如果 value=""，选中时 selected 值是空字符串） -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
+然而，有时可能需要把 value 与 Vue 实例上的一个动态属性绑定在一起。这时我们可以通过 `v-bind` 来实现。此外，使用 `v-bind` 允许我们将 input 元素的值绑定到非字符串值。
 
-### 复选框
+### checkbox
 
 ``` html
 <input
@@ -323,7 +323,7 @@ vm.toggle === 'no'
 
 <p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
 
-### 单选按钮
+### radio
 
 ``` html
 <input type="radio" v-model="pick" v-bind:value="a">
@@ -334,11 +334,11 @@ vm.toggle === 'no'
 vm.pick === vm.a
 ```
 
-### 选择列表设置
+### select 选项
 
 ``` html
 <select v-model="selected">
-    <!-- 内联对象字面量 -->
+  <!-- 内联对象字面量 -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
@@ -349,7 +349,7 @@ typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
 
-## 修饰符
+## 修饰符(modifiers)
 
 ### `.lazy`
 
