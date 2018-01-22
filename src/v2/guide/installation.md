@@ -34,9 +34,15 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 
 ### CDN
 
-Recommended: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+Recommended:
+Use the latest development version [https://cdn.jsdelivr.net/npm/vue@{{vue_version}}/dist/vue.js](https://cdn.jsdelivr.net/npm/vue@{{vue_version}}/dist/vue.js), and update when you are ready. Or you can use the link to the latest versions,
+[https://cdn.jsdelivr.net/npm/vue/dist/vue.js](https://cdn.jsdelivr.net/npm/vue/dist/vue.js), which will reflect the latest version as soon as it is published to npm (at your own risk).
+You can also browse the source of the npm package at [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
 
-Also available on [unpkg](https://unpkg.com/vue) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Also available on [https://unpkg.com/vue@2.5.13/dist/vue.js](https://unpkg.com/vue@2.5.13/dist/vue.js) and [https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+
+Remember to read the section about different versions, and use the **product
+ version** in production (basically replace `vue.js` with `vue.min.js`).
 
 ## NPM
 
