@@ -31,6 +31,33 @@ var Component = Vue.extend({
 var component = new Component() // => "hello from mixin!"
 ```
 
+## Data Merging
+When a mixin defines a data function, its returned object will be merged with the components data object (which is returned directly, or from its own data function if you define a component, respectively).
+
+``` js
+var mixin = {
+  data: function () {
+    return {
+      someData: 'from mixin',
+      otherData: 'also from mixin'
+    }
+  }
+}
+
+new Vue({
+  data: {otherData: 'from component'},
+  mixins: [mixin],
+  created: function () {
+    console.log(this.someData)
+    console.log(this.otherData)
+  }
+})
+
+// => "from mixin"
+// => "from component"
+```
+
+
 ## Option Merging
 
 When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
