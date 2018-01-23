@@ -72,7 +72,7 @@ type: api
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
     // 处理错误
-    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子。
+    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子函数。
     // 只在 2.2.0+ 可用
   }
   ```
@@ -274,7 +274,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **参考：** [Reactivity in Depth](../guide/reactivity.html)
+- **参考：** [深入响应式原理](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -327,7 +327,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **参考：** [Filters](../guide/filters.html)
+- **参考：**[过滤器](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -403,7 +403,7 @@ type: api
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
-- **用法**：
+- **用法：**
 
   ```js
   var version = Number(Vue.version.split('.')[0])
@@ -469,7 +469,7 @@ type: api
 
 - **详细：**
 
-  props 可以是数组或对象，用于接收来自父组件的数据。props 有一个简单数组语法，和一个基于对象的语法，对象语法能够配置一些高级选项，例如类型检测、自定义校验和设置默认值。
+  props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
 
 - **示例：**
 
@@ -482,7 +482,7 @@ type: api
   // 对象语法，提供校验
   Vue.component('props-demo-advanced', {
     props: {
-      // 检测类型
+      // 只检测类型
       height: Number,
       // 检测类型 + 其他验证
       age: {
@@ -542,7 +542,7 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // 只获取
+      // 仅获取，值只须为函数
       aDouble: function () {
         return this.a * 2
       },
@@ -1360,7 +1360,7 @@ type: api
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
-  - [Render 函数 - Slots](../guide/render-function.html#Slots)
+  - [Render 函数 - slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1379,7 +1379,7 @@ type: api
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render 函数 - Slots](../guide/render-function.html#Slots)
+  - [Render 函数 - slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1393,7 +1393,7 @@ type: api
 
 - **另见：**
   - [子组件引用](../guide/components.html#子组件索引)
-  - [特殊属性 - ref](#ref)
+  - [ref](#ref)
 
 ### vm.$isServer
 
@@ -1747,7 +1747,7 @@ type: api
 
 - **用法：**
 
-  为 `v-if` 或者 `v-if`/`v-else-if` 添加 “else 块”。
+  为 `v-if` 或者 `v-else-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1850,7 +1850,7 @@ type: api
 
 - **用法：**
 
-  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字、一个内联语句，或者如果没有修饰符也可以省略。
+  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
   从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
 
@@ -1980,8 +1980,8 @@ type: api
   在使用字符串模板或通过 `vue-loader`/`vueify` 编译时，无需使用 `.camel`。
 
 - **参考：**
-  - [Class 与 Style 绑定](../guide/class-and-style.html)
-  - [组件 - Props](../guide/components.html#Props)
+  - [class 与 style 绑定](../guide/class-and-style.html)
+  - [组件 - props](../guide/components.html#Props)
   - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
 
 ### v-model
@@ -2162,7 +2162,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **期望类型：** `string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
 
   示例：
 
@@ -2183,7 +2183,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - [动态组件](../guide/components.html#动态组件)
   - [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)
 
-## 内置的组件
+## 内置组件
 
 ### component
 
@@ -2383,13 +2383,13 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
 
-## VNode接口
+## VNode 接口
 
-- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
+- 请参考 [VNode 类型声明](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
 ## 服务端渲染
 
-- 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
+- 请参考 [vue-server-renderer 包文档](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
 
 ***
 
