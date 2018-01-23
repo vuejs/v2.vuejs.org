@@ -3,8 +3,8 @@
   initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
-    initSubHeaders()
     initApiSpecLinks()
+    initSubHeaders()
     initLocationHashFuzzyMatching()
   }
 
@@ -144,15 +144,17 @@
   * Modal Video Player
   */
   function initVideoModal () {
-    if (typeof Vimeo === 'undefined') return
-
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    var iframe = document.querySelector('iframe');
-    var player = new Vimeo.Player(iframe);
+
+    if (!modalButton || !videoModal) {
+      return
+    }
+
+    var iframe = document.querySelector('iframe')
+    var player = new Vimeo.Player(iframe)
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
-
 
     modalButton.addEventListener('click', function(event) {
       event.stopPropagation()

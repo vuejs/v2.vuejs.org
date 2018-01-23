@@ -33,7 +33,36 @@ var component = new Component() // => "hello from mixin!"
 
 ## Option Merging
 
-When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
+When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies.
+
+For example, data objects undergo a shallow merge (one property deep), with the component's data taking priority in cases of conflicts.
+
+``` js
+var mixin = {
+  data: function () {
+    return {
+      message: 'hello',
+      foo: 'abc'
+    }
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'goodbye',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "goodbye", foo: "abc", bar: "def" }
+  }
+})
+```
+
+Hook functions with the same name are merged into an array so that all of them will be called. Mixin hooks will be called **before** the component's own hooks.
 
 ``` js
 var mixin = {

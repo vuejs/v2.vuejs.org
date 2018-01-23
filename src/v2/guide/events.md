@@ -207,16 +207,18 @@ Unlike the other modifiers, which are exclusive to native DOM events, the `.once
 
 > New in 2.3.0+
 
+Vue also offers the `.passive` modifier, corresponding to [`addEventListener`'s `passive` option](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters).
+
 ``` html
-<!-- the scroll event will not cancel the default scroll behavior -->
+<!-- the scroll event's default behavior (scrolling) will happen -->
+<!-- immediately, instead of waiting for `onScroll` to complete  -->
+<!-- in case it contains `event.preventDefault()`                -->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-In addition to these modifiers, Vue provides `.passive` modifier to improve the performance on mobile especially.
-For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call `event.preventDefault()` within its handler.
-`.passive` modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.
+The `.passive` modifier is especially useful for improving performance on mobile devices.
 
-<p class="tip">Don't use `.passive` and `.prevent` together. Passive handler can't prevent default event.</p>
+<p class="tip">Don't use `.passive` and `.prevent` together, because `.prevent` will be ignored and your browser will probably show you a warning. Remember, `.passive` communicates to the browser that you _don't_ want to prevent the event's default behavior.</p>
 
 ## Key Modifiers
 
@@ -256,7 +258,7 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 Vue.config.keyCodes.f1 = 112
 ```
 
-### Automatic Key Modifers
+### Automatic Key Modifiers
 
 > New in 2.5.0+
 
