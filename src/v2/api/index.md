@@ -435,7 +435,7 @@ type: api
 
   以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、 API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
 
-  在定义一个**组件**时，`data` 必须声明为一个返回初始数据对象的函数，因为可能会使用此函数创建多个实例。如果 `data` 是一个普通对象，则所有创建出来的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新的 data 对象副本。
+  当一个**组件**被定义，`data` 必须声明为返回一个初始数据对象的函数，因为组件可能被用来创建多个实例。如果 `data` 仍然是一个纯粹的对象，则所有的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新副本数据对象。
 
  如果需要，可以通过将 `vm.$data` 传入 `JSON.parse(JSON.stringify(...))` 得到深拷贝的原始数据对象。
 
@@ -879,25 +879,25 @@ type: api
 
 ### errorCaptured
 
-> New in 2.5.0+
+> 2.5.0+ 新增
 
-- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+- **类型：** `(err: Error, vm: Component, info: string) => ?boolean`
 
-- **Details:**
+- **详细：**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  当任何一个来自后代组件的错误时被捕获时调用。此钩子函数会收到三个参数：错误对象、发生错误的组件实例，和一个包含错误在何处被捕获信息的字符串。此钩子函数可以返回 `false`，以阻止该错误继续向上冒泡。
 
-  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+  <p class="tip">你可以在此钩子函数中修改组件的状态。因此，当一个错误被捕获时，在你的模板中使用条件语句或着使其他内容短路的渲染函数，是很重要的；否则组件将陷入无限的渲染循环。</p>
 
-  **Error Propagation Rules**
+  **错误冒泡规则**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - 默认情况下，如果定义了全局的 `config.errorHandler` 错误处理函数，仍然会向它发送所有的错误，因此，还是可以将这些错误在一处地方进行汇总，然后汇报到分析服务。
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - 如果一个组件的继承链或父级链中存在多个 `errorCaptured` 钩子函数，在触发同一个错误时，它们将会被逐个唤起执行。
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - 如果此 `errorCaptured` 钩子函数自身抛出了一个错误，则这个新的错误和前面捕获的错误，都会发送给全局的 `config.errorHandler` 错误处理函数。
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - `errorCaptured` 钩子函数能够返回 `false`，以阻止错误继续向上冒泡。也就表示，“已经处理过这个错误，并且应该忽略这个错误”。它会阻止所有其它会被这个错误唤起执行的 `errorCaptured` 钩子函数或全局的 `config.errorHandler` 错误处理函数。
 
 ## 选项 / 资源
 
