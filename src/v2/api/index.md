@@ -72,7 +72,7 @@ type: api
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
     // 处理错误
-    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子。
+    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子函数。
     // 只在 2.2.0+ 可用
   }
   ```
@@ -274,7 +274,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **参考：** [Reactivity in Depth](../guide/reactivity.html)
+- **参考：** [深入响应式原理](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -327,7 +327,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **参考：** [Filters](../guide/filters.html)
+- **参考：**[过滤器](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -403,7 +403,7 @@ type: api
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
-- **用法**：
+- **用法：**
 
   ```js
   var version = Number(Vue.version.split('.')[0])
@@ -469,7 +469,7 @@ type: api
 
 - **详细：**
 
-  props 可以是数组或对象，用于接收来自父组件的数据。props 有一个简单数组语法，和一个基于对象的语法，对象语法能够配置一些高级选项，例如类型检测、自定义校验和设置默认值。
+  props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
 
 - **示例：**
 
@@ -879,25 +879,25 @@ type: api
 
 ### errorCaptured
 
-> New in 2.5.0+
+> 2.5.0+ 新增
 
-- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+- **类型：** `(err: Error, vm: Component, info: string) => ?boolean`
 
-- **Details:**
+- **详细：**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  当任何一个来自后代组件的错误时被捕获时调用。此钩子函数会收到三个参数：错误对象、发生错误的组件实例，和一个包含错误在何处被捕获信息的字符串。此钩子函数可以返回 `false`，以阻止该错误继续向上冒泡。
 
-  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+  <p class="tip">你可以在此钩子函数中修改组件的状态。因此，当一个错误被捕获时，在你的模板中使用条件语句或着使其他内容短路的渲染函数，是很重要的；否则组件将陷入无限的渲染循环。</p>
 
-  **Error Propagation Rules**
+  **错误冒泡规则**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - 默认情况下，如果定义了全局的 `config.errorHandler` 错误处理函数，仍然会向它发送所有的错误，因此，还是可以将这些错误在一处地方进行汇总，然后汇报到分析服务。
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - 如果一个组件的继承链或父级链中存在多个 `errorCaptured` 钩子函数，在触发同一个错误时，它们将会被逐个唤起执行。
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - 如果此 `errorCaptured` 钩子函数自身抛出了一个错误，则这个新的错误和前面捕获的错误，都会发送给全局的 `config.errorHandler` 错误处理函数。
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - `errorCaptured` 钩子函数能够返回 `false`，以阻止错误继续向上冒泡。也就表示，“已经处理过这个错误，并且应该忽略这个错误”。它会阻止所有其它会被这个错误唤起执行的 `errorCaptured` 钩子函数或全局的 `config.errorHandler` 错误处理函数。
 
 ## 选项 / 资源
 
@@ -1360,7 +1360,7 @@ type: api
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
-  - [Render 函数 - Slots](../guide/render-function.html#Slots)
+  - [Render 函数 - slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1379,7 +1379,7 @@ type: api
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render 函数 - Slots](../guide/render-function.html#Slots)
+  - [Render 函数 - slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1393,7 +1393,7 @@ type: api
 
 - **另见：**
   - [子组件引用](../guide/components.html#子组件索引)
-  - [特殊属性 - ref](#ref)
+  - [ref](#ref)
 
 ### vm.$isServer
 
@@ -1747,7 +1747,7 @@ type: api
 
 - **用法：**
 
-  为 `v-if` 或者 `v-if`/`v-else-if` 添加 “else 块”。
+  为 `v-if` 或者 `v-else-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1850,7 +1850,7 @@ type: api
 
 - **用法：**
 
-  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字、一个内联语句，或者如果没有修饰符也可以省略。
+  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
   从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
 
@@ -1980,8 +1980,8 @@ type: api
   在使用字符串模板或通过 `vue-loader`/`vueify` 编译时，无需使用 `.camel`。
 
 - **参考：**
-  - [Class 与 Style 绑定](../guide/class-and-style.html)
-  - [组件 - Props](../guide/components.html#Props)
+  - [class 与 style 绑定](../guide/class-and-style.html)
+  - [组件 - props](../guide/components.html#Props)
   - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
 
 ### v-model
@@ -2162,7 +2162,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **期望类型：** `string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
 
   示例：
 
@@ -2183,7 +2183,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - [动态组件](../guide/components.html#动态组件)
   - [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)
 
-## 内置的组件
+## 内置组件
 
 ### component
 
@@ -2383,13 +2383,13 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
 
-## VNode接口
+## VNode 接口
 
-- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
+- 请参考 [VNode 类型声明](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
 ## 服务端渲染
 
-- 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
+- 请参考 [vue-server-renderer 包文档](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
 
 ***
 
