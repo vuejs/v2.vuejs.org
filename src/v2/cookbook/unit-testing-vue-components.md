@@ -34,7 +34,7 @@ export default {
 
   computed: {
     error () {
-      return this.username.length < 7
+      return this.username.trim().length < 7
         ? 'Please enter a longer username'
         : ''
     }
@@ -50,8 +50,11 @@ test('Foo', () => {
   // render the component
   const wrapper = shallow(Hello)
 
+  // should not allow for username less than 7 characters, excludes whitespace
+  wrapper.setData({ username: ' '.repeat(7) })
+
   // assert the error is rendered
-  expect(wrapper.find('error').exists()).toBe(true)
+  expect(wrapper.find('.error').exists()).toBe(true)
 
   // update the name to be long enough
   wrapper.setData({
@@ -61,7 +64,7 @@ test('Foo', () => {
   })
 
   // assert the error has gone away
-  expect(wrapper.find('error').exists()).toBe(false)
+  expect(wrapper.find('.error').exists()).toBe(false)
 })
 ```
 
