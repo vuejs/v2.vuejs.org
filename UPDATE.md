@@ -86,5 +86,8 @@
 * 【重新校对】`表单 input 绑定`。
 * 【记录】https://github.com/docschina/vuejs.org/pull/388
 
+### 2018.01.24
+* 【翻译】API 新增的 `errorCaptured` 部分。
+
 ## 重新校对情况
 

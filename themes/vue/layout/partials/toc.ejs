@@ -35,16 +35,16 @@
       <!-- at least one recipe -->
     <% } %>
     <li>
-        <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+      <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
     </li>
   <% }) %>
   <% if (type === 'cookbook') { %>
-      <li><h3>组件</h3></li>
-      <li><h4>表单输入框</h4></li>
-      <li><h4>第三方集成</h4></li>
-      <li><h3>翻译</h3></li>
-      <li><h3>指令</h3></li>
-      <li><h3>Vue Router</h3></li>
-      <li><h3>Vuex</h3></li>
+    <li><h3>组件</h3></li>
+    <li><h4>表单输入框</h4></li>
+    <li><h4>第三方集成</h4></li>
+    <li><h3>翻译</h3></li>
+    <li><h3>指令</h3></li>
+    <li><h3>Vue Router</h3></li>
+    <li><h3>Vuex</h3></li>
   <% } %>
 </ul>
