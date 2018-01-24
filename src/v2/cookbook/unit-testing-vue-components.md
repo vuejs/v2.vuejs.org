@@ -92,7 +92,13 @@ Unit tests should be
 - Easy to understand
 - Only test a _single unit of work_
 
-Let's say we want to test the following component. It shows a greeting, and asks for a username. If the username is less than seven letters, an error is displayed.
+Let's continue building on the previous example, while introducing the idea of a [factory function](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) to make our test more compact and readable. The component should:
+
+- show a 'Welcome to the Vue.js cookbook' greeting.
+- prompt the user to enter their usenrame
+- if the entered username is less than seven letters, display an error
+
+Let's take a look at the component code first:
 
 ```html
 <template>
@@ -116,14 +122,14 @@ export default {
 
   data () {
     return {
-      message: 'Hello World',
+      message: 'Hi, welcome to the Vue.js cookbook',
       username: ''
     }
   },
 
   computed: {
     error () {
-      return this.username.length < 7
+      return this.username.trim().length < 7
     }
   }
 }
@@ -170,6 +176,7 @@ The below example improves the test by:
 - only making one assertion per `it` block
 - having short, clear test descriptions
 - providing only the minimum data requires for the test
+- refactoring duplucated logic (creating the `wrapper` and setting the `username` variable) into a factory function
 
 *Updated test*:
 ```js
@@ -179,7 +186,7 @@ describe('Foo', () => {
   it('renders a message', () => {
     const wrapper = shallow(Foo, {
       data: {
-        message: 'Hello World'
+        message: 'Welcome to the Vue.js cookbook'
       }
     })
 
