@@ -196,26 +196,29 @@ describe('Foo', () => {
     expect(wrapper.find('.message').text()).toEqual("Welcome to the Vue.js cookbook")
   })
 
-  it('renders error when username is less than 7 characters', () => {
+  it('renders an error when username is less than 7 characters', () => {
     const wrapper = factory({ username: ''  })
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
   })
 
-  it('renders error when username is whitespace', () => {
+  it('renders an error when username is whitespace', () => {
     const wrapper = factory({ username: ' '.repeat(7)  })
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
   })
 
-  it('does not render error when username is 7 characters or more', () => {
+  it('does not render an error when username is 7 characters or more', () => {
     const wrapper = factory({ username: 'Lachlan'  })
 
     expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
-
 ```
+
+Points to note:
+
+At the top, we declare the factory function, which simply returns a new `wrapper` instance, and sets and the `values` object to `data`. This way, we don't need to duplicate `const wrapper = shallow(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once. 
 
 ## Additional Context
 
@@ -224,6 +227,8 @@ Thee above test is fairly simple, but in practise Vue components often have othe
 - making API calls
 - committing or dispatching mutations or actions with a `Vuex` store
 - testing interaction
+
+There are more complete examples showing such tests in the `vue-test-utils` [guides](https://vue-test-utils.vuejs.org/en/guides/).
 
 `vue-test-utils` and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component. 
 
