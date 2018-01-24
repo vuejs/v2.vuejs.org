@@ -374,7 +374,7 @@ type: api
 
   全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
-- **参考：** [全局混合](../guide/mixins.html#全局混合)
+- **参考：** [全局 mixin](../guide/mixins.html#%E5%85%A8%E5%B1%80-mixin-global-mixin)
 
 ### Vue.compile( template )
 
@@ -667,7 +667,7 @@ type: api
   <p class="tip">如果 `render` 函数和 `template` 属性都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [生命周期示意图](../guide/instance.html#生命周期示意图)
   - [独立构建-vs-运行时构建](../guide/installation.html#独立构建-vs-运行时构建)
 
 ### template
@@ -680,12 +680,12 @@ type: api
 
   如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
-  <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
+  <p class="tip">出于安全考虑，你应该只使用你信任的 Vue 模板。避免使用其他人生成的内容作为你的模板。</p>
 
   <p class="tip">如果 Vue 选项中包含 render 函数，template 选项将被忽略。</p>
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [生命周期示意图](../guide/instance.html#生命周期示意图)
   - [使用 slot 分发内容](../guide/components.html#使用-slot-分发内容)
 
 ### render
@@ -741,7 +741,7 @@ type: api
 
   在实例初始化之后，立即同步调用，在数据观察(data observer)和 event/watcher 配置之前被调用。
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### created
 
@@ -751,7 +751,7 @@ type: api
 
   实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### beforeMount
 
@@ -763,7 +763,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### mounted
 
@@ -786,7 +786,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### beforeUpdate
 
@@ -798,7 +798,7 @@ type: api
 
   **在服务器端渲染期间不会调用这个钩子函数，因为在服务器端只执行初始渲染。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### updated
 
@@ -823,7 +823,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### activated
 
@@ -863,7 +863,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### destroyed
 
@@ -875,7 +875,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### errorCaptured
 
@@ -1616,7 +1616,7 @@ type: api
   ```
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [生命周期示意图](../guide/instance.html#生命周期示意图)
   - [服务端渲染](../guide/ssr.html)
 
 ### vm.$forceUpdate()
@@ -1671,7 +1671,7 @@ type: api
 
   <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ## 指令
 
@@ -1811,7 +1811,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,您需要提供一个 `key` 的特殊属性:
+  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,你需要提供一个 `key` 的特殊属性:
 
   ``` html
   <div v-for="item in items" :key="item.id">

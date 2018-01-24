@@ -108,7 +108,7 @@ new Vue({
 
 ![Transition Diagram](/images/transition.png)
 
-对于这些过渡中切换 class，每个都以过渡的 name 作为前缀。当您使用没有 name 的 `<transition>` 元素时，会默认前缀为 `v-`。举个例子，如果你使用 `<transition name="my-transition">`，那么默认的 `v-enter` class 将会被替换为 `my-transition-enter`。
+对于这些过渡中切换 class，每个都以过渡的 name 作为前缀。当你使用没有 name 的 `<transition>` 元素时，会默认前缀为 `v-`。举个例子，如果你使用 `<transition name="my-transition">`，那么默认的 `v-enter` class 将会被替换为 `my-transition-enter`。
 
 `v-enter-active` 和 `v-leave-active` 可以指定不同的进入/离开过渡 easing 曲线，下面章节可以看到一个示例。
 
@@ -360,13 +360,13 @@ Vue 为了知道过渡何时完成，必须附加相应的事件监听器。它�
 
 在大多数情况下，Vue 可以自动推断出过渡完成时间。默认情况下，Vue 会过渡根元素的第一个 `transitionend` 或 `animationend` 事件触发所需的等待时间。然而，这可能并不总是我们想要的 - 例如，我们可能具有设计安排的过渡序列(transition sequence)：其中一些嵌套的内部元素（在根元素过渡完成后）还具有延续的过渡效果，或比过渡根元素更长的过渡持续时间。
 
-在这种情况下，您可以使用 `<transition>` 组件上的 `duration` 属性 ，来指定一个显式的过渡持续时间（以毫秒为单位）：
+在这种情况下，你可以使用 `<transition>` 组件上的 `duration` 属性 ，来指定一个显式的过渡持续时间（以毫秒为单位）：
 
 ``` html
 <transition :duration="1000">...</transition>
 ```
 
-您还可以为进入式和离开式持续时间指定不同的值：
+你还可以为进入式和离开式持续时间指定不同的值：
 
 ``` html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
