@@ -122,7 +122,7 @@ export default {
 
   data () {
     return {
-      message: 'Hi, welcome to the Vue.js cookbook',
+      message: 'Welcome to the Vue.js cookbook',
       username: ''
     }
   },
@@ -181,38 +181,40 @@ The below example improves the test by:
 *Updated test*:
 ```js
 import { shallow } from 'vue-test-utils'
+import Foo from './Foo'
+
+const factory = (values = {}) => {
+  return shallow(Foo, {
+    data: { ...values  }
+  })
+}
 
 describe('Foo', () => {
-  it('renders a message', () => {
-    const wrapper = shallow(Foo, {
-      data: {
-        message: 'Welcome to the Vue.js cookbook'
-      }
-    })
+  it('renders a welcome message', () => {
+    const wrapper = factory()
 
-    expect(wrapper.find('.message').text()).toEqual('Hello World')
+    expect(wrapper.find('.message').text()).toEqual("Welcome to the Vue.js cookbook")
   })
 
   it('renders error when username is less than 7 characters', () => {
-    const wrapper = shallow(Foo, {
-      data: {
-        username: ''
-      }
-    })
+    const wrapper = factory({ username: ''  })
+
+    expect(wrapper.find('.error').exists()).toBeTruthy()
+  })
+
+  it('renders error when username is whitespace', () => {
+    const wrapper = factory({ username: ' '.repeat(7)  })
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
   })
 
   it('does not render error when username is 7 characters or more', () => {
-    const wrapper = shallow(Foo, {
-      data: {
-        username: 'Lachlan'
-      }
-    })
+    const wrapper = factory({ username: 'Lachlan'  })
 
-    expect(wrapper.find('.error').exists()).toBeFalsey()
+    expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
+
 ```
 
 ## Additional Context
