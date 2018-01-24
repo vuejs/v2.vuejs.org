@@ -48,7 +48,7 @@ Vue embraces classic web technologies and builds on top of them. To show you wha
 
 JSX 的渲染功能有下面这些优势：
 
-- 您可以充分利用完整的编程语言（JavaScript）来构建您的视图。这包括临时变量、流程控制，和直接引用作用域内的 JavaScript 值。
+- 你可以充分利用完整的编程语言（JavaScript）来构建你的视图。这包括临时变量、流程控制，和直接引用作用域内的 JavaScript 值。
 
 - 工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
 

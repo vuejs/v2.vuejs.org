@@ -1296,7 +1296,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 ### 组件之间的循环引用
 
-假设您正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。你可能有一个使用此模板的 `tree-folder` 组件：
+假设你正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。你可能有一个使用此模板的 `tree-folder` 组件：
 
 ``` html
 <p>

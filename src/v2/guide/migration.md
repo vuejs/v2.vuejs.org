@@ -1569,11 +1569,11 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 ### `Vue.partial` <sup>移除</sup>
 
-Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议使用一个[普通组件](components.html)来代替。如果你是动态绑定部分的`name`，您可以使用[动态组件](components.html#Dynamic-Components)。
+Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议使用一个[普通组件](components.html)来代替。如果你是动态绑定部分的`name`，你可以使用[动态组件](components.html#Dynamic-Components)。
 
 如果你碰巧在你的应用程序的性能关键部分使用`partials`，那么你应该升级到[functional components](render-function.html#Functional-Components)。它们必须在纯JS / JSX文件中（而不是在`.vue`文件中），并且是无状态的和无实例的，就像`partials`。这使得渲染极快。
 
-`functional components`相对于`partials`一个好处是它们可以更具动态性，因为它们允许您访问JavaScript的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
+`functional components`相对于`partials`一个好处是它们可以更具动态性，因为它们允许你访问JavaScript的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
 
 {% raw %}
 <div class="upgrade-path">

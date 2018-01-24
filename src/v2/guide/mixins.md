@@ -31,7 +31,7 @@ var Component = Vue.extend({
 var component = new Component() // => "来自 mixin 对象的 hello！"
 ```
 
-## 选项合并(Option Merging)
+## 选项合并(option merging)
 
 当 mixin 对象和组件自身的选项对象，在二者选项名称相同时，Vue 会选取合适的“合并(merge)”策略。
 
@@ -115,7 +115,7 @@ vm.conflicting() // => "from self"
 
 注意，在 `Vue.extend()` 中，Vue 也使用了与此相同的合并策略。
 
-## 全局混合(Global Mixin)
+## 全局 mixin(global mixin)
 
 也可以在全局使用 mixin。请谨慎使用！一旦在全局中使用了 mixin，就会影响到之后创建的**每个**实例。在用法正确时，可以为自定义选项注入处理逻辑：
 
@@ -136,9 +136,9 @@ new Vue({
 // => "hello!"
 ```
 
-<p class="tip">请少量且小心谨慎地使用全局混合，因为这会影响到之后创建的每个 Vue 实例，包括第三方组件也会受到影响。在多数情况下，如同以上示例中所演示的，你应该只将全局混合，用于自定义选项的处理逻辑。还有一个比较不错的做法，就是在[插件](plugins.html)中使用全局混合，然后通过调用插件来复用组件功能，以避免应用程序中的重复部分。</p>
+<p class="tip">请少量且小心谨慎地使用全局 mixin，因为这会影响到之后创建的每个 Vue 实例，包括第三方组件也会受到影响。在多数情况下，如同以上示例中所演示的，你应该只将全局 mixin，用于自定义选项的处理逻辑。还有一个比较不错的做法，就是在[插件](plugins.html)中使用全局 mixin，然后通过调用插件来复用组件功能，以避免应用程序中的重复部分。</p>
 
-## 自定义选项的合并策略(Custom Option Merge Strategies)
+## 自定义选项的合并策略(custom option merge strategies)
 
 在合并自定义选项(custom option)时，Vue 会使用默认策略，即覆盖已有值。如果想要定制自定义选项的合并逻辑，则需要向 `Vue.config.optionMergeStrategies` 添加一个函数：
 
