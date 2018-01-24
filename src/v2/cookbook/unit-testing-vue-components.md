@@ -95,7 +95,7 @@ Unit tests should be
 Let's continue building on the previous example, while introducing the idea of a [factory function](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) to make our test more compact and readable. The component should:
 
 - show a 'Welcome to the Vue.js cookbook' greeting.
-- prompt the user to enter their usenrame
+- prompt the user to enter their username
 - if the entered username is less than seven letters, display an error
 
 Let's take a look at the component code first:
