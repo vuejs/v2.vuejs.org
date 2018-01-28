@@ -22,9 +22,9 @@ First, we'll create a folder for all of the icons, and name them in a standardiz
 
 Here's an example repo to get you going, where you can see the entire setup: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
 
-![Documentation site](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg "Docs demo")
+![Documentation site](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg 'Docs demo')
 
-We'll create a base icon (`iconBase.vue`) that will be a component that's uses a scoped slot.
+We'll create a base icon (`IconBase.vue`) component that uses a scoped slot.
 
 ```html
 <template>
@@ -43,7 +43,7 @@ We'll create a base icon (`iconBase.vue`) that will be a component that's uses a
 </template>
 ```
 
-You can use this base icon as is- the only thing you might need to update is the viewBox depending on the viewBox of your icons. In the base, we're making the width, height, color, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the title id for accessibility, and the title.
+You can use this base icon as is- the only thing you might need to update is the `viewBox` depending on the `viewBox` of your icons. In the base, we're making the `width`, `height`, `color`, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the title `id` for accessibility, and the `title`.
 
 Our script will look like this, we'll have some defaults so that our icon will be rendered consistently unless we state otherwise:
 
@@ -145,21 +145,25 @@ export default {
 
 We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a funciton we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and transform-origin issues across browser.
 
-<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Pretty easily accomplished! And easy to update on the fly.
+<p style="margin-top:-30px">Pretty easily accomplished! And easy to update on the fly.</p>
 
 You can see more animated examples in the repo [here](https://github.com/sdras/vue-sample-svg-icons/)
 
 ## Additional Notes
 
-Designers may change their minds or product requirements change. By keeping the logic for the entire icon system in one base component with a slot, you can quickly update all of your icons and have it propogate through your entire system, which can save a lot of time that, even with an icon loader, would mean recreating or editing every SVG.
+Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propogate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
 
 ## When To Avoid This Pattern
 
-This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you run into a time where you're repeating the same icon again and again a hundred times or more on one page (for instance, a giant table with a great number of delete icons, one per row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `use` tags to load them.
+This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you're repeating the same icon many times on one page (e.g. a giant table a delete icon in each row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `use` tags to load them.
 
 ## Alternative Patterns
 
-If you find yourself implementing the use case above, there are a number of good tools to help you with this. A couple worth mentioning are [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) and [svgo-loader](https://github.com/rpominov/svgo-loader). This pattern tends to be a little harder to manipulate on the fly because `use` tags can have strange cross-browser issues when doing anything more complex, and you're also dealing with two nested `viewBox` properties and thus two coordinate systems, which can make implementation and on-the-fly edits more challenging.
+Other tooling to help manage SVG icons includes:
+
+* [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader)
+* [svgo-loader](https://github.com/rpominov/svgo-loader)
+
+These tools bundle SVGs at compile time, but make them a little harder to edit during runtime, because `use` tags can have strange cross-browser issues when doing anything more complex. They also leave you with two nested `viewBox` properties and thus two coordinate systems. This makes the implementation a little more complex.
