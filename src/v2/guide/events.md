@@ -205,6 +205,21 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 
 Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
 
+> New in 2.3.0+
+
+Vue also offers the `.passive` modifier, corresponding to [`addEventListener`'s `passive` option](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters).
+
+``` html
+<!-- the scroll event's default behavior (scrolling) will happen -->
+<!-- immediately, instead of waiting for `onScroll` to complete  -->
+<!-- in case it contains `event.preventDefault()`                -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+The `.passive` modifier is especially useful for improving performance on mobile devices.
+
+<p class="tip">Don't use `.passive` and `.prevent` together, because `.prevent` will be ignored and your browser will probably show you a warning. Remember, `.passive` communicates to the browser that you _don't_ want to prevent the event's default behavior.</p>
+
 ## Key Modifiers
 
 When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
@@ -243,7 +258,7 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 Vue.config.keyCodes.f1 = 112
 ```
 
-### Automatic Key Modifers
+### Automatic Key Modifiers
 
 > New in 2.5.0+
 

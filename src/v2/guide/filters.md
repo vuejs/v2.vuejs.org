@@ -26,13 +26,17 @@ filters: {
 }
 ```
 
-or define a filter globally:
+or define a filter globally before creating the Vue instance:
 
 ``` js
 Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
+})
+
+new Vue({
+  // ...
 })
 ```
 

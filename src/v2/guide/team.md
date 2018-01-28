@@ -198,6 +198,7 @@ order: 803
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
+    'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
@@ -364,7 +365,7 @@ order: 803
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-i18n-loader', 'vue-validator'
+        'vue-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
         'https://cuusoo.com', 'http://frapwings.jp'
@@ -492,6 +493,7 @@ order: 803
         orgUrl: 'https://livestorm.co/'
       },
       reposOfficial: [
+        'vue-devtools',
         'vue-curated'
       ],
       reposPersonal: [
@@ -600,7 +602,7 @@ order: 803
     {
       name: 'kingwl',
       title: 'New Bee',
-      city: 'Beijin, China',
+      city: 'Beijing, China',
       languages: ['zh'],
       work: {
         role: 'Software Development Engineer',
@@ -610,6 +612,23 @@ order: 803
       github: 'kingwl',
       reposOfficial: [
         'vue'
+      ]
+    },
+    {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      city: 'Thessaloniki, Greece',
+      languages: ['el', 'en'],
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
       ]
     }
   ]))
@@ -655,23 +674,6 @@ order: 803
       links: [
         'https://twitter.com/VueJsNews',
         'http://www.kharysharpe.com/'
-      ]
-    },
-    {
-      name: 'Alex Kyriakidis',
-      title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
-      languages: ['el', 'en'],
-      github: 'hootlex',
-      twitter: 'hootlex',
-      work: {
-        role: 'Consultant / Author'
-      },
-      reposPersonal: [
-        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
-      ],
-      links: [
-        'https://vuejsfeed.com/', 'https://vueschool.io/'
       ]
     },
     {
