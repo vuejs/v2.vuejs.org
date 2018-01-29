@@ -579,6 +579,22 @@ Vue.component('smart-list', {
 })
 ```
 
+### Inheriting attributes like regular components
+
+When writing regular component, any attribute directly used on the component is automatically passed down to the root element of that component. For example: any `class` added will be passed down to the root of the regular component. Functional components behave quite differently: **this behavior is not automatic**, but don't worry, it is very simple to setup:
+
+```js
+Vue.component('my-functional-component', {
+  functional: true,
+  render: function (createElement, context) {
+    // pass down any attributes used on my-functional-component
+    return createElement('div', context.data, context.children)
+  }
+})
+```
+
+By passing `context.data` as the second argument to `createElement`, we are passing down any attribute used on `my-functional-component`, exactly as the default attribute inheritance behavior seen in regular components.
+
 ### `slots()` vs `children`
 
 You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
