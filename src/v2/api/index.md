@@ -1719,7 +1719,7 @@ type: api
 
 - **Usage:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
   This directive triggers transitions when its condition changes.
 
