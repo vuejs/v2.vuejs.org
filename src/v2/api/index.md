@@ -50,7 +50,7 @@ type: api
 
 - **类型：** `boolean`
 
-- **默认值：** `true`（在生产构建版本中是 `false`）
+- **默认值：** `true`（在生产版本中是 `false`）
 
 - **用法：**
 
@@ -59,7 +59,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版本默认为 `true`，生产版本默认为 `false`。生产版本设为 `true` 可以启用检查。
+  设置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 审查应用程序。此选项在开发版本的默认值是 `true`，而在生产版本的默认值是 `false`。可以将生产版本的值设为 `true`，以启用审查。
 
 ### errorHandler
 
@@ -77,7 +77,7 @@ type: api
   }
   ```
 
-  指定一个处理函数，用于在组件渲染函数调用和 watcher 期间捕获错误。这个处理函数被调用时，传入 error 对象和 Vue 实例。
+  设置一个处理函数，用于在组件渲染函数调用和 watcher 期间捕获错误。这个处理函数被调用时，传入 error 对象和 Vue 实例。
 
   > 从 2.2.0+ 开始，这个钩子会捕获组件生命周期钩子中的错误。此外，如果这个钩子是 `undefined`，捕获的错误会被记录到 `console.error`，而不是让整个应用程序崩溃。
 
@@ -101,7 +101,7 @@ type: api
   }
   ```
 
-  为 Vue 的运行时警告赋于一个自定义句柄。注意这只会在开发者环境下生效，在生产环境下它会被忽略。
+  为运行时(runtime)下的 Vue 警告设置一个自定义处理函数。注意，这只会在开发环境下生效，在生产环境下设置会被忽略。
 
 ### ignoredElements
 
@@ -115,13 +115,13 @@ type: api
   Vue.config.ignoredElements = [
     'my-custom-web-component',
     'another-web-component',
-    // 使用`正则表达式`忽略所有以 "ion-" 开头的元素
+    // 使用`正则表达式(RegExp)`忽略所有以 "ion-" 开头的元素
     // 2.5+ only
     /^ion-/
   ]
   ```
 
-  须使 Vue 忽略在 Vue 之外的自定义元素 (e.g., 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 `Unknown custom element` 的警告。
+  可以帮助 Vue 忽略不受 Vue 管理的自定义元素（例如，使用 Web Components API）。否则，Vue 会错误地认为你是忘记注册全局组件或将组件名称拼写错误，并且抛出一条`Unknown custom element`（意思是：未知的自定义元素）的警告。
 
 ### keyCodes
 
