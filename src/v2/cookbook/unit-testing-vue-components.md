@@ -1,7 +1,7 @@
 ---
 title: Unit Testing Vue Components
 type: cookbook
-order: 1.2
+order: 1.3
 ---
 
 ## Simple Example
@@ -218,7 +218,7 @@ describe('Foo', () => {
 
 Points to note:
 
-At the top, we declare the factory function, which simply returns a new `wrapper` instance, and sets and the `values` object to `data`. This way, we don't need to duplicate `const wrapper = shallow(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once. 
+At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallow(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once. 
 
 ## Additional Context
 
