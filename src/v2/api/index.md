@@ -121,7 +121,7 @@ type: api
   ]
   ```
 
-  帮助 Vue 忽略不受 Vue 管理的自定义元素（例如，使用 Web Components API 的那些自定义元素）。否则，Vue 会错误地认为你是忘记注册全局组件或将组件名称拼写错误，并且抛出一条`Unknown custom element`（意思是：未知的自定义元素）的警告。
+  帮助 Vue 忽略不受 Vue 管理的自定义元素（例如，使用 Web Components API 的那些自定义元素）。否则，Vue 会错误地认为你是忘记注册全局组件或将组件名称拼写错误，然后抛出一条`Unknown custom element`（意思是：未知的自定义元素）的警告。
 
 ### keyCodes
 
@@ -135,9 +135,9 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase 不可用
+    // 无法识别驼峰式命名(camelCase)
     mediaPlayPause: 179,
-    // 取而代之的是 kebab-case 且用双引号括起来
+    // 可以识别的是双引号括起来的串联式命名(kebab-case)
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -147,7 +147,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  给 `v-on` 自定义键位别名。
+  设置 `v-on` 自定义按键别名。
 
 ### performance
 
@@ -159,7 +159,7 @@ type: api
 
 - **用法：**
 
-  设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API的浏览器上。
+  设置为 `true`，以在浏览器开发工具 timeline 中，启用组件初始化(init)、编译(compile)、渲染(render)和修补(patch)的性能追踪。只能在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中运行。
 
 ### productionTip
 
@@ -171,7 +171,7 @@ type: api
 
 - **用法：**
 
-  设置为 `false` 以阻止 vue 在启动时生成生产提示。
+  设置为 `false`，以禁止在 Vue 启动时的生产提示。
 
 ## 全局 API
 
@@ -182,16 +182,16 @@ type: api
 
 - **用法：**
 
-  使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。
+  使用 Vue 的基础构造函数，创建一个“子类(subclass)”。参数是一个包含组件选项的对象。
 
-  `data` 选项是特例，需要注意 - 在 `Vue.extend()` 中它必须是函数
+  这里需要特别注意的是 `data` 选项 - 在 `Vue.extend()` 中的 data 选项必须是一个函数。
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // 创建构造器
+  // 创建基础构造函数
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -202,7 +202,7 @@ type: api
       }
     }
   })
-  // 创建 Profile 实例，并挂载到一个元素上。
+  // 创建 Profile 实例，并将其挂载到一个元素上。
   new Profile().$mount('#mount-point')
   ```
 
