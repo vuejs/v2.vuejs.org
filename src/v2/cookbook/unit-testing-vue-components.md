@@ -1,7 +1,7 @@
 ---
 title: Unit Testing Vue Components
 type: cookbook
-order: 1.3
+order: 1.5
 ---
 
 ## Simple Example
@@ -163,7 +163,7 @@ describe('Foo', () => {
 
   // update the username and assert error is longer rendered
   wrapper.setData({ username: 'Lachlan'  })
-  expect(wrapper.find('.error').exists()).toBeFalsey()
+  expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
 ```
