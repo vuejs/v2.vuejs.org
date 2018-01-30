@@ -121,7 +121,7 @@ type: api
   ]
   ```
 
-  可以帮助 Vue 忽略不受 Vue 管理的自定义元素（例如，使用 Web Components API）。否则，Vue 会错误地认为你是忘记注册全局组件或将组件名称拼写错误，并且抛出一条`Unknown custom element`（意思是：未知的自定义元素）的警告。
+  帮助 Vue 忽略不受 Vue 管理的自定义元素（例如，使用 Web Components API 的那些自定义元素）。否则，Vue 会错误地认为你是忘记注册全局组件或将组件名称拼写错误，并且抛出一条`Unknown custom element`（意思是：未知的自定义元素）的警告。
 
 ### keyCodes
 
