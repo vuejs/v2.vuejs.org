@@ -1,7 +1,7 @@
 ---
 title: Adding Instance Properties
 type: cookbook
-order: 1.1
+order: 1.3
 ---
 
 ## Simple Example
