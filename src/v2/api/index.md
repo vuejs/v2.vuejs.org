@@ -4,7 +4,7 @@ type: api
 
 ## 全局配置
 
-`Vue.config`  是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
+`Vue.config` 是一个对象，包含 Vue 的全局配置。可以在启动应用之前，预先修改下列属性：
 
 ### silent
 
@@ -18,7 +18,7 @@ type: api
   Vue.config.silent = true
   ```
 
-  取消 Vue 所有的日志与警告。
+  禁止所有 Vue 的日志(log)与警告(warning)。
 
 ### optionMergeStrategies
 
@@ -40,17 +40,17 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  自定义合并策略的选项。
+  用于定义选项(options)的自定义合并策略。
 
-  合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
+  合并策略函数分别接收的参数：定义在父实例上的选项(options)作为第一个参数，定义在子实例上的选项(options)作为第二个参数，Vue 实例上下文作为第三个参数传入。
 
-- **参考** [自定义选项的混合策略](../guide/mixins.html#自定义选项的合并策略-Custom-Option-Merge-Strategies)
+- **参考：**[自定义选项的合并策略](../guide/mixins.html#自定义选项的合并策略-custom-option-merge-strategies)
 
 ### devtools
 
 - **类型：** `boolean`
 
-- **默认值：** `true` (生产版为 `false`)
+- **默认值：** `true`（在生产构建版本中是 `false`）
 
 - **用法：**
 
@@ -212,7 +212,7 @@ type: api
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **参考：** [组件](../guide/components.html)
+- **参考：**[组件](../guide/components.html)
 
 ### Vue.nextTick( [callback, context] )
 
@@ -241,7 +241,7 @@ type: api
 
   > 2.1.0+ 新增：如果没有提供回调且支持 promise 的执行环境中会返回 Promise。然而注意，Vue 没有集成 Promise polyfill，所以如果浏览器本身不支持 Promise（说的就是你，IE），就必须提前准备好 polyfill。
 
-- **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
+- **参考：**[异步更新队列](../guide/reactivity.html#异步更新队列)
 
 ### Vue.set( target, key, value )
 
@@ -258,7 +258,7 @@ type: api
 
   **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。**
 
-- **参考：** [深入响应式原理](../guide/reactivity.html)
+- **参考：**[深入响应式原理](../guide/reactivity.html)
 
 ### Vue.delete( target, key )
 
@@ -274,7 +274,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **参考：** [深入响应式原理](../guide/reactivity.html)
+- **参考：**[深入响应式原理](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -305,7 +305,7 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **参考：** [自定义指令](../guide/custom-directive.html)
+- **参考：**[自定义指令](../guide/custom-directive.html)
 
 ### Vue.filter( id, [definition] )
 
@@ -350,7 +350,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **参考：** [组件](../guide/components.html)
+- **参考：**[组件](../guide/components.html)
 
 ### Vue.use( plugin )
 
@@ -363,7 +363,7 @@ type: api
 
   当 install 方法被同一个插件多次调用，插件将只会被安装一次。
 
-- **参考：** [插件](../guide/plugins.html)
+- **参考：**[插件](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
@@ -374,7 +374,7 @@ type: api
 
   全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
-- **参考：** [全局 mixin](../guide/mixins.html#%E5%85%A8%E5%B1%80-mixin-global-mixin)
+- **参考：**[全局 mixin](../guide/mixins.html#全局-mixin-global-mixin)
 
 ### Vue.compile( template )
 
@@ -397,7 +397,7 @@ type: api
   })
   ```
 
-- **参考：** [Render 函数](../guide/render-function.html)
+- **参考：**[render 函数](../guide/render-function.html)
 
 ### Vue.version
 
@@ -461,7 +461,7 @@ type: api
 
   <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
 
-- **参考：** [深入响应式原理](../guide/reactivity.html)
+- **参考：**[深入响应式原理](../guide/reactivity.html)
 
 ### props
 
@@ -497,7 +497,7 @@ type: api
   })
   ```
 
-- **参考：** [Props](../guide/components.html#Props)
+- **参考：**[Props](../guide/components.html#Props)
 
 ### propsData
 
@@ -590,7 +590,7 @@ type: api
   vm.a // 2
   ```
 
-- **参考：** [事件处理](../guide/events.html)
+- **参考：**[事件处理](../guide/events.html)
 
 ### watch
 
@@ -741,7 +741,7 @@ type: api
 
   在实例初始化之后，立即同步调用，在数据观察(data observer)和 event/watcher 配置之前被调用。
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### created
 
@@ -751,7 +751,7 @@ type: api
 
   实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### beforeMount
 
@@ -763,7 +763,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### mounted
 
@@ -786,7 +786,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### beforeUpdate
 
@@ -798,7 +798,7 @@ type: api
 
   **在服务器端渲染期间不会调用这个钩子函数，因为在服务器端只执行初始渲染。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### updated
 
@@ -823,7 +823,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### activated
 
@@ -863,7 +863,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### destroyed
 
@@ -875,7 +875,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ### errorCaptured
 
@@ -967,7 +967,7 @@ type: api
   // => 2
   ```
 
-- **参考：** [混合](../guide/mixins.html)
+- **参考：**[混合](../guide/mixins.html)
 
 ### extends
 
@@ -1156,7 +1156,7 @@ type: api
 
   使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。这只是一个返回 virtual node 的 `render` 函数，使得渲染成本更低。
 
-- **参考：** [函数式组件](../guide/render-function.html#函数式组件)
+- **参考：**[函数式组件](../guide/render-function.html#函数式组件)
 
 ### model
 
@@ -1241,7 +1241,7 @@ type: api
 
   Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
-- **参考：** [选项 / 选项 - data](#data)
+- **参考：**[选项 / 选项 - data](#data)
 
 ### vm.$props
 
@@ -1405,7 +1405,7 @@ type: api
 
   当前 Vue 实例是否运行于服务器。
 
-- **参考：** [服务端渲染](../guide/ssr.html)
+- **参考：**[服务端渲染](../guide/ssr.html)
 
 ### vm.$attrs
 
@@ -1659,7 +1659,7 @@ type: api
 
 - **参考：**
   - [Vue.nextTick](#Vue-nextTick)
-  - **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
+  - **参考：**[异步更新队列](../guide/reactivity.html#异步更新队列)
 
 ### vm.$destroy()
 
@@ -1671,7 +1671,7 @@ type: api
 
   <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
-- **参考：** [生命周期示意图](../guide/instance.html#生命周期示意图)
+- **参考：**[生命周期示意图](../guide/instance.html#生命周期示意图)
 
 ## 指令
 
@@ -1691,7 +1691,7 @@ type: api
   <span>{{msg}}</span>
   ```
 
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#文本-Text)
+- **参考：**[数据绑定语法 - 插值](../guide/syntax.html#文本-Text)
 
 ### v-html
 
@@ -1711,7 +1711,7 @@ type: api
   <div v-html="html"></div>
   ```
 
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#原始-HTML-Raw-HTML)
+- **参考：**[数据绑定语法 - 插值](../guide/syntax.html#原始-HTML-Raw-HTML)
 
 ### v-show
 
@@ -1723,7 +1723,7 @@ type: api
 
   当条件变化时该指令触发过渡效果。
 
-- **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
+- **参考：**[条件渲染 - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
@@ -1737,7 +1737,7 @@ type: api
 
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
-- **参考：** [条件渲染 - v-if](../guide/conditional.html)
+- **参考：**[条件渲染 - v-if](../guide/conditional.html)
 
 ### v-else
 
@@ -2124,7 +2124,7 @@ type: api
 
   关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
-- **参考：** [子组件 Refs](../guide/components.html#子组件索引)
+- **参考：**[子组件 Refs](../guide/components.html#子组件索引)
 
 ### slot
 
@@ -2134,7 +2134,7 @@ type: api
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考：** [具名 Slots](../guide/components.html#具名-Slot)
+- **参考：**[具名 Slots](../guide/components.html#具名-Slot)
 
 ### slot-scope
 
@@ -2148,7 +2148,7 @@ type: api
 
   This attribute does not support dynamic binding.
 
-- **参考：** [Scoped Slots](../guide/components.html#Scoped-Slots)
+- **参考：**[Scoped Slots](../guide/components.html#Scoped-Slots)
 
 ### scope <sup>replaced</sup>
 
@@ -2204,7 +2204,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   <component :is="$options.components.child"></component>
   ```
 
-- **参考：** [动态组件](../guide/components.html#动态组件)
+- **参考：**[动态组件](../guide/components.html#动态组件)
 
 ### transition
 
@@ -2273,7 +2273,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   }).$mount('#transition-demo')
   ```
 
-- **参考：** [过渡：进入，离开和列表](../guide/transitions.html)
+- **参考：**[过渡：进入，离开和列表](../guide/transitions.html)
 
 ### transition-group
 
@@ -2301,7 +2301,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   </transition-group>
   ```
 
-- **参考：** [过渡：进入，离开和列表](../guide/transitions.html)
+- **参考：**[过渡：进入，离开和列表](../guide/transitions.html)
 
 ### keep-alive
 
