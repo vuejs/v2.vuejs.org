@@ -1,7 +1,7 @@
 ---
 title: Unit Testing Vue Components
 type: cookbook
-order: 1.5
+order: 1.4
 ---
 
 ## Simple Example
