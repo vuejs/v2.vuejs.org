@@ -72,8 +72,8 @@ type: api
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
     // 处理错误
-    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子函数。
-    // 只在 2.2.0+ 可用
+    // `info` 是 Vue 特有的错误信息，例如，错误是在哪个生命周期钩子函数中发现的。
+    // info 只在 2.2.0+ 可访问
   }
   ```
 
@@ -116,7 +116,7 @@ type: api
     'my-custom-web-component',
     'another-web-component',
     // 使用`正则表达式(RegExp)`忽略所有以 "ion-" 开头的元素
-    // 2.5+ only
+    // 仅在 2.5+ 版本中支持表达式用法
     /^ion-/
   ]
   ```
@@ -155,7 +155,7 @@ type: api
 
 - **类型：** `boolean`
 
-- **默认值：** `false (从 2.2.3+ 开始)`
+- **默认值：** `false（从 2.2.3+ 开始）`
 
 - **用法：**
 
