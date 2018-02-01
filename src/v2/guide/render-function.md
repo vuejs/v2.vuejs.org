@@ -205,8 +205,8 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
+  // Custom directives. Note that the `binding`'s
+  // `oldValue` cannot be set, as Vue keeps track
   // of it for you.
   directives: [
     {

@@ -5,16 +5,14 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Platinum Sponsors</span><br>
-        <a href="https://stdlib.com" target="_blank" class="logo">
-          <img src="<%- url_for("/images/stdlib.png") %>">
+        <span>Platinum Sponsors</span>
+        <div>
+        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
+        <a href="<%- sponsor.url %>" target="_blank" class="logo">
+          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
         </a>
-        <a href="http://tooltwist.com/" target="_blank" class="logo">
-          <img src="<%- url_for("/images/tooltwist.png") %>" style="margin-top:-5px">
-        </a>
-        <a href="https://www.infinitynewtab.com/donate/index.html" target="_blank" class="logo">
-          <img src="<%- url_for("/images/infinitynewtab.png") %>">
-        </a>
+        <%_ } _%>
+        </div>
       </div>
       <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
         Become a Sponsor

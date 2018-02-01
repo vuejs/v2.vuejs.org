@@ -327,6 +327,8 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
+- **See also:** [Filters](../guide/filters.html)
+
 ### Vue.component( id, [definition] )
 
 - **Arguments:**
@@ -592,7 +594,7 @@ type: api
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **Type:** `{ [key: string]: string | Function | Object | Array}`
 
 - **Details:**
 
@@ -606,7 +608,12 @@ type: api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -623,7 +630,13 @@ type: api
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
@@ -781,11 +794,9 @@ type: api
 
 - **Details:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
-
-  **This hook is not called during server-side rendering.**
+  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
@@ -1708,7 +1719,7 @@ type: api
 
 - **Usage:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
   This directive triggers transitions when its condition changes.
 
