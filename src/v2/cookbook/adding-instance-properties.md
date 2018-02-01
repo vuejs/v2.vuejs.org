@@ -1,7 +1,7 @@
 ---
 title: Ajouter des propriétés aux instances
 type: cookbook
-order: 1.1
+order: 1.3
 ---
 
 ## Exemple simple

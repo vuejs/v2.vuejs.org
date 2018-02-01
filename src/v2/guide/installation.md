@@ -8,7 +8,7 @@ gz_size: "30.67"
 
 ### Compatibilité
 
-Vue **ne** supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
+Vue **ne** supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](https://caniuse.com/#feat=es5).
 
 ### Notes de version
 
@@ -34,9 +34,17 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 
 ### CDN
 
-Recommandé : [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), qui reflète la dernière version aussitôt qu'elle est publiée sur npm. Vous pouvez également parcourir la source du package npm sur [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+Nous vous recommandons d'utiliser une version spécifique numérotée que vous pourrez mettre à jour manuellement :
 
-Également disponible sur [unpkg](https://unpkg.com/vue) ou [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), (cdnjs met du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible).
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+```
+
+Vous pouvez parcourir la source du package npm à l'adresse : [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+
+Vue est également disponible sur [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) et [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs met du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible).
+
+Assurez vous de lire la partie dédiée [aux différents builds de Vue](#Explication-des-differents-builds) et d'utiliser la **version de production** dans vos sites publiés, en remplaçant `vue.js` par `vue.min.js`. C'est un build plus léger optimisé pour la rapidité plutôt que l'expérience de développement.
 
 ## npm
 

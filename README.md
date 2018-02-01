@@ -8,13 +8,6 @@ Lancez un serveur de développement sur `localhost:4000` :
 
 ```
 $ npm install -g hexo-cli
-
-## Deploying
-
-The site is deployed using GitHub pages, therefore you need push access to the vuejs.org repo to run the deploy script:
-
-``` bash
-$ npm run deploy
 ```
 
 ## En cours de traduction

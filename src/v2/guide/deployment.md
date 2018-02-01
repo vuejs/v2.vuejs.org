@@ -53,13 +53,36 @@ module.exports = {
   var envify = require('envify/custom')
 
   browserify(browserifyOptions)
-    .transform(vueify),
+    .transform(vueify)
     .transform(
       // Requis sur les fichiers dans `node_modules`
       { global: true },
       envify({ NODE_ENV: 'production' })
     )
     .bundle()
+  ```
+
+- Ou, utilisez [envify](https://github.com/hughsk/envify) avec Grunt et [grunt-browserify](https://github.com/jmreidy/grunt-browserify) :
+
+  ``` js
+  // Utiliser le module personnalisé envify pour spécifier les variables d'environnement
+  var envify = require('envify/custom')
+
+  browserify: {
+    dist: {
+      options: {
+        // Fonction à dévier de l'ordre par défaut de `grunt-browserify`
+        configure: b => b
+          .transform('vueify')
+          .transform(
+            // Demande un ordre pour exécuter les fichiers `node_modules`
+            { global: true },
+            envify({ NODE_ENV: 'production' })
+          )
+          .bundle()
+      }
+    }
+  }
   ```
 
 #### Rollup

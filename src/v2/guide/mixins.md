@@ -33,24 +33,53 @@ var component = new Component() // => "hello from mixin!"
 
 ## Fusion des options
 
-Quand un mixin et un composant définissent les mêmes options, elles seront fusionnées en utilisant la stratégie appropriée. Par exemple, les fonctions de hook avec le même nom seront fusionnées dans un tableau afin qu'elles soient toutes appelées. De plus, les hooks des mixins seront appelés **avant** les hooks du composant:
+Quand un mixin et un composant définissent les mêmes options, elles seront fusionnées en utilisant la stratégie appropriée.
+
+Par exemple, les objets de données subissant une fusion (une propriété profonde) avec les données d'un composant vont prendre la priorité en cas de conflits.
+
+``` js
+var mixin = {
+  data: function () {
+    return {
+      message: 'bonjour',
+      foo: 'abc'
+    }
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'au revoir',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "bonjour", foo: "abc", bar: "def" }
+  }
+})
+```
+
+Les fonctions de hook avec le même nom seront fusionnées dans un tableau afin qu'elles soient toutes appelées. De plus, les hooks des mixins seront appelés **avant** les propres hooks du composant.
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('mixin hook called')
+    console.log('hook appelé du mixin')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('component hook called')
+    console.log('hook appelé du composant')
   }
 })
 
-// => "mixin hook called"
-// => "component hook called"
+// => "hook appelé du mixin"
+// => "hook appelé du composant"
 ```
 
 Les options qui attendent un objet, par exemple `methods`, `components` et `directives`, seront fusionnées dans le même objet. Les options du composant auront la priorité en cas de conflit sur une ou plusieurs clés de ces objets.
@@ -62,7 +91,7 @@ var mixin = {
       console.log('foo')
     },
     conflicting: function () {
-      console.log('from mixin')
+      console.log('du mixin')
     }
   }
 }
@@ -74,14 +103,14 @@ var vm = new Vue({
       console.log('bar')
     },
     conflicting: function () {
-      console.log('from self')
+      console.log('de lui-même')
     }
   }
 })
 
 vm.foo() // => "foo"
 vm.bar() // => "bar"
-vm.conflicting() // => "from self"
+vm.conflicting() // => "de lui-même"
 ```
 
 Notez que les mêmes stratégies de fusion sont utilisées par `Vue.extend()`.
@@ -102,9 +131,9 @@ Vue.mixin({
 })
 
 new Vue({
-  myOption: 'hello!'
+  myOption: 'bonjour !'
 })
-// => "hello!"
+// => "bonjour !"
 ```
 
 <p class="tip">Utilisez les mixins globaux prudemment et rarement, parce qu'ils affectent chacune des Vue créées, y compris celles des librairies tierces. Dans la plupart des cas, vous devriez uniquement vous en servir pour la gestion des options personnalisées comme illustré dans l'exemple ci-dessus. C'est aussi une bonne idée de les encapsuler dans des [Plugins](plugins.html) pour éviter de les appliquer plusieurs fois par erreur. </p>

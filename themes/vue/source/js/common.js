@@ -3,8 +3,8 @@
   initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
-    initSubHeaders()
     initApiSpecLinks()
+    initSubHeaders()
     initLocationHashFuzzyMatching()
   }
   initChat()
@@ -170,15 +170,18 @@
   * Modal Video Player
   */
   function initVideoModal () {
-    if (typeof Vimeo === 'undefined') return
-
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    var iframe = document.querySelector('iframe');
-    var player = new Vimeo.Player(iframe);
+
+    if (!modalButton || !videoModal) {
+      return
+    }
+
+    var iframe = document.querySelector('iframe')
+    var player = new Vimeo.Player(iframe)
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
-
+    var isOpen = false
 
     modalButton.addEventListener('click', function(event) {
       event.stopPropagation()
@@ -186,14 +189,16 @@
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
       player.play()
+      isOpen = true
     })
 
     document.body.addEventListener('click', function(e) {
-      if (e.target !== modalButton && !videoModal.contains(e.target)) {
+      if (isOpen && e.target !== modalButton && !videoModal.contains(e.target)) {
         videoModal.classList.remove('open')
         document.body.classList.remove('stop-scroll')
         document.body.removeChild(overlay)
         player.unload()
+        isOpen = false
       }
     })
   }

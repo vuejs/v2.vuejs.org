@@ -327,6 +327,8 @@ type : api
   var monFiltre = Vue.filter('mon-filtre')
   ```
 
+- **Voir aussi :** [Filtres](../guide/filters.html)
+
 ### Vue.component( id, [définition] )
 
 - **Arguments :**
@@ -592,7 +594,7 @@ type : api
 
 ### watch
 
-- **Type :** `{ [key: string]: string | Function | Object }`
+- **Type :** `{ [key: string]: string | Function | Object | Array }`
 
 - **Détails :**
 
@@ -606,7 +608,12 @@ type : api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (valeur, ancienneValeur) {
@@ -623,7 +630,13 @@ type : api
       d: {
         handler: function (valeur, ancienneValeur) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => nouveau : 2, ancien : 1
@@ -781,11 +794,9 @@ type : api
 
 - **Détails :**
 
-  Appelé quand les données changent, avant le nouveau rendu et le patch du DOM virtuel.
+  Appelé quand les données changent, avant le patch du DOM virtuel. C'est le bon endroit pour accéder au DOM existant avant la mise à jour, par ex. pour retirer manuellement des écouteurs d'évènement.
 
-  Vous pouvez effectuer d'autres changements d'état dans ce hook et ils ne déclencheront pas de rendus additionnels.
-
-  **Ce hook n'est pas appelé durant le rendu côté serveur.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur car seul le rendu initial est généré côté serveur.**
 
 - **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
@@ -1708,7 +1719,7 @@ vm.$on( évènement, callback )
 
 - **Utilisation :**
 
-  Permute l'affichage de l'élément avec la propriété CSS `display` selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non.
+  Permute l'affichage de l'élément avec la propriété CSS `display` selon si la valeur de l'expression est « [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) » ou non.
 
   Cette directive déclenche des transitions quand sa condition change.
 

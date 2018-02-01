@@ -1,0 +1,120 @@
+<h1>Soutenir le développement de Vue.js</h1>
+
+<p>
+Vue.js est un projet open source sous licence MIT qui est complètement libre d'utilisation.
+Cependant, les efforts nécessaires à la maintenance et au développement de nouvelles fonctionnalités pour le projet ne sont pas possibles sans un soutien financier approprié. Vous pouvez soutenir les développements Vue.js des manières suivantes :
+</p>
+
+<h2 id="One-time-Donations">Don ponctuel</h2>
+
+<p>Nous acceptons les dons via ces plateformes :</p>
+
+<div id="one-time-donations">
+  <a href="https://www.paypal.me/evanyou" target="_blank">
+    <img src="/images/paypal.png" style="width:100px">
+  </a>
+  <a href="#btc"><%- partial('icons/btc') %> BTC</a>
+  <a href="#bch"><%- partial('icons/bch') %> BCH</a>
+  <a href="#eth"><%- partial('icons/eth') %> ETH</a>
+  <a href="#ltc"><%- partial('icons/ltc') %> LTC
+  </a>
+</div>
+
+<div id="coin-details" v-if="type && coins[type]">
+  <p>{{ coins[type].name }} Adresse :<br>{{ coins[type].address }}</p>
+  <img :src="'/images/coin-' + type + '.png'">
+</div>
+<script>
+var coins = new Vue({
+  el: '#coin-details',
+  data: {
+    type: window.location.hash.slice(1),
+    coins: {
+      btc: {
+        name: 'Bitcoin',
+        address: '14MEpy5a9MwDZa9CUzrfDhTU8dy2KKJ5mU'
+      },
+      bch: {
+        name: 'Bitcoin Cash',
+        address: '15gftB3fwumFRWGWFhVzTgc4nhM5w1F2Tu'
+      },
+      eth: {
+        name: 'Ethereum',
+        address: '0x3411356C1f0Bf5D859464eD2AC54DD2C222519B7'
+      },
+      ltc: {
+        name: 'Litecoin',
+        address: 'LUcHis3B8SFtEeZtuCaZoqsyN9XFAKmbCP'
+      }
+    }
+  }
+})
+window.addEventListener('hashchange', function () {
+  coins.type = window.location.hash.slice(1)
+})
+</script>
+
+<h2 id="Recurring-Pledges">Soutien récurant</h2>
+
+<p>
+Les soutiens récurants viennent avec des avantages exclusifs comme avoir son nom listé sur le dépôt GitHub, ou avoir le nom se sa companie listé sur le site.
+</p>
+
+<ul>
+  <li>
+    <a href="https://www.patreon.com/evanyou" target="_blank">Devenir un donateur ou un sponsor via Patreon</a> (sert directement à soutenir le travail à plein temps d'Evan You sur Vue)
+  </li>
+  <li>
+    <a href="https://opencollective.com/vuejs">Devenir un donateur ou un sponsor via OpenCollective</a> (offre un apport de fond transparent pour soutenir la communauté et financer des évènements)
+  </li>
+</ul>
+
+<h2>Les sponsors premiums actuels :</h2>
+
+<h3>Platine</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>Platine OpenCollective</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 3; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>Or Patreon</h3>
+
+<p class="patreon-sponsors sponsor-section">
+<%_ for (const sponsor of theme.gold_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>Or OpenCollective</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<p>
+Si vous êtes une entreprise et que vous utilisez Vue pour des produits générant du revenu, cela fait sens d'être sponsor du développement de Vue : <b>cela assure que le projet sur lequel repose votre produit reste sain et activement maintenu.</b> Cela améliore également votre visibilité auprès de la communauté Vue et vous rend plus attractif pour les développeurs Vue.
+</p>
+
+<p>
+Si vous êtes un simple utilisateur qui apprécie la productivité apportée par Vue, considerez que les donations sont un geste de soutien, comme offrir un café de temps à autre :)
+</p>

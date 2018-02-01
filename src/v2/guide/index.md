@@ -8,6 +8,8 @@ order: 2
 
 Vue (prononcé /vjuː/, comme le terme anglais **view**) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#components--libraries).
 
+Si vous souhaitez en savoir plus à propos de Vue avant d'entrer dans le détail, nous <a id="modal-player"  href="javascript:;">avons crée une vidéo</a> pour présenter ses principes fondamentaux avec un projet exemple.
+
 Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques / frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
 ## Pour commencer
@@ -373,4 +375,6 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 ## Prêt pour la suite ?
 
-Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js. Le reste de ce guide va les traiter plus en détail, ainsi que d'autres fonctionnalités avancées. Assurez-vous donc de le lire jusqu'au bout !
+Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js. Le reste de ce guide va les traiter ainsi que d'autres fonctionnalités avancées plus en détail. Assurez-vous donc de le lire jusqu'au bout !
+
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script></div>

@@ -1330,7 +1330,7 @@ Dans notre cas, je ferais cela avec le composant `tree-folder`. Nous savons que 
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 

@@ -207,14 +207,18 @@ Au contraire des autres modificateurs, qui sont exclusifs aux évènements natif
 
 > Nouveau en 2.3.0+
 
+Vue offre également un modificateur `.passive` correspondant à [l'option `passive` de `addEventListener`](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener#Parameters).
+
 ``` html
-<!-- l'évènement de défilement n'annule pas le comportement par défaut du défilement -->
+<!-- le comportement par défaut de l'évènement de défilement se produit immédiatement, -->
+<!-- au lieu d'attendre que `onScroll` soit terminé -->
+<!-- au cas où il contienne `event.preventDefault()` -->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-En plus de ces modificateurs, Vue fournit le modificateur `.passive` qui améliore en particulier les performances sur mobile. Par exemple, quand on défile dans la page, celle-ci va défiler dans le navigateur après que le processus soit complété car il ne sait pas si l'évènement `event.preventDefault()` est en cours d'appel dans le gestionnaire. Le modificateur `.passive` peut être utilisé pour dire au navigateur que le navigateur ne doit pas désactiver le comportement de l'évènement à l'avance.
+Le modificateur `.passive` est particulièrement pratique pour améliorer les performances sur mobile.
 
-<p class="tip">N'utilisez pas `.passive` et `.prevent` ensemble. `.passive` ne peut pas annuler l'évènement par défaut.</p>
+<p class="tip">N'utilisez pas `.passive` et `.prevent` ensemble. `.passive` sera ignoré et votre navigateur va probablement vous montrer un message. Souvenez vous, `.passive` communique au navigateur que vous _ne voulez pas_ prévenir le comportement de l'évènement par défaut.</p>
 
 ## Modificateurs de code des touches
 
