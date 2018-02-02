@@ -460,6 +460,29 @@ In addition, `type` can also be a custom constructor function and the assertion 
 
 When prop validation fails, Vue will produce a console warning (if using the development build). Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
 
+#### Boolean flags
+When prop type is set to `Boolean` passing `undefined` value will resolve as `true`:
+
+``` js
+Vue.component('flag-example', {
+  props: {
+    big: Boolean
+  },
+  template: '<span>{{ big ? "BIG" : "small" }}</span>'
+})
+```
+
+``` html
+<flag-example big />
+<flag-example v-bind:big="undefined" />
+```
+
+Would both result in
+
+``` html
+<span> BIG </span>
+```
+
 ## Non-Prop Attributes
 
 A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
