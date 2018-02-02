@@ -32,8 +32,10 @@ gold_sponsors:
     img: vuetify.png
   - url: https://neds.com.au/
     img: neds.png
-  - url: hhttps://hackr.io/tutorials/learn-vue-js
+  - url: https://hackr.io/tutorials/learn-vue-js
     img: hackr-io.png
+  - url: https://icons8.com/
+    img: icons8.png
   - url: https://vuejobs.com/?ref=vuejs
     img: vuejobs.png
   - url: https://leanpub.com/vuejs2
