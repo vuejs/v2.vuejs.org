@@ -18,13 +18,13 @@
         Become a Sponsor
       </a>
       <h2>
-        <%-
-          type === 'api'
-            ? 'API'
-            : type === 'style-guide'
-              ? 'Style Guide<sup class="beta">beta</sup>'
-              : (type.charAt(0).toUpperCase() + type.slice(1))
-        %>
+        <% titles = {
+          api: 'API',
+          examples: 'Examples',
+          guide: 'Guide',
+          'style-guide': 'Style Guide<sup class="beta">beta</sup>'
+        } %>
+        <%- titles[type] %>
         <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">
             <option value="SELF" selected>2.x</option>
