@@ -171,7 +171,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 ``` js
 {
   // Same API as `v-bind:class`
-  'class': {
+  class: {
     foo: true,
     bar: false
   },
