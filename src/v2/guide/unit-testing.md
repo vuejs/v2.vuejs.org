@@ -115,7 +115,7 @@ describe('MyComponent', () => {
 Vue는 [DOM 업데이트를 비동기적으로 수행](reactivity.html#Async-Update-Queue)하기 때문에, 상태 변경으로 인한 DOM 업데이트에 대한 검사는 `Vue.nextTick` 콜백에서 수행해야 합니다.
 
 ``` js
-// 상태 갱신 후 생선된 HTML을 검사합니다.
+// 상태 갱신 후 생성된 HTML을 검사합니다.
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
