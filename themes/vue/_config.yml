@@ -3,9 +3,17 @@ google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.13
 
-platinum_sponsors:
+special_sponsors:
   - url: https://stdlib.com
     img: stdlib.png
+  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+    img: bit.png
+    big_width: 120px
+    big_height: 120px
+    width: 45px
+    height: 45px
+
+platinum_sponsors:
   - url: http://tooltwist.com/
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
