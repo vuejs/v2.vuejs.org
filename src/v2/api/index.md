@@ -359,7 +359,7 @@ type: api
 
 - **用法：**
 
-  安装 Vue.js 插件。如果插件是一个对象，必须提供 `install` 方法。如果插件是一个函数，它会被作为 install 方法。install 方法将被作为 Vue 的参数调用。
+  安装 Vue.js 插件。如果插件是一个对象，必须提供 `install` 方法。如果插件是一个函数，它会被作为 install 方法。install 方法调用时，会将 Vue 作为参数传入。
 
   当 install 方法被同一个插件多次调用，插件将只会被安装一次。
 
