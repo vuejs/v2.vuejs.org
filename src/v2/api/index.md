@@ -2356,7 +2356,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   </transition>
   ```
 
-`<keep-alive>`는 한개의 자식 컴포넌트가 토글되고 있는 경우를 위해 설계된 것에 주의해야합니다. 내부에 `v-for`가 있으면 작동하지 않습니다. 우와 같이 조건부 자식 컴포넌트가 여러개인 경우 `<keep-alive>`는 한번에 하나의 자식만 렌더링도록 요청됩니다.
+`<keep-alive>`는 한개의 자식 컴포넌트가 토글되고 있는 경우를 위해 설계된 것에 주의해야합니다. 내부에 `v-for`가 있으면 작동하지 않습니다. 위와 같이 조건부 자식 컴포넌트가 여러개인 경우 `<keep-alive>`는 한번에 하나의 자식만 렌더링도록 요청됩니다.
 
 - **`include` 와 `exclude`**
 
