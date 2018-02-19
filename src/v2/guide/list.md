@@ -279,10 +279,16 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-To deal with caveat 2, you can use `splice`:
+To deal with caveat 2, you can use `splice` or `concat`:
 
 ``` js
+// shorten Array
 example1.items.splice(newLength)
+```
+
+``` js
+// extend Array
+example1.items = example.items.concat(new Array(newLength - oldLength))
 ```
 
 ## Object Change Detection Caveats
