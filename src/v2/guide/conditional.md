@@ -28,6 +28,8 @@ It is also possible to add an "else block" with `v-else`:
 <h1 v-else>No</h1>
 ```
 
+Note that if you are preferred to using double quotes for string (like \\"), unfortunately due to security reason you cannot use that in the component template, please use single quote.
+
 ### Conditional Groups with `v-if` on `<template>`
 
 Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
