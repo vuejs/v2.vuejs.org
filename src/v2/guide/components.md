@@ -507,7 +507,7 @@ We have learned that the parent can pass data down to the child using props, but
 Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
 
 - Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+- Trigger an event using `$emit(eventName, optionalPayload)`
 
 <p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
 
@@ -590,6 +590,86 @@ new Vue({
 {% endraw %}
 
 In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+
+
+Here's an example on how to use payload data:
+
+``` html
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+```
+
+``` js
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+<script>
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+</script>
+{% endraw %}
+
+In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it.
+All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
 
 ### Binding Native Events to Components
 
