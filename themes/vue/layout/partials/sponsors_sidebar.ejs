@@ -4,7 +4,7 @@
     <div>
     <%_ for (const sponsor of [...theme.special_sponsors, ...theme.platinum_sponsors]) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.width || sponsor.height) ? ` style="${sponsor.width ? `width:${sponsor.width};`: ``}${sponsor.height ? `height:${sponsor.height};` : ``}"` : `` %>>
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
     </a>
     <%_ } _%>
     </div>
