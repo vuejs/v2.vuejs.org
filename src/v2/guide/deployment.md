@@ -36,6 +36,13 @@ module.exports = {
 }
 ```
 
+Alternatively, you can invoke Webpack with the option `--define process.env.NODE_ENV="production"`. Also, you can
+strip all the non reached blocks with `--optimize-minimize`. As a short cut for both options, you can simply
+use:
+
+``` bash
+webpack --config webpack.config.js -p
+```
 #### Browserify
 
 - Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
