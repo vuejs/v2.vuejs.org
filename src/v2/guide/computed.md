@@ -77,6 +77,8 @@ You can open the console and play with the example vm yourself. The value of `vm
 
 You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
 
+Note that computed properties cannot be to transform properties of elements inside a v-for loop. In that case a method can be used that accepts the property as an argument, or the computation has to be made inside the v-for loop itself.
+
 ### Computed Caching vs Methods
 
 You may have noticed we can achieve the same result by invoking a method in the expression:
