@@ -77,6 +77,42 @@ You can open the console and play with the example vm yourself. The value of `vm
 
 You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
 
+### Change Detection
+
+<p class="tip">Note that computed properties are evaluated lazily.
+
+**This means that computed properties only re-evaluate when:**
+1. Their dependencies have changed, and
+2. They are subscribed to by a data binding (or another subscriber that is eventually subscribed to by a data binding)
+3. That data binding is currently rendered in the dom/template
+
+</p>
+
+If no data bindings subscribe to a computed property, the computed property will only be evaluated once (on vue instance creation).
+
+Non-reactive Example: Sum is evaluated only on component creation
+
+``` js
+// in component
+computed: {
+  sum: function () {
+    return this.a + this.b
+  }
+}
+```
+
+Reactive Example: Sum is evaluated on dependency change
+
+``` js
+// in component
+template: "<div>{{sum}}</div>"
+computed: {
+  sum: function () {
+    return this.a + this.b
+  }
+}
+```
+
 ### Computed Caching vs Methods
 
 You may have noticed we can achieve the same result by invoking a method in the expression:
