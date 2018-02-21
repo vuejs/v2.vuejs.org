@@ -154,7 +154,7 @@ Vue.directive('color-swatch', function (el, binding) {
 })
 ```
 
-## Objetos Literales
+## Objetos
 
 Si tu directivo necesita valores arbitrarios, también es posible pasar un objeto de JavaScript. Importante, los directivos pueden tomar cualquier expresión valida de JavaScript.
 
