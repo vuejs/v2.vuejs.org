@@ -4,9 +4,9 @@ type: guide
 order: 302
 ---
 
-## Introduccion
+## Introducción
 
-Respecto a el conjunto predeterminado de directivos que vienen acompanados con el núcleo (`v-model` y `v-show`), Vue también permite registrar sus propios directivos.
+Además del conjunto predeterminado de directivos que vienen acompañados con el núcleo (`v-model` y `v-show`), Vue también permite registrar sus propios directivos.
 
 En Vue 2.0 la forma principal de reusar código y de aplicar abstracción es mediante de la abstacción y reusabilidad de componentes, de igual forma existen casos donde nos veremos en la necesidad de acceder al DOM a bajo nivel a elementos regulares, es aqui donde tomamos ventaja de el uso de *Directivos Propios*. Un ejemplo de este uso será tomando en consideración un elemento de entrada de texto (**input**) como el mostrado a continuación:
 
