@@ -79,10 +79,10 @@ You can data-bind to computed properties in templates just like a normal propert
 
 ### Change Detection
 
-<p class="tip">It is important to note that computed properties are evaluated lazily.
+<p class="tip">Note that computed properties are evaluated lazily.
 
 **This means that computed properties only re-evaluate when:**
-1. Thier dependencies have changed, and
+1. Their dependencies have changed, and
 2. They are subscribed to by a data binding (or another subscriber that is eventually subscribed to by a data binding)
 3. That data binding is currently rendered in the dom/template
 
