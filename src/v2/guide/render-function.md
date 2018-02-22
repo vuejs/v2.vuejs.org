@@ -343,13 +343,14 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
   })
 }
 ```
+
+_Note_: In the example above we consider a prop named `value` already exists.
 
 This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
 
