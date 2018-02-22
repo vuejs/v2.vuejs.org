@@ -581,7 +581,7 @@ Vue.component('smart-list', {
 
 ### Passing Attributes and Events to Child Elements/Components
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name. 
+On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
 
 Functional components, however, require you to explicitly define this behavior:
 
@@ -596,6 +596,16 @@ Vue.component('my-functional-button', {
 ```
 
 By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+
+If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+
+```html
+<template functional>
+  <svg width="100" height="100" v-bind="data.attrs" v-on="listeners">
+    <circle cx="50" cy="50" r="100" />
+  </svg>
+</template>
+```
 
 ### `slots()` vs `children`
 
