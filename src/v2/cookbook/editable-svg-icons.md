@@ -1,12 +1,12 @@
 ---
-title: Editable SVG Icon Systems
+title: Editable SVG Icon Systems (EN)
 type: cookbook
 order: 2
 ---
 
 ## Base Example
 
-There are many ways to create an SVG Icon System, but one method that takes advantage of Vue's capabilities is to create editable inline icons as components. Some of the advantages of this way of working is:
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>There are many ways to create an SVG Icon System, but one method that takes advantage of Vue's capabilities is to create editable inline icons as components. Some of the advantages of this way of working is:</p>
 
 * They are easy to edit on the fly
 * They are animatable
