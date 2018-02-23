@@ -235,12 +235,28 @@ Either method of making the custom input element accessible works fine and isn't
 
 ### Dynamic content
 
+when content is updated, screen readers don't know it has been updated
+
+examples:
+
+- error messages on forms
+- new information (eg news, notifications) from server
+- requested information finished downloading
+
+you can use aria-live to let the user know that stuff has changed
 
 
 ### Page navigation with client-side routing
 
+when you click a link in a website with server-side routing, the browser knows the page has changed. on a website with client-side routing, the browser doesn't know, so it isn't announced to the user - it just announces that the link has been clicked, not that navigation has occured or what is displayed has changed.
+
+the solution is to announce to the user when the route has changed using a hidden aria-live element.
+
 ## Testing accessibility
 
+- automated tools
+- screen reader - http://12devsofxmas.co.uk/2016/01/day-8-testing-using-a-screen-reader/ https://developer.paciellogroup.com/blog/2015/01/basic-screen-reader-commands-for-accessibility-testing/
+- disabled user testers
 
 
 [wcag 2.0]: https://www.w3.org/TR/WCAG20/
