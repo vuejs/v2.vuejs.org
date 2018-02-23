@@ -3,7 +3,8 @@
 @import "_animations"
 @import "_header"
 @import "_demo"
-@import "_sponsor"
+@import "_sponsors-page"
+@import "_sponsors-sidebar"
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
@@ -239,6 +240,10 @@
       margin-left: 0
   iframe
     margin: 0 !important
+
+@media print
+  .footer
+    display: none
 
 // FR - Version
 

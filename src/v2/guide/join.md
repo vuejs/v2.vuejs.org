@@ -13,8 +13,8 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 ### Obtenir de l'aide
 
 - [Forum](https://forum.vuejs.org/french) : Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
-- [Chat](https://gitter.im/vuejs-fr/vue) | [En](https://chat.vuejs.org/) : Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
-- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les rapports de bouge (« issues ») Github sont là pour ça. Les propositions de fusion (« pull requests ») sont également les bienvenues !
+- [Chat](https://discordapp.com/channels/325477692906536972/360669119948783616) | [En](https://chat.vuejs.org/) : Un lieu pour rencontrer et discuter avec des développeurs.
+- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les rapports de bogue (« issues ») GitHub sont là pour ça. Les propositions de fusion (« pull requests ») sont également les bienvenues !
 
 ### Explorer l'écosystème
 

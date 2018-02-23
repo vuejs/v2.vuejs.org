@@ -370,7 +370,7 @@ Par exemple :
 on: {
   '!click': this.doThisInCapturingMode,
   '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
+  '~!mouseover': this.doThisOnceInCapturingMode
 }
 ```
 
@@ -518,7 +518,7 @@ Vue.component('my-component', {
 
 Dans la 2.5.0+, si vous utilisez les [composants monofichiers](single-file-components.html), les templates fonctionnels basés sur les composants peuvent être déclarés avec :
 
-``` js
+``` html
 <template functional>
 </template>
 ```
@@ -578,6 +578,24 @@ Vue.component('smart-list', {
   }
 })
 ```
+
+### Passer des attributs et évènements aux éléments / composants enfants
+
+Sur les composants normaux, les attributs qui ne sont pas définis comme props sont automatiquement ajoutés à l'élément racine du composant en remplaçant ou [en étant intelligemment rajouté sur](class-and-style.html) n'importe quel attribut existant avec le même nom.
+
+Cependant les composants fonctionnels vous demande de définir explicitement ce comportement :
+
+```js
+Vue.component('my-functional-button', {
+  functional: true,
+  render: function (createElement, context) {
+    // Passer de manière transparente n'importe quel attribut, écouteur d'évènement, enfant, etc.
+    return createElement('button', context.data, context.children)
+  }
+})
+```
+
+En passant `context.data` en tant que second paramètre à `createElement`, nous transferrons à l'enfant racine n'importe quel attribut ou écouteur d'évènement utilisé sur `my-functional-button`. C'est même tellement transparent que les évènements n'ont même pas besoin du modificateur `.native`.
 
 ### `slots()` vs. `children`
 

@@ -10,7 +10,7 @@ Les grosses applications peuvent souvent augmenter en complexité du fait des mu
 
 ### Information pour les développeurs React
 
-Si vous venez de React, vous pouvez vous demander comment Vuex se compare à [Redux](https://github.com/reactjs/redux) (l'implémentation de Flux la plus populaire dans cet écosystème). Redux est en fait agnostique de la couche vue, et peut donc être facilement utilisé avec Vue à l'aide de plusieurs [liaisons simples](https://github.com/egoist/revue). Vuex est différent dans le sens où il _sait_ qu'il est dans une application Vue. Cela lui permet de mieux s'intégrer avec Vue, offrant une API plus intuitive et une meilleure expérience de développement.
+Si vous venez de React, vous pouvez vous demander comment Vuex se compare à [Redux](https://github.com/reactjs/redux), l'implémentation de Flux la plus populaire dans cet écosystème. Redux est en fait agnostique de la couche vue, et peut donc être facilement utilisé avec Vue à l'aide de plusieurs [liaisons simples](https://yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex est différent dans le sens où il _sait_ qu'il est dans une application Vue. Cela lui permet de mieux s'intégrer avec Vue, offrant une API plus intuitive et une meilleure expérience de développement.
 
 ## Gestion d'état simple à partir de rien
 

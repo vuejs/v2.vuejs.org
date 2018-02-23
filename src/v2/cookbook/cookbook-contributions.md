@@ -1,7 +1,7 @@
 ---
 title: Cookbook Contributions (EN)
 type: cookbook
-order: 1000
+order: 1
 ---
 
 ## What we're looking for
@@ -33,6 +33,7 @@ _required_
 _required_
 
 Demonstrate the code that would power a common or interesting use case, either by:
+
 1. Walking through a few terse examples of setup, or
 2. Embedding a codepen/jsfiddle example
 

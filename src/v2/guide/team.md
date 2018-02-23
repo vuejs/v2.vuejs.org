@@ -708,7 +708,7 @@ order: 803
     },
     {
       name: 'Bruno Lesieur',
-      title: 'French Community Directeur',
+      title: 'French Community Director',
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',

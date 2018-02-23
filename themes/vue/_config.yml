@@ -3,9 +3,16 @@ google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.13
 
-platinum_sponsors:
+special_sponsors:
   - url: https://stdlib.com
     img: stdlib.png
+  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+    img: bit.png
+    wide_img: bit-wide.png
+    big_width: 120px
+    big_height: 120px
+
+platinum_sponsors:
   - url: http://tooltwist.com/
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -32,6 +39,10 @@ gold_sponsors:
     img: vuetify.png
   - url: https://neds.com.au/
     img: neds.png
+  - url: https://hackr.io/tutorials/learn-vue-js
+    img: hackr-io.png
+  - url: https://icons8.com/
+    img: icons8.png
   - url: https://vuejobs.com/?ref=vuejs
     img: vuejobs.png
   - url: https://leanpub.com/vuejs2
