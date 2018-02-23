@@ -1,4 +1,5 @@
 ---
+title: Style Guide
 type: style-guide
 ---
 
@@ -1723,8 +1724,8 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 >
   Error: {{ error }}
 </div>
-<div 
-  v-else 
+<div
+  v-else
   key="search-results"
 >
   {{ results }}
