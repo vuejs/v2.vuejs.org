@@ -39,7 +39,7 @@ When a Vue instance is created, it adds all the properties found in its `data` o
 
 ```js
 // Our data object
-var data = { a: 1 }
+var data = { a: { b: 1 } }
 
 // The object is added to a Vue instance
 var vm = new Vue({
@@ -88,19 +88,15 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data () {
-    return {
-      obj
-    }
-  }
+  data: obj
 })
 ```
 
 ```html
 <div id="app">
-  <p>{{ obj.foo }}</p>
-  <!-- this will no longer update obj.foo! -->
-  <button @click="obj.foo = 'baz'">Change it</button>
+  <p>{{ foo }}</p>
+  <!-- this will no longer update foo! -->
+  <button @click="foo = 'baz'">Change it</button>
 </div>
 ```
 
