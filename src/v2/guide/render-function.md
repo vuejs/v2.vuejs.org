@@ -319,6 +319,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -335,6 +336,7 @@ render: function (createElement) {
 There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -349,8 +351,6 @@ render: function (createElement) {
   })
 }
 ```
-
-_Note_: In the example above we consider a prop named `value` already exists.
 
 This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
 
@@ -420,11 +420,12 @@ render: function (createElement) {
 And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -433,7 +434,7 @@ render: function (createElement) {
 To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // pass `scopedSlots` in the data object
@@ -480,7 +481,7 @@ import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
