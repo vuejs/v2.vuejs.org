@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
