@@ -630,7 +630,7 @@ this.$emit('update:foo', newValue)
 The `.sync` modifier can also be used with `v-bind` when using an object to set multiple properties at once:
 
 ```html
-<comp v-bind.sync="{ 'foo': 1, 'bar': 2 }"></comp>
+<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
 ```
 
 This has the effect of adding `v-on` update listeners for both `foo` and `bar`.
