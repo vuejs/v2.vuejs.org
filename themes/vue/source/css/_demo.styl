@@ -61,3 +61,10 @@ ul#demo, ul.demo
 
   th, td
     padding: 3px 7px
+
+@media print
+  #demo, .demo, .content .demo
+    page-break-inside: avoid
+    padding: 1em
+    margin-bottom: 1em
+    border-width: 2px
