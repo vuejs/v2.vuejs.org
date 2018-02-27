@@ -601,9 +601,13 @@ If you are using template-based functional components, you will also have to man
 
 ```html
 <template functional>
-  <svg width="100" height="100" v-bind="data.attrs" v-on="listeners">
-    <circle cx="50" cy="50" r="100" />
-  </svg>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs" 
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
 </template>
 ```
 
