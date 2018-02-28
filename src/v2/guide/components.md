@@ -458,6 +458,10 @@ The `type` can be one of the following native constructors:
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
+If `required` is `true`, then Vue will issue a console warning (if using the development build) if the prop is omitted from the template.
+
+Prop validation does not occur when the prop value is `null` or `undefined` and `required` is `false` (the default).
+
 When prop validation fails, Vue will produce a console warning (if using the development build). Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
 
 ## Non-Prop Attributes
