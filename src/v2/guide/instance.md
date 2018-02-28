@@ -39,15 +39,16 @@ When a Vue instance is created, it adds all the properties found in its `data` o
 
 ```js
 // Our data object
-var data = { a: { b: 1 } }
+var data = { a: 1 }
 
 // The object is added to a Vue instance
 var vm = new Vue({
   data: data
 })
 
-// These reference the same object!
-vm.a === data.a // => true
+// Getting the property on the instance
+// returns the one from the original data
+vm.a == data.a // => true
 
 // Setting the property on the instance
 // also affects the original data
