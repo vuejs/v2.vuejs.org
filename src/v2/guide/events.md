@@ -304,7 +304,7 @@ For example:
 The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
 
 ``` html
-<!-- this will fire even if Alt or Shift is also pressed -->
+<!-- this will fire even if Ctrl or Shift is also pressed -->
 <button @click.ctrl="onClick">A</button>
 
 <!-- this will only fire when Ctrl and no other keys are pressed -->
