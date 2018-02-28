@@ -977,7 +977,7 @@ type: api
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
-  This is similar to `mixins`, you can use `mixins` instead of `extends`.
+  This is similar to `mixins`.
 
 - **Example:**
 
