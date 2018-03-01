@@ -70,23 +70,6 @@ directives: {
 
 ## 디렉티브 훅 전달인자
 
-디렉티브 훅은 다음과 인자들을 전달합니다.
-
-- **el**: 디렉티브가 바인딩 되는 엘리먼트 입니다. 이것은 DOM을 직접 조작하는데 사용할 수 있습니다.
-- **binding**: 다음 속성을 포함하는 객체입니다.
-  - **name**: `v-` 접두어가 없는 디렉티브의 이름입니다.
-  - **value**: 디렉티브에 전달된 값입니다. 예를 들어 `v-my-directive="1 + 1"`에서 값은 `2` 가 됩니다.
-  - **oldValue**: 이전 값은 `update`와 `componentUpdated`에서만 가능합니다. 값이 변경되었는지 여부에 관계없이 사용할 수 있습니다.
-  - **expression**: 문자열로 바인딩 된 표현식 입니다. `v-my-directive="1 + 1"`에서 표현식은 `"1 + 1"` 입니다.
-  - **arg**: 전달인자가 있으면 디렉티브에 전달됩니다. 예를 들어 `v-my-directive: foo`에서 arg는 `"foo"`가 됩니다.
-  - **modifiers**: 수정자를 포함한 오브젝트가 존재하는 경우, 예를 들어 `v-my-directive.foo.bar`에서 수정자 객체는 `{ foo: true, bar: true }`가 됩니다.
-- **vnode**: Vue 컴파일러가 생성한 가상의 노드 입니다. 자세한 내용은 [VNode API](../api/#VNode-Interface)를 참조하십시오.
-- **oldVnode**: 이전의 가상 노드 입니다. 오직 `update`와 `componentUpdated` 훅에서만 사용 가능합니다.
-
-<p class="tip">`el` 이외에 이 인자들을 읽기 전용으로 취급하고 절대 수정하면 안됩니다. 훅에서 정보를 공유해야 하는 경우 엘리먼트의 [데이터셋](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)을 통해 정보를 공유하는 것이 좋습니다.</p>
-
-## 디렉티브 훅 전달인자
-
 디렉티브 훅은 다음을 전달인자로 사용할 수 있습니다.
 
 - `el`: 디렉티브가 바인딩된 엘리먼트. 이 것을 사용하면 DOM 조작을 할 수 있습니다.
