@@ -1,8 +1,14 @@
+---
+title: Create a CMS-Powered Blog
+type: cookbook
+order: 5
+---
+
 # Create a serverless CMS-Powered Blog Using Vue.js
 
-So you've just launched your Vue.js website, congrats! Now you want to add a blog that quickly plugs into your website and you don't want to have to spin up a whole server just to host a Wordpress instance (or any DB-powered CMS for that matter). You want to just be able to add a few  Vue.js blog components and some routes and have it all just work, right?
+So you've just launched your Vue.js website, congrats! Now you want to add a blog that quickly plugs into your website and you don't want to have to spin up a whole server just to host a Wordpress instance (or any DB-powered CMS for that matter). You want to just be able to add a few Vue.js blog components and some routes and have it all just work, right? What you're looking for a "serverless" blog that's powered entirely by API's you can consume directly from your Vue.js application. This tutorial will teach you how to do just that, let's dive in!
 
-This tutorial will teach you how to do just that. We're going to quickly build a serverless CMS-powered blog with Vue.js. It uses ButterCMS, an API-first CMS that lets you manage content using the ButterCMS dashboard and integrate our content API into your Vue.js app. You can use ButterCMS for new or existing Vue.js projects.
+We're going to quickly build a serverless CMS-powered blog with Vue.js. It uses [ButterCMS](https://buttercms.com/), an API-first CMS that lets you manage content using the ButterCMS dashboard and integrate our content API into your Vue.js app. You can use ButterCMS for new or existing Vue.js projects.
  
 ![Butter Dashboard](https://user-images.githubusercontent.com/160873/36677285-648798e4-1ad3-11e8-9454-d22fca8280b7.png "Butter Dashboard")
 
@@ -49,7 +55,7 @@ butter.post.list({page: 1, page_size: 10}).then(function(response) {
 This API request fetches your blog posts. Your account comes with one example post which you'll see in the response.
 
 ## Display posts
-To display posts we create a simple `/blog` route (using vue-router) in our app and fetch blog posts from the Butter API, as well as a `/blog/:slug` route to handle individual posts. See our [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
+To display posts we create a `/blog` route (using vue-router) in our app and fetch blog posts from the Butter API, as well as a `/blog/:slug` route to handle individual posts. See our [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
 
 See our API reference for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
 
@@ -133,6 +139,11 @@ Display the result
 </template>
 ```
 
+Here's what it looks like (note we added CSS from https://bulma.io/ for quick styling):
+
+![buttercms-bloglist](https://user-images.githubusercontent.com/160873/36868500-1b22e374-1d5e-11e8-82a0-20c8dc312716.png)
+
+
 Now create `components/BlogPost.vue` which will be your Blog Post page to list a single post.
 
 ```javascript
@@ -178,11 +189,16 @@ Display the results
 </template>
 ```
 
+Here's a preview:
+
+![buttercms-blogdetail](https://user-images.githubusercontent.com/160873/36868506-218c86b6-1d5e-11e8-8691-0409d91366d6.png)
+
+
 Now our app is pulling all blog posts and we can navigate to individual posts. However, our next/previous post buttons are not working.
 
-One thing to note when using routes with params is that when the user navigates from /blog/foo to /blog/bar, the same component instance will be reused. Since both routes render the same component, this is more efficient than destroying the old instance and then creating a new one. However, this also means that the lifecycle hooks of the component will not be called.
+One thing to note when using routes with params is that when the user navigates from /blog/foo to /blog/bar, the same component instance will be reused. Since both routes render the same component, this is more efficient than destroying the old instance and then creating a new one. 
 
-Visit the Vue.js docs to learn more about [Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)
+<p class="tip">Be aware, that using the component this way will mean that the lifecycle hooks of the component will not be called. Visit the Vue.js docs to learn more about [Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)</p>
 
 To fix this we need to simply watch the `$route` object and call `getPost()` when the route changes.
 
@@ -221,13 +237,13 @@ Updated `script` section in `components/BlogPost.vue`:
 </script>
 ```
 
-Now our app has a working blog that can be updated easily in the ButterCMS dashboard.
+Now your app has a working blog that can be updated easily in the ButterCMS dashboard.
 
 ## Categories, Tags, and Authors
 
 Use Butter's APIs for categories, tags, and authors to feature and filter content on your blog.
 
-See our API reference for more information about these objects:
+See the ButterCMS API reference for more information about these objects:
 
 * [Categories](https://buttercms.com/docs/api/?ruby#categories)
 * [Tags](https://buttercms.com/docs/api/?ruby#tags)
