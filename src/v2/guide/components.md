@@ -299,25 +299,19 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-You can also use the shorthand syntax for `v-bind`:
-
-``` html
-<child :my-message="parentMsg"></child>
-```
-
 ``` js
 new Vue({
   el: '#prop-example-2',
   data: {
     parentMsg: 'Message from parent'
-  },
-  components: {
-    child: {
-      props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
-    }
   }
 })
+```
+
+You can also use the shorthand syntax for `v-bind`:
+
+``` html
+<child :my-message="parentMsg"></child>
 ```
 
 Result:
@@ -337,7 +331,7 @@ new Vue({
   components: {
     child: {
       props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
+      template: '<span>{{ myMessage }}</span>'
     }
   }
 })
