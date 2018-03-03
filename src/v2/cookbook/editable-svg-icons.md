@@ -143,7 +143,7 @@ export default {
 }
 ```
 
-We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a funciton we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and transform-origin issues across browser.
+We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a function we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and transform-origin issues across browser.
 
 <p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
@@ -153,7 +153,7 @@ You can see more animated examples in the repo [here](https://github.com/sdras/v
 
 ## Additional Notes
 
-Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propogate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
+Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propagate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
 
 ## When To Avoid This Pattern
 
