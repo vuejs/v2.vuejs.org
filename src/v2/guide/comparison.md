@@ -150,7 +150,7 @@ AngularJS uses two-way binding between scopes, while Vue enforces a one-way data
 
 ### Directives vs Components
 
-Vue has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while components are self-contained units that have their own view and data logic. In AngularJS, there's a lot of confusion between the two.
+Vue has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while components are self-contained units that have their own view and data logic. In AngularJS, directives do everything and components are just a specific kind of directive.
 
 ### Runtime Performance
 

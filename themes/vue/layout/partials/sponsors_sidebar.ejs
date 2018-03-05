@@ -1,0 +1,15 @@
+<div id="sidebar-sponsors">
+  <div class="main-sponsor">
+    <span>Sponsors</span>
+    <div>
+    <%_ for (const sponsor of [...theme.special_sponsors, ...theme.platinum_sponsors]) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    Become a Sponsor
+  </a>
+</div>

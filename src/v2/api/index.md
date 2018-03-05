@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
@@ -159,7 +160,7 @@ type: api
 
 - **Usage**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
 ### productionTip
 
@@ -256,7 +257,7 @@ type: api
 
   Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 

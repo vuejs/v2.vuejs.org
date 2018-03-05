@@ -71,6 +71,16 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 
 <h2>Current Premium Sponsors:</h2>
 
+<h3>Special Sponsors</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.special_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
+  </a>
+<%_ } _%>
+</p>
+
 <h3>Platinum</h3>
 
 <p class="platinum">

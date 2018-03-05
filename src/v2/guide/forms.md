@@ -295,7 +295,7 @@ For radio, checkbox and select options, the `v-model` binding values are usually
 <!-- `toggle` is either true or false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- `selected` is a string "abc" when the first option is selected -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>

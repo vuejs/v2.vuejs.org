@@ -14,7 +14,7 @@ Now we'll answer both what the community can do for you and what you can do for 
 
 - [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
 - [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
-- [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
+- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
 
 ### Explore the Ecosystem
 

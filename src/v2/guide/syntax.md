@@ -22,7 +22,7 @@ The most basic form of data binding is text interpolation using the "Mustache" s
 
 The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
+You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any other bindings on the same node:
 
 ``` html
 <span v-once>This will never change: {{ msg }}</span>
