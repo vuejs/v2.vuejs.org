@@ -1,10 +1,9 @@
 ---
+title: Style Guide
 type: style-guide
 ---
 
-# Conventions <sup class="beta">beta</sup>
-
-Ceci est le guide des conventions officielles pour du code spécifique à Vue. Si vous utilisez Vue dans vos projets, c'est la référence pour éviter les erreurs, les discussions futiles ou les mauvais usages de code. Nous ne pensons cependant pas qu'un guide de conventions soit pertinent pour toutes les équipes ou tous les projets. Ce que nous encourageons ici est basé sur nos expériences passées, les technologies que nous côtoyons ainsi que nos valeurs personnelles.
+Ceci est le guide des conventions officielles pour du code spécifique à Vue. Si vous utilisez Vue dans vos projets, c'est la référence pour éviter les erreurs, les discussions futiles ou les mauvais usages de code. Nous ne pensons cependant pas qu'un guide de conventions soit pertinent pour toutes les équipes ou tous les projets, aussi nous encourageons les écarts pourvu qu'ils soient éclairés et basés sur vos expériences passées, les technologies que vous côtoyez ainsi que vos valeurs personnelles.
 
 Nous allons en grande partie éviter les conventions à propos du JavaScript ou du HTML en eux-mêmes. Nous ne nous soucions pas de votre utilisation des points-virgules ou de la place de la virgule en début de ligne. Nous ne nous soucierons pas non plus de savoir si votre HTML utilise des apostrophes ou des guillemets pour les valeurs des attributs. Quelques exceptions seront faites cependant, quand nous trouvons qu'une utilisation de code spécifique est utile dans le contexte de Vue.
 
@@ -1723,8 +1722,8 @@ Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signif
 >
   Error: {{ error }}
 </div>
-<div 
-  v-else 
+<div
+  v-else
   key="search-results"
 >
   {{ results }}

@@ -292,14 +292,23 @@ Encore une fois, si vous utilisez les templates sous forme de chaine de caractè
 Tout comme la liaison d'un attribut ordinaire avec une expression, nous pouvons aussi utiliser `v-bind` pour dynamiquement lier les props aux données de leurs parents. À chaque fois que les données sont mises à jour dans le parent, elles seront également mises à jour dans l'enfant :
 
 ``` html
-<div>
+<div id="prop-example-2">
   <input v-model="parentMsg">
   <br>
   <child v-bind:my-message="parentMsg"></child>
 </div>
 ```
 
-C'est souvent plus simple d'utiliser la syntaxe abrégée pour `v-bind` :
+``` js
+new Vue({
+  el: '#prop-example-2',
+  data: {
+    parentMsg: 'Message venant du parent'
+  }
+})
+```
+
+Vous pouvez aussi utiliser la syntaxe abrégée pour `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -322,7 +331,7 @@ new Vue({
   components: {
     child: {
       props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
+      template: '<span>{{ myMessage }}</span>'
     }
   }
 })
@@ -507,7 +516,7 @@ Nous avons appris que le parent peut passer des données à l'enfant en utilisan
 Chaque instance de Vue implémente une [interface d'évènements](../api/#Instance-Methods-Events), cela signifie qu'elle peut :
 
 - Écouter un évènement en utilisant `$on(eventName)`
-- Déclencher un évènement en utilisant `$emit(eventName)`
+- Déclencher un évènement en utilisant `$emit(eventName, optionalPayload)`
 
 <p class="tip">Notez que le système d'évènement de Vue est différent de celui de l'API navigateur [EventTarget](https://developer.mozilla.org/fr/docs/Web/API/EventTarget). Bien qu'il fonctionne de manière similaire, `$on` et `$emit` __ne__ sont __pas__ des alias pour `addEventListener` et `dispatchEvent`.</p>
 
@@ -591,7 +600,85 @@ new Vue({
 
 Dans cet exemple, il est important de noter que le composant enfant est toujours complètement découplé de ce qui se passe en dehors de celui-ci. Tout ce qu'il fait, c'est rapporter des informations sur sa propre activité, juste au cas où le composant parent écouterait.
 
-#### Lier des évènements natifs aux composants
+Voici comment utiliser des données complémentaires :
+
+``` html
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+```
+
+``` js
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Envoyer</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'message test'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+<script>
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Envoyer</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'message test'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+</script>
+{% endraw %}
+
+Dans le second exemple, il est important de noter que le composant enfant est toujours complètement découplé de ce qu'il peut se passer à l'extérieur. Tout ce qu'il fait c'est reporter l'information à propos de sa propre activité en incluant les données utiles dans le déclencheur d'évènement, au cas où le composant parant en aurait besoin.
+
+### Lier des évènements natifs aux composants
 
 Il y a des fois où vous souhaitez écouter un évènement natif sur l'élément racine d'un composant. Dans ce cas, vous devez utiliser le modificateur `.native` sur `v-on`. Par exemple :
 
@@ -626,6 +713,14 @@ Pour un composant enfant qui met à jour la valeur de `foo`, il faut expliciteme
 ``` js
 this.$emit('update:foo', newValue)
 ```
+
+Le modificateur `.sync` peut aussi être utilisé avec `v-bind` quand il utilise un objet pour affecter plusieurs propriétés en une seule fois :
+
+```html
+<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
+```
+
+Cela a pour effet d'ajouter des écouteurs de mise à jour `v-on` sur `foo` et `bar`.
 
 ### Composants de champ de formulaire utilisant les évènements personnalisés
 

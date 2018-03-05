@@ -192,3 +192,28 @@ sup.beta.beta
   margin-left: .7em
   text-transform: uppercase
   opacity: .6
+
+@media print
+  body
+    color: rgb(0,0,0)
+  .highlight
+    padding: 0
+    page-break-inside: avoid
+    .code
+      pre
+        color: rgb(0,0,0)
+        background-color: rgb(255,255,255)
+        border-style: solid
+        border-width: 2px 2px 2px 2px
+        border-color: #e8e8e8
+        page-break-inside: avoid
+  h1,h2,h3,h4,h5
+    color: rgb(0,0,0)
+    page-break-after: avoid
+    page-break-before: avoid
+  img
+    page-break-inside: avoid
+  h2+p
+    page-break-before: avoid
+  a:link:after, a:visited:after { content:" [" attr(href) "] "; }
+  

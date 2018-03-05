@@ -148,9 +148,9 @@ C'est pourquoi nous offrons un [template webpack](https://github.com/vuejs-templ
 
 AngularJS utilise la liaison de données bidirectionnelle entre les *scopes*, tandis que Vue impose un flux de données unidirectionnel entre les composants. Cela rend le flux de données plus facile à appréhender dans des applications non triviales.
 
-### Directives vs Composants
+### Directives vs. Composants
 
-Vue fait une distinction plus claire entre directives et composants. Les directives sont conçues pour encapsuler uniquement des manipulations du DOM, tandis que les composants sont des unités indépendantes ayant leur propre vue et logique de données. Avec AngularJS, il y a beaucoup de confusion entre les deux.
+Vue fait une distinction plus claire entre directives et composants. Les directives sont conçues pour encapsuler uniquement des manipulations du DOM, tandis que les composants sont des unités indépendantes ayant leur propre vue et logique de données. Dans AngularJS, les directives peuvent faire un peu tout alors que les composants sont un type  plus spécifique de directive.
 
 ### Runtime Performance
 

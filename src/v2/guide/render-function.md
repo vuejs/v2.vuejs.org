@@ -319,6 +319,7 @@ Partout où quelque chose peut être accompli simplement en JavaScript, les fonc
 Cela pourrait être réécrit avec les `if`/`else` et `map` du JavaScript dans une fonction de rendu
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -335,6 +336,7 @@ render: function (createElement) {
 Il n'y a pas d'équivalent à `v-model` dans les fonctions de rendu. Vous devez implémenter la logique vous-même :
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -343,7 +345,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -419,11 +420,12 @@ render: function (createElement) {
 Et accéder aux slots de portée en tant que fonctions qui retournent des VNodes via [`this.$scopedSlots`](../api/#vm-scopedSlots) :
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -432,7 +434,7 @@ render: function (createElement) {
 Pour passer des slots internes à un composant enfant en utilisant des fonctions de rendu, utilisez la propriété `scopedSlots` dans les données du VNode :
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // passer `scopedSlots` dans l'objet de données
@@ -479,7 +481,7 @@ import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world !
@@ -596,6 +598,20 @@ Vue.component('my-functional-button', {
 ```
 
 En passant `context.data` en tant que second paramètre à `createElement`, nous transferrons à l'enfant racine n'importe quel attribut ou écouteur d'évènement utilisé sur `my-functional-button`. C'est même tellement transparent que les évènements n'ont même pas besoin du modificateur `.native`.
+
+Si vous utilisez un composant fonctionnel basé sur un template, vous devrez aussi ajouter manuellement les attributs et les écouteurs. Puisque nous avons accès au contenus individuels du contexte, nous pouvons utiliser `data.attrs` en le passant avec n'importes quel attribut HTML ou `listeners` _(l'alias pour `data.on`)_ en le passant avec n'importe quel écouteur d'évènement.
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
+```
 
 ### `slots()` vs. `children`
 

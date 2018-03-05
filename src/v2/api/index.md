@@ -1,5 +1,6 @@
 ---
-type : api
+title: API
+type: api
 ---
 
 ## Configuration globale

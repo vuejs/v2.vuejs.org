@@ -295,7 +295,7 @@ Pour les boutons radio, les cases à cocher et les listes d'options, les valeurs
 <!-- `toggle` est soit true soit false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` sera une chaine de caractères "abc" quand l'option sera sélectionnée -->
+<!-- `selected` sera une chaine de caractères "abc" quand la première option sera sélectionnée -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>

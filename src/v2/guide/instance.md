@@ -46,8 +46,9 @@ var vm = new Vue({
   data: data
 })
 
-// Ces propriétés font référence au même objet !
-vm.a === data.a // => true
+// Récupérer la propriété depuis l'instance
+// retourne celle des données originales
+vm.a == data.a // => true
 
 // assigner la propriété à une instance
 // affecte également la donnée originale
@@ -88,19 +89,15 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data () {
-    return {
-      obj
-    }
-  }
+  data: obj
 })
 ```
 
 ```html
 <div id="app">
-  <p>{{ obj.foo }}</p>
-  <!-- cela ne va plus mettre à jour `obj.foo` ! -->
-  <button @click="obj.foo = 'baz'">Change le</button>
+  <p>{{ foo }}</p>
+  <!-- cela ne va plus mettre à jour `foo` ! -->
+  <button @click="foo = 'baz'">Change le</button>
 </div>
 ```
 
