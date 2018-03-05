@@ -1525,7 +1525,7 @@ type : api
 
 ## Méthodes et Évènements d'Instance
 
-vm.$on( évènement, callback )
+### vm.$on( évènement, callback )
 
 - **Arguments :**
   - `{string | Array<string>} évènement` (`Array` supportée unique depuis la 2.2.0)
