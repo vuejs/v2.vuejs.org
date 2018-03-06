@@ -6,7 +6,7 @@ order: 5
 
 ## Simple Example
 
-There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create hook for anything that fires off a particular scroll event.
+There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
 
 ``` js
 Vue.directive('scroll', {
@@ -42,6 +42,8 @@ new Vue({
   </div>
 </div>
 ```
+
+<p class="tip">Remember! The directive must be registered before the Vue instance</p>
 
 We'd also need a style property that will transition the intermediary values here, in this case: 
 
@@ -92,7 +94,7 @@ Though we would remove the previous CSS transition from this implementation beca
 
 Vue is rich with options for directives, most of which cover very common use-cases, which can create a very productive developer experience. But even if you have an edge case not covered by the framework, it's got you covered in this case as well, because you can quite easily create a custom directive to fit your need.
 
-Attaching and removing scroll events to elements is a really good use case for a custom directive because, just like other directives we use, they are necessarily tied to the element and otherwise, we'd have to find the reference for it in the DOM. This pattern avoids the need for traversal, and keeps the event logic paired with the node that it's in reference to.
+Attaching and removing scroll events to elements is a really good use case for this technique because just like other directives we use, they are necessarily tied to the element and otherwise, we'd have to find the reference for it in the DOM. This pattern avoids the need for traversal, and keeps the event logic paired with the node that it's in reference to.
 
 ## Real-World Example: Using a Custom Scroll Directive for Cascading Animations
 
@@ -130,7 +132,7 @@ Vue.directive('clipscroll', {
 });
 ```
 
-We can then use this animation in our template, in this case we're attaching the directive to `clipPath` element, and pass all of our arguments to the directives in an object.
+We can then use this animation in our template, in this case we're attaching the directive to the `clipPath` element, and pass all of our arguments to the directives in an object.
 
 ```html
 <clipPath id="clip-path">
@@ -146,5 +148,5 @@ We can then use this animation in our template, in this case we're attaching the
 
 Custom directives are extremely useful, but you may find some situations where you need something very specific that already exists in scrolling libraries that you don't wish to rebuild from scratch yourself.
 
-[Scrollmagic](http://scrollmagic.io/) has a really rich ecosystem of examples, demos, and sample code to work with. Including things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html). 
+[Scrollmagic](http://scrollmagic.io/) has a very rich ecosystem of offerings to work with, as well as good documentation and demos to explore. This includes, but is not limited to things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html). 
 
