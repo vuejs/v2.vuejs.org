@@ -51,7 +51,7 @@ We'd also need a style property that will transition the intermediary values her
 }
 ```
 
-<p data-height="800" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="650" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 Or, with GreenSock(GSAP) or any other JavaScript animation library, the code becomes even more simple:
@@ -96,132 +96,53 @@ Attaching and removing scroll events to elements is a really good use case for a
 
 ## Real-World Example: Using a Custom Scroll Directive for Scrollytelling
 
-Let's say you're replacing the [now-retired Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). You really enjoyed accessing request methods through `this.$http` and you want to do the same thing with Axios instead.
+You might find, in the course of creating a site, that to keep some cohesion, you're reusing the same kind of animations in several areas. Seems simple, we would then create a very specific custom directive, right? Well, typically if you're reusing it, you will need to change it just slightly for each. In the case of our example, we'd need to change the beginning point and ending of the animation as we scroll down the page. In this case, we can pass in some predefined arguments, to help keep our code concise and legible.
 
-All you have to do is include axios in your project:
+See the [full screen version](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).
 
-``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+<p data-height="300" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<div id="app">
-  <ul>
-    <li v-for="user in users">{{ user.name }}</li>
-  </ul>
-</div>
-```
+In the demo above, each of the sections have a similar type of animation with a few differences- aside from the start and finish, we're passing in a different initial shape that we'll create a morph to.
 
-Alias `axios` to `Vue.prototype.$http`:
+We've adjusted the original scrolling animation to include a morph, as well as some arguments, defined as `binding.value.foo`:
 
-``` js
-Vue.prototype.$http = axios
-```
-
-Then you'll be able to use methods like `this.$http.get` in any Vue instance:
-
-``` js
-new Vue({
-  el: '#app',
-  data: {
-    users: []
-  },
-  created () {
-    var vm = this
-    this.$http.get('https://jsonplaceholder.typicode.com/users')
-      .then(function (response) {
-        vm.users = response.data
-      })
+```js
+Vue.directive('clipscroll', {
+  inserted: function(el, binding) {
+    let f = function(evt) {
+      var hasRun = false;
+      if (!hasRun && window.scrollY > binding.value.start) {
+        hasRun = true;
+        TweenMax.to(el, 2, {
+          morphSVG: binding.value.toElement,
+          ease: Sine.easeIn
+        })
+      }
+      if (window.scrollY > binding.value.end) {
+        window.removeEventListener('scroll', f);
+      }
+    }
+    window.addEventListener('scroll', f);
   }
-})
+});
+``` 
+
+We can then use this animation in our template, in this case we're attaching the directive to `clipPath` element. We can pass many arguments if we wish.
+
+```html
+<clipPath id="clip-path">
+  <path 
+    v-clipscroll="{ start: '50', end: '100', toElement: '#cliprect' }" 
+    id="poly-shapemorph" 
+    d="M12.46 20.76L7.34 22.04 3.67 18.25 5.12 13.18 10.24 11.9 13.91 15.69 12.46 20.76z" 
+  />
+</clipPath>
 ```
-
-## The Context of Prototype Methods
-
-In case you're not aware, methods added to a prototype in JavaScript gain the context of the instance. That means they can use `this` to access data, computed properties, methods, or anything else defined on the instance.
-
-Let's take advantage of this in a `$reverseText` method:
-
-``` js
-Vue.prototype.$reverseText = function (propertyName) {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
-}
-
-new Vue({
-  data: {
-    message: 'Hello'
-  },
-  created: function () {
-    console.log(this.message)    // => "Hello"
-    this.$reverseText('message')
-    console.log(this.message)    // => "olleH"
-  }
-})
-```
-
-Note that the context binding will __not__ work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
-
-``` js
-Vue.prototype.$reverseText = propertyName => {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
-}
-```
-
-Would throw an error:
-
-``` log
-Uncaught TypeError: Cannot read property 'split' of undefined
-```
-
-## When To Avoid This Pattern
-
-As long as you're vigilant in scoping prototype properties, using this pattern is quite safe - as in, unlikely to produce bugs.
-
-However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
-
-__The convenience comes at the cost of explicitness.__ When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
-
-So what are the alternatives?
 
 ## Alternative Patterns
 
-### When Not Using a Module System
+Custom directives are extremely useful, but you may find some situations where you need something very specific that already exists in scrolling libraries that you don't wish to rebuild from scratch yourself.
 
-In applications with __no__ module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+[Scrollmagic](http://scrollmagic.io/) has a really rich ecosystem of examples, demos, and sample code to work with. Including things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html). 
 
-If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
-
-``` js
-var App = Object.freeze({
-  name: 'My App',
-  description: '2.1.4',
-  helpers: {
-    // This is a purely functional version of
-    // the $reverseText method we saw earlier
-    reverseText: function (text) {
-      return text.split('').reverse().join('')
-    }
-  }
-})
-```
-
-<p class="tip">If you raised an eyebrow at `Object.freeze`, what it does is prevent the object from being changed in the future. This essentially makes all its properties constants, protecting you from future state bugs.</p>
-
-Now the source of these shared properties is more obvious: there's an `App` object defined somewhere in the app. To find it, developers can run a project-wide search.
-
-Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
-
-``` js
-new Vue({
-  data: {
-    appVersion: App.version
-  },
-  methods: {
-    reverseText: App.helpers.reverseText
-  }
-})
-```
-
-### When Using a Module System
-
-When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
-
-While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.
