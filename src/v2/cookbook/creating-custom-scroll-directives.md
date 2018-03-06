@@ -6,7 +6,7 @@ order: 5
 
 ## Simple Example
 
-There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is to use a custom directive to create hook for anything that fires off a particular scroll event.
+There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create hook for anything that fires off a particular scroll event.
 
 ``` js
 Vue.directive('scroll', {
@@ -51,7 +51,7 @@ We'd also need a style property that will transition the intermediary values her
 }
 ```
 
-<p data-height="650" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 Or, with GreenSock(GSAP) or any other JavaScript animation library, the code becomes even more simple:
@@ -86,26 +86,28 @@ new Vue({
 });
 ```
 
-Though we would remove the CSS transition from this implementation because it's now handled with JavaScript.
+Though we would remove the previous CSS transition from this implementation because it's now handled with JavaScript.
 
 ## The Benefit of Using Custom Directives
 
-Vue is rich with options for directives, most of which cover very common use-cases, which can create a very productive developer experience. But even if you have an edge case not covered by the framework, it's got your back there as well, because you can quite easily create a custom directive to fit your need.
+Vue is rich with options for directives, most of which cover very common use-cases, which can create a very productive developer experience. But even if you have an edge case not covered by the framework, it's got you covered in this case as well, because you can quite easily create a custom directive to fit your need.
 
 Attaching and removing scroll events to elements is a really good use case for a custom directive because, just like other directives we use, they are necessarily tied to the element and otherwise, we'd have to find the reference for it in the DOM. This pattern avoids the need for traversal, and keeps the event logic paired with the node that it's in reference to.
 
-## Real-World Example: Using a Custom Scroll Directive for Scrollytelling
+## Real-World Example: Using a Custom Scroll Directive for Cascading Animations
 
-You might find, in the course of creating a site, that to keep some cohesion, you're reusing the same kind of animations in several areas. Seems simple, we would then create a very specific custom directive, right? Well, typically if you're reusing it, you will need to change it just slightly for each. In the case of our example, we'd need to change the beginning point and ending of the animation as we scroll down the page. In this case, we can pass in some predefined arguments, to help keep our code concise and legible.
+In the course of creating a cohesive site, you may find that you're reusing the same type of animation logic in several areas. It seems simple, we would then create a very specific custom directive, right? Well, typically if you're reusing it, you will need to change it _just_ slightly for each use. 
 
-See the [full screen version](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).
+To help keep our code concise and legible, we would want to pass in some predefined arguments such as the beginning point and ending of the animation as we scroll down the page.
 
-<p data-height="300" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+**This example is better viewed in the [full screen version](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).**
+
+<p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-In the demo above, each of the sections have a similar type of animation with a few differences- aside from the start and finish, we're passing in a different initial shape that we'll create a morph to.
+In the demo above, each of the sections has two different types of animation triggered from the scroll: a morphing animation, and a drawing animation that animates the individual paths in the SVG. We reuse those two animations, so we can create a custom directive for each. The arguments we'll pass in will help keep everything simple and reusable.
 
-We've adjusted the original scrolling animation to include a morph, as well as some arguments, defined as `binding.value.foo`:
+To show how we do this, we'll take a look at the morphing shape example, where we'll need to state the start and finish, as well as pass in a path value that we'll create a morph to. These arguments are each defined as `binding.value.foo`:
 
 ```js
 Vue.directive('clipscroll', {
@@ -115,7 +117,7 @@ Vue.directive('clipscroll', {
       if (!hasRun && window.scrollY > binding.value.start) {
         hasRun = true;
         TweenMax.to(el, 2, {
-          morphSVG: binding.value.toElement,
+          morphSVG: binding.value.toPath,
           ease: Sine.easeIn
         })
       }
@@ -126,14 +128,14 @@ Vue.directive('clipscroll', {
     window.addEventListener('scroll', f);
   }
 });
-``` 
+```
 
-We can then use this animation in our template, in this case we're attaching the directive to `clipPath` element. We can pass many arguments if we wish.
+We can then use this animation in our template, in this case we're attaching the directive to `clipPath` element, and pass all of our arguments to the directives in an object.
 
 ```html
 <clipPath id="clip-path">
   <path 
-    v-clipscroll="{ start: '50', end: '100', toElement: '#cliprect' }" 
+    v-clipscroll="{ start: '50', end: '100', toPath: 'M0.39 0.34H15.99V22.44H0.39z' }" 
     id="poly-shapemorph" 
     d="M12.46 20.76L7.34 22.04 3.67 18.25 5.12 13.18 10.24 11.9 13.91 15.69 12.46 20.76z" 
   />
