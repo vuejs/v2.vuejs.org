@@ -8,7 +8,7 @@ title: Performance Comparisons
 
 Looking for the TodoMVC Benchmark? It's been removed because after discussion with some other framework authors we have agreed that:
 
-1. The original intention of these benchmarks were for comparing Browser performance rather than that of frameworks. The "synchrorously trigger an action xxx times" test routine doesn't reflect meaningful real world user actions.
+1. The original intention of these benchmarks were for comparing Browser performance rather than that of frameworks. The "synchronously trigger an action xxx times" test routine doesn't reflect meaningful real world user actions.
 
 2. Due to internal implementation differences, frameworks that uses async rendering (e.g. Vue, Om, Mercury) gains the advantage by skipping part of the calculations that happened in the same event loop. The real world user experience doesn't demonstrate such dramatic difference.
 

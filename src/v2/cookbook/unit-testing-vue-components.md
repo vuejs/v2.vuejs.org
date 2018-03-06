@@ -106,7 +106,7 @@ Let's take a look at the component code first:
     <div class="message">
       {{ message }}
     </div>
-    Enter your username: <input v-model="usernane">
+    Enter your username: <input v-model="username">
     <div 
       v-if="error"
       class="error"
@@ -141,7 +141,7 @@ The things that we should test are:
 - if `error` is `true`, `<div class="error"`> should be present
 - if `error` is `false`, `<div class="error"`> should not be present
 
-And our first attempt at at test:
+And our first attempt at test:
 
 ```js
 import { shallow } from 'vue-test-utils'
@@ -176,7 +176,7 @@ The below example improves the test by:
 - only making one assertion per `it` block
 - having short, clear test descriptions
 - providing only the minimum data requires for the test
-- refactoring duplucated logic (creating the `wrapper` and setting the `username` variable) into a factory function
+- refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
 
 *Updated test*:
 ```js
@@ -222,7 +222,7 @@ At the top, we declare the factory function which merges the `values` object int
 
 ## Additional Context
 
-Thee above test is fairly simple, but in practise Vue components often have other behaviors you want to test, such as:
+The above test is fairly simple, but in practice Vue components often have other behaviors you want to test, such as:
 
 - making API calls
 - committing or dispatching mutations or actions with a `Vuex` store

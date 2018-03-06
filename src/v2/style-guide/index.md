@@ -693,7 +693,7 @@ components/
 
 **Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
