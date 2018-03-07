@@ -281,4 +281,9 @@ created() {
 
 That's it! You now have a fully functional serverless blog running in your app.  We hope this tutorial was helpful and made your development experience with Vue.js even more enjoyable :)
 
+## Alternative Pattern
+
+An alternative pattern to consider, especially if you prefer writing only in Markdown, is using something like [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components). Nuxtent allows you to use `Vue Component` inside of Markdown files. This approach would be akin to a static site approach (i.e. Jekyll) where you compose your blog posts in Markdown files. Nuxtent adds a nice integration between Vue.js and Markdown allowing you to live in a 100% Vue.js world.
+
+
 If you have any questions or feedback, feel free to open a PR or leave a comment in Github.
