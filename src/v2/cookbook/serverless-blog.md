@@ -4,11 +4,11 @@ type: cookbook
 order: 5
 ---
 
-# Create a serverless CMS-Powered Blog Using Vue.js
+# Create a CMS-Powered Blog Using Vue.js
 
-So you've just launched your Vue.js website, congrats! Now you want to add a blog that quickly plugs into your website and you don't want to have to spin up a whole server just to host a Wordpress instance (or any DB-powered CMS for that matter). You want to just be able to add a few Vue.js blog components and some routes and have it all just work, right? What you're looking for a "serverless" blog that's powered entirely by API's you can consume directly from your Vue.js application. This tutorial will teach you how to do just that, let's dive in!
+So you've just launched your Vue.js website, congrats! Now you want to add a blog that quickly plugs into your website and you don't want to have to spin up a whole server just to host a Wordpress instance (or any DB-powered CMS for that matter). You want to just be able to add a few Vue.js blog components and some routes and have it all just work, right? What you're looking for a blog that's powered entirely by API's you can consume directly from your Vue.js application. This tutorial will teach you how to do just that, let's dive in!
 
-We're going to quickly build a serverless CMS-powered blog with Vue.js. It uses [ButterCMS](https://buttercms.com/), an API-first CMS that lets you manage content using the ButterCMS dashboard and integrate our content API into your Vue.js app. You can use ButterCMS for new or existing Vue.js projects.
+We're going to quickly build a CMS-powered blog with Vue.js. It uses [ButterCMS](https://buttercms.com/), an API-first CMS that lets you manage content using the ButterCMS dashboard and integrate our content API into your Vue.js app. You can use ButterCMS for new or existing Vue.js projects.
  
 ![Butter Dashboard](https://user-images.githubusercontent.com/160873/36677285-648798e4-1ad3-11e8-9454-d22fca8280b7.png "Butter Dashboard")
 
@@ -55,9 +55,9 @@ butter.post.list({page: 1, page_size: 10}).then(function(response) {
 This API request fetches your blog posts. Your account comes with one example post which you'll see in the response.
 
 ## Display posts
-To display posts we create a `/blog` route (using vue-router) in our app and fetch blog posts from the Butter API, as well as a `/blog/:slug` route to handle individual posts. See our [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
+To display posts we create a `/blog` route (using vue-router) in our app and fetch blog posts from the Butter API, as well as a `/blog/:slug` route to handle individual posts. 
 
-See our API reference for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
+See the ButterCMS [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
 
 `router/index.js:`
 
@@ -200,7 +200,7 @@ One thing to note when using routes with params is that when the user navigates 
 
 <p class="tip">Be aware, that using the component this way will mean that the lifecycle hooks of the component will not be called. Visit the Vue.js docs to learn more about [Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)</p>
 
-To fix this we need to simply watch the `$route` object and call `getPost()` when the route changes.
+To fix this we need to watch the `$route` object and call `getPost()` when the route changes.
 
 Updated `script` section in `components/BlogPost.vue`:
 
@@ -277,13 +277,13 @@ created() {
   this.getPostsByCategory()
 }
 ```
-## Wrap up
 
-That's it! You now have a fully functional serverless blog running in your app.  We hope this tutorial was helpful and made your development experience with Vue.js even more enjoyable :)
-
-## Alternative Pattern
+## Alternative Patterns
 
 An alternative pattern to consider, especially if you prefer writing only in Markdown, is using something like [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components). Nuxtent allows you to use `Vue Component` inside of Markdown files. This approach would be akin to a static site approach (i.e. Jekyll) where you compose your blog posts in Markdown files. Nuxtent adds a nice integration between Vue.js and Markdown allowing you to live in a 100% Vue.js world.
 
 
-If you have any questions or feedback, feel free to open a PR or leave a comment in Github.
+## Wrap up
+
+That's it! You now have a fully functional CMS-powered blog running in your app.  We hope this tutorial was helpful and made your development experience with Vue.js even more enjoyable :)
+
