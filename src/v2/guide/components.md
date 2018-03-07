@@ -677,8 +677,7 @@ new Vue({
 </script>
 {% endraw %}
 
-In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it.
-All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
+In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
 
 ### Binding Native Events to Components
 
