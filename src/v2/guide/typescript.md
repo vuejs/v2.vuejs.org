@@ -60,20 +60,6 @@ const Component = {
 }
 ```
 
-Notez qu'en utilisant Vetur avec les composants monofichiers, la déduction de type va automatiquement appliquer un export par défaut. Il n'y a donc pas besoin d'encadrement avec `Vue.extend` :
-
-``` html
-<template>
-  ...
-</template>
-
-<script lang="ts">
-export default {
-  // déduction de type activée
-}
-</script>
-```
-
 ## Composants Vue basés sur les classes
 
 Si vous préférez une API basée sur les classes quand vous déclarez des composants, vous pouvez utiliser le décorateur officiel [vue-class-component](https://github.com/vuejs/vue-class-component) :
