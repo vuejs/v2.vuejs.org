@@ -1,7 +1,7 @@
 ---
 title: Form Validation
 type: cookbook
-order: 1.2
+order: 3
 ---
 
 ## Simple Example

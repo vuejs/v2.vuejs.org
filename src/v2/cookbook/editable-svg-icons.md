@@ -1,7 +1,7 @@
 ---
 title: Editable SVG Icon Systems
 type: cookbook
-order: 2
+order: 4
 ---
 
 ## Base Example
