@@ -8,9 +8,9 @@ order: 9
 
 There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
 
-In this exercise, we'll use the Coindesk API to walk through displaying Bitcoin prices, updated every minute. First, we'd install axios with either npm/yarn or through a CDN link. 
+In this exercise, we'll use the [Coindesk API](https://www.coindesk.com/api/) to walk through displaying Bitcoin prices, updated every minute. First, we'd install axios with either npm/yarn or through a CDN link.
 
-There are a number of ways we can request information from the API, but it's nice to first find out what the shape of the data looks like, in order to know what to display. In order to do so, we'll make a call to the API endpoint and output it so we can see it, which in this case we'll do using the `mounted` lifecycle hook:
+There are a number of ways we can request information from the API, but it's nice to first find out what the shape of the data looks like, in order to know what to display. In order to do so, we'll make a call to the API endpoint and output it so we can see it. We can see in the Coindesk API documentation, that this call will be made to `https://api.coindesk.com/v1/bpi/currentprice.json`. So first, we'll create a data property that will eventually house our information, and we'll retrieve the data and assign it using the `mounted` lifecycle hook:
 
 ```js
 new Vue({
@@ -18,14 +18,14 @@ new Vue({
   data() {
     return {
       info: null
-    };
+    }
   },
   mounted() {
     axios
       .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response));
+      .then(response => (this.info = response))
   }
-});
+})
 ```
 
 ```html
@@ -35,86 +35,61 @@ new Vue({
 ```
 
 And what we get is this:
+
 <p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">First Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-It's pretty typical that the information we'll need is not 
+Excellent! We've got some data. But it looks pretty messy right now so let's display it properly and add some error handling in case things aren't working as expected or it takes longer than we thought to get the information.
 
-## The Importance of Scoping Instance Properties
+## Real-World Example: Working with the Data
 
-You may be wondering:
+### Displaying Data from an API
 
-> "Why does `appName` start with `$`? Is that important? What does it do?
+It's pretty typical that the information we'll need is within the response, and we'll have to traverse what we've just stored to access it properly. In our case, we can see that the price information we need lives in `response.data.bpi`. If we use this instead, our output is as follows:
 
-No magic is happening here. `$` is a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
-
-> "Conflicts? What do you mean?"
-
-Another great question! If you set:
-
-``` js
-Vue.prototype.appName = 'My App'
+```js
+axios
+  .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+  .then(response => (this.info = response.data.bpi))
 ```
 
-Then what would you expect to be logged below?
+<p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Second Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-``` js
-new Vue({
-  data: {
-    // Uh oh - appName is *also* the name of the
-    // instance property we defined!
-    appName: 'The name of some other app'
-  },
-  beforeCreate: function () {
-    console.log(this.appName)
-  },
-  created: function () {
-    console.log(this.appName)
-  }
-})
-```
+This is a lot easier for us to display, so we can now update our html to display only the information we need from the data we've received, and we'll create a filter to make sure that the decimal is in the appropriate place as well.
 
-It would be `"The name of some other app"`, then `"My App"`, because `this.appName` is overwritten ([sort of](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) by `data` when the instance is created. We scope instance properties with `$` to avoid this. You can even use your own convention if you'd like, such as `$_appName` or `ΩappName`, to prevent even conflicts with plugins or future features.
-
-## Real-World Example: Replacing Vue Resource with Axios
-
-Let's say you're replacing the [now-retired Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). You really enjoyed accessing request methods through `this.$http` and you want to do the same thing with Axios instead.
-
-All you have to do is include axios in your project:
-
-``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
-
+```html
 <div id="app">
-  <ul>
-    <li v-for="user in users">{{ user.name }}</li>
-  </ul>
+  <h1>Bitcoin Price Index</h1>
+  <div v-for="currency in info" class="currency">
+    {{ currency.description }}:
+    <span class="lighten">
+      <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
+    </span>
+  </div>
 </div>
 ```
 
-Alias `axios` to `Vue.prototype.$http`:
-
-``` js
-Vue.prototype.$http = axios
-```
-
-Then you'll be able to use methods like `this.$http.get` in any Vue instance:
-
-``` js
-new Vue({
-  el: '#app',
-  data: {
-    users: []
-  },
-  created () {
-    var vm = this
-    this.$http.get('https://jsonplaceholder.typicode.com/users')
-      .then(function (response) {
-        vm.users = response.data
-      })
+```js
+filters: {
+  currencydecimal(value) {
+    return value.toFixed(2);
   }
-})
+},
 ```
+
+<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Third Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+### Dealing with Errors
+
+There are times when we might not get the data we need from the API. There are several reasons that our axios call might fail, including but not limited to:
+
+* The API is down
+* The request was made incorrectly
+* The API isn't giving us the information in the format that we anticipated
+
+When making this request, we should be checking for just such circumstances, and giving ourselves information in every case so we know how to handle the problem. In an axios call, we'll do so by using `catch`.
 
 ## The Context of Prototype Methods
 
@@ -122,34 +97,40 @@ In case you're not aware, methods added to a prototype in JavaScript gain the co
 
 Let's take advantage of this in a `$reverseText` method:
 
-``` js
-Vue.prototype.$reverseText = function (propertyName) {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+```js
+Vue.prototype.$reverseText = function(propertyName) {
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 
 new Vue({
   data: {
     message: 'Hello'
   },
-  created: function () {
-    console.log(this.message)    // => "Hello"
+  created: function() {
+    console.log(this.message) // => "Hello"
     this.$reverseText('message')
-    console.log(this.message)    // => "olleH"
+    console.log(this.message) // => "olleH"
   }
 })
 ```
 
-Note that the context binding will __not__ work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
+Note that the context binding will **not** work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
 
-``` js
+```js
 Vue.prototype.$reverseText = propertyName => {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 ```
 
 Would throw an error:
 
-``` log
+```log
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
@@ -159,7 +140,7 @@ As long as you're vigilant in scoping prototype properties, using this pattern i
 
 However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
 
-__The convenience comes at the cost of explicitness.__ When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
+**The convenience comes at the cost of explicitness.** When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
 
 So what are the alternatives?
 
@@ -167,19 +148,22 @@ So what are the alternatives?
 
 ### When Not Using a Module System
 
-In applications with __no__ module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+In applications with **no** module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
 
 If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
 
-``` js
+```js
 var App = Object.freeze({
   name: 'My App',
   description: '2.1.4',
   helpers: {
     // This is a purely functional version of
     // the $reverseText method we saw earlier
-    reverseText: function (text) {
-      return text.split('').reverse().join('')
+    reverseText: function(text) {
+      return text
+        .split('')
+        .reverse()
+        .join('')
     }
   }
 })
@@ -191,7 +175,7 @@ Now the source of these shared properties is more obvious: there's an `App` obje
 
 Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
 
-``` js
+```js
 new Vue({
   data: {
     appVersion: App.version
