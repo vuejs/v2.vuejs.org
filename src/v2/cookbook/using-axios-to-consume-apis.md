@@ -73,7 +73,7 @@ This is a lot easier for us to display, so we can now update our html to display
 ```js
 filters: {
   currencydecimal(value) {
-    return value.toFixed(2);
+    return value.toFixed(2)
   }
 },
 ```
@@ -91,103 +91,83 @@ There are times when we might not get the data we need from the API. There are s
 
 When making this request, we should be checking for just such circumstances, and giving ourselves information in every case so we know how to handle the problem. In an axios call, we'll do so by using `catch`.
 
-## The Context of Prototype Methods
+```js
+axios
+  .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+  .then(response => (this.info = response.data.bpi))
+  .catch(error => console.log(error))
+```
 
-In case you're not aware, methods added to a prototype in JavaScript gain the context of the instance. That means they can use `this` to access data, computed properties, methods, or anything else defined on the instance.
-
-Let's take advantage of this in a `$reverseText` method:
+This will let us know if something failed during the API request, but what if the data is mangled or the API is down? Right now the user will just see nothing. We might want to build a loader for this case, and then tell the user if we're not able to get the data at all.
 
 ```js
-Vue.prototype.$reverseText = function(propertyName) {
-  this[propertyName] = this[propertyName]
-    .split('')
-    .reverse()
-    .join('')
-}
-
 new Vue({
-  data: {
-    message: 'Hello'
+  el: '#app',
+  data() {
+    return {
+      info: null,
+      loading: true,
+      errored: false
+    }
   },
-  created: function() {
-    console.log(this.message) // => "Hello"
-    this.$reverseText('message')
-    console.log(this.message) // => "olleH"
+  filters: {
+    currencydecimal(value) {
+      return value.toFixed(2)
+    }
+  },
+  mounted() {
+    axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => {
+        this.loading = false
+        this.info = response.data.bpi
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+        this.loading = false
+      })
   }
 })
 ```
 
-Note that the context binding will **not** work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
+```html
+<div id="app">
+  <h1>Bitcoin Price Index</h1>
 
-```js
-Vue.prototype.$reverseText = propertyName => {
-  this[propertyName] = this[propertyName]
-    .split('')
-    .reverse()
-    .join('')
-}
+  <section v-if="errored">
+    <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+  </section>
+
+  <section v-else>
+    <div v-if="loading">Loading...</div>
+
+    <div v-else v-for="currency in info" class="currency">
+      {{ currency.description }}:
+      <span class="lighten">
+        <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
+      </span>
+    </div>
+
+  </section>
+</div>
 ```
 
-Would throw an error:
+You can hit the rerun button on this pen to see the loading status briefly while we gather data from the API:
 
-```log
-Uncaught TypeError: Cannot read property 'split' of undefined
-```
+<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-## When To Avoid This Pattern
-
-As long as you're vigilant in scoping prototype properties, using this pattern is quite safe - as in, unlikely to produce bugs.
-
-However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
-
-**The convenience comes at the cost of explicitness.** When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
-
-So what are the alternatives?
+This can be even futher improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
 
 ## Alternative Patterns
 
-### When Not Using a Module System
+### Fetch
 
-In applications with **no** module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+The fetch API is a powerful native API for these types of requests. You may have heard that the benefits of using fetch is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
 
-If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
+If you're interested in using fetch, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) [explaining](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) how to do so.
 
-```js
-var App = Object.freeze({
-  name: 'My App',
-  description: '2.1.4',
-  helpers: {
-    // This is a purely functional version of
-    // the $reverseText method we saw earlier
-    reverseText: function(text) {
-      return text
-        .split('')
-        .reverse()
-        .join('')
-    }
-  }
-})
-```
+## Wrapping up
 
-<p class="tip">If you raised an eyebrow at `Object.freeze`, what it does is prevent the object from being changed in the future. This essentially makes all its properties constants, protecting you from future state bugs.</p>
-
-Now the source of these shared properties is more obvious: there's an `App` object defined somewhere in the app. To find it, developers can run a project-wide search.
-
-Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
-
-```js
-new Vue({
-  data: {
-    appVersion: App.version
-  },
-  methods: {
-    reverseText: App.helpers.reverseText
-  }
-})
-```
-
-### When Using a Module System
-
-When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
-
-While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.
+There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
