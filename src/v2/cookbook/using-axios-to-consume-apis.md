@@ -119,14 +119,13 @@ new Vue({
     axios
       .get('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(response => {
-        this.loading = false
         this.info = response.data.bpi
       })
       .catch(error => {
         console.log(error)
         this.errored = true
-        this.loading = false
-      })
+      }).
+      .finally(() => this.loading = false)
   }
 })
 ```
@@ -164,7 +163,7 @@ This can be even futher improved with the use of components for different sectio
 
 ### Fetch API
 
-The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that the benefits of using fetch is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
+The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that one of the benefits of the Fetch API is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
 
 If you're interested in using the Fetch API, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
 
