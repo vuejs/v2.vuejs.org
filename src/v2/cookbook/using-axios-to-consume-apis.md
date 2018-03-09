@@ -1,5 +1,5 @@
 ---
-title: Using Axios To Consume APIs
+title: Using Axios to Consume APIs
 type: cookbook
 order: 9
 ---
@@ -56,7 +56,7 @@ axios
 <p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Second Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This is a lot easier for us to display, so we can now update our html to display only the information we need from the data we've received, and we'll create a [filter](../api/#Vue-filter) to make sure that the decimal is in the appropriate place as well.
+This is a lot easier for us to display, so we can now update our HTML to display only the information we need from the data we've received, and we'll create a [filter](../api/#Vue-filter) to make sure that the decimal is in the appropriate place as well.
 
 ```html
 <div id="app">
@@ -162,12 +162,12 @@ This can be even futher improved with the use of components for different sectio
 
 ## Alternative Patterns
 
-### Fetch
+### Fetch API
 
-The [fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that the benefits of using fetch is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
+The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that the benefits of using fetch is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
 
-If you're interested in using fetch, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
+If you're interested in using the Fetch API, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
 
-## Wrapping up
+## Wrapping Up
 
 There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
