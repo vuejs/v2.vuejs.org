@@ -131,4 +131,4 @@ it('updates the rendered message when vm.message updates', done => {
 
 We are planning to work on a collection of common test helpers to make it easier to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.
 
-For more in-depth information on unit testing in vue, check out [vue-test-utils](https://vue-test-utils.vuejs.org/en/) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
+For more in-depth information on unit testing in Vue, check out [vue-test-utils](https://vue-test-utils.vuejs.org/en/) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
