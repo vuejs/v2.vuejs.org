@@ -1,7 +1,7 @@
 ---
 title: Debugging in VS Code and Chrome
 type: cookbook
-order: 6
+order: 8
 ---
 
 Every application reaches a point where it's necessary to understand failures, small to large. In this recipe, we explore a few workflows for VS Code users, who are using Chrome to test.
@@ -10,38 +10,21 @@ This recipe shows how to use the [Debugger for Chrome](https://github.com/Micros
 
 ## Prerequisites
 
-You must have Chrome and VS Code installed. Make sure to the latest version of [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension installed in VS Code.
+You must have Chrome and VS Code installed. Make sure to get the latest version of [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension installed in VS Code.
 
-Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli) by running
+Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli), with the instructions for installation documented in the readme of the project. Change into the newly created application directory and open VS Code.
 
-```
-npm install -g @vue/cli
-# or
-yarn global add @vue/cli
+### Showing Source Code in the Chrome Devtools
 
-vue create my-project
-```
+Before you can debug your Vue components from VS Code you need to update the generated Webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by Webpack.
 
-Change to the newly created application directory and open VS Code.
-
-```
-cd my-project
-
-# if you have an alias set up (recommended)
-code .
-```
-
-### Update your webpack configuration
-
-Before you can debug your Vue components from VS Code you need to update the generated webpack config to build sourcemaps that contains more information for our debugger.
-
-* Go to `config/index.js` and find the `devtool` property. Update it to:
+Go to `config/index.js` and find the `devtool` property. Update it to:
 
 ```json
 devtool: 'source-map',
 ```
 
-### Configure launch.json File
+### Launching the Application from VS Code
 
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome** for the environment. Replace content of the generated launch.json with the following two configurations:
 
@@ -66,21 +49,21 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 }
 ```
 
-## Start Debugging An Application
+## Setting a Breakpoint
 
-1. Set a breakpoint in **src/components/HelloWorld.vue** on `line 90` where the `data` function returns a string.
+1.  Set a breakpoint in **src/components/HelloWorld.vue** on `line 90` where the `data` function returns a string.
 
 ![Breakpoint Renderer](/images/breakpoint_set.png)
 
-2. Open your favorite terminal at the root folder and serve the app using Vue CLI:
+2.  Open your favorite terminal at the root folder and serve the app using Vue CLI:
 
 ```
 npm start
 ```
 
-3. Go to the Debug view, select the **'vuejs: chrome'** configuration, then press F5 or click the green play button.
+3.  Go to the Debug view, select the **'vuejs: chrome'** configuration, then press F5 or click the green play button.
 
-4. Your breakpoint should now be hit as the new instance of Chrome opens `http://localhost:8080`.
+4.  Your breakpoint should now be hit as the new instance of Chrome opens `http://localhost:8080`.
 
 ![Breakpoint Hit](/images/breakpoint_hit.png)
 
@@ -92,9 +75,7 @@ There are other methods of debugging, varying in complexity. The most popular an
 
 ![Devtools Timetravel Debugger](/images/devtools-timetravel.gif)
 
-<p class="tip">There are a couple of gotchas to note for Vue Devtools: 
-- If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up. 
-- To make it work for pages opened via file:// protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel</p>
+<p class="tip">Please note that if the page uses a production/minified build of Vue.js (such as the standard link from a CDN), devtools inspection is disabled by default so the Vue pane won't show up. If you switch to an unminified version, you may have to give the page a hard refresh to see them.</p>
 
 ### Vuetron
 
