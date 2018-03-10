@@ -291,7 +291,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
+You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
