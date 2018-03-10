@@ -1,5 +1,5 @@
 ---
-title: Miscellaneous Component Information
+title: Misc
 type: guide
 order: 16
 ---
