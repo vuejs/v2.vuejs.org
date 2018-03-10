@@ -84,4 +84,4 @@ This section is required when you've provided the section above about avoidance.
 
 ## Thank you
 
-It takes time to contribute to documentation, and if you spend the time to submit a PR this section of our docs, you do so with our gratitude.
+It takes time to contribute to documentation, and if you spend the time to submit a PR to this section of our docs, you do so with our gratitude.
