@@ -1,4 +1,61 @@
 site_description: "Vue.js - The Progressive JavaScript Framework"
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.4.0
+vue_version: 2.5.13
+
+special_sponsors:
+  - url: https://stdlib.com
+    img: stdlib.png
+  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+    img: bit.png
+    wide_img: bit-wide.png
+    big_width: 120px
+    big_height: 120px
+
+platinum_sponsors:
+  - url: http://tooltwist.com/
+    img: tooltwist.png
+  - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
+    img: vueschool.png
+  - url: https://www.datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar
+    img: datacamp.png
+
+gold_sponsors:
+  - url: https://laravel.com
+    img: laravel.png
+  - url: https://htmlburger.com
+    img: htmlburger.png
+  - url: https://chaitin.cn/en/
+    img: chaitin.png
+  - url: https://anymod.com
+    img: anymod.png
+  - url: https://www.frontenddeveloperlove.com/
+    img: frontend-love.png
+  - url: https://onsen.io/vue/
+    img: onsen-ui.png
+  - url: https://vuetifyjs.com
+    img: vuetify.png
+  - url: https://neds.com.au/
+    img: neds.png
+  - url: https://hackr.io/tutorials/learn-vue-js
+    img: hackr-io.png
+  - url: https://icons8.com/
+    img: icons8.png
+  - url: https://vuejobs.com/?ref=vuejs
+    img: vuejobs.png
+  - url: https://leanpub.com/vuejs2
+    img: tmvuejs2.png
+  - url: https://www.bmqb.com/jobs
+    img: bmqb.png
+  - url: https://codepilot.ai
+    img: codepilot.png
+
+bronze_sponsors:
+  - url: http://tighten.co/
+    img: http://i.imgur.com/T7fQYLT.png
+  - url: https://alligator.io
+    img: https://alligator.io/images/alligator-logo.svg
+  - url: https://www.accelebrate.com/
+    img: https://www.accelebrate.com/assets/images/accelebrate_logo@2x.png
+  - url: https://pullstring.com
+    img: https://i.imgur.com/hQHW6TB.png

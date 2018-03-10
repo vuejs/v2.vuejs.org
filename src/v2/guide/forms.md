@@ -38,7 +38,7 @@ new Vue({
 
 ``` html
 <span>Multiline message is:</span>
-<p style="white-space: pre-line">{{ message }}</p>
+<p style="white-space: pre-line;">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
@@ -46,7 +46,7 @@ new Vue({
 {% raw %}
 <div id="example-textarea" class="demo">
   <span>Multiline message is:</span>
-  <p style="white-space: pre-line">{{ message }}</p>
+  <p style="white-space: pre-line;">{{ message }}</p>
   <br>
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
@@ -59,7 +59,6 @@ new Vue({
 })
 </script>
 {% endraw %}
-
 
 {% raw %}
 <p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
@@ -91,19 +90,21 @@ new Vue({
 Multiple checkboxes, bound to the same Array:
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -132,7 +133,6 @@ new Vue({
 {% endraw %}
 
 ### Radio
-
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -219,7 +219,7 @@ Multiple select (bound to Array):
 ```
 {% raw %}
 <div id="example-6" class="demo">
-  <select v-model="selected" multiple style="width: 50px">
+  <select v-model="selected" multiple style="width: 50px;">
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -295,7 +295,7 @@ For radio, checkbox and select options, the `v-model` binding values are usually
 <!-- `toggle` is either true or false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- `selected` is a string "abc" when the first option is selected -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
@@ -309,17 +309,19 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
 // when checked:
-vm.toggle === vm.a
+vm.toggle === 'yes'
 // when unchecked:
-vm.toggle === vm.b
+vm.toggle === 'no'
 ```
+
+<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
 
 ### Radio
 
@@ -343,8 +345,8 @@ vm.pick === vm.a
 
 ``` js
 // when selected:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modifiers
@@ -378,13 +380,6 @@ If you want user input to be trimmed automatically, you can add the `trim` modif
 
 ## `v-model` with Components
 
-> If you're not yet familiar with Vue's components, just skip this for now.
+> If you're not yet familiar with Vue's components, you can skip this for now.
 
 HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
-
-
-
-
-
-
-

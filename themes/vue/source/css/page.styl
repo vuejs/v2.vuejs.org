@@ -1,12 +1,16 @@
 @import "_common"
+@import "_api"
+@import "_animations"
 @import "_header"
 @import "_demo"
-@import "_sponsor"
+@import "_sponsors-page"
+@import "_sponsors-sidebar"
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
 @import "_team"
-@import "_animations"
+@import "_style-guide"
+@import "_modal"
 
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
@@ -17,7 +21,7 @@
   padding: 2.2em 0
   max-width: 600px
   margin: 0 auto
-  padding-left: 30px
+  padding-left: 50px
   &.api
     > a:first-of-type > h2
       margin-top: 0
@@ -50,8 +54,12 @@
   h1
     margin: 0 0 1em
   h2, h3
+    pointer-events: none
+    a, button
+      pointer-events: auto
+      color: $dark
     &:before
-      content: ''
+      content: ""
       display: block
       margin-top: -1 * $heading-link-padding-top
       height: $heading-link-padding-top
@@ -60,18 +68,19 @@
     margin: $h2-margin-top 0 .8em
     padding-bottom: .7em
     border-bottom: 1px solid $border
-    z-index: -1
   h3
     margin: $h3-margin-top 0 1.2em
+    line-height: 1.2
     position: relative
-    z-index: -1
-    &:after
+    > a:before
       content: "#"
       color: $green
       position: absolute
       left: -0.7em
-      bottom: -2px
+      margin-top: -0.05em
+      padding-right: 0.5em
       font-size: 1.2em
+      line-height: 1
       font-weight: bold
   figure
     margin: 1.2em 0
@@ -151,12 +160,12 @@
     &.tip
       border-left-color: $red
       &:before
-        content: '!'
+        content: "!"
         background-color: $red
     &.success
       border-left-color: $green
       &:before
-        content: '\f00c'
+        content: "\f00c"
         font-family: FontAwesome
         background-color: $green
 
@@ -172,6 +181,7 @@
   font-size: .9em
 
 #main.fix-sidebar
+  position: static
   .sidebar
     position: fixed
 
@@ -183,7 +193,7 @@
   .content.with-sidebar
     margin-left: 290px
   #ad
-    z-index: 7
+    z-index: 1
     position: relative
     padding: 0
     bottom: 0
@@ -210,12 +220,12 @@
   .highlight pre
     padding: 1.2em 1em
   .content
-    padding-left 0
+    padding-left: 0
     &.with-sidebar
       margin: auto
     h2, h3
       &:before
-        content: ''
+        content: ""
         display: block
         margin-top: -1 * $mobile-heading-link-padding-top
         height: $mobile-heading-link-padding-top
@@ -233,3 +243,15 @@
       margin-left: 0
   iframe
     margin: 0 !important
+
+@media print
+  .footer
+    display: none
+  .content
+    padding-left: 0px
+  .content p
+    line-height: 1.35em
+    &.tip
+      background-color: rgb(255,255,255)
+      border: 2px solid #e8e8e8
+      border-left: 4px solid $red

@@ -59,29 +59,6 @@
     margin-bottom: 20px
     display: none
     padding-left: 0
-  .main-sponsor
-    color: $light
-    font-size: .85em
-    .logo
-      color: $light
-      margin: 10px 0
-      // background-color: #f3f3f3
-      padding: 10px 0
-      text-align: center
-      font-weight: bold
-    img, a
-      width: 125px
-      display: inline-block
-  .become-backer
-    border: 1px solid $green
-    border-radius: 2em
-    display: inline-block
-    color: $green
-    font-size: .8em
-    width: 125px
-    padding: 4px 0
-    text-align: center
-    margin-bottom: 20px
   .nav-dropdown
     h4
       font-weight: normal
@@ -112,3 +89,7 @@
     &.open
       -webkit-transform: translate(0, 0)
       transform: translate(0, 0)
+
+@media print
+  .sidebar
+    display: none

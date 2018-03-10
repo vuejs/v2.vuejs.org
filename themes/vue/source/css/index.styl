@@ -1,9 +1,11 @@
 @import "_common"
 @import "_header"
-@import '_sidebar'
+@import "_sidebar"
+@import "_sponsors-index"
+@import "_modal"
 
 $width = 900px
-$space = 50px
+$space = 40px
 
 body
   background-color: darken($light, 10%)
@@ -25,10 +27,10 @@ body
       display: none
 
 #hero
-  padding: $space 40px
+  padding: $space 40px 30px
   background-color: #fff
   .inner
-    max-width: $width
+    max-width: $width * 1.4
     margin: 0 auto
   .left, .right
     display: inline-block
@@ -59,8 +61,8 @@ body
     letter-spacing: .1em
     min-width: 8em
     text-align: center
-    &:first-child
-      margin-right: 1em
+    &:not(:last-child)
+      margin-right: 1%
   .social-buttons
     list-style-type: none
     padding: 0
@@ -68,6 +70,21 @@ body
       display: inline-block
       vertical-align: middle
       margin-right: 15px
+
+#special-sponsor
+  background-color: #fff
+  text-align: center
+  padding-bottom: 30px
+  h3
+    margin 0
+  a
+    color $light
+    margin 8px 0
+  a, span, img
+    display: inline-block
+    vertical-align: middle
+  img
+    margin: 0 15px
 
 #highlights
   background-color: #fff
@@ -91,48 +108,15 @@ body
     p
       color: $light
 
-#sponsors
-  text-align: center
-  padding: 35px 40px 45px
-  background-color: #f6f6f6
-  .inner
-    max-width: 700px
-    margin: 0px auto
-  h3
-    color: #999
-    font-size: .9em
-    margin: 0 0 10px
-  a
-    margin: 20px 15px 0
-    position: relative
-  a, img
-    width: 100px
-    display: inline-block
-    vertical-align: middle
-  img
-    transition: all .3s ease
-    filter: grayscale(100%)
-    opacity: 0.66
-    &:hover
-      filter: none
-      opacity: 1
-  a.vip
-    display: block
-    margin: 30px auto 15px
-    width: 200px
-    img
-      width: 200px
-  .become-sponsor
-    margin-top: 40px
-    font-size: .9em
-    font-weight: 700
-    width: auto
-    background-color: transparent
-
 #footer
   padding: $space 0
   color: #fff
   text-align: center
+  .social-icon
+    margin 0 5px
+    svg
+      width 18px
+      height 18px
   a
     font-weight: 700
     color: #fff
@@ -163,6 +147,11 @@ body
       display: block
     .button
       font-size: .9em
+  #special-sponsor
+    span
+      display: block
+    img
+      width: 125px
   #highlights
     .point
       display: block

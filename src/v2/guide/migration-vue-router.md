@@ -1,10 +1,10 @@
 ---
 title: Migration from Vue Router 0.7.x
 type: guide
-order: 27
+order: 702
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
+> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](https://router.vuejs.org/en/).
 
 ## Router Initialization
 
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You'll just pass a router property to a Vue instance:
+You pass a router property to a Vue instance:
 
 ``` js
 new Vue({
@@ -49,7 +49,7 @@ new Vue({
 
 ### `router.map` <sup>replaced</sup>
 
-Routes are now defined as an array on a [`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+Routes are now defined as an array on a [`routes` option](https://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
 
 ``` js
 router.map({
@@ -128,9 +128,33 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
+### `router.beforeEach` <sup>changed</sup>
+
+`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
+
 ### `subRoutes` <sup>renamed</sup>
 
-[Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+[Renamed to `children`](https://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
 
 {% raw %}
 <div class="upgrade-path">
@@ -141,7 +165,7 @@ router.match = createMatcher(
 
 ### `router.redirect` <sup>replaced</sup>
 
-This is now an [option on route definitions](http://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+This is now an [option on route definitions](https://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
 
 ``` js
 router.redirect({
@@ -167,7 +191,7 @@ to a definition like below in your `routes` configuration:
 
 ### `router.alias` <sup>replaced</sup>
 
-This is now an [option on the definition for the route](http://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+This is now an [option on the definition for the route](https://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
 
 ``` js
 router.alias({
@@ -272,7 +296,7 @@ The syntax has changed slightly, so `/category/*tags` for example, should be upd
 
 ### `v-link` <sup>replaced</sup>
 
-The `v-link` directive has been replaced with a new [`<router-link>` component](http://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
+The `v-link` directive has been replaced with a new [`<router-link>` component](https://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
 
 ``` html
 <a v-link="'/about'">About</a>
@@ -295,7 +319,7 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 
 ### `v-link-active` <sup>replaced</sup>
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](https://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
 
 ``` html
 <li v-link-active>
@@ -324,7 +348,7 @@ The `<a>` will be the actual link (and will get the correct href), but the activ
 
 ### `router.go` <sup>changed</sup>
 
-For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
+For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
 
 {% raw %}
 <div class="upgrade-path">
@@ -348,7 +372,7 @@ Hashbangs are no longer required for Google to crawl a URL, so they are no longe
 
 ### `history: true` <sup>replaced</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
 
 ``` js
 var router = new VueRouter({
@@ -373,7 +397,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>replaced</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
 
 ``` js
 var router = new VueRouter({
@@ -400,7 +424,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>replaced</sup>
 
-This has been replaced with a [`scrollBehavior` option](http://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
+This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to replicate the old behavior of:
 
 ``` js
 saveScrollPosition: true
@@ -458,7 +482,7 @@ Removed due to hooks simplification. If you really must suppress transition erro
 
 ### `activate` <sup>replaced</sup>
 
-Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
 
 {% raw %}
 <div class="upgrade-path">
@@ -469,7 +493,7 @@ Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.h
 
 ### `canActivate` <sup>replaced</sup>
 
-Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
+Use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
 
 {% raw %}
 <div class="upgrade-path">
@@ -491,7 +515,7 @@ Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](..
 
 ### `canDeactivate` <sup>replaced</sup>
 
-Use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
 
 {% raw %}
 <div class="upgrade-path">
@@ -513,7 +537,7 @@ There's no longer a use case for this in the new Vue Router.
 
 ### `data` <sup>replaced</sup>
 
-The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
+The `$route` property is now reactive, so you can use a watcher to react to route changes, like this:
 
 ``` js
 watch: {

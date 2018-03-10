@@ -16,11 +16,30 @@
         The Progressive<br>JavaScript Framework
       </h1>
       <p>
-        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
-        <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
+        <a id="modal-player" class="button has-icon" href="javascript:;">
+          <%- partial('icons/play') %>
+          WHY VUE.JS?</a>
+        <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank">
+          <%- partial('icons/github-dark') %>
+          GITHUB</a>
       </p>
     </div>
   </div>
+</div>
+
+<div id="special-sponsor">
+  <h3>Special Sponsors</h3>
+  <br>
+  <a href="https://stdlib.com/" target="_blank">
+    <img src="/images/stdlib.png" style="width:140px">
+    <span>Function as a Service Platform and Library</span>
+  </a>
+  <br>
+  <a href="https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank">
+    <img src="/images/bit.png" style="width:60px;height:60px">
+    <span>The fastest way to share code</span>
+  </a>
 </div>
 
 <div id="highlights">
@@ -32,13 +51,13 @@
 
     <div class="point">
       <h2>Versatile</h2>
-      <p>Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
+      <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
     </div>
 
     <div class="point">
       <h2>Performant</h2>
       <p>
-        20kb min+gzip Runtime<br>
+        20KB min+gzip Runtime<br>
         Blazing Fast Virtual DOM<br>
         Minimal Optimization Efforts
       </p>
@@ -48,30 +67,60 @@
 
 <div id="sponsors">
   <div class="inner">
-    <h3>PROUDLY SPONSORED BY</h3>
     <%- partial('partials/sponsors') %>
-    <br>
-    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Backer</a>
   </div>
 </div>
 
 <div id="footer">
-  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <img src="/images/shuttleworth.png" style="width:200px">
-  </a>
+  <p>
+    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
+      <%- partial('icons/github') %>
+    </a>
+    <a class="social-icon" href="https://twitter.com/vuejs" target="_blank">
+      <%- partial('icons/twitter') %>
+    </a>
+    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank">
+      <%- partial('icons/medium') %>
+    </a>
+  </p>
   <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
+<div id="video-modal" class="modal">
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+</div>
+
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
 </script>

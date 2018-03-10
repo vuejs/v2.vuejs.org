@@ -1,7 +1,7 @@
 ---
 title: Migration from Vue 1.x
 type: guide
-order: 26
+order: 701
 ---
 
 ## FAQ
@@ -18,7 +18,7 @@ I'm glad you asked! The answer is no. About 90% of the API is the same and the c
 
 3. If you have any tests, run them and see what still fails. If you don't have tests, just open the app in your browser and keep an eye out for warnings or errors as you navigate around.
 
-4. By now, your app should be fully migrated. If you're still hungry for more though, you can read the rest of this page - or just dive in to the new and improved guide from [the beginning](index.html). Many parts will be skimmable, since you're already familiar with the core concepts.
+4. By now, your app should be fully migrated. If you're still hungry for more though, you can read the rest of this page - or dive in to the new and improved guide from [the beginning](index.html). Many parts will be skimmable, since you're already familiar with the core concepts.
 
 > How long will it take to migrate a Vue 1.x app to 2.0?
 
@@ -30,9 +30,9 @@ It depends on a few factors:
 
 - Which obsolete features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
 
-> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue-Router?
+> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue Router?
 
-Only Vue-Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue-Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
+Only Vue Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
 
 As for Vuex, even version 0.8 is compatible with Vue 2, so you're not forced to upgrade. The only reason you may want to upgrade immediately is to take advantage of the new features in Vuex 2, such as modules and reduced boilerplate.
 
@@ -47,7 +47,7 @@ Every component must have exactly one root element. Fragment instances are no lo
 <p>bar</p>
 ```
 
-It's recommended to simply wrap the entire contents in a new element, like this:
+It's recommended to wrap the entire contents in a new element, like this:
 
 ``` html
 <div>
@@ -467,7 +467,7 @@ Using the `debounce` attribute, there'd be no way to detect the "Typing" state, 
 <!--
 By using the debounce function from lodash or another dedicated
 utility library, we know the specific debounce implementation we
-use will be best-in-class - and we can use it ANYWHERE. Not just
+use will be best-in-class - and we can use it ANYWHERE. Not only
 in our template.
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
@@ -598,7 +598,7 @@ strings.map(function (str) {
 })
 ```
 
-As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's just a local variable in the function scope.
+As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's only a local variable in the function scope.
 
 Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
 
@@ -705,7 +705,7 @@ Fortunately, since the new directives are much simpler, you can master them more
 
 ### Directive `.literal` Modifier <sup>removed</sup>
 
-The `.literal` modifier has been removed, as the same can be easily achieved by just providing a string literal as the value.
+The `.literal` modifier has been removed, as the same can be easily achieved by providing a string literal as the value.
 
 For example, you can update:
 
@@ -713,7 +713,7 @@ For example, you can update:
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-to just:
+to:
 
 ``` html
 <p v-my-directive="'foo bar baz'"></p>
@@ -741,7 +741,7 @@ Vue's transition system has changed quite drastically and now uses `<transition>
 
 ### `Vue.transition` for Reusable Transitions <sup>replaced</sup>
 
-With the new transition system, you can now just [use components for reusable transitions](transitions.html#Reusable-Transitions).
+With the new transition system, you can now [use components for reusable transitions](transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
@@ -786,7 +786,7 @@ Vue.config.keyCodes.f1 = 112
 
 `$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It simply doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
 One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
@@ -796,9 +796,9 @@ For example, let's say we have a todo app structured like this:
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 We could manage communication between components with this single event hub:
@@ -1068,7 +1068,7 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-For a very naive implementation, you could just do something like this:
+For a very naive implementation, you could do something like this:
 
 ``` js
 '$' + price.toFixed(2)
@@ -1170,7 +1170,7 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will simply be ignored.</p>
+<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will be ignored.</p>
 
 When used together with `<transition>`, make sure to nest it inside:
 
@@ -1265,7 +1265,7 @@ If you were previously relying on `vm.$watch` to do something with the DOM after
 
 ### `vm.$set` <sup>changed</sup>
 
-`vm.$set` is now just an alias for [`Vue.set`](../api/#Vue-set).
+`vm.$set` is now an alias for [`Vue.set`](../api/#Vue-set).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1276,7 +1276,7 @@ If you were previously relying on `vm.$watch` to do something with the DOM after
 
 ### `vm.$delete` <sup>changed</sup>
 
-`vm.$delete` is now just an alias for [`Vue.delete`](../api/#Vue-delete).
+`vm.$delete` is now an alias for [`Vue.delete`](../api/#Vue-delete).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1309,7 +1309,7 @@ methods: {
 }
 ```
 
-Or better yet, just pass removal methods an index:
+Or better yet, pass removal methods an index:
 
 ``` js
 methods: {
@@ -1328,7 +1328,7 @@ methods: {
 
 ### `Vue.set` and `Vue.delete` on Vue instances <sup>removed</sup>
 
-`Vue.set` and `Vue.delete` can no longer work on Vue instances. It is now mandatory to properly declare all top-level reactive properties in the data option. If you'd like to delete properties on a Vue instance or its `$data`, just set it to null.
+`Vue.set` and `Vue.delete` can no longer work on Vue instances. It is now mandatory to properly declare all top-level reactive properties in the data option. If you'd like to delete properties on a Vue instance or its `$data`, set it to null.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1350,7 +1350,7 @@ It is now prohibited to replace a component instance's root $data. This prevents
 
 ### `vm.$get` <sup>removed</sup>
 
-Just retrieve reactive data directly.
+Instead, retrieve reactive data directly.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1431,7 +1431,7 @@ vm.$el.remove()
 
 ### `vm.$eval` <sup>removed</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
+No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1442,7 +1442,7 @@ No real use. If you do happen to rely on this feature somehow and aren't sure ho
 
 ### `vm.$interpolate` <sup>removed</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
+No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1569,9 +1569,9 @@ Use components instead.
 
 ### `Vue.partial` <sup>removed</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
+Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
 
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.
+If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, like partials. This makes rendering extremely fast.
 
 A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
 

@@ -1,43 +1,44 @@
-<a href="https://stdlib.com/" target="_blank" style="width: 180px">
-  <img style="width: 180px" src="<%- url_for("/images/stdlib.png") %>">
+<h3>Patreon Sponsors</h3>
+
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+<a href="<%- sponsor.url %>" target="_blank" style="width: 160px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;">
 </a>
+<%_ } _%>
 <br>
-<a href="https://deepstreamhub.com" target="_blank" style="width:130px;top:1px">
-  <img src="<%- url_for("/images/deepstream.png") %>" style="width:130px">
+<br>
+<%_ for (const sponsor of theme.gold_sponsors) {_%>
+<a href="<%- sponsor.url %>" target="_blank" style="width: 120px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 120px;">
 </a>
-<a href="https://jsfiddle.net/" target="_blank">
-  <img src="<%- url_for("/images/jsfiddle.png") %>">
-</a>
-<a href="https://laravel.com/" target="_blank">
-  <img src="<%- url_for("/images/laravel.png") %>">
-</a>
-<a href="https://chaitin.cn" target="_blank" style="top:-1px">
-  <img src="<%- url_for("/images/chaitin.png") %>">
-</a>
-<a href="https://htmlburger.com" target="_blank">
-  <img src="<%- url_for("/images/htmlburger.png") %>">
-</a>
-<a href="https://starter.someline.com/" target="_blank" style="top:-2px">
-  <img src="<%- url_for("/images/someline.png") %>">
-</a>
-<a href="http://monterail.com/" target="_blank">
-  <img src="<%- url_for("/images/monterail.png") %>">
-</a>
-<a href="https://www.2mhost.com/" target="_blank" style="width:90px">
-  <img src="<%- url_for("/images/2mhost.png") %>" style="width:90px">
-</a>
-<a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="width:80px;top:4px">
-  <img src="<%- url_for("/images/vuejobs.svg") %>" style="width:80px">
-</a>
-<a href="https://leanpub.com/vuejs2" target="_blank">
-  <img src="<%- url_for("/images/tmvuejs2.png") %>">
-</a>
-<a href="https://famebroker.com" target="_blank" style="width:115px">
-  <img src="<%- url_for("/images/famebroker.png") %>" style="width:115px">
-</a>
-<a href="https://component.io" target="_blank" style="width:120px;top:1px">
-  <img src="<%- url_for("/images/component_io.png") %>" style="width:120px">
-</a>
-<a href="https://www.v2ex.com/t/379389" target="_blank" style="width:100px;">
-  <img src="<%- url_for("/images/v2exer.png") %>" style="width:100px">
-</a>
+<%_ } _%>
+<br>
+
+<a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Sponsor!</a>
+
+<div class="open-collective-sponsors">
+  <h3>OpenCollective Sponsors</h3>
+  <h4>Platinum</h4>
+  <%_ for (let i = 0; i < 3; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+  <%_ } _%>
+  <h4>Gold</h4>
+  <%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
+  </a>
+  <%_ } _%>
+</div>
+
+<script>
+window.addEventListener('load', function () {
+  [].forEach.call(document.querySelectorAll('.open-collective-sponsors img'), function (img) {
+    if (img.width === 1) {
+      img.width = 0
+      img.parentElement.style.margin = '0 -1px 0 0'
+    }
+  })
+})
+</script>

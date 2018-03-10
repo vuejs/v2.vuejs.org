@@ -5,7 +5,7 @@ $header-height = 40px
   height: $header-height
   padding: $heading-padding-vertical 60px
   position: relative
-  z-index: 2
+  z-index: 100
 
 body.docs
   #header
@@ -31,11 +31,29 @@ body.docs
     position: relative
     margin: 0 .6em
 
+  .nav-dropdown
+    .nav-link
+      &:hover, &.current
+        border-bottom: none
+      &.current
+        &::after
+          content: ""
+          width: 0
+          height: 0
+          border-left: 5px solid $green
+          border-top: 3px solid transparent
+          border-bottom: 3px solid transparent
+          position: absolute
+          top: 50%
+          margin-top: -4px
+          left: 8px
+
 .nav-link
   padding-bottom: 3px
+  white-space: nowrap
   &:hover, &.current
     border-bottom: 3px solid $green
-  &.shop
+  &.team
     margin-left: 10px
 
 .new-label
@@ -109,3 +127,7 @@ body.docs
     left: 50%
     margin-left: -15px
     background-size: 30px
+
+@media print
+  #header
+    display: none

@@ -1,7 +1,7 @@
 ---
 title: Adding Instance Properties
 type: cookbook
-order: 1.1
+order: 2
 ---
 
 ## Simple Example
@@ -22,7 +22,7 @@ new Vue({
 })
 ```
 
-Then `"My App"` will be logged to the console. It's that simple!
+Then `"My App"` will be logged to the console!
 
 ## The Importance of Scoping Instance Properties
 
@@ -30,11 +30,11 @@ You may be wondering:
 
 > "Why does `appName` start with `$`? Is that important? What does it do?
 
-No magic is happening here. `$` is simply a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
+No magic is happening here. `$` is a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
 
 > "Conflicts? What do you mean?"
 
-Another great question! If you just set:
+Another great question! If you set:
 
 ``` js
 Vue.prototype.appName = 'My App'
@@ -46,7 +46,7 @@ Then what would you expect to be logged below?
 new Vue({
   data: {
     // Uh oh - appName is *also* the name of the
-    // instance property we just defined!
+    // instance property we defined!
     appName: 'The name of some other app'
   },
   beforeCreate: function () {
@@ -143,7 +143,7 @@ As long as you're vigilant in scoping prototype properties, using this pattern i
 
 However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
 
-__The convenience comes at the cost of explicitness.__ When just looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
+__The convenience comes at the cost of explicitness.__ When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
 
 So what are the alternatives?
 
@@ -171,7 +171,7 @@ var App = Object.freeze({
 
 <p class="tip">If you raised an eyebrow at `Object.freeze`, what it does is prevent the object from being changed in the future. This essentially makes all its properties constants, protecting you from future state bugs.</p>
 
-Now the source of these shared properties is much more obvious: there's an `App` object defined somewhere in the app. To find it, developers need only run a project-wide search.
+Now the source of these shared properties is more obvious: there's an `App` object defined somewhere in the app. To find it, developers can run a project-wide search.
 
 Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
 
@@ -188,6 +188,6 @@ new Vue({
 
 ### When Using a Module System
 
-When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ each one came from.
+When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
 
 While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.

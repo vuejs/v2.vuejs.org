@@ -1,5 +1,6 @@
 @import "_settings"
 @import "_syntax"
+@import "_ad"
 
 body
   font-family: $body-font
@@ -56,17 +57,29 @@ a.button
   transition: all .15s ease
   box-sizing: border-box
   border: 1px solid lighten($green, 8%)
+  &.has-icon
+    position: relative
+    text-indent: 1.4em;
+    > svg
+      position: absolute
+      left: 0.4em
+      top: 0.4em
+      width: 2em
   &.white
     background-color: #fff
     color: $green
+  &.gray
+    background-color: #f6f6f6
+    color: $light
+    border-color: #f6f6f6
 
 .highlight
   overflow-x: auto
-  padding: 0
   background-color: $codebg
-  padding: .8em .8em .4em
+  padding: .4em 0 0
   line-height: 1.1em
   border-radius: $radius
+  position: relative
   table, tr, td
     width: 100%
     border-collapse: collapse
@@ -85,7 +98,7 @@ a.button
   &.html, &.js, &.bash, &.css
     .code:before
       position: absolute
-      margin-top: -1em
+      top: 0
       right: 0
       color: #ccc
       text-align: right
@@ -95,13 +108,13 @@ a.button
       height: 15px
       font-weight: 600
   &.html .code:before
-    content: 'HTML'
+    content: "HTML"
   &.js .code:before
-    content: 'JS'
+    content: "JS"
   &.bash .code:before
-    content: 'Shell'
+    content: "Shell"
   &.css .code:before
-    content: 'CSS'
+    content: "CSS"
 
 #main
   position: relative
@@ -109,47 +122,17 @@ a.button
   padding: 0 60px 30px
   overflow-x: hidden
 
-#ad
-  width: 125px
-  // text-align: center
-  position: fixed
-  z-index: 99
-  bottom: 10px
-  right: 10px
-  padding: 10px
-  background-color: #fff
-  border-radius: 3px
-  font-size: 13px
-  a
-    display: inline-block
-    color: $light
-    font-weight: normal
-  span
-    color: $light
-    display: inline-block
-    margin-bottom: 5px
-  img
-    width: 125px
-  .carbon-img, .carbon-text
-    display: block
-    margin-bottom: 6px
-    font-weight: normal
-    color: $medium
-  .carbon-poweredby
-    color: #aaa
-    font-weight: normal
-
 #nav
   .nav-link
     cursor: pointer
   .nav-dropdown-container
     .nav-link
-      &:hover
+      &:hover:not(.current)
         border-bottom: none
     &:hover
       .nav-dropdown
         display: block
-    &.language
+    &.language, &.ecosystem
       margin-left: 20px
     .arrow
       pointer-events: none
@@ -203,3 +186,34 @@ a.button
     border-left: 4px solid transparent
     border-right: 4px solid transparent
     border-top: 5px solid #ccc
+
+sup.beta.beta
+  font-size: .6em
+  margin-left: .7em
+  text-transform: uppercase
+  opacity: .6
+
+@media print
+  body
+    color: rgb(0,0,0)
+  .highlight
+    padding: 0
+    page-break-inside: avoid
+    .code
+      pre
+        color: rgb(0,0,0)
+        background-color: rgb(255,255,255)
+        border-style: solid
+        border-width: 2px 2px 2px 2px
+        border-color: #e8e8e8
+        page-break-inside: avoid
+  h1,h2,h3,h4,h5
+    color: rgb(0,0,0)
+    page-break-after: avoid
+    page-break-before: avoid
+  img
+    page-break-inside: avoid
+  h2+p
+    page-break-before: avoid
+  a:link:after, a:visited:after { content:" [" attr(href) "] "; }
+  

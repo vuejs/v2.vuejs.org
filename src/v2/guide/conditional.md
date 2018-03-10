@@ -21,7 +21,7 @@ In Vue, we use the `v-if` directive to achieve the same:
 <h1 v-if="ok">Yes</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+It is also possible to add an "else block" with `v-else`:
 
 ``` html
 <h1 v-if="ok">Yes</h1>
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Just add a `key` attribute with unique values:
+This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Add a `key` attribute with unique values:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -180,9 +180,9 @@ Another option for conditionally displaying an element is the `v-show` directive
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
+The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">Note that `v-show` doesn't support the `<template>` element, nor does it work with `v-else`.</p>
 
 ## `v-if` vs `v-show`
 
@@ -190,7 +190,7 @@ The difference is that an element with `v-show` will always be rendered and rema
 
 `v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with just simple CSS-based toggling.
+In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
 
 Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
 

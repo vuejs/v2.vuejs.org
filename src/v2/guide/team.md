@@ -1,7 +1,7 @@
 ---
 title: Meet the Team
 type: guide
-order: 31
+order: 803
 ---
 
 {% raw %}
@@ -23,7 +23,7 @@ order: 31
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -33,7 +33,7 @@ order: 31
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -90,7 +90,7 @@ order: 31
             </ul>
           </dd>
         </template>
-        <footer v-if="profile.github || profile.twitter" class="social">
+        <footer v-if="hasSocialLinks" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
             <span class="sr-only">Github</span>
@@ -98,6 +98,10 @@ order: 31
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
             <span class="sr-only">Twitter</span>
+          </a>
+          <a class=codepen v-if="profile.codepen" :href="'https://codepen.io/' + profile.codepen">
+            <i class="fa fa-codepen"></i>
+            <span class="sr-only">CodePen</span>
           </a>
         </footer>
       </dl>
@@ -194,6 +198,7 @@ order: 31
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
+    'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
@@ -210,6 +215,7 @@ order: 31
     'Lyon, France': [45.764043, 4.835659],
     'Mannheim, Germany': [49.487459, 8.466039],
     'Moscow, Russia': [55.755826, 37.617300],
+    'Munich, Germany': [48.137154, 11.576124],
     'Orlando, FL, USA': [28.538335, -81.379236],
     'Paris, France': [48.856614, 2.352222],
     'Seoul, South Korea': [37.566535, 126.977969],
@@ -359,7 +365,7 @@ order: 31
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-i18n-loader', 'vue-validator'
+        'vue-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
         'https://cuusoo.com', 'http://frapwings.jp'
@@ -421,12 +427,15 @@ order: 31
     {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
-      city: 'London, UK',
+      city: 'Munich, Germany',
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org', {
+          name: 'vi.vuejs.org',
+          url: 'https://github.com/vuejs-vn/vuejs.org'
+        }
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
@@ -478,7 +487,13 @@ order: 31
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
+      work: {
+        role: 'Frontend Developer',
+        org: 'Livestorm',
+        orgUrl: 'https://livestorm.co/'
+      },
       reposOfficial: [
+        'vue-devtools',
         'vue-curated'
       ],
       reposPersonal: [
@@ -553,6 +568,68 @@ order: 31
       links: [
         'https://atomaka.com/'
       ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Senior Cloud Developer Advocate',
+        org: 'Microsoft',
+        orgUrl: 'https://www.microsoft.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
+      ]
+    },
+    {
+      name: 'Damian Dulisz',
+      title: 'Dark Mage of Plugins, News, and Confs',
+      city: 'Wrocław, Poland',
+      languages: ['pl', 'en'],
+      github: 'shentao',
+      twitter: 'DamianDulisz',
+      work: {
+        role: 'Consultant'
+      },
+      reposPersonal: [
+        'shentao/vue-multiselect'
+      ]
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijing, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
+      ]
+    },
+    {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      city: 'Thessaloniki, Greece',
+      languages: ['el', 'en'],
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
     }
   ]))
 
@@ -600,38 +677,6 @@ order: 31
       ]
     },
     {
-      name: 'Damian Dulisz',
-      title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
-      languages: ['pl', 'en'],
-      github: 'shentao',
-      twitter: 'DamianDulisz',
-      work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
-      },
-      reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
-      ]
-    }, {
-      name: 'Alex Kyriakidis',
-      title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
-      languages: ['el', 'en'],
-      github: 'hootlex',
-      twitter: 'hootlex',
-      work: {
-        role: 'Consultant / Author'
-      },
-      reposPersonal: [
-        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
-      ],
-      links: [
-        'https://vuejsfeed.com/', 'https://vueschool.io/'
-      ]
-    },
-    {
       name: 'Pooya Parsa',
       title: 'Nuxtification Modularizer',
       city: 'Tehran, Iran',
@@ -663,7 +708,7 @@ order: 31
     },
     {
       name: 'Bruno Lesieur',
-      title: 'French Community Directeur',
+      title: 'French Community Director',
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',
@@ -674,7 +719,7 @@ order: 31
         orgUrl: 'https://www.orchard-id.com/'
       },
       reposPersonal: [
-        'vuejs-fr/vuejs.org', 'Haeresis/node-atlas-hello-vue'
+        'vuejs-fr/*', 'Haeresis/node-atlas-hello-vue'
       ],
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
@@ -798,20 +843,6 @@ order: 31
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, USA',
-      languages: ['en'],
-      work: {
-        role: 'Consultant'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposPersonal: [
-        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
-      ]
     }
   ]
 
@@ -889,6 +920,9 @@ order: 31
           }).join('</li><li>') +
           '</li></ul>'
         )
+      },
+      hasSocialLinks: function () {
+        return this.profile.github || this.profile.twitter || this.profile.codepen
       }
     },
     methods: {
@@ -902,6 +936,9 @@ order: 31
        * Generate a GitHub URL using a repo and a handle.
        */
       githubUrl: function (handle, repo) {
+        if (repo && repo.url) {
+          return repo.url
+        }
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
