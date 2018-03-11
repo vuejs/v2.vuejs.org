@@ -15,12 +15,12 @@ There are a number of ways we can request information from the API, but it's nic
 ```js
 new Vue({
   el: '#app',
-  data() {
+  data () {
     return {
       info: null
     }
   },
-  mounted() {
+  mounted () {
     axios
       .get('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(response => (this.info = response))
@@ -72,7 +72,7 @@ This is a lot easier for us to display, so we can now update our HTML to display
 
 ```js
 filters: {
-  currencydecimal(value) {
+  currencydecimal (value) {
     return value.toFixed(2)
   }
 },
@@ -103,7 +103,7 @@ This will let us know if something failed during the API request, but what if th
 ```js
 new Vue({
   el: '#app',
-  data() {
+  data () {
     return {
       info: null,
       loading: true,
@@ -111,11 +111,11 @@ new Vue({
     }
   },
   filters: {
-    currencydecimal(value) {
+    currencydecimal (value) {
       return value.toFixed(2)
     }
   },
-  mounted() {
+  mounted () {
     axios
       .get('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(response => {
