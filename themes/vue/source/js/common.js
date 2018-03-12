@@ -262,7 +262,17 @@
       }, true)
 
       // make links clickable
-      allHeaders.forEach(makeHeaderClickable)
+      allHeaders
+        .filter(function(el) {
+          if (!el.querySelector('a')) {
+            return false
+          }
+          var demos = [].slice.call(document.querySelectorAll('demo'))
+          return !demos.some(function(demoEl) {
+            return demoEl.contains(el)
+          })
+        })
+        .forEach(makeHeaderClickable)
 
       smoothScroll.init({
         speed: 400,

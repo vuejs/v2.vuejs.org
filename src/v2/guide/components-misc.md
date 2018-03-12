@@ -1,7 +1,7 @@
 ---
-title: Misc
+title: Miscellaneous (WILL RENAME OR REFACTOR AWAY)
 type: guide
-order: 16
+order: 105
 ---
 
 ## Authoring Reusable Components

@@ -1,7 +1,7 @@
 ---
 title: Custom Events
 type: guide
-order: 13
+order: 103
 ---
 
 We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.

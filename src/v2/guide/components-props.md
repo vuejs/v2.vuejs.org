@@ -1,7 +1,7 @@
 ---
 title: Props
 type: guide
-order: 12
+order: 102
 ---
 
 ## Passing Data with Props

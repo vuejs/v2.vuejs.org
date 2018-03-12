@@ -1,7 +1,7 @@
 ---
-title: Dynamic and Async Components
+title: Dynamic & Async Components
 type: guide
-order: 15
+order: 104
 ---
 
 ## Dynamic Components
