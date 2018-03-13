@@ -1900,6 +1900,12 @@ type: api
 
   <!-- the click event will be triggered at most once -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- full list of possible events: https://developer.mozilla.org/en-US/docs/Web/Events -->
+  <select @change="onChange">
+    <option>1</option>
+    <option>2</option>
+  </select>
   ```
 
   Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
