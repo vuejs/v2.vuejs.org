@@ -19,6 +19,12 @@ Eğer siz çeviri topluluğunun üyesi iseniz ve Github yerine Netlify yoluyla s
 
 Bu dokümanlaştırma projesi şu anda farklı github depolarında orjinalinden kopyalanmış olarak sürdürülmektedir.
 
+### Türkçe
+
+Türkçe çeviri [/med177/vuejs.org](https://github.com/med177/vuejs.org) tarafından devam etmekte.
+
+* Çeviri Github Deposu — [/med177/vuejs.org](https://github.com/med177/vuejs.org)
+
 ### Fransızca
 
 Fransızca çeviri Vuejs-FR tarafından devam etmekte.
@@ -40,7 +46,7 @@ Japonca çeviri [Vue.js japan user group](https://github.com/vuejs-jp) tarafınd
 
 Korece çevirisi [Vue.js Korean User group](https://github.com/vuejs-kr) tarafından devam etmekte.
 
-* Çeviri Deposu - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Çeviri Github Deposu - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Çeviriyi başlatan - [ChangJoo Park](https://github.com/ChangJoo-Park)
 
 ### Çince (Mandarin)
