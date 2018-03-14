@@ -1,12 +1,12 @@
 # vuejs.org
- 
+
 Bu site [hexo](http://hexo.io/) ile oluşturulmuştur. Site içeriği Markdown formatında yazılmıştır ve `src` içinde yer almaktadır. Her zaman katkıda bulunabilirsiniz, hoşgeldiniz!
 
 ## Geliştirme
 
 ``` bash
-$ npm install
-$ npm start # dev server at http://localhost:4000
+npm install
+npm start # dev server at http://localhost:4000
 ```
 
 ## Dağıtım
@@ -79,7 +79,7 @@ Farsça çevirisi VueJS-fa tarafından devam etmektedir.
 * Çeviri GitHub Deposu - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
 * Ana Çevirmen - [Pooya Parsa](https://github.com/pi0)
 
-### Çeviriye yardım etmek ister misiniz?
+### Çeviriye yardım etmek ister misiniz
 
 Eğer kendinizi çeviri için hazır hissediyorsanız, bu github deposunu (vuejs/vuejs.org) kopyalayın(fork) ve diğerlerine çeviri yaptığınız bilgisini "work-in-progress" olarak iletin ve başlayın.
 
