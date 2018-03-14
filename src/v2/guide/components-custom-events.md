@@ -4,175 +4,166 @@ type: guide
 order: 103
 ---
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
+> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-## Using `v-on` with Custom Events
+## Emitting and Listening to Custom Events
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
-
-- Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName, optionalPayload)`
-
-<p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
-
-In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
-
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
-
-Here's an example:
-
-``` html
-<div id="counter-event-example">
-  <p>{{ total }}</p>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
-</div>
-```
-
-``` js
-Vue.component('button-counter', {
-  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
-  data: function () {
-    return {
-      counter: 0
-    }
-  },
-  methods: {
-    incrementCounter: function () {
-      this.counter += 1
-      this.$emit('increment')
-    }
-  },
-})
-
-new Vue({
-  el: '#counter-event-example',
-  data: {
-    total: 0
-  },
-  methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
-  }
-})
-```
+Before we take a deeper dive, let's briefly review by upgrading our `button-counter` component from earlier:
 
 {% raw %}
-<div id="counter-event-example" class="demo">
-  <p>{{ total }}</p>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
+<div id="counter-remember-demo" class="demo">
+  <simple-button-counter></simple-button-counter>
 </div>
 <script>
-Vue.component('button-counter', {
-  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+Vue.component('simple-button-counter', {
   data: function () {
     return {
-      counter: 0
+      count: 0
     }
   },
-  methods: {
-    incrementCounter: function () {
-      this.counter += 1
-      this.$emit('increment')
-    }
-  }
+  template: '<button v-on:click="count += 1">{{ count }}</button>',
 })
 new Vue({
-  el: '#counter-event-example',
+  el: '#counter-remember-demo',
   data: {
     total: 0
-  },
-  methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
   }
 })
 </script>
 {% endraw %}
 
-In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+Right now, it just adds 1 to an internal `count` data property every time we click on it:
 
-
-Here's an example on how to use payload data:
-
-``` html
-<div id="message-event-example" class="demo">
-  <p v-for="msg in messages">{{ msg }}</p>
-  <button-message v-on:message="handleMessage"></button-message>
-</div>
-```
-
-``` js
-Vue.component('button-message', {
-  template: `<div>
-    <input type="text" v-model="message" />
-    <button v-on:click="handleSendMessage">Send</button>
-  </div>`,
+```js
+Vue.component('button-counter', {
   data: function () {
     return {
-      message: 'test message'
+      count: 0
     }
   },
-  methods: {
-    handleSendMessage: function () {
-      this.$emit('message', { message: this.message })
-    }
-  }
-})
-
-new Vue({
-  el: '#message-event-example',
-  data: {
-    messages: []
-  },
-  methods: {
-    handleMessage: function (payload) {
-      this.messages.push(payload.message)
-    }
-  }
+  template: '<button v-on:click="count += 1">{{ count }}</button>',
 })
 ```
+
+But what if, when we have several buttons, we want to keep track of the _total_ number of button clicks, like this:
 
 {% raw %}
-<div id="message-event-example" class="demo">
-  <p v-for="msg in messages">{{ msg }}</p>
-  <button-message v-on:message="handleMessage"></button-message>
+<div id="counter-event-demo" class="demo">
+  <p>You've clicked buttons {{ total }} times.</p>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
 </div>
 <script>
-Vue.component('button-message', {
-  template: `<div>
-    <input type="text" v-model="message" />
-    <button v-on:click="handleSendMessage">Send</button>
-  </div>`,
+Vue.component('button-counter', {
   data: function () {
     return {
-      message: 'test message'
+      count: 0
     }
   },
   methods: {
-    handleSendMessage: function () {
-      this.$emit('message', { message: this.message })
+    addOne: function () {
+      this.count += 1
+      this.$emit('add-one')
     }
-  }
+  },
+  template: '<button v-on:click="addOne">{{ count }}</button>',
 })
 new Vue({
-  el: '#message-event-example',
+  el: '#counter-event-demo',
   data: {
-    messages: []
-  },
-  methods: {
-    handleMessage: function (payload) {
-      this.messages.push(payload.message)
-    }
+    total: 0
   }
 })
 </script>
 {% endraw %}
 
-In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
+To make that possible, we'd have to emit an event every time we add 1 to the `button-counter`'s internal `count` property:
+
+```js
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    addOne: function () {
+      this.count += 1
+      // Let the parent know we added one
+      this.$emit('add-one')
+    }
+  },
+  template: '<button v-on:click="addOne">{{ count }}</button>',
+})
+```
+
+Then use a `total` data property in the parent to keep track of the total number of times the user has clicked a button:
+
+``` js
+new Vue({
+  el: '#counter-event-demo',
+  data: {
+    total: 0
+  }
+})
+```
+
+```html
+<div id="counter-event-demo" class="demo">
+  <p>You've clicked buttons {{ total }} times.</p>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+</div>
+```
+
+```js
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: Math.floor(Math.random() * 10) + 1
+    }
+  },
+  methods: {
+    addOne: function () {
+      this.count += 1
+      // Let the parent know we added one
+      this.$emit('add-one')
+    }
+  },
+  template: '<button v-on:click="addOne">{{ count }}</button>',
+})
+```
+
+In this example, it's important to note that the `button-counter` component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+
+If you'd like to see (and experiment with) an evolved example, check out this game called Cupcake Clicker below. It's not very original, but may help you gain a better understanding of how props and events can work together.
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/wbuov3d0/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+## Programmatically Listening with `$on`
+
+In a template, we'll always use `v-on`
+
+```html
+<div id="counter-event-demo" class="demo">
+  <p>You've clicked buttons {{ total }} times.</p>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+  <button-counter v-on:add-one="total += 1"></button-counter>
+</div>
+```
+
+```js
+<div id="counter-event-demo" class="demo">
+  <p>You've clicked buttons {{ total }} times.</p>
+  <button-counter
+    v-for="1 in 10"
+    ref="buttons"
+  ></button-counter>
+</div>
+```
 
 ## Binding Native Events to Components
 
@@ -217,126 +208,6 @@ The `.sync` modifier can also be used with `v-bind` when using an object to set 
 ```
 
 This has the effect of adding `v-on` update listeners for both `foo` and `bar`.
-
-## Form Input Components using Custom Events
-
-Custom events can also be used to create custom inputs that work with `v-model`. Remember:
-
-``` html
-<input v-model="something">
-```
-
-is syntactic sugar for:
-
-``` html
-<input
-  v-bind:value="something"
-  v-on:input="something = $event.target.value">
-```
-
-When used with a component, it instead simplifies to:
-
-``` html
-<custom-input
-  :value="something"
-  @input="value => { something = value }">
-</custom-input>
-```
-
-So for a component to work with `v-model`, it should (these can be configured in 2.2.0+):
-
-- accept a `value` prop
-- emit an `input` event with the new value
-
-Let's see it in action with a simple currency input:
-
-``` html
-<currency-input v-model="price"></currency-input>
-```
-
-``` js
-Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)">\
-    </span>\
-  ',
-  props: ['value'],
-  methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
-    updateValue: function (value) {
-      var formattedValue = value
-        // Remove whitespace on either side
-        .trim()
-        // Shorten to 2 decimal places
-        .slice(
-          0,
-          value.indexOf('.') === -1
-            ? value.length
-            : value.indexOf('.') + 3
-        )
-      // If the value was not already normalized,
-      // manually override it to conform
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
-      }
-      // Emit the number value through the input event
-      this.$emit('input', Number(formattedValue))
-    }
-  }
-})
-```
-
-{% raw %}
-<div id="currency-input-example" class="demo">
-  <currency-input v-model="price"></currency-input>
-</div>
-<script>
-Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
-  props: ['value'],
-  methods: {
-    updateValue: function (value) {
-      var formattedValue = value
-        .trim()
-        .slice(
-          0,
-          value.indexOf('.') === -1
-            ? value.length
-            : value.indexOf('.') + 3
-        )
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
-      }
-      this.$emit('input', Number(formattedValue))
-    }
-  }
-})
-new Vue({
-  el: '#currency-input-example',
-  data: { price: '' }
-})
-</script>
-{% endraw %}
-
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
-
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ## Customizing Component `v-model`
 

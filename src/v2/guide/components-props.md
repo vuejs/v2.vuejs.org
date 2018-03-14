@@ -6,7 +6,7 @@ order: 102
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-## Prop casing (camelCase vs kebab-case)
+## Prop Casing (camelCase vs kebab-case)
 
 HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
 

@@ -43,7 +43,7 @@ Vue.component('button-counter', {
       count: 0
     }
   },
-  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  template: '<button v-on:click="count += 1">You clicked me {{ count }} times.</button>'
 })
 new Vue({ el: '#components-demo' })
 </script>
@@ -224,7 +224,7 @@ new Vue({
 })
 ```
 
-Which is used in the template to control control the font size of all blog posts:
+Which can be used in the template to control the font size of all blog posts:
 
 ```html
 <div id="blog-posts-events-demo">
@@ -238,7 +238,7 @@ Which is used in the template to control control the font size of all blog posts
 </div>
 ```
 
-Then let's add a button to enlarge the text right before the content of every post:
+Now let's add a button to enlarge the text right before the content of every post:
 
 ```js
 Vue.component('blog-post', {
@@ -265,7 +265,7 @@ The problem is, this button doesn't do anything:
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances have a custom events system to solve this problem. To emit an event to the parent, we can call the built-in **`$emit`** method, passing the name of the event:
+When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. To emit an event to the parent, we can call the built-in [**`$emit`** method](../api/#Instance-Methods-Events), passing the name of the event:
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
@@ -356,6 +356,57 @@ methods: {
     this.postFontSize += enlargeAmount
   }
 }
+```
+
+### Using `v-model` on Components
+
+Custom events can also be used to create custom inputs that work with `v-model`. Remember that:
+
+```html
+<input v-model="searchText">
+```
+
+is syntactic sugar for:
+
+```html
+<input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event.target.value"
+>
+```
+
+When used on a component, this instead simplifies to:
+
+``` html
+<custom-input
+  v-bind:value="something"
+  v-on:input="searchText = $event"
+></custom-input>
+```
+
+For this to actually work though, the `<input>` inside the component must:
+
+- Bind the `value` attribute to a `value` prop
+- On `input`, emit its own `input` event with the new value
+
+Here's that in action:
+
+```js
+Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)
+    >
+  `
+})
+```
+
+Now `v-model` should work perfectly with this component:
+
+```html
+<custom-input v-model="searchText"></custom-input>
 ```
 
 That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](components-custom-events.html).

@@ -1,34 +1,8 @@
 ---
-title: Miscellaneous (WILL RENAME OR REFACTOR AWAY)
+title: Handling Edge Cases
 type: guide
 order: 105
 ---
-
-## Authoring Reusable Components
-
-When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
-
-The API for a Vue component comes in three parts - props, events, and slots:
-
-- **Props** allow the external environment to pass data into the component
-
-- **Events** allow the component to trigger side effects in the external environment
-
-- **Slots** allow the external environment to compose the component with extra content.
-
-With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
-
-``` html
-<my-component
-  :foo="baz"
-  :bar="qux"
-  @event-a="doThis"
-  @event-b="doThat"
->
-  <img slot="icon" src="...">
-  <p slot="main-text">Hello!</p>
-</my-component>
-```
 
 ## Child Component Refs
 
@@ -49,6 +23,16 @@ var child = parent.$refs.profile
 When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
 
 <p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+
+## Events interface
+
+Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+
+- Trigger an event using `$emit(eventName, optionalValue)`
+- Listen for an event using `$on(eventName)`
+- `$off`
+
+<p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$emit`, `$on`, and `$off` are <strong>not<strong> aliases for `dispatchEvent`, `addEventListener`, and `removeEventListener`.</p>
 
 ## Component Naming Conventions
 
