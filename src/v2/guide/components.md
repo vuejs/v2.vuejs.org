@@ -142,12 +142,12 @@ That's all you need to know about registration for now, but once you've finished
 
 Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
 
-Props are custom attributes you can register on a component, allowing you to pass specific data to that component. To pass a `post` object to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+Props are custom attributes you can register on a component, allowing you to pass specific data to that component. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
 
 ```js
 Vue.component('blog-post', {
-  props: ['post'],
-  template: '<h3>{{ post.title }}</h3>'
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
 })
 ```
 
@@ -156,27 +156,27 @@ A component can have as many props as you'd like and by default, any value can b
 Once a prop is registered, you can pass data to it as a custom attribute, like this:
 
 ```html
-<blog-post v-bind:post="{ id: 1, title: 'My journey with Vue' }"></blog-post>
-<blog-post v-bind:post="{ id: 2, title: 'Blogging with Vue' }"></blog-post>
-<blog-post v-bind:post="{ id: 3, title: 'Why I chose Vue' }"></blog-post>
+<blog-post title="My journey with Vue"></blog-post>
+<blog-post title="Blogging with Vue"></blog-post>
+<blog-post title="Why I chose Vue"></blog-post>
 ```
 
 {% raw %}
 <div id="blog-post-demo" class="demo">
-  <blog-post v-bind:post="{ id: 1, title: 'My journey with Vue' }"></blog-post>
-  <blog-post v-bind:post="{ id: 2, title: 'Blogging with Vue' }"></blog-post>
-  <blog-post v-bind:post="{ id: 3, title: 'Why I chose Vue' }"></blog-post>
+  <blog-post1 title="My journey with Vue"></blog-post1>
+  <blog-post1 title="Blogging with Vue"></blog-post1>
+  <blog-post1 title="Why I chose Vue"></blog-post1>
 </div>
 <script>
-Vue.component('blog-post', {
-  props: ['post'],
-  template: '<h3>{{ post.title }}</h3>'
+Vue.component('blog-post1', {
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
 })
 new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-In these cases, where you want to render a component for each item in a list, it can be especially useful to pass props dynamically:
+In these cases, where you want to render a component for each item in a list, it can be especially useful to pass props dynamically, using `v-bind`:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/sbLgr0ad/embedded/html,js,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
