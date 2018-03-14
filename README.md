@@ -21,9 +21,9 @@ Bu dokümanlaştırma projesi şu anda farklı github depolarında orjinalinden 
 
 ### Türkçe
 
-Türkçe çeviri [/med177/vuejs.org](https://github.com/med177/vuejs.org) tarafından devam etmekte.
+Türkçe çeviri [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce) tarafından devam etmekte.
 
-* Çeviri Github Deposu — [/med177/vuejs.org](https://github.com/med177/vuejs.org)
+* Çeviri Github Deposu — [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce/vuejs.org)
 
 ### Fransızca
 
