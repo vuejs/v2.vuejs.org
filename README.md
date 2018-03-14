@@ -21,15 +21,15 @@ Bu dokümanlaştırma projesi şu anda farklı github depolarında orjinalinden 
 
 ### Türkçe
 
-Türkçe çeviri [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce) tarafından devam etmekte.
+Türkçe çeviri [vuejs-turkce](https://github.com/vuejs-turkce) tarafından devam etmekte.
 
-* Çeviri Github Deposu — [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce/vuejs.org)
+* Çeviri Github Deposu - [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce/vuejs.org)
 
 ### Fransızca
 
 Fransızca çeviri Vuejs-FR tarafından devam etmekte.
 
-* Çeviri Github Deposu — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+* Çeviri Github Deposu - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
 
 ### İtalyanca
 
@@ -63,7 +63,7 @@ Brezilya Portekizce'si çevirisi [Vuejs-Br](https://github.com/vuejs-br) tarafı
 
 Rusça çevirisi "Translation Gang" tarafından devam etmekte.
 
-* Çeviri Github Deposu — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
+* Çeviri Github Deposu - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Çeviriyi başlatan - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
 ### İspanyolca
