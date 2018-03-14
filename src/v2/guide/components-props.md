@@ -296,7 +296,7 @@ Vue.component('base-input', {
       <input
         v-bind="$attrs"
         v-bind:value="value"
-        v-on:input="$emit('input', $event.target.value)
+        v-on:input="$emit('input', $event.target.value)"
       >
     </label>
   `
