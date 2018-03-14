@@ -53,7 +53,7 @@ Korece çevirisi [Vue.js Korean User group](https://github.com/vuejs-kr) tarafı
 
 * Çeviri Github Deposu - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
-### Português-Br
+### Portekizce-Brezilya
 
 Brezilya Portekizce'si çevirisi [Vuejs-Br](https://github.com/vuejs-br) tarafından devam etmekte.
 
