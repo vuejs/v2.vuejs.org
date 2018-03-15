@@ -11,7 +11,7 @@ npm start # dev server at http://localhost:4000
 
 ## Dağıtım
 
-Bu site `master` GitHub dalına işlendiği(commit) anda [Netlify](https://www.netlify.com/) yoluyla otomatik olarak dağıtılır.
+Bu site `master` GitHub dalına kod gönderildiği anda [Netlify](https://www.netlify.com/) yoluyla otomatik olarak dağıtılır.
 
 Eğer siz çeviri topluluğunun üyesi iseniz ve GitHub yerine Netlify yoluyla sayfaları dağıtmak istiyorsanız, lütfen Netlify takımı üyeliği ve DNS güncellemesi için @yyx990803'e bildirim gönderin.
 
