@@ -163,7 +163,7 @@ export default {
 ```
 
 ``` js
-//Bir nesneyi doğrudan ana kök Vue örneğinde kullanmanız yeterlidir, 
+//Bir nesneyi doğrudan ana kök Vue örneğinde kullanmanız yeterlidir,
 //çünkü yalnızca tek bir örnek mevcut olacaktır.
 new Vue({
   data: {
@@ -175,23 +175,23 @@ new Vue({
 
 
 
-### Prop tanımlamaları <sup data-p="a">zorunlu</sup>
+### Prop tanımları <sup data-p="a">zorunlu</sup>
 
-**Prop tanımlamaları mümkün olduğunca detaylı olmalıdır.**
+**Prop tanımları mümkün olduğunca detaylı olmalıdır.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+İşlenen edilen kodda, prop tanımları her zaman en az tip (ler) belirterek mümkün olduğunca ayrıntılı olmalıdır.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+Detaylı [prop tanımları](https://tr.vuejs.org/v2/guide/components.html#Prop-Validation)'nın iki faydası:
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- Bileşenin API'sini belgelerler, böylece bileşenin nasıl kullanılacağını görmek kolaydır.
+- Geliştirme sırasında, eğer bir bileşen devamlı yanlış biçimlendirilmiş prop'lar gönderirse, olası hata kaynaklarını yakalamanıza yardımcı olmak için, Vue sizi uyaracaktır.
 
 {% raw %}</details>{% endraw %}
 
@@ -199,7 +199,7 @@ Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Vali
 #### Kötü
 
 ``` js
-// This is only OK when prototyping
+// Bu ilk örneği yaparken sorun değil
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
@@ -214,17 +214,17 @@ props: {
 ```
 
 ``` js
-// Even better!
+//Daha İyi!
 props: {
   status: {
     type: String,
     required: true,
     validator: function (value) {
       return [
-        'syncing',
-        'synced',
-        'version-conflict',
-        'error'
+        'eşitleniyor',
+        'eşitlendi',
+        'versiyon çakışması',
+        'hata'
       ].indexOf(value) !== -1
     }
   }
@@ -234,20 +234,20 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">zorunlu</sup>
+### Anahtarlı `v-for` <sup data-p="a">zorunlu</sup>
 
-**Always use `key` with `v-for`.**
+**Daima `v-for` ile birlikte anahtar `key` kullanın.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+Döngüdeki bileşenin durumunu yakalayıp alt dallarda kullanmak için, bileşenler üzerindeki `v-for` ile birlikte `key` anahtarı _daima_ gereklidir. Animasyonlardaki [nesne sabitliği](https://bost.ocks.org/mike/constancy/) gibi öngörülebilir davranışları yakalama gibi işler için bile, iyi bir yöntemdir.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+Diyelimki bir yapılacaklar listesi var:
 
 ``` js
 data: function () {
@@ -255,22 +255,22 @@ data: function () {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: 'v-for kullanmayı öğren'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: 'anahtar kullanmayı öğren'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+Sonra onları alfabetik olarak sıralarsınız. DOM güncellenirken, Vue mümkün olan en ucuz DOM değişikliklerini yapmak için çalıştırmayı optimize eder. Bu, ilk todo elemanının silinmesi, daha sonra listenin sonuna eklenmesi anlamına gelebilir.
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+Sorun şu ki, DOM'da kalacak olan öğeleri silmemenin önemli olduğu durumlar var. Örneğin, liste sıralamasını hareketlendirmek için `<transition-group>` seçeneğini kullanabilir veya oluşturulan öğe bir `<input>` ise imleci oraya odaklayabilirsiniz. Bu durumlarda, her bir öğe için benzersiz bir anahtar eklemek (ör. `:key="todo.id"`), Vue'ya nasıl daha öngörülebilir davranacağını söyleyecektir.
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+Deneyimlerimize göre, benzersiz bir anahtar eklemek _daima_ daha iyidir, böylelikle sizin ve ekibinizin bu uç durumlar için endişelenmenize gerek kalmaz. Daha sonra nesne sabitliğinin gerekli olmadığı nadir ve performans açısından kritik senaryolarda, bilinçli bir istisna yapabilirsiniz.
 
 {% raw %}</details>{% endraw %}
 
@@ -291,10 +291,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 ``` html
 <ul>
-  <li
-    v-for="todo in todos"
-    :key="todo.id"
-  >
+  <li v-for="todo in todos" :key="todo.id">
     {{ todo.text }}
   </li>
 </ul>
@@ -316,7 +313,7 @@ There are two common cases where this can be tempting:
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -475,7 +472,7 @@ This makes overriding internal styles easier, with human-readable class names th
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -568,7 +565,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -731,7 +728,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -844,7 +841,7 @@ If a component only makes sense in the context of a single parent component, tha
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -920,7 +917,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -1101,7 +1098,7 @@ OR
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -1321,7 +1318,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
@@ -1750,7 +1747,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Daha Detaylı Açıklama</h4>
 </summary>
 {% endraw %}
 
