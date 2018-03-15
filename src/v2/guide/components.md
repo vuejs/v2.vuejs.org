@@ -530,9 +530,8 @@ new Vue({
 The above is made possible by Vue's `<component>` element with the `is` special attribute:
 
 ```html
-<component v-bind:is="currentTabComponent">
-  <!-- component changes when currentTabComponent changes -->
-</component>
+<!-- Component changes when currentTabComponent changes -->
+<component v-bind:is="currentTabComponent"></component>
 ```
 
 In the example above, `currentTabComponent` can contain either:
