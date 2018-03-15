@@ -1,7 +1,7 @@
 ---
 title: Handling Edge Cases
 type: guide
-order: 105
+order: 106
 ---
 
 ## Child Component Refs

@@ -4,114 +4,86 @@ type: guide
 order: 104
 ---
 
-## Content Distribution with Slots
+> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-When using components, it is often desired to compose them like this:
+## Slot Content
 
-``` html
-<app>
-  <app-header></app-header>
-  <app-footer></app-footer>
-</app>
-```
+Vue implements a content distribution API that's modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.
 
-There are two things to note here:
-
-1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
-
-2. The `<app>` component very likely has its own template.
-
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
-
-### Compilation Scope
-
-Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
+This allows you to compose components like this:
 
 ``` html
-<child-component>
-  {{ message }}
-</child-component>
+<navigation-link url="/profile">
+  Your Profile
+</navigation-link>
 ```
 
-Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
+Then in the template for `<navigation-link>`, you might have:
+
+``` html
+<a
+  v-bind:href="url"
+  class="nav-link"
+>
+  <slot></slot>
+</a>
+```
+
+When the component renders, the `<slot>` element will be replaced by "Your Profile". Slots can contain any template code, including HTML:
+
+``` html
+<navigation-link url="/profile">
+  <!-- Add a Font Awesome icon -->
+  <span class="fa fa-user"></span>
+  Your Profile
+</navigation-link>
+```
+
+Or even other components:
+
+``` html
+<navigation-link url="/profile">
+  <!-- Add an icon with a component -->
+  <font-awesome-icon name="user"></font-awesome-icon>
+  Your Profile
+</navigation-link>
+```
+
+If `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
+
+## Compilation Scope
+
+When you want to use data inside a slot, such as in:
+
+``` html
+<navigation-link url="/profile">
+  Logged in as {{ user.name }}
+</navigation-link>
+```
+
+That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work. As a rule, remember that:
 
 > Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
 
-A common mistake is trying to bind a directive to a child property/method in the parent template:
+## Named Slots
+
+There are times when it's useful to have multiple slots. For example, in a hypothetical `base-layout` component with the following template:
 
 ``` html
-<!-- does NOT work -->
-<child-component v-show="someChildProperty"></child-component>
-```
-
-Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
-
-If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
-
-``` js
-Vue.component('child-component', {
-  // this does work, because we are in the right scope
-  template: '<div v-show="someChildProperty">Child</div>',
-  data: function () {
-    return {
-      someChildProperty: true
-    }
-  }
-})
-```
-
-Similarly, distributed content will be compiled in the parent scope.
-
-### Single Slot
-
-Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
-
-Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
-
-Suppose we have a component called `my-component` with the following template:
-
-``` html
-<div>
-  <h2>I'm the child title</h2>
-  <slot>
-    This will only be displayed if there is no content
-    to be distributed.
-  </slot>
+<div class="container">
+  <header>
+    <!-- We want header content here -->
+  </header>
+  <main>
+    <!-- We want main content here -->
+  </main>
+  <footer>
+    <!-- We want footer content here -->
+  </footer>
 </div>
 ```
 
-And a parent that uses the component:
-
-``` html
-<div>
-  <h1>I'm the parent title</h1>
-  <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
-  </my-component>
-</div>
-```
-
-The rendered result will be:
-
-``` html
-<div>
-  <h1>I'm the parent title</h1>
-  <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
-  </div>
-</div>
-```
-
-### Named Slots
-
-`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
-
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
-
-For example, suppose we have an `app-layout` component with the following template:
+For these cases, the `<slot>` element has a special attribute, `name`, which can be used to define additional slots:
 
 ``` html
 <div class="container">
@@ -127,20 +99,37 @@ For example, suppose we have an `app-layout` component with the following templa
 </div>
 ```
 
-Parent markup:
+To provide content to named slots, we can use the `slot` attribute on a `<template>` element in the parent:
+
+```html
+<base-layout>
+  <template slot="header">
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <template slot="footer">
+    <p>Here's some contact info</p>
+  </template>
+</base-layout>
+```
+
+Or, the `slot` attribute can also be used directly on a normal element:
 
 ``` html
-<app-layout>
+<base-layout>
   <h1 slot="header">Here might be a page title</h1>
 
   <p>A paragraph for the main content.</p>
   <p>And another one.</p>
 
   <p slot="footer">Here's some contact info</p>
-</app-layout>
+</base-layout>
 ```
 
-The rendered result will be:
+There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. In the example above, the  rendered HTML would be:
 
 ``` html
 <div class="container">
@@ -157,80 +146,84 @@ The rendered result will be:
 </div>
 ```
 
-The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
+## Default Slot Content
 
-### Scoped Slots
+There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, by also allow users to override with "Save", "Upload", or anything else.
+
+To achieve this, specify the default content in between the `<slot>` tags.
+
+```html
+<button type="submit">
+  <slot>Submit</slot>
+</button>
+```
+
+If the slot is provided content by the parent, it will replace the default content.
+
+## Scoped Slots
 
 > New in 2.1.0+
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+Sometimes you'll want to provide a component with a reusable slot that can data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
 
-In a child component, pass data into a slot as if you are passing props to a component:
-
-``` html
-<div class="child">
-  <slot text="hello from child"></slot>
-</div>
-```
-
-In the parent, a `<template>` element with a special attribute `slot-scope` must exist, indicating that it is a template for a scoped slot. The value of `slot-scope` will be used as the name of a temporary variable that holds the props object passed from the child:
-
-``` html
-<div class="parent">
-  <child>
-    <template slot-scope="props">
-      <span>hello from parent</span>
-      <span>{{ props.text }}</span>
-    </template>
-  </child>
-</div>
-```
-
-If we render the above, the output will be:
-
-``` html
-<div class="parent">
-  <div class="child">
-    <span>hello from parent</span>
-    <span>hello from child</span>
-  </div>
-</div>
-```
-
-> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any element or component.
-
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
-
-``` html
-<my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
-  <li
-    slot="item"
-    slot-scope="props"
-    class="my-fancy-item">
-    {{ props.text }}
-  </li>
-</my-awesome-list>
-```
-
-And the template for the list component:
-
-``` html
+```html
 <ul>
-  <slot name="item"
-    v-for="item in items"
-    :text="item.text">
-    <!-- fallback content here -->
-  </slot>
+  <li
+    v-for="todo in todos"
+    v-bind:key="todo.id"
+  >
+    {{ todo.text }}
+  </li>
 </ul>
 ```
 
-#### Destructuring
+But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`. This is where scoped slots come in.
 
-`slot-scope`'s value is in fact a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments (in single-file components or in modern browsers) you can also use ES2015 destructuring in the expression:
+To make the feature possible, all we have to do is wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
 
-``` html
-<child>
-  <span slot-scope="{ text }">{{ text }}</span>
-</child>
+```html
+<ul>
+  <li
+    v-for="todo in todos"
+    v-bind:key="todo.id"
+  >
+    <!-- We have a slot for each todo, passing it the -->
+    <!-- `todo` object as a slot prop.                -->
+    <slot v-bind:todo="todo">
+      <!-- Fallback content -->
+      {{ todo.text }}
+    </slot>
+  </li>
+</ul>
 ```
+
+Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child via the `slot-scope` attribute:
+
+```html
+<todo-list v-bind:todos="todos">
+  <!-- Define `slotProps` as the name of our slot scope -->
+  <template slot-scope="slotProps">
+    <!-- Define a custom template for todo items, using -->
+    <!-- `slotProps` to customize each todo.            -->
+    <span v-if="slotProps.todo.isComplete">✓</span>
+    {{ slotProps.todo.text }}
+  </template>
+</todo-list>
+```
+
+> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component.
+
+### Destructuring `slot-props`
+
+The value of `slot-scope` can actually accept any valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
+
+```html
+<todo-list v-bind:todos="todos">
+  <template slot-scope="{ todo }">
+    <span v-if="todo.isComplete">✓</span>
+    {{ todo.text }}
+  </template>
+</todo-list>
+```
+
+This is a great way to make scoped slots a little cleaner.
