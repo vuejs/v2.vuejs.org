@@ -15,7 +15,7 @@ Son olarak, kuralları dört kategoriye ayırdık:
 
 ## Kural Kategorileri
 
-### Öncelik A: Zorunlu
+### Öncelik A: Gerekli
 
 Bu kurallar hataları önlemeye yardımcı olur, bu yüzden her ne pahasına olursa olsun öğrenin ve onlara uyun. İstisnalar olabilir ancak çok nadir olmalı ve sadece hem JavaScript hem de Vue konusunda uzman bilgisi olanlar tarafından yapılmalıdır.
 
@@ -30,18 +30,18 @@ Topluluk Standardına uyarak şunları yapacaksınız:
 
 1. önünüze gelen paylaşımlı kodun çoğunu daha kolay algılamak için beyninizi eğitme
 2. paylaşımlı kod örneklerinin çoğunu değiştirmeden kopyalayıp yapıştırabilme
-3. işe alımlarda sık tercih edilen kodlama tarzına alışmış olma, en azından Vue açısından
+3. işe alımlarda sık tercih edilen kodlama tarzına alışmış olma, en azından Vue için
 
 ### Öncelik D: Dikkatli Kullanın
 
 Vue'nun bazı özellikleri, nadir görülen durumlara uyum sağlama veya eski bir kod yapısından daha yumuşak geçişler için vardır. Ancak fazla kullanıldığında, kodunuzun bakımını zorlaştırır ve hatta hata kaynağı haline getirir. Bu kurallar, ne zaman ve neden kaçınılması gerektiğini açıklayan potansiyel olarak riskli özelliklere ışık tutmaktadır.
 
 
-## Öncelik A Kuralları: Zorunlu (Hata Önleme)
+## Öncelik A Kuralları: Gerekli (Hata Önleme)
 
 
 
-### Birleşik-kelime yazımlı bileşen isimleri <sup data-p="a">zorunlu</sup>
+### Birleşik-kelime yazımlı bileşen isimleri <sup data-p="a">gerekli</sup>
 
 **Bileşen isimleri daima birleşik-kelime şeklinde olmalıdır, ana kök `App` bileşenleri bundan istisnadır.**
 
@@ -83,7 +83,7 @@ export default {
 
 
 
-### data bileşeni <sup data-p="a">zorunlu</sup>
+### data bileşeni <sup data-p="a">gerekli</sup>
 
 **`data` bileşeni bir fonksiyon olmalıdır.**
 
@@ -175,7 +175,7 @@ new Vue({
 
 
 
-### Prop tanımları <sup data-p="a">zorunlu</sup>
+### Prop tanımları <sup data-p="a">gerekli</sup>
 
 **Prop tanımları mümkün olduğunca detaylı olmalıdır.**
 
@@ -234,7 +234,7 @@ props: {
 
 
 
-### Anahtarlı `v-for` <sup data-p="a">zorunlu</sup>
+### Anahtarlı `v-for` <sup data-p="a">gerekli</sup>
 
 **Daima `v-for` ile birlikte anahtar `key` kullanın.**
 
@@ -266,7 +266,7 @@ data: function () {
 }
 ```
 
-Sonra onları alfabetik olarak sıralarsınız. DOM güncellenirken, Vue mümkün olan en ucuz DOM değişikliklerini yapmak için çalıştırmayı optimize eder. Bu, ilk todo elemanının silinmesi, daha sonra listenin sonuna eklenmesi anlamına gelebilir.
+Sonra bunları alfabetik olarak sıralarsınız. DOM güncellenirken, Vue mümkün olan en az masraflı DOM değişikliklerini yapmak için çalışmayı optimize eder. Bu, ilk 'todo' elemanının silinmesi, daha sonra listenin sonuna eklenmesi anlamına gelebilir.
 
 Sorun şu ki, DOM'da kalacak olan öğeleri silmemenin önemli olduğu durumlar var. Örneğin, liste sıralamasını hareketlendirmek için `<transition-group>` seçeneğini kullanabilir veya oluşturulan öğe bir `<input>` ise imleci oraya odaklayabilirsiniz. Bu durumlarda, her bir öğe için benzersiz bir anahtar eklemek (ör. `:key="todo.id"`), Vue'ya nasıl daha öngörülebilir davranacağını söyleyecektir.
 
@@ -300,13 +300,13 @@ Deneyimlerimize göre, benzersiz bir anahtar eklemek _daima_ daha iyidir, böyle
 
 
 
-### Avoid `v-if` with `v-for` <sup data-p="a">zorunlu</sup>
+### `v-for` içindeki `v-if`'den kaçının <sup data-p="a">gerekli</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**Asla `v-if`'i `v-for` ile aynı eleaman üzerinde kullanmayın.**
 
-There are two common cases where this can be tempting:
+Bunun esgeçilebileceği iki yaygın durum var:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- Bir listedeki elamnlar filtrelenirken (ör. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
 
 - To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
 
@@ -459,7 +459,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 
 
 
-### Component style scoping <sup data-p="a">zorunlu</sup>
+### Component style scoping <sup data-p="a">gerekli</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
@@ -558,7 +558,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">zorunlu</sup>
+### Private property names <sup data-p="a">gerekli</sup>
 
 **Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
 
