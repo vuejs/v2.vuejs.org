@@ -179,7 +179,7 @@ new Vue({
 
 **Prop tanımları mümkün olduğunca detaylı olmalıdır.**
 
-İşlenen edilen kodda, prop tanımları her zaman en az tip (ler) belirterek mümkün olduğunca ayrıntılı olmalıdır.
+İşlenen kodda, prop tanımları her zaman en az tip belirtilerek mümkün olduğunca ayrıntılı olmalıdır.
 
 {% raw %}
 <details>
