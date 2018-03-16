@@ -4,97 +4,182 @@ type: guide
 order: 106
 ---
 
-## Child Component Refs
+> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+<p class="tip">All the features on this page document the handling of edge cases, meaning unusual situations that sometimes require bending Vue's rules a little. Note however, that they all have disadvantages or situations where they could be dangerous. These are noticed in each case, so keep them in mind when deciding to use each feature.</p>
 
-``` html
-<div id="parent">
-  <user-profile ref="profile"></user-profile>
-</div>
+## Element & Component Access
+
+In most cases, it's best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.
+
+### Accessing the Root Instance
+
+In every subcomponent of a `new Vue` instance, this root instance can be accessed with the `$root` property. For example, in this root instance:
+
+```js
+// The root Vue instance
+new Vue({
+  data: {
+    foo: 1
+  },
+  computed: {
+    bar: function () { /* ... */ }
+  }
+  methods: {
+    baz: function () { /* ... */ }
+  }
+})
 ```
 
-``` js
-var parent = new Vue({ el: '#parent' })
-// access child component instance
-var child = parent.$refs.profile
+All subcomponents will now be able to access this instance and use it as a global store:
+
+```js
+// Get root data
+this.$root.foo
+
+// Set root data
+this.$root.foo = 2
+
+// Access root computed properties
+this.$root.bar
+
+// Call root methods
+this.$root.baz()
+```
+
+<p class="tip">This can be convenient for demos or very small apps with a handful of components. However, the pattern does not scale well to medium or large-scale applications, so we strongly recommend using <a href="https://github.com/vuejs/vuex">https://github.com/vuejs/vuex</a> to manage state in most cases.</p>
+
+### Accessing the Parent Component Instance
+
+Similar to `$root`, the `$parent` property can be used to access the parent instance from a child. This can be tempting to reach for as a lazy alternative to passing data with a prop.
+
+<p class="tip">In most cases, reaching into the parent makes your application more difficult to debug and understand, especially if you mutate data in the parent. When looking at that component later, it will be very difficult to figure out where that mutation came from.</p>
+
+There are cases however, particularly shared component libraries, when this _might_ be appropriate. For example, in abstract components that interact with JavaScript APIs instead of rendering HTML, like these hypothetical Google Maps components:
+
+```html
+<google-map>
+  <google-map-markers v-bind:places="iceCreamShops"></google-map-markers>
+</google-map>
+```
+
+The `<google-map>` component might define a `map` property that all subcomponents need access to. In this case `<google-map-markers>` might want to access that map with something like `this.$parent.getMap`, in order to add a set of markers to it. You can see this pattern [in action here](https://jsfiddle.net/chrisvfritz/ttzutdxh/).
+
+Keep in mind, however, that components built with this pattern are still inherently fragile. For example, imagine we add a new `<google-map-region>` component and when `<google-map-markers>` appears within that, it should only render markers that fall within that region:
+
+```html
+<google-map>
+  <google-map-region v-bind:shape="cityBoundaries">
+    <google-map-markers v-bind:places="iceCreamShops"></google-map-markers>
+  </google-map-region>
+</google-map>
+```
+
+Then inside `<google-map-markers>` you might find yourself reaching for a hack like this:
+
+```js
+var map = this.$parent.map || this.$parent.$parent.map
+```
+
+This has quickly gotten out of hand. That's why to provide context information to descendent components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
+
+### Accessing Child Component Instances & Child Elements
+
+Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you can assign a reference ID to the child component using the `ref` attribute. For example:
+
+```html
+<base-input ref="usernameInput"></base-input>
+```
+
+Now in the component where you've defined this `ref`, you can use:
+
+```js
+this.$refs.usernameInput
+```
+
+to access the `<base-input>` instance. This may be useful when you want to, for example, programmatically focus this input from a parent. In that case, the `<base-input>` component may similarly use a `ref` to provide access to specific elements inside it, such as:
+
+```html
+<input ref="input">
+```
+
+And even define methods for use by the parent:
+
+```js
+methods: {
+  // Used to focus the input from the parent
+  focus: function () {
+    this.$refs.input.focus()
+  }
+}
+```
+
+Thus allowing the parent component to focus the input inside `<base-input>` with:
+
+```js
+this.$refs.usernameInput.focus()
 ```
 
 When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
 
-<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+<p class="tip"><code>$refs</code> are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
 
-## Events interface
+### Dependency Injection
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+Earlier, when we described [Accessing the Parent Component Instance](#Accessing-the-Parent-Component-Instance), we showed an example like this:
 
-- Trigger an event using `$emit(eventName, optionalValue)`
-- Listen for an event using `$on(eventName)`
-- `$off`
+```html
+<google-map>
+  <google-map-region v-bind:shape="cityBoundaries">
+    <google-map-markers v-bind:places="iceCreamShops"></google-map-markers>
+  </google-map-region>
+</google-map>
+```
 
-<p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$emit`, `$on`, and `$off` are <strong>not<strong> aliases for `dispatchEvent`, `addEventListener`, and `removeEventListener`.</p>
+In this component, all descendants of `<google-map>` needed access to a `getMap` method, in order to know which map to interact with. Unfortunately, using the `$parent` property didn't scale well to more deeply nested components. That's where dependency injection can be useful, using two new instance options: `provide` and `inject`.
 
-## Component Naming Conventions
+The `provide` options allows us to specify the data/methods we want to **provide** to descendent components. In this case, that's the `getMap` method inside `<google-map>`:
 
-When registering components (or props), you can use kebab-case, camelCase, or PascalCase.
-
-``` js
-// in a component definition
-components: {
-  // register using kebab-case
-  'kebab-cased-component': { /* ... */ },
-  // register using camelCase
-  'camelCasedComponent': { /* ... */ },
-  // register using PascalCase
-  'PascalCasedComponent': { /* ... */ }
+```js
+provide: function () {
+  return {
+    getMap: this.getMap
+  }
 }
 ```
 
-Within HTML templates though, you have to use the kebab-case equivalents:
+Then in any descendants, we can use the `inject` option to receive specific properties we'd like to add to that instance:
 
-``` html
-<!-- always use kebab-case in HTML templates -->
-<kebab-cased-component></kebab-cased-component>
-<camel-cased-component></camel-cased-component>
-<pascal-cased-component></pascal-cased-component>
+```js
+inject: ['getMap']
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+You can see the [full example here](https://jsfiddle.net/chrisvfritz/tdv8dt3s/). The advantage over using `$parent` is that we can access `getMap` in _any_ descendant component, without exposing the entire instance of `<google-map>`. This allows us to more safely keep developing that component, without fear that we might change/remove something that a child component is relying on. The interface between these components remains clearly defined, just as with `props`.
 
-- kebab-case
-- camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or PascalCase if the component has been defined using PascalCase
+In fact, you can think of dependency injection as sort of "long-range props", except:
 
-``` js
-components: {
-  'kebab-cased-component': { /* ... */ },
-  camelCasedComponent: { /* ... */ },
-  PascalCasedComponent: { /* ... */ }
-}
-```
+* ancestor components don't need to know which descendants use the properties it provides
+* descendant components don't know need to know where injected properties are coming from
 
-``` html
-<kebab-cased-component></kebab-cased-component>
+<p class="tip">However, there are downsides to dependency injection. It couples components in your application to the way they're currently organized, making refactoring more difficult. Provided properties are also not reactive. This is by design, because using them to create a central data store scales just as poorly as <a href="#Accessing-the-Root-Instance">using <code>$root</code></a> for the same purpose. If the properties you want to share are specific to your app, rather than generic, or if you ever want to update provided data inside ancestors, then that's a good sign that you probably need a real state management solution like <a href="https://github.com/vuejs/vuex">Vuex</a> instead.</p>
 
-<camel-cased-component></camel-cased-component>
-<camelCasedComponent></camelCasedComponent>
+Learn more about dependency injection in [the API doc](https://vuejs.org/v2/api/#provide-inject).
 
-<pascal-cased-component></pascal-cased-component>
-<pascalCasedComponent></pascalCasedComponent>
-<PascalCasedComponent></PascalCasedComponent>
-```
+## Programmatic Event Listeners
 
-This means that the PascalCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
+So far, you've seen uses of `$emit`, listened to with `v-on`, but Vue instances also offer other methods in its events interface. We can:
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+- Listen for an event with `$on(eventName, eventHandler)`
+- Listen for an event only once with `$once(eventName, eventHandler)`
+- Stop listening for an event with `$off(eventName, eventHandler)`
 
-``` html
-<my-component/>
-```
+You normally won't have to use these, but they're available for cases when you need to manually listen for events on a component instance. To learn more about their usage, check out the API for [Events Instance Methods](https://vuejs.org/v2/api/#Instance-Methods-Events).
 
-Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
+<p class="tip">Note that Vue's event system is different from the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget API</a>. Though they work similarly, <code>$emit</code>, <code>$on</code>, and <code>$off</code> are <strong>not</strong> aliases for <code>dispatchEvent</code>, <code>addEventListener</code>, and <code>removeEventListener</code>.</p>
 
-## Recursive Components
+## Circular References
+
+### Recursive Components
 
 Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
 
@@ -119,7 +204,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
 
-## Circular References Between Components
+### Circular References Between Components
 
 Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
 
@@ -161,7 +246,9 @@ beforeCreate: function () {
 
 Problem solved!
 
-## Inline Templates
+## Alternate Template Definitions
+
+### Inline Templates
 
 When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
 
@@ -174,9 +261,9 @@ When the `inline-template` special attribute is present on a child component, th
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+<p class="tip">However, <code>inline-template</code> makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the <code>template<code> option or in a <code>&lt;template&gt;<code> element in a <code>.vue<code> file.</p>
 
-## X-Templates
+### X-Templates
 
 Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
 
@@ -192,19 +279,33 @@ Vue.component('hello-world', {
 })
 ```
 
-These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+<p class="tip">These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
 
-## Cheap Static Components with `v-once`
+## Controlling Updates
+
+Thanks to Vue's Reactivity system, always knows when it needs to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.
+
+### Forcing an Update
+
+<p class="tip">If you find yourself needing to force in update in Vue, in 99.99% of cases, you've made a mistake somewhere.</p>
+
+You may not have accounted for change detection caveats [with arrays](https://vuejs.org/v2/guide/list.html#Caveats) or [objects](https://vuejs.org/v2/guide/list.html#Object-Change-Detection-Caveats), or you may be relying on state that isn't tracked by Vue's reactivity system, e.g. with `data`.
+
+However, if you've ruled out the above and find yourself in this extremely rare situation of having to manually force an update, you can do so with [`$forceUpdate`](../api/#vm-forceUpdate).
+
+### Cheap Static Components with `v-once`
 
 Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
 
 ``` js
 Vue.component('terms-of-service', {
-  template: '\
-    <div v-once>\
-      <h1>Terms of Service</h1>\
-      ... a lot of static content ...\
-    </div>\
-  '
+  template: `
+    <div v-once>
+      <h1>Terms of Service</h1>
+      ... a lot of static content ...
+    </div>
+  `
 })
 ```
+
+<p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering -- plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>
