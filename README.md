@@ -1,82 +1,86 @@
 # vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+Bu site [hexo](http://hexo.io/) ile oluşturulmuştur. Site içeriği Markdown formatında yazılmıştır ve `src` içinde yer almaktadır. Her zaman katkıda bulunabilirsiniz, hoşgeldiniz!
 
-## Developing
+## Geliştirme
 
 ``` bash
-$ npm install
-$ npm start # dev server at http://localhost:4000
+npm install
+npm start # dev server at http://localhost:4000
 ```
 
-## Deploying
+## Dağıtım
 
-The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
+Bu site `master` GitHub dalına kod gönderildiği anda [Netlify](https://www.netlify.com/) yoluyla otomatik olarak dağıtılır.
 
-If you are the maintainer of a community translation fork and would like to deploy via Netlify instead of GitHub pages, please ping @yyx990803 in an issue to request a Netlify team membership and DNS update.
+Eğer siz çeviri topluluğunun üyesi iseniz ve GitHub yerine Netlify yoluyla sayfaları dağıtmak istiyorsanız, lütfen Netlify takımı üyeliği ve DNS güncellemesi için @yyx990803'e bildirim gönderin.
 
-## On Translations
+## Çeviriler Üzerine
 
-Translation for this documentation project are currently maintained in separate repositories forked from this original one.
+Bu dokümanlaştırma projesi şu anda farklı GitHub depolarında orjinalinden kopyalanmış olarak sürdürülmektedir.
 
-### French
+### Türkçe
 
-French translation is maintained by Vuejs-FR.
+Türkçe çeviri [vuejs-turkce](https://github.com/vuejs-turkce) tarafından devam etmektedir.
 
-* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+* Çeviri GitHub Deposu - [/vuejs-turkce/vuejs.org](https://github.com/vuejs-turkce/vuejs.org)
 
-### Italian
+### Fransızca
 
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
+Fransızca çeviri Vuejs-FR tarafından devam etmektedir.
 
-### Japanese
+* Çeviri GitHub Deposu - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
 
-Japanese translation is maintained by [Vue.js japan user group](https://github.com/vuejs-jp)
+### İtalyanca
 
-* Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
-* Primary maintainer - [kazupon](https://github.com/kazupon)
+* Çeviri GitHub Deposu - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
 
-### Korean
+### Japonca
 
-Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
+Japonca çeviri [Vue.js japan user group](https://github.com/vuejs-jp) tarafından devam etmektedir.
 
-* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
+* Çeviri GitHub Deposu - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Ana Çevirmen - [kazupon](https://github.com/kazupon)
 
-### Mandarin
+### Korece
 
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
+Korece çevirisi [Vue.js Korean User group](https://github.com/vuejs-kr) tarafından devam etmektedir.
 
-### Português-Br
+* Çeviri GitHub Deposu - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Ana Çevirmen - [ChangJoo Park](https://github.com/ChangJoo-Park)
 
-Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-br).
+### Çince (Mandarin)
 
-* Translation Repo - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
+* Çeviri GitHub Deposu - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
-### Russian
+### Portekizce-Brezilya
 
-Russian translation is maintained by Translation Gang.
+Brezilya Portekizce'si çevirisi [Vuejs-Br](https://github.com/vuejs-br) tarafından devam etmektedir.
 
-* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
+* Çeviri GitHub Deposu - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
 
-### Spanish
+### Rusça
 
-Spanish translation is maintained by VueJS-ES.
+Rusça çevirisi "Translation Gang" tarafından devam etmektedir.
 
-* Translation Repo - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
+* Çeviri GitHub Deposu - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
+* Ana Çevirmen - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
-### Persian (Farsi)
+### İspanyolca
 
-Persian translation is maintained by VueJS-fa.
+İspanyolca çevirisi VueJS-ES tarafından devam etmektedir.
 
-* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
-* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
+* Çeviri GitHub Deposu - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
 
-### Want to help with the translation?
+### Farsça
 
-If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
+Farsça çevirisi VueJS-fa tarafından devam etmektedir.
 
-If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
+* Çeviri GitHub Deposu - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Ana Çevirmen - [Pooya Parsa](https://github.com/pi0)
 
-And thank you in advance ;)
+### Çeviriye yardım etmek ister misiniz
+
+Eğer kendinizi çeviri için hazır hissediyorsanız, bu github deposunu (vuejs/vuejs.org) kopyalayın(fork) ve diğerlerine çeviri yaptığınız bilgisini "work-in-progress" olarak iletin ve başlayın.
+
+Geliştirme içinde bulunduğunuz için teşekkür ederiz ;)

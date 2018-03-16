@@ -3,33 +3,33 @@
     <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
     <% if (type === 'guide') { %>
       <% if (fileName === 'installation') { %>
-        <li><h3>Essentials</h3></li>
+        <li><h3>Temel Gereklilikler</h3></li>
       <% } %>
       <% if (fileName === 'transitions') { %>
-        <li><h3>Transitions & Animation</h3></li>
+        <li><h3>Öğe Geçişleri & Animasyonlar</h3></li>
       <% } %>
       <% if (fileName === 'mixins') { %>
-        <li><h3>Reusability & Composition</h3></li>
+        <li><h3>Tekrar Kullanım & Birleşim</h3></li>
       <% } %>
       <% if (fileName === 'deployment') { %>
-        <li><h3>Tooling</h3></li>
+        <li><h3>Araçlar</h3></li>
       <% } %>
       <% if (fileName === 'routing') { %>
-        <li><h3>Scaling Up</h3></li>
+        <li><h3>Bir Üst Seviye</h3></li>
       <% } %>
       <% if (fileName === 'reactivity') { %>
-        <li><h3>Internals</h3></li>
+        <li><h3>Derinlemesine</h3></li>
       <% } %>
       <% if (fileName === 'migration') { %>
-        <li><h3>Migrating</h3></li>
+        <li><h3>Taşıma</h3></li>
       <% } %>
       <% if (fileName === 'comparison') { %>
-        <li><h3>Meta</h3></li>
+        <li><h3>Değişim</h3></li>
       <% } %>
     <% } %>
     <% if (type === 'cookbook') { %>
       <% if (p.order === 1.1) { %>
-        <li><h3>Vue Instance</h3></li>
+        <li><h3>Vue Örneklemesi</h3></li>
       <% } %>
       <!-- Move cookbook sections here once they have -->
       <!-- at least one recipe -->
@@ -39,11 +39,11 @@
     </li>
   <% }) %>
   <% if (type === 'cookbook') { %>
-    <li><h3>Components</h3></li>
-    <li><h4>Form Inputs</h4></li>
-    <li><h4>3rd-Party Integrations</h4></li>
-    <li><h3>Transitions</h3></li>
-    <li><h3>Directives</h3></li>
+    <li><h3>Bileşenler</h3></li>
+    <li><h4>Form Girdileri</h4></li>
+    <li><h4>3.Parti Uyumlulukları</h4></li>
+    <li><h3>Öğe Geçişleri</h3></li>
+    <li><h3>Talimatlar (Directives)</h3></li>
     <li><h3>Vue Router</h3></li>
     <li><h3>Vuex</h3></li>
   <% } %>
