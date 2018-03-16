@@ -1,5 +1,5 @@
 ---
-title: Kod Düzeni Rehberi
+title: Düzenli Kod Rehberi
 type: style-guide
 ---
 
@@ -306,9 +306,9 @@ Deneyimlerimize göre, benzersiz bir anahtar eklemek _daima_ daha iyidir, böyle
 
 Bunun esgeçilebileceği iki yaygın durum var:
 
-- Bir listedeki elamnlar filtrelenirken (ör. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- Bir listedeki elamanlar filtrelenirken (ör. `v-for="user in users" v-if="user.isActive"`). Bu durumlarda, `users`  özelliğini (data) (ör. `activeUsers`) gibi bir hesaplanmış özellik (computed) olarak değiştirin ki listenizin filtrelenmiş değerlerini döndürsün.
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- (ör. `v-for="user in users" v-if="shouldShowUsers"`) gibi görünürlüğü gizli olması gereken bir liste oluşturmaktan sakının. Bu durumlarda, `v-if`'i bir kapsayıcı elaman (ör. `ul`, `ol`) içinde koyun.
 
 {% raw %}
 <details>
@@ -317,7 +317,7 @@ Bunun esgeçilebileceği iki yaygın durum var:
 </summary>
 {% endraw %}
 
-When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+Vue yönergeleri işlerken, `v-for`'un önceliği `v-if`'den yüksektir, bu yüzden şu şablonda;
 
 ``` html
 <ul>
@@ -331,7 +331,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
 </ul>
 ```
 
-Will be evaluated similar to:
+Yukarıdaki kod ile aşağıdaki kod benzer olarak değerlendirilecektir.
 
 ``` js
 this.users.map(function (user) {
@@ -340,6 +340,8 @@ this.users.map(function (user) {
   }
 })
 ```
+
+Dolaysıyla, 'users' listesinin sadece küçük bir kısmını oluştursak bile, 'activeUsers' kümesinin değişip değişmediğine bakılmaksızın herzaman tüm liste boyunca yinelemeliyiz.
 
 So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
 
