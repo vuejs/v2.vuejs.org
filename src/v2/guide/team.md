@@ -494,10 +494,11 @@ order: 803
       },
       reposOfficial: [
         'vue-devtools',
+        'vue-cli',
         'vue-curated'
       ],
       reposPersonal: [
-        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller'
+        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
       ]
     },
     {
