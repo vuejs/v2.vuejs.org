@@ -568,7 +568,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with
 
 Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>` and `<option>` can only appear inside certain other elements.
 
-This will lead to issues when using custom components with elements that have such restrictions. For example:
+This will lead to issues when using components with elements that have such restrictions. For example:
 
 ``` html
 <ul>
