@@ -234,13 +234,21 @@ However, if you're requiring/importing components using a __module system__, e.g
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
 
 In our case, let's make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
 
 ``` js
 beforeCreate: function () {
   this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
+}
+```
+
+Or alternatively, you could use Webpack's asynchronous `import` when you register the component locally:
+
+``` js
+components: {
+  TreeFolderContents: () => import('./tree-folder-contents.vue')
 }
 ```
 
