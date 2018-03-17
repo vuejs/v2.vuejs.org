@@ -89,6 +89,19 @@ var ComponentB = {
 }
 ```
 
+Or if you're using a ES2015 modules, such as through Babel and Webpack, that might look more like:
+
+```js
+import ComponentA from './ComponentA.vue'
+
+export default {
+  components: {
+    ComponentA
+  },
+  // ...
+}
+```
+
 ## Module Systems
 
 If you're not using a module system with `import`/`require`, you can probably skip this section for now. If you are, we have some special instructions and tips just for you.
