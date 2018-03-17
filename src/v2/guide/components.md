@@ -4,7 +4,7 @@ type: guide
 order: 11
 ---
 
-## Simple Example
+## Base Example
 
 Here's an example of a Vue component:
 
