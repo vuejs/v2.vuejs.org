@@ -25,7 +25,7 @@ The easiest way to try out Vue.js is using the [JSFiddle Hello World example](ht
 
 or:
 
-```
+``` html
 <!-- production version, optimized for size and speed -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
