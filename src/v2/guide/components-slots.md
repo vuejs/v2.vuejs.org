@@ -148,7 +148,7 @@ There can still be one unnamed slot, which is the **default slot** that serves a
 
 ## Default Slot Content
 
-There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, by also allow users to override with "Save", "Upload", or anything else.
+There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, but also allow users to override with "Save", "Upload", or anything else.
 
 To achieve this, specify the default content in between the `<slot>` tags.
 
@@ -164,7 +164,7 @@ If the slot is provided content by the parent, it will replace the default conte
 
 > New in 2.1.0+
 
-Sometimes you'll want to provide a component with a reusable slot that can data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
+Sometimes you'll want to provide a component with a reusable slot that can access data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
 
 ```html
 <ul>

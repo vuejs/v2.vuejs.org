@@ -224,7 +224,7 @@ Vue.component('blog-post', {
 })
 ```
 
-To validate that the value of the `author` prop was created with `new Person`.
+to validate that the value of the `author` prop was created with `new Person`.
 
 ## Non-Prop Attributes
 

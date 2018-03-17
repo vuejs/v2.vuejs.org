@@ -172,11 +172,8 @@ requireComponent.keys().forEach(fileName => {
   // Get PascalCase name of component
   const componentName = upperFirst(
     camelCase(
-      fileName
-        // Strip the leading `'./` from the filename
-        .replace(/^\.\//, '')
-        // Strip the extension from the filename
-        .replace(/\.\w+$/, '')
+      // Strip the leading `'./` and extension from the filename
+      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
   )
 

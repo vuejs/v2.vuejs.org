@@ -47,7 +47,7 @@ this.$root.bar
 this.$root.baz()
 ```
 
-<p class="tip">This can be convenient for demos or very small apps with a handful of components. However, the pattern does not scale well to medium or large-scale applications, so we strongly recommend using <a href="https://github.com/vuejs/vuex">https://github.com/vuejs/vuex</a> to manage state in most cases.</p>
+<p class="tip">This can be convenient for demos or very small apps with a handful of components. However, the pattern does not scale well to medium or large-scale applications, so we strongly recommend using <a href="https://github.com/vuejs/vuex">Vuex</a> to manage state in most cases.</p>
 
 ### Accessing the Parent Component Instance
 
@@ -122,7 +122,7 @@ this.$refs.usernameInput.focus()
 
 When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
 
-<p class="tip"><code>$refs</code> are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
+<p class="tip"><code>$refs</code> are only populated after the component has been rendered, and they are not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
 
 ### Dependency Injection
 
