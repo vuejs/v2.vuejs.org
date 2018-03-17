@@ -19,6 +19,14 @@ If you are an experienced frontend developer and want to know how Vue compares t
 The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">create an <code>index.html</code> file</a> and include Vue with:
 
 ``` html
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+
+or:
+
+``` html
+<!-- production version, optimized for size and speed -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
