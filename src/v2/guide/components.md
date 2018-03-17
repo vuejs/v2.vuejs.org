@@ -193,7 +193,7 @@ new Vue({
 
 Then want to render a component for each one:
 
-```js
+```html
 <blog-post
   v-for="post in posts"
   v-bind:key="post.id"
