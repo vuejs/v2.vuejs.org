@@ -20,7 +20,7 @@ Vue.component('button-counter', {
 })
 ```
 
-Components are reusable Vue instances with a name: in this case, `button-counter`. We can use this component as a custom element inside a root Vue instance created with `new Vue`:
+Components are reusable Vue instances with a name: in this case, `<button-counter>`. We can use this component as a custom element inside a root Vue instance created with `new Vue`:
 
 ```html
 <div id="components-demo">
@@ -78,7 +78,7 @@ Notice that when clicking on the buttons, each one maintains its own, separate `
 
 ### `data` Must Be a Function
 
-When we defined the `button-counter` component, you may have noticed that `data` wasn't directly provided an object, like this:
+When we defined the `<button-counter>` component, you may have noticed that `data` wasn't directly provided an object, like this:
 
 ```js
 data: {
@@ -126,7 +126,7 @@ It's common for an app to be organized into a tree of nested components:
 
 For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
 
-To use these components in templates, they must be registered so that Vue knows about them. There two are types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
+To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
 
 ```js
 Vue.component('my-component-name', {
@@ -142,7 +142,7 @@ That's all you need to know about registration for now, but once you've finished
 
 Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
 
-Props are custom attributes you can register on a component, allowing you to pass specific data to that component. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a _prop_erty on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
 
 ```js
 Vue.component('blog-post', {
@@ -158,14 +158,14 @@ Once a prop is registered, you can pass data to it as a custom attribute, like t
 ```html
 <blog-post title="My journey with Vue"></blog-post>
 <blog-post title="Blogging with Vue"></blog-post>
-<blog-post title="Why I chose Vue"></blog-post>
+<blog-post title="Why Vue is so fun"></blog-post>
 ```
 
 {% raw %}
 <div id="blog-post-demo" class="demo">
   <blog-post1 title="My journey with Vue"></blog-post1>
   <blog-post1 title="Blogging with Vue"></blog-post1>
-  <blog-post1 title="Why I chose Vue"></blog-post1>
+  <blog-post1 title="Why Vue is so fun"></blog-post1>
 </div>
 <script>
 Vue.component('blog-post1', {
@@ -176,15 +176,38 @@ new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-In these cases, where you want to render a component for each item in a list, it can be especially useful to pass props dynamically, using `v-bind`:
+In a typical app, however, you'll likely have an array of posts in `data`:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/sbLgr0ad/embedded/html,js,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+```js
+new Vue({
+  el: '#blog-post-demo',
+  data: {
+    posts: [
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' },
+    ]
+  }
+})
+```
+
+Then want to render a component for each one:
+
+```js
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:title="post.title"
+></blog-post>
+```
+
+Above, you'll see that we can use `v-bind` to dynamically pass props. This is especially useful when you don't know the exact content you're going to render ahead of time, like when [fetching posts from an API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
 
 That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](components-props.html).
 
 ## A Single Root Element
 
-When building out our `blog-post` component, your template will eventually contain more than just the title:
+When building out a `<blog-post>` component, your template will eventually contain more than just the title:
 
 ```html
 <h3>{{ post.title }}</h3>
@@ -210,7 +233,7 @@ In the meantime, you can fix these errors by wrapping the template in a parent e
 
 ## Sending Messages to Parents with Events
 
-As we develop our `blog-post` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
+As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
 
 In the parent, we can support this feature by adding a `postFontSize` data property:
 
@@ -255,7 +278,7 @@ Vue.component('blog-post', {
 })
 ```
 
-<p class="tip">The above example uses JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make the multi-line template more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
+<p class="tip">The above example and some future ones use JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make multi-line templates more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
 
 The problem is, this button doesn't do anything:
 
@@ -312,7 +335,7 @@ new Vue({
     posts: [
       { id: 1, title: 'My journey with Vue', content: '...content...' },
       { id: 2, title: 'Blogging with Vue', content: '...content...' },
-      { id: 3, title: 'Why I chose Vue', content: '...content...' }
+      { id: 3, title: 'Why Vue is so fun', content: '...content...' }
     ],
     postFontSize: 1
   }
@@ -322,7 +345,7 @@ new Vue({
 
 ### Emitting a Value With an Event
 
-It's sometimes useful to emit a specific value with an event. For example, we may want the `blog-post` component to be in charge of how much to enlarge the text by. In those cases, we can use `$emit`'s 2nd parameter to provide this value:
+It's sometimes useful to emit a specific value with an event. For example, we may want the `<blog-post>` component to be in charge of how much to enlarge the text by. In those cases, we can use `$emit`'s 2nd parameter to provide this value:
 
 ```html
 <button v-on:click="$emit('enlarge-text', 0.1)">
@@ -330,7 +353,7 @@ It's sometimes useful to emit a specific value with an event. For example, we ma
 </button>
 ```
 
-Then when we listen to the event in the parent, we can access the value on `$event` (an alias for the event payload).
+Then when we listen to the event in the parent, we can access the emitted event's value with `$event`:
 
 ```html
 <blog-post
@@ -366,7 +389,7 @@ Custom events can also be used to create custom inputs that work with `v-model`.
 <input v-model="searchText">
 ```
 
-is syntactic sugar for:
+does the same thing as:
 
 ```html
 <input
@@ -375,11 +398,11 @@ is syntactic sugar for:
 >
 ```
 
-When used on a component, this instead simplifies to:
+When used on a component, `v-model` instead does this:
 
 ``` html
 <custom-input
-  v-bind:value="something"
+  v-bind:value="searchText"
   v-on:input="searchText = $event"
 ></custom-input>
 ```
@@ -387,7 +410,7 @@ When used on a component, this instead simplifies to:
 For this to actually work though, the `<input>` inside the component must:
 
 - Bind the `value` attribute to a `value` prop
-- On `input`, emit its own `input` event with the new value
+- On `input`, emit its own custom `input` event with the new value
 
 Here's that in action:
 
@@ -539,7 +562,7 @@ In the example above, `currentTabComponent` can contain either:
 - the name of a registered component, or
 - a component's options object
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code.
+See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
 
 ### DOM Template Parsing Caveats
 
@@ -569,4 +592,4 @@ It should be noted that **this limitation does _not_ apply if you are using stri
 
 That's all you need to know about dynamic components for now -- and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself and build something fun.
 
-Once you feel comfortable with the knowledge you've just digested, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-props.html), as well as other more advanced pages that interest you.
+Once you feel comfortable with the knowledge you've just digested, we recommend coming back to read the full guide on [Dynamic & Async Components](components-props.html), as well as the other pages in the Components In-Depth section of the sidebar.

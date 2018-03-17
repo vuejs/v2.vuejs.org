@@ -43,7 +43,7 @@ new Vue({ el: '#app' })
 ```html
 <div id="app">
   <component-a></component-a>
-  <component-b></component-a>
+  <component-b></component-b>
   <component-c></component-c>
 </div>
 ```
@@ -149,7 +149,7 @@ Just to support relatively little markup in a template:
 </BaseButton>
 ```
 
-Fortunately, if you're using Webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses Webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use:
+Fortunately, if you're using Webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses Webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use to globally import base components in your app's entry file (e.g. `src/main.js`):
 
 ```js
 import Vue from 'vue'

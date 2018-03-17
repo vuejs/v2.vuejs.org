@@ -8,7 +8,7 @@ order: 102
 
 ## Prop Casing (camelCase vs kebab-case)
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
+HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
 
 ``` js
 Vue.component('blog-post', {
