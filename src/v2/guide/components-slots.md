@@ -51,20 +51,6 @@ Or even other components:
 
 If `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
 
-## Compilation Scope
-
-When you want to use data inside a slot, such as in:
-
-``` html
-<navigation-link url="/profile">
-  Logged in as {{ user.name }}
-</navigation-link>
-```
-
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work. As a rule, remember that:
-
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
-
 ## Named Slots
 
 There are times when it's useful to have multiple slots. For example, in a hypothetical `base-layout` component with the following template:
@@ -160,6 +146,20 @@ To achieve this, specify the default content in between the `<slot>` tags.
 
 If the slot is provided content by the parent, it will replace the default content.
 
+## Compilation Scope
+
+When you want to use data inside a slot, such as in:
+
+``` html
+<navigation-link url="/profile">
+  Logged in as {{ user.name }}
+</navigation-link>
+```
+
+That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work. As a rule, remember that:
+
+> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+
 ## Scoped Slots
 
 > New in 2.1.0+
@@ -211,7 +211,7 @@ Now when we use the `<todo-list>` component, we can optionally define an alterna
 </todo-list>
 ```
 
-> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component.
+> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
 
 ### Destructuring `slot-props`
 
