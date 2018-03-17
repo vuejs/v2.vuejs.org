@@ -14,7 +14,144 @@ Earlier, we used the `is` attribute to switch between components in a tabbed int
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. In these cases, you can wrap a dynamic component with a `<keep-alive>` element:
+When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+
+{% raw %}
+<div id="dynamic-component-demo" class="demo">
+  <button
+    v-for="tab in tabs"
+    v-bind:key="tab"
+    v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
+    v-on:click="currentTab = tab"
+  >{{ tab }}</button>
+  <component
+    v-bind:is="currentTabComponent"
+    class="dynamic-component-demo-tab"
+  ></component>
+</div>
+<script>
+Vue.component('tab-posts', {
+  data: function () {
+    return {
+      posts: [
+        {
+          id: 1,
+          title: 'Cat Ipsum',
+          content: '<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>'
+        },
+        {
+          id: 2,
+          title: 'Hipster Ipsum',
+          content: '<p>Bushwick blue bottle scenester helvetica ugh, meh four loko. Put a bird on it lumbersexual franzen shabby chic, street art knausgaard trust fund shaman scenester live-edge mixtape taxidermy viral yuccie succulents. Keytar poke bicycle rights, crucifix street art neutra air plant PBR&B hoodie plaid venmo. Tilde swag art party fanny pack vinyl letterpress venmo jean shorts offal mumblecore. Vice blog gentrify mlkshk tattooed occupy snackwave, hoodie craft beer next level migas 8-bit chartreuse. Trust fund food truck drinking vinegar gochujang.</p>'
+        },
+        {
+          id: 3,
+          title: 'Cupcake Ipsum',
+          content: '<p>Icing dessert soufflé lollipop chocolate bar sweet tart cake chupa chups. Soufflé marzipan jelly beans croissant toffee marzipan cupcake icing fruitcake. Muffin cake pudding soufflé wafer jelly bear claw sesame snaps marshmallow. Marzipan soufflé croissant lemon drops gingerbread sugar plum lemon drops apple pie gummies. Sweet roll donut oat cake toffee cake. Liquorice candy macaroon toffee cookie marzipan.</p>'
+        }
+      ],
+      selectedPost: null
+    }
+  },
+  template: '\
+    <div class="dynamic-component-demo-posts-tab">\
+      <ul class="dynamic-component-demo-posts-sidebar">\
+        <li\
+          v-for="post in posts"\
+          v-bind:key="post.id"\
+          v-bind:class="{ \'dynamic-component-demo-active\': post === selectedPost }"\
+          v-on:click="selectedPost = post"\
+        >\
+          {{ post.title }}\
+        </li>\
+      </ul>\
+      <div class="dynamic-component-demo-post-container">\
+        <div \
+          v-if="selectedPost"\
+          class="dynamic-component-demo-post"\
+        >\
+          <h3>{{ selectedPost.title }}</h3>\
+          <div v-html="selectedPost.content"></div>\
+        </div>\
+        <strong v-else>\
+          Click on a blog title to the left to view it.\
+        </strong>\
+      </div>\
+    </div>\
+  '
+})
+Vue.component('tab-archive', {
+  template: '<div>Archive component</div>'
+})
+new Vue({
+  el: '#dynamic-component-demo',
+  data: {
+    currentTab: 'Posts',
+    tabs: ['Posts', 'Archive']
+  },
+  computed: {
+    currentTabComponent: function () {
+      return 'tab-' + this.currentTab.toLowerCase()
+    }
+  }
+})
+</script>
+<style>
+.dynamic-component-demo-tab-button {
+  padding: 6px 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f0f0f0;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.dynamic-component-demo-tab-button:hover {
+  background: #e0e0e0;
+}
+.dynamic-component-demo-tab-button.dynamic-component-demo-active {
+  background: #e0e0e0;
+}
+.dynamic-component-demo-tab {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.dynamic-component-demo-posts-tab {
+  display: flex;
+}
+.dynamic-component-demo-posts-sidebar {
+  max-width: 40vw;
+  margin: 0 !important;
+  padding: 0 10px 0 0 !important;
+  list-style-type: none;
+  border-right: 1px solid #ccc;
+}
+.dynamic-component-demo-posts-sidebar li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+.dynamic-component-demo-posts-sidebar li:hover {
+  background: #eee;
+}
+.dynamic-component-demo-posts-sidebar li.dynamic-component-demo-active {
+  background: lightblue;
+}
+.dynamic-component-demo-post-container {
+  padding-left: 10px;
+}
+.dynamic-component-demo-post > :first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+</style>
+{% endraw %}
+
+You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+
+This is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
 
 ``` html
 <!-- Inactive components will be cached! -->
@@ -22,6 +159,41 @@ When switching between these components though, you'll sometimes want to maintai
   <component v-bind:is="currentTabComponent"></component>
 </keep-alive>
 ```
+
+Check out the result below:
+
+{% raw %}
+<div id="dynamic-component-keep-alive-demo" class="demo">
+  <button
+    v-for="tab in tabs"
+    v-bind:key="tab"
+    v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
+    v-on:click="currentTab = tab"
+  >{{ tab }}</button>
+  <keep-alive>
+    <component
+      v-bind:is="currentTabComponent"
+      class="dynamic-component-demo-tab"
+    ></component>
+  </keep-alive>
+</div>
+<script>
+new Vue({
+  el: '#dynamic-component-keep-alive-demo',
+  data: {
+    currentTab: 'Posts',
+    tabs: ['Posts', 'Archive']
+  },
+  computed: {
+    currentTabComponent: function () {
+      return 'tab-' + this.currentTab.toLowerCase()
+    }
+  }
+})
+</script>
+{% endraw %}
+
+Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered. See [this fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) for the complete code.
 
 <p class="tip">Note that `<keep-alive>` requires the components being switched between to all have names, either using the `name` option on a component, or through local/global registration.</p>
 
