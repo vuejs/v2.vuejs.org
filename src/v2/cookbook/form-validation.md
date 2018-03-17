@@ -46,11 +46,11 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 </form>
 ```
 
-Let's cover it from the top. The form tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the action is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).
+Let's cover it from the top. The `<form>` tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the `action` is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).
 
 Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified. 
 
-The final thing to note is that each of the three fields has a corresponding v-model to connect them to values we will work with in the JavaScript. Now let's look at that.
+The final thing to note is that each of the three fields has a corresponding `v-model` to connect them to values we will work with in the JavaScript. Now let's look at that.
 
 ``` js
 const app = new Vue({
@@ -73,7 +73,7 @@ const app = new Vue({
 })
 ```
 
-Fairly short and simple. We default an array to hold errors and set null values for the three form fields. The checkForm logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that's really it. You can run the demo below. Don't forget that on a successful submission it's going to POST to a temporary URL.
+Fairly short and simple. We define an array to hold errors and set null values for the three form fields. The checkForm logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that's really it. You can run the demo below. Don't forget that on a successful submission it's going to POST to a temporary URL.
 
 <p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">form validation 1</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
