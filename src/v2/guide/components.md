@@ -564,7 +564,7 @@ In the example above, `currentTabComponent` can contain either:
 
 See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
 
-### DOM Template Parsing Caveats
+## DOM Template Parsing Caveats
 
 Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>` and `<option>` can only appear inside certain other elements.
 
