@@ -201,7 +201,7 @@ Check out more details on `<keep-alive>` in the [API reference](../api/#keep-ali
 
 ## Async Components
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
+In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
