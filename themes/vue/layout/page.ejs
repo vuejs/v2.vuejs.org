@@ -28,12 +28,14 @@
   <% } %>
   <% if (page.type === 'guide') { %>
     <div class="guide-links">
-      <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
-        <span>← <a href="<%- url_for(page.path) %>"><%- page.title %></a></span>
-      <% }) %>
-      <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
-        <span style="float: right;"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
-      <% }) %>
+      <% const lastPage = site.pages.find({ type: page.type, order: { $lt: page.order }}).sort({ order: -1 }).first(); %>
+      <% if (lastPage) { %>
+        <span>← <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span>
+      <% } %>
+      <% const nextPage = site.pages.find({ type: page.type, order: { $gt: page.order }}).sort({ order: 1 }).first(); %>
+      <% if (nextPage) { %>
+        <span style="float: right;"><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a> →</span>
+      <% } %>
     </div>
   <% } %>
   <div class="footer">
@@ -42,7 +44,7 @@
     <%_ } _%>
     Caught a mistake or want to contribute to the documentation?
     <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-      Edit this page on Github!
+      Edit this page on GitHub!
     </a>
   </div>
 </div>

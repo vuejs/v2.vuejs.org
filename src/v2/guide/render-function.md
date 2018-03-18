@@ -171,7 +171,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 ``` js
 {
   // Same API as `v-bind:class`
-  'class': {
+  class: {
     foo: true,
     bar: false
   },
@@ -319,6 +319,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -335,6 +336,7 @@ render: function (createElement) {
 There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -343,7 +345,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -370,7 +371,7 @@ For example:
 on: {
   '!click': this.doThisInCapturingMode,
   '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
+  '~!mouseover': this.doThisOnceInCapturingMode
 }
 ```
 
@@ -419,11 +420,12 @@ render: function (createElement) {
 And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -432,7 +434,7 @@ render: function (createElement) {
 To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // pass `scopedSlots` in the data object
@@ -479,7 +481,7 @@ import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
@@ -518,7 +520,7 @@ Vue.component('my-component', {
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 
-``` js
+``` html
 <template functional>
 </template>
 ```
@@ -577,6 +579,38 @@ Vue.component('smart-list', {
     isOrdered: Boolean
   }
 })
+```
+
+### Passing Attributes and Events to Child Elements/Components
+
+On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+
+Functional components, however, require you to explicitly define this behavior:
+
+```js
+Vue.component('my-functional-button', {
+  functional: true,
+  render: function (createElement, context) {
+    // Transparently pass any attributes, event listeners, children, etc.
+    return createElement('button', context.data, context.children)
+  }
+})
+```
+
+By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+
+If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs" 
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
 ```
 
 ### `slots()` vs `children`

@@ -4,27 +4,16 @@
       <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
-      <div class="main-sponsor">
-        <span>Platinum Sponsors</span>
-        <div>
-        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
-        <a href="<%- sponsor.url %>" target="_blank" class="logo">
-          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
-        </a>
-        <%_ } _%>
-        </div>
-      </div>
-      <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-        Become a Sponsor
-      </a>
+      <%- partial('partials/sponsors_sidebar') %>
       <h2>
-        <%-
-          type === 'api'
-            ? 'API'
-            : type === 'style-guide'
-              ? 'Style Guide<sup class="beta">beta</sup>'
-              : (type.charAt(0).toUpperCase() + type.slice(1))
-        %>
+        <% titles = {
+          api: 'API',
+          examples: 'Examples',
+          guide: 'Guide',
+          cookbook: 'Cookbook<sup class="beta">beta</sup>',
+          'style-guide': 'Style Guide<sup class="beta">beta</sup>'
+        } %>
+        <%- titles[type] %>
         <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">
             <option value="SELF" selected>2.x</option>

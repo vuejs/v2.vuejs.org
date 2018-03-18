@@ -46,8 +46,9 @@ var vm = new Vue({
   data: data
 })
 
-// These reference the same object!
-vm.a === data.a // => true
+// Getting the property on the instance
+// returns the one from the original data
+vm.a == data.a // => true
 
 // Setting the property on the instance
 // also affects the original data
@@ -88,19 +89,15 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data () {
-    return {
-      obj
-    }
-  }
+  data: obj
 })
 ```
 
 ```html
 <div id="app">
-  <p>{{ obj.foo }}</p>
-  <!-- this will no longer update obj.foo! -->
-  <button @click="obj.foo = 'baz'">Change it</button>
+  <p>{{ foo }}</p>
+  <!-- this will no longer update `foo`! -->
+  <button @click="foo = 'baz'">Change it</button>
 </div>
 ```
 

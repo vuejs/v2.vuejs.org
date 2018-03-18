@@ -292,11 +292,20 @@ Again, if you're using string templates, then this limitation does not apply.
 Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
 
 ``` html
-<div>
+<div id="prop-example-2">
   <input v-model="parentMsg">
   <br>
   <child v-bind:my-message="parentMsg"></child>
 </div>
+```
+
+``` js
+new Vue({
+  el: '#prop-example-2',
+  data: {
+    parentMsg: 'Message from parent'
+  }
+})
 ```
 
 You can also use the shorthand syntax for `v-bind`:
@@ -322,7 +331,7 @@ new Vue({
   components: {
     child: {
       props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
+      template: '<span>{{ myMessage }}</span>'
     }
   }
 })
@@ -507,7 +516,7 @@ We have learned that the parent can pass data down to the child using props, but
 Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
 
 - Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+- Trigger an event using `$emit(eventName, optionalPayload)`
 
 <p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
 
@@ -591,6 +600,85 @@ new Vue({
 
 In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
 
+
+Here's an example on how to use payload data:
+
+``` html
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+```
+
+``` js
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+<script>
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+</script>
+{% endraw %}
+
+In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
+
 ### Binding Native Events to Components
 
 There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
@@ -626,6 +714,14 @@ For the child component to update `foo`'s value, it needs to explicitly emit an 
 ``` js
 this.$emit('update:foo', newValue)
 ```
+
+The `.sync` modifier can also be used with `v-bind` when using an object to set multiple properties at once:
+
+```html
+<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
+```
+
+This has the effect of adding `v-on` update listeners for both `foo` and `bar`.
 
 ### Form Input Components using Custom Events
 
@@ -1330,7 +1426,7 @@ In our case, let's make that point the `tree-folder` component. We know the chil
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 
