@@ -494,10 +494,11 @@ order: 803
       },
       reposOfficial: [
         'vue-devtools',
+        'vue-cli',
         'vue-curated'
       ],
       reposPersonal: [
-        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller'
+        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
       ]
     },
     {
@@ -708,7 +709,7 @@ order: 803
     },
     {
       name: 'Bruno Lesieur',
-      title: 'French Community Directeur',
+      title: 'French Community Director',
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',

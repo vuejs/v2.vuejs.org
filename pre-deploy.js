@@ -39,6 +39,7 @@ Promise.all([
     installation
       .replace(/vue_version: .*/, 'vue_version: ' + version)
       .replace(/gz_size:.*/g, `gz_size: "${prodSize}"`)
+      .replace(/\/vue@[\d\.]+\//g, `/vue@${version}/`)
   )
   console.log(`\nSuccessfully updated Vue version and gzip file size.\n`)
 }).catch(err => {

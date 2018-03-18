@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
@@ -159,7 +160,7 @@ type: api
 
 - **用法：**
 
-  设置为 `true`，以在浏览器开发工具 timeline 中，启用组件初始化(init)、编译(compile)、渲染(render)和修补(patch)的性能追踪。只能在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中运行。
+  设置为 `true`，以在浏览器开发工具的 performance/timeline 面板中，启用组件初始化(init)、编译(compile)、渲染(render)和修补(patch)的性能追踪。只能在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中运行。
 
 ### productionTip
 
@@ -256,7 +257,7 @@ type: api
 
   设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开 Vue 不能检测属性被添加的限制。
 
-  **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。**
+  <p class="tip">target 对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
 - **参考：**[深入响应式原理](../guide/reactivity.html)
 
@@ -977,7 +978,7 @@ type: api
 
   允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
-  这和 `mixins` 类似，区别在于，组件自身的选项会比要扩展的源组件具有更高的优先级。
+  这与 `mixins` 类似。
 
 - **示例：**
 
@@ -1007,7 +1008,13 @@ type: api
 
   `provide` 选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，但是只在原生支持 `Symbol` 和 `Reflect.ownKeys` 的环境下可工作。
 
-  `inject` 选项应该是一个字符串数组或一个对象，该对象的 key 代表了本地绑定的名称，value 为其 key (字符串或 Symbol) 以在可用的注入中搜索。
+  `inject` 选项应该是以下二者之一：
+  - 一个字符串数组
+  - 一个对象，对象的 key 是本地的绑定名称，value 是以下二者之一：
+    - 在可访问的 injections 对象中，通过 key （字符串或 Symbol）检索到的值
+    - 一个对象，该对象的
+      - `name` 属性是：在可访问的 injections 对象中，通过 key （字符串或 Symbol）检索到的值
+      - 并且 `default` 属性是：降级情况下会用到的回退值(fallback value)
 
   > 提示：`provide` 和 `inject` 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
 
@@ -1719,7 +1726,7 @@ type: api
 
 - **用法：**
 
-  根据表达式之真假值，切换元素的 `display` CSS 属性。
+  根据表达式的 truthy 和 falsy 值，切换元素的 `display` CSS 属性。
 
   当条件变化时该指令触发过渡效果。
 
@@ -1854,7 +1861,7 @@ type: api
 
   从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
 
-  用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
+  用在普通元素上时，只能监听 [**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
 

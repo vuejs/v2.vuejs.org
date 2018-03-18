@@ -194,7 +194,7 @@ methods: {
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">使用修饰符时的顺序会产生一些影响，因为相关的代码会以相同的顺序生成。所以，使用 `@click.prevent.self` 会阻止**所有点击**，而 `@click.self.prevent` 只阻止元素自身的点击。</p>
+<p class="tip">使用修饰符时的顺序会产生一些影响，因为相关的代码会以相同的顺序生成。所以，使用 `v-on:click.prevent.self` 会阻止**所有点击**，而 `v-on:click.self.prevent` 只阻止元素自身的点击。</p>
 
 > 2.1.4+ 新增
 
@@ -295,7 +295,7 @@ Vue.config.keyCodes.f1 = 112
 <div @click.ctrl="doSomething">做一些操作</div>
 ```
 
-<p class="tip">注意，在使用 `keyup` 事件时，辅助按键和常规按键之间的差异，在事件触发时，辅助按键必须是按下状态。也就是说，只有在按下 `ctrl` 键，同时释放一个按键时，才会触发 `keyup.ctrl` 事件。如果你单独释放 `ctrl` 键，则无法触发事件。</p>
+<p class="tip">注意，在使用 `keyup` 事件时，辅助按键和常规按键之间的差异，在事件触发时，辅助按键必须是按下状态。也就是说，只有在按下 `ctrl` 键，同时释放一个按键时，才会触发 `keyup.ctrl` 事件。如果你单独释放 `ctrl` 键，则无法触发事件。如果你确实需要这样的行为，请使用 `keyCode` 替代 `ctrl`：`keyup.17`。</p>
 
 ### `.exact` 修饰符(.exact Modifier)
 

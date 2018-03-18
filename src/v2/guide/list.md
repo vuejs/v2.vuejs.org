@@ -268,21 +268,39 @@ example1.items = example1.items.filter(function (item) {
 1. 当你使用索引直接设置一项时，例如 `vm.items[indexOfItem] = newValue`
 2. 当你修改数组长度时，例如 `vm.items.length = newLength`
 
+例如：
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // 不是响应的
+vm.items.length = 2 // 不是响应的
+```
+
 为了解决第 1 个问题，以下两种方式都可以实现与 `vm.items[indexOfItem] = newValue` 相同的效果，但是却可以通过响应式系统出发状态更新：
 
 ``` js
 // Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
+Vue.set(vm.items, indexOfItem, newValue)
 ```
 ``` js
 // Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+你还可以使用 [`vm.$set`](https://vuejs.org/v2/api/#vm-set) 实例方法，这也是全局 `Vue.set` 方法的别名：
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
 ```
 
 为了解决第 2 个问题，你可以使用 `splice`：
 
 ``` js
-example1.items.splice(newLength)
+vm.items.splice(newLength)
 ```
 
 ## 对象变化检测说明(Object Change Detection Caveats)
@@ -322,13 +340,13 @@ Vue.set(vm.userProfile, 'age', 27)
 还可以使用 `vm.$set` 实例方法，这也是全局 `Vue.set` 方法的别名：
 
 ``` js
-vm.$set(this.userProfile, 'age', 27)
+vm.$set(vm.userProfile, 'age', 27)
 ```
 
 有时，你想要向已经存在的对象上添加一些新的属性，例如使用  `Object.assign()`  或 `_.extend()` 方法。在这种情况下，应该创建一个新的对象，这个对象同时具有两个对象的所有属性，因此，改为：
 
 ``` js
-Object.assign(this.userProfile, {
+Object.assign(vm.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
 })
@@ -337,7 +355,7 @@ Object.assign(this.userProfile, {
 可以通过如下方式，添加新的响应式属性：
 
 ``` js
-this.userProfile = Object.assign({}, this.userProfile, {
+vm.userProfile = Object.assign({}, vm.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
 })

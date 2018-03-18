@@ -131,6 +131,8 @@ it('updates the rendered message when vm.message updates', done => {
 
 我们计划做一个通用的测试工具集，让不同策略的渲染输出（例如忽略子组件的基本渲染）和断言变得更简单。
 
+关于 Vue 单元测试的更多深入信息，请查看 [vue-test-utils](https://vue-test-utils.vuejs.org/en/) 和我们的 Cookbook 中 [单元测试 vue 组件](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html) 部分。
+
 ***
 
 > 原文： http://vuejs.org/guide/unit-testing.html

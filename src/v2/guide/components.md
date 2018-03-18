@@ -292,11 +292,20 @@ Vue.component('child', {
 类似于将一个普通属性绑定到一个表达式，我们还可以使用 `v-bind` 将 props 属性动态地绑定到父组件中的数据。无论父组件何时更新数据，都可以将数据向下流入到子组件中：
 
 ``` html
-<div>
+<div id="prop-example-2">
   <input v-model="parentMsg">
   <br>
   <child v-bind:my-message="parentMsg"></child>
 </div>
+```
+
+``` js
+new Vue({
+  el: '#prop-example-2',
+  data: {
+    parentMsg: 'Message from parent'
+  }
+})
 ```
 
 还可以使用 `v-bind` 简写语法，通常看起来更简洁：
@@ -322,7 +331,7 @@ new Vue({
   components: {
     child: {
       props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
+      template: '<span>{{ myMessage }}</span>'
     }
   }
 })
@@ -507,7 +516,7 @@ Vue.component('example', {
 每个 Vue 实例都接入了一个[事件接口(events interface)](../api/#Instance-Methods-Events)，也就是说，这些 Vue 实例可以做到：
 
 - 使用 `$on(eventName)` 监听一个事件
-- 使用 `$emit(eventName)` 触发一个事件
+- 使用 `$emit(eventName, optionalPayload)` 触发一个事件
 
 <p class="tip">注意，Vue 事件系统，不同于浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)。虽然它们之间具有类似的事件机制，但是 `$on` 和 `$emit` __并非__ `addEventListener` 和 `dispatchEvent` 的别名</p>
 
@@ -589,7 +598,86 @@ new Vue({
 </script>
 {% endraw %}
 
-在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的信息全部通知到父组件中，以防止父组件主动关注子组件内部信息造成耦合。
+在这个示例中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的信息全部通知到父组件中，以防止父组件主动关注子组件内部信息造成耦合。
+
+
+这里有一个如何使用载荷(payload)数据的示例：
+
+``` html
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+```
+
+``` js
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="message-event-example" class="demo">
+  <p v-for="msg in messages">{{ msg }}</p>
+  <button-message v-on:message="handleMessage"></button-message>
+</div>
+<script>
+Vue.component('button-message', {
+  template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`,
+  data: function () {
+    return {
+      message: 'test message'
+    }
+  },
+  methods: {
+    handleSendMessage: function () {
+      this.$emit('message', { message: this.message })
+    }
+  }
+})
+new Vue({
+  el: '#message-event-example',
+  data: {
+    messages: []
+  },
+  methods: {
+    handleMessage: function (payload) {
+      this.messages.push(payload.message)
+    }
+  }
+})
+</script>
+{% endraw %}
+
+在第二个示例中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的信息（包括报告给事件触发器(event emitter)的载荷数据）全部通知到父组件中，以防止父组件主动关注子组件内部信息造成耦合。
 
 ### 为组件绑定原生事件(Binding Native Events to Components)
 
@@ -626,6 +714,14 @@ new Vue({
 ``` js
 this.$emit('update:foo', newValue)
 ```
+
+当使用对象一次性设置多个属性时，也可以将 `v-bind` 与 `.sync` 修饰符组合在一起使用：
+
+```html
+<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
+```
+
+这会为 `foo` 和 `bar` 同时添加用于更新的 `v-on` 监听器。
 
 ### 使用自定义事件的表单输入组件(Form Input Components using Custom Events)
 
@@ -1331,7 +1427,7 @@ Failed to mount component: template or render function not defined.（译注：�
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 

@@ -154,6 +154,7 @@
     var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
+    var isOpen = false
 
     modalButton.addEventListener('click', function(event) {
       event.stopPropagation()
@@ -161,14 +162,16 @@
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
       videoWrapper.innerHTML = '<iframe style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="//player.youku.com/embed/XMzMwMTYyODMyNA==" frameborder="0" allowfullscreen></iframe>'
+      isOpen = true
     })
 
     document.body.addEventListener('click', function(e) {
-      if (e.target !== modalButton && !videoModal.contains(e.target)) {
+      if (isOpen && e.target !== modalButton && !videoModal.contains(e.target)) {
         videoModal.classList.remove('open')
         document.body.classList.remove('stop-scroll')
         document.body.removeChild(overlay)
-        videoWrapper.innerHTML = ''
+        player.unload()
+        isOpen = false
       }
     })
   }

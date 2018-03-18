@@ -8,7 +8,7 @@ order: 2
 
 Vue.js（读音 /vjuː/，类似于 **view** 的读音）是一套构建用户界面(user interface)的**渐进式框架**。与其他重量级框架不同的是，Vue 从根本上采用最小成本、渐进增量(incrementally adoptable)的设计。Vue 的核心库只专注于视图层，并且很容易与其他第三方库或现有项目集成。另一方面，当与[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](https://github.com/vuejs/awesome-vue#components--libraries)结合使用时，Vue 也完全能够为复杂的单页应用程序提供有力驱动。
 
-如果你想在深入学习 Vue 之前了解更多信息，我们<a id="modal-player" href="javascript:;">创建了一个视频</a>，完整地梳理了 Vue 的核心理念，以及配合一个示例项目讲解。
+如果你想在深入学习 Vue 之前了解更多信息，我们<a id="modal-player" href="#">创建了一个视频</a>，完整地梳理了 Vue 的核心理念，以及配合一个示例项目讲解。
 
 如果你是有经验的前端开发人员，想知道 Vue.js 与其它库/框架(library/framework)之间的对比，请查看[对比其它框架](comparison.html)。
 
@@ -19,6 +19,14 @@ Vue.js（读音 /vjuː/，类似于 **view** 的读音）是一套构建用户�
 尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 示例](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着基础示例学习一些基本用法。或者你也可以在本地<a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">创建一个 <code>index.html</code> 文件，然后通过如下方式引入 Vue：
 
 ``` html
+<!-- 开发版本，包含有用的控制台警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+
+或：
+
+``` html
+<!-- 生成版本，对于体积和速度进行优化 -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 

@@ -15,10 +15,10 @@ Vue 的过渡系统提供了很多简便方法，可以在进入、离开时，�
 
 ## 使用 watcher 对状态进行动画(Animating State with Watchers)
 
-watcher 可以观察到从任何数值属性到另一个属性的变化，然后进行动画。这一抽象听起来很复杂，所以让我们深入一个使用 [Tween.js](https://github.com/tweenjs/tween.js) 的例子：
+watcher 可以观察到从任何数值属性到另一个属性的变化，然后进行动画。这一抽象听起来很复杂，所以让我们深入一个使用 [GreenSock](https://greensock.com/) 的例子：
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -31,33 +31,23 @@ new Vue({
   el: '#animated-number-demo',
   data: {
     number: 0,
-    animatedNumber: 0
+    tweenedNumber: 0
+  },
+  computed: {
+    animatedNumber: function() {
+      return this.tweenedNumber.toFixed(0);
+    }
   },
   watch: {
-    number: function(newValue, oldValue) {
-      var vm = this
-      function animate () {
-        if (TWEEN.update()) {
-          requestAnimationFrame(animate)
-        }
-      }
-
-      new TWEEN.Tween({ tweeningNumber: oldValue })
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .to({ tweeningNumber: newValue }, 500)
-        .onUpdate(function () {
-          vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .start()
-
-      animate()
+    number: function(newValue) {
+      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
     }
   }
 })
 ```
 
 {% raw %}
-<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -67,33 +57,23 @@ new Vue({
   el: '#animated-number-demo',
   data: {
     number: 0,
-    animatedNumber: 0
+    tweenedNumber: 0
+  },
+  computed: {
+    animatedNumber: function() {
+      return this.tweenedNumber.toFixed(0);
+    }
   },
   watch: {
-    number: function(newValue, oldValue) {
-      var vm = this
-      function animate () {
-        if (TWEEN.update()) {
-          requestAnimationFrame(animate)
-        }
-      }
-
-      new TWEEN.Tween({ tweeningNumber: oldValue })
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .to({ tweeningNumber: newValue }, 500)
-        .onUpdate(function () {
-          vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .start()
-
-      animate()
+    number: function(newValue) {
+      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
     }
   }
 })
 </script>
 {% endraw %}
 
-当更新数值时，输入框下方就会对数值的更改进行动画。这是一个不错的 demo 示例，但是，对于不能直接存储为数字的值，比如有效的 CSS 颜色值？以下是我们如何通过添加 [Color.js](https://github.com/brehaut/color-js) 来实现对非数值进行动画：
+当更新数值时，输入框下方就会对数值的更改进行动画。这是一个不错的 demo 示例，但是，对于不能直接存储为数字的值，比如有效的 CSS 颜色值？以下是我们如何通过 [Tween.js](https://github.com/tweenjs/tween.js) 和 [Color.js](https://github.com/brehaut/color-js) 来实现对非数值进行动画：
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>

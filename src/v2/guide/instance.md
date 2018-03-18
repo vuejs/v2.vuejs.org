@@ -46,8 +46,9 @@ var vm = new Vue({
   data: data
 })
 
-// 这里引用了同一个对象！
-vm.a === data.a // => true
+// 在实例上获取属性
+// 将返回原始数据中的属性
+vm.a == data.a // => true
 
 // 设置实例上的属性，
 // 也会影响原始数据
@@ -88,19 +89,15 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data () {
-    return {
-      obj
-    }
-  }
+  data: obj
 })
 ```
 
 ```html
 <div id="app">
-  <p>{{ obj.foo }}</p>
-  <!-- 这将不再更新 obj.foo! -->
-  <button @click="obj.foo = 'baz'">点我修改</button>
+  <p>{{ foo }}</p>
+  <!-- 这将不再更新 `foo`! -->
+  <button @click="foo = 'baz'">点我修改</button>
 </div>
 ```
 
