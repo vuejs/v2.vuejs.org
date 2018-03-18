@@ -583,7 +583,7 @@ Vue.component('smart-list', {
 
 ### Passing Attributes and Events to Child Elements/Components
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](components.html#Replacing-Merging-with-Existing-Attributes) any existing attributes of the same name.
 
 Functional components, however, require you to explicitly define this behavior:
 
@@ -605,7 +605,7 @@ If you are using template-based functional components, you will also have to man
 <template functional>
   <button
     class="btn btn-primary"
-    v-bind="data.attrs" 
+    v-bind="data.attrs"
     v-on="listeners"
   >
     <slot/>
