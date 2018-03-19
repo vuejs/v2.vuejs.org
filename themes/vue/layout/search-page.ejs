@@ -91,6 +91,11 @@ var searchPage = new Vue({
   watch: {
     search() {
       this.updateSearch()
+      window.history.pushState(
+        {},
+        'Vue.js Search',
+        window.location.origin + window.location.pathname + '?q=' + encodeURIComponent(this.search)
+      )
     }
   },
   created() {
