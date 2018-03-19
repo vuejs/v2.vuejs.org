@@ -117,7 +117,7 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
 <template>
   <div id="blog-home">
       <h1>{{ page_title }}</h1>
-      <!-- Create `v-for` and apply a `key` for Vue. Here is using a combination of the slug and index. -->
+      <!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. -->
       <div v-for="(post,index) in posts" :key="post.slug + '_' + index">
         <router-link :to="'/blog/' + post.slug">
           <article class="media">
