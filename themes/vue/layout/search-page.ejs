@@ -5,9 +5,16 @@
       v-model="search"
       placeholder="Search Vue.js"
     >
-    <p v-if="totalResults">
-      <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
-    </p>
+    <div class="search-footer">
+      <p>
+        <template v-if="totalResults">
+          <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
+        </template>
+      </p>
+      <a target="_blank" href="https://www.algolia.com/">
+          <img src="/images/search-by-algolia.png" height="16">
+      </a>
+    </div>
   </form>
 
   <template v-if="results.length">
