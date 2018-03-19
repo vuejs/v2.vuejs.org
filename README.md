@@ -35,6 +35,9 @@ Japanese translation is maintained by [Vue.js japan user group](https://github.c
 
 * Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
 * Primary maintainer - [kazupon](https://github.com/kazupon)
+* Secondary Maintainers:
+    * [re-fort](https://github.com/re-fort)
+    * [potato4d](https://github.com/potato4d)
 
 ### Korean
 
