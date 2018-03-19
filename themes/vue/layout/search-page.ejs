@@ -1,5 +1,5 @@
 <div id="search-page">
-  <form class="search-form">
+  <form class="search-form" @submit="submit">
     <input
       class="search-query"
       v-model="search"
@@ -116,6 +116,12 @@ var searchPage = new Vue({
     updateSearch() {
       algoliaHelper.setCurrentPage(0).setQuery(this.search).search()
     },
+    submit(e) {
+      e.preventDefault()
+      if (this.results.length > 0) {
+        window.location = this.results[0].url
+      }
+    }
   }
 })
 
