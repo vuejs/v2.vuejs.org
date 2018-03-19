@@ -84,7 +84,7 @@ Automated testing allows large teams of developers to maintain complex codebases
 
 #### Getting started
 
-[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [Vue CLI](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the Vue Test Utils documentation.
+[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the Vue Test Utils documentation.
 
 ## Real-World Example
 
@@ -158,7 +158,7 @@ describe('Foo', () => {
     }
   })
 
-  // see if the `message` renders
+  // see if the message renders
   expect(wrapper.find('.message').text()).toEqual('Hello World')
 
   // assert the error is rendered
