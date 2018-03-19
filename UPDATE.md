@@ -93,5 +93,9 @@
 * 【更新】合并 vuejs.org 的 master 分支
 * 【记录】https://github.com/docschina/vuejs.org/commit/cf9591a4a8c15d9075d8ee309d6244ef3db22dc6
 
+### 2018.03.19
+* 【更新】合并 vuejs.org 的 master 分支，更新 cookbook。
+* 【记录】https://github.com/docschina/vuejs.org/commit/f1273c046b1b321c698381a8a85c8a9d42e59b34
+
 ## 重新校对情况
 
