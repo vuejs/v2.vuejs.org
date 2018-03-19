@@ -276,12 +276,15 @@ In Vue, a component is essentially a Vue instance with pre-defined options. Regi
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
+var app6s = new Vue({
+  el: '#app-6s'
+})
 ```
 
 Now you can compose it in another component's template:
 
 ``` html
-<ol>
+<ol id="app-6s">
   <!-- Create an instance of the todo-item component -->
   <todo-item></todo-item>
 </ol>
