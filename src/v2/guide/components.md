@@ -434,7 +434,7 @@ Now `v-model` should work perfectly with this component:
 
 That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](components-custom-events.html).
 
-## Slots
+## Content Distribution with Slots
 
 Just like with HTML elements, it's often useful to be able to pass content to a component, like this:
 
@@ -563,6 +563,8 @@ In the example above, `currentTabComponent` can contain either:
 - a component's options object
 
 See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
+
+That's all you need to know about dynamic components for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-dynamic-async.html).
 
 ## DOM Template Parsing Caveats
 
