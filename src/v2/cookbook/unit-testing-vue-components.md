@@ -58,9 +58,7 @@ test('Foo', () => {
 
   // update the name to be long enough
   wrapper.setData({
-    username: {
-      'Lachlan'
-    }
+    username: 'Lachlan'
   })
 
   // assert the error has gone away
