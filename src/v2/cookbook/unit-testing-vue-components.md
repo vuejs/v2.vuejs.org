@@ -1,20 +1,20 @@
 ---
-title: Unit Testing Vue Components
+title: 单元测试 Vue 组件
 type: cookbook
 order: 6
 ---
 
-## Simple Example
+## 简单示例
 
-Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](./single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
+单元测试是软件开发的基础部分。单元测试孤立地执行最小的代码单元，以便增加新功能的易用性和追踪错误。通过 Vue [单文件组件](./single-file-components.html)，可以直接为独立的组件编写单元测试。这使你可以在不破坏现有功能的基础上，放心地开发新功能，并帮助其他开发人员了解你的组件功能。
 
-This simple example tests whether some text is rendered:
+这个简单示例，测试是否渲染一些文本：
 
 ```html
 <template>
   <div>
     <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
@@ -35,7 +35,7 @@ export default {
   computed: {
     error () {
       return this.username.trim().length < 7
-        ? 'Please enter a longer username'
+        ? '请输入稍长一些的 username'
         : ''
     }
   }
@@ -47,28 +47,28 @@ export default {
 import { shallow } from 'vue-test-utils'
 
 test('Foo', () => {
-  // render the component
+  // 渲染组件
   const wrapper = shallow(Hello)
 
-  // should not allow for username less than 7 characters, excludes whitespace
+  // 应当的实现效果是，去除两侧空格后，不允许 username 少于 7 个字符
   wrapper.setData({ username: ' '.repeat(7) })
 
-  // assert the error is rendered
+  // 断言 error 被渲染
   expect(wrapper.find('.error').exists()).toBe(true)
 
-  // update the name to be long enough
+  // 将 username 修改为足够长度
   wrapper.setData({
     username: {
       'Lachlan'
     }
   })
 
-  // assert the error has gone away
+  // 断言 error 消失
   expect(wrapper.find('.error').exists()).toBe(false)
 })
 ```
 
-The above code snippet shows how to test whether an error message is rendered based on the length of the username. It demonstrates the general idea of unit testing Vue components: render the component, and assert that the markup matches the state of the component.
+上面的代码片段，展示了如何根据 username 的长度，测试错误消息是否被渲染。它演示了单元测试 Vue 组件的一般思路：渲染组件，然后断言标签内容与组件状态对应。
 
 ## Why test?
 
@@ -107,7 +107,7 @@ Let's take a look at the component code first:
       {{ message }}
     </div>
     Enter your username: <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
