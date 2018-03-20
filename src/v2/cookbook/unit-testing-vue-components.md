@@ -70,35 +70,35 @@ test('Foo', () => {
 
 上面的代码片段，展示了如何根据 username 的长度，测试错误消息是否被渲染。它演示了单元测试 Vue 组件的一般思路：渲染组件，然后断言标签内容与组件状态对应。
 
-## Why test?
+## 为什么要做测试？
 
-Component unit tests have lots of benefits:
-- Provide documentation on how the component should behave
-- Save time over testing manually
-- Reduce bugs in new features
-- Improve design
-- Facilitate refactoring
+组件单元测试有很多好处：
+- 提供有关组件内部机制的文档
+- 节省手动测试时间
+- 减少新功能中的错误
+- 改进设计
+- 促进重构
 
-Automated testing allows large teams of developers to maintain complex codebases.
+自动化测试，有助于大型开发团队维护复杂的代码库。
 
-#### Getting started
+#### 起步
 
-[vue-test-utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) webpack template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the `vue-test-utils` documentation.
+[vue-test-utils](https://github.com/vuejs/vue-test-utils) 是用于辅助单元测试 Vue 组件的官方库。[vue-cli](https://github.com/vuejs/vue-cli) webpack template 中带有 Karma 或 Jest，都良好支持测试运行器，`vue-test-utils` 文档中的[指南](https://vue-test-utils.vuejs.org/zh-cn/guides/)也可以参考。
 
-## Real-World Example
+## 现实示例
 
-Unit tests should be
-- Fast to run
-- Easy to understand
-- Only test a _single unit of work_
+单元测试应该
+- 快速运行
+- 简单易懂
+- 只测试_单个工作单元_
 
-Let's continue building on the previous example, while introducing the idea of a <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">factory function</a> to make our test more compact and readable. The component should:
+让我们继续构建前面的示例，同时引入一个 <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">工厂函数(factory function)</a> 的概念，以使我们的测试更加紧凑和可读。该组件应该：
 
-- show a 'Welcome to the Vue.js cookbook' greeting.
-- prompt the user to enter their username
-- display an error if the entered username is less than seven letters
+- 显示 'Welcome to the Vue.js cookbook' 的问候。
+- 提示用户输入 username
+- 输入的 username 少于 7 个字母，显示 error
 
-Let's take a look at the component code first:
+我们先来看组件代码：
 
 ```html
 <template>
@@ -106,12 +106,12 @@ Let's take a look at the component code first:
     <div class="message">
       {{ message }}
     </div>
-    Enter your username: <input v-model="username">
+    输入你的 username：<input v-model="username">
     <div
       v-if="error"
       class="error"
     >
-      Please enter a username with at least seven letters.
+      请输入至少 7 个字母的 username
     </div>
   </div>
 </template>
@@ -136,12 +136,12 @@ export default {
 </script>
 ```
 
-The things that we should test are:
-- is the `message` rendered?
-- if `error` is `true`, `<div class="error"`> should be present
-- if `error` is `false`, `<div class="error"`> should not be present
+我们应该测试的是：
+- `message` 正确渲染了吗？
+- 如果 `error` 是 `true`，`<div class="error"`> 应该存在
+- 如果 `error` 是 `false`，`<div class="error"`> 不应该存在
 
-And our first attempt at test:
+然后，在测试代码中，我们先来尝试：
 
 ```js
 import { shallow } from 'vue-test-utils'
@@ -155,28 +155,28 @@ describe('Foo', () => {
     }
   })
 
-  // see if the message renders
+  // 查看 message 是否渲染
   expect(wrapper.find('.message').text()).toEqual('Hello World')
 
-  // assert the error is rendered
+  // 断言 error 已经渲染
   expect(wrapper.find('.error').exists()).toBeTruthy()
 
-  // update the username and assert error is longer rendered
-  wrapper.setData({ username: 'Lachlan'  })
+  // 修改 username，然后断言 error 不再渲染
+  wrapper.setData({ username: 'Lachlan' })
   expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
 ```
 
-There are some problems with the above:
-- a single test is making assertions about different things
-- difficult to tell the different states the component can be in, and what should be rendered
+上面的示例中有一些问题：
+- 单个测试，却在对不同的事物做出断言
+- 很难说出组件处于哪些不同的状态，以及应该渲染什么结果
 
-The below example improves the test by:
-- only making one assertion per `it` block
-- having short, clear test descriptions
-- providing only the minimum data requires for the test
-- refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
+通过以下方式改进了测试：
+- 只在每个 `it` 块中做单个断言
+- 具有简短明确的测试说明
+- 只提供测试所需的最低限度的数据
+- 重构重复逻辑（创建 `wrapper` 和设置 `username` 变量）到工厂函数中
 
 *Updated test*:
 ```js
@@ -216,32 +216,38 @@ describe('Foo', () => {
 })
 ```
 
-Points to note:
+注意事项：
 
-At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallow(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once.
+在代码顶部，我们声明了工厂函数，将 `values` 对象合并到 `data` 中，然后返回一个新的 `wrapper` 实例。这样，我们不需要在每个测试中都重复写 `const wrapper = shallow(Foo)`。另一个较大的好处是，如果是你可能想要在每个测试中模拟或存根的组件，而这个组件是具有一个 method 方法或 computed 计算属性的复杂组件，现在则只需要声明一次。
 
-## Additional Context
+## 附加上下文
 
-The above test is fairly simple, but in practice Vue components often have other behaviors you want to test, such as:
+上面的测试示例比较简单，但实际上 Vue 组件通常还有其他需要测试的行为，例如：
 
-- making API calls
-- committing or dispatching mutations or actions with a `Vuex` store
-- testing interaction
+- 进行 API 调用
+- 通过 `Vuex` store 提交(commit)或分发(dispatch) mutations 或 actions
+- 测试交互
 
-There are more complete examples showing such tests in the `vue-test-utils` [guides](https://vue-test-utils.vuejs.org/en/guides/).
+在 `vue-test-utils` [指南](https://vue-test-utils.vuejs.org/en/guides/)中，展示了这些测试行为的更多完整示例。
 
-`vue-test-utils` and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component.
+`vue-test-utils` 和巨大的 JavaScript 生态系统提供了大量的工具，来促进达到接近 100％ 测试覆盖率。不过，单元测试只是测试金字塔的一部分。还有一些其他类型的测试，包括 e2e（end to end - 端到端）测试和快照测试。单元测试是最细度和最基本的测试 - 他们对最小工作单元做出断言，将单个组件的每个部分隔离开。
 
-Snapshot tests save the markup of your Vue component, and compare to the new one generated each time the test runs. If something changes, the developer is notified, and can decide if the change was intentional (the component was updated) or accidentally (the component is behaving incorrectly).
+快照测试(snapshot test)，会保存 Vue 组件的标签，并与每次测试运行时生成的新标签进行比较。如果有变化，开发人员会得到通知，并可以确定更改是符合意图（组件已经更新）还是出于意外（组件行为不正确）。
 
-End to end tests involve ensure a number of components interact together well. They are more high level. Some examples might be testing if a user can sign up, log in, and update their username. These are slowly to run than unit tests or snapshot tests.
+端到端测试(end to end)，涉及到要确保许多组件良好地交互在一起。他们更高层次。一些示例可能会测试到用户是否可以注册、登录和修改其用户名。这些要比单元测试或快照测试慢得多。
 
-Unit tests are most useful during development, either to help a developer think about how to design a component, or refactor an existing component, and are often run every time code is changed.
+单元测试，在开发过程中非常有用，既可以帮助开发人员考虑如何设计一个组件，又可以帮助开发人员重构现有组件，并且在每次修改代码时都不断地运行。
 
-Higher level tests, such as end to end tests, run much slower. These usually run pre-deploy, to ensure each part of the system is working together correctly.
+处于上层的测试，例如端到端测试，运行速度要慢得多。这些通常需要运行预先部署，以确保系统的每个部分正确地一起运行。
 
-More information about testing Vue components can be found in [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) by core team member [Edd Yerburgh](https://eddyerburgh.me/).
+关于测试 Vue 组件的更多信息，可以在 [测试 Vue.js 应用程序](https://www.manning.com/books/testing-vuejs-applications) 中学习，是由核心团队成员 [Edd Yerburgh](https://eddyerburgh.me/) 编写。
 
-## When To Avoid This Pattern
+## 何时我们无须进行单元测试
 
-Unit testing is an important part of any serious application. At first, when the vision of an application is not clear, unit testing might slow down development, but once a vision is established and real users will be interacting with the application, unit tests (and other types of automated tests) are absolutely essential to ensure the codebase is maintainable and scalable.
+单元测试是所有重度应用程序的重要组成部分。首先，当应用程序的构想不明确时，单元测试可能会减缓开发速度，然而，一旦确立出构想，并且有了与应用程序交互的真实用户，单元测试（以及其他类型的自动化测试）可以保证代码库是可维护的和可扩展的。
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/unit-testing-vue-components.html
+
+***
