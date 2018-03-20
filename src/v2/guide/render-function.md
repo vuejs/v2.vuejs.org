@@ -98,7 +98,7 @@ Vue.component('anchored-heading', {
 
 브라우저가 이 코드를 읽게 되면, 모든 내용을 추적하기 위해 가계도처럼 ["DOM 노드" 트리](https://javascript.info/dom-nodes)를 만듭니다.
 
-위 HTML의 DOM 노드 트리는 아래와 같습니.
+위 HTML의 DOM 노드 트리는 아래와 같습니다.
 
 ![DOM Tree Visualization](/images/dom-tree.png)
 
