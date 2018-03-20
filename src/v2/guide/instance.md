@@ -97,7 +97,7 @@ new Vue({
 <div id="app">
   <p>{{ foo }}</p>
   <!-- this will no longer update `foo`! -->
-  <button @click="foo = 'baz'">Change it</button>
+  <button v-on:click="foo = 'baz'">Change it</button>
 </div>
 ```
 
