@@ -26,14 +26,14 @@ If you're interested in contributing, please initiate collaboration by filing an
 
 Recipes should generally:
 
-> * Solve a specific, common problem
-> * Start with the simplest possible example
-> * Introduce complexities one at a time
-> * Link to other docs, rather than re-explaining concepts
-> * Describe the problem, rather than assuming familiarity
-> * Explain the process, rather than just the end result
-> * Explain the pros and cons of your strategy, including when it is and isn't appropriate
-> * Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+* Solve a specific, common problem
+* Start with the simplest possible example
+* Introduce complexities one at a time
+* Link to other docs, rather than re-explaining concepts
+* Describe the problem, rather than assuming familiarity
+* Explain the process, rather than just the end result
+* Explain the pros and cons of your strategy, including when it is and isn't appropriate
+* Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
 
 ### Simple Example
 
