@@ -295,7 +295,7 @@ new Vue({
 <!-- `toggle` 的值是 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- 当选中时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 元素内的文本） -->
+<!-- 当选中第一个选项时，`selected` 的值是字符串 "abc"（译者注：如果没有 value 属性，选中时 selected 值是 option 元素内的文本） -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>

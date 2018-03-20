@@ -34,9 +34,18 @@ Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript
 
 ### CDN
 
-推荐使用：[https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，在 npm 发布后，立刻就能够展现最新版本。你还可以在 [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包的源码。
+我们比较推荐的方式是，链接到可以手动修改的指定版本上：
 
-还可以使用 [unpkg](https://unpkg.com/vue) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)（但是 cdnjs 需要一段时间才能同步，所以可能会无法获取最新版本）。
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+```
+
+你可以在 [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包的源码。
+
+还可以使用 [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 来获取 Vue（cdnjs 需要一段时间才能同步，所以可能会无法获取最新版本）。
+
+请务必阅读 [Vue 不同构建版本的解释说明](#%E4%B8%8D%E5%90%8C%E6%9E%84%E5%BB%BA%E7%89%88%E6%9C%AC%E7%9A%84%E8%A7%A3%E9%87%8A%E8%AF%B4%E6%98%8E)，并且在你发布的网站中使用**生产环境版本**，也就是将 `vue.js` 替换为 `vue.min.js`。
+这是一个为了更快速的执行，而进行更小体积优化的构建版本，并不是为了好的开发体验。
 
 ## NPM
 
@@ -58,7 +67,6 @@ $ npm install --global vue-cli
 $ vue init webpack my-project
 # 安装依赖，然后开始！
 $ cd my-project
-$ npm install
 $ npm run dev
 ```
 

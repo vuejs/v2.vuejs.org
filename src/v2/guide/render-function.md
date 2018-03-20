@@ -171,7 +171,7 @@ createElement(
 ``` js
 {
   // 和 `v-bind:class` 的 API 相同
-  'class': {
+  class: {
     foo: true,
     bar: false
   },
@@ -319,6 +319,7 @@ render: function (createElement) {
 这可以在 render 函数中，通过重写为 JavaScript 的 `if`/`else` 和 `map` 来实现：
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -335,6 +336,7 @@ render: function (createElement) {
 在 render 函数中没有直接和 `v-model` 对标的功能 - 你必须自己实现逻辑：
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -343,7 +345,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -370,7 +371,7 @@ render: function (createElement) {
 on: {
   '!click': this.doThisInCapturingMode,
   '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
+  '~!mouseover': this.doThisOnceInCapturingMode
 }
 ```
 
@@ -419,11 +420,12 @@ render: function (createElement) {
 使用[`this.$scopedSlots`](../api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // <div><slot :text="msg"></slot></div>
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -432,7 +434,7 @@ render: function (createElement) {
 使用render函数传递作用域插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // pass scopedSlots in the data object
@@ -474,13 +476,12 @@ createElement(
 
 这就是会有一个 [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) 插件，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到于更接近模板的语法上。
 
-
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
@@ -517,34 +518,33 @@ Vue.component('my-component', {
 
 > 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 props，则 `props` 选项是必选项。而在 2.3.0+ 版本中，你可以省略 `props` 选项，所有组件节点上的发现的属性，都会被隐式地提取为 props。
 
-In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
+在 2.5.0+ 版本，如果你使用的是[单文件组件](single-file-components.html)，则可以通过如下方式，声明基于模板的函数式组件：
 
-``` js
+``` html
 <template functional>
 </template>
 ```
 
 组件需要的一切都是通过 `context` 传递，包括：
 
-- `props`: 提供 props 的对象
-- `children`: VNode 子节点的数组
-- `slots`: slots 对象
-- `data`: 传递给组件的 data 对象
-- `parent`: 对父组件的引用
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+- `props`：一个提供 props 的对象
+- `children`：一个由 VNode 子节点构成的数组
+- `slots`：一个返回 slots 对象的函数
+- `data`：传递给组件的整个 data 对象
+- `parent`：一个父组件的引用
+- `listeners`：（2.3.0+）一个包含父组件上注册的事件监听器的对象。这是一个指向 `data.on` 的别名。
+- `injections`：（2.3.0+）如果使用了 [`inject`](../api/#provide-inject) 选项，则 injections 对象中包含了应当被注入的属性。
 
-在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
+在添加 `functional: true` 之后，修改下锚点标题组件的 render 函数，需要添加 `context` 参数，将 `this.$slots.default` 修改为 `context.children`，然后将 `this.level` 修改为 `context.props.level`。
 
-由于函数式组件只是函数，因此渲染性能开销也低很多。但是，由于缺少持久性实例，意味着它们不会出现在 [Vue 调试工具](https://github.com/vuejs/vue-devtools)的组件树中。
+由于函数式组件只是函数，因此渲染性能开销也低很多。然而，由于缺少持久性实例，意味着它们不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树中。
 
-They're also very useful as wrapper components. For example, when you need to:
+在作为容器组件(wrapper component)时它们也同样非常有用。例如，当你需要实现如下需求：
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- 程序化地在选择多个组件中的一个组件进行委派
+- 在将 children, props, data 传递给子组件之前操作它们。
 
-下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
-
+以下是一个 `smart-list` 组件示例，我们能将它的行为委派给更加具体的组件中，这取决于向其传入的 prop：
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -581,9 +581,41 @@ Vue.component('smart-list', {
 })
 ```
 
+### 向子元素或子组件传递属性和事件
+
+在普通组件中，非 Prop 属性将自动添加到组件的根元素中，并会替换或[智能合并](components.html#%E9%9D%9E-Prop-%E5%B1%9E%E6%80%A7-Non-Prop-Attributes)具有相同名称的所有已有属性。
+
+然而，在函数式组件中，则要求你显式定义该行为：
+
+```js
+Vue.component('my-functional-button', {
+  functional: true,
+  render: function (createElement, context) {
+    // 清晰明确地传入所有属性(attribute)、事件监听器(event listener) 和 children。
+    return createElement('button', context.data, context.children)
+  }
+})
+```
+
+向 `createElement` 传递 `context.data` 作为第二个参数，我们就把 `my-functional-button` 组件上所有的属性和事件监听器都向下进行传递。这是非常明确的行为，事实上，这些事件甚至不需要添加 `.native` 修饰符。
+
+如果你在使用基于模板的函数式组件，那么你还必须手动添加属性和监听器。由于我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 来延续传递所有 HTML 属性，以及使用 `listeners`_（也就是 `data.on` 的别名）_来延续传递所有事件监听器。
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
+```
+
 ### `slots()` 和 `children` 对比
 
-你可能想知道为什么同时需要 `slots()` 和 `children`。`slots().default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
+你可能想知道为什么同时需要 `slots()` 和 `children`。`slots().default` 不是和 `children` 类似的吗？在一些场景中，是这样的 - 但是，如果是具有如下 children 的函数式组件呢？
 
 ``` html
 <my-functional-component>
@@ -594,11 +626,11 @@ Vue.component('smart-list', {
 </my-functional-component>
 ```
 
-对于这个组件，`children` 会给你两个段落标签，而 `slots().default` 只会传递第二个匿名段落标签，`slots().foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots()` ，因此你可以选择让组件通过 `slot()` 系统分发或者通过 `children` 接收，让其他组件去处理。
+对于这个组件，`children` 会给你两个 p 标签，而 `slots().default` 只会传递第二个匿名 p 标签，`slots().foo` 会传递第一个具名 p 标签。同时具有 `children` 和 `slots()`，可以帮助你进行明确选择，使组件确定是通过一个 slot 系统处理，还是直接延续传递 `children`，委派给其他组件去负责处理。
 
 ## 模板编译
 
-你可能有兴趣知道，Vue 的模板实际是编译成了 render 函数。这是一个实现细节，通常不需要关心，但如果你想看看模板的功能是怎样被编译的，你会发现会非常有趣。下面是一个使用 `Vue.compile`  来实时编译模板字符串的简单 demo：
+你或许很有兴趣了解 Vue 模板实际编译为 render 函数的过程。这是一个实现细节，通常不需要关心，但如果你想看看特定模板的功能是怎样被编译的，你会发现会非常有趣。下面是一个使用 `Vue.compile`  实时编译模板字符串的简单示例：
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">

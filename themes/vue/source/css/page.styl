@@ -3,7 +3,8 @@
 @import "_animations"
 @import "_header"
 @import "_demo"
-@import "_sponsor"
+@import "_sponsors-page"
+@import "_sponsors-sidebar"
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
@@ -18,7 +19,7 @@
 .content
   position: relative
   padding: 2.2em 0
-  max-width: 800px
+  max-width: 600px
   margin: 0 auto
   padding-left: 50px
   &.api
@@ -69,14 +70,17 @@
     border-bottom: 1px solid $border
   h3
     margin: $h3-margin-top 0 1.2em
+    line-height: 1.2
     position: relative
-    &:after
+    > a:before
       content: "#"
       color: $green
       position: absolute
       left: -0.7em
-      bottom: -2px
+      margin-top: -0.05em
+      padding-right: 0.5em
       font-size: 1.2em
+      line-height: 1
       font-weight: bold
   figure
     margin: 1.2em 0
@@ -185,9 +189,9 @@
   #header
     background-color: rgba(255,255,255,.4)
 
-@media screen and (max-width: 2000px)
+@media screen and (max-width: 1300px)
   .content.with-sidebar
-    margin-left: 320px
+    margin-left: 290px
   #ad
     z-index: 1
     position: relative
@@ -239,3 +243,15 @@
       margin-left: 0
   iframe
     margin: 0 !important
+
+@media print
+  .footer
+    display: none
+  .content
+    padding-left: 0px
+  .content p
+    line-height: 1.35em
+    &.tip
+      background-color: rgb(255,255,255)
+      border: 2px solid #e8e8e8
+      border-left: 4px solid $red
