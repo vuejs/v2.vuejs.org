@@ -97,5 +97,9 @@
 * 【更新】合并 vuejs.org 的 master 分支，更新 cookbook。
 * 【记录】https://github.com/docschina/vuejs.org/commit/f1273c046b1b321c698381a8a85c8a9d42e59b34
 
+### 2018.03.20
+* 【翻译】cookbook 的 `单元测试 Vue 组件`。
+* 【记录】https://github.com/vuejs/vuejs.org/commit/0492d0c04d9ee3a01e1f4cbf20ec2230e2fee237
+
 ## 重新校对情况
 
