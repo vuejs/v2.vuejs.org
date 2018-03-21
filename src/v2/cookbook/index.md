@@ -35,6 +35,8 @@ Recipes should generally:
 > * Explain the pros and cons of your strategy, including when it is and isn't appropriate
 > * Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
 
+We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
+
 ### Base Example
 
 _required_
