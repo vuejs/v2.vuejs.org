@@ -4,7 +4,7 @@ type: cookbook
 order: 6
 ---
 
-## Simple Example
+## Base Example
 
 Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](../guide/single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
 
@@ -14,7 +14,7 @@ This simple example tests whether some text is rendered:
 <template>
   <div>
     <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
@@ -72,11 +72,11 @@ The above code snippet shows how to test whether an error message is rendered ba
 
 Component unit tests have lots of benefits:
 
-- Provide documentation on how the component should behave
-- Save time over testing manually
-- Reduce bugs in new features
-- Improve design
-- Facilitate refactoring
+* Provide documentation on how the component should behave
+* Save time over testing manually
+* Reduce bugs in new features
+* Improve design
+* Facilitate refactoring
 
 Automated testing allows large teams of developers to maintain complex codebases.
 
@@ -88,15 +88,15 @@ Automated testing allows large teams of developers to maintain complex codebases
 
 Unit tests should be:
 
-- Fast to run
-- Easy to understand
-- Only test a _single unit of work_
+* Fast to run
+* Easy to understand
+* Only test a _single unit of work_
 
 Let's continue building on the previous example, while introducing the idea of a <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">factory function</a> to make our test more compact and readable. The component should:
 
-- show a 'Welcome to the Vue.js cookbook' greeting.
-- prompt the user to enter their username
-- display an error if the entered username is less than seven letters
+* show a 'Welcome to the Vue.js cookbook' greeting.
+* prompt the user to enter their username
+* display an error if the entered username is less than seven letters
 
 Let's take a look at the component code first:
 
@@ -107,7 +107,7 @@ Let's take a look at the component code first:
       {{ message }}
     </div>
     Enter your username: <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
@@ -138,9 +138,9 @@ export default {
 
 The things that we should test are:
 
-- is the `message` rendered?
-- if `error` is `true`, `<div class="error">` should be present
-- if `error` is `false`, `<div class="error">` should not be present
+* is the `message` rendered?
+* if `error` is `true`, `<div class="error">` should be present
+* if `error` is `false`, `<div class="error">` should not be present
 
 And our first attempt at test:
 
@@ -149,46 +149,47 @@ import { shallow } from '@vue/test-utils'
 
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
-      const wrapper = shallow(Foo, {
-    data: {
-      message: 'Hello World',
-      username: ''
-    }
-  })
+    const wrapper = shallow(Foo, {
+      data: {
+        message: 'Hello World',
+        username: ''
+      }
+    })
 
-  // see if the message renders
-  expect(wrapper.find('.message').text()).toEqual('Hello World')
+    // see if the message renders
+    expect(wrapper.find('.message').text()).toEqual('Hello World')
 
-  // assert the error is rendered
-  expect(wrapper.find('.error').exists()).toBeTruthy()
+    // assert the error is rendered
+    expect(wrapper.find('.error').exists()).toBeTruthy()
 
-  // update the `username` and assert error is longer rendered
-  wrapper.setData({ username: 'Lachlan' })
-  expect(wrapper.find('.error').exists()).toBeFalsy()
+    // update the `username` and assert error is longer rendered
+    wrapper.setData({ username: 'Lachlan' })
+    expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
 ```
 
 There are some problems with the above:
 
-- a single test is making assertions about different things
-- difficult to tell the different states the component can be in, and what should be rendered
+* a single test is making assertions about different things
+* difficult to tell the different states the component can be in, and what should be rendered
 
 The below example improves the test by:
 
-- only making one assertion per `it` block
-- having short, clear test descriptions
-- providing only the minimum data requires for the test
-- refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
+* only making one assertion per `it` block
+* having short, clear test descriptions
+* providing only the minimum data requires for the test
+* refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
 
-*Updated test*:
+_Updated test_:
+
 ```js
 import { shallow } from '@vue/test-utils'
 import Foo from './Foo'
 
 const factory = (values = {}) => {
   return shallow(Foo, {
-    data: { ...values  }
+    data: { ...values }
   })
 }
 
@@ -196,11 +197,13 @@ describe('Foo', () => {
   it('renders a welcome message', () => {
     const wrapper = factory()
 
-    expect(wrapper.find('.message').text()).toEqual("Welcome to the Vue.js cookbook")
+    expect(wrapper.find('.message').text()).toEqual(
+      'Welcome to the Vue.js cookbook'
+    )
   })
 
   it('renders an error when username is less than 7 characters', () => {
-    const wrapper = factory({ username: ''  })
+    const wrapper = factory({ username: '' })
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
   })
@@ -212,7 +215,7 @@ describe('Foo', () => {
   })
 
   it('does not render an error when username is 7 characters or more', () => {
-    const wrapper = factory({ username: 'Lachlan'  })
+    const wrapper = factory({ username: 'Lachlan' })
 
     expect(wrapper.find('.error').exists()).toBeFalsy()
   })
@@ -227,9 +230,9 @@ At the top, we declare the factory function which merges the `values` object int
 
 The above test is fairly simple, but in practice Vue components often have other behaviors you want to test, such as:
 
-- making API calls
-- committing or dispatching mutations or actions with a `Vuex` store
-- testing interaction
+* making API calls
+* committing or dispatching mutations or actions with a `Vuex` store
+* testing interaction
 
 There are more complete examples showing such tests in the Vue Test Utils [guides](https://vue-test-utils.vuejs.org/en/guides/).
 

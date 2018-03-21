@@ -4,7 +4,7 @@ type: cookbook
 order: 9
 ---
 
-## Simple Example
+## Base Example
 
 There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
 
@@ -15,12 +15,12 @@ There are a number of ways we can request information from the API, but it's nic
 ```js
 new Vue({
   el: '#app',
-  data () {
+  data() {
     return {
       info: null
     }
   },
-  mounted () {
+  mounted() {
     axios
       .get('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(response => (this.info = response))

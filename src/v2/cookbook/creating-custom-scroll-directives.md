@@ -4,14 +4,14 @@ type: cookbook
 order: 7
 ---
 
-## Simple Example
+## Base Example
 
 There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is perhaps to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
 
 ```js
 Vue.directive('scroll', {
-  inserted: function (el, binding) {
-    let f = function (evt) {
+  inserted: function(el, binding) {
+    let f = function(evt) {
       if (binding.value(evt, el)) {
         window.removeEventListener('scroll', f)
       }
@@ -24,7 +24,7 @@ Vue.directive('scroll', {
 new Vue({
   el: '#app',
   methods: {
-    handleScroll: function (evt, el) {
+    handleScroll: function(evt, el) {
       if (window.scrollY > 50) {
         el.setAttribute(
           'style',
@@ -63,8 +63,8 @@ Or, with GreenSock(GSAP) or any other JavaScript animation library, the code bec
 
 ```js
 Vue.directive('scroll', {
-  inserted: function (el, binding) {
-    let f = function (evt) {
+  inserted: function(el, binding) {
+    let f = function(evt) {
       if (binding.value(evt, el)) {
         window.removeEventListener('scroll', f)
       }
@@ -77,7 +77,7 @@ Vue.directive('scroll', {
 new Vue({
   el: '#app',
   methods: {
-    handleScroll: function (evt, el) {
+    handleScroll: function(evt, el) {
       if (window.scrollY > 50) {
         TweenMax.to(el, 1.5, {
           y: -10,
@@ -116,8 +116,8 @@ To show how we do this, we'll take a look at the morphing shape example, where w
 
 ```js
 Vue.directive('clipscroll', {
-  inserted: function (el, binding) {
-    let f = function (evt) {
+  inserted: function(el, binding) {
+    let f = function(evt) {
       var hasRun = false
       if (!hasRun && window.scrollY > binding.value.start) {
         hasRun = true
