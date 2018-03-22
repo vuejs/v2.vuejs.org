@@ -295,7 +295,7 @@ Thanks to Vue's Reactivity system, it always knows when to update (if you use it
 
 ### Forcing an Update
 
-<p class="tip">If you find yourself needing to force in update in Vue, in 99.99% of cases, you've made a mistake somewhere.</p>
+<p class="tip">If you find yourself needing to force an update in Vue, in 99.99% of cases, you've made a mistake somewhere.</p>
 
 You may not have accounted for change detection caveats [with arrays](https://vuejs.org/v2/guide/list.html#Caveats) or [objects](https://vuejs.org/v2/guide/list.html#Object-Change-Detection-Caveats), or you may be relying on state that isn't tracked by Vue's reactivity system, e.g. with `data`.
 
