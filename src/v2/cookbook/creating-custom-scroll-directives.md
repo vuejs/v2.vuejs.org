@@ -4,7 +4,7 @@ type: cookbook
 order: 7
 ---
 
-## Simple Example
+## Base Example
 
 There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is perhaps to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
 
