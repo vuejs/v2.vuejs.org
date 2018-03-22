@@ -566,22 +566,22 @@ That's all you need to know about dynamic components for now, but once you've fi
 
 ## DOM Template Parsing Caveats
 
-Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>` and `<option>` can only appear inside certain other elements.
+Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
 
 This will lead to issues when using components with elements that have such restrictions. For example:
 
 ``` html
-<ul>
-  <todo-item></todo-item>
-</ul>
+<table>
+  <blog-post-row></blog-post-row>
+</table>
 ```
 
-The custom component `<todo-item>` will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the `is` special attribute offers a workaround:
+The custom component `<blog-post-row>` will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the `is` special attribute offers a workaround:
 
 ``` html
-<ul>
-  <li is="todo-item"></li>
-</ul>
+<table>
+  <tr is="blog-post-row"></tr>
+</table>
 ```
 
 It should be noted that **this limitation does _not_ apply if you are using string templates from one of the following sources**:
