@@ -291,7 +291,7 @@ Vue.component('hello-world', {
 
 ## Controlling Updates
 
-Thanks to Vue's Reactivity system, always knows when it needs to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.
+Thanks to Vue's Reactivity system, it always knows when to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.
 
 ### Forcing an Update
 
