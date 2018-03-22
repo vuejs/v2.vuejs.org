@@ -89,7 +89,7 @@ var ComponentB = {
 }
 ```
 
-Or if you're using a ES2015 modules, such as through Babel and Webpack, that might look more like:
+Or if you're using ES2015 modules, such as through Babel and Webpack, that might look more like:
 
 ```js
 import ComponentA from './ComponentA.vue'
