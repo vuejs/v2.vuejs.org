@@ -8,7 +8,7 @@ order: 2
 
 Vue (prononcé /vjuː/, comme le terme anglais **view**) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#components--libraries).
 
-Si vous souhaitez en savoir plus à propos de Vue avant d'entrer dans le détail, nous <a id="modal-player"  href="javascript:;">avons crée une vidéo</a> pour présenter ses principes fondamentaux avec un projet exemple.
+Si vous souhaitez en savoir plus à propos de Vue avant d'entrer dans le détail, nous <a id="modal-player" href="javascript:;">avons crée une vidéo</a> pour présenter ses principes fondamentaux avec un projet exemple.
 
 Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques / frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
@@ -19,6 +19,14 @@ Si vous êtes un développeur *frontend* confirmé et que vous souhaitez compare
 La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello World sur JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Si vous le souhaitez, ouvrez-le dans un nouvel onglet afin de suivre pendant que nous parcourons des exemples de base. Vous pouvez aussi simplement <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">créer un fichier <code>index.html</code></a> et ajouter Vue avec :
 
 ``` html
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+
+or:
+
+``` html
+<!-- production version, optimized for size and speed -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 

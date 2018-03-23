@@ -1,7 +1,7 @@
 ---
 title: Ajouter des propriétés aux instances
 type: cookbook
-order: 1.3
+order: 2
 ---
 
 ## Exemple simple
@@ -14,9 +14,9 @@ Vue.prototype.$appName = 'Mon App'
 
 Maintenant, `$appName` sera accessible dans toutes les instances de Vue, même avant leur création. Si nous exécutons :
 
-``` js
+```js
 new Vue({
-  beforeCreate: function () {
+  beforeCreate: function() {
     console.log(this.$appName)
   }
 })
@@ -36,29 +36,29 @@ Aucune magie n'a lieu ici. `$` est simplement une convention que Vue utilise pou
 
 Une autre bonne question ! Si vous faites juste :
 
-``` js
-Vue.prototype.appName = 'My App'
+```js
+Vue.prototype.appName = 'Mon App'
 ```
 
 Alors qu'est-ce qui sera affiché ci-dessous d'après vous ?
 
-``` js
+```js
 new Vue({
   data: {
     // Oups - `appName` est *aussi* le nom de la
     // propriété d'instance que nous venons de définir !
     appName: 'Le nom d'une autre app'
   },
-  beforeCreate: function () {
+  beforeCreate: function() {
     console.log(this.appName)
   },
-  created: function () {
+  created: function() {
     console.log(this.appName)
   }
 })
 ```
 
-Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasée ([en quelque sorte](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
+Cela sera `"Mon App"`, puis `"Le nom d'une autre app"`, car `this.appName` est écrasée ([en quelque sorte](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
 
 ## Un exemple en situation réelle : Remplacer Vue Resource par Axios
 
@@ -66,7 +66,7 @@ Disons que vous remplacez le [maintenant déprécié Vue Resource](https://mediu
 
 Tout ce que vous avez à faire est inclure axios dans votre projet :
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
 
 <div id="app">
@@ -78,22 +78,23 @@ Tout ce que vous avez à faire est inclure axios dans votre projet :
 
 Puis assigner `axios` à `Vue.prototype.$http` :
 
-``` js
+```js
 Vue.prototype.$http = axios
 ```
 
 Alors vous serez capables d'utiliser des méthodes comme `this.$http.get` dans n'importe quelle instance de Vue :
 
-``` js
+```js
 new Vue({
   el: '#app',
   data: {
     users: []
   },
-  created () {
+  created() {
     var vm = this
-    this.$http.get('https://jsonplaceholder.typicode.com/users')
-      .then(function (response) {
+    this.$http
+      .get('https://jsonplaceholder.typicode.com/users')
+      .then(function(response) {
         vm.users = response.data
       })
   }
@@ -106,34 +107,40 @@ Au cas où vous ne seriez pas au courant, les méthodes ajoutées au prototype e
 
 Profitons de ceci dans une méthode `$reverseText` :
 
-``` js
-Vue.prototype.$reverseText = function (propertyName) {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+```js
+Vue.prototype.$reverseText = function(propertyName) {
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 
 new Vue({
   data: {
     message: 'Hello'
   },
-  created: function () {
-    console.log(this.message)    // => "Hello"
+  created: function() {
+    console.log(this.message) // => "Hello"
     this.$reverseText('message')
-    console.log(this.message)    // => "olleH"
+    console.log(this.message) // => "olleH"
   }
 })
 ```
 
-Notez que la liaison du contexte ne fonctionnera __pas__ si vous utilisez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée :
+Notez que la liaison du contexte **ne** fonctionnera **pas** si vous utilisez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée :
 
-``` js
+```js
 Vue.prototype.$reverseText = propertyName => {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 ```
 
 Rejettera une exception :
 
-``` log
+```log
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
@@ -143,7 +150,7 @@ Tant que vous êtes vigilants sur la portée des propriétés du prototype, util
 
 Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
-__C'est certes plus commode mais moins explicite.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
+**C'est certes plus commode mais moins explicite.** En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
 
 Alors quelles sont les alternatives ?
 
@@ -151,19 +158,22 @@ Alors quelles sont les alternatives ?
 
 ### Quand un système de modules n'est pas utilisé
 
-Dans les applications __sans__ systèmes de modules (ex. via webpack ou Browserify), il y a un *pattern* souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
+Dans les applications **sans** systèmes de modules (ex. via webpack ou Browserify), il y a un *pattern* souvent utilisé dans _n'importe quel_ frontend amélioré en JavaScript : un objet global `App`.
 
 Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple :
 
-``` js
+```js
 var App = Object.freeze({
   name: 'Mon App',
   description: '2.1.4',
   helpers: {
     // Ceci est une version purement fonctionnelle
     // de la méthode $reverseText décrite plus haut
-    reverseText: function (text) {
-      return text.split('').reverse().join('')
+    reverseText: function(text) {
+      return text
+        .split('')
+        .reverse()
+        .join('')
     }
   }
 })
@@ -175,7 +185,7 @@ Maintenant la source de ces propriétés partagées est bien plus évidente : il
 
 Un autre avantage est que `App` peut maintenant être utilisé _n'importe où_ dans le code, qu'il soit lié à Vue ou non. Cela inclue les valeurs attachées directement aux options des instances, plutôt qu'avoir à entrer dans une fonction pour accéder aux propriétés avec `this` :
 
-``` js
+```js
 new Vue({
   data: {
     appVersion: App.version

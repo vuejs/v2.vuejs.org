@@ -268,21 +268,39 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire d
 1. Quand vous affectez directement un élément à un index. Par ex. : `vm.items[indexOfItem] = newValue`
 2. Quand vous modifiez la longueur du tableau. Par ex. : `vm.items.length = newLength`
 
+Par exemple :
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // N'est PAS réactive
+vm.items.length = 2 // N'est PAS réactive
+```
+
 Pour contourner la première limitation, les deux exemples suivants accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour de l'état dans le système de réactivité :
 
 ``` js
 // Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
+Vue.set(vm.items, indexOfItem, newValue)
 ```
 ``` js
 // Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
 ```
 
 Pour gérer la seconde limitation, vous pouvez également utiliser `splice` :
 
 ``` js
-example1.items.splice(newLength)
+vm.items.splice(newLength)
 ```
 
 ## Limitation de détection de changement dans un objet

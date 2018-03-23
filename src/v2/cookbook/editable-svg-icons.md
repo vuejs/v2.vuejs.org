@@ -1,7 +1,7 @@
 ---
 title: Editable SVG Icon Systems (EN)
 type: cookbook
-order: 2
+order: 4
 ---
 
 ## Base Example
@@ -24,7 +24,7 @@ Here's an example repo to get you going, where you can see the entire setup: [ht
 
 ![Documentation site](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg 'Docs demo')
 
-We'll create a base icon (`IconBase.vue`) component that uses a scoped slot.
+We'll create a base icon (`IconBase.vue`) component that uses a slot.
 
 ```html
 <template>
@@ -43,7 +43,7 @@ We'll create a base icon (`IconBase.vue`) component that uses a scoped slot.
 </template>
 ```
 
-You can use this base icon as is- the only thing you might need to update is the `viewBox` depending on the `viewBox` of your icons. In the base, we're making the `width`, `height`, `color`, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the title `id` for accessibility, and the `title`.
+You can use this base icon as is- the only thing you might need to update is the `viewBox` depending on the `viewBox` of your icons. In the base, we're making the `width`, `height`, `iconColor`, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the `<title>` content and its `id` for accessibility.
 
 Our script will look like this, we'll have some defaults so that our icon will be rendered consistently unless we state otherwise:
 
@@ -70,9 +70,9 @@ export default {
 }
 ```
 
-The currentColor property that's the default on the fill will make the icon inherit the color of whatever text surrounds it. We could also pass in a different color as a prop if we wish.
+The `currentColor` property that's the default on the fill will make the icon inherit the color of whatever text surrounds it. We could also pass in a different color as a prop if we wish.
 
-We can use it like so, with the only contents of IconWrite.vue containing the paths inside the icon:
+We can use it like so, with the only contents of `IconWrite.vue` containing the paths inside the icon:
 
 ```html
 <icon-base icon-name="write"><icon-write /></icon-base>
@@ -82,11 +82,11 @@ Now, if we'd like to make many sizes for the icon, we can do so very easily:
 
 ```html
 <p>
-  <!--you can pass in a smaller width and height as props-->
+  <!-- you can pass in a smaller `width` and `height` as props -->
   <icon-base width="12" height="12" icon-name="write"><icon-write /></icon-base>
-  <!--or you can use the default, which is 18-->
+  <!-- or you can use the default, which is 18 -->
   <icon-base icon-name="write"><icon-write /></icon-base>
-  <!--or make it a little bigger too :) -->
+  <!-- or make it a little bigger too :) -->
   <icon-base width="30" height="30" icon-name="write"><icon-write /></icon-base>
 </p>
 ```
@@ -143,7 +143,7 @@ export default {
 }
 ```
 
-We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a funciton we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and transform-origin issues across browser.
+We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a function we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and `transform-origin` issues across browser.
 
 <p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
@@ -153,11 +153,11 @@ You can see more animated examples in the repo [here](https://github.com/sdras/v
 
 ## Additional Notes
 
-Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propogate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
+Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propagate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
 
 ## When To Avoid This Pattern
 
-This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you're repeating the same icon many times on one page (e.g. a giant table a delete icon in each row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `use` tags to load them.
+This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you're repeating the same icon many times on one page (e.g. a giant table a delete icon in each row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `<use>` tags to load them.
 
 ## Alternative Patterns
 
@@ -166,4 +166,4 @@ Other tooling to help manage SVG icons includes:
 * [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader)
 * [svgo-loader](https://github.com/rpominov/svgo-loader)
 
-These tools bundle SVGs at compile time, but make them a little harder to edit during runtime, because `use` tags can have strange cross-browser issues when doing anything more complex. They also leave you with two nested `viewBox` properties and thus two coordinate systems. This makes the implementation a little more complex.
+These tools bundle SVGs at compile time, but make them a little harder to edit during runtime, because `<use>` tags can have strange cross-browser issues when doing anything more complex. They also leave you with two nested `viewBox` properties and thus two coordinate systems. This makes the implementation a little more complex.

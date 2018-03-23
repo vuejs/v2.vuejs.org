@@ -978,7 +978,7 @@ type: api
 
   Permet d'étendre déclarativement un autre composant (qui peut être un simple objet d'options ou un constructeur) sans avoir à utiliser `Vue.extend`. C'est destiné en premier lieu à rendre plus facile les extensions entre composants monofichiers.
 
-  Cette option est similaire à `mixins`, la différence étant que les propres options du composant ont la priorité sur celles du composant source à étendre.
+  Cette option est similaire à `mixins`.
 
 - **Exemple :**
 
@@ -1008,7 +1008,13 @@ type: api
 
   L'option `provide` doit être un objet ou une fonction retournant un objet. Cet objet contient les propriétés qui sont disponibles pour l'injection dans ses descendants. Vous pouvez utiliser des `Symbol` ES2015 comme clés dans cet objet, mais seulement dans les environnements supportant nativement `Symbol` et `Reflect.ownKeys`.
 
-  L'option `inject` doit être soit un `Array` de `String`, soit un objet où les clés sont les noms des liaisons locales et où les valeurs sont les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles.
+  L'option `inject` doit être soit :
+  - un `Array` de `String`, ou
+  - un objet où les clés sont les noms des liaisons locales et où les valeurs sont :
+    - les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles, ou
+    - un objet où :
+      - la propriété `name` est la clé (`String` ou `Symbol`) à rechercher dans les injections disponibles, et
+      - la propriété `default` est utilisé comme valeur de substitution.
 
   > Note : les liaisons `provide` et `inject` ne sont PAS réactives. C'est intentionnel. Cependant, si vous passez un objet observé, les propriétés sur cet objet resteront réactives.
 
@@ -1855,7 +1861,7 @@ type: api
 
   À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires évènement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
 
-  Quand utilisé sur un élément HTML standard, il écoute uniquement les **évènements natifs du DOM**. Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
+  Quand utilisé sur un élément HTML standard, il écoute uniquement les [**évènements natifs du DOM**](https://developer.mozilla.org/fr/docs/Web/Events). Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
 
   Lorsque des évènements natifs du DOM sont écoutés, la méthode reçoit l'évènement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
 

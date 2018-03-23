@@ -66,7 +66,6 @@ $ npm install --global vue-cli
 $ vue init webpack my-project
 # installer les dépendances et c'est parti !
 $ cd my-project
-$ npm install
 $ npm run dev
 ```
 
