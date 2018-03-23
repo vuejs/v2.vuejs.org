@@ -20,6 +20,26 @@ The name you give a component may depend on where you intend to use it. When usi
 
 You can see other recommendations for component names in the [Style Guide](../style-guide/#Base-component-names-strongly-recommended).
 
+### Name Casing
+
+You have two options when defining component names:
+
+#### With kebab-case
+
+```js
+Vue.component('my-component-name', { /* ... */ })
+```
+
+When defining a component with kebab-case, you must also use kebab-case when referencing its custom element, such as in `<my-component-name>`.
+
+#### With PascalCase
+
+```js
+Vue.component('MyComponentName', { /* ... */ })
+```
+
+When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `<my-component-name>` and `<MyComponentName>` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
+
 ## Global Registration
 
 So far, we've only created components using `Vue.component`:
@@ -102,15 +122,20 @@ export default {
 }
 ```
 
+Note that in ES2015+, placing a variable name like `ComponentA` inside an object is shorthand for `ComponentA: ComponentA`, meaning the name of the variable is both:
+
+- the custom element name to use in the template, and
+- the name of the variable containing the component options
+
 ## Module Systems
 
 If you're not using a module system with `import`/`require`, you can probably skip this section for now. If you are, we have some special instructions and tips just for you.
 
 ### Local Registration in a Module System
 
-If your still here, then it's likely you're using a module system, we recommend creating a `components` folder to keep your components in, with each component in its own file.
+If you're still here, then it's likely you're using a module system, such as with Babel and Webpack. In these cases, we recommend creating a `components`, with each component in its own file.
 
-Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `CompononentB.js` file:
+Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `CompononentB.js` or `ComponentB.vue` file:
 
 ```js
 import ComponentA from './ComponentA'
@@ -125,10 +150,7 @@ export default {
 }
 ```
 
-> Note that in ES2015+, placing a variable name like `ComponentA` inside an object is shorthand for `ComponentA: ComponentA`, meaning the name of the variable is both:
->
-> - the custom element name to use in the template, and
-> - the name of the variable containing the component options
+Now both `ComponentA` and `ComponentC` can be used inside `ComponentB`'s template.
 
 ### Automatic Global Registration of Base Components
 
