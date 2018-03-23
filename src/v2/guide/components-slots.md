@@ -43,7 +43,7 @@ Or even other components:
 
 ``` html
 <navigation-link url="/profile">
-  <!-- Add an icon with a component -->
+  <!-- Use a component to add an icon -->
   <font-awesome-icon name="user"></font-awesome-icon>
   Your Profile
 </navigation-link>
@@ -115,7 +115,7 @@ Or, the `slot` attribute can also be used directly on a normal element:
 </base-layout>
 ```
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. In the example above, the  rendered HTML would be:
+There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. In both examples above, the  rendered HTML would be:
 
 ``` html
 <div class="container">
@@ -213,7 +213,7 @@ Now when we use the `<todo-list>` component, we can optionally define an alterna
 
 > In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
 
-### Destructuring `slot-props`
+### Destructuring `slot-scope`
 
 The value of `slot-scope` can actually accept any valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
 

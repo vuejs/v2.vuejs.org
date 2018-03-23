@@ -57,7 +57,7 @@ Now when using `v-model` on this component:
 
 the value of `lovingVue` will be passed to the `checked` prop. The `lovingVue` property will then be updated when `<base-checkbox>` emits a `change` event with a new value.
 
-<p class="tip">Note that you still have to declare the `checked` prop in `props`.</p>
+<p class="tip">Note that you still have to declare the <code>checked</code> prop in component's <code>props</code> option.</p>
 
 ## Binding Native Events to Components
 
