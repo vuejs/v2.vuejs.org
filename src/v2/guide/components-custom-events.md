@@ -30,7 +30,7 @@ For these reasons, we recommend you **always use kebab-case for event names**.
 
 By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` attribute for a [different purpose](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value). Using the `model` option can avoid a conflict in such cases:
 
-``` js
+```js
 Vue.component('base-checkbox', {
   model: {
     prop: 'checked',
@@ -48,6 +48,14 @@ Vue.component('base-checkbox', {
   `
 })
 ```
+
+Now when using `v-model` on this component:
+
+```js
+<base-checkbox v-model="lovingVue"></base-checkbox>
+```
+
+the value of `lovingVue` will be passed to the `checked` prop. The `lovingVue` property will then be updated when `<base-checkbox>` emits a `change` event with a new value.
 
 <p class="tip">Note that you still have to declare the `checked` prop in `props`.</p>
 
