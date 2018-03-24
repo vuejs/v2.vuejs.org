@@ -1458,7 +1458,7 @@ beforeCreate: function () {
 
 Thế là vấn đề đã được giải quyết!
 
-### Inline Template
+### Inline template
 
 Khi ta đặt thuộc tính đặc biệt `inline-template` vào một component con, component này sẽ dùng nội dung của nó làm template thay vì coi là nội dung được phân phối. Điều này giúp cho việc biên soạn template được linh hoạt hơn.
 
