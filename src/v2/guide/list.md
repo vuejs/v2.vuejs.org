@@ -277,21 +277,39 @@ Do một số hạn chế của JavaScript, Vue **không thể** phát hiện th
 1. Khi bạn gán một phần tử trực tiếp vào một index, ví dụ `vm.items[index] = newValue`
 2. Khi bạn thay đổi kích thước của mảng, ví dụ `vm.items.length = newLength`
 
+Ví dụ:
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // KHÔNG reactive
+vm.items.length = 2 // cũng KHÔNG reactive
+```
+
 Để khắc phục điểm thứ nhất, bạn có thể dùng một trong hai cách sau đây. Cả hai cách đều đạt được kết quả như `vm.items[indexOfItem] = newValue`, nhưng đồng thời cũng kích hoạt cập nhật trạng thái trong hệ thống reactivity của Vue:
 
 ``` js
 // Vue.set
-Vue.set(example1.items, index, newValue)
+Vue.set(vm.items, indexOfItem, newValue)
 ```
 ``` js
 // Array.prototype.splice
-example1.items.splice(index, 1, newValue)
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+Bạn cũng có thể sử dụng phương thức đối tượng [`vm.$set`](https://vuejs.org/v2/api/#vm-set), thật ra là alias của phương thức toàn cục `Vue.set`:
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
 ```
 
 Để khắc phục điểm thứ hai, bạn có thể dùng `splice`:
 
 ``` js
-example1.items.splice(newLength)
+vm.items.splice(newLength)
 ```
 
 ## Lưu ý về phát hiện thay đổi trong object

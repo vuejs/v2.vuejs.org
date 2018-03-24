@@ -1,0 +1,28 @@
+<div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Tài trợ đặc biệt</span>
+    <div>
+    <%_ for (const sponsor of theme.special_sponsors) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar-sponsors-platinum">
+  <div class="main-sponsor">
+    <span>Tài trợ Patreon</span>
+    <div>
+    <%_ for (const sponsor of theme.platinum_sponsors) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    Trở thành nhà tài trợ
+  </a>
+</div>

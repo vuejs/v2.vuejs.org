@@ -137,7 +137,7 @@ Lệnh `createElement` ở đây thực chất là đang trả về cái gì? _K
 createElement(
   // {String | Object | Function}
   // Một tên thẻ HTML, các tùy chọn cho component, hoặc một hàm
-  // trả về một trong những thứ này. Bắt buộc.
+  // phân giải thành một trong những thứ này. Bắt buộc.
   'div',
 
   // {Object}
@@ -169,7 +169,7 @@ Một điểm cần lưu ý: tương tự với việc được [đối xử đ�
 ``` js
 {
   // Có cùng API với `v-bind:class`
-  'class': {
+  class: {
     foo: true,
     bar: false
   },
@@ -316,6 +316,7 @@ Bất cứ khi nào một việc gì đó có thể làm được dễ dàng b�
 Ví dụ này có thể được viết lại với `if`/`else` và `map` của JavaScript trong một hàm render:
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -332,6 +333,7 @@ render: function (createElement) {
 Vue không cung cấp tính năng thay thế cho `v-model` trong các hàm render - bạn sẽ phải tự phát triển logic này:
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -340,7 +342,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -367,7 +368,7 @@ Ví dụ:
 on: {
   '!click': this.doThisInCapturingMode,
   '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
+  '~!mouseover': this.doThisOnceInCapturingMode
 }
 ```
 
@@ -415,11 +416,12 @@ render: function (createElement) {
 và truy xuất đến các [scoped slot](components.html#Scoped-slot) dưới dạng các hàm trả về VNode thông qua [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -428,7 +430,7 @@ render: function (createElement) {
 Để truyền các scoped slot vào một component con bằng hàm render, dùng trường `scopeSlots` trong dữ liệu của VNode:
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // truyền `scopedSlots` trong object dữ liệu dưới dạng
@@ -475,7 +477,7 @@ import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
@@ -514,7 +516,7 @@ Vue.component('my-component', {
 
 Từ bản 2.5.0 trở đi, nếu bạn đang dùng [single-file component](single-file-components.html), functional component dựa trên template có thể được khai báo như sau:
 
-```js
+``` html
 <template functional>
 </template>
 ```
@@ -573,6 +575,38 @@ Vue.component('smart-list', {
     isOrdered: Boolean
   }
 })
+```
+
+### Truyền thuộc tính và sự kiện xuống phần tử hoặc component con
+
+Với những component thông thường, các thuộc tính (attribute) không được định nghĩa dưới dạng prop sẽ được thêm vào phần tử gốc (root element) của component, thay thế hoặc [merge một cách thông minh](class-and-style.html) các thuộc tính trùng tên có sẵn.
+
+Tuy nhiên, các component chức năng bắt buộc bạn phải định nghĩa minh bạch hành vi này:
+
+```js
+Vue.component('my-functional-button', {
+  functional: true,
+  render: function (createElement, context) {
+    // Truyền các thuộc tính, hàm lắng nghe sự kiện, các phần tử con v.v.
+    return createElement('button', context.data, context.children)
+  }
+})
+```
+
+Bằng cách truyền `context.data` làm tham số thứ hai cho `createElement`, chúng ta đang truyền xuống bất cứ thuộc tính hoặc hàm lắng nghe sự kiện nào được dùng trong `my-function-button`. Việc này minh bạch đến mức các sự kiện này thậm chí không cần modifier `.native`.
+
+Nếu đang dùng component chức năng dựa trên template, bạn cũng sẽ phải tự thêm vào các thuộc tính và hàm lắng nghe sự kiện. Vì có quyền truy xuất đến các nội dung ngữ cảnh riêng biệt, chúng ta có thể dùng `data.attrs` để truyền xuống các thuộc tính HTML và dùng `listeners` _(alias của `data.on`)_ để truyền xuống các hàm lắng nghe sự kiện.
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
 ```
 
 ### So sánh giữa `slots()` và `children`

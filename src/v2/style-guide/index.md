@@ -1,8 +1,7 @@
 ---
+title: Style Guide
 type: style-guide
 ---
-
-# Style Guide <sup class="beta">beta</sup>
 
 This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
@@ -694,7 +693,7 @@ components/
 
 **Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1723,8 +1722,8 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 >
   Error: {{ error }}
 </div>
-<div 
-  v-else 
+<div
+  v-else
   key="search-results"
 >
   {{ results }}

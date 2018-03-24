@@ -24,24 +24,8 @@
         <li><h3>Thông tin thêm</h3></li>
       <% } %>
     <% } %>
-    <% if (type === 'cookbook') { %>
-      <% if (p.order === 1.1) { %>
-        <li><h3>Đối tượng Vue</h3></li>
-      <% } %>
-      <!-- Move cookbook sections here once they have -->
-      <!-- at least one recipe -->
-    <% } %>
     <li>
       <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
     </li>
   <% }) %>
-  <% if (type === 'cookbook') { %>
-    <li><h3>Component</h3></li>
-    <li><h4>Form input</h4></li>
-    <li><h4>Tích hợp với bên thứ 3</h4></li>
-    <li><h3>Hiệu ứng chuyển đổi</h3></li>
-    <li><h3>Directive</h3></li>
-    <li><h3>Vue router</h3></li>
-    <li><h3>Vuex</h3></li>
-  <% } %>
 </ul>

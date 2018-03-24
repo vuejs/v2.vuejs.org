@@ -5,9 +5,8 @@
 Để tham gia phát triển phiên bản này, các bạn chỉ cần làm theo các bước sau:
 
 1. Fork repo này
-1. Cài đặt hexo: `npm install -g hexo-cli`
-1. Cài đặt tất cả các gói phụ thuộc (dependencies): `npm i` hoặc `yarn`
-1. Mở server dev ở [`localhost:4000`](http://localhost:4000): `hexo server`
+1. Cài đặt tất cả các gói phụ thuộc (dependencies): `npm i`
+1. Mở server dev ở [`localhost:4000`](http://localhost:4000): `npm start`
 
 Bây giờ bạn có thể chỉnh sửa các file trong thư mục `src` và refresh trình duyệt để kiểm tra kết quả chỉnh sửa.
 

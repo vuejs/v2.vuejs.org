@@ -4,29 +4,16 @@
       <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
-      <div class="main-sponsor">
-        <span>Nhà tài trợ bạch kim</span>
-        <div>
-        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
-        <a href="<%- sponsor.url %>" target="_blank" class="logo">
-          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
-        </a>
-        <%_ } _%>
-        </div>
-      </div>
-      <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-        Trở thành nhà tài trợ
-      </a>
+      <%- partial('partials/sponsors_sidebar') %>
       <h2>
-        <% if (type === 'guide') { %>
-          Hướng dẫn
-        <% } else if (type === 'api') { %>
-          API
-        <% } else if (type === 'style-guide') { %>
-          Style Guile <sup class="beta">beta</sup>
-        <% } else if (type === 'examples') { %>
-          Một số ví dụ
-        <% } %>
+        <% titles = {
+          api: 'API',
+          examples: 'Một số ví dụ',
+          guide: 'Hướng dẫn',
+          cookbook: 'Cookbook<sup class="beta">beta</sup>',
+          'style-guide': 'Style Guide<sup class="beta">beta</sup>'
+        } %>
+        <%- titles[type] %>
         <!--
         <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">

@@ -1,6 +1,6 @@
 <h3>Tài trợ trên Patreon</h3>
 
-<%_ for (const sponsor of theme.platinum_sponsors.slice(1)) {_%>
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
 <a href="<%- sponsor.url %>" target="_blank" style="width: 160px;">
   <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;">
 </a>

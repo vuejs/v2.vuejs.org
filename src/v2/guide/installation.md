@@ -66,7 +66,6 @@ $ npm install --global vue-cli
 $ vue init webpack my-project
 # cài đặt các thư viện phụ thuộc và bắt tay vào việc!
 $ cd my-project
-$ npm install
 $ npm run dev
 ```
 

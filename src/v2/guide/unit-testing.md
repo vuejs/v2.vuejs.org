@@ -130,3 +130,7 @@ it('updates the rendered message when vm.message updates', done => {
   })
 })
 ```
+
+Chúng tôi cũng đang lên kế hoạch thực hiện một bộ sưu tập các công cụ/hàm trợ giúp (helper) để giúp cho việc render component với các điều kiện khác nhau (ví dụ render dạng nông – shallow render, lờ đi component con) và assert output được dễ dàng hơn. 
+
+Để biết thêm thông tin chi tiết về unit testinhg trong Vue, các bạn hãy xem qua [vue-test-utils](https://vue-test-utils.vuejs.org/en/) và bài viết về [unit testing Vue component](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html) trong cookbook.

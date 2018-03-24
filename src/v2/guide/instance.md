@@ -48,8 +48,9 @@ var vm = new Vue({
   data: data
 })
 
-// vm.a và data.a cùng trỏ đến một đối tượng!
-vm.a === data.a // => true
+// Truy xuất đến thuộc tính của đối tượng 
+// trả về giá trị của object "data" đã khởi tạo 
+vm.a == data.a // => true
 
 // Thay đổi thuộc tính của vm cũng
 // ảnh hưởng đến dữ liệu ban đầu
@@ -90,19 +91,15 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data () {
-    return {
-      obj
-    }
-  }
+  data: obj
 })
 ```
 
 ```html
 <div id="app">
-  <p>{{ obj.foo }}</p>
-  <!-- obj.foo sẽ không thay đổi -->
-  <button @click="obj.foo = 'baz'">Thay đổi</button>
+  <p>{{ foo }}</p>
+  <!-- foo sẽ không được cập nhật! -->
+  <button @click="foo = 'baz'">Cập nhật đi chứ</button>
 </div>
 ```
 
