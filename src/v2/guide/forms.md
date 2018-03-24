@@ -10,7 +10,7 @@ Bạn có thể sử dụng directive `v-model` để tạo ràng buộc dữ li
 
 <p class="tip">`v-model` sẽ bỏ qua giá trị khởi tạo của các thuộc tính `value`, `checked` hoặc `selected` trong mọi phần tử form. Nó luôn luôn xem data trong đối tượng Vue là nguồn đáng tin cậy duy nhất. Bạn nên khai báo các giá trị khởi tạo trong JavaScript, bên trong option `data` của component.</p>
 
-<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi bộ gõ [IME](https://en.wikipedia.org/wiki/Input_method) (tiếng Trung, tiếng Nhật, Tiến Hàn v.v.), bạn sẽ nhận thấy rằng `v-model` không thay đổi trong quá trình bộ gõ IME biên soạn. Nếu bạn muốn thì phải sử dụng sự kiện `input`.</p>
+<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi bộ gõ ([IME](https://en.wikipedia.org/wiki/Input_method)) (tiếng Trung, tiếng Nhật, Tiếng Hàn v.v.), bạn sẽ nhận thấy rằng `v-model` không thay đổi trong quá trình biên soạn của IME. Nếu bạn muốn nhận các thay đổi này thì phải sử dụng sự kiện `input`.</p>
 
 ### Văn bản
 
@@ -61,7 +61,7 @@ new Vue({
 {% endraw %}
 
 {% raw %}
-<p class="tip">Biểu thức nội suy (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) không hoạt động với textarea. Hãy sử dụng <code>v-model</code>.</p>
+<p class="tip">Nội suy (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) không hoạt động với textarea. Hãy sử dụng <code>v-model</code>.</p>
 {% endraw %}
 
 ### Checkbox
@@ -200,7 +200,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Nếu giá trị khởi tạo của biểu thức trong `v-model` không khớp với bất kỳ option nào, thì `<select>` sẽ render ở trạng thái "chưa được chọn". Trên iOS nó sẽ làm cho người dùng không thể chọn item đầu tiên bởi vì iOS không gọi sự kiện change trong trường hợp này. Do đó chúng tôi khuyên bạn nên thêm một option có giá trị rỗng giống như trong ví dụ trên.</p>
+<p class="tip">Nếu giá trị khởi tạo của biểu thức trong `v-model` không khớp với bất kỳ option nào, thì `<select>` sẽ render ở trạng thái "chưa được chọn". Trên iOS nó sẽ làm cho người dùng không thể chọn item đầu tiên bởi vì iOS không gọi sự kiện change trong trường hợp này. Do đó chúng tôi khuyên bạn nên thêm một lựa chọn có giá trị rỗng giống như trong ví dụ trên.</p>
 
 Select nhiều lựa chọn (được ràng buộc với một mảng):
 
@@ -233,7 +233,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Render option với `v-for`:
+Render `<option>` với `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -297,7 +297,7 @@ new Vue({
 </select>
 ```
 
-Nhưng đôi khi chúng ta muốn ràng buộc giá trị với một thuộc tính động trong đối tượng Vue. Chúng ta có thể sử dụng `v-bind` để làm điều này. Thêm nữa, sử dụng `v-bind` còn cho chép ràng buộc giá trị của input với các trị không phải kiểu chuỗi.
+Nhưng đôi khi chúng ta muốn ràng buộc giá trị với một thuộc tính động trong đối tượng Vue. Chúng ta có thể sử dụng `v-bind` để làm điều này. Thêm nữa, sử dụng `v-bind` còn cho phép ràng buộc giá trị của input với các trị không phải kiểu chuỗi.
 
 ### Checkbox
 
@@ -347,7 +347,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-Mặc định, `v-model` đồng bộ giá trị của input với dữ liệu sau sự kiện `input` (có ngoại lệ đối với trường hợp bộ gõ IME như [đã nói ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để đồng bộ sau sự kiện `change`:
+Mặc định, `v-model` đồng bộ giá trị của input với dữ liệu sau sự kiện `input` (có ngoại lệ đối với trường hợp bộ gõ như [đã nói ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để đồng bộ sau sự kiện `change`:
 
 ``` html
 <!-- được đồng bộ sau sự kiện "change" thay vì "input" -->
@@ -366,7 +366,7 @@ Nếu bạn muốn giá trị từ input được tự động chuyển kiểu v
 
 ### `.trim`
 
-Dùng để tự động cắt tỉa giá trị trong input.
+Dùng để tự động loại bỏ khoảng trắng trước và sau giá trị trong input.
 
 ```html
 <input v-model.trim="msg">
@@ -374,6 +374,6 @@ Dùng để tự động cắt tỉa giá trị trong input.
 
 ## `v-model` với Component
 
-> Nếu bạn chưa quen với Vue component, bạn có thể bỏ qua nó.
+> Nếu bạn chưa quen với Vue component, bạn có thể bỏ qua phần này.
 
-Không phải lúc nào các kiểu input có sẵn của HTML cũng có thể đáp ứng nhu cầu của bạn. Thật may là Vue component cho phép bạn xây dựng các input riêng với các hành vi có khả năng tùy chỉnh hoàn toàn và khả năng sử dụng lại. Nó thậm chí còn hoạt động với `v-model`! Để xem thêm, hãy đọc [input tùy chỉnh](components.html#Form-Input-Components-using-Custom-Events).
+Không phải lúc nào các kiểu input có sẵn của HTML cũng có thể đáp ứng nhu cầu của bạn. May mắn là các component của Vue cho phép bạn xây dựng các input riêng tái sử dụng được với các hành vi (behavior) được tùy chỉnh hoàn toàn. Các input này thậm chí còn hoạt động với `v-model`.
