@@ -506,7 +506,7 @@ Như vậy ở đây có đến hai giá trị cho thuộc tính `class`:
 - `form-control`, gán trong template của component
 - `date-picker-theme-dark`, truyền vào component con từ đối tượng cha
 
-Đối với đa số các thuộc tính, giá trị truyền vào sẽ thay thế cho giá trị được gắn sẵn trong component, có nghĩa là truyền vào `type="large"` sẽ thay thế `type="date"` (và có thể là làm hỏng luôn chương trình!) May thay, các thuộc tính `class` và `style` thông minh hơn một chút vã sẽ sáp nhập (merge) các giá trị lại với nhau, tạo thành kết quả cuối cùng: `class="form-control date-picker-theme-dark"`.
+Đối với đa số các thuộc tính, giá trị truyền vào sẽ thay thế cho giá trị được gắn sẵn trong component, có nghĩa là truyền vào `type="large"` sẽ thay thế `type="date"` (và có thể là làm hỏng luôn chương trình!) May thay, các thuộc tính `class` và `style` thông minh hơn một chút và sẽ sáp nhập (merge) các giá trị lại với nhau, tạo thành kết quả cuối cùng: `class="form-control date-picker-theme-dark"`.
 
 ## Các sự kiện tùy biến
 
