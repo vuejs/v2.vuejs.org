@@ -23,7 +23,7 @@ Translation for this documentation project are currently maintained in separate 
 
 French translation is maintained by Vuejs-FR.
 
-* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+* Translation Repo - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
 
 ### Italian
 
@@ -50,6 +50,13 @@ Korean translation is maintained by [Vue.js Korean User group](https://github.co
 
 * Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
+### Persian (Farsi)
+
+Persian translation is maintained by VueJS-fa.
+
+* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
+
 ### Português-Br
 
 Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-br).
@@ -60,7 +67,7 @@ Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-b
 
 Russian translation is maintained by Translation Gang.
 
-* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
+* Translation Repo - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
 ### Spanish
@@ -69,12 +76,12 @@ Spanish translation is maintained by VueJS-ES.
 
 * Translation Repo - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
 
-### Persian (Farsi)
+### Vietnamese
 
-Persian translation is maintained by VueJS-fa.
+Vietnamese translation is maintained by [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
 
-* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
-* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
+* Translation Repo: [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
+* Primary maintainer - [phanan](https://github.com/phanan)
 
 ### Want to help with the translation?
 
