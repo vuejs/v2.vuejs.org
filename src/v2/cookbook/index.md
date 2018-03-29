@@ -35,23 +35,25 @@ Recipes should generally:
 > * Explain the pros and cons of your strategy, including when it is and isn't appropriate
 > * Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
 
-### Simple Example
+We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
+
+### Base Example
 
 _required_
 
-1. Articulate the problem in a sentence or two.
-2. Explain the simplest possible solution in a sentence or two.
-3. Show a small code sample.
-4. Explain what this accomplishes in a sentence.
+1.  Articulate the problem in a sentence or two.
+2.  Explain the simplest possible solution in a sentence or two.
+3.  Show a small code sample.
+4.  Explain what this accomplishes in a sentence.
 
 ### Details about the Value
 
 _required_
 
-1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2. Show examples of common missteps and how they can be avoided.
-3. Show very simple code samples of good and bad patterns.
-4. Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
+1.  Address common questions that one might have while looking at the example. (Blockquotes are great for this)
+2.  Show examples of common missteps and how they can be avoided.
+3.  Show very simple code samples of good and bad patterns.
+4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
 
 ### Real-World Example
 
@@ -59,8 +61,8 @@ _required_
 
 Demonstrate the code that would power a common or interesting use case, either by:
 
-1. Walking through a few terse examples of setup, or
-2. Embedding a codepen/jsfiddle example
+1.  Walking through a few terse examples of setup, or
+2.  Embedding a codepen/jsfiddle example
 
 If you choose to do the latter, you should still talk through what it is and does.
 

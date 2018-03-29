@@ -138,8 +138,8 @@ return createElement('h1', this.blogTitle)
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // HTML 标签名称，或组件选项对象，或一个函数，
-  // 其中函数会返回 HTML 标签名称或组件选项对象。必选参数。
+  // HTML 标签名称，或组件选项对象，
+  // 或一个最终解析(resolve)为 HTML 标签名称或组件选项对象的异步函数。必选参数。
   'div',
 
   // {Object}
