@@ -1,6 +1,6 @@
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
-    <span>Special Sponsors</span>
+    <span>特别赞助</span>
     <div>
     <%_ for (const sponsor of theme.special_sponsors) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
@@ -13,7 +13,7 @@
 
 <div id="sidebar-sponsors-platinum">
   <div class="main-sponsor">
-    <span>Patreon Sponsors</span>
+    <span>Patreon 赞助</span>
     <div>
     <%_ for (const sponsor of theme.platinum_sponsors) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
@@ -23,6 +23,6 @@
     </div>
   </div>
   <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-    Become a Sponsor
+    成为赞助者
   </a>
 </div>
