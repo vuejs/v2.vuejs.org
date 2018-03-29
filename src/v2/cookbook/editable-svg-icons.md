@@ -167,3 +167,9 @@ Other tooling to help manage SVG icons includes:
 * [svgo-loader](https://github.com/rpominov/svgo-loader)
 
 These tools bundle SVGs at compile time, but make them a little harder to edit during runtime, because `<use>` tags can have strange cross-browser issues when doing anything more complex. They also leave you with two nested `viewBox` properties and thus two coordinate systems. This makes the implementation a little more complex.
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/editable-svg-icons.html
+
+***

@@ -1584,6 +1584,6 @@ Partials 已被移除,取而代之的是更明确的组件之间的数据流--pr
 
 ***
 
-> 原文： https://vuejs.org/v2/guide/migration.html
+> 原文：https://vuejs.org/v2/guide/migration.html
 
 ***

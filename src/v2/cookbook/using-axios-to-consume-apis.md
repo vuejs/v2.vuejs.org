@@ -170,3 +170,9 @@ If you're interested in using the Fetch API, there are some [very good articles]
 ## Wrapping Up
 
 There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+
+***

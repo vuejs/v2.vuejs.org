@@ -201,3 +201,9 @@ new Vue({
 When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
 
 While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/
+
+***
