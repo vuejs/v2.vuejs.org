@@ -4,9 +4,9 @@ type: cookbook
 order: 6
 ---
 
-## Simple Example
+## Base Example
 
-Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](./single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
+Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](../guide/single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
 
 This simple example tests whether some text is rendered:
 
@@ -44,13 +44,13 @@ export default {
 ```
 
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 
 test('Foo', () => {
   // render the component
   const wrapper = shallow(Hello)
 
-  // should not allow for username less than 7 characters, excludes whitespace
+  // should not allow for `username` less than 7 characters, excludes whitespace
   wrapper.setData({ username: ' '.repeat(7) })
 
   // assert the error is rendered
@@ -58,9 +58,7 @@ test('Foo', () => {
 
   // update the name to be long enough
   wrapper.setData({
-    username: {
-      'Lachlan'
-    }
+    username: 'Lachlan'
   })
 
   // assert the error has gone away
@@ -73,6 +71,7 @@ The above code snippet shows how to test whether an error message is rendered ba
 ## Why test?
 
 Component unit tests have lots of benefits:
+
 - Provide documentation on how the component should behave
 - Save time over testing manually
 - Reduce bugs in new features
@@ -83,11 +82,12 @@ Automated testing allows large teams of developers to maintain complex codebases
 
 #### Getting started
 
-[vue-test-utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) webpack template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the `vue-test-utils` documentation.
+[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the Vue Test Utils documentation.
 
 ## Real-World Example
 
-Unit tests should be
+Unit tests should be:
+
 - Fast to run
 - Easy to understand
 - Only test a _single unit of work_
@@ -137,14 +137,15 @@ export default {
 ```
 
 The things that we should test are:
+
 - is the `message` rendered?
-- if `error` is `true`, `<div class="error"`> should be present
-- if `error` is `false`, `<div class="error"`> should not be present
+- if `error` is `true`, `<div class="error">` should be present
+- if `error` is `false`, `<div class="error">` should not be present
 
 And our first attempt at test:
 
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
@@ -161,18 +162,20 @@ describe('Foo', () => {
   // assert the error is rendered
   expect(wrapper.find('.error').exists()).toBeTruthy()
 
-  // update the username and assert error is longer rendered
-  wrapper.setData({ username: 'Lachlan'  })
+  // update the `username` and assert error is longer rendered
+  wrapper.setData({ username: 'Lachlan' })
   expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
 ```
 
 There are some problems with the above:
+
 - a single test is making assertions about different things
 - difficult to tell the different states the component can be in, and what should be rendered
 
 The below example improves the test by:
+
 - only making one assertion per `it` block
 - having short, clear test descriptions
 - providing only the minimum data requires for the test
@@ -180,7 +183,7 @@ The below example improves the test by:
 
 *Updated test*:
 ```js
-import { shallow } from 'vue-test-utils'
+import { shallow } from '@vue/test-utils'
 import Foo from './Foo'
 
 const factory = (values = {}) => {
@@ -203,7 +206,7 @@ describe('Foo', () => {
   })
 
   it('renders an error when username is whitespace', () => {
-    const wrapper = factory({ username: ' '.repeat(7)  })
+    const wrapper = factory({ username: ' '.repeat(7) })
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
   })
@@ -228,13 +231,13 @@ The above test is fairly simple, but in practice Vue components often have other
 - committing or dispatching mutations or actions with a `Vuex` store
 - testing interaction
 
-There are more complete examples showing such tests in the `vue-test-utils` [guides](https://vue-test-utils.vuejs.org/en/guides/).
+There are more complete examples showing such tests in the Vue Test Utils [guides](https://vue-test-utils.vuejs.org/en/guides/).
 
-`vue-test-utils` and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component.
+Vue Test Utils and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component.
 
-Snapshot tests save the markup of your Vue component, and compare to the new one generated each time the test runs. If something changes, the developer is notified, and can decide if the change was intentional (the component was updated) or accidentally (the component is behaving incorrectly).
+Snapshot tests save the markup of your Vue component, and compare to the new one generated each time the test runs. If something changes, the developer is notified, and can decide if the change was intentional (the component was updated) or accidental (the component is behaving incorrectly).
 
-End to end tests involve ensure a number of components interact together well. They are more high level. Some examples might be testing if a user can sign up, log in, and update their username. These are slowly to run than unit tests or snapshot tests.
+End to end tests ensure a number of components interact well together. They are more high level. Some examples might be testing if a user can sign up, log in, and update their username. These are slower to run than unit tests or snapshot tests.
 
 Unit tests are most useful during development, either to help a developer think about how to design a component, or refactor an existing component, and are often run every time code is changed.
 

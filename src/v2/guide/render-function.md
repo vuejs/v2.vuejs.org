@@ -138,8 +138,8 @@ The next thing you'll have to become familiar with is how to use template featur
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // An HTML tag name, component options, or async
+  // function resolving to one of these. Required.
   'div',
 
   // {Object}
