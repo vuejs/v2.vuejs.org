@@ -237,7 +237,6 @@ Vue cũng cung cấp directive `v-model` giúp cho việc ràng buộc hai chi�
 <div id="app-6">
   <p>{{ message }}</p>
   <input v-model="message">
-  <button v-on:click="changeMessage">Thay đổi thông điệp</button>
 </div>
 ```
 ``` js
