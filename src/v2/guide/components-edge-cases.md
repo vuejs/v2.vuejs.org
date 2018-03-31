@@ -317,3 +317,9 @@ Vue.component('terms-of-service', {
 ```
 
 <p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering -- plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>
+
+***
+
+> 原文：http://vuejs.org/v2/guide/components-edge-cases.html
+
+***

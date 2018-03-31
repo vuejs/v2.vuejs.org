@@ -227,3 +227,9 @@ The value of `slot-scope` can actually accept any valid JavaScript expression th
 ```
 
 This is a great way to make scoped slots a little cleaner.
+
+***
+
+> 原文：http://vuejs.org/v2/guide/components-slots.html
+
+***

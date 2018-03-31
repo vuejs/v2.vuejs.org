@@ -312,3 +312,9 @@ This pattern allows you to use base components more like raw HTML elements, with
   placeholder="Enter your username"
 ></base-input>
 ```
+
+***
+
+> 原文：http://vuejs.org/v2/guide/components-props.html
+
+***

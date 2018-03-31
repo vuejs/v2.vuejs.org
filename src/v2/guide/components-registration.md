@@ -224,3 +224,9 @@ requireComponent.keys().forEach(fileName => {
 ```
 
 Remember that **global registration must take place before the root Vue instance is created (with `new Vue`)**. [Here's an example](https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js) of this pattern in a real project context.
+
+***
+
+> 原文：http://vuejs.org/v2/guide/components-registration.html
+
+***

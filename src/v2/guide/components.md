@@ -593,3 +593,9 @@ It should be noted that **this limitation does _not_ apply if you are using stri
 That's all you need to know about dynamic components for now -- and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself and build something fun.
 
 Once you feel comfortable with the knowledge you've just digested, we recommend coming back to read the full guide on [Dynamic & Async Components](components-props.html), as well as the other pages in the Components In-Depth section of the sidebar.
+
+***
+
+> 原文：http://vuejs.org/v2/guide/components.html
+
+***
