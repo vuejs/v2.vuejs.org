@@ -160,7 +160,7 @@ So what are the alternatives?
 
 In applications with **no** module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
 
-If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
+If what you want to add something that has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
 
 ```js
 var App = Object.freeze({
