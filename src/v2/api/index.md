@@ -2123,8 +2123,8 @@ type: api
   <!-- vm.$refs.p will be the DOM node -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
-  <child-comp ref="child"></child-comp>
+  <!-- vm.$refs.child will be the child component instance -->
+  <child-component ref="child"></child-component>
   ```
 
   When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
