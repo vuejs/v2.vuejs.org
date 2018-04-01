@@ -34,9 +34,9 @@ Current available templates include:
 
 - [browserify-simple](https://github.com/vuejs-templates/browserify-simple) - A simple Browserify + vueify setup for quick prototyping.
 
-- [webpack](https://github.com/vuejs-templates/webpack) - A full-featured Webpack + vue-loader setup with hot reload, linting, testing & css extraction.
+- [webpack](https://github.com/vuejs-templates/webpack) - A full-featured webpack + vue-loader setup with hot reload, linting, testing & css extraction.
 
-- [webpack-simple](https://github.com/vuejs-templates/webpack-simple) - A simple Webpack + vue-loader setup for quick prototyping.
+- [webpack-simple](https://github.com/vuejs-templates/webpack-simple) - A simple webpack + vue-loader setup for quick prototyping.
 
 ### Bring Your Own Setup
 

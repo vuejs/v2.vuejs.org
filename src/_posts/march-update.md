@@ -19,7 +19,7 @@ There are many other great projects - too many to be listed here - but you can c
 
 ## A New Vision For the Project
 
-Some of you may have noticed that the development on the Vue.js core repo has slowed down lately - in the meanwhile, a lot of efforts went into other sub projects, namely [Vuex](https://github.com/vuejs/vuex), [vue-devtools](https://github.com/vuejs/vue-devtools) and the official [Webpack project boilerplate](https://github.com/vuejs-templates/webpack). The next step is a new release for [vue-router](https://github.com/vuejs/vue-router), and better documentation/examples demonstrating how Vue.js core, Vuex and vue-router work together in a large single page application.
+Some of you may have noticed that the development on the Vue.js core repo has slowed down lately - in the meanwhile, a lot of efforts went into other sub projects, namely [Vuex](https://github.com/vuejs/vuex), [vue-devtools](https://github.com/vuejs/vue-devtools) and the official [webpack project boilerplate](https://github.com/vuejs-templates/webpack). The next step is a new release for [vue-router](https://github.com/vuejs/vue-router), and better documentation/examples demonstrating how Vue.js core, Vuex and vue-router work together in a large single page application.
 
 All this adds together towards a new vision for the Vue.js project: a progressive framework that can adapt to different complexity levels. Vue.js core will remain "just the view layer" - you can still drop it on whatever existing page to replace jQuery, but the Vue.js project also includes other pieces like vue-router, Vuex, vue-loader/vueify and vue-cli that works together as a more complete, opinionated framework for single page applications. More on this in a later post.
 
