@@ -124,7 +124,7 @@ new Vue({
       .catch(error => {
         console.log(error)
         this.errored = true
-      }).
+      })
       .finally(() => this.loading = false)
   }
 })
@@ -157,7 +157,7 @@ You can hit the rerun button on this pen to see the loading status briefly while
 <p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This can be even futher improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
+This can be even further improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
 
 ## Alternative Patterns
 
