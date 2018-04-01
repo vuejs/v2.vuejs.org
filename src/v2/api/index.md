@@ -460,7 +460,11 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  Note that if you use an arrow function with the `data` property, `this` will be undefined, but you can still access the instance as the function's first argument:
+
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
@@ -533,7 +537,13 @@ type: api
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  Note that if you use an arrow function with a computed property, `this` will be undefined, but you can still access the instance as the function's first argument:
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
 
