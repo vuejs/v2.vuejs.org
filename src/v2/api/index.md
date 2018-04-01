@@ -460,7 +460,7 @@ type: api
   })
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` will be undefined, but you can still access the instance as the function's first argument:
+  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
 
   ```js
   data: vm => ({ a: vm.myProp })
@@ -537,7 +537,7 @@ type: api
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
-  Note that if you use an arrow function with a computed property, `this` will be undefined, but you can still access the instance as the function's first argument:
+  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
 
   ```js
   computed: {
