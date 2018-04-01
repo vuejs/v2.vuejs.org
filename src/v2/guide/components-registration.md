@@ -135,7 +135,7 @@ If you're not using a module system with `import`/`require`, you can probably sk
 
 If you're still here, then it's likely you're using a module system, such as with Babel and Webpack. In these cases, we recommend creating a `components`, with each component in its own file.
 
-Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `CompononentB.js` or `ComponentB.vue` file:
+Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `ComponentB.js` or `ComponentB.vue` file:
 
 ```js
 import ComponentA from './ComponentA'

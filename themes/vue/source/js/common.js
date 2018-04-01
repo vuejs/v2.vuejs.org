@@ -519,9 +519,9 @@
       .replace(rControl, '')
       // Replace special characters
       .replace(rSpecial, separator)
-      // Remove continous separators
+      // Remove continuous separators
       .replace(new RegExp(escapedSep + '{2,}', 'g'), separator)
-      // Remove prefixing and trailing separtors
+      // Remove prefixing and trailing separators
       .replace(new RegExp('^' + escapedSep + '+|' + escapedSep + '+$', 'g'), '')
 
     switch (options.transform) {

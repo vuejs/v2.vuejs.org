@@ -165,7 +165,7 @@ If what you want to add has nothing to do with Vue specifically, this may be a g
 ```js
 var App = Object.freeze({
   name: 'My App',
-  description: '2.1.4',
+  version: '2.1.4',
   helpers: {
     // This is a purely functional version of
     // the $reverseText method we saw earlier

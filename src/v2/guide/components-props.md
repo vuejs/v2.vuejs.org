@@ -20,7 +20,7 @@ Vue.component('blog-post', {
 
 ``` html
 <!-- kebab-case in HTML -->
-<child post-title="hello!"></child>
+<blog-post post-title="hello!"></blog-post>
 ```
 
 Again, if you're using string templates, this limitation does not apply.

@@ -255,7 +255,7 @@ new Vue({
 The async component factory can also return an object of the following format:
 
 ``` js
-const AsyncCompontent = () => ({
+const AsyncComponent = () => ({
   // The component to load (should be a Promise)
   component: import('./MyComponent.vue'),
   // A component to use while the async component is loading
