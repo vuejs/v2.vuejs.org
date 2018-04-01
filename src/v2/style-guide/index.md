@@ -739,7 +739,7 @@ components/
 These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
 
 - HTML elements,
-- other `Base`-prefixed components, and
+- other base components, and
 - 3rd-party UI components.
 
 But they'll **never** contain global state (e.g. from a Vuex store).
