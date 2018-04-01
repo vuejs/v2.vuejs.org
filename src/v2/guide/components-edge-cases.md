@@ -228,7 +228,7 @@ Then a `tree-folder-contents` component with this template:
 
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+However, if you're requiring/importing components using a __module system__, e.g. via webpack or Browserify, you'll get an error:
 
 ```
 Failed to mount component: template or render function not defined.
@@ -244,7 +244,7 @@ beforeCreate: function () {
 }
 ```
 
-Or alternatively, you could use Webpack's asynchronous `import` when you register the component locally:
+Or alternatively, you could use webpack's asynchronous `import` when you register the component locally:
 
 ``` js
 components: {
