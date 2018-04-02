@@ -1869,20 +1869,17 @@ type: api
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
-
   When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
 
   When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
 - **Example:**
 
   ```html
   <!-- method handler -->
   <button v-on:click="doThis"></button>
-
-  <!-- object syntax (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- inline statement -->
   <button v-on:click="doThat('hello', $event)"></button>
@@ -1910,6 +1907,9 @@ type: api
 
   <!-- the click event will be triggered at most once -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- object syntax (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
   Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
