@@ -6,7 +6,7 @@ order: 8
 
 ## Simple Example
 
-So you built your first Vue.js app using the amazing [Vue.js webpak template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run it in a Docker container.
+So you built your first Vue.js app using the amazing [Vue.js webpack template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run it in a Docker container.
 
 Let's start by creating a `Dockerfile` in the root folder of our project:
 
