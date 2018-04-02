@@ -1406,7 +1406,7 @@ type: api
 
 - **Details:**
 
-  An object that holds child components that have `ref` registered.
+  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
 
 - **See also:**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
