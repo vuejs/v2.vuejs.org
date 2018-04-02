@@ -46,7 +46,7 @@ docker build -t vuejs-cookbook/dockerize-vuejs-app .
 Finally, let's run our Vue.js app in a Docker container:
 
 ```bash
- docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
+docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
 ```
 
 We should be able to access our Vue.js app on `localhost:8080`.
