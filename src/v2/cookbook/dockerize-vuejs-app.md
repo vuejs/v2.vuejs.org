@@ -40,7 +40,7 @@ It may seem reduntant to first copy `package.json` and `package-lock.json` and t
 Now let's build a Docker image for our Vue.js app:
 
 ```bash
-docker built -t vuejs-cookbook/dockerize-vuejs-app .
+docker build -t vuejs-cookbook/dockerize-vuejs-app .
 ```
 
 Finally, let's run our Vue.js app in a Docker container:
