@@ -499,7 +499,7 @@ For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/
 
 The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
 
 ``` js
 Vue.component('my-component', {
@@ -530,7 +530,7 @@ Everything the component needs is passed through `context`, which is an object c
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
 - `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
+- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
 - `parent`: A reference to the parent component
 - `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
 - `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
