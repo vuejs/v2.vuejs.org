@@ -17,6 +17,8 @@ platinum_sponsors:
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
+  - url: https://vehikl.com/
+    img: vehikl.png
 
 gold_sponsors:
   - url: https://laravel.com
