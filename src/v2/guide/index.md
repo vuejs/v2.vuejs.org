@@ -23,7 +23,7 @@ La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello Worl
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+ou:
 
 ``` html
 <!-- production version, optimized for size and speed -->
