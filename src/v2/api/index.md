@@ -687,7 +687,7 @@ type: api
 
 - **参考：**
   - [生命周期示意图](../guide/instance.html#生命周期示意图)
-  - [使用 slot 分发内容](../guide/components.html#使用-slot-分发内容)
+  - [使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
 
 ### render
 
@@ -1327,9 +1327,9 @@ type: api
 
 - **详细：**
 
-  用来访问被 [slot 分发](../guide/components.html#使用-Slot-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用于以编程式来访问 [由 slots 分发](../guide/components.html#使用-slots-进行内容分发) 的内容。在 vm.$slots 上，有着与每个 [具名 slot](../guide/components.html#具名-slot) 相应的属性（例如：在 `vm.$slots.foo` 上可以找到 `slot="foo"` 中的内容）。`default` 属性是由所有匿名 slot 的 VNode 节点构成的数组。
 
-  在使用 [render 函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
+  在使用 [render 函数](../guide/render-function.html) 编写一个组件时，访问 `vm.$slots` 极其有用的。
 
 - **示例：**
 
@@ -1366,8 +1366,8 @@ type: api
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
-  - [Render 函数 - slots](../guide/render-function.html#Slots)
+  - [使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
+  - [Render 函数 - slots](../guide/render-function.html#slots)
 
 ### vm.$scopedSlots
 
@@ -1379,14 +1379,14 @@ type: api
 
 - **详细：**
 
-  用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
+  用来访问 [scoped slots](../guide/components.html#scoped-slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
 
   在使用 [render 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render 函数 - slots](../guide/render-function.html#Slots)
+  - [scoped slots](../guide/components.html#scoped-slots)
+  - [render 函数 - slots](../guide/render-function.html#slots)
 
 ### vm.$refs
 
@@ -2141,7 +2141,7 @@ type: api
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考：**[具名 Slots](../guide/components.html#具名-Slot)
+- **参考：**[具名 slots](../guide/components.html#具名-slots)
 
 ### slot-scope
 
@@ -2155,7 +2155,7 @@ type: api
 
   This attribute does not support dynamic binding.
 
-- **参考：**[Scoped Slots](../guide/components.html#Scoped-Slots)
+- **参考：**[scoped slots](../guide/components.html#scoped-slots)
 
 ### scope <sup>replaced</sup>
 
@@ -2388,7 +2388,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   详细用法，请参考下面教程的链接。
 
-- **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
+- **参考：**[使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
 
 ## VNode 接口
 

@@ -406,7 +406,7 @@ on: {
 }
 ```
 
-### Slots
+### slots
 
 使用[`this.$slots`](../api/#vm-slots)访问静态插槽内容作为 VNode 数组：
 
@@ -417,7 +417,7 @@ render: function (createElement) {
 }
 ```
 
-使用[`this.$scopedSlots`](../api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
+使用 [`this.$scopedSlots`](../api/#vm-scopedSlots) 访问作用域插槽作为返回 VNodes 的函数:
 
 ``` js
 props: ['message'],
@@ -431,7 +431,7 @@ render: function (createElement) {
 }
 ```
 
-使用render函数传递作用域插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
+使用 render 函数传递作用域插槽到子组件，使用 VNode 数据中的 `scopedSlots` 关键字：
 
 ``` js
 render: function (createElement) {
