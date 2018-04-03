@@ -87,7 +87,7 @@ $ npm run dev
 
 - **完整版本(Full)**：包含编译器(compiler)和运行时(runtime)的构建版本。
 
-- **编译器(Compiler)**：负责将模板字符串编译成 JavaScript 渲染函数(render function)的代码。
+- **编译器(Compiler)**：负责将模板字符串编译成 JavaScript render 函数的代码。
 
 - **运行时(Runtime)**：负责创建 Vue 实例(creating Vue instances)、渲染(rendering)和修补虚拟 DOM(patching virtual DOM) 等的代码。基本上，等同于完整版本减去编译器。
 
