@@ -9,9 +9,9 @@ type: api
 
 ### silent
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false`
+- **默认值：**`false`
 
 - **用法：**
 
@@ -23,9 +23,9 @@ type: api
 
 ### optionMergeStrategies
 
-- **类型：** `{ [key: string]: Function }`
+- **类型：**`{ [key: string]: Function }`
 
-- **默认值：** `{}`
+- **默认值：**`{}`
 
 - **用法：**
 
@@ -49,9 +49,9 @@ type: api
 
 ### devtools
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`（在生产版本中是 `false`）
+- **默认值：**`true`（在生产版本中是 `false`）
 
 - **用法：**
 
@@ -64,9 +64,9 @@ type: api
 
 ### errorHandler
 
-- **类型：** `Function`
+- **类型：**`Function`
 
-- **默认值：** `undefined`
+- **默认值：**`undefined`
 
 - **用法：**
 
@@ -90,9 +90,9 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `Function`
+- **类型：**`Function`
 
-- **默认值：** `undefined`
+- **默认值：**`undefined`
 
 - **用法：**
 
@@ -106,9 +106,9 @@ type: api
 
 ### ignoredElements
 
-- **类型：** `Array<string | RegExp>`
+- **类型：**`Array<string | RegExp>`
 
-- **默认值：** `[]`
+- **默认值：**`[]`
 
 - **用法：**
 
@@ -126,9 +126,9 @@ type: api
 
 ### keyCodes
 
-- **类型：** `{ [key: string]: number | Array<number> }`
+- **类型：**`{ [key: string]: number | Array<number> }`
 
-- **默认值：** `{}`
+- **默认值：**`{}`
 
 - **用法：**
 
@@ -154,9 +154,9 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false（从 2.2.3+ 开始）`
+- **默认值：**`false（从 2.2.3+ 开始）`
 
 - **用法：**
 
@@ -166,9 +166,9 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`
+- **默认值：**`true`
 
 - **用法：**
 
@@ -402,7 +402,7 @@ type: api
 
 ### Vue.version
 
-- **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
+- **详细：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
 - **用法：**
 
@@ -422,9 +422,9 @@ type: api
 
 ### data
 
-- **类型：** `Object | Function`
+- **类型：**`Object | Function`
 
-- **限制：** 组件的定义只接受 `function`。
+- **限制：**组件的定义只接受 `function`。
 
 - **详细：**
 
@@ -466,7 +466,7 @@ type: api
 
 ### props
 
-- **类型：** `Array<string> | Object`
+- **类型：**`Array<string> | Object`
 
 - **详细：**
 
@@ -502,9 +502,9 @@ type: api
 
 ### propsData
 
-- **类型：** `{ [key: string]: any }`
+- **类型：**`{ [key: string]: any }`
 
-- **限制：** 只用于 `new` 创建的实例中。
+- **限制：**只用于 `new` 创建的实例中。
 
 - **详细：**
 
@@ -527,7 +527,7 @@ type: api
 
 ### computed
 
-- **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **类型：**`{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **详细：**
 
@@ -568,7 +568,7 @@ type: api
 
 ### methods
 
-- **类型：** `{ [key: string]: Function }`
+- **类型：**`{ [key: string]: Function }`
 
 - **详细：**
 
@@ -595,7 +595,7 @@ type: api
 
 ### watch
 
-- **类型：** `{ [key: string]: string | Function | Object | Array}`
+- **类型：**`{ [key: string]: string | Function | Object | Array}`
 
 - **详细：**
 
@@ -651,9 +651,9 @@ type: api
 
 ### el
 
-- **类型：** `string | HTMLElement`
+- **类型：**`string | HTMLElement`
 
-- **限制：** 只在由 `new` 创建的实例中遵守。
+- **限制：**只在由 `new` 创建的实例中遵守。
 
 - **详细：**
 
@@ -673,7 +673,7 @@ type: api
 
 ### template
 
-- **类型：** `string`
+- **类型：**`string`
 
 - **详细：**
 
@@ -691,7 +691,7 @@ type: api
 
 ### render
 
-  - **类型：** `(createElement: () => VNode) => VNode`
+  - **类型：**`(createElement: () => VNode) => VNode`
 
   - **详细：**
 
@@ -707,7 +707,7 @@ type: api
 
 > 2.2.0+ 新增
 
-  - **类型：** `(createElement: () => VNode, error: Error) => VNode`
+  - **类型：**`(createElement: () => VNode, error: Error) => VNode`
 
   - **详细：**
 
@@ -736,7 +736,7 @@ type: api
 
 ### beforeCreate
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -746,7 +746,7 @@ type: api
 
 ### created
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -756,7 +756,7 @@ type: api
 
 ### beforeMount
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -768,7 +768,7 @@ type: api
 
 ### mounted
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -791,7 +791,7 @@ type: api
 
 ### beforeUpdate
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -803,7 +803,7 @@ type: api
 
 ### updated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -828,7 +828,7 @@ type: api
 
 ### activated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -842,7 +842,7 @@ type: api
 
 ### deactivated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -856,7 +856,7 @@ type: api
 
 ### beforeDestroy
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -868,7 +868,7 @@ type: api
 
 ### destroyed
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -882,7 +882,7 @@ type: api
 
 > 2.5.0+ 新增
 
-- **类型：** `(err: Error, vm: Component, info: string) => ?boolean`
+- **类型：**`(err: Error, vm: Component, info: string) => ?boolean`
 
 - **详细：**
 
@@ -904,7 +904,7 @@ type: api
 
 ### directives
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -914,7 +914,7 @@ type: api
 
 ### filters
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -924,7 +924,7 @@ type: api
 
 ### components
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -936,23 +936,23 @@ type: api
 
 ### parent
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **详细：**
 
-  指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
+  用于指定已创建的实例的父实例。在二者之间建立父子关系。在子实例中可以通过 `this.$parent` 访问父实例，而子实例会被推入父实例的 `$children` 数组中。
 
-  <p class="tip">同时使用 `$parent` 和 `$children` 有冲突 - 他们作为同一个入口 。更推荐用 props 和 events 实现父子组件通信</p>
+  <p class="tip">请谨慎保守地使用 `$parent` 和 `$children` - 更多的是将它们作为一个应急方式。推荐使用 props 和 events 实现父子组件之间通信。</p>
 
 ### mixins
 
-- **类型：** `Array<Object>`
+- **类型：**`Array<Object>`
 
 - **详细：**
 
   `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
 
-  Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
+  mixin 钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
 
 - **示例：**
 
@@ -972,7 +972,7 @@ type: api
 
 ### extends
 
-- **类型：** `Object | Function`
+- **类型：**`Object | Function`
 
 - **详细：**
 
@@ -1123,9 +1123,9 @@ type: api
 
 ### name
 
-- **类型：** `string`
+- **类型：**`string`
 
-- **限制：** 只有作为组件选项时起作用。
+- **限制：**只有作为组件选项时起作用。
 
 - **详细：**
 
@@ -1135,11 +1135,11 @@ type: api
 
 ### delimiters
 
-- **类型：** `Array<string>`
+- **类型：**`Array<string>`
 
 - **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **限制：** 这个选择只在完整构建版本中才可用，将在浏览器中编译。
+- **限制：**这个选择只在完整构建版本中才可用，将在浏览器中编译。
 
 - **详细：**
 
@@ -1157,7 +1157,7 @@ type: api
 
 ### functional
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
 - **详细：**
 
@@ -1169,7 +1169,7 @@ type: api
 
 > 2.2.0 新增
 
-- **类型：** `{ prop?: string, event?: string }`
+- **类型：**`{ prop?: string, event?: string }`
 
 - **详细：**
 
@@ -1214,9 +1214,9 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`
+- **默认值：**`true`
 
 - **详细：**
 
@@ -1228,11 +1228,11 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false`
+- **默认值：**`false`
 
-- **限制：** 这个选项只在完整构建版本中的浏览器内编译时可用。
+- **限制：**这个选项只在完整构建版本中的浏览器内编译时可用。
 
 - **详细：**
 
@@ -1242,7 +1242,7 @@ type: api
 
 ### vm.$data
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -1254,7 +1254,7 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -1262,7 +1262,7 @@ type: api
 
 ### vm.$el
 
-- **类型：** `HTMLElement`
+- **类型：**`HTMLElement`
 
 - **只读**
 
@@ -1272,7 +1272,7 @@ type: api
 
 ### vm.$options
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **只读**
 
@@ -1291,7 +1291,7 @@ type: api
 
 ### vm.$parent
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **只读**
 
@@ -1301,7 +1301,7 @@ type: api
 
 ### vm.$root
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **只读**
 
@@ -1311,7 +1311,7 @@ type: api
 
 ### vm.$children
 
-- **类型：** `Array<Vue instance>`
+- **类型：**`Array<Vue instance>`
 
 - **只读**
 
@@ -1321,7 +1321,7 @@ type: api
 
 ### vm.$slots
 
-- **类型：** `{ [name: string]: ?Array<VNode> }`
+- **类型：**`{ [name: string]: ?Array<VNode> }`
 
 - **只读**
 
@@ -1373,7 +1373,7 @@ type: api
 
 > 2.1.0+ 新增
 
-- **类型：** `{ [name: string]: props => VNode | Array<VNode> }`
+- **类型：**`{ [name: string]: props => VNode | Array<VNode> }`
 
 - **只读**
 
@@ -1390,7 +1390,7 @@ type: api
 
 ### vm.$refs
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **只读**
 
@@ -1404,7 +1404,7 @@ type: api
 
 ### vm.$isServer
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
 - **只读**
 
@@ -1416,7 +1416,7 @@ type: api
 
 ### vm.$attrs
 
-- **类型：** `{ [key: string]: string }`
+- **类型：**`{ [key: string]: string }`
 
 - **只读**
 
@@ -1426,7 +1426,7 @@ type: api
 
 ### vm.$listeners
 
-- **类型：** `{ [key: string]: Function | Array<Function> }`
+- **类型：**`{ [key: string]: Function | Array<Function> }`
 
 - **只读**
 
@@ -1445,7 +1445,7 @@ type: api
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **返回值：** `{Function} unwatch`
+- **返回值：**`{Function} unwatch`
 
 - **用法：**
 
@@ -1510,13 +1510,13 @@ type: api
   - `{string | number} key`
   - `{any} value`
 
-- **返回值：** 设置的值.
+- **返回值：**设置的值.
 
 - **用法：**
 
   这是全局 `Vue.set` 的**别名**。
 
-- **另见：** [Vue.set](#Vue-set)
+- **另见：**[Vue.set](#Vue-set)
 
 ### vm.$delete( target, key )
 
@@ -1528,7 +1528,7 @@ type: api
 
   这是全局 `Vue.delete` 的**别名**。
 
-- **另见：** [Vue.delete](#Vue-delete)
+- **另见：**[Vue.delete](#Vue-delete)
 
 ## 实例方法/事件
 
@@ -1594,7 +1594,7 @@ type: api
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **返回值：** `vm` - 实例自身
+- **返回值：**`vm` - 实例自身
 
 - **用法：**
 
@@ -1684,7 +1684,7 @@ type: api
 
 ### v-text
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
 - **详细：**
 
@@ -1702,7 +1702,7 @@ type: api
 
 ### v-html
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
 - **详细：**
 
@@ -1722,7 +1722,7 @@ type: api
 
 ### v-show
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
 - **用法：**
 
@@ -1734,7 +1734,7 @@ type: api
 
 ### v-if
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
 - **用法：**
 
@@ -1750,7 +1750,7 @@ type: api
 
 - **不需要表达式**
 
-- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
+- **限制：**前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
 - **用法：**
 
@@ -1771,9 +1771,9 @@ type: api
 
 > 2.1.0+ 新增
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
-- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
+- **限制：**前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
 - **用法：**
 
@@ -1798,7 +1798,7 @@ type: api
 
 ### v-for
 
-- **期望类型：** `Array | Object | number | string`
+- **期望类型：**`Array | Object | number | string`
 
 - **用法：**
 
@@ -1836,11 +1836,11 @@ type: api
 
 ### v-on
 
-- **缩写：** `@`
+- **缩写：**`@`
 
-- **期望类型：** `Function | Inline Statement | Object`
+- **期望类型：**`Function | Inline Statement | Object`
 
-- **参数：** `event`
+- **参数：**`event`
 
 - **修饰符：**
   - `.stop` - 调用 `event.stopPropagation()`。
@@ -1920,11 +1920,11 @@ type: api
 
 ### v-bind
 
-- **缩写：** `:`
+- **缩写：**`:`
 
-- **期望类型：** `any (with argument) | Object (without argument)`
+- **期望类型：**`any (with argument) | Object (without argument)`
 
-- **参数：** `attrOrProp (optional)`
+- **参数：**`attrOrProp (optional)`
 
 - **修饰符：**
   - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
@@ -1993,7 +1993,7 @@ type: api
 
 ### v-model
 
-- **期望类型：** 随表单控件类型不同而不同。
+- **期望类型：**随表单控件类型不同而不同。
 
 - **限制：**
   - `<input>`
@@ -2115,7 +2115,7 @@ type: api
 
 ### ref
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
 
@@ -2135,7 +2135,7 @@ type: api
 
 ### slot
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   用于标记往哪个slot中插入子组件内容。
 
@@ -2167,7 +2167,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 ### is
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
 
