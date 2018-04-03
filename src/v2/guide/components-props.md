@@ -150,7 +150,7 @@ There are usually two cases where it's tempting to mutate a prop:
 
 Components can specify requirements for its props. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
 
-To specify prop validations, you case provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
+To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
 
 ``` js
 Vue.component('my-component', {
