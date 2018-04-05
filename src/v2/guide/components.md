@@ -142,7 +142,7 @@ That's all you need to know about registration for now, but once you've finished
 
 Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
 
-Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a _prop_erty on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
 
 ```js
 Vue.component('blog-post', {
