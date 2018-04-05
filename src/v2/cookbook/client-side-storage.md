@@ -30,7 +30,7 @@ const app = new Vue({
     if(localStorage.name) this.name = localStorage.name;
   },
   watch:{
-    name(newName,oldName) {
+    name(newName) {
       localStorage.name = newName;
     }
   }
