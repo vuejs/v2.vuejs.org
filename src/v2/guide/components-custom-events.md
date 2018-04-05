@@ -165,4 +165,4 @@ The `.sync` modifier can also be used with `v-bind` when using an object to set 
 
 This passes each property in the `doc` object (e.g. `title`) as an individual prop, then adds `v-on` update listeners for each one.
 
-<p class="tip">Using <code>v-bind.sync</code> with a literal object, such as in <code>v-bind.sync="{ title: doc.title }"</code>, will not work. If you want to include multiple, unrelated data properties in the same <code>v-bind.sync</code>, we recommend creating a computed property that returns an object.</p>
+<p class="tip">Using <code>v-bind.sync</code> with a literal object, such as in <code>v-bind.sync="{ title: doc.title }"</code>, because there are simply too many edge cases to consider in parsing a complex expression like this.</p>
