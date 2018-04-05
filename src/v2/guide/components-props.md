@@ -1,111 +1,111 @@
 ---
-title: Props
+title: props
 type: guide
 order: 102
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> 本页面会假定你已经阅读过 [组件基础](components.html)。如果你还不熟悉组件，请先阅读组件基础后再阅读本页面。
 
-## Prop Casing (camelCase vs kebab-case)
+##  prop 命名方案（驼峰式和串联式）
 
-HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
+HTML 属性名称对大小写不敏感，因此浏览器会将所有大写字符解释为小写字符。也就是说。当你在你 DOM 模板中书写 prop 时，你应当将驼峰式(camelCase)转写为等价的（连字符分割的）串联式(kebab-case)：
 
 ``` js
 Vue.component('blog-post', {
-  // camelCase in JavaScript
+  // 在 JavaScript 中使用驼峰式(camelCase)
   props: ['postTitle'],
   template: '<h3>{{ postTitle }}</h3>'
 })
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
+<!-- 在 HTML 中使用串联式(kebab-case) -->
 <blog-post post-title="hello!"></blog-post>
 ```
 
-Again, if you're using string templates, this limitation does not apply.
+再次申明，如果是在使用字符串模板的场景，则没有这些限制。
 
-## Static and Dynamic Props
+## 静态 props 和动态 props
 
-So far, you've seen props passed a static value, like in:
+到目前为止，你已经见过向 props传递一个静态值，就像这样：
 
 ```html
-<blog-post title="My journey with Vue"></blog-post>
+<blog-post title="我的 Vue 旅程"></blog-post>
 ```
 
-You've also seen props assigned dynamically with `v-bind`, such as in:
+还可以通过 `v-bind` 给 props 分配动态值，就像这样：
 
 ```html
 <blog-post v-bind:title="post.title"></blog-post>
 ```
 
-In the two examples above, we happen to pass string values, but _any_ type of value can actually be passed to a prop.
+在上面两个示例中，我们传递字符串值，然而，实际上可以给一个 prop 传递_任意_类型的值。
 
-### Passing a Number
+### 传递一个 Number 类型值
 
 ```html
-<!-- Even though `42` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.       -->
+<!-- `42` 是静态的，这就需要我们使用 v-bind， -->
+<!-- 来告诉 Vue 它是以 JavaScript 表达式表现，而不是一个字符串 -->
 <blog-post v-bind:likes="42"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- 将一个变量，动态地分配到属性值上 -->
 <blog-post v-bind:likes="post.likes"></blog-post>
 ```
 
-### Passing a Boolean
+### 传递一个 Boolean 类型值
 
 ```html
 <!-- Including the prop with no value will imply `true`. -->
 <blog-post favorited></blog-post>
 
-<!-- Even though `false` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.          -->
+<!-- `false` 是静态的，这就需要我们使用 v-bind， -->
+<!-- 来告诉 Vue 它是以 JavaScript 表达式表现，而不是一个字符串 -->
 <base-input v-bind:favorited="false">
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- 将一个变量，动态地分配到属性值上 -->
 <base-input v-bind:favorited="post.currentUserFavorited">
 ```
 
-### Passing an Array
+### 传递一个 Array 类型值
 
 ```html
-<!-- Even though the array is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.            -->
+<!-- array 是静态的，这就需要我们使用 v-bind， -->
+<!-- 来告诉 Vue 它是以 JavaScript 表达式表现，而不是一个字符串 -->
 <blog-post v-bind:comment-ids="[234, 266, 273]"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- 将一个变量，动态地分配到属性值上 -->
 <blog-post v-bind:comment-ids="post.commentIds"></blog-post>
 ```
 
-### Passing an Object
+### 传递一个 Object 类型值
 
 ```html
-<!-- Even though the object is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.             -->
-<blog-post v-bind:comments="{ id: 1, title: 'My Journey with Vue' }"></blog-post>
+<!-- object 是静态的，这就需要我们使用 v-bind， -->
+<!-- 来告诉 Vue 它是以 JavaScript 表达式表现，而不是一个字符串 -->
+<blog-post v-bind:comments="{ id: 1, title: '我的 Vue 旅程' }"></blog-post>
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- 将一个变量，动态地分配到属性值上 -->
 <blog-post v-bind:post="post"></blog-post>
 ```
 
-### Passing the Properties of an Object
+### 传递一个对象的所有属性
 
-If you want to pass all the properties of an object as props, you can use `v-bind` without an argument (`v-bind` instead of `v-bind:prop-name`). For example, given a `post` object:
+如果你想要向 props 传递一个对象所有属性，你可以使用不带参数的 `v-bind`（即 `v-bind` 来替换 `v-bind:prop-name`）。例如，给定一个 `post` 对象：
 
 ``` js
 post: {
   id: 1,
-  title: 'My Journey with Vue'
+  title: '我的 Vue 旅程'
 }
 ```
 
-The following template:
+以下模板：
 
 ``` html
 <blog-post v-bind="post"></blog-post>
 ```
 
-Will be equivalent to:
+等价于：
 
 ``` html
 <blog-post
@@ -114,15 +114,15 @@ Will be equivalent to:
 ></blog-post>
 ```
 
-## One-Way Data Flow
+## 单向数据流
 
-All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+所有 props 都在子组件和父组件之间形成一个**单向往下流动的数据绑定**：当父组件中的属性更新时，数据就会向下流动到子组件，但是反过来，子组件属性更新时，父组件并不会感知到子组件的数据变化。这种机制可以防止子组件意外地修改了父组件的状态，造成应用程序的数据流动变得难于理解。
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+此外，每次父组件更新时，子组件中所有的 props 都会更新为最新值。也就是说，你**不应该**试图在子组件内部修改 prop。如果你这么做，Vue 就会在控制台给出警告。
 
-There are usually two cases where it's tempting to mutate a prop:
+诱使我们修改 prop 的原因，通常有两种：
 
-1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local data property that uses the prop as its initial value:
+1. **prop 用于传递初始值(initial value)；之后子组件需要将 prop 转为一个局部数据属性。**在这种情况中，最好定义一个局部的 data 属性，然后将 prop 的值，作为局部属性初始值。
 
   ``` js
   props: ['initialCounter'],
@@ -133,7 +133,7 @@ There are usually two cases where it's tempting to mutate a prop:
   }
   ```
 
-2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a computed property using the prop's value:
+2. **prop 用于传递一个需要转换的未加工值(raw value)。**在这种情况中，最好预先定义一个 computed 属性，然后在其函数内部引用 prop 的值：
 
   ``` js
   props: ['size'],
@@ -144,44 +144,44 @@ There are usually two cases where it's tempting to mutate a prop:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child component **will** affect parent state.</p>
+<p class="tip">注意，JavaScript 中的对象和数组都是通过引用(reference)传递的，因此，如果 prop 是一个数组或对象，则在子组件内部改变对象或数组本身，**仍然会**影响到父组件状态。</p>
 
-## Prop Validation
+## prop 验证
 
-Components can specify requirements for its props. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
+可以为组件 props 指定一些接收条件。如果某个接收条件未满足验证，Vue 就会在浏览器 JavaScript 控制台中触发警告。当你创建一个组件，并将这个组件提供给他人使用时，验证机制是很有帮助的。
 
-To specify prop validations, you case provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
+为了指定 prop 验证，你需要将 `props` 的值定义为一个带有验证接收条件的对象，而不是一个由字符串构成的数组。例如：
 
 ``` js
 Vue.component('my-component', {
   props: {
-    // Basic type check (`null` matches any type)
+    // 基本类型(base type)的检查（`null` 表示接受所有类型）
     propA: Number,
-    // Multiple possible types
+    // 多种可能的类型
     propB: [String, Number],
-    // Required string
+    // 必须传递，且 String 类型
     propC: {
       type: String,
       required: true
     },
-    // Number with a default value
+    // Number 类型，有一个默认值
     propD: {
       type: Number,
       default: 100
     },
-    // Object with a default value
+    // Object 类型，有一个默认值
     propE: {
       type: Object,
-      // Object or array defaults must be returned from
-      // a factory function
+      // Object/Array 类型，
+      // 默认必须返回一个工厂函数
       default: function () {
         return { message: 'hello' }
       }
     },
-    // Custom validator function
+    // 自定义验证函数
     propF: {
       validator: function (value) {
-        // The value must match one of these strings
+        // 值必须是这些字符串中的一个
         return ['success', 'warning', 'danger'].indexOf(value) !== -1
       }
     }
@@ -189,13 +189,13 @@ Vue.component('my-component', {
 })
 ```
 
-When prop validation fails, Vue will produce a console warning (if using the development build).
+当 prop 验证失败，（如果使用的是开发构建版本，）Vue 就会在控制台抛出警告。
 
-<p class="tip">Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.</p>
+<p class="tip">注意，props 会在组件实例创建**之前**进行验证，因此在 `default` 或 `validator` 这些验证函数中，还无法访问到实例上的属性（像 `data`, `computed` 这些）。</p>
 
-### Type Checks
+### 类型检查
 
-The `type` can be one of the following native constructors:
+`type`  可以是以下原生构造函数之一：
 
 - String
 - Number
@@ -205,7 +205,7 @@ The `type` can be one of the following native constructors:
 - Array
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check. For example, given the following constructor function exists:
+除了以上这些，`type` 还可以是一个自定义构造函数，通过 `instanceof` 对 props 值进行类型推断。
 
 ```js
 function Person (firstName, lastName) {
@@ -214,7 +214,7 @@ function Person (firstName, lastName) {
 }
 ```
 
-You could use:
+你可以这样做类型推断：
 
 ```js
 Vue.component('blog-post', {
@@ -224,31 +224,31 @@ Vue.component('blog-post', {
 })
 ```
 
-to validate that the value of the `author` prop was created with `new Person`.
+以验证 `author` prop 的值，是由 `new Person` 创建出来的。
 
-## Non-Prop Attributes
+## 非 prop 特性(non-prop attributes)
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+非 prop 特性，就是指无须遵循 prop 定义规则，而是可以直接传入到组件的 HTML 属性(attribute)。
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+虽然，我们推荐通过显示定义 props，将信息从父组件传递给子组件，然而，组件库的创建者，无法完全预知他们编写的组件可能被用于什么样的上下文环境(context)中。这也就是为什么组件需要具有「接收最终会被添加到组件的根元素中的任意特性」的能力。
 
-For example, imagine we're using a 3rd-party `bootstrap-date-input` component with a Bootstrap plugin that requires a `data-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+例如，假想我们使用一个第三方 `bootstrap-date-input` 组件，其内部引用一个 BootStrap 插件，现在需要我们向组件内的 `input` 元素传入一个 `data-date-picker` 特性。我们可以在组件实例上添加这个特性：
 
 ``` html
 <bootstrap-date-input data-date-picker="activated"></bootstrap-date-input>
 ```
 
-And the `data-date-picker="activated"` attribute will automatically be added to the root element of `bootstrap-date-input`.
+然后，`data-date-picker="activated"` 特性就会被自动添加到 `bootstrap-date-input` 组件的根元素上。
 
-### Replacing/Merging with Existing Attributes
+### 替换/合并现有的特性(replacing/merging with existing attributes)
 
-Imagine this is the template for `bootstrap-date-input`:
+假设这是 `bootstrap-date-input` 组件的模板：
 
 ``` html
 <input type="date" class="form-control">
 ```
 
-To specify a theme for our date picker plugin, we might need to add a specific class, like this:
+为了给日期选择器插件指定一个主题，我们可能需要向组件添加一个特定的 class 类名，就像这样：
 
 ``` html
 <bootstrap-date-input
@@ -257,16 +257,16 @@ To specify a theme for our date picker plugin, we might need to add a specific c
 ></bootstrap-date-input>
 ```
 
-In this case, two different values for `class` are defined:
+在这种场景中，定义了两个不同的 `class` 值：
 
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
+- `form-control`，是在组件模板中设置的 class 类名
+- `date-picker-theme-dark`，是从父组件传入的 class 类名
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="text"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+对于大多数特性，传给组件的值将会替换掉组件自身设置的值。例如，向组件传入 `type="text"`，将会替换掉组件自身设置的 type="date"，这就很可能破坏组件的一些预设功能！幸运的是，`class` 和 `style` 特性会略微智能，这两个值会被合并而非替换，而最终的值是：`form-control date-picker-theme-dark`。
 
-### Disabling Attribute Inheritance
+### 禁用特性继承(disabling attribute inheritance)
 
-If you do **not** want the root element of a component to inherit attributes, you can set `inheritAttrs: false` in the component's options. For example:
+如果你**不希望**组件根元素从父实例中继承特性(attribute)，你可以在组件选项中设置 `inheritAttrs: false` 来禁用特性继承。例如：
 
 ```js
 Vue.component('my-component', {
@@ -275,7 +275,7 @@ Vue.component('my-component', {
 })
 ```
 
-This can be especially useful in combination with the `$attrs` instance property, which contains the attribute names and values passed to a component, such as:
+这对于通过子组件 `$attrs` 实例属性，合并父实例的特性来说尤其有用，其中 $attrs 对象包含父实例传入到一个组件的特性名称和特性值，类似这样：
 
 ```js
 {
@@ -284,7 +284,7 @@ This can be especially useful in combination with the `$attrs` instance property
 }
 ```
 
-With `inheritAttrs: false` and `$attrs`, you can manually decide which element you want to forward attributes to, which is often desirable for [base components](../style-guide/#Base-component-names-strongly-recommended):
+通过 `inheritAttrs: false` 和 `$attrs`，你可以手动决定将特性，传送到具体的某个元素，对于 [基本组件](../style-guide/#%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E5%90%8D-%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90) 来说，这是符合需求的功能：
 
 ```js
 Vue.component('base-input', {
@@ -303,7 +303,7 @@ Vue.component('base-input', {
 })
 ```
 
-This pattern allows you to use base components more like raw HTML elements, without having to care about which element is actually at its root:
+这种方式允许你像使用原始 HTML 元素那样去使用基本组件，而不必关心组件根元素是哪个元素：
 
 ```html
 <base-input
