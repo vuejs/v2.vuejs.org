@@ -173,7 +173,69 @@ So far, you've seen uses of `$emit`, listened to with `v-on`, but Vue instances 
 - Listen for an event only once with `$once(eventName, eventHandler)`
 - Stop listening for an event with `$off(eventName, eventHandler)`
 
-You normally won't have to use these, but they're available for cases when you need to manually listen for events on a component instance. To learn more about their usage, check out the API for [Events Instance Methods](https://vuejs.org/v2/api/#Instance-Methods-Events).
+You normally won't have to use these, but they're available for cases when you need to manually listen for events on a component instance. They can also be useful as a code organization tool. For example, you may often see this pattern for integrating a 3rd-party library:
+
+```js
+// Attach the datepicker to an input once
+// it's mounted to the DOM.
+mounted: function () {
+  // Pikaday is a 3rd-party datepicker library
+  this.picker = new Pikaday({
+    field: this.$refs.input,
+    format: 'YYYY-MM-DD'
+  })
+},
+// Right before the component is destroyed,
+// also destroy the datepicker.
+beforeDestroy: function () {
+  this.picker.destroy()
+}
+```
+
+This has two potential issues:
+
+- It requires saving the `picker` to the component instance, when it's possible that only lifecycle hooks need access to it. This isn't terrible, but it could be considered clutter.
+- Our setup code is kept separate from our cleanup code, making it more difficult to programmatically clean up anything we set up.
+
+You could resolve both issues with a programmatic listener:
+
+```js
+mounted: function () {
+  var picker = new Pikaday({
+    field: this.$refs.input,
+    format: 'YYYY-MM-DD'
+  })
+
+  this.$once('hook:beforeDestroy', function () {
+    picker.destroy()
+  })
+}
+```
+
+Using this strategy, we could even use Pikaday with several input elements, with each new instance automatically cleaning up after itself:
+
+```js
+mounted: function () {
+  this.attachDatepicker('startDateInput')
+  this.attachDatepicker('endDateInput')
+},
+methods: {
+  attachDatepicker: function (refName) {
+    var picker = new Pikaday({
+      field: this.$refs[refName],
+      format: 'YYYY-MM-DD'
+    })
+
+    this.$once('hook:beforeDestroy', function () {
+      picker.destroy()
+    })
+  }
+}
+```
+
+See [this fiddle](https://jsfiddle.net/chrisvfritz/1Leb7up8/) for the full code. Note, however, that if you find yourself having to do a lot of setup and cleanup within a single component, the best solution will usually be to create more modular components. In this case, we'd recommend creating a reusable `<input-datepicker>` component.
+
+To learn more about programmatic listeners, check out the API for [Events Instance Methods](https://vuejs.org/v2/api/#Instance-Methods-Events).
 
 <p class="tip">Note that Vue's event system is different from the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget API</a>. Though they work similarly, <code>$emit</code>, <code>$on</code>, and <code>$off</code> are <strong>not</strong> aliases for <code>dispatchEvent</code>, <code>addEventListener</code>, and <code>removeEventListener</code>.</p>
 
