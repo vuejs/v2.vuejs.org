@@ -10,6 +10,10 @@ There may be data/utilities you'd like to use in many components, but you don't 
 
 ```js
 Vue.prototype.$appName = 'My App'
+
+// Or, to make the instance property read-only and avoid accidental re-assignment later,
+// use Object.definePrototype() which by default uses { writeable: false } in the descriptor
+Object.defineProperty(Vue.prototype, '$appName', { value: 'My App' })
 ```
 
 Now `$appName` is available on all Vue instances, even before creation. If we run:
