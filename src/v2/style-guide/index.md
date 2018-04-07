@@ -1081,7 +1081,7 @@ Trong JavaScript, PascalCase là quy chuẩn cho class và hàm dựng prototype
 Tuy nhiên, trong những ứng dụng chỉ dùng component toàn cục được định nghĩa bằng `Vue.component`, chúng tôi lại khuyến khích sử dụng kebab-case. Lí do là:
 
 - Component toàn cục hiếm khi được dùng trong JavaScript, vì thế dùng quy ước JavaScript là không hợp lí cho lắm.
-- Các ứng dụng này luôn chứa nhiều DOM template, nơi mà việc dùng kebab-case [là bắc buộc](#Cach-viet-hoa-thuong-cho-ten-cua-component-trong-template-rat-khuyen-khich).
+- Các ứng dụng này luôn chứa nhiều DOM template, nơi mà việc dùng kebab-case [là bắt buộc](#Cach-viet-hoa-thuong-cho-ten-cua-component-trong-template-rat-khuyen-khich).
 
 {% raw %}</details>{% endraw %}
 
@@ -1245,7 +1245,7 @@ Trong JavaScript, việc viết các object với nhiều property thành nhiề
 
 **Template của component chỉ nên chứa những biểu thức đơn giản. Các biểu thức phức tạp hơn nên được viết thành computed property hoặc method.**
 
-Các biểu thức phức tạp làm cho template trở nên kém rõ ràng mạch lạc. Chúng ta nên mô tả _giá trị nào_ cần hiện thị, thay vì mô tả giá trị ấy được tính toán _thế nào_. Computed property và method cũng giúp cho code có thể sử dụng lại được.
+Các biểu thức phức tạp làm cho template trở nên kém rõ ràng mạch lạc. Chúng ta nên mô tả _giá trị nào_ cần hiển thị, thay vì mô tả giá trị ấy được tính toán _thế nào_. Computed property và method cũng giúp cho code có thể sử dụng lại được.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Không nên
