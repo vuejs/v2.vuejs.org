@@ -72,7 +72,7 @@ This even applies to all subcomponents, meaning all three of these components wi
 
 ## Local Registration
 
-Global registration often isn't ideal. For example, if you're using a build system like Webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.
+Global registration often isn't ideal. For example, if you're using a build system like webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.
 
 In these cases, you can define your components as plain JavaScript objects:
 
@@ -109,7 +109,7 @@ var ComponentB = {
 }
 ```
 
-Or if you're using ES2015 modules, such as through Babel and Webpack, that might look more like:
+Or if you're using ES2015 modules, such as through Babel and webpack, that might look more like:
 
 ```js
 import ComponentA from './ComponentA.vue'
@@ -133,7 +133,7 @@ If you're not using a module system with `import`/`require`, you can probably sk
 
 ### Local Registration in a Module System
 
-If you're still here, then it's likely you're using a module system, such as with Babel and Webpack. In these cases, we recommend creating a `components` directory, with each component in its own file.
+If you're still here, then it's likely you're using a module system, such as with Babel and webpack. In these cases, we recommend creating a `components` directory, with each component in its own file.
 
 Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `ComponentB.js` or `ComponentB.vue` file:
 
@@ -184,7 +184,7 @@ Just to support relatively little markup in a template:
 </BaseButton>
 ```
 
-Fortunately, if you're using Webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses Webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use to globally import base components in your app's entry file (e.g. `src/main.js`):
+Fortunately, if you're using webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use to globally import base components in your app's entry file (e.g. `src/main.js`):
 
 ```js
 import Vue from 'vue'
