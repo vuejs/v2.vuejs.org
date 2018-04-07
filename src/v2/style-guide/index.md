@@ -366,8 +366,8 @@ computed: {
 
 chúng ta sẽ nhận được những lợi ích sau:
 
-- Danh sách đã lọc sẽ _chỉ_ được tính toán lại nếu có những thay đổi liên quan xảy ra với mảng `users`, nhờ đó giúp việc lọc danh sách trở nên hiệu quả hơn nhiều.
-- Bằng việc dùng `v-for="user in activeUsers`, chúng ta _chỉ_ duyệt qua danh sách những người dùng còn đang hoạt động, nhờ đó giúp việc render trở nên hiệu quả hơn nhiều.
+- Danh sách đã lọc sẽ _chỉ_ được tính toán lại nếu có thay đổi liên quan xảy ra với mảng `users`, nhờ đó giúp việc lọc danh sách trở nên hiệu quả hơn nhiều.
+- Bằng việc dùng `v-for="user in activeUsers"`, chúng ta _chỉ_ duyệt qua danh sách những người dùng còn đang hoạt động, nhờ đó giúp việc render trở nên hiệu quả hơn nhiều.
 - Logic được tách khỏi lớp giao diện người dùng (presentation layer) , giúp cho việc bảo trì (thay đổi / mở rộng logic) trở nên dễ dàng hơn nhiều.
 
 Chúng ta cũng nhận được những lợi ích tương tự khi thay đổi:
