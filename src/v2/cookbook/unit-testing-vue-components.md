@@ -178,7 +178,7 @@ The below example improves the test by:
 
 - only making one assertion per `it` block
 - having short, clear test descriptions
-- providing only the minimum data requires for the test
+- providing only the minimum data required for the test
 - refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
 
 *Updated test*:
