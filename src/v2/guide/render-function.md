@@ -499,7 +499,7 @@ new Vue({
 
 前面我们创建的锚点标题组件比较简单，没有管理维护状态，或者 watch 任何传递给它的状态，也没有生命周期方法。它只是一个接收 props 的函数。
 
-在这个例子中，我们将组件记为 `functional`，这意味它无状态（没有 `data`），无实例（没有 `this` 上下文）。一个**函数式组件**就像这样：
+在这个例子中，我们将组件记为 `functional`，这意味它无状态（没有 [响应式数据](../api/#Options-Data))），无实例（没有 `this` 上下文）。一个**函数式组件**就像这样：
 
 ``` js
 Vue.component('my-component', {
@@ -530,7 +530,7 @@ Vue.component('my-component', {
 - `props`：一个提供 props 的对象
 - `children`：一个由 VNode 子节点构成的数组
 - `slots`：一个返回 slots 对象的函数
-- `data`：传递给组件的整个 data 对象
+- `data`：传递给组件的整个 [data 对象](#The-Data-Object-In-Depth)，作为 `createElement` 函数的第二个参数
 - `parent`：一个父组件的引用
 - `listeners`：（2.3.0+）一个包含父组件上注册的事件监听器的对象。这是一个指向 `data.on` 的别名。
 - `injections`：（2.3.0+）如果使用了 [`inject`](../api/#provide-inject) 选项，则 injections 对象中包含了应当被注入的属性。

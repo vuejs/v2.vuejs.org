@@ -460,7 +460,11 @@ type: api
   })
   ```
 
-  <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
+  注意，如果你对 `data` 属性使用箭头函数，`this` 将不会指向组件实例，但是你仍然可以通过函数返回的第一个参数，来访问组件实例：
+
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
 
 - **参考：**[深入响应式原理](../guide/reactivity.html)
 
@@ -533,7 +537,13 @@ type: api
 
   计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
 
-  <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
+  注意，如果你对 `data` 属性使用箭头函数，`this` 将不会指向组件实例，但是你仍然可以通过函数返回的第一个参数，来访问组件实例：
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是__不会__触发计算属性更新的。
 
@@ -1396,7 +1406,7 @@ type: api
 
 - **详细：**
 
-  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
+  一个对象，包含 DOM 元素和组件实例，通过 [`ref` 特性](#ref) 注册。
 
 - **另见：**
   - [子组件引用](../guide/components.html#子组件索引)
@@ -1859,20 +1869,17 @@ type: api
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
-  从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
-
   用在普通元素上时，只能监听 [**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
+
+  从 2.4.0+ 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意，当使用对象语法时，不支持任何修饰符。
 
 - **示例：**
 
   ```html
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
-
-  <!-- 对象语法 (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
@@ -1900,6 +1907,9 @@ type: api
 
   <!-- 点击回调只会触发一次 -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- 对象语法（2.4.0+） -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
   在子组件上监听自定义事件（当子组件触发 “my-event” 时将调用事件处理器）：
@@ -2120,11 +2130,11 @@ type: api
   `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p 将是 DOM 节点 -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
-  <child-comp ref="child"></child-comp>
+  <!-- vm.$refs.child 将是子组件实例 -->
+  <child-component ref="child"></child-component>
   ```
 
   当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。

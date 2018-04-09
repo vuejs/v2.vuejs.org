@@ -165,7 +165,7 @@ this.$emit('update:title', newTitle)
 
 这会传递 `doc` 对象中的每个属性（例如 `title`），作为单独的 prop，然后为每个属性添加相应的 `v-on:update` 监听器。
 
-<p class="tip">对一个字面量对象使用 <code>v-bind.sync</code>（例如 <code>v-bind.sync="{ title: doc.title }"</code>），则不会正常运行。如果你想要在同一个 <code>v-bind.sync</code> 中，加入多个不相关的 data 属性，我们推荐你创建一个返回对象的 computed 属性。</p>
+<p class="tip">对一个字面量对象使用 <code>v-bind.sync</code>（例如 <code>v-bind.sync="{ title: doc.title }"</code>），则不会正常运行，因为在解析像这种复杂表达式时，需要考虑太多的边界情况。</p>
 
 ***
 
