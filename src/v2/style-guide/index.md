@@ -752,7 +752,7 @@ Some advantages of this convention:
 
 - Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
+- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with webpack:
 
   ``` js
   var requireComponent = require.context("./src", true, /^Base[A-Z]/)

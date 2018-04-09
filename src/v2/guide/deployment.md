@@ -14,11 +14,11 @@ If you are using the full build, i.e. directly including Vue via a script tag wi
 
 ### With Build Tools
 
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
+When using a build tool like webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
 
-#### Webpack
+#### webpack
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+Use webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
 
 ``` js
 var webpack = require('webpack')
@@ -108,7 +108,7 @@ When using in-DOM templates or in-JavaScript template strings, the template-to-r
 
 The easiest way to pre-compile templates is using [Single-File Components](single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
 
-If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+If you are using webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
 
 ## Extracting Component CSS
 
@@ -116,7 +116,7 @@ When using Single-File Components, the CSS inside components are injected dynami
 
 Refer to the respective build tool documentations to see how it's done:
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 

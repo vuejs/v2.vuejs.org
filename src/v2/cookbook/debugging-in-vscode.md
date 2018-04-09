@@ -16,7 +16,7 @@ Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli
 
 ### Showing Source Code in the Chrome Devtools
 
-Before you can debug your Vue components from VS Code you need to update the generated Webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by Webpack.
+Before you can debug your Vue components from VS Code you need to update the generated webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by webpack.
 
 Go to `config/index.js` and find the `devtool` property. Update it to:
 
