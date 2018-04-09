@@ -171,6 +171,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.capture`
 - `.self`
 - `.once`
+- `.passive`
 
 ``` html
 <!-- the click event's propagation will be stopped -->
