@@ -104,15 +104,15 @@ There is no need to write your module multiple times. It is possible to prepare 
     "./sfc": "src/my-component.vue"
   },
   "scripts": {
-    "build": "npm run build:umd && npm run build:es && npm run build:unpkg",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/my-component.umd.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/my-component.esm.js",
     "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
   },
   "devDependencies": {
     "rollup": "^0.57.1",
-    "rollup-plugin-vue": "^3.0.0",
     "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-vue": "^3.0.0",
     "vue": "^2.5.16",
     "vue-template-compiler": "^2.5.16",
     ...
