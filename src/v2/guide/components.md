@@ -432,7 +432,7 @@ Vue.component('custom-input', {
 
 现在，你仅需要知道组件的自定义事件的这些相关知识，等到你阅读完整个页面，并且能够很好适应这些内容，我们建议你稍后回到这里，继续深入阅读 [自定义事件(custom event)](components-custom-events.html) 的完整指南。
 
-## 使用 slot 进行内容分发
+## 使用 slots 进行内容分发
 
 如同在 HTML 元素中传入内容，我们也经常会向组件传入内容，就像这样：
 

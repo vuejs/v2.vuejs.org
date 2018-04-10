@@ -61,13 +61,13 @@ module.exports = {
     )
     .bundle()
   ```
-  
+
 - Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
 
   ``` js
   // Use the envify custom module to specify environment variables
   var envify = require('envify/custom')
-  
+
   browserify: {
     dist: {
       options: {
@@ -104,11 +104,11 @@ rollup({
 
 ## 预编译模板
 
-当你需要处理 DOM 内或 JavaScript 内的模板时，“从模板到渲染函数”的编译就会在线上发生。通常情况下这种处理是足够快的，但是如果你的应用对性能很敏感最好还是回避。
+当你需要处理 DOM 内或 JavaScript 内的模板时，“从模板到 render 函数”的编译就会在线上发生。通常情况下这种处理是足够快的，但是如果你的应用对性能很敏感最好还是回避。
 
-预编译模板最简单的方式就是使用[单文件组件](./single-file-components.html) - 相关的构建设置会自动把预编译处理好，所以构建好的代码已经包含了编译出来的渲染函数而不是原始的模板字符串。
+预编译模板最简单的方式就是使用[单文件组件](./single-file-components.html) - 相关的构建设置会自动把预编译处理好，所以构建好的代码已经包含了编译出来的 render 函数而不是原始的模板字符串。
 
-如果你使用 webpack，并且喜欢分离 JavaScript 和模板文件，你可以使用 [vue-template-loader](https://github.com/ktsn/vue-template-loader)，它也可以在构建过程中把模板文件转换成为 JavaScript 渲染函数。
+如果你使用 webpack，并且喜欢分离 JavaScript 和模板文件，你可以使用 [vue-template-loader](https://github.com/ktsn/vue-template-loader)，它也可以在构建过程中把模板文件转换成为 JavaScript render 函数。
 
 ## 提取组件 CSS
 

@@ -6,9 +6,9 @@ order: 4
 
 Vue.js 使用基于 HTML 的模板语法，允许声明式地将要渲染的 DOM 和 Vue 实例中的 data 数据绑定。所有 Vue.js 的模板都是有效的 HTML，能够被遵循规范的浏览器和 HTML 解析器解析。
 
-在底层的实现上，Vue 将模板编译为虚拟 DOM 渲染函数。结合响应式系统，在应用程序状态改变时，Vue 能够智能地找出重新渲染的最小数量的组件，并应用最少量的 DOM 操作。
+在底层的实现上，Vue 将模板编译为可以生成 Virtual DOM 的 render 函数。结合响应式系统，在应用程序状态改变时，Vue 能够智能地找出重新渲染的最小数量的组件，并应用最少量的 DOM 操作。
 
-如果你熟悉虚拟 DOM 的概念，并且倾向于使用原生 JavaScript，还可以不使用模板，而是[直接编写渲染函数(render function)](render-function.html)，具备可选的 JSX 语法支持。
+如果你熟悉虚拟 DOM 的概念，并且倾向于使用原生 JavaScript，还可以不使用模板，而是[直接编写 render 函数](render-function.html)，具备可选的 JSX 语法支持。
 
 ## 插值(Interpolations)
 
