@@ -197,7 +197,7 @@ new Vue({
 
 <p class="tip">注意，`<keep-alive>` 要求被切换的组件都要具有 name，要么是使用组件的 `name` 选项，要么就是通过局部/全局注册。</p>
 
-更多细节请查看 [API 引用](../api/#keep-alive) 中 `<keep-alive>` 部分。
+更多细节请查看 [API 参考](../api/#keep-alive) 中 `<keep-alive>` 部分。
 
 ## 异步组件
 
@@ -270,7 +270,7 @@ const AsyncComponent = () => ({
 })
 ```
 
-> 注意，如果你想要在路由组件中使用以上语法，你必须使用 [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ 版本。
+> 注意，如果你想要在路由组件中使用以上语法，必须使用 [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ 版本。
 
 ***
 
