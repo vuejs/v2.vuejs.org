@@ -1,16 +1,16 @@
 ---
-title: Slots
+title: slot
 type: guide
 order: 104
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> 本页面会假定你已经阅读过 [组件基础](components.html)。如果你还不熟悉组件，请先阅读组件基础后再阅读本页面。
 
-## Slot Content
+## 插槽内容(slot content)
 
-Vue implements a content distribution API that's modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.
+Vue 基于现有 [Web Components 规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，实现一个 内容分发(content distribution) API 模型，使用 `<slot>` 元素，作为内容分发的位置。
 
-This allows you to compose components like this:
+内容分发机制，可以帮助你以如下方式构成组件：
 
 ``` html
 <navigation-link url="/profile">
@@ -18,7 +18,7 @@ This allows you to compose components like this:
 </navigation-link>
 ```
 
-Then in the template for `<navigation-link>`, you might have:
+然后，在 `<navigation-link>` 模板中，可能是：
 
 ``` html
 <a
@@ -29,47 +29,47 @@ Then in the template for `<navigation-link>`, you might have:
 </a>
 ```
 
-When the component renders, the `<slot>` element will be replaced by "Your Profile". Slots can contain any template code, including HTML:
+在组件渲染时，`<slot>` 元素就会被替换为 "Your Profile"。在 slot 位置，可以包含任何模板代码，也包括 HTML：
 
 ``` html
 <navigation-link url="/profile">
-  <!-- Add a Font Awesome icon -->
+  <!-- 添加一个 Font Awesome 图标 -->
   <span class="fa fa-user"></span>
   Your Profile
 </navigation-link>
 ```
 
-Or even other components:
+甚至，slot 位置也能包含其他组件：
 
 ``` html
 <navigation-link url="/profile">
-  <!-- Use a component to add an icon -->
+  <!-- 使用一个组件添加一个图标 -->
   <font-awesome-icon name="user"></font-awesome-icon>
   Your Profile
 </navigation-link>
 ```
 
-If `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
+如果 `<navigation-link>` **完全没有** `<slot>` 元素，则 slot 位置传递的所有内容都会被直接丢弃。
 
-## Named Slots
+## 命名插槽(named slot)
 
-There are times when it's useful to have multiple slots. For example, in a hypothetical `base-layout` component with the following template:
+在某些场景中，需要用到多个插槽。例如，在一个假想的 `base-layout` 组件中，需要传入以下模板：
 
 ``` html
 <div class="container">
   <header>
-    <!-- We want header content here -->
+    <!-- 在这里我们需要 header 内容 -->
   </header>
   <main>
-    <!-- We want main content here -->
+    <!-- 在这里我们需要 main 内容 -->
   </main>
   <footer>
-    <!-- We want footer content here -->
+    <!-- 在这里我们需要 footer 内容 -->
   </footer>
 </div>
 ```
 
-For these cases, the `<slot>` element has a special attribute, `name`, which can be used to define additional slots:
+对于这种场景，`<slot>` 元素有一个特殊的 `name` 特性，可以用于定义除默认插槽以外的多余插槽：
 
 ``` html
 <div class="container">
@@ -85,58 +85,58 @@ For these cases, the `<slot>` element has a special attribute, `name`, which can
 </div>
 ```
 
-To provide content to named slots, we can use the `slot` attribute on a `<template>` element in the parent:
+为了给命名插槽提供内容，我们可以在父组件模板的 `<template>` 元素上使用 `slot` 特性（译注：这样可以将父组件模板中 slot 位置，和子组件 slot 元素产生关联，便于插槽内容对应传递）：
 
 ```html
 <base-layout>
   <template slot="header">
-    <h1>Here might be a page title</h1>
+    <h1>这里是一个页面标题</h1>
   </template>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>main 内容的一个段落。</p>
+  <p>main 内容的另一个段落。</p>
 
   <template slot="footer">
-    <p>Here's some contact info</p>
+    <p>这里是一些联系信息</p>
   </template>
 </base-layout>
 ```
 
-Or, the `slot` attribute can also be used directly on a normal element:
+或者，也可以对某个普通元素，直接使用 `slot` 特性：
 
 ``` html
 <base-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">这里是一个页面标题</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>main 内容的一个段落。</p>
+  <p>main 内容的另一个段落。</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">这里是一些联系信息</p>
 </base-layout>
 ```
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. In both examples above, the  rendered HTML would be:
+还有一个未命名插槽(unnamed slot)，这是**默认插槽**，它是用于放置所有不匹配内容的插槽位置。在以上这两个示例中，最终渲染的 HTML 是：
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>main 内容的一个段落。</p>
+    <p>main 内容的另一个段落。</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里是一些联系信息</p>
   </footer>
 </div>
 ```
 
-## Default Slot Content
+## 默认插槽内容(default slot content)
 
-There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, but also allow users to override with "Save", "Upload", or anything else.
+在某些场景中，需要插槽预先提供默认内容。例如，一个 `<submit-button>` 组件，可能想要将按钮文本内容，默认地设置为 "Submit"，然而也允许用户传入 "Save", "Upload" 或其他文本，来覆盖默认文本。
 
-To achieve this, specify the default content in between the `<slot>` tags.
+为了实现这个效果，我们可以在 `<slot>` 元素内部指定一个默认内容。
 
 ```html
 <button type="submit">
@@ -144,7 +144,7 @@ To achieve this, specify the default content in between the `<slot>` tags.
 </button>
 ```
 
-If the slot is provided content by the parent, it will replace the default content.
+如果父组件模板中，向 slot 位置提供了内容，子组件 slot 元素的默认内容就会被替换。
 
 ## Compilation Scope
 
