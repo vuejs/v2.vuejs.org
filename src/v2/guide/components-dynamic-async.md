@@ -1,20 +1,20 @@
 ---
-title: Dynamic & Async Components
+title: 动态组件和异步组件
 type: guide
 order: 105
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> 本页面会假定你已经阅读过 [组件基础](components.html)。如果你还不熟悉组件，请先阅读组件基础后再阅读本页面。
 
-## `keep-alive` with Dynamic Components
+## 对动态组件使用 `keep-alive`
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+前面，我们使用 `is` 特性，在标签页式界面中切换组件：
 
 ```html
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+有时在这些组件之间切换，需要保留切换前的状态，或者需要考虑重新渲染造成的性能问题，而尽量避免重新渲染。举例说明，稍微扩展下我们的标签页式界面：
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -149,9 +149,9 @@ new Vue({
 </style>
 {% endraw %}
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+然后你会注意到，如果选中某篇文章(post)，切换到 _Archive_ 标签页，再切换回 _Posts_ 标签页，而选取的文章则不会再次展现。这是因为，每次你切换到一个新的标签页后，Vue 都会创建 `currentTabComponent` 所对应组件的一个全新实例。
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+重新创建动态组件是一种常规用法，但是在这个场景中，我们确实希望这些标签页组件的实例，在第一次创建之后就缓存起来。为了解决这个问题，我们可以使用一个 `<keep-alive>` 元素将动态组件包裹起来：
 
 ``` html
 <!-- Inactive components will be cached! -->
@@ -160,7 +160,7 @@ Recreating dynamic components is normally useful behavior, but in this case, we'
 </keep-alive>
 ```
 
-Check out the result below:
+查看下面结果：
 
 {% raw %}
 <div id="dynamic-component-keep-alive-demo" class="demo">
@@ -193,20 +193,20 @@ new Vue({
 </script>
 {% endraw %}
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered. See [this fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) for the complete code.
+现在 _Posts_ 标签页并未渲染，而是保持它先前（选中那篇文章）的状态。完整代码请查看 [fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/)。
 
-<p class="tip">Note that `<keep-alive>` requires the components being switched between to all have names, either using the `name` option on a component, or through local/global registration.</p>
+<p class="tip">注意，`<keep-alive>` 要求被切换的组件都要具有 name，要么是使用组件的 `name` 选项，要么就是通过局部/全局注册。</p>
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+更多细节请查看 [API 引用](../api/#keep-alive) 中 `<keep-alive>` 部分。
 
-## Async Components
+## 异步组件
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
+在大型应用程序中，我们可能需要将应用程序拆分为多个小的分块(chunk)，并且只在实际用到时，才从服务器加载某个组件。为了简化异步按需加载组件机制，Vue 能够将组件定义为一个工厂函数(factory function)，此函数可以异步地解析(resolve)组件定义对象(component definition)。Vue 只在真正需要渲染组件时，才会去触发工厂函数，并且将解析后的结果缓存，用于将来再次渲染。例如：
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // 将组件定义对象(component definition)传递给 resolve 回调函数
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -214,28 +214,28 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-As you can see, the factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+就像你看到的那样，工厂函数接收一个 `resolve` 回调函数，在从服务器获取到组件定义对象时，会调用此回调函数。也可以调用 `reject(reason)` 来表明加载失败。这里的 `setTimeout` 只是为了用于演示；如果获取组件定义对象，取决于你的实际情况。使用异步组件，比较推荐的方式shi 配合 [webpack 代码分离功能](https://doc.webpack-china.org/guides/code-splitting/)
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // 这个特殊的 require 语法
+  // 将指示 webpack 自动将构建后的代码，
+  // 拆分到不同的 bundle 中，然后通过 Ajax 请求加载。
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can do:
+还可以在工厂函数中返回一个 `Promise`，所以配合 webpack 2 + ES2015 语法，你可以这样实现：
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  // The `import` function returns a Promise.
+  // `import` 函数返回一个 Promise.
   () => import('./my-async-component')
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+当使用 [局部注册](components.html#Local-Registration) 时，你也可以直接提供一个返回 `Promise` 的函数：
 
 ``` js
 new Vue({
@@ -246,31 +246,31 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+<p class="tip">如果你是想要使用异步组件的 <strong>Browserify</strong> 用户，不幸的是，它的作者已经 [明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 是不支持异步加载的。虽然官方如此表示，然而 Browserify 社区还是找到 [一些解决方案](https://github.com/vuejs/vuejs.org/issues/620)，这可能有助于现有的复杂应用程序实现异步组件。对于所有其他场景，我们推荐使用 webpack 内置和优先支持的异步支持。</p>
 
-### Handling Loading State
+### 处理加载状态
 
-> New in 2.3.0+
+> 2.3.0+ 新增
 
-The async component factory can also return an object of the following format:
+异步组件工厂函数，还可以返回一个以下格式的对象：
 
 ``` js
 const AsyncComponent = () => ({
-  // The component to load (should be a Promise)
+  // 加载组件（最终应该返回一个 Promise）
   component: import('./MyComponent.vue'),
-  // A component to use while the async component is loading
+  // 异步组件加载中(loading)，展示为此组件
   loading: LoadingComponent,
-  // A component to use if the load fails
+  // 加载失败，展示为此组件
   error: ErrorComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // 展示 loading 组件之前的延迟时间。默认：200ms。
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // 如果提供 timeout，并且加载用时超过此 timeout，
+  // 则展示错误组件。默认：Infinity。
   timeout: 3000
 })
 ```
 
-> Note that you must use [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ if you wish to use the above syntax for route components.
+> 注意，如果你想要在路由组件中使用以上语法，你必须使用 [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ 版本。
 
 ***
 

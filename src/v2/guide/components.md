@@ -548,7 +548,7 @@ new Vue({
 </style>
 {% endraw %}
 
-通过向 Vue 的 `<component>` 元素传入 `is` 这个特殊属性，可以实现以上效果：
+通过向 Vue 的 `<component>` 元素传入 `is` 特性，可以实现以上效果：
 
 ```html
 <!-- Component changes when currentTabComponent changes -->
@@ -576,7 +576,7 @@ new Vue({
 </table>
 ```
 
-自定义组件 `<blog-post-row>` 会被当作无效内容，提升到 table 元素之外，从而导致最终渲染输出后的错误。幸运的是，`is` 这个特殊属性提供了一种解决方案：
+自定义组件 `<blog-post-row>` 会被当作无效内容，提升到 table 元素之外，从而导致最终渲染输出后的错误。幸运的是，`is` 特性提供了一种解决方案：
 
 ``` html
 <table>
