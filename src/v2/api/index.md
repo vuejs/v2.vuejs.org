@@ -1002,7 +1002,7 @@ type: api
 
 - **详细：**
 
-  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
+  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。不推荐直接用于应用程序代码中。</p>
 
   这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似。
 
@@ -1055,7 +1055,7 @@ type: api
   }
   ```
 
-  > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
+  > 接下来的两个示例只能在 Vue 2.2.1+ 版本中正常运行。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
   使用一个注入的值作为一个属性的默认值：
   ```js
@@ -1083,7 +1083,7 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > 在 2.5.0+ 版本中，注入可以通过设置默认值使其变成可选项：
 
   ``` js
   const Child = {
@@ -1093,7 +1093,7 @@ type: api
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  如果它需要从一个不同名字的属性注入，则使用 `from` 来表示其源属性：
 
   ``` js
   const Child = {
@@ -1106,7 +1106,7 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  对于 prop 的默认值来说是类似的，你需要对非原始值使用一个工厂方法：
 
   ``` js
   const Child = {
@@ -1710,7 +1710,7 @@ type: api
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
 
-  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
+  <p class="tip">在 [单文件组件](../guide/single-file-components.html) 中，`scoped` 样式不会应用在 `v-html` 内部，因为这些 HTML 没有被 Vue 模板编译器处理过。如果你希望针对 `v-html` 中的内容设置带作用域的 CSS，作为替代你可以使用 [CSS 模块](https://vue-loader.vuejs.org/en/features/css-modules.html)，或者使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。</p>
 
 - **示例：**
 
@@ -1742,7 +1742,7 @@ type: api
 
   当条件变化时该指令触发过渡效果。
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">当和 v-if 一起使用时，v-for 的优先级比 v-if 更高。查看 <a href="../guide/list.html#%E5%B8%A6%E6%9C%89-v-if-%E7%9A%84-v-for">列表渲染指南</a>。</p>
 
 - **参考：**[条件渲染 - v-if](../guide/conditional.html)
 
@@ -1826,7 +1826,7 @@ type: api
   </div>
   ```
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">当和 v-if 一起使用时，v-for 的优先级比 v-if 更高。查看 <a href="../guide/list.html#%E5%B8%A6%E6%9C%89-v-if-%E7%9A%84-v-for">列表渲染指南</a>。</p>
 
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
@@ -2145,25 +2145,25 @@ type: api
 
 ### slot-scope
 
-> New in 2.5.0+
+> 2.5.0+ 新增
 
-- **Expects:** `function argument expression`
+- **预期：**`function argument expression`
 
-- **Usage:**
+- **用法：**
 
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
 
-  This attribute does not support dynamic binding.
+  此特性不支持动态绑定。
 
-- **参考：**[scoped slots](../guide/components.html#scoped-slots)
+- **参考：**[作用域插槽](../guide/components.html#作用域插槽)
 
-### scope <sup>replaced</sup>
+### scope <sup>替换</sup>
 
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+用于表示一个作为带作用域的插槽的 `<template>` 元素，它在 2.5.0+ 中被 [`slot-scope`](#slot-scope) 替代。
 
-- **Usage:**
+- **用法：**
 
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+  除了 `scope` 只可以用于 `<template>` 元素，其它和 [`slot-scope`](#slot-scope) 都相同。
 
 ### is
 
