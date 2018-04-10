@@ -101,5 +101,10 @@
 * 【翻译】cookbook 的 `单元测试 Vue 组件`。
 * 【记录】https://github.com/vuejs/vuejs.org/commit/0492d0c04d9ee3a01e1f4cbf20ec2230e2fee237
 
+### 2018.04.01
+* 【更新】合并 vuejs.org 的 master 分支，更新 guide/components 部分。
+* 【重新翻译】官方重写的 src/v2/guide/components.md
+* 【记录】https://github.com/docschina/vuejs.org/pull/393
+
 ## 重新校对情况
 

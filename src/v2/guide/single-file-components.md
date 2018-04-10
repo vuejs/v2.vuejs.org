@@ -50,9 +50,9 @@ order: 402
 
 ## 起步
 
-### Example Sandbox
+### sandbox 代码示例
 
-If you want to dive right in and start playing with single-file components, check out [this simple todo app](https://codesandbox.io/s/o29j95wx9) on CodeSandbox.
+如果你想立即开始使用单文件组件，请在 CodeSandbox 中查看这个简单的 [todo 应用程序](https://codesandbox.io/s/o29j95wx9)。
 
 ### 针对刚接触 JavaScript 模块开发系统的用户
 

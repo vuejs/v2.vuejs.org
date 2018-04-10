@@ -135,6 +135,6 @@ it('updates the rendered message when vm.message updates', done => {
 
 ***
 
-> 原文： http://vuejs.org/guide/unit-testing.html
+> 原文：https://vuejs.org/v2/guide/unit-testing.html
 
 ***

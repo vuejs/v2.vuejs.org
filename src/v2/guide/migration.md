@@ -1125,9 +1125,9 @@ You may notice that:
 </div>
 {% endraw %}
 
-## Slots
+## slots
 
-### 重名的 Slots <sup>移除</sup>
+### 重名的 slots <sup>移除</sup>
 
 同一模板中的重名 `<slot>` 已经弃用。当一个 slot 已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可一用prop来传递。
 
@@ -1475,7 +1475,7 @@ new Vue({
 })
 ```
 
-或者使用渲染函数：
+或者使用 render 函数：
 
 ``` js
 new Vue({
@@ -1584,6 +1584,6 @@ Partials 已被移除,取而代之的是更明确的组件之间的数据流--pr
 
 ***
 
-> 原文： https://vuejs.org/v2/guide/migration.html
+> 原文：https://vuejs.org/v2/guide/migration.html
 
 ***

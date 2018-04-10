@@ -9,9 +9,9 @@ type: api
 
 ### silent
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false`
+- **默认值：**`false`
 
 - **用法：**
 
@@ -23,9 +23,9 @@ type: api
 
 ### optionMergeStrategies
 
-- **类型：** `{ [key: string]: Function }`
+- **类型：**`{ [key: string]: Function }`
 
-- **默认值：** `{}`
+- **默认值：**`{}`
 
 - **用法：**
 
@@ -49,9 +49,9 @@ type: api
 
 ### devtools
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`（在生产版本中是 `false`）
+- **默认值：**`true`（在生产版本中是 `false`）
 
 - **用法：**
 
@@ -64,9 +64,9 @@ type: api
 
 ### errorHandler
 
-- **类型：** `Function`
+- **类型：**`Function`
 
-- **默认值：** `undefined`
+- **默认值：**`undefined`
 
 - **用法：**
 
@@ -78,7 +78,7 @@ type: api
   }
   ```
 
-  设置一个处理函数，用于在组件渲染函数调用和 watcher 期间捕获错误。这个处理函数被调用时，传入 error 对象和 Vue 实例。
+  设置一个处理函数，用于在组件 render 函数调用和 watcher 期间捕获错误。这个处理函数被调用时，传入 error 对象和 Vue 实例。
 
   > 从 2.2.0+ 开始，这个钩子会捕获组件生命周期钩子中的错误。此外，如果这个钩子是 `undefined`，捕获的错误会被记录到 `console.error`，而不是让整个应用程序崩溃。
 
@@ -90,9 +90,9 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `Function`
+- **类型：**`Function`
 
-- **默认值：** `undefined`
+- **默认值：**`undefined`
 
 - **用法：**
 
@@ -106,9 +106,9 @@ type: api
 
 ### ignoredElements
 
-- **类型：** `Array<string | RegExp>`
+- **类型：**`Array<string | RegExp>`
 
-- **默认值：** `[]`
+- **默认值：**`[]`
 
 - **用法：**
 
@@ -126,9 +126,9 @@ type: api
 
 ### keyCodes
 
-- **类型：** `{ [key: string]: number | Array<number> }`
+- **类型：**`{ [key: string]: number | Array<number> }`
 
-- **默认值：** `{}`
+- **默认值：**`{}`
 
 - **用法：**
 
@@ -154,9 +154,9 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false（从 2.2.3+ 开始）`
+- **默认值：**`false（从 2.2.3+ 开始）`
 
 - **用法：**
 
@@ -166,9 +166,9 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`
+- **默认值：**`true`
 
 - **用法：**
 
@@ -402,7 +402,7 @@ type: api
 
 ### Vue.version
 
-- **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
+- **详细：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
 - **用法：**
 
@@ -422,9 +422,9 @@ type: api
 
 ### data
 
-- **类型：** `Object | Function`
+- **类型：**`Object | Function`
 
-- **限制：** 组件的定义只接受 `function`。
+- **限制：**组件的定义只接受 `function`。
 
 - **详细：**
 
@@ -460,13 +460,17 @@ type: api
   })
   ```
 
-  <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
+  注意，如果你对 `data` 属性使用箭头函数，`this` 将不会指向组件实例，但是你仍然可以通过函数返回的第一个参数，来访问组件实例：
+
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
 
 - **参考：**[深入响应式原理](../guide/reactivity.html)
 
 ### props
 
-- **类型：** `Array<string> | Object`
+- **类型：**`Array<string> | Object`
 
 - **详细：**
 
@@ -502,9 +506,9 @@ type: api
 
 ### propsData
 
-- **类型：** `{ [key: string]: any }`
+- **类型：**`{ [key: string]: any }`
 
-- **限制：** 只用于 `new` 创建的实例中。
+- **限制：**只用于 `new` 创建的实例中。
 
 - **详细：**
 
@@ -527,13 +531,19 @@ type: api
 
 ### computed
 
-- **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **类型：**`{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **详细：**
 
   计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
 
-  <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
+  注意，如果你对 `data` 属性使用箭头函数，`this` 将不会指向组件实例，但是你仍然可以通过函数返回的第一个参数，来访问组件实例：
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是__不会__触发计算属性更新的。
 
@@ -568,7 +578,7 @@ type: api
 
 ### methods
 
-- **类型：** `{ [key: string]: Function }`
+- **类型：**`{ [key: string]: Function }`
 
 - **详细：**
 
@@ -595,7 +605,7 @@ type: api
 
 ### watch
 
-- **类型：** `{ [key: string]: string | Function | Object | Array}`
+- **类型：**`{ [key: string]: string | Function | Object | Array}`
 
 - **详细：**
 
@@ -651,9 +661,9 @@ type: api
 
 ### el
 
-- **类型：** `string | HTMLElement`
+- **类型：**`string | HTMLElement`
 
-- **限制：** 只在由 `new` 创建的实例中遵守。
+- **限制：**只在由 `new` 创建的实例中遵守。
 
 - **详细：**
 
@@ -673,7 +683,7 @@ type: api
 
 ### template
 
-- **类型：** `string`
+- **类型：**`string`
 
 - **详细：**
 
@@ -687,17 +697,17 @@ type: api
 
 - **参考：**
   - [生命周期示意图](../guide/instance.html#生命周期示意图)
-  - [使用 slot 分发内容](../guide/components.html#使用-slot-分发内容)
+  - [使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
 
 ### render
 
-  - **类型：** `(createElement: () => VNode) => VNode`
+  - **类型：**`(createElement: () => VNode) => VNode`
 
   - **详细：**
 
     字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
-    如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
+    如果组件是一个函数组件，render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
     <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 render 函数。</p>
 
@@ -707,7 +717,7 @@ type: api
 
 > 2.2.0+ 新增
 
-  - **类型：** `(createElement: () => VNode, error: Error) => VNode`
+  - **类型：**`(createElement: () => VNode, error: Error) => VNode`
 
   - **详细：**
 
@@ -736,7 +746,7 @@ type: api
 
 ### beforeCreate
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -746,7 +756,7 @@ type: api
 
 ### created
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -756,7 +766,7 @@ type: api
 
 ### beforeMount
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -768,7 +778,7 @@ type: api
 
 ### mounted
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -791,7 +801,7 @@ type: api
 
 ### beforeUpdate
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -803,7 +813,7 @@ type: api
 
 ### updated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -828,7 +838,7 @@ type: api
 
 ### activated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -842,7 +852,7 @@ type: api
 
 ### deactivated
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -856,7 +866,7 @@ type: api
 
 ### beforeDestroy
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -868,7 +878,7 @@ type: api
 
 ### destroyed
 
-- **类型：** `Function`
+- **类型：**`Function`
 
 - **详细：**
 
@@ -882,13 +892,13 @@ type: api
 
 > 2.5.0+ 新增
 
-- **类型：** `(err: Error, vm: Component, info: string) => ?boolean`
+- **类型：**`(err: Error, vm: Component, info: string) => ?boolean`
 
 - **详细：**
 
   当任何一个来自后代组件的错误时被捕获时调用。此钩子函数会收到三个参数：错误对象、发生错误的组件实例，和一个包含错误在何处被捕获信息的字符串。此钩子函数可以返回 `false`，以阻止该错误继续向上冒泡。
 
-  <p class="tip">你可以在此钩子函数中修改组件的状态。因此，当一个错误被捕获时，在你的模板中使用条件语句或着使其他内容短路的渲染函数，是很重要的；否则组件将陷入无限的渲染循环。</p>
+  <p class="tip">你可以在此钩子函数中修改组件的状态。因此，当一个错误被捕获时，在你的模板中使用条件语句或着使其他内容短路的 render 函数，是很重要的；否则组件将陷入无限的渲染循环。</p>
 
   **错误冒泡规则**
 
@@ -904,7 +914,7 @@ type: api
 
 ### directives
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -914,7 +924,7 @@ type: api
 
 ### filters
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -924,7 +934,7 @@ type: api
 
 ### components
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -936,23 +946,23 @@ type: api
 
 ### parent
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **详细：**
 
-  指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
+  用于指定已创建的实例的父实例。在二者之间建立父子关系。在子实例中可以通过 `this.$parent` 访问父实例，而子实例会被推入父实例的 `$children` 数组中。
 
-  <p class="tip">同时使用 `$parent` 和 `$children` 有冲突 - 他们作为同一个入口 。更推荐用 props 和 events 实现父子组件通信</p>
+  <p class="tip">请谨慎保守地使用 `$parent` 和 `$children` - 更多的是将它们作为一个应急方式。推荐使用 props 和 events 实现父子组件之间通信。</p>
 
 ### mixins
 
-- **类型：** `Array<Object>`
+- **类型：**`Array<Object>`
 
 - **详细：**
 
   `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
 
-  Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
+  mixin 钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
 
 - **示例：**
 
@@ -972,7 +982,7 @@ type: api
 
 ### extends
 
-- **类型：** `Object | Function`
+- **类型：**`Object | Function`
 
 - **详细：**
 
@@ -1002,7 +1012,7 @@ type: api
 
 - **详细：**
 
-  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
+  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。不推荐直接用于应用程序代码中。</p>
 
   这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似。
 
@@ -1055,7 +1065,7 @@ type: api
   }
   ```
 
-  > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
+  > 接下来的两个示例只能在 Vue 2.2.1+ 版本中正常运行。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
   使用一个注入的值作为一个属性的默认值：
   ```js
@@ -1083,7 +1093,7 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > 在 2.5.0+ 版本中，注入可以通过设置默认值使其变成可选项：
 
   ``` js
   const Child = {
@@ -1093,7 +1103,7 @@ type: api
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  如果它需要从一个不同名字的属性注入，则使用 `from` 来表示其源属性：
 
   ``` js
   const Child = {
@@ -1106,7 +1116,7 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  对于 prop 的默认值来说是类似的，你需要对非原始值使用一个工厂方法：
 
   ``` js
   const Child = {
@@ -1123,9 +1133,9 @@ type: api
 
 ### name
 
-- **类型：** `string`
+- **类型：**`string`
 
-- **限制：** 只有作为组件选项时起作用。
+- **限制：**只有作为组件选项时起作用。
 
 - **详细：**
 
@@ -1135,11 +1145,11 @@ type: api
 
 ### delimiters
 
-- **类型：** `Array<string>`
+- **类型：**`Array<string>`
 
 - **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **限制：** 这个选择只在完整构建版本中才可用，将在浏览器中编译。
+- **限制：**这个选择只在完整构建版本中才可用，将在浏览器中编译。
 
 - **详细：**
 
@@ -1157,7 +1167,7 @@ type: api
 
 ### functional
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
 - **详细：**
 
@@ -1169,7 +1179,7 @@ type: api
 
 > 2.2.0 新增
 
-- **类型：** `{ prop?: string, event?: string }`
+- **类型：**`{ prop?: string, event?: string }`
 
 - **详细：**
 
@@ -1214,9 +1224,9 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `true`
+- **默认值：**`true`
 
 - **详细：**
 
@@ -1228,11 +1238,11 @@ type: api
 
 > 2.4.0+ 新增
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
-- **默认值：** `false`
+- **默认值：**`false`
 
-- **限制：** 这个选项只在完整构建版本中的浏览器内编译时可用。
+- **限制：**这个选项只在完整构建版本中的浏览器内编译时可用。
 
 - **详细：**
 
@@ -1242,7 +1252,7 @@ type: api
 
 ### vm.$data
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -1254,7 +1264,7 @@ type: api
 
 > 2.2.0+ 新增
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **详细：**
 
@@ -1262,7 +1272,7 @@ type: api
 
 ### vm.$el
 
-- **类型：** `HTMLElement`
+- **类型：**`HTMLElement`
 
 - **只读**
 
@@ -1272,7 +1282,7 @@ type: api
 
 ### vm.$options
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **只读**
 
@@ -1291,7 +1301,7 @@ type: api
 
 ### vm.$parent
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **只读**
 
@@ -1301,7 +1311,7 @@ type: api
 
 ### vm.$root
 
-- **类型：** `Vue instance`
+- **类型：**`Vue instance`
 
 - **只读**
 
@@ -1311,7 +1321,7 @@ type: api
 
 ### vm.$children
 
-- **类型：** `Array<Vue instance>`
+- **类型：**`Array<Vue instance>`
 
 - **只读**
 
@@ -1321,15 +1331,15 @@ type: api
 
 ### vm.$slots
 
-- **类型：** `{ [name: string]: ?Array<VNode> }`
+- **类型：**`{ [name: string]: ?Array<VNode> }`
 
 - **只读**
 
 - **详细：**
 
-  用来访问被 [slot 分发](../guide/components.html#使用-Slot-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用于以编程式来访问 [由 slots 分发](../guide/components.html#使用-slots-进行内容分发) 的内容。在 vm.$slots 上，有着与每个 [具名 slot](../guide/components.html#具名-slot) 相应的属性（例如：在 `vm.$slots.foo` 上可以找到 `slot="foo"` 中的内容）。`default` 属性是由所有匿名 slot 的 VNode 节点构成的数组。
 
-  在使用 [render 函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
+  在使用 [render 函数](../guide/render-function.html) 编写一个组件时，访问 `vm.$slots` 极其有用的。
 
 - **示例：**
 
@@ -1366,37 +1376,37 @@ type: api
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
-  - [Render 函数 - slots](../guide/render-function.html#Slots)
+  - [使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
+  - [render 函数 - slots](../guide/render-function.html#slots)
 
 ### vm.$scopedSlots
 
 > 2.1.0+ 新增
 
-- **类型：** `{ [name: string]: props => VNode | Array<VNode> }`
+- **类型：**`{ [name: string]: props => VNode | Array<VNode> }`
 
 - **只读**
 
 - **详细：**
 
-  用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
+  用来访问 [scoped slots](../guide/components.html#scoped-slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
 
   在使用 [render 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render 函数 - slots](../guide/render-function.html#Slots)
+  - [scoped slots](../guide/components.html#scoped-slots)
+  - [render 函数 - slots](../guide/render-function.html#slots)
 
 ### vm.$refs
 
-- **类型：** `Object`
+- **类型：**`Object`
 
 - **只读**
 
 - **详细：**
 
-  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
+  一个对象，包含 DOM 元素和组件实例，通过 [`ref` 特性](#ref) 注册。
 
 - **另见：**
   - [子组件引用](../guide/components.html#子组件索引)
@@ -1404,7 +1414,7 @@ type: api
 
 ### vm.$isServer
 
-- **类型：** `boolean`
+- **类型：**`boolean`
 
 - **只读**
 
@@ -1416,7 +1426,7 @@ type: api
 
 ### vm.$attrs
 
-- **类型：** `{ [key: string]: string }`
+- **类型：**`{ [key: string]: string }`
 
 - **只读**
 
@@ -1426,13 +1436,13 @@ type: api
 
 ### vm.$listeners
 
-- **类型：** `{ [key: string]: Function | Array<Function> }`
+- **类型：**`{ [key: string]: Function | Array<Function> }`
 
 - **只读**
 
 - **详细：**
 
-  包含了父作用域中的 (不含 `.native` 修饰器的) `v-on` 事件监听器。它可以通过 `v-on="$listeners"` 传入内部组件——在创建更高层次的组件时非常有用。
+  包括父作用域中的 `v-on` 事件监听器（但不包括添加了 `.native` 修饰器的那些事件监听器）。可以通过 `v-on="$listeners"`，将这些事件监听器向下传入到组件内部，在创建透明容器组件(transparent wrapper component)时非常有用。
 
 ## 实例方法 / 数据
 
@@ -1445,7 +1455,7 @@ type: api
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **返回值：** `{Function} unwatch`
+- **返回值：**`{Function} unwatch`
 
 - **用法：**
 
@@ -1510,13 +1520,13 @@ type: api
   - `{string | number} key`
   - `{any} value`
 
-- **返回值：** 设置的值.
+- **返回值：**设置的值.
 
 - **用法：**
 
   这是全局 `Vue.set` 的**别名**。
 
-- **另见：** [Vue.set](#Vue-set)
+- **另见：**[Vue.set](#Vue-set)
 
 ### vm.$delete( target, key )
 
@@ -1528,7 +1538,7 @@ type: api
 
   这是全局 `Vue.delete` 的**别名**。
 
-- **另见：** [Vue.delete](#Vue-delete)
+- **另见：**[Vue.delete](#Vue-delete)
 
 ## 实例方法/事件
 
@@ -1594,7 +1604,7 @@ type: api
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **返回值：** `vm` - 实例自身
+- **返回值：**`vm` - 实例自身
 
 - **用法：**
 
@@ -1684,7 +1694,7 @@ type: api
 
 ### v-text
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
 - **详细：**
 
@@ -1702,7 +1712,7 @@ type: api
 
 ### v-html
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
 - **详细：**
 
@@ -1710,7 +1720,7 @@ type: api
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
 
-  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
+  <p class="tip">在 [单文件组件](../guide/single-file-components.html) 中，`scoped` 样式不会应用在 `v-html` 内部，因为这些 HTML 没有被 Vue 模板编译器处理过。如果你希望针对 `v-html` 中的内容设置带作用域的 CSS，作为替代你可以使用 [CSS 模块](https://vue-loader.vuejs.org/en/features/css-modules.html)，或者使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。</p>
 
 - **示例：**
 
@@ -1722,7 +1732,7 @@ type: api
 
 ### v-show
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
 - **用法：**
 
@@ -1734,7 +1744,7 @@ type: api
 
 ### v-if
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
 - **用法：**
 
@@ -1742,7 +1752,7 @@ type: api
 
   当条件变化时该指令触发过渡效果。
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">当和 v-if 一起使用时，v-for 的优先级比 v-if 更高。查看 <a href="../guide/list.html#%E5%B8%A6%E6%9C%89-v-if-%E7%9A%84-v-for">列表渲染指南</a>。</p>
 
 - **参考：**[条件渲染 - v-if](../guide/conditional.html)
 
@@ -1750,7 +1760,7 @@ type: api
 
 - **不需要表达式**
 
-- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
+- **限制：**前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
 - **用法：**
 
@@ -1771,9 +1781,9 @@ type: api
 
 > 2.1.0+ 新增
 
-- **期望类型：** `any`
+- **期望类型：**`any`
 
-- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
+- **限制：**前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
 - **用法：**
 
@@ -1798,7 +1808,7 @@ type: api
 
 ### v-for
 
-- **期望类型：** `Array | Object | number | string`
+- **期望类型：**`Array | Object | number | string`
 
 - **用法：**
 
@@ -1826,7 +1836,7 @@ type: api
   </div>
   ```
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">当和 v-if 一起使用时，v-for 的优先级比 v-if 更高。查看 <a href="../guide/list.html#%E5%B8%A6%E6%9C%89-v-if-%E7%9A%84-v-for">列表渲染指南</a>。</p>
 
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
@@ -1836,11 +1846,11 @@ type: api
 
 ### v-on
 
-- **缩写：** `@`
+- **缩写：**`@`
 
-- **期望类型：** `Function | Inline Statement | Object`
+- **期望类型：**`Function | Inline Statement | Object`
 
-- **参数：** `event`
+- **参数：**`event`
 
 - **修饰符：**
   - `.stop` - 调用 `event.stopPropagation()`。
@@ -1859,20 +1869,17 @@ type: api
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
-  从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
-
   用在普通元素上时，只能监听 [**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
+
+  从 2.4.0+ 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意，当使用对象语法时，不支持任何修饰符。
 
 - **示例：**
 
   ```html
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
-
-  <!-- 对象语法 (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
@@ -1900,6 +1907,9 @@ type: api
 
   <!-- 点击回调只会触发一次 -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- 对象语法（2.4.0+） -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
   在子组件上监听自定义事件（当子组件触发 “my-event” 时将调用事件处理器）：
@@ -1920,11 +1930,11 @@ type: api
 
 ### v-bind
 
-- **缩写：** `:`
+- **缩写：**`:`
 
-- **期望类型：** `any (with argument) | Object (without argument)`
+- **期望类型：**`any (with argument) | Object (without argument)`
 
-- **参数：** `attrOrProp (optional)`
+- **参数：**`attrOrProp (optional)`
 
 - **修饰符：**
   - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
@@ -1993,7 +2003,7 @@ type: api
 
 ### v-model
 
-- **期望类型：** 随表单控件类型不同而不同。
+- **期望类型：**随表单控件类型不同而不同。
 
 - **限制：**
   - `<input>`
@@ -2115,16 +2125,16 @@ type: api
 
 ### ref
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p 将是 DOM 节点 -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
-  <child-comp ref="child"></child-comp>
+  <!-- vm.$refs.child 将是子组件实例 -->
+  <child-component ref="child"></child-component>
   ```
 
   当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。
@@ -2135,39 +2145,39 @@ type: api
 
 ### slot
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   用于标记往哪个slot中插入子组件内容。
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考：**[具名 Slots](../guide/components.html#具名-Slot)
+- **参考：**[具名 slots](../guide/components.html#具名-slots)
 
 ### slot-scope
 
-> New in 2.5.0+
+> 2.5.0+ 新增
 
-- **Expects:** `function argument expression`
+- **预期：**`function argument expression`
 
-- **Usage:**
+- **用法：**
 
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
 
-  This attribute does not support dynamic binding.
+  此特性不支持动态绑定。
 
-- **参考：**[Scoped Slots](../guide/components.html#Scoped-Slots)
+- **参考：**[作用域插槽](../guide/components.html#作用域插槽)
 
-### scope <sup>replaced</sup>
+### scope <sup>替换</sup>
 
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+用于表示一个作为带作用域的插槽的 `<template>` 元素，它在 2.5.0+ 中被 [`slot-scope`](#slot-scope) 替代。
 
-- **Usage:**
+- **用法：**
 
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+  除了 `scope` 只可以用于 `<template>` 元素，其它和 [`slot-scope`](#slot-scope) 都相同。
 
 ### is
 
-- **期望类型：** `string`
+- **期望类型：**`string`
 
   用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
 
@@ -2388,7 +2398,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   详细用法，请参考下面教程的链接。
 
-- **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
+- **参考：**[使用 slots 进行内容分发](../guide/components.html#使用-slots-进行内容分发)
 
 ## VNode 接口
 

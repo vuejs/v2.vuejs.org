@@ -4,7 +4,7 @@ type: cookbook
 order: 9
 ---
 
-## Simple Example
+## Base Example
 
 There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
 
@@ -124,7 +124,7 @@ new Vue({
       .catch(error => {
         console.log(error)
         this.errored = true
-      }).
+      })
       .finally(() => this.loading = false)
   }
 })
@@ -157,7 +157,7 @@ You can hit the rerun button on this pen to see the loading status briefly while
 <p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This can be even futher improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
+This can be even further improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
 
 ## Alternative Patterns
 
@@ -170,3 +170,9 @@ If you're interested in using the Fetch API, there are some [very good articles]
 ## Wrapping Up
 
 There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+
+***

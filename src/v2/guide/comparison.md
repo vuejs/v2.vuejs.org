@@ -231,6 +231,6 @@ Riot 3.0 提供了一个类似于基于组件的开发模型（在 Riot 中称�
 
 ***
 
-> 原文：http://vuejs.org/guide/comparison.html
+> 原文：http://vuejs.org/v2/guide/comparison.html
 
 ***

@@ -4,7 +4,7 @@ type: cookbook
 order: 7
 ---
 
-## Simple Example
+## Base Example
 
 There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is perhaps to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
 
@@ -152,3 +152,9 @@ We can then use this animation in our template, in this case we're attaching the
 Custom directives are extremely useful, but you may find some situations where you need something very specific that already exists in scrolling libraries that you don't wish to rebuild from scratch yourself.
 
 [Scrollmagic](http://scrollmagic.io/) has a very rich ecosystem of offerings to work with, as well as good documentation and demos to explore. This includes, but is not limited to things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html).
+
+***
+
+> 原文：https://vuejs.org/v2/cookbook/creating-custom-scroll-directives.html
+
+***

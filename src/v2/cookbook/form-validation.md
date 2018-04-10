@@ -4,7 +4,7 @@ type: cookbook
 order: 3
 ---
 
-## Simple Example
+## Base Example
 
 Form validation is natively supported by the browser, but sometimes different browsers will handle things in a manner which makes relying on it a bit tricky. Even when validation is supported perfectly, there may be times when custom validations are needed and a more manual, Vue-based solution may be more appropriate. Let's begin with a simple example.
 
@@ -12,14 +12,14 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
-  
+
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
   </p>
-  
+
   <p>
     <label for="name">Name<label>
     <input type="text" name="name" id="name" v-model="name">
@@ -40,7 +40,7 @@ Given a form of three fields, make two required. Let's look at the HTML first:
   </p>
 
   <p>
-    <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">
   </p>
 
 </form>
@@ -48,7 +48,7 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 
 Let's cover it from the top. The `<form>` tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the `action` is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).
 
-Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified. 
+Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified.
 
 The final thing to note is that each of the three fields has a corresponding `v-model` to connect them to values we will work with in the JavaScript. Now let's look at that.
 
@@ -84,14 +84,14 @@ For the second example, the second text field (age) was switched to email which 
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
-  
+
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
   </p>
-  
+
   <p>
     <label for="name">Name<label>
     <input type="text" name="name" id="name" v-model="name">
@@ -112,7 +112,7 @@ For the second example, the second text field (age) was switched to email which 
   </p>
 
   <p>
-    <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">
   </p>
 
 </form>
@@ -136,7 +136,7 @@ const app = new Vue({
       if(!this.email) {
         this.errors.push("Email required.");
       } else if(!this.validEmail(this.email)) {
-        this.errors.push("Valid email required.");        
+        this.errors.push("Valid email required.");
       }
       if(!this.errors.length) return true;
       e.preventDefault();
@@ -160,7 +160,7 @@ For the third example, we've built something you've probably seen in survey apps
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
-  
+
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
@@ -187,7 +187,7 @@ For the third example, we've built something you've probably seen in survey apps
   </p>
 
   <p>
-    <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">
   </p>
 
 </form>
@@ -254,7 +254,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
 
 ``` html
 <form id="app" @submit="checkForm" method="post">
-  
+
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
@@ -268,7 +268,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
   </p>
 
   <p>
-    <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">
   </p>
 
 </form>
@@ -320,3 +320,8 @@ While this cookbook entry focused on doing form validation "by hand", there are,
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
 
+***
+
+> 原文：https://vuejs.org/v2/cookbook/form-validation.html
+
+***

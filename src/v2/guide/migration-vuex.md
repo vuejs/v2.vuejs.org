@@ -91,3 +91,9 @@ const myPlugins = store => {
   <p>在代码库运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，查找使用了 <code>middlewares</code> 选项的事例。</p>
 </div>
 {% endraw %}
+
+***
+
+> 原文：http://vuejs.org/v2/guide/migration-vuex.html
+
+***
