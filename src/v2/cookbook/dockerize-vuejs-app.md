@@ -50,3 +50,67 @@ docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/doc
 ```
 
 We should be able to access our Vue.js app on `localhost:8080`.
+
+## Real-World Example
+
+In the previous example, we used a simple, zero-configuration command-line [http server](https://github.com/indexzero/http-server) to serve our Vue.js app. Your colleagues are impressed but your boss is still shaking his head because we chose not to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/). Now we are going to make it right.
+
+Let's refactor our `Dockerfile` to use NGINX:
+
+ ```docker
+FROM node:9.8.0-alpine
+
+# install NGINX
+RUN apk --no-cache add nginx
+
+# make the 'app' folder the current working directory
+WORKDIR /app
+
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
+
+# install project dependencies
+RUN npm install
+
+# copy NGINX configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY . .
+
+# build app for production with minification
+RUN npm run build
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off; pid /tmp/nginx.pid;"]
+```
+
+Let's create the NGINX configuration file in the root of our project:
+
+```nginx
+events { }
+
+http {
+    server {
+        listen 8080;
+        location / {
+            root /app/dist;
+            index index.html;
+        }
+    }
+}
+```
+
+Now let's build a Docker image for our Vue.js app:
+
+```bash
+docker build -t vuejs-cookbook/dockerize-vuejs-app .
+```
+
+Finally, let's run our Vue.js app in a Docker container:
+
+```bash
+docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
+```
+
+We should be able to access our Vue.js app on `localhost:8080`.
