@@ -14,14 +14,10 @@ By packaging your component to be shared via npm, it can be imported/required in
 import MyComponent from 'my-component';
 
 export default {
-  name: 'my-app',
   components: {
     MyComponent,
   },
-  data() {
-    ...
-  },
-  ...
+  // rest of the component
 }
 ```
 
@@ -37,15 +33,15 @@ Or even used via `<script>` tag in the browser directly:
 
 Not only does this help you avoid copy/pasting components around, but it also allows you to give back to the Vue community!
 
-## Why Shouldn't I Share .vue Files Directly?
+## Can't I Just Share .vue Files Directly?
 
 Vue already allows components to be written as a single file. Because a Single File Component (SFC) is already just one file, you might ask:
 
 > "Why can't people use my .vue file directly? Isn't that the simplest way to share components?"
 
-It's true, you could share .vue files directly, and as long as the [Vue build](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) being used contains the Vue compiler, that would be enough. But this excludes anyone who wishes to use the component directly in a browser via `<script>` tag, anyone who uses a runtime-only build, or a build process which doesn't understand what to do with .vue files.
+It's true, you could share .vue files directly, and as long as the [Vue build](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) being used contains the Vue compiler, that would be enough. For example, string concatenation is used as an optimization in the SSR build, so the .vue file might be preferred in this scenario (see [Packaging Components for npm > SSR Usage](#SSR-Usage) for details). But this excludes anyone who wishes to use the component directly in a browser via `<script>` tag, anyone who uses a runtime-only build, or a build process which doesn't understand what to do with .vue files.
 
-By packaging your SFC for distribution via npm, your component can be shared in a way which is ready to use directly in the browser as well as in most build processes!
+Properly packaging your SFC for distribution via npm enables your component to be shared in a way which is ready to use directly in the browser as well as in most build processes!
 
 ## Packaging Components for npm
 
@@ -63,7 +59,7 @@ dist/
 
 ### How does npm know which version to serve to a browser/build process?
 
-The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. By specifying 2 additional versions (`module` and `unpkg`) we can hit that sweet spot and older build processes, newer ES6 compatible ones, and eve browsers directly! A sample package.json would look like this:
+The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`), and provide access to the .vue file itself using the `browser` field. A sample package.json would look like this:
 
 ```json
 {
@@ -72,11 +68,26 @@ The package.json file used by npm really only requires one version (`main`), but
   "main": "dist/my-component.umd.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
+  "browser": {
+    "./sfc": "src/my-component.vue"
+  },
   ...
 }
 ```
 
-When webpack 2+, Rollup, or other modern build tools are used, they will pick up on the `module` build. Legacy build tools would use the `main` build, and the `unpkg` build can be used directly in browsers. The [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service!
+When webpack 2+, Rollup, or other modern build tools are used, they will pick up on the `module` build. Legacy applications would use the `main` build, and the `unpkg` build can be used directly in browsers. In fact, the [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service!
+
+### SSR Usage
+
+You might have noticed something interesting - browsers aren't going to be using the `browser` version! That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the .vue file itself. For example:
+
+```js
+import MyComponent from 'my-component/sfc'; // Note the '/sfc'
+```
+
+Compatible bundlers see the `browser` definition in package.json and translate requests for `my-component/sfc` into `my-component/src/my-component.vue`, resulting in the original .vue file being used instead. Now the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
+
+> Note: When using .vue components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.
 
 ### How do I make multiple versions of my component?
 
@@ -89,11 +100,14 @@ There is no need to write your module multiple times. It is possible to prepare 
   "main": "dist/my-component.umd.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
+  "browser": {
+    "./sfc": "src/my-component.vue"
+  },
   "scripts": {
-    "build": "npm run build:browser && npm run build:es && npm run build:umd",
+    "build": "npm run build:umd && npm run build:es && npm run build:unpkg",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/my-component.umd.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/my-component.esm.js",
-    "build:browser": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
   },
   "devDependencies": {
     "rollup": "^0.57.1",
@@ -121,7 +135,7 @@ import component from './my-component.vue';
 export function install(Vue) {
 	if (install.installed) return;
 	install.installed = true;
-	Vue.component('my-component', component);
+	Vue.component('MyComponent', component);
 }
 
 // Create module definition for Vue.use()
