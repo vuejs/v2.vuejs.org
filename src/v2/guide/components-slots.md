@@ -146,9 +146,9 @@ Vue 基于现有 [Web Components 规范草案](https://github.com/w3c/webcompone
 
 如果父组件模板中，向 slot 位置提供了内容，子组件 slot 元素的默认内容就会被替换。
 
-## Compilation Scope
+## 编译时的作用域(compilation scope)
 
-When you want to use data inside a slot, such as in:
+当你在 slot 内部想要使用当前作用域下的数据，例如：
 
 ``` html
 <navigation-link url="/profile">
@@ -156,15 +156,15 @@ When you want to use data inside a slot, such as in:
 </navigation-link>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work. As a rule, remember that:
+这些插槽内容，可以访问与插槽模板之外其余部分模板，完全相同的实例属性（也就是处于同一“作用域”）。然而插槽内容**无法**访问 `<navigation-link>` 组件内部的作用域。例如，试图访问传入此组件内部的 `url`，就会无法正常运行。牢记准则：
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> 父组件模板的内容，全部在父组件作用域内编译；子组件模板的内容，全部在子组件作用域内编译。
 
-## Scoped Slots
+## 作用域插槽(scoped slots)
 
-> New in 2.1.0+
+> 2.1.0+ 新增
 
-Sometimes you'll want to provide a component with a reusable slot that can access data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
+在某些场景中，需要提供一个具有「可以访问组件内部数据的可复用插槽(reusable slot)」的组件。例如，一个简单的 `<todo-list>` 组件，可能包含如下模板：
 
 ```html
 <ul>
@@ -177,9 +177,9 @@ Sometimes you'll want to provide a component with a reusable slot that can acces
 </ul>
 ```
 
-But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`. This is where scoped slots come in.
+但是在我们应用程序的某些部分中，我们想要将 todo items 中的每一项，都渲染为不同于 `todo.text` 的内容。这就是引入作用域插槽的原因。
 
-To make the feature possible, all we have to do is wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
+为了实现此潜在功能，我们必须将 todo item 的内容，包裹到一个 `<slot>` 元素中，然后，将此 slot 内部所需的所有相关数据，都传递给它的上下文环境(context)：在当前这个场景中，其相关数据为 `todo` 对象：
 
 ```html
 <ul>
@@ -187,35 +187,35 @@ To make the feature possible, all we have to do is wrap the todo item content in
     v-for="todo in todos"
     v-bind:key="todo.id"
   >
-    <!-- We have a slot for each todo, passing it the -->
-    <!-- `todo` object as a slot prop.                -->
+    <!-- 我们为每个 todo 提供一个 slot 元素， -->
+    <!-- 然后，将 `todo` 对象作为 slot 元素的一个 prop 传入。 -->
     <slot v-bind:todo="todo">
-      <!-- Fallback content -->
+      <!-- 这里是回退内容(fallback content) -->
       {{ todo.text }}
     </slot>
   </li>
 </ul>
 ```
 
-Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child via the `slot-scope` attribute:
+现在，在我们引用 `<todo-list>` 组件的位置，我们可以将 todo items 插槽内容稍作修改，定义为一个 `<template>`，并且通过 `slot-scope` 特性访问子组件数据：
 
 ```html
 <todo-list v-bind:todos="todos">
-  <!-- Define `slotProps` as the name of our slot scope -->
+  <!-- 将 `slotProps` 作为插槽内容所在作用域(slot scope)的引用名称 -->
   <template slot-scope="slotProps">
-    <!-- Define a custom template for todo items, using -->
-    <!-- `slotProps` to customize each todo.            -->
+    <!-- 为 todo items 定义一个模板， -->
+    <!-- 通过 `slotProps` 访问每个 todo 对象。 -->
     <span v-if="slotProps.todo.isComplete">✓</span>
     {{ slotProps.todo.text }}
   </template>
 </todo-list>
 ```
 
-> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
+> 在 2.5.0+，`slot-scope` 不再局限于 `<template>` 元素，而是可以在任何元素或任何组件中的插槽内容上使用。
 
-### Destructuring `slot-scope`
+### 解构 `slot-scope`
 
-The value of `slot-scope` can actually accept any valid JavaScript expression that can appear in the argument position of a function definition. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
+`slot-scope` 的值，实际上可以接收任何有效的 JavaScript 表达式，可以出现在函数定义中的参数所在位置。也就是说，在支持的环境中（在 [单个文件组件](single-file-components.html) 或在 [现代浏览器](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)），可以使用 [ES2015 解构](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) 来对表达式进行解构，就像这样：
 
 ```html
 <todo-list v-bind:todos="todos">
@@ -226,7 +226,7 @@ The value of `slot-scope` can actually accept any valid JavaScript expression th
 </todo-list>
 ```
 
-This is a great way to make scoped slots a little cleaner.
+这是让作用域插槽用法，变得思路清晰的好方法。
 
 ***
 
