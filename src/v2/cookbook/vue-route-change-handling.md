@@ -370,7 +370,7 @@ goBack() {
 
 In this instance, if the user got here through a bookmark or new tab, then there is no last unique route and we fall back to `user.index` route, otherwise the user will go back to wherever he was before - `blog.index`, `news.view` etc..
 
-While there are many ways of achieving the same result, this should provide you with some insights and ideas on how something like this could be solved.
+This should provide you with some insights and ideas on how something like this could be solved.
 
 ## Summary
-All solutions come back to the simple term `it depends`. Every application has different needs, different structure and requirements, for example maybe the route is being tracked in VueX; maybe component data is loaded/resolved before the page transition happens... there are endless factors that determine what tools we use to achieve our goal and they should be chosen depending on those factors.
+All solutions come back to the simple term `it depends`. Every application has different needs, different structure and requirements, for example maybe the route is being tracked in VueX; maybe component data is loaded/resolved before the page transition happens... there are endless factors that determine what tools and approach we use to achieve our goal and they should be chosen depending on those factors.
