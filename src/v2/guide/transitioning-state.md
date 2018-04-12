@@ -18,7 +18,7 @@ Vue 的过渡系统提供了很多简便方法，可以在进入、离开时，�
 watcher 可以观察到从任何数值属性到另一个属性的变化，然后进行动画。这一抽象听起来很复杂，所以让我们深入一个使用 [GreenSock](https://greensock.com/) 的例子：
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://lib.baomitu.com/gsap/1.20.3/TweenMax.min.js"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -47,7 +47,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://lib.baomitu.com/gsap/1.20.3/TweenMax.min.js"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -236,7 +236,7 @@ new Vue({
 就像 Vue 的过渡组件那样，动态数据所支撑的状态的过渡也可以实时更新，这对于制作原型十分有用！即使是一个简单的 SVG 多边形，在操作一些变量之后，也可是实现很多难以想象的效果。
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
+<script src="https://lib.baomitu.com/gsap/1.18.5/TweenLite.min.js"></script>
 <div id="svg-polygon-demo" class="demo">
   <svg width="200" height="200" class="demo-svg">
     <polygon :points="points" class="demo-polygon"></polygon>

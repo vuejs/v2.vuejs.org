@@ -67,7 +67,7 @@ Let's say you're replacing the [now-retired Vue Resource](https://medium.com/the
 All you have to do is include axios in your project:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+<script src="https://lib.baomitu.com/axios/0.15.2/axios.js"></script>
 
 <div id="app">
   <ul>

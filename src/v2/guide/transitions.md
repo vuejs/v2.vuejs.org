@@ -451,7 +451,7 @@ methods: {
 Velocity works very much like jQuery.animate and is
 a great option for JavaScript animations
 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="example-4">
   <button @click="show = !show">
@@ -513,7 +513,7 @@ new Vue({
     </p>
   </transition>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 <script>
 new Vue({
   el: '#example-4',
@@ -1062,7 +1062,7 @@ new Vue({
 此类名对于指定过渡时间和 easing 过渡曲线非常有用，如下所示：
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://lib.baomitu.com/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="flip-list-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
@@ -1095,7 +1095,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://lib.baomitu.com/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="flip-list-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
   <transition-group name="flip-list" tag="ul">
@@ -1129,7 +1129,7 @@ new Vue({
 我们可以将此技术与我们以前的实施相结合，为我们列表所有可能的位置变更都添加动画！
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://lib.baomitu.com/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
@@ -1188,7 +1188,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://lib.baomitu.com/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="list-complete-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
   <button v-on:click="add">Add</button>
@@ -1308,7 +1308,7 @@ new Vue({
 通过 data 属性与 JavaScript 式过渡的通信，就可以实现列表的逐项渐进过渡：
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="staggered-list-demo">
   <input v-model="query">
@@ -1380,7 +1380,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 <div id="example-5" class="demo">
   <input v-model="query">
   <transition-group
@@ -1518,7 +1518,7 @@ Vue.component('my-special-transition', {
 所有的过渡属性都可以动态绑定。并且不仅是属性，由于事件钩子函数都是 Vue 的方法(methods)，所以可以从 this 上下文访问到所有数据。这意味着，根据组件的状态，JavaScript 式过渡的表现可能会有所不同。
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
@@ -1590,7 +1590,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://lib.baomitu.com/velocity/1.2.3/velocity.min.js"></script>
 <div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
   Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
