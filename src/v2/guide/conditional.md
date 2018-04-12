@@ -182,7 +182,7 @@ new Vue({
 
 不同之处在于，具有 `v-show` 的元素会始终渲染并保留在 DOM 中。`v-show` 只会切换元素的 `display` 这个 CSS 属性。
 
-<p class="tip">注意，`v-show` 和 `v-else` 都不支持 `<template>` 元素。</p>
+<p class="tip">注意，`v-show` 无法用于 `<template>` 元素，也不能和 `v-else` 配合使用。</p>
 
 ## `v-if` 和 `v-show`
 
