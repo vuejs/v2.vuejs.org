@@ -29,7 +29,7 @@ This will assure that when going from `/orders` to `/orders?page=2` or from `/or
 <router-view :key="$route.path"></router-view>
 ```
 
-The difference is that `/orders` and `/orders?page=2` would not reload re-create the components and data would not be reloaded, but going from `/orders` to `/invoices` with the same `OrdersIndex` component used, it would be re-created.
+The difference is that `/orders` and `/orders?page=2` would not reload re-create the components and data would not be reloaded, but going from `/orders` to `/invoices` with the same `OrderIndex` component used, it would be re-created.
 
 The former aren't widely known so the most commonly used way is the plain `router-view`:
 
@@ -337,9 +337,9 @@ const router = new Router(/* your route config */);
 const history = new History(router);
 
 Object.defineProperty(Vue.prototype, '$history', {
-    get() {
-      return history;
-    },
+  get() {
+    return history;
+  },
 });
 
 new Vue({
