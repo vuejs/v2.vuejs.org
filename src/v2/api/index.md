@@ -1432,7 +1432,7 @@ type: api
 
 - **详细：**
 
-  包含了父作用域中不被认为 (且不预期为) props 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建更高层次的组件时非常有用。
+  包含了父作用域中不被认为 (且不预期为) props 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建高阶组件(higher-order component)时非常有用。
 
 ### vm.$listeners
 
