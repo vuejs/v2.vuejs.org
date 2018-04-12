@@ -21,17 +21,17 @@ Given a form of three fields, make two required. Let's look at the HTML first:
   </p>
   
   <p>
-    <label for="name">Name<label>
+    <label for="name">Name</label>
     <input type="text" name="name" id="name" v-model="name">
   </p>
 
   <p>
-    <label for="age">Age<label>
+    <label for="age">Age</label>
     <input type="number" name="age" id="age" v-model="age" min="0">
   </p>
 
   <p>
-    <label for="movie">Favorite Movie<label>
+    <label for="movie">Favorite Movie</label>
     <select name="movie" id="movie" v-model="movie">
       <option>Star Wars</option>
       <option>Vanilla Sky</option>
@@ -93,17 +93,17 @@ For the second example, the second text field (age) was switched to email which 
   </p>
   
   <p>
-    <label for="name">Name<label>
+    <label for="name">Name</label>
     <input type="text" name="name" id="name" v-model="name">
   </p>
 
   <p>
-    <label for="email">Email<label>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email" v-model="email">
   </p>
 
   <p>
-    <label for="movie">Favorite Movie<label>
+    <label for="movie">Favorite Movie</label>
     <select name="movie" id="movie" v-model="movie">
       <option>Star Wars</option>
       <option>Vanilla Sky</option>
