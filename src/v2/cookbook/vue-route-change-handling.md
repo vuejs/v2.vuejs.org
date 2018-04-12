@@ -6,7 +6,7 @@ order: 10
 
 ## Simple Example
 
-While using [vue-router](https://router.vuejs.org/en/) we often need to refresh the data when a route or query changes, to do so we can use a `:key` trick to force Vue to always re-create the components:
+While using [vue-router](https://router.vuejs.org/en/) we often need to refresh the data when a route or query changes while the same component is being reused in the page, to do so we can use a `:key` to force Vue to always re-create the components:
 
 ```js
 Vue.component('OrderIndex', {
@@ -23,15 +23,15 @@ Vue.component('OrderIndex', {
 <router-view :key="$route.fullPath"></router-view>
 ```
 
-This will assure that when going from `/orders` to `/orders?page=2` or from `/orders?page=2` to `/orders?page=1`, a fresh instance of `OrderIndex` component will be provided, which will trigger the `created` method and download fresh data each time. There also is a subtle alternative to it:
+This will assure that when going from `/orders` to `/orders?page=2` or from `/orders?page=2` to `/orders?page=1`, a fresh instance of `OrderIndex` component will be provided, which will trigger the `created` method and download fresh data each time. There's also a subtle alternative to it:
 
 ```html
 <router-view :key="$route.path"></router-view>
 ```
 
-The difference is that `/orders` and `/orders?page=2` would not reload re-create the components and data would not be reloaded, but going from `/orders` to `/invoices` with the same `OrderIndex` component used, it would be re-created.
+The main difference is that `/orders` and `/orders?page=2` would not re-create the components and data would not be reloaded, but going from `/orders` to `/invoices` with the same `OrderIndex` component would.
 
-The former aren't widely known so the most commonly used way is the plain `router-view`:
+The `:key` solution isn't widely known so the most commonly used way is the plain `router-view`:
 
 ```html
 <router-view></router-view>
@@ -53,22 +53,22 @@ Vue.component('OrderIndex', {
 });
 ```
 
+<p class="tip">Note! While watching `$route` and using `:key="$route.fullPath"` the watcher will never fire unless the component is in another `router-view` scope without `key`.</p>
+
 Now each time the route changes, components will reload their data.
 
 <p class="tip">Remember! Don't modify `$route.query` directly - it will not be persisted to the url and components will not reload, use `$router.push` or `$router.replace` instead.</p>
 
 ## Simple, but not good enough
-While both methods work, there are some drawbacks to each one. Lets start with:
+While both `:key` methods work, there are some drawbacks to each one. Lets start with:
 
 ```html
 <router-view :key="$route.fullPath"></router-view>
 ```
 
-The `$route.fullPath` returns the full url including the query e.g. `/orders?page=2&filter=search`, so what happens when you visit from `/orders` to `/orders?page=1`? The page is re-created with new instances of components and the data is reloaded, yet the route is technically the same as before. At this point the only possible workaround would be to cache the results using something like [VueX](https://vuex.vuejs.org) or plain object. There are more complex examples why this could introduce more reloads than necessary which we'll cover further.
+The `$route.fullPath` returns the full url including the query e.g. `/orders?page=2&filter=search`, so what happens when you visit from `/orders` to `/orders?page=1`? The page is re-created with new instances of components and the data is reloaded, yet the route is technically the same as before. At this point the only possible workaround would be to cache the results using something like [VueX](https://vuex.vuejs.org) or plain object. We could use `$route.path` as a `key`, but this will require introducing a watcher and handling query changes which sometimes can be difficult and unexpected side effects if implemented incorrectly. There are more examples why `:key` on the `router-view` could introduce more reloads than necessary which we'll cover further.
 
-<p class="tip">Note! While watching `$route` and using `:key="$route.fullPath"` the watcher will never fire unless the component is in another `router-view` scope without `key`.</p>
-
-Next we have the watch `$route` path. This gives us more freedom when to reload the data, but it also introduces the chore to do it.  Taking the `/orders` to `/orders?page=1` example, you now can decide if the page query parameter exists and then reload the data:
+Next we have the watch `$route` path without `key` on `router-view`. This gives us more freedom when to reload the data, but it also mean we have to handle it manually. Taking the `/orders` to `/orders?page=1` example, you now can decide if the page query parameter really changed and when to reload the data:
 
 ```js
 $route(to, from) {
@@ -91,6 +91,8 @@ $route(to, from) {
   }
 }
 ```
+
+<p class="tip">Note! All values in `$route.query` are stored as a `string`.</p>
 
 While the snippet could be optimized, it's still quite something just for a `page` query parameter, imagine how it would grow if you have 2 or more similar fields or `page` parameter should reset to `1` when `filter` is changed.
 
