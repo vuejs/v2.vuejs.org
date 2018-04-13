@@ -51,6 +51,35 @@ docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/doc
 
 We should be able to access our Vue.js app on `localhost:8080`.
 
+## Why Dockerize a Vue.js App?
+
+If you are reading this cookbook, chances are you already know why you decided to dockerize your Vue.js app. But if you simply landed on this page after hitting the Google's `I'm feeling lucky` button, let me share with you a couple of good reasons for doing that.
+
+Today's modern trend is to build applications using the [Cloud-Native](https://pivotal.io/cloud-native) approach which revolves mainly around the following buzzwords:
+* Microservices
+* DevOps
+* Continuous Delivery
+
+Let's see how these concepts actually affect our decision of dockerizing our Vue.js app.
+
+### Effects of Microservices
+
+By adopting the [microservices architectural style](https://martinfowler.com/microservices/), we end up building a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms. These services are built around business capabilities and independently deployable by fully automated deployment machinery. 
+
+So, committing to this architectural approach most of the time implies developing and delivering our front-end as an independent service.
+
+### Effects of DevOps
+
+The adoption of [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) culture, tools and agile engineering practices has, among other things, the nice effect of increasing the collaboration between the roles of development and operations. One of the main problem of the past (but also today in some realities) is that the dev team tended to be uninterested in the operation and maintenance of a system once it was handed over to the ops team, while the latter tended to be not really aware of the system's business goals and, therefore, reluctant in satisfying the operational needs of the system (also referred to as "whims of developers").
+
+So, delivering our Vue.js app as a Docker image helps reducing, if not removing entirely, the difference between running the service on a deveveloper's laptop, the production environment or any environment we may think of.
+
+### Effects of Continuous Delivery
+
+By levereging the [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) discipline we build our software in a way that it can potentially be released to production at any time. Such engineering practice is enabled by means of what is normally called [continuous delivery pipeline](https://martinfowler.com/bliki/DeploymentPipeline.html). The purpose of a continuous delivery pipeline is to split our build into stages (e.g. compilation, unit tests, integration tests, performance tests, etc.) and let each stage verify our build artifact whenever our software changes. Ultimately, each stage increases our confidence in the production readiness of our build artifact and, therefore, reduces the risk of breaking things in production (or any other environment for that matters).
+
+So, creating a Docker image for our Vue.js app is a good choice here because that would represent our final build artifact, the same artifact that would be verified against our continuous delivery pipeline and that could potentially be released to production with confidence.
+
 ## Real-World Example
 
 In the previous example, we used a simple, zero-configuration command-line [http server](https://github.com/indexzero/http-server) to serve our Vue.js app. Your colleagues are impressed but your boss is still shaking his head because we chose not to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/). Now we are going to make it right.
