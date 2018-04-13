@@ -504,13 +504,13 @@ In cases like this, we can mark components as `functional`, which means that the
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Props are optional
+  props: {
+    // ...
+  },
   // To compensate for the lack of an instance,
   // we are now provided a 2nd context argument.
   render: function (createElement, context) {
-    // ...
-  },
-  // Props are optional
-  props: {
     // ...
   }
 })
@@ -554,6 +554,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -570,13 +577,6 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
 ```
