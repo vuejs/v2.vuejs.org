@@ -740,7 +740,7 @@ Ces composants sont les fondations d'un système de style et de comportement con
 
 - des éléments HTML,
 - d'autres composants préfixés par une base de nom et
-- des composants d'interface utilisateur tiers
+- des composants d'interface utilisateur tiers.
 
 Mais ils ne doivent **jamais** contenir un état global (par ex. depuis un store Vuex).
 

@@ -171,6 +171,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 - `.capture`
 - `.self`
 - `.once`
+- `.passive`
 
 ``` html
 <!-- la propagation de l'évènement `click` sera stoppée -->

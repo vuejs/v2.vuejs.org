@@ -460,7 +460,11 @@ type: api
   })
   ```
 
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.maPropriete }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et  `this.maPropriete` vaudra `undefined`.</p>
+  Notez que si vous utilisez la fonctions fléchées avec la propriété `data`, `this` ne sera plus l'instance du composant, mais vous pouvez toujours la récupérer en tant que premier argument de la fonction :
+
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
 
 - **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
@@ -533,7 +537,13 @@ type: api
 
   Les propriétés calculées qui seront ajoutées à l'instance de Vue. Tous les accesseurs (« getters ») et mutateurs (« setters ») ont leur contexte `this` automatiquement lié à l'instance de Vue.
 
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
+  Notez que si vous utilisez la fonctions fléchées avec la propriété `data`, `this` ne sera plus l'instance du composant, mais vous pouvez toujours la récupérer en tant que premier argument de la fonction :
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent. Notez que si une certaine dépendance est en dehors de la portée de l'instance (et donc non réactive), la propriété calculée ne sera __pas__ mise à jour.
 
@@ -1396,7 +1406,7 @@ type: api
 
 - **Détails :**
 
-  Un objet contenant les composants enfants ayant une référence `ref` enregistrée.
+  Un objet contenant des éléments du DOM et des composants, ayant des [attributs `ref`](#ref) enregistrée.
 
 - **Voir aussi :**
   - [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
@@ -1859,20 +1869,17 @@ type: api
 
   Attache un écouteur d'évènement à l'élément. Le type d'évènement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
-  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires évènement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
-
-  Quand utilisé sur un élément HTML standard, il écoute uniquement les [**évènements natifs du DOM**](https://developer.mozilla.org/fr/docs/Web/Events). Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
+  Quand utilisé sur un élément standard, il écoute uniquement les [**évènements natifs du DOM**](https://developer.mozilla.org/fr/docs/Web/Events). Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
 
   Lorsque des évènements natifs du DOM sont écoutés, la méthode reçoit l'évènement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
+
+  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires évènement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
 
 - **Exemple :**
 
   ```html
   <!-- nom de méthode -->
   <button v-on:click="faireCeci"></button>
-
-  <!-- syntaxe objet (2.4.0+) -->
-  <button v-on="{ mousedown: faireCeci, mouseup: faireCela }"></button>
 
   <!-- ligne d'instruction -->
   <button v-on:click="faireCela('hello', $event)"></button>
@@ -1900,6 +1907,9 @@ type: api
 
   <!-- l'évènement click sera déclenché une seule fois maximum -->
   <button v-on:click.once="faireCeci"></button>
+
+  <!-- syntaxe objet (2.4.0+) -->
+  <button v-on="{ mousedown: faireCeci, mouseup: faireCela }"></button>
   ```
 
   Écouter des évènements personnalisés sur un composant enfant (le gestionnaire est appelé quand `mon-evenement` est émis depuis l'enfant):

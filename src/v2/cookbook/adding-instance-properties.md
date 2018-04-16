@@ -165,7 +165,7 @@ Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela pe
 ```js
 var App = Object.freeze({
   name: 'Mon App',
-  description: '2.1.4',
+  version: '2.1.4',
   helpers: {
     // Ceci est une version purement fonctionnelle
     // de la méthode $reverseText décrite plus haut

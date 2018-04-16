@@ -17,8 +17,8 @@ platinum_sponsors:
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
-  - url: https://www.datacamp.com/careers?utm_source=vuejs&utm_medium=sidebar
-    img: datacamp.png
+  - url: https://vehikl.com/
+    img: vehikl.png
 
 gold_sponsors:
   - url: https://laravel.com
@@ -51,6 +51,12 @@ gold_sponsors:
     img: codepilot.png
   - url: https://teamextension.io/
     img: teamextension.png
+  - url: https://jsguru.io/
+    img: jsguru.png
+  - url: http://aaha.co/
+    img: aaha.png
+  - url: https://www.valuecoders.com
+    img: valuecoders.png
 
 bronze_sponsors:
   - url: http://tighten.co/

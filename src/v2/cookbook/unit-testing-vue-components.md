@@ -162,7 +162,7 @@ describe('Foo', () => {
   // assert the error is rendered
   expect(wrapper.find('.error').exists()).toBeTruthy()
 
-  // update the `username` and assert error is longer rendered
+  // update the `username` and assert error is no longer rendered
   wrapper.setData({ username: 'Lachlan' })
   expect(wrapper.find('.error').exists()).toBeFalsy()
   })
@@ -178,7 +178,7 @@ The below example improves the test by:
 
 - only making one assertion per `it` block
 - having short, clear test descriptions
-- providing only the minimum data requires for the test
+- providing only the minimum data required for the test
 - refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
 
 *Updated test*:

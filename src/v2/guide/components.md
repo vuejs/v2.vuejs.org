@@ -17,9 +17,14 @@ Tous les composants Vue sont également des instances de Vue. Ils acceptent le m
 Nous avons appris dans les sections précédentes que nous pouvions créer une nouvelle instance de Vue avec :
 
 ``` js
-new Vue({
-  el: '#some-element',
-  // options
+// Define a new component called button-counter
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
 })
 ```
 
@@ -62,14 +67,14 @@ Ce qui donnera comme rendu :
 ```
 
 {% raw %}
-<div id="example" class="demo">
-  <my-component></my-component>
+<div id="components-demo" class="demo">
+  <button-counter></button-counter>
 </div>
 <script>
 Vue.component('my-component', {
   template: '<div>Un composant personnalisé !</div>'
 })
-new Vue({ el: '#example' })
+new Vue({ el: '#components-demo' })
 </script>
 {% endraw %}
 
@@ -163,31 +168,34 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-2" class="demo">
-  <simple-counter></simple-counter>
-  <simple-counter></simple-counter>
-  <simple-counter></simple-counter>
+<div id="components-demo2" class="demo">
+  <button-counter></button-counter>
+  <button-counter></button-counter>
+  <button-counter></button-counter>
 </div>
 <script>
-var data = { counter: 0 }
-Vue.component('simple-counter', {
-  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  data: function () {
-    return data
-  }
-})
-new Vue({
-  el: '#example-2'
-})
+new Vue({ el: '#components-demo2' })
 </script>
 {% endraw %}
 
 Puisque nos trois instances de composant partagent le même objet `data`, l'incrémentation d'un compteur les incrémentera tous ! Aie. Corrigeons cela en retournant un nouvel objet de données :
 
-``` js
+### `data` Must Be a Function
+
+When we defined the `<button-counter>` component, you may have noticed that `data` wasn't directly provided an object, like this:
+
+```js
+data: {
+  count: 0
+}
+```
+
+Instead, **a component's `data` option must be a function**, so that each instance can maintain an independent copy of the returned data object:
+
+```js
 data: function () {
   return {
-    counter: 0
+    count: 0
   }
 }
 ```
@@ -195,23 +203,22 @@ data: function () {
 Maintenant tous nos compteurs ont leur propre état interne :
 
 {% raw %}
-<div id="example-2-5" class="demo">
-  <my-component></my-component>
-  <my-component></my-component>
-  <my-component></my-component>
+<div id="components-demo3" class="demo">
+  <button-counter2></button-counter2>
+  <button-counter2></button-counter2>
+  <button-counter2></button-counter2>
 </div>
 <script>
-Vue.component('my-component', {
-  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+var buttonCounter2Data = {
+  count: 0
+}
+Vue.component('button-counter2', {
   data: function () {
-    return {
-      counter: 0
-    }
-  }
+    return buttonCounter2Data
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
 })
-new Vue({
-  el: '#example-2-5'
-})
+new Vue({ el: '#components-demo3' })
 </script>
 {% endraw %}
 
@@ -221,11 +228,9 @@ Les composants sont destinés à être utilisés ensemble, le plus souvent dans 
 
 Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente de props, remontée d'évènements**. Le parent passe les données à l'enfant via les **props**, et l'enfant envoie des messages à son parent via les **évènements**. Voyons comment cela fonctionne ci-dessous.
 
-<p style="text-align: center;">
-  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
-</p>
+For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
 
-## Props
+To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
 
 ### Passer des données avec props
 
@@ -268,7 +273,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### camelCase vs. kebab-case
+Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
 
 Les attributs HTML sont insensibles à la casse, donc quand vous utilisez des templates qui ne sont pas des chaines de caractères, le nom de la prop en camelCase a besoin de son équivalent en kebab-case (délimité par des traits d'union) :
 
@@ -317,10 +322,10 @@ Vous pouvez aussi utiliser la syntaxe abrégée pour `v-bind`:
 Résultat :
 
 {% raw %}
-<div id="demo-2" class="demo">
-  <input v-model="parentMsg">
-  <br>
-  <child v-bind:my-message="parentMsg"></child>
+<div id="blog-post-demo" class="demo">
+  <blog-post1 title="My journey with Vue"></blog-post1>
+  <blog-post1 title="Blogging with Vue"></blog-post1>
+  <blog-post1 title="Why Vue is so fun"></blog-post1>
 </div>
 <script>
 new Vue({
@@ -335,6 +340,7 @@ new Vue({
     }
   }
 })
+new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
@@ -457,13 +463,13 @@ Vue.component('example', {
 
 Le `type` peut être l'un des constructeurs natifs suivants :
 
-- String
-- Number
-- Boolean
-- Function
-- Object
-- Array
-- Symbol
+```html
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:title="post.title"
+></blog-post>
+```
 
 De plus, `type` peut également être une fonction constructeur personnalisée et ainsi l'assertion sera faite avec une vérification `instanceof`.
 
@@ -493,11 +499,11 @@ Imaginez que ceci est un template pour `bs-date-input`:
 
 Pour ajouter un thème spécifique à notre plugin date picker, nous allons avoir besoin d'ajouter une classe, comme cela :
 
-``` html
-<bs-date-input
-  data-3d-date-picker="true"
-  class="date-picker-theme-dark"
-></bs-date-input>
+```html
+<div class="blog-post">
+  <h3>{{ post.title }}</h3>
+  <div v-html="post.content"></div>
+</div>
 ```
 
 Dans ce cas, deux valeurs différentes pour `class` sont définies :
@@ -551,52 +557,15 @@ Vue.component('button-counter', {
 })
 
 new Vue({
-  el: '#counter-event-example',
+  el: '#blog-posts-events-demo',
   data: {
-    total: 0
-  },
-  methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
+    posts: [/* ... */],
+    postFontSize: 1
   }
 })
 ```
 
-{% raw %}
-<div id="counter-event-example" class="demo">
-  <p>{{ total }}</p>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
-  <button-counter v-on:increment="incrementTotal"></button-counter>
-</div>
-<script>
-Vue.component('button-counter', {
-  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
-  data: function () {
-    return {
-      counter: 0
-    }
-  },
-  methods: {
-    incrementCounter: function () {
-      this.counter += 1
-      this.$emit('increment')
-    }
-  }
-})
-new Vue({
-  el: '#counter-event-example',
-  data: {
-    total: 0
-  },
-  methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
-  }
-})
-</script>
-{% endraw %}
+Which can be used in the template to control the font size of all blog posts:
 
 Dans cet exemple, il est important de noter que le composant enfant est toujours complètement découplé de ce qui se passe en dehors de celui-ci. Tout ce qu'il fait, c'est rapporter des informations sur sa propre activité, juste au cas où le composant parent écouterait.
 
@@ -627,16 +596,18 @@ Vue.component('button-message', {
   }
 })
 
-new Vue({
-  el: '#message-event-example',
-  data: {
-    messages: []
-  },
-  methods: {
-    handleMessage: function (payload) {
-      this.messages.push(payload.message)
-    }
-  }
+```js
+Vue.component('blog-post', {
+  props: ['post'],
+  template: `
+    <div class="blog-post">
+      <h3>{{ post.title }}</h3>
+      <button>
+        Enlarge text
+      </button>
+      <div v-html="post.content"></div>
+    </div>
+  `
 })
 ```
 
@@ -717,7 +688,10 @@ this.$emit('update:foo', newValue)
 Le modificateur `.sync` peut aussi être utilisé avec `v-bind` quand il utilise un objet pour affecter plusieurs propriétés en une seule fois :
 
 ```html
-<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
+<blog-post
+  ...
+  v-on:enlarge-text="postFontSize += 0.1"
+></blog-post>
 ```
 
 Cela a pour effet d'ajouter des écouteurs de mise à jour `v-on` sur `foo` et `bar`.
@@ -798,49 +772,46 @@ Vue.component('currency-input', {
 ```
 
 {% raw %}
-<div id="currency-input-example" class="demo">
-  <currency-input v-model="price"></currency-input>
+<div id="blog-posts-events-demo" class="demo">
+  <div :style="{ fontSize: postFontSize + 'em' }">
+    <blog-post
+      v-for="post in posts"
+      v-bind:key="post.id"
+      v-bind:post="post"
+      v-on:enlarge-text="postFontSize += 0.1"
+    ></blog-post>
+  </div>
 </div>
 <script>
-Vue.component('currency-input', {
+Vue.component('blog-post', {
+  props: ['post'],
   template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
-  props: ['value'],
-  methods: {
-    updateValue: function (value) {
-      var formattedValue = value
-        .trim()
-        .slice(
-          0,
-          value.indexOf('.') === -1
-            ? value.length
-            : value.indexOf('.') + 3
-        )
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
-      }
-      this.$emit('input', Number(formattedValue))
-    }
-  }
+    <div class="blog-post">\
+      <h3>{{ post.title }}</h3>\
+      <button v-on:click="$emit(\'enlarge-text\')">\
+        Enlarge text\
+      </button>\
+      <div v-html="post.content"></div>\
+    </div>\
+  '
 })
 new Vue({
-  el: '#currency-input-example',
-  data: { price: '' }
+  el: '#blog-posts-events-demo',
+  data: {
+    posts: [
+      { id: 1, title: 'My journey with Vue', content: '...content...' },
+      { id: 2, title: 'Blogging with Vue', content: '...content...' },
+      { id: 3, title: 'Why Vue is so fun', content: '...content...' }
+    ],
+    postFontSize: 1
+  }
 })
 </script>
 {% endraw %}
 
 L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utilisateurs peuvent toujours saisir plusieurs points et même parfois des lettres (beurk) ! Donc pour ceux qui souhaiteraient voir un exemple non trivial, voici un filtre de devise plus robuste :
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+It's sometimes useful to emit a specific value with an event. For example, we may want the `<blog-post>` component to be in charge of how much to enlarge the text by. In those cases, we can use `$emit`'s 2nd parameter to provide this value:
 
 ### Personnalisation de composant avec `v-model`
 
@@ -952,7 +923,7 @@ Vue.component('child-component', {
       someChildProperty: true
     }
   }
-})
+}
 ```
 
 De façon similaire, le contenu distribué sera compilé dans la portée parente.
@@ -1160,14 +1131,10 @@ Si vous préférez, vous pouvez aussi les lier directement à des composants obj
 var Home = {
   template: '<p>Bienvenue chez toi !</p>'
 }
+</style>
+{% endraw %}
 
-var vm = new Vue({
-  el: '#example',
-  data: {
-    currentView: Home
-  }
-})
-```
+Fortunately, this task is made very simple by Vue's custom `<slot>` element:
 
 ### `keep-alive`
 
@@ -1271,9 +1238,15 @@ Quand vous utilisez une [inscription locale](components.html#Local-Registration)
 
 ``` js
 new Vue({
-  // ...
-  components: {
-    'my-component': () => import('./my-async-component')
+  el: '#dynamic-component-demo',
+  data: {
+    currentTab: 'Home',
+    tabs: ['Home', 'Posts', 'Archive']
+  },
+  computed: {
+    currentTabComponent: function () {
+      return 'tab-' + this.currentTab.toLowerCase()
+    }
   }
 })
 ```
@@ -1341,26 +1314,28 @@ components: {
   camelCasedComponent: { /* ... */ },
   PascalCasedComponent: { /* ... */ }
 }
-```
+.dynamic-component-demo-tab-button-active {
+  background: #e0e0e0;
+}
+.dynamic-component-demo-tab {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+</style>
+{% endraw %}
 
-``` html
-<kebab-cased-component></kebab-cased-component>
+The above is made possible by Vue's `<component>` element with the `is` special attribute:
 
-<camel-cased-component></camel-cased-component>
-<camelCasedComponent></camelCasedComponent>
-
-<pascal-cased-component></pascal-cased-component>
-<pascalCasedComponent></pascalCasedComponent>
-<PascalCasedComponent></PascalCasedComponent>
+```html
+<!-- Component changes when currentTabComponent changes -->
+<component v-bind:is="currentTabComponent"></component>
 ```
 
 Cela signifie que la PascalCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
 
 Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'autofermeture `/` après le nom :
 
-``` html
-<my-component/>
-```
+See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
 
 Encore une fois, cela fonctionne _seulement_ dans les templates sous forme de chaine de caractères. Les éléments autofermants ne sont pas du HTML valide et l'analyseur HTML natif de votre navigateur ne le comprendra pas.
 
@@ -1368,9 +1343,7 @@ Encore une fois, cela fonctionne _seulement_ dans les templates sous forme de ch
 
 Les composants peuvent s'invoquer récursivement dans leur propre template. Cependant, ils peuvent uniquement le faire avec l'option `name` :
 
-``` js
-name: 'unique-name-of-my-component'
-```
+This will lead to issues when using components with elements that have such restrictions. For example:
 
 Quand vous inscrivez un composant de manière globale en utilisant `Vue.component`, l'ID global est automatiquement défini en tant qu'option `name` du composant.
 
@@ -1394,21 +1367,17 @@ Un composant comme celui ci-dessus conduira à une erreur « taille maximale de 
 Imaginons que vous construisiez une arborescence de fichiers, comme Finder ou File Explorer. Vous pouvez avoir un composant `tree-folder` avec ce template :
 
 ``` html
-<p>
-  <span>{{ folder.name }}</span>
-  <tree-folder-contents :children="folder.children"/>
-</p>
+<table>
+  <blog-post-row></blog-post-row>
+</table>
 ```
 
 Puis un composant `tree-folder-contents` avec ce template :
 
 ``` html
-<ul>
-  <li v-for="child in children">
-    <tree-folder v-if="child.children" :folder="child"/>
-    <span v-else>{{ child.name }}</span>
-  </li>
-</ul>
+<table>
+  <tr is="blog-post-row"></tr>
+</table>
 ```
 
 En regardant attentivement, vous verrez que ces composants seront en fait l'ancêtre _et_ le descendant l'un de l'autre dans l'arbre de rendu — un paradoxe ! Quand vous inscrivez un composant de manière globale avec `Vue.component`, ce paradoxe est résolu pour vous automatiquement. Si c'est votre cas, vous pouvez arrêter de lire ici.

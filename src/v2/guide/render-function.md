@@ -139,7 +139,7 @@ La seconde chose à laquelle vous allez devoir vous familiariser est la manière
 createElement(
   // {String | Object | Function}
   // Un nom de balise HTML, des options de composant, ou une fonction
-  // retournant l'un des deux. Requis.
+  // asynchrone retournant l'un des deux. Requis.
   'div',
 
   // {Object}
@@ -499,18 +499,18 @@ Pour plus d'informations sur comment utiliser JSX dans du JavaScript, référez-
 
 Le composant de titre ancré que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, n'observe aucun état qu'on lui passe, et il n'a pas de méthodes de cycle de vie. Non, ce n'est qu'une simple fonction avec quelques props.
 
-Dans des cas comme celui-ci, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
+Dans des cas comme celui-ci, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans [`data` réactive](../api/#Options-Data)) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un **composant fonctionnel** ressemble à ça :
 
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Les props sont optionnelles
+  props: {
+    // ...
+  },
   // Pour compenser le manque d'instance,
   // nous pouvons maintenant fournir en second argument un contexte.
   render: function (createElement, context) {
-    // ...
-  },
-  // Les props sont optionnelles
-  props: {
     // ...
   }
 })
@@ -530,7 +530,7 @@ Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un
 - `props` : un objet avec les props fournies,
 - `children` : un tableau de VNode enfants,
 - `slots` : une fonction retournant un objet de slots,
-- `data` : l'objet de données (`data`) complet passé au composant,
+- `data` : l'[objet de données](#The-Data-Object-In-Depth) (`data`) complet passé au composant en tant que second argument de `createElement`,
 - `parent` : une référence au composant parent,
 - `listeners` : (2.3.0+) un objet contenant les écouteurs d'évènement enregistrés dans le parent. C'est un simple alias de `data.on`,
 - `injections` : (2.3.0+) si vous utilisez l'option [`inject`](../api/#provide-inject), cela va contenir les injections résolues.
@@ -554,6 +554,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -570,13 +577,6 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
 ```
