@@ -10,7 +10,7 @@ order: 106
 
 ## Element & Component Access
 
-<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>In most cases, it's best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.</p>
+<p>Cette page est en cours de traduction mais vous pouvez en trouver une ancienne version <a href="https://fr.vuejs.org/v2/guide/components.html">ici</a>. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>In most cases, it's best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.</p>
 
 ### Accessing the Root Instance
 

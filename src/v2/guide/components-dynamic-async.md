@@ -8,7 +8,7 @@ order: 105
 
 ## `keep-alive` with Dynamic Components
 
-<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>Earlier, we used the `is` attribute to switch between components in a tabbed interface:</p>
+<p>Cette page est en cours de traduction mais vous pouvez en trouver une ancienne version <a href="https://fr.vuejs.org/v2/guide/components.html">ici</a>. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>Earlier, we used the `is` attribute to switch between components in a tabbed interface:</p>
 
 ```html
 <component v-bind:is="currentTabComponent"></component>
