@@ -1,38 +1,45 @@
 ---
-title: Introduction
+title: Pengenalan
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Apa itu Vue.js ?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (diucap /vjuː/, seperti **view**) adalah sebuah **progressive framework** untuk membangun tampilan antarmuka (UI). Tidak seperti framework lainnya, Vue dirancang/didesain dari dasar agar bisa diadopsi dengan mudah. Pada bagian inti Vue sendiri hanya fokus pada bagian `View` saja, dan Vue juga sangat mudah untuk diintergrasikan dengan library atau proyek-proyek yang telah ada. Di sisi lain, Vue juga sangat bagus untuk mebuat Single-Page Applications ketika dikombinasikan dengan [alat bantu modern](single-file-components.html) dan [pustaka-pustaka pendukung](https://github.com/vuejs/awesome-vue#components--libraries).
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Jika kamu ingin tahu tentang Vue sebelum lanjut, kami telah <a id="modal-player"  href="#">membuat sebuah video</a> tentang gambaran besar, prinsip utama, dan contoh proyek Vue.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Jika Anda adalah front-end developer yang sudah berpengalaman dan ingin tahu perbandingan Vue dengan library atau framework lainnya, silahkan lihat di bagian [Perbandingan dengan framework lain](comparison.html).
 
-## Getting Started
+## Ayo Mulai Belajar
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">
+Panduan ini menganggap Anda telah memiliki sedikit pengetahuan akan HTML, CSS, dan JavaScript tingkat lanjut.
+Jika Anda masih baru di dunia frontend development, ini bukanlah cara yang baik untuk Anda langsung belajar tentang framework sebagai langkah awal Anda - disarankan agar Anda pelajari dulu dasar-dasar front-end lalu kembali lagi untuk pelajari Vue !
+Pengalaman Anda dengan framework lain mungkin bisa membantu, tapi itu tidak membantu Anda banyak dalam pelajari Vue.js.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">create an <code>index.html</code> file</a> and include Vue with:
+Cara termudah untuk mencoba dan bermain-main dengan Vue.js adalah dengan mencoba [Contoh Hello World di JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). 
+Jangan ragu untuk buka link tersebut dan ikuti contoh-contoh dasar selama kita belajar. Atau, Anda bisa
+<a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">buat file <code>index.html</code></a> lalu sisipkan Vue dengan cara berikut  :
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- versi pengembangan, berisi console peringatan yang sangat membantu -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+atau :
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- versi produksi, dioptimalkan untuk ukuran file dan kecepatan -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+Halaman [Instalasi](installation.html) menjelaskan banyak pilihan-pilihan lainnya untuk menginstal Vue. Catatan: Kami tidak merekomendasikan bagi pemula untuk memulai dengan `vue-cli`, apa lagi jika Anda belum terbiasa menggunakan build tool yang ada di Node.js.
+
 
 ## Declarative Rendering
+
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
