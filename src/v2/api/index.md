@@ -330,6 +330,8 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
+- **참고:** [필터](../guide/filters.html)
+
 ### Vue.component( id, [definition] )
 
 - **전달인자:**
