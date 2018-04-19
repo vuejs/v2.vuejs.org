@@ -24,7 +24,7 @@ new Vue({
   },
   computed: {
     bar: function () { /* ... */ }
-  }
+  },
   methods: {
     baz: function () { /* ... */ }
   }
