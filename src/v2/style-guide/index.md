@@ -1,5 +1,5 @@
 ---
-title: Style Guide
+title: Conventions
 type: style-guide
 ---
 
