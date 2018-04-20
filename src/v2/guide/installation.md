@@ -160,6 +160,16 @@ Add to your project's `package.json`:
 }
 ```
 
+#### Parcel
+Add to your project's `package.json`:
+``` js
+{
+    "alias": {
+        "vue" : "./node_modules/vue/dist/vue.common.js"
+    }
+}
+```
+
 ### Development vs. Production Mode
 
 Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
