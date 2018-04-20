@@ -22,7 +22,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 
 ``` html
 <div class="static"
-     v-bind:class="{ active: isActive, 'text-danger': hasError }">
+     v-bind:class="{ active: isActive, text-danger: hasError }">
 </div>
 ```
 
