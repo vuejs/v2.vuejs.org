@@ -13,7 +13,7 @@ Memory leaks in Vue applications do not typically come from Vue itself, rather t
 
 The following example shows a memory leak caused by using the [Choices.js](https://github.com/jshjohnson/Choices) library in a Vue component and not properly cleaning it up. Later, we will show how to remove the Choices.js footprint and avoid the memory leak.
 
-In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](https://vuejs.org/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the v-if directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak. 
+In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the v-if directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak. 
 
 ```html
 <link rel='stylesheet prefetch' href='https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3'>
@@ -28,7 +28,7 @@ In the example below, we load up a select with a lot of options and then we use 
 </div>
 ```
 ```js
-const app = new Vue({
+new Vue({
   el: "#app",
   data: function () {
     return {
@@ -78,7 +78,7 @@ In the above example, we can use our `hide()` method to do some clean up and sol
 Check the memory usage again with this [updated CodePen example](https://codepen.io/freeman-g/pen/mxWMor).
 
 ```js
-const app = new Vue({
+new Vue({
   el: "#app",
   data: function () {
     return {
@@ -129,15 +129,38 @@ Consider the types of devices your users may be using and what their normal flow
 
 ## Real-World Example
 
-In the above example, we used a `v-if` directive to illustrate the memory leak, but a more common real-world example happens when using [vue-router](https://router.vuejs.org/en/) to route to components in a Single Page Application.
+In the above example, we used a `v-if` directive to illustrate the memory leak, but a more common real-world scenario happens when using [vue-router](https://router.vuejs.org/en/) to route to components in a Single Page Application.
 
-Just like the v-if directive, vue-router removes elements from the virtual DOM and replaces those with new elements when a user navigates around your application. The Vue `beforeDestroy()` [lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram) is a good place to solve the same sort of issue in a vue-router based application.
+Just like the `v-if` directive, `vue-router` removes elements from the virtual DOM and replaces those with new elements when a user navigates around your application. The Vue `beforeDestroy()` [lifecycle hook](/v2/guide/instance.html#Lifecycle-Diagram) is a good place to solve the same sort of issue in a `vue-router` based application.
 
 We could move our clean up into the `beforeDestroy()` hook like this:
 
 ```js
 beforeDestroy: function () {
     this.choicesSelect.destroy()
+}
+```
+
+## Alternative Patterns
+
+We have discussed managing memory when removing elements, but what if you intentionally want to preserve state and keep elements in memory? In this case, you can use the built-in component [keep-alive](/v2/api/#keep-alive).
+
+When you wrap a component with `keep-alive`, its state will be preserved and therefore kept in memory.
+
+```html
+<button @click="show = false">Hide</button>
+<keep-alive>
+  <!-- my-component will be intentionally kept in memory even when removed -->
+  <my-component v-if="show"></my-component>
+</keep-alive>
+```
+This technique can be useful to improve user experience. For example, imagine a user starts entering comments into a text input and then decides to navigate away. If the user then navigated back, their comments would still be preserved.
+
+Once you use keep-alive, then you have access to two more lifecycle hooks: `activated` and `deactivated`. If you do want to clean up or change data when a keep-alive component is removed, you can do so in the `deactivated` hook.
+
+```js
+deactivated: function () {
+  // remove any data you do not want to keep alive
 }
 ```
 
