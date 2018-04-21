@@ -66,9 +66,9 @@ While both `:key` methods work, there are some drawbacks to each one. Lets start
 <router-view :key="$route.fullPath"></router-view>
 ```
 
-The `$route.fullPath` returns the full url including the query e.g. `/orders?page=2&filter=search`, so what happens when you visit from `/orders` to `/orders?page=1`? The page is recreated with new instances of components and the data is reloaded, yet the route is technically the same as before. At this point the only possible workaround would be to cache the results using something like [VueX](https://vuex.vuejs.org) or plain object. We could use `$route.path` as a `key`, but this will require introducing a watcher and handling query changes which sometimes can be difficult and unexpected side effects if implemented incorrectly. There are more examples why `:key` on the `router-view` could introduce more reloads than necessary which we'll cover further.
+The `$route.fullPath` returns the full url including the query e.g. `/orders?page=2&filter=search`, so what happens when you go or visit `/orders?page=1` from `/orders`? The page is recreated with new instances of components and the data is reloaded, yet the route is technically the same as before. At this point the only possible workaround would be to cache the results using something like [Vuex](https://vuex.vuejs.org) or a plain object. We could use `$route.path` as a `key`, but this will require introducing a watcher and handling query changes which sometimes can be difficult and unexpected side effects if not implemented correctly.
 
-Next we have the watch `$route` path without `key` on `router-view`. This gives us more freedom when to reload the data, but it also mean we have to handle it manually. Taking the `/orders` to `/orders?page=1` example, you now can decide if the page query parameter really changed and when to reload the data:
+Other option we have is the `<router-view>` without a `key`. This gives us more freedom to choose when to reload the data, but it also mean we have to decide when it should take place. Taking the `/orders` to `/orders?page=1` example, we can now determine if the `page` query parameter really changed before attempting to reload the data:
 
 ```js
 $route(to, from) {
@@ -76,14 +76,14 @@ $route(to, from) {
     // Page did not change
     return;
   } else if (to.query.page && !from.query.page) {
-    // We went from /orders to /order?page=#
+    // We went from /orders to /orders?page=#
     
     if (to.query.page === '1') {
 	  // Technically the same page
 	  return;
     }
     
-    // We have something like /order?page=2
+    // We have something like /orders?page=2
     this.loadData();
   } else {
     // Our current page and previous page doesn't match
@@ -92,7 +92,7 @@ $route(to, from) {
 }
 ```
 
-<p class="tip">Note! All values in `$route.query` are stored as a `string`.</p>
+<p class="tip">All values in `$route.query` are stored as Strings.</p>
 
 While the snippet could be optimized, it's still quite something just for a `page` query parameter, imagine how it would grow if you have 2 or more similar fields or `page` parameter should reset to `1` when `filter` is changed.
 
