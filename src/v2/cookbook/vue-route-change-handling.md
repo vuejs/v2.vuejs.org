@@ -373,4 +373,4 @@ In this instance, if the user got here through a bookmark or new tab, then there
 This should provide you with some insights and ideas on how something like this could be solved.
 
 ## Summary
-All solutions come back to the simple term `it depends`. Every application has different needs, different structure and requirements, for example maybe the route is being tracked in VueX; maybe component data is loaded/resolved before the page transition happens... there are endless factors that determine what tools and approach we use to achieve our goal and they should be chosen depending on those factors.
+All solutions come back to the simple term `it depends`. Every application has different needs, different structure and requirements, for example maybe the route is being tracked in Vuex; maybe component data is loaded/resolved before the page transition happens... there are endless factors that determine what tools and approach we use to achieve our goal and they should be chosen depending on those factors.
