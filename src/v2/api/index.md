@@ -1031,6 +1031,7 @@ type: api
 - **Example:**
 
   ``` js
+  // parent component providing 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1038,6 +1039,7 @@ type: api
     // ...
   }
 
+  // child component injecting 'foo'
   var Child = {
     inject: ['foo'],
     created () {
