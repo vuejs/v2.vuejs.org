@@ -62,9 +62,11 @@ Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly 
 
 ``` bash
 # install vue-cli
-$ npm install --global vue-cli
-# create a new project using the "webpack" template
-$ vue init webpack my-project
+$ npm install -g @vue/cli
+# or
+$ yarn global add @vue/cli
+# create a new project
+$ vue create my-project
 # install dependencies and go!
 $ cd my-project
 $ npm run dev
