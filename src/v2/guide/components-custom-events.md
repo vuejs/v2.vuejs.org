@@ -128,7 +128,7 @@ Vue.component('base-input', {
 })
 ```
 
-Now the `<base-input>` component is a **fully transparent wrapper**, meaning it can be used exactly like a normal `<input>` element: all the same attributes and listeners will work.
+Now the `<base-input>` component is a **fully transparent wrapper**, meaning it can be used exactly like a normal `<input>` element: all the same attributes and listeners will work, without the `.native` modifier.
 
 ## `.sync` Modifier
 
