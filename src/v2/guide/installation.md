@@ -170,7 +170,15 @@ CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV
 
 #### Webpack
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+In Webpack 4+, you can use the `mode` option:
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
