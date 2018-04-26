@@ -203,4 +203,4 @@ Starting in 2.3.0+ you can provide an array of multiple (prefixed) values to a s
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+This will only render the first value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
