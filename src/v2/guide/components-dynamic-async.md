@@ -1,5 +1,5 @@
 ---
-title: Composants dynamiques & async
+title: Composants dynamiques et asynchrones
 type: guide
 order: 105
 ---
@@ -199,7 +199,7 @@ Désormais, l'onglet _Posts_ conserve son état (le post sélectionné) même lo
 
 Pour plus de détails sur `<keep-alive>`, consultez la [référence API](../api/#keep-alive).
 
-## Composants async
+## Composants asynchrones
 
 Dans de grosses applications, nous pouvons avoir besoin de diviser l'application en morceaux plus petits et charger un composant depuis le serveur seulement lorsque celui-ci est requis. Pour rendre cela plus facile, Vue vous permet de définir un composant en tant que fonction usine qui va résoudre de façon asynchrone la définition de votre composant. Vue déclenchera la fonction usine seulement lorsque le rendu du composant est nécessaire, et mettra en cache le résultat pour les futurs nouveaux rendus. Par exemple :
 
@@ -214,23 +214,23 @@ Vue.component('exemple-async', function (resolve, reject) {
 })
 ```
 
-Comme vous pouvez le voir, la fonction usine reçoit en paramètre `resolve`, une fonction de rappel (*callback*) qui sera appelée lorsque vous aurez récupéré la définition du composant depuis le serveur. Vous pouvez également appeler `reject(raison)` pour indiquer que le chargement a échoué pour une certaine raison. Le `setTimeout` est là en guise de démonstration ; à vous de décider comment vous souhaitez récupérer le composant. Une approche recommandée est d'utiliser les composants async conjointement avec la [fonctionnalité de découpage de code de Webpack](https://webpack.js.org/guides/code-splitting/):
+Comme vous pouvez le voir, la fonction usine reçoit en paramètre `resolve`, une fonction de rappel (*callback*) qui sera appelée lorsque vous aurez récupéré la définition du composant depuis le serveur. Vous pouvez également appeler `reject(raison)` pour indiquer que le chargement a échoué pour une certaine raison. Le `setTimeout` est là en guise de démonstration ; à vous de décider comment vous souhaitez récupérer le composant. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec la [fonctionnalité de découpage de code de webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('exemple-webpack-async', function (resolve) {
-  // Cette syntaxe spéciale `require` indique à Webpack de
+  // Cette syntaxe spéciale `require` indique à webpack de
   // diviser automatiquement votre code en sortie en paquets
   // qui seront chargés via des requêtes AJAX.
   require(['./mon-composant-async'], resolve)
 })
 ```
 
-Vous pouvez également retourner une `Promise` dans la fonction usine, ainsi avec Webpack 2 et la syntaxe ES2015 vous pourrez écrire :
+Vous pouvez également retourner une `Promise` dans la fonction usine, ainsi avec webpack 2 et la syntaxe ES2015 vous pourrez écrire :
 
 ``` js
 Vue.component(
   'exemple-webpack-async',
-  // La fonction `import` retourne une Promise.
+  // La fonction `import` retourne une `Promise`.
   () => import('./mon-composant-async')
 )
 ```
@@ -246,17 +246,17 @@ new Vue({
 })
 ```
 
-<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et souhaitez utiliser les composants async, son créateur a malheureusement [été très clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone n'est pas quelque-chose que Browserify supportera un jour. Officiellement du moins. La communauté Browserify a trouvé [quelques solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent s'avérer utiles pour les applications complexes existantes. Pour tous les autres scénarios, nous recommandons d'utiliser Webpack pour un support natif et de première classe de l'asynchrone.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et souhaitez utiliser les composants asynchrones, son créateur a malheureusement [été très clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone n'est pas quelque-chose que Browserify supportera un jour. Officiellement du moins. La communauté Browserify a trouvé [quelques solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent s'avérer utiles pour les applications complexes existantes. Pour tous les autres scénarios, nous recommandons d'utiliser webpack pour un support natif et de première classe de l'asynchrone.</p>
 
 ### Gérer l'état de chargement
 
 > Nouveauté de la 2.3.0+
 
-La fabrique de composants async peut aussi retourner un objet avec le format suivant :
+La fabrique de composants asynchrones peut aussi retourner un objet avec le format suivant :
 
 ``` js
 const AsyncComponent = () => ({
-  // Le composant à charger (doit être une Promise)
+  // Le composant à charger (doit être une `Promise`)
   component: import('./MonComposant.vue'),
   // Un composant à utiliser pendant que le composant asynchrone se charge
   loading: LoadingComponent,
