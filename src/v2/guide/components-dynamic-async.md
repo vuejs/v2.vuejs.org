@@ -214,7 +214,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-就像你看到的那样，工厂函数接收一个 `resolve` 回调函数，在从服务器获取到组件定义对象时，会调用此回调函数。也可以调用 `reject(reason)` 来表明加载失败。这里的 `setTimeout` 只是为了用于演示；如果获取组件定义对象，取决于你的实际情况。使用异步组件，比较推荐的方式shi 配合 [webpack 代码分离功能](https://doc.webpack-china.org/guides/code-splitting/)
+就像你看到的那样，工厂函数接收一个 `resolve` 回调函数，在从服务器获取到组件定义对象时，会调用此回调函数。也可以调用 `reject(reason)` 来表明加载失败。这里的 `setTimeout` 只是为了用于演示；如果获取组件定义对象，取决于你的实际情况。使用异步组件，比较推荐的方式是配合 [webpack 代码分离功能](https://doc.webpack-china.org/guides/code-splitting/)
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
