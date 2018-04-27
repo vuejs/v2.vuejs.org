@@ -161,12 +161,15 @@ Add to your project's `package.json`:
 ```
 
 #### Parcel
+
 Add to your project's `package.json`:
+
 ``` js
 {
-    "alias": {
-        "vue" : "./node_modules/vue/dist/vue.common.js"
-    }
+  // ...
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
+  }
 }
 ```
 
