@@ -6,18 +6,18 @@ order: 2
 
 ## Apa itu Vue.js ?
 
-Vue (diucap /vjuː/, seperti **view**) adalah sebuah **progressive framework** untuk membangun tampilan antarmuka (UI). Tidak seperti framework lainnya, Vue dirancang/didesain dari dasar agar bisa diadopsi dengan mudah. Pada bagian inti Vue sendiri hanya fokus pada bagian `View` saja, dan Vue juga sangat mudah untuk diintergrasikan dengan library atau proyek-proyek yang telah ada. Di sisi lain, Vue juga sangat bagus untuk mebuat Single-Page Applications ketika dikombinasikan dengan [alat bantu modern](single-file-components.html) dan [pustaka-pustaka pendukung](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (diucap /vjuː/, seperti **view**) adalah sebuah **progressive framework** untuk membangun tampilan antarmuka (UI). Tidak seperti framework lainnya, Vue dirancang/didesain agar bisa diadopsi dan beradaptasi dengan mudah. Pada bagian inti Vue sendiri hanya fokus pada bagian `View` saja, dan Vue juga sangat mudah untuk diintergrasikan dengan library atau proyek-proyek yang telah ada. Di sisi lain, Vue juga sangat bagus untuk membuat Single-Page Applications yang dikombinasikan dengan [Komponen Vue](single-file-components.html) dan [pustaka-pustaka pendukung Vue](https://github.com/vuejs/awesome-vue#components--libraries).
 
-Jika kamu ingin tahu tentang Vue sebelum lanjut, kami telah <a id="modal-player"  href="#">membuat sebuah video</a> tentang gambaran besar, prinsip utama, dan contoh proyek Vue.
+Jika Anda ingin tahu tentang Vue sebelum kita lanjut, kami telah <a id="modal-player"  href="#">membuat sebuah video</a> tentang gambaran besar, prinsip utama, dan contoh-contoh proyek Vue.
 
-Jika Anda adalah front-end developer yang sudah berpengalaman dan ingin tahu perbandingan Vue dengan library atau framework lainnya, silahkan lihat di bagian [Perbandingan dengan framework lain](comparison.html).
+Jika Anda adalah seorang front-end developer yang sudah berpengalaman dan ingin tahu bagaimana perbandingan antara Vue dengan library atau framework lainnya, silahkan lihat pada bagian [Perbandingan Vue dengan framework lain](comparison.html).
 
 ## Ayo Mulai Belajar
 
 <p class="tip">
 Panduan ini menganggap Anda telah memiliki sedikit pengetahuan akan HTML, CSS, dan JavaScript tingkat lanjut.
-Jika Anda masih baru di dunia frontend development, ini bukanlah cara yang baik untuk Anda langsung belajar tentang framework sebagai langkah awal Anda - disarankan agar Anda pelajari dulu dasar-dasar front-end lalu kembali lagi untuk pelajari Vue !
-Pengalaman Anda dengan framework lain mungkin bisa membantu, tapi itu tidak membantu Anda banyak dalam pelajari Vue.js.</p>
+Jika Anda masih baru dalam dunia frontend development, ini bukanlah suatu cara yang baik jika Anda langsung belajar tentang framework sebagai langkah awal Anda - kami sarankan agar Anda mempelajari dulu dasar-dasar front-end lalu kembali lagi untuk pelajari Vue!
+Mungkin pengalaman Anda dengan framework lain mungkin bisa membantu, tapi itu tidak membantu Anda banyak dalam pelajari Vue.js.</p>
 
 Cara termudah untuk mencoba dan bermain-main dengan Vue.js adalah dengan mencoba [Contoh Hello World di JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). 
 Jangan ragu untuk buka link tersebut dan ikuti contoh-contoh dasar selama kita belajar. Atau, Anda bisa
@@ -35,50 +35,53 @@ atau :
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-Halaman [Instalasi](installation.html) menjelaskan banyak pilihan-pilihan lainnya untuk menginstal Vue. Catatan: Kami tidak merekomendasikan bagi pemula untuk memulai dengan `vue-cli`, apa lagi jika Anda belum terbiasa menggunakan build tool yang ada di Node.js.
+Pada Halaman [Instalasi](installation.html) akan menjelaskan banyak pilihan-pilihan lainnya untuk menginstal Vue. 
+
+Catatan: Kami tidak merekomendasikan bagi pemula untuk memulai dengan `vue-cli`, apa lagi jika Anda belum terbiasa menggunakan build tool yang ada di Node.js.
 
 
 ## Declarative Rendering
 
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Di dalam sistem Core Vue.js, Vue.js membolehkan kita untuk me-render data ke DOM dengan sintaks template yang deklaratif :
 
 ``` html
 <div id="app">
-  {{ message }}
+  {{ pesan }}
 </div>
 ```
 ``` js
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    pesan: 'Halo Vue!'
   }
 })
 ```
-{% raw %}
+``` html
 <div id="app" class="demo">
-  {{ message }}
+  {{ pesan }}
 </div>
 <script>
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    pesan: 'Halo Vue!'
   }
 })
 </script>
-{% endraw %}
+```
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Kita telah membuat aplikasi Vue pertama kita! Ini sangat mirip dengan me-render template string, tapi Vue telah menyelesaikan banyak tugas di belakang layar.
+Data dan DOM kini sudah tertaut, dan sekarang semua sudah **reactive**. Bagaimana kita tahu? Buka konsol javascript browser Anda (sekarang, di halaman ini) dan ubah `app.pesan` dengan nilai yang berbeda. Anda akan melihat contoh di atas akan ter-update juga.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Tambahan untuk interpolasi teks, kita juga dapat bind`('menimpa'/'menggantikan')` atribut dari sebuah elemen HTML seperti ini:
 
 ``` html
 <div id="app-2">
-  <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+  <span v-bind:title="pesan">
+    Arahkan mouse di sini beberapa detik
+    untuk melihat attribut judul dinamis yang baru!
   </span>
 </div>
 ```
@@ -86,37 +89,38 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    pesan: 'Halaman ini dimuat pada ' + new Date().toLocaleString()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
-  <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  <span v-bind:title="pesan">
+    Arahkan mouse di sini beberapa detik untuk melihat attribut judul dinamis yang baru!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    pesan: 'Halaman ini dimuat pada ' + new Date().toLocaleString()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Anda telah mendapat sebuah pelajaran baru. Atribut `v-bind` yang baru saja Anda lihat itu disebut **directive**. `Directive` diawali dengan `v-` untuk mengindikasikan bahwa atribut2 itu adalah atribut2 spesial yang disediakan oleh Vue, dan seperti yang Anda kira, mereka menerapkan special reactive behavior pada DOM. Di sini, seperti Anda memerintahkan "Pastikan nilai atribut `title` pada elemen ini up-to-date sesuai dengan nilai properti `pesan` pada Vue instance".
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Jika Anda membuka konsol javascript Anda dan mengetik `app2.pesan = 'sebuah pesan baru'`, Anda akan melihat lagi HTML bound - dalam kasus ini atribut `title` - telah ter-update
+<!-- If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated. -->
 
-## Conditionals and Loops
+## Kondisional and Perulangan
 
 It's easy to toggle the presence of an element, too:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="terlihat">Sekarang Anda melihat Saya</span>
 </div>
 ```
 
@@ -124,20 +128,20 @@ It's easy to toggle the presence of an element, too:
 var app3 = new Vue({
   el: '#app-3',
   data: {
-    seen: true
+    terlihat: true
   }
 })
 ```
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="terlihat">Sekarang Anda melihat Saya</span>
 </div>
 <script>
 var app3 = new Vue({
   el: '#app-3',
   data: {
-    seen: true
+    terlihat: true
   }
 })
 </script>
