@@ -170,12 +170,14 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Same API as `v-bind:class`, accepting either
+  // a string, object, or array of strings and objects.
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Same API as `v-bind:style`, accepting either
+  // a string, object, or array of objects.
   style: {
     color: 'red',
     fontSize: '14px'
