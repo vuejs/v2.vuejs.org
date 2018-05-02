@@ -22,7 +22,7 @@ Here's an example of a file we'll call `Hello.vue`:
 ``` html
 <!-- Hello.vue -->
 <template>
-  <p>{{ greeting }} Wordl!</p>
+  <p>{{ greeting }} World!</p>
 </template>
 
 <script>
