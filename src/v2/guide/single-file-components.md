@@ -19,7 +19,29 @@ All of these are solved by **single-file components** with a `.vue` extension, m
 
 Here's an example of a file we'll call `Hello.vue`:
 
-<img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
+``` html
+<!-- Hello.vue -->
+<template>
+  <p>{{ greeting }} World!</p>
+</template>
+
+<script>
+  module.exports = {
+    data: function () {
+      return {
+        greeting: 'Hello'
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  p {
+    font-size: 2em;
+    text-align: center;
+  }
+</style>
+```
 
 Now we get:
 
@@ -29,7 +51,32 @@ Now we get:
 
 As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
+``` html
+<!-- Hello.vue -->
+<template lang="jade">
+  div
+    p {{ greeting }} World!
+    other-component
+</template>
+
+<script>
+  import OtherComponent from `./OtherComponent.vue`
+  
+  export default {
+    data () {
+      return {
+        greeting: 'Hello'
+      }
+    }
+  }
+</script>
+
+<style lang="stylus" scoped>
+  p
+    font-size 2em
+    text-align center
+</style>
+```
 
 These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
 
