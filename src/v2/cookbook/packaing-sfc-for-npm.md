@@ -8,7 +8,7 @@ order: 10
 
 Vue components by nature are meant to be re-used. This is easy when the component is only used within a single application. But how can you write a component once and use it in multiple sites/applications? Perhaps the easiest solution is via npm.
 
-By packaging your component to be shared via npm, it can be imported/required into a build process for use full-fledged web applications:
+By packaging your component to be shared via npm, it can be imported/required into a build process for use in full-fledged web applications:
 
 ```js
 import MyComponent from 'my-component';
@@ -33,15 +33,15 @@ Or even used via `<script>` tag in the browser directly:
 
 Not only does this help you avoid copy/pasting components around, but it also allows you to give back to the Vue community!
 
-## Can't I Just Share .vue Files Directly?
+## Can't I Just Share `.vue` Files Directly?
 
 Vue already allows components to be written as a single file. Because a Single File Component (SFC) is already just one file, you might ask:
 
-> "Why can't people use my .vue file directly? Isn't that the simplest way to share components?"
+> "Why can't people use my `.vue` file directly? Isn't that the simplest way to share components?"
 
-It's true, you could share .vue files directly, and as long as the [Vue build](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) being used contains the Vue compiler, that would be enough. For example, string concatenation is used as an optimization in the SSR build, so the .vue file might be preferred in this scenario (see [Packaging Components for npm > SSR Usage](#SSR-Usage) for details). But this excludes anyone who wishes to use the component directly in a browser via `<script>` tag, anyone who uses a runtime-only build, or a build process which doesn't understand what to do with .vue files.
+It's true, you can share `.vue` files directly, and anyone using a [Vue build](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) containing the Vue compiler can consume it immediately. Also, the SSR build uses string concatenation as an optimization, so the `.vue` file might be preferred in this scenario (see [Packaging Components for npm > SSR Usage](#SSR-Usage) for details). However, this excludes anyone who wishes to use the component directly in a browser via `<script>` tag, anyone who uses a runtime-only build, or build processes which don't understand what to do with `.vue` files.
 
-Properly packaging your SFC for distribution via npm enables your component to be shared in a way which is ready to use directly in the browser as well as in most build processes!
+Properly packaging your SFC for distribution via npm enables your component to be shared in a way which is ready to use everywhere!
 
 ## Packaging Components for npm
 
@@ -59,7 +59,7 @@ dist/
 
 ### How does npm know which version to serve to a browser/build process?
 
-The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`), and provide access to the .vue file itself using the `browser` field. A sample package.json would look like this:
+The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`), and provide access to the `.vue` file itself using the `browser` field. A sample package.json would look like this:
 
 ```json
 {
@@ -79,15 +79,15 @@ When webpack 2+, Rollup, or other modern build tools are used, they will pick up
 
 ### SSR Usage
 
-You might have noticed something interesting - browsers aren't going to be using the `browser` version! That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the .vue file itself. For example:
+You might have noticed something interesting - browsers aren't going to be using the `browser` version! That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the `.vue` file itself. For example:
 
 ```js
 import MyComponent from 'my-component/sfc'; // Note the '/sfc'
 ```
 
-Compatible bundlers see the `browser` definition in package.json and translate requests for `my-component/sfc` into `my-component/src/my-component.vue`, resulting in the original .vue file being used instead. Now the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
+Compatible bundlers see the `browser` definition in package.json and translate requests for `my-component/sfc` into `my-component/src/my-component.vue`, resulting in the original `.vue` file being used instead. Now the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
 
-> Note: When using .vue components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.
+> Note: When using `.vue` components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.
 
 ### How do I make multiple versions of my component?
 
@@ -125,7 +125,7 @@ That is all that is required in package.json to get up and running. Now, all tha
 
 ### What does my packaged component look like?
 
-Depending on how your component is being used, it needs to be exposed as either a CommonJS/UMD javascript module, an ES6 javascript module, or in the case of a `<script>` tag, it will be automatically loaded into Vue via `Vue.use(...)` so it's immediately available to the page. This is accomplished by a simple wrapper.js file which handles the module export and auto-install. That wrapper, in its entirety, looks like this:
+Depending on how your component is being used, it needs to be exposed as either a [CommonJS/UMD](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#c33a) javascript module, an [ES6 javascript](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#4f5e) module, or in the case of a `<script>` tag, it will be automatically loaded into Vue via `Vue.use(...)` so it's immediately available to the page. This is accomplished by a simple wrapper.js file which handles the module export and auto-install. That wrapper, in its entirety, looks like this:
 
 ```js
 // Import vue component
@@ -207,8 +207,6 @@ In addition, pay attention to any dependencies that your SFC might have. For exa
 
 At the time this recipe was written, Vue CLI 3 was itself in beta. This version of the CLI comes with a built-in `library` build mode, which creates CommonJS and UMD versions of a component. This might be adequate for your use cases, though you will still need to make sure your package.json file points to `main` and `unpkg` properly. Also, there will be no ES6 `module` output unless that capability is added to the CLI before its release or via plugin.
 
-The process here is the result of what was learned looking at other vue modules which have already been published by the greater vue community. The reason for the recipe was because there was a lack of well documented patterns for preparing a component for npm.
-
 ## Acknowledgements
 
-This recipe is the result of a lightning talk given by [Mike Dodge](https://twitter.com/mgdodgeycode) at VueConf.us in March 2018. He has published a utility to npm which will quickly scaffold a sample SFC using this recipe. You can download the utility, [vue-sfc-rollup](https://www.npmjs.com/package/vue-sfc-rollup), from npm. You can also [clone the repo](https://github.com/team-innovation/vue-sfc-rollup) and customize it to fill your needs.
+This recipe is the result of a lightning talk given by [Mike Dodge](https://twitter.com/mgdodgeycode) at VueConf.us in March 2018. He has published a utility to npm which will quickly scaffold a sample SFC using this recipe. You can download the utility, [vue-sfc-rollup](https://www.npmjs.com/package/vue-sfc-rollup), from npm. You can also [clone the repo](https://github.com/team-innovation/vue-sfc-rollup) and customize it.
