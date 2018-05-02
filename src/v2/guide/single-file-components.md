@@ -50,7 +50,7 @@ Now we get:
 
 As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-```vue
+```html
 <template lang="jade">
   div
     p {{ greeting }} World!
