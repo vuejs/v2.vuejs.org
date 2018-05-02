@@ -1,0 +1,178 @@
+<div id="search-page">
+  <form class="search-form" @submit="submit">
+    <input
+      class="search-query"
+      v-model="search"
+      placeholder="Search Vue.js"
+    >
+    <div class="search-footer">
+      <p>
+        <template v-if="totalResults">
+          <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
+        </template>
+      </p>
+      <a target="_blank" href="https://www.algolia.com/">
+          <img src="/images/search-by-algolia.png" height="16">
+      </a>
+    </div>
+  </form>
+
+  <template v-if="results.length">
+    <search-result
+      v-for="(result, i) in results"
+      :key="i"
+      :result="result"
+    ></search-result>
+  </template>
+
+  <p v-else>No results were found.</p>
+
+  <div ref="infiniteScrollAnchor"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
+<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+<script>
+var match = window.location.pathname.match(/^\/(v\d+)/)
+var version = match ? match[1] : 'v2'
+var algolia = algoliasearch('BH4D9OD16A', '85cc3221c9f23bfbaa4e3913dd7625ea')
+var algoliaHelper = algoliasearchHelper(algolia, 'vuejs', {
+  hitsPerPage: 15,
+  maxValuesPerFacet: 10,
+  advancedSyntax: true,
+  facets: ['version'],
+})
+
+algoliaHelper.addFacetRefinement('version', version)
+algoliaHelper.on('result', parseSearchResults)
+
+var searchPage = new Vue({
+  el: '#search-page',
+  components: {
+    'search-result': {
+      props: {
+        result: {
+          type: Object,
+          required: true,
+        },
+      },
+      render(h) {
+        var content = []
+        content.push(h('a', {
+          attrs: {
+            class: 'title',
+            href: this.result.url,
+          },
+          domProps: { innerHTML: this.result.title },
+        }))
+        if (this.result.summary) {
+          content.push(h('p', {
+            attrs: { class: 'summary' },
+            domProps: { innerHTML: this.result.summary },
+          }))
+        }
+        content.push(h(
+          'div',
+          { attrs: { class: 'breadcrumbs'} },
+          this.result.breadcrumbs.map(function(breadcrumb) {
+            return h('span', {
+              attrs: { class: 'breadcrumb' },
+              domProps: { innerHTML: breadcrumb },
+            })
+          })
+        ))
+        return h('div', { attrs: { class: 'search-result' } }, content)
+      }
+    }
+  },
+  data: {
+    search: (new URL(location)).searchParams.get('q') || '',
+    totalResults: 0,
+    queryTime: 0,
+    results: [],
+    totalPages: 0,
+    lastPage: 0,
+  },
+  watch: {
+    search() {
+      this.updateSearch()
+      window.history.pushState(
+        {},
+        'Vue.js Search',
+        window.location.origin + window.location.pathname + '?q=' + encodeURIComponent(this.search)
+      )
+    }
+  },
+  created() {
+    this.updateSearch()
+  },
+  mounted() {
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && searchPage.totalPages > searchPage.lastPage + 1) {
+        searchPage.addPage()
+      }
+    })
+    observer.observe(this.$refs.infiniteScrollAnchor)
+  },
+  methods: {
+    addPage() {
+      algoliaHelper.setCurrentPage(this.lastPage + 1).search()
+    },
+    updateSearch() {
+      algoliaHelper.setCurrentPage(0).setQuery(this.search).search()
+    },
+    submit(e) {
+      e.preventDefault()
+      if (this.results.length > 0) {
+        window.location = this.results[0].url
+      }
+    }
+  }
+})
+
+function parseSearchResults(content) {
+  if (content.query === '' || !(content.hits instanceof Array)) {
+    searchPage.totalResults = 0
+    searchPage.queryTime = 0
+    searchPage.results = []
+    searchPage.totalPages = 0
+    searchPage.lastPage = 0
+    return
+  }
+
+  var results = []
+
+  for (var hit of content.hits) {
+    var hierarchy = hit._highlightResult.hierarchy
+    var titles = []
+    var level = 0
+    var levelName
+    while ((levelName = 'lvl' + level++) in hierarchy) {
+      titles.push(hierarchy[levelName].value)
+    }
+    var summary
+    if (hit._snippetResult && hit._snippetResult.content) {
+      summary = hit._snippetResult.content.value + '...'
+    }
+    results.push({
+      title: titles.pop(),
+      url: hit.url,
+      summary: summary,
+      breadcrumbs: titles,
+    })
+  }
+
+  searchPage.totalResults = content.nbHits
+  searchPage.queryTime = content.processingTimeMS
+  searchPage.totalPages = content.nbPages
+  searchPage.lastPage = content.page
+
+  if (searchPage.lastPage === 0) {
+    searchPage.results = results
+  } else {
+    searchPage.results = searchPage.results.concat(results)
+  }
+}
+</script>
