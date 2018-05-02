@@ -19,7 +19,8 @@ All of these are solved by **single-file components** with a `.vue` extension, m
 
 Here's an example of a file we'll call `Hello.vue`:
 
-``` vue
+``` html
+<!-- Hello.vue -->
 <template>
   <p>{{ greeting }} Wordl!</p>
 </template>
