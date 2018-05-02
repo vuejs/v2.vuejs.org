@@ -19,7 +19,7 @@ All of these are solved by **single-file components** with a `.vue` extension, m
 
 Here's an example of a file we'll call `Hello.vue`:
 
-```vue
+``` vue
 <template>
   <p>{{ greeting }} Wordl!</p>
 </template>
@@ -50,7 +50,8 @@ Now we get:
 
 As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-```html
+``` html
+<!-- Hello.vue -->
 <template lang="jade">
   div
     p {{ greeting }} World!
