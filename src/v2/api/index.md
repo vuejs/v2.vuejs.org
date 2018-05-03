@@ -2179,7 +2179,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 ### is
 
-- **Expects:** `string`
+- **Expects:** `string | Object (component’s options object)`
 
   Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
 
