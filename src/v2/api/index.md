@@ -255,7 +255,7 @@ type: api
 
 - **Usage:**
 
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
 
   <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
