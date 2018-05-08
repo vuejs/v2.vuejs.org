@@ -1023,7 +1023,7 @@ type: api
   - an object where the keys are the local binding name and the value is either:
     - the key (string or Symbol) to search for in available injections, or
     - an object where:
-      - the `name` property is the key (string or Symbol) to search for in available injections, and
+      - the `from` property is the key (string or Symbol) to search for in available injections, and
       - the `default` property is used as fallback value
 
   > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
