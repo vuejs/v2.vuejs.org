@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<link rel="preconnect" href="//fonts.googleapis.com">
+<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com">
+<link rel="preconnect" href="//cdn.jsdelivr.net">
+<link rel="preconnect" href="https://extend.vimeocdn.com">
+
+<link rel="preload" as="script" href="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js">
     <title><%- page.title ? page.title + ' — ' : '' %>Vue.js</title>
     <meta charset="utf-8">
     <meta name="description" content="<%- theme.site_description %>">
@@ -48,10 +54,7 @@
     <meta name="msapplication-config" content="browserconfig.xml">
     <link rel="manifest" href="/manifest.json">
 
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- main page styles -->
     <%- css(isIndex ? 'css/index' : 'css/page') %>
@@ -61,7 +64,7 @@
     <script>window.PAGE_TYPE = "<%- page.type %>"</script>
 
     <!-- ga -->
-    <script>
+    <script async>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
