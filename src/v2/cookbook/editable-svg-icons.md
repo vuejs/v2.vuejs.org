@@ -16,15 +16,16 @@ There are many ways to create an SVG Icon System, but one method that takes adva
 
 First, we'll create a folder for all of the icons, and name them in a standardized fashion for easy retrieval:
 
-> components/icons/IconBox.vue
-> components/icons/IconCalendar.vue
-> components/icons/IconEnvelope.vue
+> components/BaseComponents/icons/BaseIconBox.vue
+> components/BaseComponents/icons/BaseIconCalendar.vue
+> components/BaseComponents/icons/BaseIconEnvelope.vue
 
-Here's an example repo to get you going, where you can see the entire setup: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
+Here's an example repo to get you going, where you can see the entire setup: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/).
+Also note we are prefixing the component name 'Base' as per Vue style guide [https://vuejs.org/v2/style-guide/#Base-component-names-strongly-recommended].
 
 ![Documentation site](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg 'Docs demo')
 
-We'll create a base icon (`IconBase.vue`) component that uses a slot.
+We'll create a base icon (`BaseIcon.vue`) component that uses a slot.
 
 ```html
 <template>
