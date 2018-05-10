@@ -1,5 +1,5 @@
 ---
-title: Create a CMS-Powered Blog
+title: Create a CMS-Powered Blog (EN)
 type: cookbook
 order: 5
 ---

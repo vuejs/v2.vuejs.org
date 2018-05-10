@@ -1,5 +1,5 @@
 ---
-title: Using Axios to Consume APIs
+title: Using Axios to Consume APIs (EN)
 type: cookbook
 order: 9
 ---

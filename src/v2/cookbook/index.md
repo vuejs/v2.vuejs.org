@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Introduction (EN)
 type: cookbook
 order: 0
 ---
@@ -18,7 +18,7 @@ order: 0
 
 ## Contributions au tutoriels
 
-### What we're looking for
+### What we're looking for (EN)
 
 The Cookbook gives developers examples to work off of that both cover common or interesting use cases, and also progressively explain more complex detail. Our goal is to move beyond a simple introductory example, and demonstrate concepts that are more widely applicable, as well as some caveats to the approach.
 
@@ -37,7 +37,7 @@ Les tutoriels doivent généralement :
 
 We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
 
-### Base Example
+### Base Example (EN)
 
 _required_
 
@@ -46,7 +46,7 @@ _required_
 3.  Show a small code sample.
 4.  Explain what this accomplishes in a sentence.
 
-### Details about the Value
+### Details about the Value (EN)
 
 _required_
 
@@ -55,7 +55,7 @@ _required_
 3.  Show very simple code samples of good and bad patterns.
 4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
 
-### Real-World Example
+### Real-World Example (EN)
 
 _required_
 
@@ -66,24 +66,24 @@ Demonstrate the code that would power a common or interesting use case, either b
 
 If you choose to do the latter, you should still talk through what it is and does.
 
-### Additional Context
+### Additional Context (EN)
 
 _optional_
 
 It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
 
-### When To Avoid This Pattern
+### When To Avoid This Pattern (EN)
 
 _optional_
 
 This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
 
-### Alternative Patterns
+### Alternative Patterns (EN)
 
 _required_
 
 This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
 
-## Thank you
+## Thank you (EN)
 
 It takes time to contribute to documentation, and if you spend the time to submit a PR to this section of our docs, you do so with our gratitude.

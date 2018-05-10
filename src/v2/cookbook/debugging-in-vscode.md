@@ -1,5 +1,5 @@
 ---
-title: Debugging in VS Code and Chrome
+title: Debugging in VS Code and Chrome (EN)
 type: cookbook
 order: 8
 ---

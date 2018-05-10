@@ -1,5 +1,5 @@
 ---
-title: Creating Custom Scroll Directives
+title: Creating Custom Scroll Directives (EN)
 type: cookbook
 order: 7
 ---

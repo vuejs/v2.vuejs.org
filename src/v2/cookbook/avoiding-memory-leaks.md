@@ -1,5 +1,5 @@
 ---
-title: Avoiding Memory Leaks
+title: Avoiding Memory Leaks (EN)
 type: cookbook
 order: 10
 ---
