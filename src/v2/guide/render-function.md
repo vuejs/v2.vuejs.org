@@ -170,12 +170,14 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
 
 ``` js
 {
-  // Même API que `v-bind:class`
-  'class': {
+  // Même API que `v-bind:class`, acceptant autant
+  // une chaine de caractères, un objet, ou un tableau d'objects.
+  class: {
     foo: true,
     bar: false
   },
-  // Même API que `v-bind:style`
+  // Même API que `v-bind:style`, acceptant autant
+  // une chaine de caractères, un objet, ou un tableau d'objects.
   style: {
     color: 'red',
     fontSize: '14px'

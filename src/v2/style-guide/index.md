@@ -575,7 +575,7 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 
 Vue utilise le préfixe `_` pour définir ses propres propriétés privées. Aussi utiliser le même préfixe comme (par ex. `_update`) risque d'écraser les propriétés d'instance. Même si vous vérifiez que Vue n'utilise pas actuellement un nom de propriété particulier, il n'y a aucune garantie que le conflit n'apparaisse pas dans des versions futures.
 
-Concernant le préfixe `$`, il est réservé dans l'écosystème Vue à des propriétés spéciales d'instance exposées à l'utilisateur. L'utiliser pour des propriétés _privées_ ne serait pas un bon choix non plus.
+Concernant le préfixe `$`, il est réservé dans l'écosystème Vue à des propriétés spéciales d'instance exposées à l'utilisateur. L'utiliser pour des propriétés _privées_ ne serait pas approprié.
 
 À la place, nous recommandons de combiner les deux préfixes en un `$_`, comme une convention pour définir des propriétés personnelles privées et garantir qu'il n'y ait aucun conflit avec Vue.
 

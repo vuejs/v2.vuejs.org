@@ -57,17 +57,7 @@ $ npm install vue
 
 ## CLI
 
-Vue.js offre une [CLI](https://github.com/vuejs/vue-cli) (interface en ligne de commande) officielle pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de builds pré-configurés pour un *workflow frontend* moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêts pour la production :
-
-``` bash
-# installer vue-cli
-$ npm install --global vue-cli
-# créer un nouveau projet en utilisant le template "webpack"
-$ vue init webpack my-project
-# installer les dépendances et c'est parti !
-$ cd my-project
-$ npm run dev
-```
+Vue.js offre une [CLI](https://github.com/vuejs/vue-cli) (interface en ligne de commande) officielle pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de builds pré-configurés pour un workflow frontend moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêts pour la production. Consultez [la documentation Vue CLI](https://github.com/vuejs/vue-cli/blob/dev/docs/README.md#introduction) pour plus de détails.
 
 <p class="tip">Utiliser la CLI nécessite des connaissances préalables en Node.js et les outils de build associés. Si vous êtes nouveau sur Vue ou les outils de build front-end, nous vous recommandons fortement de parcourir <a href="./">le guide</a> sans aucun outil de build avant d'utiliser l'interface CLI.</p>
 
@@ -159,6 +149,19 @@ Ajoutez au fichier `package.json` de votre projet :
 }
 ```
 
+#### Parcel
+
+Ajoutez au fichier `package.json` de votre projet :
+
+``` js
+{
+  // ...
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
+  }
+}
+```
+
 ### Mode dévelopement vs. mode production
 
 Les modes développement et production sont écrits en dur dans les builds UMD : les fichiers non minifiés sont pour le développement, et les fichier minifiés sont pour la production.
@@ -169,7 +172,15 @@ Les builds CommonJS et ES Module contiennent une utilisation de `process.env.NOD
 
 #### webpack
 
-Utiliser la fonction [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) de webpack :
+Dans webpack 4+, vous pouvez utiliser l'option `mode` :
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+Mais dans webpack 3 et précédent, vous devez utiliser la fonction [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) :
 
 ``` js
 var webpack = require('webpack')

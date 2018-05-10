@@ -18,7 +18,15 @@ Quand vous utilisez un outil de build comme webpack ou Browserify, le mode produ
 
 #### webpack
 
-Utiliser le plugin [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) de webpack pour indiquer un environnement de production, ainsi les blocs d'avertissements seront ignorés par UglifyJS pendant la minification. Un exemple de configuration :
+Dans webpack 4+, vous pouvez utiliser l'option `mode` :
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+Mais dans webpack 3 et précédent, vous devez utiliser la fonction [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) :
 
 ``` js
 var webpack = require('webpack')
@@ -29,13 +37,12 @@ module.exports = {
     // ...
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: JSON.stringify('production')
       }
     })
   ]
 }
 ```
-
 #### Browserify
 
 - Lancer votre commande d'empaquetage avec la variable d'environnement `NODE_ENV` assignée à `"production"`. Cela indique à `vueify` d'éviter d'inclure le code utilisé pour le rechargement à chaud ou lié au développement.

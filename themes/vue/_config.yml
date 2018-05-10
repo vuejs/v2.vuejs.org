@@ -45,8 +45,6 @@ gold_sponsors:
     img: vuejobs.png
   - url: https://leanpub.com/vuejs2
     img: tmvuejs2.png
-  - url: https://www.bmqb.com/jobs
-    img: bmqb.png
   - url: https://codepilot.ai
     img: codepilot.png
   - url: https://teamextension.io/
@@ -57,6 +55,10 @@ gold_sponsors:
     img: aaha.png
   - url: https://www.valuecoders.com
     img: valuecoders.png
+  - url: https://www.nsoft.com/careers/
+    img: nsoft.png
+  - url: https://www.pubnub.com/vue-js/
+    img: pubnub.png
 
 bronze_sponsors:
   - url: http://tighten.co/

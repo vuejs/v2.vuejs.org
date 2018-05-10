@@ -128,7 +128,7 @@ Vue.component('base-input', {
 })
 ```
 
-À présent, le composant `<base-input>` est une **enveloppe complètement transparente**, c'est-à-dire qu'il peut être utilisé comme un élément `<input>` normal : tous les mêmes attributs et écouteurs d'événements fonctionneront.
+À présent, le composant `<base-input>` est une **enveloppe complètement transparente**, c'est-à-dire qu'il peut être utilisé comme un élément `<input>` normal : tous les mêmes attributs et écouteurs d'événements fonctionneront, sans le modificateur `.native`.
 
 ## Modificateur `.sync`
 

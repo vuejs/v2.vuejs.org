@@ -255,7 +255,7 @@ type: api
 
 - **Utilisation :**
 
-  Assigne une propriété à un objet cible. Si l'objet est réactif, cette méthode s'assure que la propriété est créée en tant que propriété réactive et déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement l'ajout de nouvelles propriétés.
+  Assigne une propriété à un objet réactif, s'assurant que la nouvelle propriété soit également réactive de manière à déclencher une nouvelle mise à jour de la vue. Ceci doit être utilisé pour les nouvelles propriétés d'objets réactifs car Vue ne peut pas détecter normalement les ajouts de propriétés (par ex. `this.myObject.newProperty = 'bonjour'`).
 
   <p class="tip">L'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
@@ -1023,7 +1023,7 @@ type: api
   - un objet où les clés sont les noms des liaisons locales et où les valeurs sont :
     - les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles, ou
     - un objet où :
-      - la propriété `name` est la clé (`String` ou `Symbol`) à rechercher dans les injections disponibles, et
+      - la propriété `from` est la clé (`String` ou `Symbol`) à rechercher dans les injections disponibles, et
       - la propriété `default` est utilisé comme valeur de substitution.
 
   > Note : les liaisons `provide` et `inject` ne sont PAS réactives. C'est intentionnel. Cependant, si vous passez un objet observé, les propriétés sur cet objet resteront réactives.
@@ -1031,6 +1031,7 @@ type: api
 - **Exemple :**
 
   ``` js
+  // parent component providing 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1038,6 +1039,7 @@ type: api
     // ...
   }
 
+  // le composant enfant injectant 'foo'
   var Enfant = {
     inject: ['foo'],
     created () {
@@ -2177,7 +2179,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 ### is
 
-- **Attend comme valeur :** `string`
+- **Attend comme valeur :** `string | Object (un objet d'options de composant)`
 
   Utilisé pour les [composants dynamiques](../guide/components.html#Composants-dynamiques) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM).
 
