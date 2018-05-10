@@ -1,5 +1,5 @@
 ---
-title: Component Registration
+title: Component Registration (EN)
 type: guide
 order: 101
 ---

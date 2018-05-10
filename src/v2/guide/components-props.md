@@ -1,5 +1,5 @@
 ---
-title: Props
+title: Props (EN)
 type: guide
 order: 102
 ---

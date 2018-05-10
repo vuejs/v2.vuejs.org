@@ -1,5 +1,5 @@
 ---
-title: Slots
+title: Slots (EN)
 type: guide
 order: 104
 ---
