@@ -3,16 +3,16 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: Vue.js 中文文档
-subtitle: https://vuefe.cn
-description: "Vue.js 中文文档,vuefe.cn"
+title: Vue 中文文档(@印记中文) https://docschina.org/
+subtitle: https://vue.docschina.org
+description: "Vue 中文文档,vuefe.cn,vue.docschina.org,印记中文,docschina.org,webpack 中文文档,webpack.docschina.org"
 author: Evan You
 email:
 language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://vuefe.cn
+url: https://vue.docschina.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
