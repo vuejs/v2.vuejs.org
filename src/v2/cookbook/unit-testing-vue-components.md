@@ -44,11 +44,11 @@ export default {
 ```
 
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 test('Foo', () => {
   // render the component
-  const wrapper = shallow(Hello)
+  const wrapper = shallowMount(Hello)
 
   // should not allow for `username` less than 7 characters, excludes whitespace
   wrapper.setData({ username: ' '.repeat(7) })
@@ -145,11 +145,11 @@ The things that we should test are:
 And our first attempt at test:
 
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
-      const wrapper = shallow(Foo, {
+      const wrapper = shallowMount(Foo, {
     data: {
       message: 'Hello World',
       username: ''
@@ -183,11 +183,11 @@ The below example improves the test by:
 
 *Updated test*:
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Foo from './Foo'
 
 const factory = (values = {}) => {
-  return shallow(Foo, {
+  return shallowMount(Foo, {
     data: { ...values  }
   })
 }
@@ -221,7 +221,7 @@ describe('Foo', () => {
 
 Points to note:
 
-At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallow(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once.
+At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallowMount(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once.
 
 ## Additional Context
 
