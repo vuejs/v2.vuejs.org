@@ -11,7 +11,7 @@ $ npm start # dev server at http://localhost:4000
 
 ## Deploying
 
-The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
+The site gets automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
 
 If you are the maintainer of a community translation fork and would like to deploy via Netlify instead of GitHub pages, please ping @yyx990803 in an issue to request a Netlify team membership and DNS update.
 
