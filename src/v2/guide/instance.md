@@ -66,7 +66,7 @@ Quand ces données changent, le rendu de la vue est refait. Il est à noter que 
 vm.b = 'salut'
 ```
 
-Les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aller avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
+Les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous allez avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
 
 ```js
 data: {
@@ -78,7 +78,7 @@ data: {
 }
 ```
 
-La seule exception à cela est l'utilisation de `Object.freeze()`, qui prévient les propriétés existantes d'être changée, ce qui implique que le système de réactivité ne peut pas traquer les changements.
+La seule exception à cela est l'utilisation de `Object.freeze()`, qui prévient les propriétés existantes d'être changées, ce qui implique que le système de réactivité ne peut pas traquer les changements.
 
 ```js
 var obj = {
