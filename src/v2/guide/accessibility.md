@@ -5,9 +5,9 @@ type: guide
 
 # Accessibility
 
-An accessible website is a website that can be used be anyone—be that a person with a disability, someone on a slow connection, or someone whose mouse has ran out of battery. It's easy to make a website assuming that all our users are using a keyboard, mouse, and screen, and have a way of hearing the sound produced by our websites, but that often isn't true: millions of people around the world have disabilities and are unable to use all the functionality of a computer in the same way most developers do. While they often have tooling to help them, they're relying on the people building the websites to make them accessible and work well with the tooling.
+An accessible website is a website that can be used by anyone—be that a person with a disability, someone on a slow connection, or someone whose hardware is dated or broken. It's easy to make a website assuming that all our users are using a keyboard, mouse, and screen, and have a way of hearing the sound produced by our websites, but that often isn't true: millions of people around the world have disabilities and are unable to use all the functionality of a computer in the same way most developers do. While they often have tooling to help them, they're relying on the people building the websites to make them accessible and work well with the tooling.
 
-The World Health Organization estimate that 15% of the world's population have some form of disability, 2-4% of them severely so.
+The World Health Organization estimate that 15% of the world's population has some form of disability, 2-4% of them severely so.
 
 In addition to helping users with disabilities, making a website accessible will help the rest of your users, too. Adding subtitles to a video will help both your deaf and hard-of-hearing users and your users who are in a loud environment and can't hear their phone. Similarly, making sure your text isn't too low contrast will help both your low-vision users and your users who are trying to use their phone in bright sunlight.
 
@@ -30,7 +30,7 @@ Accessibility in standard websites, such as putting alt text on images and makin
 
 ## Accessibility in JavaScript-rich websites
 
-JavaScript allows us to make powerful, interactive websites and applications, with features from animations to client-side routing instead of having to hit the server every time the user goes to a new page. Unfortunately, some accessibility technology, especially screen readers, doesn't work so well with these websites. 
+JavaScript allows for powerful, interactive websites and applications. Its usage can be simple or complex. Unfortunately, some assistive technologies struggle to support this environment. With this in mind, what can we do to accommodate these tools added needs? 
 
 In addition to the guidelines in the articles above and in the [Web Content Accessibility Guidelines (WCAG)][wcag 2.0], we have to take further measures to make sure that by using JavaScript, we're not making our websites inaccessible to screen reader users.
 
@@ -259,6 +259,8 @@ the solution is to announce to the user when the route has changed using a hidde
 - disabled user testers
 
 
-[wcag 2.0]: https://www.w3.org/TR/WCAG20/
-[switch technology]: https://en.wikipedia.org/wiki/Switch_access
-[aria mdn]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/An_overview_of_accessible_web_applications_and_widgets
+[WCAG 2.0]: https://www.w3.org/TR/WCAG20/
+[Switch technology]: https://en.wikipedia.org/wiki/Switch_access
+[ARIA on MDN]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/An_overview_of_accessible_web_applications_and_widgets
+[aXe Core]:https://www.axe-core.org/
+[WAVE Tool]:https://wave.webaim.org/
