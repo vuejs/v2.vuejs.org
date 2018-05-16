@@ -6,7 +6,7 @@ order: 8
 
 ## Associer un tableau à des éléments avec `v-for`
 
-Nous pouvons utiliser la directive `v-for` pour faire le rendu d'une liste d'éléments en se basant sur un tableau. La directive `v-for` utilise une syntaxe spécifique de la forme `item in items`, où `items` représente le tableau source des données et où `item` est un **alias** représentant l'élément du tableau en cours d'itération :
+Nous pouvons utiliser la directive `v-for` pour faire le rendu d'une liste d'éléments en nous basant sur un tableau. La directive `v-for` utilise une syntaxe spécifique de la forme `item in items`, où `items` représente le tableau source des données et où `item` est un **alias** représentant l'élément du tableau en cours d'itération :
 
 ``` html
 <ul id="example-1">
@@ -291,7 +291,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+Vous pouvez également utiliser la méthode d'instance [`vm.$set`](https://vuejs.org/v2/api/#vm-set), qui est un alias pour la méthode globale `Vue.set` :
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
