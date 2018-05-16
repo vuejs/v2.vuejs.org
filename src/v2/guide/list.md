@@ -490,10 +490,11 @@ Here's a complete example of a simple todo list:
 ``` html
 <div id="todo-list-example">
   <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Add a todo</label>
     <input
-      aria-label="Write a new todo item"
-      placeholder="E.g. Feed the cat"
       v-model="newTodoText"
+      id="new-todo"
+      placeholder="E.g. Feed the cat"
     >
     <button>Add</button>
   </form>
@@ -557,10 +558,11 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Add a todo</label>
     <input
-      aria-label="Write a new todo item"
-      placeholder="E.g. Feed the cat"
       v-model="newTodoText"
+      id="new-todo"
+      placeholder="E.g. Feed the cat"
     >
     <button>Add</button>
   </form>
