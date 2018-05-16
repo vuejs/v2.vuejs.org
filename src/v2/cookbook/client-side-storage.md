@@ -44,9 +44,21 @@ You can run this yourself here:
 <p data-height="265" data-theme-id="0" data-slug-hash="KodaKb" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="testing localstorage" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/KodaKb/">testing localstorage</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Type something in the form and then reload this page. You'll note that the value you typed previously will show up automatically. Don't forget that your browser provides excellent developer tools for inspecting client-side storage. 
+Type something in the form and then reload this page. You'll note that the value you typed previously will show up automatically. Don't forget that your browser provides excellent developer tools for inspecting client-side storage. Here's an example in Firefox:
 
 ![Storage devtools in Firefox](/images/devtools-storage.png)
+
+And here it is in Chrome:
+
+![Storage devtools in Chrome](/images/devtools-storage-chrome.png)
+
+And then finally, an example in Microsoft Edge. Note that you can find application storage values under the Debugger tab.
+
+![Storage devtools in Edge](/images/devtools-storage-edge.png)
+
+<p class="tip">
+As a quick aside, these dev tools also offer you a way to remove storage values. This can be very useful when testing.
+</p>
 
 Immediately writing the value may not advisable. Let's consider a slightly more advanced example. First, the updated form.
 
@@ -160,3 +172,5 @@ While the Local Storage API is relatively simple, it is missing some basic featu
 
 * [vue-local-storage](https://github.com/pinguinjkeke/vue-local-storage)
 * [vue-reactive-storage](https://github.com/ropbla9/vue-reactive-storage)
+
+While the browser will never replace a server persistence system, having multiple ways to cache data locally can be a huge performance boost for your application, and working with it in Vue.js makes it even more powerful.
