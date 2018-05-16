@@ -16,7 +16,7 @@ Il est possible de passer un objet à `v-bind:class` pour permuter les classes a
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [considérée comme vrai](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
+La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [considérée comme vraie](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
 
 Vous pouvez permuter plusieurs classes en ayant plus de champs dans l'objet. De plus, la directive `v-bind:class` peut aussi coexister avec l'attribut `class`. Donc, avec le template suivant :
 
@@ -105,7 +105,7 @@ Si vous voulez permuter une classe de la liste en fonction d'une condition, vous
 
 Ceci appliquera toujours la classe `errorClass`, mais appliquera `activeClass` uniquement quand `isActive` vaut `true`.
 
-En revanche, ce peut être un peu verbeux si vous avez plusieurs classes conditionnelles. C'est pourquoi il est aussi possible d'utiliser la syntaxe objet dans la syntaxe tableau :
+En revanche, cela peut être un peu verbeux si vous avez plusieurs classes conditionnelles. C'est pourquoi il est aussi possible d'utiliser la syntaxe objet dans la syntaxe tableau :
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
@@ -143,7 +143,7 @@ C'est aussi vrai pour la liaison de classe :
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-Quand `isActive` est évalué à vrai, le rendu HTML sera :
+Quand la propriété `isActive` est évaluée à vrai, le rendu HTML sera :
 
 ``` html
 <p class="foo bar active">Hi</p>
@@ -153,7 +153,7 @@ Quand `isActive` est évalué à vrai, le rendu HTML sera :
 
 ### Syntaxe objet
 
-La syntaxe objet pour `v-bind:style` est assez simple - cela ressemble presque à CSS, sauf que c'est un objet JavaScript. Vous pouvez utiliser camelCase ou kebab-case (utilisez des apostrophes avec kebab-case) pour les noms des propriétés CSS :
+La syntaxe objet pour `v-bind:style` est assez simple - cela ressemble presque à du CSS, sauf que c'est un objet JavaScript. Vous pouvez utiliser camelCase ou kebab-case (utilisez des apostrophes avec kebab-case) pour les noms des propriétés CSS :
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
