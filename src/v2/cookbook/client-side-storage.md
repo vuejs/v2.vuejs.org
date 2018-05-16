@@ -23,13 +23,13 @@ This example has one form field bound to a Vue value called `name`. Here's the J
 ``` js
 const app = new Vue({
   el:'#app',
-  data:{
+  data: {
     name:''
   },
   mounted() {
     if(localStorage.name) this.name = localStorage.name;
   },
-  watch:{
+  watch: {
     name(newName) {
       localStorage.name = newName;
     }
@@ -37,7 +37,7 @@ const app = new Vue({
 });
 ```
 
-Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from local storage. To handle writing the data base, we simply watch the `name` value and on change, immediately write it. 
+Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from localStorage. To handle writing the data base, we watch the `name` value and on change, immediately write it. 
 
 You can run this yourself here:
 
@@ -64,7 +64,7 @@ Now we've got two fields (again, bound to a Vue instance) but now there is the a
 ``` js 
 const app = new Vue({
   el:'#app',
-  data:{
+  data: {
     name:'',
     age:0
   },
@@ -72,7 +72,7 @@ const app = new Vue({
     if(localStorage.name) this.name = localStorage.name;
     if(localStorage.age) this.age = localStorage.age;
   },
-  methods:{
+  methods: {
     persist() {
       localStorage.name = this.name;
       localStorage.age = this.age;
@@ -82,14 +82,14 @@ const app = new Vue({
 })
 ```
 
-As before, `mounted` is used to load persisted data, if it exists. This time though data is only persisted when the button is clicked. This would also be where you could do any validations or transformations before storing the value. You could also store a date representing when the values were stored. With that metadata, the `mounted` method could make a logical call on whether it makes to restore the values. You can try this version below.
+As before, `mounted` is used to load persisted data, if it exists. This time, though, data is only persisted when the button is clicked. We could also do any validations or transformations here before storing the value. You could also store a date representing when the values were stored. With that metadata, the `mounted` method could make a logical call on whether or not to store the values again, such as in this version below. You can try this version below.
 
 <p data-height="265" data-theme-id="0" data-slug-hash="rdOjLN" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="testing localstorage 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/rdOjLN/">testing localstorage 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ## Working with Complex Values
 
-As mentioned above, Local Storage only works with simple values. To store more complex values, like arrays, you must serialize and deserialize the values with JSON. Here is a more advanced example that persists an array of cats (the best kind of array possible). 
+As mentioned above, Local Storage only works with simple values. To store more complex values, like objects or arrays, you must serialize and deserialize the values with JSON. Here is a more advanced example that persists an array of cats (the best kind of array possible). 
 
 ``` html
 <div id="app">
@@ -113,7 +113,7 @@ This "app" consists of a simple list on top (with a button to remove a cat) and 
 ``` js
 const app = new Vue({
   el:'#app',
-  data:{
+  data: {
     cats:[],
     newCat:null
   },
@@ -127,7 +127,7 @@ const app = new Vue({
       }
     }
   },
-  methods:{
+  methods: {
     addCat() {
       // ensure they actually typed something
       if(!this.newCat) return;
