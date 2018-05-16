@@ -195,7 +195,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `v-on:click.prevent.self` va empêcher **tous les clicks** alors que `v-on:click.self.prevent` va uniquement empêcher le clique sur l'élément lui-même.</p>
+<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `v-on:click.prevent.self` va empêcher **tous les clics** alors que `v-on:click.self.prevent` va uniquement empêcher le clic sur l'élément lui-même.</p>
 
 > Nouveau dans la 2.1.4+
 
@@ -219,7 +219,7 @@ Vue offre également un modificateur `.passive` correspondant à [l'option `pass
 
 Le modificateur `.passive` est particulièrement pratique pour améliorer les performances sur mobile.
 
-<p class="tip">N'utilisez pas `.passive` et `.prevent` ensemble. `.passive` sera ignoré et votre navigateur va probablement vous montrer un message. Souvenez vous, `.passive` communique au navigateur que vous _ne voulez pas_ prévenir le comportement de l'évènement par défaut.</p>
+<p class="tip">N'utilisez pas `.passive` et `.prevent` ensemble. `.passive` sera ignoré et votre navigateur va probablement vous montrer un message. Souvenez-vous, `.passive` communique au navigateur que vous _ne voulez pas_ prévenir le comportement de l'évènement par défaut.</p>
 
 ## Modificateurs de code des touches
 
@@ -296,7 +296,7 @@ Par exemple :
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Notez que ces modificateurs de raccourcis sont différents des modificateurs usuels utilisés avec l'évènement `keyup`, ils doivent être pressés quand l'évènement est émis. En d'autres mots, `keyup.ctrl` sera déclenché uniquement si vous relachez une touche pendant que vous maintenez la touche `ctrl` enfoncée. Rien ne sera déclenché si vous relâchez uniquement la touche `Ctrl`. Si vous souhaitez un tel comportement, utilisez le `keyCode` pour `ctrl` à la place : `keyup.17`.</p>
+<p class="tip">Notez que ces modificateurs de raccourcis sont différents des modificateurs usuels utilisés avec l'évènement `keyup`, ils doivent être pressés quand l'évènement est émis. En d'autres mots, `keyup.ctrl` sera déclenché uniquement si vous relâchez une touche pendant que vous maintenez la touche `ctrl` enfoncée. Rien ne sera déclenché si vous relâchez uniquement la touche `Ctrl`. Si vous souhaitez un tel comportement, utilisez le `keyCode` pour `ctrl` à la place : `keyup.17`.</p>
 
 ### Modificateur `.exact`
 
