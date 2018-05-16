@@ -229,6 +229,20 @@ If you try this in your template however, Vue will show an error, explaining tha
 </div>
 ```
 
+Here we pass entire post object to the `props` option instead of separately pass title and content:
+
+```js
+Vue.component('blog-post', {
+  props: ['post'],
+  template: `
+    <div class="blog-post">
+      <h3>{{ post.title }}</h3>
+      <div v-html="post.content"></div>
+    </div>
+  `
+})
+```
+
 ## Sending Messages to Parents with Events
 
 As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
