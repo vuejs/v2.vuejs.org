@@ -36,7 +36,7 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">Notez que Vue ne vous force pas à respecter les [règles du W3C](https://www.w3.org/TR/custom-elements/#concepts) en ce qui concerne les noms de balises personnalisées (tout en minuscules, obligation de contenir un trait d'union) bien que suivre cette convention est considéré comme une bonne pratique.</p>
+<p class="tip">Notez que Vue ne vous force pas à respecter les [règles du W3C](https://www.w3.org/TR/custom-elements/#concepts) en ce qui concerne les noms de balises personnalisées (tout en minuscules, obligation de contenir un trait d'union) bien que suivre cette convention soit considéré comme une bonne pratique.</p>
 
 Une fois inscrit, un composant peut être utilisé dans le template d'une instance en tant qu'élément personnalisé, `<my-component></my-component>`. Assurez-vous que le composant soit inscrit **avant** l'instanciation de l'instance racine de Vue. Voici un exemple complet :
 
@@ -180,9 +180,9 @@ new Vue({ el: '#components-demo2' })
 
 Puisque nos trois instances de composant partagent le même objet `data`, l'incrémentation d'un compteur les incrémentera tous ! Aie. Corrigeons cela en retournant un nouvel objet de données :
 
-### `data` Must Be a Function
+### `data` doit être une fonction
 
-When we defined the `<button-counter>` component, you may have noticed that `data` wasn't directly provided an object, like this:
+Lorsque nous avons défini le composant `<button-counter>`, vous avez peut-être remarqué que `data` ne remplissait pas directement un objet, comme ceci :
 
 ```js
 data: {
@@ -190,7 +190,7 @@ data: {
 }
 ```
 
-Instead, **a component's `data` option must be a function**, so that each instance can maintain an independent copy of the returned data object:
+À la place, **la propriété du composant `data` doit être une fonction**, afin que chaque instance puisse conserver une copie indépendante de l'objet retourné :
 
 ```js
 data: function () {
@@ -224,13 +224,13 @@ new Vue({ el: '#components-demo3' })
 
 ### Composition de composants
 
-Les composants sont destinés à être utilisés ensemble, le plus souvent dans une relation parent-enfant : le composant A peut utiliser le composant B dans son propre template. Ils vont inévitablement avoir besoin de communiquer les uns avec les autres : le parent peut avoir besoin de passer des données à l'enfant, et l'enfant peut avoir besoin d'informer le parent que quelque chose s'est produit à l'intérieur. Cependant, il est également très important de garder le parent et l'enfant aussi découplés que possible via une interface clairement définie. Cela assure que le code de chaque composant peut être écrit de manière relativement isolée, cela les rend plus maintenables et potentiellement plus simples à réutiliser.
+Les composants sont destinés à être utilisés ensemble, le plus souvent dans une relation parent-enfant : le composant A peut utiliser le composant B dans son propre template. Ils vont inévitablement avoir besoin de communiquer les uns avec les autres : le parent peut avoir besoin de passer des données à l'enfant, et l'enfant peut avoir besoin d'informer le parent que quelque chose s'est produit à l'intérieur. Cependant, il est également très important de garder le parent et l'enfant aussi découplés que possible via une interface clairement définie. Cela assure que le code de chaque composant puisse être écrit de manière relativement isolée, cela les rend plus maintenables et potentiellement plus simples à réutiliser.
 
 Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente de props, remontée d'évènements**. Le parent passe les données à l'enfant via les **props**, et l'enfant envoie des messages à son parent via les **évènements**. Voyons comment cela fonctionne ci-dessous.
 
-For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
+Par exemple,  vous pouvez avoir des composants pour un entête, une barre latérale et une zone de contenu, chacun contenant généralement d'autres composants pour les liens de navigation, les articles de blog, etc.
 
-To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
+Pour utiliser ces composants dans les templates, ils doivent être enregistrés afin que Vue les connaisse. Il existe deux types d'enregistrement de composants : **global** et **local**. Jusqu'à présent, nous avons seulement enregistré des composants globalement, en utilisant `Vue.component`:
 
 ### Passer des données avec props
 
@@ -273,7 +273,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+Les props sont des attributs personnalisés que vous pouvez sauvegarder dans un composant. Lorsqu'une valeur est transmise à un attribut prop, elle devient une propriété de cette instance de composant. Pour passer un titre à notre composant de blog, nous pouvons l'inclure dans la liste des props que ce composant accepte, en utilisant une propriété `props` :
 
 Les attributs HTML sont insensibles à la casse, donc quand vous utilisez des templates qui ne sont pas des chaines de caractères, le nom de la prop en camelCase a besoin de son équivalent en kebab-case (délimité par des traits d'union) :
 
