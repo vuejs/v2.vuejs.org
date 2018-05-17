@@ -229,7 +229,7 @@ If you try this in your template however, Vue will show an error, explaining tha
 </div>
 ```
 
-Here we pass entire post object to the `props` option instead of separately pass title and content:
+Here, we pass the entire post object to the `props` option instead of separately passing the title and content.
 
 ```js
 Vue.component('blog-post', {
