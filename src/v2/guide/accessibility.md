@@ -66,7 +66,7 @@ For example, maybe you want to change a checkbox to look like this:
 </div>
 {% endraw %}
 
-You can't just style a checkbox to look like that: you have to create your own component creating every part of the toggle button. Maybe you could do it like this:
+You can't just style a checkbox to look like that! You have to create your own component creating every part of the toggle button. Maybe you could do it like this:
 
 ```html
 <div
@@ -191,9 +191,11 @@ The `sr-only` class means that the checkbox is visible only to screen readers, a
 
 #### ARIA attributes
 
-We saw an ARIA attribute in the previous example to hide the custom HTML from the screen reader. aria-hidden is one of a tonne of attributes that you can add to elements to tell assistive technology such as screen readers what things on the page are.
+We saw an ARIA (short for [Accessible Rich Internet Applications][WAI-ARIA]) attribute in the previous example to hide the custom HTML from the screen reader. aria-hidden is one of a tonne of attributes that you can add to elements to tell assistive technology such as screen readers what things on the page are.
 
-Check out MDN for a longer read on ARIA: [An overview of accessible web applications and widgets][aria mdn].
+Check out MDN for a longer read on ARIA: [An overview of accessible web applications and widgets][ARIA MDN].
+
+Additionally, the W3C keeps a detailed guide of usage and examples for ARIA: [Using Aria - W3C Working Draft][Using ARIA]. This also includes a handy list of [ARIA roles][ARIA Roles] and [ARIA states and properties (or attributes)][ARIA States and Properties].
 
 To make first example accessible using ARIA, we have to set the role to "checkbox" and use the `aria-checked` attribute:
 
@@ -261,6 +263,10 @@ the solution is to announce to the user when the route has changed using a hidde
 
 [WCAG 2.0]: https://www.w3.org/TR/WCAG20/
 [Switch technology]: https://en.wikipedia.org/wiki/Switch_access
-[ARIA on MDN]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/An_overview_of_accessible_web_applications_and_widgets
+[WAI-ARIA]: https://www.w3.org/WAI/standards-guidelines/aria/
+[ARIA MDN]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/An_overview_of_accessible_web_applications_and_widgets
+[Using ARIA]: https://www.w3.org/TR/using-aria/
+[ARIA Roles]: https://www.w3.org/TR/using-aria/#x2-14-1-aria-roles
+[ARIA States and Properties]: https://www.w3.org/TR/using-aria/#x2-14-2-aria-states-and-properties-aria-attributes
 [aXe Core]:https://www.axe-core.org/
 [WAVE Tool]:https://wave.webaim.org/
