@@ -11,12 +11,12 @@ The World Health Organization estimate that 15% of the world's population has so
 
 In addition to helping users with disabilities, making a website accessible will help the rest of your users, too. Adding subtitles to a video will help both your deaf and hard-of-hearing users and your users who are in a loud environment and can't hear their phone. Similarly, making sure your text isn't too low contrast will help both your low-vision users and your users who are trying to use their phone in bright sunlight.
 
-The W3C have published a list of guidelines for making websites accessible, called the [Web Content Accessibility Guidelines (WCAG)][wcag 2.0]. It's worth a read, but you might find it a bit dry, and it's out of date - it was written before Single Page Applications and libraries like Vue existed so there are no specific guidelines for that.
+The W3C have published a list of guidelines for making websites accessible, called the [Web Content Accessibility Guidelines (WCAG)][WCAG 2.0]. It's worth a read, but you might find it a bit dry, and it's out of date - it was written before Single Page Applications and libraries like Vue existed so there are no specific guidelines for that.
 
 There are a huge range of disabilities, which can be divided roughly into four categories:
 
 - *Visual impairments*, such as being blind, having low vision, or colourblindness. These people may make text bigger, increase the contrast of their screen, or use a screen reader or braille display.
-- *Motor impairments*—a huge category of impairments—can include people who browse using only the keyboard, use voice recognition software, or use [switch technology].
+- *Motor impairments*—a huge category of impairments—can include people who browse using only the keyboard, use voice recognition software, or use [Switch technology].
 - *Hearing impairments*, from being partially deaf to profoundly deaf.
 - *Cognitive impairments*, such as dyslexia, epilepsy, intellectual disabilities, and ADHD (very much not a complete list).
 
@@ -32,7 +32,7 @@ Accessibility in standard websites, such as putting alt text on images and makin
 
 JavaScript allows for powerful, interactive websites and applications. Its usage can be simple or complex. Unfortunately, some assistive technologies struggle to support this environment. With this in mind, what can we do to accommodate these tools added needs? 
 
-In addition to the guidelines in the articles above and in the [Web Content Accessibility Guidelines (WCAG)][wcag 2.0], we have to take further measures to make sure that by using JavaScript, we're not making our websites inaccessible to screen reader users.
+In addition to the guidelines in the articles above and in the [Web Content Accessibility Guidelines (WCAG)][WCAG 2.0], we have to take further measures to make sure that by using JavaScript, we're not making our websites inaccessible to screen reader users.
 
 ### Mouse-only content
 
@@ -256,9 +256,18 @@ the solution is to announce to the user when the route has changed using a hidde
 
 ## Testing accessibility
 
-- automated tools
-- screen reader - http://12devsofxmas.co.uk/2016/01/day-8-testing-using-a-screen-reader/ https://developer.paciellogroup.com/blog/2015/01/basic-screen-reader-commands-for-accessibility-testing/
-- disabled user testers
+A simple way to start testing your application for compliance with accessibility guidelines is with an automated testing tool or service. There are many options available. Here are a few to start:
+- [aXe Core][aXe Core]
+- [WAVE (Web Accessibility Evaluation Tool)][WAVE Tool]
+- [AChecker (Web Accessibility Checker)][AChecker]
+
+Don't stop there! While automated tools will help you meet guidelines, testing with your keyboard, a screen reader, and other quick simulations can help to exceed compliance and craft a better experience:
+- [Basic screen reader commands for accessibility testing][Basic SR Commands]
+- [Testing Using a Screen Reader][SR Testing]
+- [The 6 Simplest Web Accessibility Tests Anyone Can Do][6 Simple Tests]
+
+By far, the best method to help the widest range of users to access your application is to test with real people! 
+@todo: recommended testing contract services?
 
 
 [WCAG 2.0]: https://www.w3.org/TR/WCAG20/
@@ -270,3 +279,7 @@ the solution is to announce to the user when the route has changed using a hidde
 [ARIA States and Properties]: https://www.w3.org/TR/using-aria/#x2-14-2-aria-states-and-properties-aria-attributes
 [aXe Core]:https://www.axe-core.org/
 [WAVE Tool]:https://wave.webaim.org/
+[AChecker]: https://achecker.ca/checker/
+[Basic SR Commands]: https://developer.paciellogroup.com/blog/2015/01/basic-screen-reader-commands-for-accessibility-testing/
+[SR Testing]: http://12devsofxmas.co.uk/2016/01/day-8-testing-using-a-screen-reader/
+[6 Simple Tests]: http://www.karlgroves.com/2013/09/05/the-6-simplest-web-accessibility-tests-anyone-can-do/
