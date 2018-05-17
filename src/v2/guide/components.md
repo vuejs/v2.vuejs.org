@@ -210,26 +210,47 @@ That's all you need to know about props for now, but once you've finished readin
 When building out a `<blog-post>` component, your template will eventually contain more than just the title:
 
 ```html
-<h3>{{ post.title }}</h3>
+<h3>{{ title }}</h3>
 ```
 
 At the very least, you'll want to include the post's content:
 
 ```html
-<h3>{{ post.title }}</h3>
-<div v-html="post.content"></div>
+<h3>{{ title }}</h3>
+<div v-html="content"></div>
 ```
 
 If you try this in your template however, Vue will show an error, explaining that **every component must have a single root element**. You can fix this error by wrapping the template in a parent element, such as:
 
 ```html
 <div class="blog-post">
-  <h3>{{ post.title }}</h3>
-  <div v-html="post.content"></div>
+  <h3>{{ title }}</h3>
+  <div v-html="content"></div>
 </div>
 ```
 
-Here, we pass the entire post object to the `props` option instead of separately passing the title and content.
+As our component grows, it's likely we'll not only need the title and content of a post, but also the published date, comments, and more. Defining a prop for each related piece of information could become very annoying:
+
+```html
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:title="post.title"
+  v-bind:content="post.content"
+  v-bind:publishedAt="post.publishedAt"
+  v-bind:comments="post.comments"
+></blog-post>
+```
+
+So this might be a good time to refactor the `<blog-post>` component to accept a single `post` prop instead:
+
+```html
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:post="post"
+></blog-post>
+```
 
 ```js
 Vue.component('blog-post', {
@@ -242,6 +263,10 @@ Vue.component('blog-post', {
   `
 })
 ```
+
+<p class="tip">The above example and some future ones use JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make multi-line templates more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
+
+Now, whenever a new property is added to `post` objects, it will automatically be available inside `<blog-post>`.
 
 ## Sending Messages to Parents with Events
 
@@ -289,8 +314,6 @@ Vue.component('blog-post', {
   `
 })
 ```
-
-<p class="tip">The above example and some future ones use JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make multi-line templates more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
 
 The problem is, this button doesn't do anything:
 
