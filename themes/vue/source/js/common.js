@@ -19,6 +19,9 @@
   // moved to a perhaps differently-named section on
   // another page, we need this.
   function initHashLevelRedirects() {
+    checkForHashRedirect(/list\.html$/, {
+      key: '/v2/guide/list.html#Maintaining-State'
+    })
     checkForHashRedirect(/components\.html$/, {
       'What-are-Components': '/v2/guide/components.html',
       'Using-Components': '/v2/guide/components-registration.html',
