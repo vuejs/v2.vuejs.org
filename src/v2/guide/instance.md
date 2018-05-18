@@ -16,7 +16,7 @@ var vm = new Vue({
 
 尽管没有完全遵循 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)，但是 Vue 的设计仍然受到了它的启发。作为约定，通常我们使用变量 `vm` (ViewModel 的简称) 来表示 Vue 实例。
 
-在创建一个 Vue 实例时，你会传入一个**选项对象(options object)**。本指南的大部分内容描述了，如果使用选项来达成预期的行为。可以在 [API 参考文档](../api/#Options-Data)中浏览选项(options)的完整列表。
+在创建一个 Vue 实例时，你会传入一个**选项对象(options object)**。本指南的大部分内容描述了，如何使用选项来达成预期的行为。可以在 [API 参考文档](../api/#Options-Data)中浏览选项(options)的完整列表。
 
 Vue 应用程序由「一个使用 `new Vue` 创建的 **Vue 根实例**」、「嵌套的树结构（可选）」和「可复用的组件」组成。例如，一个 todo 应用程序的组件树可能如下所示：
 
