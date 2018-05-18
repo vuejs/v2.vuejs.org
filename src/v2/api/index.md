@@ -1661,7 +1661,6 @@ type: api
     methods: {
       giveAdvice: function () {
         var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-        this.advice =
         this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
       }
     },
@@ -1704,7 +1703,6 @@ type: api
       methods: {
         giveAdvice: function () {
           var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-          this.advice =
           this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
         }
       },
