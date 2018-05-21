@@ -50,7 +50,7 @@ new Vue({
 
 We'd also need a style property that will transition the intermediary values here, in this case:
 
-```
+```css
 .box {
   transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1);
 }
