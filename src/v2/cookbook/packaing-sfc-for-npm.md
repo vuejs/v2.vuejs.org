@@ -1,7 +1,7 @@
 ---
 title: Packaging Vue Components for npm
 type: cookbook
-order: 10
+order: 12
 ---
 
 ## Base Example
@@ -79,7 +79,7 @@ When webpack 2+, Rollup, or other modern build tools are used, they will pick up
 
 ### SSR Usage
 
-You might have noticed something interesting - browsers aren't going to be using the `browser` version! That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the `.vue` file itself. For example:
+You might have noticed something interesting - browsers aren't going to be using the `browser` version. That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the `.vue` file itself. For example:
 
 ```js
 import MyComponent from 'my-component/sfc'; // Note the '/sfc'
@@ -87,11 +87,11 @@ import MyComponent from 'my-component/sfc'; // Note the '/sfc'
 
 Compatible bundlers see the `browser` definition in package.json and translate requests for `my-component/sfc` into `my-component/src/my-component.vue`, resulting in the original `.vue` file being used instead. Now the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
 
-> Note: When using `.vue` components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.
+<p class="tip">Note: When using `.vue` components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.</p>
 
 ### How do I make multiple versions of my component?
 
-There is no need to write your module multiple times. It is possible to prepare all 3 versions of your module in one step, in a matter of seconds. The example here uses [Rollup](https://rollupjs.org) due to its minimal configuration, but similar configuration is possible with other build tools. The package.json `scripts` section can be updated with a single entry for each build target, and a more generic `build` script that runs them all in one pass. The sample package.json file now looks like this:
+There is no need to write your module multiple times. It is possible to prepare all 3 versions of your module in one step, in a matter of seconds. The example here uses [Rollup](https://rollupjs.org) due to its minimal configuration, but similar configuration is possible with other build tools - more details on this decision can be found [here](https://medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c). The package.json `scripts` section can be updated with a single entry for each build target, and a more generic `build` script that runs them all in one pass. The sample package.json file now looks like this:
 
 ```json
 {
@@ -121,7 +121,9 @@ There is no need to write your module multiple times. It is possible to prepare 
 }
 ```
 
-That is all that is required in package.json to get up and running. Now, all that is needed is a small wrapper to export/auto-install the actual SFC, plus a mimimal Rollup configuration, and we're set!
+<p class="tip">If you have an existing package.json file, it will likely contain a lot more than this one does. The file used in this recipe merely illustrates a starting point. Also, the <i>packages</i> listed in devDependencies (not their versions) are the minimum requirements for rollup to create the three separate builds (umd, es, and unpkg) mentioned. As newer versions become available, they should be updated as necessary.</p>
+
+Our changes to package.json are complete. Next, we need a small wrapper to export/auto-install the actual SFC, plus a mimimal Rollup configuration, and we're set!
 
 ### What does my packaged component look like?
 
