@@ -82,7 +82,7 @@ Automated testing allows large teams of developers to maintain complex codebases
 
 #### Getting started
 
-[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/en/guides/) in the Vue Test Utils documentation.
+[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/guides/) in the Vue Test Utils documentation.
 
 ## Real-World Example
 
@@ -231,7 +231,7 @@ The above test is fairly simple, but in practice Vue components often have other
 - committing or dispatching mutations or actions with a `Vuex` store
 - testing interaction
 
-There are more complete examples showing such tests in the Vue Test Utils [guides](https://vue-test-utils.vuejs.org/en/guides/).
+There are more complete examples showing such tests in the Vue Test Utils [guides](https://vue-test-utils.vuejs.org/guides/).
 
 Vue Test Utils and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component.
 
