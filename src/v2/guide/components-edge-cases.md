@@ -159,7 +159,7 @@ You can see the [full example here](https://jsfiddle.net/chrisvfritz/tdv8dt3s/).
 In fact, you can think of dependency injection as sort of "long-range props", except:
 
 * ancestor components don't need to know which descendants use the properties it provides
-* descendant components don't know need to know where injected properties are coming from
+* descendant components don't need to know where injected properties are coming from
 
 <p class="tip">However, there are downsides to dependency injection. It couples components in your application to the way they're currently organized, making refactoring more difficult. Provided properties are also not reactive. This is by design, because using them to create a central data store scales just as poorly as <a href="#Accessing-the-Root-Instance">using <code>$root</code></a> for the same purpose. If the properties you want to share are specific to your app, rather than generic, or if you ever want to update provided data inside ancestors, then that's a good sign that you probably need a real state management solution like <a href="https://github.com/vuejs/vuex">Vuex</a> instead.</p>
 
