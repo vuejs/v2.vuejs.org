@@ -25,7 +25,29 @@ Vue.component('blog-post', {
 
 Again, if you're using string templates, this limitation does not apply.
 
-## Static and Dynamic Props
+## Prop Types
+
+So far, we've only seen props listed as an array of strings:
+
+```js
+props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+```
+
+Usually though, you'll want every prop to be a specific type of value. In these cases, you can list props as an object, where the properties' names and values contain the prop names and types, respectively:
+
+```js
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object
+}
+```
+
+This not only documents your component, but will also warn users in the browser's JavaScript console if they pass the wrong type. You'll learn much more about [type checks and other prop validations](#Prop-Validation) further down this page.
+
+## Passing Static or Dynamic Props
 
 So far, you've seen props passed a static value, like in:
 
@@ -36,7 +58,11 @@ So far, you've seen props passed a static value, like in:
 You've also seen props assigned dynamically with `v-bind`, such as in:
 
 ```html
+<!-- Dynamically assign the value of a variable -->
 <blog-post v-bind:title="post.title"></blog-post>
+
+<!-- Dynamically assign the value of a complex expression -->
+<blog-post v-bind:title="post.title + ' by ' + post.author.name"></blog-post>
 ```
 
 In the two examples above, we happen to pass string values, but _any_ type of value can actually be passed to a prop.
@@ -56,14 +82,14 @@ In the two examples above, we happen to pass string values, but _any_ type of va
 
 ```html
 <!-- Including the prop with no value will imply `true`. -->
-<blog-post favorited></blog-post>
+<blog-post is-published></blog-post>
 
 <!-- Even though `false` is static, we need v-bind to tell Vue that -->
 <!-- this is a JavaScript expression rather than a string.          -->
-<base-input v-bind:favorited="false">
+<blog-post v-bind:is-published="false"></blog-post>
 
 <!-- Dynamically assign to the value of a variable. -->
-<base-input v-bind:favorited="post.currentUserFavorited">
+<blog-post v-bind:is-published="post.isPublished"></blog-post>
 ```
 
 ### Passing an Array
@@ -82,10 +108,10 @@ In the two examples above, we happen to pass string values, but _any_ type of va
 ```html
 <!-- Even though the object is static, we need v-bind to tell Vue that -->
 <!-- this is a JavaScript expression rather than a string.             -->
-<blog-post v-bind:comments="{ id: 1, title: 'My Journey with Vue' }"></blog-post>
+<blog-post v-bind:author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blog-post>
 
 <!-- Dynamically assign to the value of a variable. -->
-<blog-post v-bind:post="post"></blog-post>
+<blog-post v-bind:author="post.author"></blog-post>
 ```
 
 ### Passing the Properties of an Object
@@ -148,7 +174,7 @@ There are usually two cases where it's tempting to mutate a prop:
 
 ## Prop Validation
 
-Components can specify requirements for its props. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
+Components can specify requirements for its props, such as the types you've already seen. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
 
 To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
 
@@ -200,9 +226,10 @@ The `type` can be one of the following native constructors:
 - String
 - Number
 - Boolean
-- Function
-- Object
 - Array
+- Object
+- Date
+- Function
 - Symbol
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check. For example, given the following constructor function exists:
