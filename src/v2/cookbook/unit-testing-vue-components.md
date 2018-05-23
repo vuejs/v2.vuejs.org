@@ -194,7 +194,7 @@ const factory = (values = {}) => {
 
 describe('Foo', () => {
   it('renders a welcome message', () => {
-    const wrapper = factory()
+    const wrapper = factory({ message: 'Welcome to the Vue.js cookbook' })
 
     expect(wrapper.find('.message').text()).toEqual("Welcome to the Vue.js cookbook")
   })
