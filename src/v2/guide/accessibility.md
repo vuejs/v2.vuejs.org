@@ -24,9 +24,18 @@ There's a lot of technology that people with disabilities utilise to use their c
 
 ## Basic accessibility
 
-Accessibility in standard websites, such as putting alt text on images and making sure your text is large enough to read, has been covered many times before, so instead of rewriting what has already been said here, here's a couple articles covering the topic:
+Accessibility in standard websites, such as putting alt text on images and making sure your text is large enough to read, has been covered many times before. Instead of rewriting what has already been said, here's a few resources to get you started:
 
-@todo: add some links
+### Talks and Videos
+- [W3C Web Accessibility Initiative's "Introduction to Web Accessibility and W3C Standards"][W3C Intro]
+- [Leonie Watson speaking on "Developer's Guide to Accessibility Mechanics"][Leonie A11y Mechanics]
+- [Marcy Sutton speaking on "Innovating with Accessibility in Mind"][Marcy Innovating A11y]
+- [Google's "A11ycasts" series with Rob Dodson][A11ycasts]
+
+### Blogs and How-Tos
+- [W3C's Web Accessibility Tutorials][W3C Tutorials]
+- [The A11y Project][A11y Project]
+- [Heydon Pickering's Inclusive Components][Inclusive Components]
 
 ## Accessibility in JavaScript-rich websites
 
@@ -283,3 +292,10 @@ By far, the best method to help the widest range of users to access your applica
 [Basic SR Commands]: https://developer.paciellogroup.com/blog/2015/01/basic-screen-reader-commands-for-accessibility-testing/
 [SR Testing]: http://12devsofxmas.co.uk/2016/01/day-8-testing-using-a-screen-reader/
 [6 Simple Tests]: http://www.karlgroves.com/2013/09/05/the-6-simplest-web-accessibility-tests-anyone-can-do/
+[Inclusive Components]: https://inclusive-components.design/
+[Leonie A11y Mechanics]: https://www.youtube.com/watch?v=qi0tY60Hd6M
+[Marcy Innovating A11y]: https://www.youtube.com/watch?v=UXCt_85Y3Ek
+[A11ycasts]: https://www.youtube.com/playlist?list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g
+[W3C Intro]: https://www.youtube.com/watch?v=20SHvU2PKsM
+[A11y Project]: https://a11yproject.com/
+[W3C Tutorials]: https://www.w3.org/WAI/tutorials/
