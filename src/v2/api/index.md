@@ -348,7 +348,7 @@ type: api
   Vue.component('my-component', { /* ... */ })
 
   // retrieve a registered component (always return constructor)
-  var MyComponent = Vue.component('my-component')
+  var MyComponent = Vue.component('my-component', {})
   ```
 
 - **See also:** [Components](../guide/components.html)
