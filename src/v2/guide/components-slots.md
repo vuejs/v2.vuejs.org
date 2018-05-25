@@ -179,7 +179,7 @@ Sometimes you'll want to provide a component with a reusable slot that can acces
 
 But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`. This is where scoped slots come in.
 
-To make the feature possible, all we have to do is wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
+To make the feature possible, all we have to do is to wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
 
 ```html
 <ul>
