@@ -21,22 +21,32 @@
   <% if (page.title.trim()) { %>
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
-  <%- page.content %>
+  <% if (page.sponsors) { %>
+    <%- partial('sponsors-page') %>
+  <% } else if (page.search) { %>
+    <%- partial('search-page') %>
+  <% } else { %>
+    <%- page.content %>
+  <% } %>
   <% if (page.type === 'guide') { %>
     <div class="guide-links">
-      <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
-        <span>← <a href="<%- url_for(page.path) %>"><%- page.title %></a></span>
-      <% }) %>
-      <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
-        <span style="float: right;"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
-      <% }) %>
+      <% const lastPage = site.pages.find({ type: page.type, order: { $lt: page.order }}).sort({ order: -1 }).first(); %>
+      <% if (lastPage) { %>
+        <span>← <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span>
+      <% } %>
+      <% const nextPage = site.pages.find({ type: page.type, order: { $gt: page.order }}).sort({ order: 1 }).first(); %>
+      <% if (nextPage) { %>
+        <span style="float: right;"><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a> →</span>
+      <% } %>
     </div>
   <% } %>
   <div class="footer">
-    <%- partial('partials/ad-text') %>
-    Caught a mistake or want to contribute to the documentation?
+    <%_ if (!page.sponsors) { _%>
+      <%- partial('partials/ad-text') %>
+    <%_ } _%>
+    이 문서에 문제를 제보하거나 기여하고 싶은 부분이 있으십니까?
     <a href="https://github.com/vuejs-kr/kr.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-      Edit this page on Github!
+      Github에서 이 페이지를 수정하세요!
     </a>
   </div>
 </div>

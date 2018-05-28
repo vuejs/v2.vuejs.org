@@ -1,11 +1,12 @@
 <li class="nav-dropdown-container learn">
-  <a class="nav-link<%- page.path.match(/(guide(?!\/team.html$)|api|examples|cookbook)/) ? ' current' : '' %>">배우기</a><span class="arrow"></span>
+  <a class="nav-link<%- page.path.match(/\/(guide(?!\/team.html$)|api|style-guide|examples|cookbook)(\/|$)/) ? ' current' : '' %>">배우기</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">가이드</a></li>
-      <li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-      <li><a href="<%- url_for("/v2/style-guide/") %>" class="nav-link<%- page.path.match(/\/style-guide(\/|$)/) ? ' current' : '' %>">스타일 가이드</a></li>     
-      <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">예제</a></li>
+      <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/\/guide(\/|$)/) ? ' current' : '' %>">가이드</a></li>
+      <li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/\/api(\/|$)/) ? ' current' : '' %>">API</a></li>
+      <li><a href="<%- url_for("/v2/style-guide/") %>" class="nav-link<%- page.path.match(/\/style-guide(\/|$)/) ? ' current' : '' %>">스타일 가이드</a></li>
+      <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/\/examples(\/|$)/) ? ' current' : '' %>">예제</a></li>
+      <li><a href="<%- url_for("/v2/cookbook/") %>" class="nav-link<%- page.path.match(/\/cookbook(\/|$)/) ? ' current' : '' %>">쿡북</a></li>
     </ul></li>
   </ul>
 </li>

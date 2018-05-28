@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
@@ -329,8 +330,6 @@ type: api
   // getter, 필터가 등록된 경우 반환합니다
   var myFilter = Vue.filter('my-filter')
   ```
-
-- **참고:** [필터](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -822,7 +821,7 @@ if (version === 2) {
   이 훅이 호출되면 엘리먼트의 DOM이 업데이트 된 상태가 되어 이 훅에서 DOM 종속적인 연산을 할 수 있습니다. 그러나 대부분의 경우 무한루프가 발생할 수 있으므로 훅에서 상태를 변경하면 안됩니다. 상태 변화에 반응하기 위해서 [계산된 속성](#computed) 또는 [감시자(#watch)를 사용하는 것이 더 좋습니다.
 
   `updated`는 모든 자식 컴포넌트가 재-렌더링 된 상태를 보장하지 **않습니다**. `updated` 내부에서 [vm.$nextTick](#vm-nextTick)를 사용하면 전체가 업데이트된 상태를 보장합니다.
-  
+
   ``` js
   updated: function () {
     this.$nextTick(function () {
@@ -901,7 +900,7 @@ if (version === 2) {
   <p class="tip">이 훅에서 컴포넌트 상태를 수정할 수 있습니다. 그러나 오류가 캡처되었을 때 다른 내용을 더이상 실행시키지 않는 조건부 템플릿을 사용하거나 렌더링 기능을 사용하는 것이 중요합니다. 그렇지 않으면 컴포넌트가 무한 렌더링 루프에 던져 질 것입니다.</p>
 
   **에러 전파 규칙**
-  
+
   - 기본적으로 모든 오류는 정의 된 경우 전역 `config.errorHandler`로 보내지므로 분석 서비스에 한 곳에 계속 보고할 수 있습니다.
 
   - 여러 개의 'errorCaptured` 훅이 컴포넌트의 상속 체인이나 부모 체인에 존재하면, 모두 동일한 에러로 호출됩니다.

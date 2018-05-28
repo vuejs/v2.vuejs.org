@@ -5,7 +5,7 @@ $header-height = 40px
   height: $header-height
   padding: $heading-padding-vertical 60px
   position: relative
-  z-index: 2
+  z-index: 100
 
 body.docs
   #header
@@ -127,3 +127,7 @@ body.docs
     left: 50%
     margin-left: -15px
     background-size: 30px
+
+@media print
+  #header
+    display: none

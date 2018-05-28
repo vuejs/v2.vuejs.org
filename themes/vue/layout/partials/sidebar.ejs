@@ -4,37 +4,28 @@
       <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
-      <div class="main-sponsor">
-        <span>Platinum Sponsors</span>
-        <div>
-        <%_ for (const sponsor of theme.platinum_sponsors) {_%>
-        <a href="<%- sponsor.url %>" target="_blank" class="logo">
-          <img src="<%- url_for(`/images/${sponsor.img}`) %>">
-        </a>
-        <%_ } _%>
-        </div>
-      </div>
-      <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-        Become a Sponsor
-      </a>
-      <h2>
-        <%-
-          type === 'api'
-            ? 'API'
-            : type === 'style-guide'
-              ? 'Style Guide<sup class="beta">beta</sup>'
-              : (type.charAt(0).toUpperCase() + type.slice(1))
-        %>
-        <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
-          <select class="version-select">
-            <option value="SELF" selected>2.x</option>
-            <option value="v1">1.0</option>
-            <option value="012">0.12</option>
-            <option value="011">0.11</option>
-          </select>
-        <% } %>
-      </h2>
-      <%- partial('partials/toc', { type: type }) %>
+      <%- partial('partials/sponsors_sidebar') %>
+      <% if (type !== 'search') { %>
+        <h2>
+          <% titles = {
+            api: 'API',
+            examples: '예제',
+            guide: '가이드',
+            cookbook: '쿡북<sup class="beta">beta</sup>',
+            'style-guide': '스타일 가이드<sup class="beta">beta</sup>'
+          } %>
+          <%- titles[type] %>
+          <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
+            <select class="version-select">
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          <% } %>
+        </h2>
+        <%- partial('partials/toc', { type: type }) %>
+      <% } %>
     </div>
   </div>
 </div>
