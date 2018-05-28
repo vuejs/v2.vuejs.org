@@ -1,11 +1,101 @@
 (function () {
-
+  initHashLevelRedirects()
   initMobileMenu()
+  initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
-    initSubHeaders()
     initApiSpecLinks()
+    initSubHeaders()
     initLocationHashFuzzyMatching()
+  }
+
+  // Most redirects should be specified in Hexo's
+  // _config.yml. However, it can't handle hash-level
+  // redirects, such as:
+  //
+  // /foo#hello -> /bar#hello
+  //
+  // For these cases where a section on one page has
+  // moved to a perhaps differently-named section on
+  // another page, we need this.
+  function initHashLevelRedirects() {
+    checkForHashRedirect(/components\.html$/, {
+      'What-are-Components': '/v2/guide/components.html',
+      'Using-Components': '/v2/guide/components-registration.html',
+      'Global-Registration':
+        '/v2/guide/components-registration.html#Global-Registration',
+      'Local-Registration':
+        '/v2/guide/components-registration.html#Local-Registration',
+      'Composing-Components':
+        '/v2/guide/components.html#Organizing-Components',
+      Props:
+        '/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props',
+      'Passing-Data-with-Props':
+        '/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props',
+      'camelCase-vs-kebab-case':
+        '/v2/guide/components-props.html#Prop-Casing-camelCase-vs-kebab-case',
+      'Dynamic-Props':
+        '/v2/guide/components-props.html#Static-and-Dynamic-Props',
+      'Literal-vs-Dynamic':
+        '/v2/guide/components-props.html#Static-and-Dynamic-Props',
+      'One-Way-Data-Flow':
+        '/v2/guide/components-props.html#One-Way-Data-Flow',
+      'Prop-Validation': '/v2/guide/components-props.html#Prop-Validation',
+      'Non-Prop-Attributes':
+        '/v2/guide/components-props.html#Non-Prop-Attributes',
+      'Replacing-Merging-with-Existing-Attributes':
+        '/v2/guide/components-props.html#Replacing-Merging-with-Existing-Attributes',
+      'Custom-Events':
+        '/v2/guide/components.html#Sending-Messages-to-Parents-with-Events',
+      'Using-v-on-with-Custom-Events':
+        '/v2/guide/components.html#Sending-Messages-to-Parents-with-Events',
+      'Binding-Native-Events-to-Components':
+        '/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components',
+      'sync-Modifier':
+        '/v2/guide/components-custom-events.html#sync-Modifier',
+      'Form-Input-Components-using-Custom-Events':
+        '/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components',
+      'Customizing-Component-v-model':
+        '/v2/guide/components-custom-events.html#Customizing-Component-v-model',
+      'Non-Parent-Child-Communication': '/v2/guide/state-management.html',
+      'Compilation-Scope':
+        '/v2/guide/components-slots.html#Compilation-Scope',
+      'Single-Slot': '/v2/guide/components-slots.html#Slot-Content',
+      'Named-Slots': '/v2/guide/components-slots.html#Named-Slots',
+      'Scoped-Slots': '/v2/guide/components-slots.html#Scoped-Slots',
+      'Dynamic-Components': '/v2/guide/components.html#Dynamic-Components',
+      'keep-alive':
+        '/v2/guide/components-dynamic-async.html#keep-alive-with-Dynamic-Components',
+      Misc: '/v2/guide/components-edge-cases.html',
+      'Authoring-Reusable-Components':
+        '/v2/guide/components.html#Organizing-Components',
+      'Child-Component-Refs':
+        '/v2/guide/components-edge-cases.html#Accessing-Child-Component-Instances-amp-Child-Elements',
+      'Async-Components':
+        '/v2/guide/components-dynamic-async.html#Async-Components',
+      'Advanced-Async-Components':
+        '/v2/guide/components-dynamic-async.html#Handling-Loading-State',
+      'Component-Naming-Conventions':
+        '/v2/guide/components-registration.html#Component-Names',
+      'Recursive-Components':
+        '/v2/guide/components-edge-cases.html#Recursive-Components',
+      'Circular-References-Between-Components':
+        '/v2/guide/components-edge-cases.html#Circular-References-Between-Components',
+      'Inline-Templates':
+        '/v2/guide/components-edge-cases.html#Inline-Templates',
+      'X-Templates': '/v2/guide/components-edge-cases.html#X-Templates',
+      'Cheap-Static-Components-with-v-once':
+        '/v2/guide/components-edge-cases.html#Cheap-Static-Components-with-v-once'
+    })
+    function checkForHashRedirect(pageRegex, redirects) {
+      // Abort if the current page doesn't match the page regex
+      if (!pageRegex.test(window.location.pathname)) return
+
+      var redirectPath = redirects[window.location.hash.slice(1)]
+      if (redirectPath) {
+        window.location.href = window.location.origin + redirectPath
+      }
+    }
   }
 
   function initApiSpecLinks () {
@@ -13,9 +103,17 @@
     if (apiContent) {
       var apiTitles = [].slice.call(apiContent.querySelectorAll('h3'))
       apiTitles.forEach(function (titleNode) {
+        var methodMatch = titleNode.textContent.match(/^([^(]+)\(/)
+        if (methodMatch) {
+          var idWithoutArguments = slugize(methodMatch[1])
+          titleNode.setAttribute('id', idWithoutArguments)
+          titleNode.querySelector('a').setAttribute('href', '#' + idWithoutArguments)
+        }
+
         var ulNode = titleNode.parentNode.nextSibling
         if (ulNode.tagName !== 'UL') {
           ulNode = ulNode.nextSibling
+          if (!ulNode) return
         }
         if (ulNode.tagName === 'UL') {
           var specNode = document.createElement('li')
@@ -26,9 +124,10 @@
       })
     }
 
-    function createSourceSearchPath(query) {
+    function createSourceSearchPath (query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
         .replace(/vm\./g, 'Vue.prototype.')
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
@@ -40,7 +139,7 @@
       hash = hash.substr(1)
     }
 
-    // Escape characthers
+    // Escape characters
     try {
       hash = decodeURIComponent(hash)
     } catch (e) {}
@@ -125,8 +224,45 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) sidebar.classList.add('open')
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
+      }
+    })
+  }
+
+  /**
+  * Modal Video Player
+  */
+  function initVideoModal () {
+    var modalButton = document.getElementById('modal-player')
+    var videoModal = document.getElementById('video-modal')
+
+    if (!modalButton || !videoModal) {
+      return
+    }
+
+    var iframe = document.querySelector('iframe')
+    var player = new Vimeo.Player(iframe)
+    var overlay = document.createElement('div')
+        overlay.className = 'overlay'
+    var isOpen = false
+
+    modalButton.addEventListener('click', function(event) {
+      event.stopPropagation()
+      videoModal.classList.toggle('open')
+      document.body.classList.toggle('stop-scroll')
+      document.body.appendChild(overlay)
+      player.play()
+      isOpen = true
+    })
+
+    document.body.addEventListener('click', function(e) {
+      if (isOpen && e.target !== modalButton && !videoModal.contains(e.target)) {
+        videoModal.classList.remove('open')
+        document.body.classList.remove('stop-scroll')
+        document.body.removeChild(overlay)
+        player.unload()
+        isOpen = false
       }
     })
   }
@@ -143,7 +279,7 @@
       var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return
       window.location.assign(
-        'http://' +
+        'https://' +
         version +
         (version && '.') +
         'vuejs.org/' + section + '/'
@@ -164,11 +300,15 @@
 
     // build sidebar
     var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
-    var isAPI = document.querySelector('.content').classList.contains('api')
-    if (currentPageAnchor || isAPI) {
+    var contentClasses = document.querySelector('.content').classList
+    var isAPIOrStyleGuide = (
+      contentClasses.contains('api') ||
+      contentClasses.contains('style-guide')
+    )
+    if (currentPageAnchor || isAPIOrStyleGuide) {
       var allHeaders = []
       var sectionContainer
-      if (isAPI) {
+      if (isAPIOrStyleGuide) {
         sectionContainer = document.querySelector('.menu-root')
       } else {
         sectionContainer = document.createElement('ul')
@@ -183,12 +323,13 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
+            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
         headers = content.querySelectorAll('h3')
         each.call(headers, function (h) {
+          console.log(h)
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
@@ -211,7 +352,17 @@
       }, true)
 
       // make links clickable
-      allHeaders.forEach(makeHeaderClickable)
+      allHeaders
+        .filter(function(el) {
+          if (!el.querySelector('a')) {
+            return false
+          }
+          var demos = [].slice.call(document.querySelectorAll('demo'))
+          return !demos.some(function(demoEl) {
+            return demoEl.contains(el)
+          })
+        })
+        .forEach(makeHeaderClickable)
 
       smoothScroll.init({
         speed: 400,
@@ -246,12 +397,21 @@
         }
       }
       if (last)
-      setActive(last.id, !hoveredOverSidebar)
+        setActive(last.id, !hoveredOverSidebar)
     }
 
     function makeLink (h) {
       var link = document.createElement('li')
-      var text = h.textContent.replace(/\(.*\)$/, '')
+      window.arst = h
+      var text = [].slice.call(h.childNodes).map(function (node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.nodeValue
+        } else if (['CODE', 'SPAN'].indexOf(node.tagName) !== -1) {
+          return node.textContent
+        } else {
+          return ''
+        }
+      }).join('').replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
           htmlEscape(text) +
@@ -320,12 +480,58 @@
       }
     }
 
-    function makeHeaderClickable (link) {
-      var wrapper = document.createElement('a')
-      wrapper.href = '#' + link.id
-      wrapper.setAttribute('data-scroll', '')
-      link.parentNode.insertBefore(wrapper, link)
-      wrapper.appendChild(link)
+    function makeHeaderClickable (header) {
+      var link = header.querySelector('a')
+      link.setAttribute('data-scroll', '')
+
+      // transform DOM structure from
+      // `<h2><a></a>Header</a>` to <h2><a>Header</a></h2>`
+      // to make the header clickable
+      var nodes = Array.prototype.slice.call(header.childNodes)
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i]
+        if (node !== link) {
+          link.appendChild(node)
+        }
+      }
+    }
+  }
+
+  // Stolen from: https://github.com/hexojs/hexo-util/blob/master/lib/escape_regexp.js
+  function escapeRegExp(str) {
+    if (typeof str !== 'string') throw new TypeError('str must be a string!');
+
+    // http://stackoverflow.com/a/6969486
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+  }
+
+  // Stolen from: https://github.com/hexojs/hexo-util/blob/master/lib/slugize.js
+  function slugize(str, options) {
+    if (typeof str !== 'string') throw new TypeError('str must be a string!')
+    options = options || {}
+
+    var rControl = /[\u0000-\u001f]/g
+    var rSpecial = /[\s~`!@#\$%\^&\*\(\)\-_\+=\[\]\{\}\|\\;:"'<>,\.\?\/]+/g
+    var separator = options.separator || '-'
+    var escapedSep = escapeRegExp(separator)
+
+    var result = str
+      // Remove control characters
+      .replace(rControl, '')
+      // Replace special characters
+      .replace(rSpecial, separator)
+      // Remove continuous separators
+      .replace(new RegExp(escapedSep + '{2,}', 'g'), separator)
+      // Remove prefixing and trailing separators
+      .replace(new RegExp('^' + escapedSep + '+|' + escapedSep + '+$', 'g'), '')
+
+    switch (options.transform) {
+      case 1:
+        return result.toLowerCase()
+      case 2:
+        return result.toUpperCase()
+      default:
+        return result
     }
   }
 })()

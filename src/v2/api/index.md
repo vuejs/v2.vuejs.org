@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
@@ -146,7 +147,7 @@ type: api
 
 ## 전역 API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **전달인자:**
   - `{Object} options`
@@ -185,7 +186,7 @@ type: api
 
 - **참고:** [컴포넌트](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **전달인자:**
   - `{Function} [callback]`
@@ -208,7 +209,7 @@ type: api
 
 - **참고:** [비동기 갱신 큐](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -226,7 +227,7 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -243,7 +244,7 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -274,7 +275,7 @@ type: api
 
 - **참고:** [사용자 정의 디렉티브](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -294,7 +295,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **전달인자:**
   - `{string} id`
@@ -317,7 +318,7 @@ type: api
 
 - **참고:** [컴포넌트](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **전달인자:**
   - `{Object | Function} plugin`
@@ -330,7 +331,7 @@ type: api
 
 - **참고:** [플러그인](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **전달인자:**
   - `{Object} mixin`
@@ -341,7 +342,7 @@ type: api
 
 - **참고:** [전역 Mixins](../guide/mixins.html#Global-Mixin)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **전달인자:**
   - `{string} template`
@@ -365,7 +366,7 @@ type: api
 
 - **참고:** [렌더 함수](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
 
@@ -1255,7 +1256,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 데이터
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **전달인자:**
   - `{string | Function} expOrFn`
@@ -1323,7 +1324,7 @@ if (version === 2) {
   // 콜백은`a`의 현재 값으로 즉시 시작됩니다.
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -1338,7 +1339,7 @@ if (version === 2) {
 
 - **참고:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **전달인자:**
   - `{Object | Array} target`
@@ -1352,7 +1353,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 이벤트
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **전달인자:**
   - `{string | Array<string>} event` (객체는 2.2.0버전 이상에서만 지원)
@@ -1372,7 +1373,7 @@ if (version === 2) {
   // -> "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **전달인자:**
   - `{string} event`
@@ -1382,7 +1383,7 @@ if (version === 2) {
 
   사용자 이벤트를 한번만 듣습니다. 리스너는 한번 호출되면 제거됩니다.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **전달인자:**
   - `{string} [event]`
@@ -1396,7 +1397,7 @@ if (version === 2) {
   - 이벤트만 인자로 전달 받는 경우 해당 이벤트의 모든 리스너를 제거합니다.
   - 이벤트와 콜백을 전달 받으면 특정 콜백에 대한 리스너만 제거합니다.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **전달인자:**
   - `{string} event`
@@ -1406,7 +1407,7 @@ if (version === 2) {
 
 ## 인스턴스 메소드 / 라이프사이클
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **전달인자:**
   - `{Element | string} [elementOrSelector]`
@@ -1444,13 +1445,13 @@ if (version === 2) {
   - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
   - [서버측 렌더링](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **사용방법:**
 
   Vue 인스턴스를 강제로 다시 렌더링합니다. 모든 하위 컴포넌트에는 영향이 미치지 않으며, 슬롯 그 자체가 삽입된 슬롯 자체 및 하위 컴포넌트에만 영향을 미칩니다.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **전달인자:**
   - `{Function} [callback]`
@@ -1486,7 +1487,7 @@ if (version === 2) {
   - [Vue.nextTick](#Vue-nextTick)
   - [비동기 업데이트 큐](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **사용방법:**
 
