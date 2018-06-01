@@ -24,6 +24,16 @@ Go to `config/index.js` and find the `devtool` property. Update it to:
 devtool: 'source-map',
 ```
 
+With Vue CLI 3 you need set `devtool` property inside `vue.config.js`:
+
+```js
+module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  }
+}
+```
+
 ### Launching the Application from VS Code
 
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome** for the environment. Replace content of the generated launch.json with the following two configurations:
