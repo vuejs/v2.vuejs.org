@@ -268,7 +268,7 @@ var watchExampleVM = new Vue({
     answer: '질문을 하기 전까지는 대답할 수 없습니다'
   },
   watch: {
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = '입력을 기다리는 중...'
       this.getAnswer()
     }
