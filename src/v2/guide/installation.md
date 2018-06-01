@@ -2,8 +2,8 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.5.13
-gz_size: "30.67"
+vue_version: 2.5.16
+gz_size: "30.90"
 ---
 
 ### Compatibility Note
@@ -37,7 +37,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 We recommend linking to a specific version number that you can update manually:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 ```
 
 You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
