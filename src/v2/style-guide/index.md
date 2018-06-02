@@ -1514,6 +1514,14 @@ This is the default order we recommend for component options. They're split into
 9. **Events** (callbacks triggered by reactive events)
   - `watch`
   - Lifecycle Events (in the order they are called)
+    - `beforeCreate`
+    - `created`
+    - `beforeMount`
+    - `mounted`
+    - `beforeUpdate`
+    - `updated`
+    - `beforeDestroy`
+    - `destroyed`
 
 10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
   - `methods`
