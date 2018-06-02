@@ -50,3 +50,13 @@ Vue has already spread across the globe, with even the core team in at least hal
 I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
 
 If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/vuejs.org/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
+
+### Become a Community Leader
+
+Aside from all the great thing you can do remotely, there are a lot of things you can do in your community:
+
+- **Present at your local meetup** - Whether it's giving a talk or running a tutorial, you can bring a lot of value to your community by helping people brand new to Vue.js learn the ropes.
+- **Start your own meetup** - In the event your area doesn't have one, you can start your own meetup! We have [resources](https://www.vuemeetups.org/resources/#introduction) and to help you succeed!
+- **Help meetup organizers** - There can never be too much help when it comes to running an event, so you can always offer a hand to help out local organizers to help make the event a success for all the attendees.
+
+If you have any questions on how you can get more involved with your local Vue.js community, be sure to reach out to us at [hello@vuemeetups.org](mailto:hello@vuemeetups.org) or [@VueMeetups](https://www.twitter.com/vuemeetups)!
