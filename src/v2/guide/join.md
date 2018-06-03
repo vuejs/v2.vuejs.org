@@ -53,10 +53,10 @@ If so, please feel free to fork the repo for [these docs](https://github.com/vue
 
 ### Become a Community Leader
 
-Aside from all the great thing you can do remotely, there are a lot of things you can do in your community:
+There's a lot you can do to help Vue grow in your community:
 
-- **Present at your local meetup** - Whether it's giving a talk or running a tutorial, you can bring a lot of value to your community by helping people brand new to Vue.js learn the ropes.
-- **Start your own meetup** - In the event your area doesn't have one, you can start your own meetup! We have [resources](https://www.vuemeetups.org/resources/#introduction) and to help you succeed!
-- **Help meetup organizers** - There can never be too much help when it comes to running an event, so you can always offer a hand to help out local organizers to help make the event a success for all the attendees.
+- **Present at your local meetup.** Whether it's giving a talk or running a workshop, you can bring a lot of value to your community by helping both new and experienced Vue developers continue to grow.
+- **Start your own meetup.** If there's not already a Vue meetup in your area, you can start your own! Use the [resources at vuemeetups.org](https://www.vuemeetups.org/resources/#introduction) to help you succeed!
+- **Help meetup organizers.** There can never be too much help when it comes to running an event, so offer a hand to help out local organizers to help make every event a success.
 
-If you have any questions on how you can get more involved with your local Vue.js community, be sure to reach out to us at [hello@vuemeetups.org](mailto:hello@vuemeetups.org) or [@VueMeetups](https://www.twitter.com/vuemeetups)!
+If you have any questions on how you can get more involved with your local Vue community, reach out at [hello@vuemeetups.org](mailto:hello@vuemeetups.org) or [@VueMeetups](https://www.twitter.com/vuemeetups)!
