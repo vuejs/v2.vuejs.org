@@ -1520,6 +1520,8 @@ This is the default order we recommend for component options. They're split into
     - `mounted`
     - `beforeUpdate`
     - `updated`
+    - `activated`
+    - `deactivated`
     - `beforeDestroy`
     - `destroyed`
 
