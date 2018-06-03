@@ -12,7 +12,7 @@ A static type system can help prevent many potential runtime errors, especially 
 
 Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
 
-We also plan to provide an option to scaffold a ready-to-go Vue + TypeScript project in `vue-cli` in the near future.
+Vue CLI (@vue/cli NPM package) is able to generate TypeScript project since version 3.0. To create a new project, start with `vue create <app-name>` and select `Manually select features`.
 
 ## Recommended Configuration
 
