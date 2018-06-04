@@ -385,4 +385,4 @@ vm.selected.number // -> 123
 
 > Vue의 컴포넌트에 익숙하지 않으면 지금은 보지 않아도 괜찮습니다.
 
-HTML의 기본 제공 input 유형이 항상 사용자의 요구를 만족시킬 수는 없습니다. 다행히 Vue 컴포넌트를 사용하면 완전히 사용자 정의 된 동작으로 재사용 가능한 input을 만들 수 있습니다. 이 input은 `v-model`에도 작동합니다! 자세한 컴포넌트 가이드의 [사용자 정의 입력](components.html#Form-Input-Components-using-Custom-Events)을 참조하십시오.
+HTML의 기본 제공 input 유형이 항상 사용자의 요구를 만족시킬 수는 없습니다. 다행히 Vue 컴포넌트를 사용하면 완전히 사용자 정의 된 동작으로 재사용 가능한 input을 만들 수 있습니다. 이 input은 `v-model`에도 작동합니다! 자세한 컴포넌트 가이드의 [사용자 정의 입력](components.html#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-v-model-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98)을 참조하십시오.
