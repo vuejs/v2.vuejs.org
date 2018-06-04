@@ -60,6 +60,10 @@ gold_sponsors:
   - url: https://www.pubnub.com/vue-js/
     img: pubnub.png
 
+silver_sponsors:
+  - url: https://dopamine.bg/
+    img: dopamine.png
+
 bronze_sponsors:
   - url: http://tighten.co/
     img: http://i.imgur.com/T7fQYLT.png

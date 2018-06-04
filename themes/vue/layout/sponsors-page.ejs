@@ -121,6 +121,16 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
+<h3>Patreon Silver</h3>
+
+<p class="patreon-sponsors sponsor-section">
+<%_ for (const sponsor of theme.silver_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
 <p>
 If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: <b>it ensures the project that your product relies on stays healthy and actively maintained.</b> It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
 </p>
