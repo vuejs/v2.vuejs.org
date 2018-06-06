@@ -560,6 +560,7 @@
         // If user uses down arrow when on flyout menu parent, menu expands
         list.addEventListener('keydown', function (e) {
           if (e.keyCode === KEY_DOWN) {
+            e.preventDefault();
             if (document.activeElement === menuParent) {
               menuContainer.setAttribute('aria-expanded', true);
               menuContainer.classList.add('open');
