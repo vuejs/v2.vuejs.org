@@ -9,20 +9,22 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
-    </div><div class="right">
+      <img class="hero-logo" src="<%- url_for(" /images/logo.png ") %>">
+    </div>
+    <div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
-        The Progressive<br>JavaScript Framework
+        The Progressive
+        <br>JavaScript Framework
       </h1>
       <p>
         <a id="modal-player" class="button has-icon" href="javascript:;">
           <%- partial('icons/play') %>
-          WHY VUE.JS?</a>
-        <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+            WHY VUE.JS?</a>
+        <a class="button white" href="<%- url_for(" /v2/guide/ ") %>">GET STARTED</a>
         <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank">
           <%- partial('icons/github-dark') %>
-          GITHUB</a>
+            GITHUB</a>
       </p>
     </div>
   </div>
@@ -57,9 +59,9 @@
     <div class="point">
       <h2>Performant</h2>
       <p>
-        20KB min+gzip Runtime<br>
-        Blazing Fast Virtual DOM<br>
-        Minimal Optimization Efforts
+        20KB min+gzip Runtime
+        <br> Blazing Fast Virtual DOM
+        <br> Minimal Optimization Efforts
       </p>
     </div>
   </div>
@@ -83,44 +85,50 @@
       <%- partial('icons/medium') %>
     </a>
   </p>
-  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
+  <p>Released under the
+    <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>
+    <br> Copyright &copy; 2014-
+    <%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <div id="video-modal" class="modal">
-  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;">
+    <iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;"
+      frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
 </div>
 
 <script>
-(function () {
-  var topScrolled = false
-  var sponsors = document.getElementById('sponsors')
-  var sponsorTop = sponsors.offsetTop
-  var sponsorActive = false
+  (function () {
+    var topScrolled = false
+    var sponsors = document.getElementById('sponsors')
+    var sponsorTop = sponsors.offsetTop
+    var sponsorActive = false
 
-  window.addEventListener('resize', function () {
-    sponsorTop = sponsors.offsetTop
-  })
+    window.addEventListener('resize', function () {
+      sponsorTop = sponsors.offsetTop
+    })
 
-  window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 165 && !topScrolled) {
-      topScrolled = true
-      document.getElementById('mobile-bar').classList.remove('top')
-    } else if (window.pageYOffset <= 165 && topScrolled) {
-      topScrolled = false
-      document.getElementById('mobile-bar').classList.add('top')
-    }
-    if (window.pageYOffset > sponsorTop - 100) {
-      if (!sponsorActive) {
-        sponsorActive = true
-        sponsors.classList.add('active')
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 165 && !topScrolled) {
+        topScrolled = true
+        document.getElementById('mobile-bar').classList.remove('top')
+      } else if (window.pageYOffset <= 165 && topScrolled) {
+        topScrolled = false
+        document.getElementById('mobile-bar').classList.add('top')
       }
-    } else {
-      if (sponsorActive) {
-        sponsorActive = false
-        sponsors.classList.remove('active')
+      if (window.pageYOffset > sponsorTop - 100) {
+        if (!sponsorActive) {
+          sponsorActive = true
+          sponsors.classList.add('active')
+        }
+      } else {
+        if (sponsorActive) {
+          sponsorActive = false
+          sponsors.classList.remove('active')
+        }
       }
-    }
-  })
-})()
+    })
+  })()
 </script>
