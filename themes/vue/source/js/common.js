@@ -546,7 +546,10 @@
     
     // Get all flyout menus
     let menuItems = document.querySelectorAll('.nav-dropdown-container');
-    menuItems.forEach((list) => {
+
+    for (let i = 0; i < menuItems.length; i++) {
+      const list = menuItems[i];
+
       // Get the anchor that triggers flyout menu
       const menuParent = list.querySelector('a[aria-haspopup="true"]');
 
@@ -570,9 +573,10 @@
           return false;
         }, false);
       }
-      
+
       // Allow user to navigate items with Up and Down keyboard keys, escape flyout menu with Tab key
-      menu.forEach(function(item) {
+      for (let i = 0; i < menu.length; i++) {
+        const item = menu[i];
         item.addEventListener('keydown', function (e) {
           const firstElement = menu[0].parentElement;
           const lastElement = menu[menu.length-1].parentElement;
@@ -602,8 +606,8 @@
               menuContainer.classList.remove('open');
               break;
           }
-        });
-      });
-    });
+        }, false);
+      }
+    }
   }
 })()
