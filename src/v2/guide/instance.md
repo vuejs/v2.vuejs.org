@@ -141,6 +141,10 @@ new Vue({
 
 인스턴스 라이프사이클의 여러 단계에서 호출될 다른 훅도 있습니다. 그 예로 [`mounted`](../api/#mounted),[`updated`](../api/#updated) 및 [`destroyed`](../api/#destroyed)가 있습니다. 모든 라이프사이클 훅은 `this` 컨텍스트가 호출하는 Vue 인스턴스를 가리키며 호출됩니다. Vue 세계에서 "컨트롤러"의 컨셉이 어디에 있는지 궁금할 수 있습니다. 답은 컨트롤러가 없습니다. 컴포넌트의 사용자 지정 로직은 이러한 라이프사이클 훅으로 분할됩니다.
 
+
+<p class="tip">options 속성이나 콜백에 `created: () => console.log(this.a)` 이나 `vm.$watch('a', newValue => this.myMethod())` 와 같은 [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/%EC%95%A0%EB%A1%9C%EC%9A%B0_%ED%8E%91%EC%85%98) 사용을 지양하기 바랍니다.
+화살표 함수들은 부모 컨텍스트에 바인딩되기 때문에, `this` 컨텍스트가 호출하는 Vue 인스턴스에서 사용할 경우 `Uncaught TypeError: Cannot read property of undefined` 또는 `Uncaught TypeError: this.myMethod is not a function`와 같은 오류가 발생하게 됩니다.</p>
+
 ## 라이프사이클 다이어그램
 
 아래는 인스턴스 라이프사이클에 대한 다이어그램입니다. 지금 당장 모든 것을 완전히 이해할 필요는 없지만 다이어그램은 앞으로 도움이 될 것입니다.
