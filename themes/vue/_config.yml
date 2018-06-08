@@ -15,61 +15,88 @@ special_sponsors:
 platinum_sponsors:
   - url: http://tooltwist.com/
     img: tooltwist.png
+    name: tool twist
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
+    name: vue school
   - url: https://vehikl.com/
     img: vehikl.png
+    name: vehikl
 
 gold_sponsors:
   - url: https://laravel.com
     img: laravel.png
+    name: laravel
   - url: https://htmlburger.com
     img: htmlburger.png
+    name: html burger
   - url: https://chaitin.cn/en/
     img: chaitin.png
+    name: chaitin
   - url: https://anymod.com
     img: anymod.png
+    name: anymod
   - url: https://www.frontenddeveloperlove.com/
     img: frontend-love.png
+    name: frontend love
   - url: https://onsen.io/vue/
     img: onsen-ui.png
+    name: onsen ui
   - url: https://vuetifyjs.com
     img: vuetify.png
+    name: vuetify
   - url: https://neds.com.au/
     img: neds.png
+    name: neds
   - url: https://hackr.io/tutorials/learn-vue-js
     img: hackr-io.png
+    name: hacker io
   - url: https://icons8.com/
     img: icons8.png
+    name: icons 8
   - url: https://vuejobs.com/?ref=vuejs
     img: vuejobs.png
+    name: vue jobs
   - url: https://leanpub.com/vuejs2
     img: tmvuejs2.png
+    name: the mastery of vue js 2
   - url: https://codepilot.ai
     img: codepilot.png
+    name: code pilot
   - url: https://teamextension.io/
     img: teamextension.png
+    name: team extension
   - url: https://jsguru.io/
     img: jsguru.png
+    name: js guru
   - url: http://aaha.co/
     img: aaha.png
+    name: aaha
   - url: https://www.valuecoders.com
     img: valuecoders.png
+    name: value coders dot org
   - url: https://www.nsoft.com/careers/
     img: nsoft.png
+    name: n soft
   - url: https://www.pubnub.com/vue-js/
     img: pubnub.png
+    name: pub nub
 
 silver_sponsors:
   - url: https://dopamine.bg/
     img: dopamine.png
+    name: dopamine
 
 bronze_sponsors:
   - url: http://tighten.co/
     img: http://i.imgur.com/T7fQYLT.png
+    name: tighten
   - url: https://alligator.io
     img: https://alligator.io/images/alligator-logo.svg
+    name: alligator dot io
   - url: https://www.accelebrate.com/
     img: https://www.accelebrate.com/assets/images/accelebrate_logo@2x.png
+    name: accelebrate
   - url: https://pullstring.com
     img: https://i.imgur.com/hQHW6TB.png
+    name: pull string
