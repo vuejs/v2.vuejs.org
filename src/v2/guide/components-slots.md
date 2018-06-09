@@ -8,7 +8,7 @@ order: 104
 
 ## Slot Content
 
-<p>Cette page est en cours de traduction mais vous pouvez en trouver une ancienne version <a href="https://fr.vuejs.org/v2/guide/components.html">ici</a>. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>Vue implements a content distribution API that's modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.</p>
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>Vue implements a content distribution API that's modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.</p>
 
 This allows you to compose components like this:
 

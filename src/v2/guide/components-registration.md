@@ -8,7 +8,7 @@ order: 101
 
 ## Component Names
 
-<p>Cette page est en cours de traduction mais vous pouvez en trouver une ancienne version <a href="https://fr.vuejs.org/v2/guide/components.html">ici</a>. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>When registering a component, it will always be given a name. For example, in the global registration we've seen so far:</p>
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>When registering a component, it will always be given a name. For example, in the global registration we've seen so far:</p>
 
 ```js
 Vue.component('my-component-name', { /* ... */ })
