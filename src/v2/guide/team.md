@@ -218,6 +218,7 @@ order: 803
     'Munich, Germany': [48.137154, 11.576124],
     'Orlando, FL, USA': [28.538335, -81.379236],
     'Paris, France': [48.856614, 2.352222],
+    'Poznań, Poland': [52.4006553, 16.761583],
     'Seoul, South Korea': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
     'Taquaritinga, Brazil': [-21.430094, -48.515285],
@@ -280,6 +281,9 @@ order: 803
       ],
       reposPersonal: [
         'vue-2.0-simple-routing-example', 'vue-ssr-demo-simple'
+      ],
+      links: [
+        'https://www.patreon.com/chrisvuefritz'
       ]
     },
     {
@@ -494,10 +498,11 @@ order: 803
       },
       reposOfficial: [
         'vue-devtools',
+        'vue-cli',
         'vue-curated'
       ],
       reposPersonal: [
-        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller'
+        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
       ]
     },
     {
@@ -629,6 +634,25 @@ order: 803
       ],
       links: [
         'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
+    },
+    {
+      name: 'Michał Sajnóg',
+      city: 'Poznań, Poland',
+      languages: ['pl', 'en'],
+      github: 'michalsnik',
+      twitter: 'michalsnik',
+      work: {
+        role: 'Senior Frontend Developer / Team Leader',
+        org: 'Netguru',
+        orgUrl: 'https://netguru.co/'
+      },
+      reposOfficial: [
+        'eslint-plugin-vue',
+        'vue-devtools'
+      ],
+      reposPersonal: [
+        'vue-computed-helpers', 'vue-content-placeholders'
       ]
     }
   ]))

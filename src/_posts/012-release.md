@@ -25,7 +25,7 @@ There are also additional props-related improvements such as explicit one-time o
 
 ### Filter Arguments Improvements
 
-In 0.11, filters always receive their arguments as plain strings. An argument can be enclosed in quotes to include whitespace, but the quotes are not automatically stripped when passed into the filter function. Some users were also confused about how to retrive a dynamic value on the vm instead of a plain string.
+In 0.11, filters always receive their arguments as plain strings. An argument can be enclosed in quotes to include whitespace, but the quotes are not automatically stripped when passed into the filter function. Some users were also confused about how to retrieve a dynamic value on the vm instead of a plain string.
 
 In 0.12, the filter argument syntax now follows a simple rule: if an argument is enclosed in quotes, it will be passed in as a plain string; otherwise, it will be evaluated against the current vm as a dynamic value.
 

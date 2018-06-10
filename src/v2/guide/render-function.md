@@ -138,8 +138,8 @@ The next thing you'll have to become familiar with is how to use template featur
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // An HTML tag name, component options, or async
+  // function resolving to one of these. Required.
   'div',
 
   // {Object}
@@ -170,12 +170,14 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Same API as `v-bind:class`, accepting either
+  // a string, object, or array of strings and objects.
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Same API as `v-bind:style`, accepting either
+  // a string, object, or array of objects.
   style: {
     color: 'red',
     fontSize: '14px'
@@ -499,18 +501,18 @@ For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/
 
 The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Props are optional
+  props: {
+    // ...
+  },
   // To compensate for the lack of an instance,
   // we are now provided a 2nd context argument.
   render: function (createElement, context) {
-    // ...
-  },
-  // Props are optional
-  props: {
     // ...
   }
 })
@@ -530,7 +532,7 @@ Everything the component needs is passed through `context`, which is an object c
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
 - `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
+- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
 - `parent`: A reference to the parent component
 - `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
 - `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
@@ -554,6 +556,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -570,13 +579,6 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
 ```
@@ -605,7 +607,7 @@ If you are using template-based functional components, you will also have to man
 <template functional>
   <button
     class="btn btn-primary"
-    v-bind="data.attrs" 
+    v-bind="data.attrs"
     v-on="listeners"
   >
     <slot/>

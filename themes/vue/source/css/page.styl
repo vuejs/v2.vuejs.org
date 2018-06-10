@@ -5,6 +5,7 @@
 @import "_demo"
 @import "_sponsors-page"
 @import "_sponsors-sidebar"
+@import "_search-page"
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
@@ -70,14 +71,17 @@
     border-bottom: 1px solid $border
   h3
     margin: $h3-margin-top 0 1.2em
+    line-height: 1.2
     position: relative
-    &:after
+    > a:before
       content: "#"
       color: $green
       position: absolute
       left: -0.7em
-      bottom: -2px
+      margin-top: -0.05em
+      padding-right: 0.5em
       font-size: 1.2em
+      line-height: 1
       font-weight: bold
   figure
     margin: 1.2em 0

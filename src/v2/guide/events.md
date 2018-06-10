@@ -171,6 +171,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.capture`
 - `.self`
 - `.once`
+- `.passive`
 
 ``` html
 <!-- the click event's propagation will be stopped -->
@@ -203,7 +204,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <a v-on:click.once="doThis"></a>
 ```
 
-Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
+Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components-custom-events.html). If you haven't read about components yet, don't worry about this for now.
 
 > New in 2.3.0+
 
