@@ -27,8 +27,6 @@ gold_sponsors:
     img: htmlburger.png
   - url: https://chaitin.cn/en/
     img: chaitin.png
-  - url: https://anymod.com
-    img: anymod.png
   - url: https://www.frontenddeveloperlove.com/
     img: frontend-love.png
   - url: https://onsen.io/vue/
@@ -43,22 +41,18 @@ gold_sponsors:
     img: icons8.png
   - url: https://vuejobs.com/?ref=vuejs
     img: vuejobs.png
-  - url: https://leanpub.com/vuejs2
-    img: tmvuejs2.png
   - url: https://codepilot.ai
     img: codepilot.png
   - url: https://teamextension.io/
     img: teamextension.png
-  - url: https://jsguru.io/
-    img: jsguru.png
   - url: http://aaha.co/
     img: aaha.png
   - url: https://www.valuecoders.com
     img: valuecoders.png
   - url: https://www.nsoft.com/careers/
     img: nsoft.png
-  - url: https://www.pubnub.com/vue-js/
-    img: pubnub.png
+  - url: https://www.vuemastery.com/
+    img: vuemastery.png
 
 silver_sponsors:
   - url: https://dopamine.bg/
