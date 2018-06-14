@@ -121,6 +121,16 @@ Les soutiens récurrents viennent avec des avantages exclusifs comme avoir son n
 <%_ } _%>
 </p>
 
+<h3>Patreon Silver</h3>
+
+<p class="patreon-sponsors sponsor-section">
+<%_ for (const sponsor of theme.silver_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
 <p>
 Si vous êtes une entreprise et que vous utilisez Vue pour des produits générant du revenu, cela fait sens d'être sponsor du développement de Vue : <b>cela assure que le projet sur lequel repose votre produit reste sain et activement maintenu.</b> Cela améliore également votre visibilité auprès de la communauté Vue et vous rend plus attractif pour les développeurs Vue.
 </p>

@@ -5,7 +5,7 @@ order: 10
 ---
 ## Introduction
 
-If you are developing applications with Vue, then you need to watch out for memory leaks. This issue is especially important in Single Page Applications (SPAs) because by design, users should not have to refresh their browser when using an SPA, so it is up to the Javascript application to clean up components and make sure that garbage collection takes place as expected.
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>If you are developing applications with Vue, then you need to watch out for memory leaks. This issue is especially important in Single Page Applications (SPAs) because by design, users should not have to refresh their browser when using an SPA, so it is up to the JavaScript application to clean up components and make sure that garbage collection takes place as expected.</p>
 
 Memory leaks in Vue applications do not typically come from Vue itself, rather they can happen when incorporating other libraries into an application.
 
@@ -166,4 +166,4 @@ deactivated: function () {
 
 ## Wrapping Up
 
-Vue makes it very easy to develop amazing, reactive Javascript applications, but you still need to be careful about memory leaks. These leaks will often occur when using additional 3rd Party libraries that manipulate the DOM outside of Vue. Make sure to test your application for memory leaks and take appropriate steps to clean up components where necessary.
+Vue makes it very easy to develop amazing, reactive JavaScript applications, but you still need to be careful about memory leaks. These leaks will often occur when using additional 3rd Party libraries that manipulate the DOM outside of Vue. Make sure to test your application for memory leaks and take appropriate steps to clean up components where necessary.

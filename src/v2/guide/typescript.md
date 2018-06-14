@@ -12,8 +12,6 @@ Un système de typage statique peut aider à prévenir des erreurs d'exécutions
 
 Puisque ceux-ci sont [publiés sur npm](https://cdn.jsdelivr.net/npm/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour utiliser TypeScript avec Vue.
 
-Nous avons également planifié de fournir prochainement une option dans `vue-cli` pour installer un projet Vue + TypeScript prêt à l'emploi.
-
 ## Configuration recommandée
 
 ``` js
@@ -37,9 +35,21 @@ Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs
 
 ## Outils de développement
 
-Pour développer des applications Vue avec TypeScript, nous recommandons fortement d'utiliser [Visual Studio Code](https://code.visualstudio.com/) qui fournit un support de TypeScript nativement.
+### Creation de projet
 
-Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déductions TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
+[Vue CLI 3](https://github.com/vuejs/vue-cli) peut générer de nouveaux projets qui utilise TypeScript. Pour commencer :
+
+```bash
+# 1. Installer Vue CLI s'il n'est pas déjà installé
+npm install --global @vue/cli
+
+# 2. Créer un nouveau projet et choisir l'option "Manually select features"
+vue create my-project-name
+```
+
+### Support d'édition
+
+Pour développer des applications Vue avec TypeScript, nous recommandons fortement d'utiliser [Visual Studio Code](https://code.visualstudio.com/) qui fournit un support de TypeScript nativement. Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déductions TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
 
 [WebStorm](https://www.jetbrains.com/webstorm/) fournit également un support de base pour TypeScript et Vue.js.
 

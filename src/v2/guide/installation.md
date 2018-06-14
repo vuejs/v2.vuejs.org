@@ -2,8 +2,8 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.5.13
-gz_size: "30.67"
+vue_version: 2.5.16
+gz_size: "30.90"
 ---
 
 ### Compatibilité
@@ -37,7 +37,7 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 Nous vous recommandons d'utiliser une version spécifique numérotée que vous pourrez mettre à jour manuellement :
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 ```
 
 Vous pouvez parcourir la source du package npm à l'adresse : [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).

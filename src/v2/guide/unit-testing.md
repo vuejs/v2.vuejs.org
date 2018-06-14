@@ -131,4 +131,4 @@ it('met à jour le message rendu quand `vm.message` est mis à jour', done => {
 
 Nous prévoyons de travailler sur une collection de fonctions utilitaires de tests communs pour rendre encore plus simple le rendu de composants avec différentes contraintes (par ex. des rendus peu profonds ignorant les composants enfants) et faire des assertions sur le code en sortie.
 
-Pour des informations plus pointues sur les tests unitaires avec Vue, jeter un œil à [vue-test-utils](https://vue-test-utils.vuejs.org/fr/) et notre entrée du Cookbook à propos des [tests unitaires de composants Vue](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
+Pour des informations plus pointues sur les tests unitaires avec Vue, jeter un œil à [vue-test-utils](https://vue-test-utils.vuejs.org/fr/) et notre entrée des tutoriels à propos des [tests unitaires de composants Vue](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).

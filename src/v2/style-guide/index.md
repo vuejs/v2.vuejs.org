@@ -1514,6 +1514,16 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 9. **Évènements** (fonctions de rappel déclenchées par des évènements réactifs)
   - `watch`
   - Évènements du cycle de vie (dans leur ordre d'appel)
+    - `beforeCreate`
+    - `created`
+    - `beforeMount`
+    - `mounted`
+    - `beforeUpdate`
+    - `updated`
+    - `activated`
+    - `deactivated`
+    - `beforeDestroy`
+    - `destroyed`
 
 10. **Propriétés non réactives** (propriétés d'instance indépendantes du système de réactivité)
   - `methods`

@@ -1,7 +1,7 @@
 site_description: "Vue.js - Le Framework JavaScript Évolutif"
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.5.13
+vue_version: 2.5.16
 
 special_sponsors:
   - url: https://stdlib.com
@@ -59,6 +59,10 @@ gold_sponsors:
     img: nsoft.png
   - url: https://www.pubnub.com/vue-js/
     img: pubnub.png
+
+silver_sponsors:
+  - url: https://dopamine.bg/
+    img: dopamine.png
 
 bronze_sponsors:
   - url: http://tighten.co/

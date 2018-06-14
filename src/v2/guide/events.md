@@ -204,7 +204,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <a v-on:click.once="doThis"></a>
 ```
 
-Au contraire des autres modificateurs, qui sont exclusifs aux évènements natifs du DOM, le modificateur `.once` peut également être utilisé pour les [évènements des composants](components.html#Using-v-on-with-Custom-Events). Si vous n'avez pas encore lu la section concernant les composants, ne vous en inquiétez pas pour le moment.
+Contrairement aux autres modificateurs, qui sont exclusifs aux évènements natifs du DOM, le modificateur `.once` peut également être utilisé pour les [évènements des composants](components.html). Si vous n'avez pas encore lu la section concernant les composants, ne vous en inquiétez pas pour le moment.
 
 > Nouveau en 2.3.0+
 

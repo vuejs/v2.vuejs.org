@@ -210,24 +210,63 @@ C'est tout ce que vous avez besoin de savoir à propos des props pour le moment,
 Quand nous réalisons un composant `<blog-post>`, votre template va éventuellement contenir plus que juste le titre :
 
 ```html
-<h3>{{ post.title }}</h3>
+<h3>{{ title }}</h3>
 ```
 
 Vous allez au moins vouloir inclure le contenu du billet :
 
 ```html
-<h3>{{ post.title }}</h3>
-<div v-html="post.content"></div>
+<h3>{{ title }}</h3>
+<div v-html="content"></div>
 ```
 
 Si vous essayez cela dans votre template cependant, Vue va afficher une erreur, expliquant que **tout composant doit avoir un unique élément racine**. Vous pouvez fixer cette erreur en imbriquant le template dans un élément parent comme :
 
 ```html
 <div class="blog-post">
-  <h3>{{ post.title }}</h3>
-  <div v-html="post.content"></div>
+  <h3>{{ title }}</h3>
+  <div v-html="content"></div>
 </div>
 ```
+
+À mesure que nos composants grandissent, il ne sera plus question uniquement d'un titre et d'un contenu pour le billet, mais également de la date de publication, des commentaires et bien plus. Définir une prop indépendamment pour chaque information pourrait devenir gênant :
+
+```html
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:title="post.title"
+  v-bind:content="post.content"
+  v-bind:publishedAt="post.publishedAt"
+  v-bind:comments="post.comments"
+></blog-post>
+```
+
+Le temps sera alors venu de refactoriser le composant `<blog-post>` pour accepter une propriété `post` unique à la place :
+
+```html
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:post="post"
+></blog-post>
+```
+
+```js
+Vue.component('blog-post', {
+  props: ['post'],
+  template: `
+    <div class="blog-post">
+      <h3>{{ post.title }}</h3>
+      <div v-html="post.content"></div>
+    </div>
+  `
+})
+```
+
+<p class="tip">L'exemple ci-dessus et plusieurs exemples par la suite utilisent une chaîne de caractères JavaScript appelée [modèles de libellés](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) (« template string ») permettant des templates multilignes plus lisibles. Ceux-ci ne sont pas supportés dans Internet Explorer (IE), aussi, si vous souhaitez supporter IE sans utiliser de transpilateur (p. ex. Babel ou TypeScript), [ajoutez un caractère d'échappement à chaque nouvelle ligne](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript) à la place.</p>
+
+Maintenant, chaque fois qu'une nouvelle propriété sera ajoutée à l'objet `post`, elle sera automatiquement disponible dans `<blog-post>`.
 
 ## Envoyer des messages aux parents avec les évènements
 
@@ -275,8 +314,6 @@ Vue.component('blog-post', {
   `
 })
 ```
-
-<p class="tip">L'exemple ci-dessus et plusieurs exemples futurs utilisent une chaine de caractère JavaScript appelée [modèles de libellés](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) permettant des templates multilignes plus lisibles. Ceux-ci ne sont pas supportés dans Internet Explorer (IE), aussi, si vous souhaitez supporter IE sans utiliser de transpilleur (p. ex. Babel ou TypeScript), [échappez le caractère de nouvelle ligne](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript) à la place.</p>
 
 Le problème est que le bouton ne fait rien du tout :
 

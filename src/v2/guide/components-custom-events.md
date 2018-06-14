@@ -51,7 +51,7 @@ Vue.component('base-checkbox', {
 
 À présent, quand vous utilisez `v-model` sur ce composant :
 
-```js
+```html
 <base-checkbox v-model="lovingVue"></base-checkbox>
 ```
 

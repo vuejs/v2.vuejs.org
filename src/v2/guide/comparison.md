@@ -92,7 +92,7 @@ Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [v
 
 #### Utilisation avancée
 
-Pour de larges applications, Vue et React offrent des solutions de routage robustes. La communauté React a également été très innovante en matière de solutions de gestion d'état (par ex. : Flux/Redux). Ces modèles de gestion d'état et [même Redux lui-même](https://github.com/egoist/revue) peuvent être facilement intégrés dans une application Vue. En fait, Vue a même poussé ce modèle un cran plus loin avec [Vuex](https://github.com/vuejs/vuex), une solution de gestion d'état inspirée par Elm qui s'intègre profondément dans Vue et qui, nous pensons, offre une expérience de développement supérieure.
+Pour de larges applications, Vue et React offrent des solutions de routage robustes. La communauté React a également été très innovante en matière de solutions de gestion d'état (par ex. : Flux/Redux). Ces modèles de gestion d'état et [même Redux lui-même](https://yarnpkg.com/en/packages?q=redux%20vue&p=1) peuvent être facilement intégrés dans une application Vue. En fait, Vue a même poussé ce modèle un cran plus loin avec [Vuex](https://github.com/vuejs/vuex), une solution de gestion d'état inspirée par Elm qui s'intègre profondément dans Vue et qui, nous pensons, offre une expérience de développement supérieure.
 
 Une autre différence importante entre ces offres est que les bibliothèques accompagnant Vue pour la gestion d'état et le routage (parmi [d'autres concernées](https://github.com/vuejs)) sont toutes officiellement supportées et gardées à jour avec le cœur de la bibliothèque. React préfère en revanche laisser cette partie à la communauté, créant un écosystème plus fragmenté. Toutefois, étant plus populaire, l'écosystème de React est considérablement plus riche que celui de Vue.
 
@@ -108,7 +108,7 @@ Il est important de noter que beaucoup de ces limitations sont des choix d'archi
 
 React est renommé pour sa courbe d'apprentissage abrupte. Avant de pouvoir réellement commencer, vous devez connaitre JSX et probablement ES2015+, puisque beaucoup d'exemples utilisent la syntaxe React pour les classes. Vous devez également vous former aux outils de build, car bien que vous puissiez techniquement utiliser le compilateur Babel de manière autonome pour compiler à la volée le code dans le navigateur, cela n'est absolument pas envisageable en production.
 
-Bien que Vue s'élève au niveau d'utilisation de React, voire le dépasse, il peut tout aussi bien se réduire au niveau d'utilisation de jQuery. C'est exact — tout ce que vous avez à faire est de placer une balise script dans une page :
+Bien que Vue s'élève au niveau d'utilisation de React, il peut tout aussi bien se réduire au niveau d'utilisation de jQuery. C'est exact — tout ce que vous avez à faire est de placer une balise script dans une page :
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -129,6 +129,10 @@ Une autre option que les développeurs Vue auront bientôt est l'utilisation de 
 ### Avec MobX
 
 MobX est devenu populaire dans la communauté React et utilise actuellement un système de réactivité identique à Vue. Dans une certaine mesure, le workflow React + MobX peut être considéré comme plus verbeux que Vue. Donc si vous utilisez cette combinaison et qu'elle vous plait, passer sur Vue est probablement la prochaine étape logique.
+
+### Preact et les autres bibliothèques de type React
+
+Les bibliothèques de type React essayent généralement de partager le plus possible leur API et leur écosystème avec React. Pour cette raison, la grande majorité des comparaisons ci-dessus leur seront également applicables. La principale différence sera généralement un écosystème réduit, souvent de manière significative, par rapport à React. Étant donné que ces bibliothèques ne peuvent pas être 100% compatibles dans l'écosystème React, certaines bibliothèques d'outils et de compagnons ne peuvent pas être utilisables. Ou, même s'ils semblent fonctionner, ils peuvent se bloquer à tout moment à moins que votre bibliothèque spécifique de type React ne soit officiellement supportée par React.
 
 ## AngularJS (Angular 1)
 
@@ -178,7 +182,7 @@ Les deux frameworks sont exceptionnellement rapides avec des métriques similair
 
 ### Taille
 
-Les versions récentes d'Angular, avec une [compilation anticipée](https://fr.wikipedia.org/wiki/Compilation_anticip%C3%A9e) et du [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et Vue Router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application avec compilation anticipée et générée par `angular-cli` (~130ko gzippée).
+Les versions récentes d'Angular, avec une [compilation anticipée](https://fr.wikipedia.org/wiki/Compilation_anticip%C3%A9e) et du [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking), sont capables de diminuer considérablement leurs tailles en sortie. Cependant, un projet complet Vue 2, avec Vuex et Vue Router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application avec compilation anticipée et générée par `angular-cli` (~65ko gzippée).
 
 ### Flexibilité
 

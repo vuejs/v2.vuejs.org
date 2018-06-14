@@ -432,7 +432,7 @@ De la même manière qu'avec `v-if`, vous pouvez également utiliser la balise `
 <ul>
   <template v-for="item in items">
     <li>{{ item.msg }}</li>
-    <li class="divider"></li>
+    <li class="divider" role="presentation"></li>
   </template>
 </ul>
 ```
@@ -489,11 +489,15 @@ Voici un exemple complet d'une simple liste de tâches :
 
 ``` html
 <div id="todo-list-example">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
+  <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Ajouter une tâche</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="Ex. nourrir le chat"
+    >
+    <button>Add</button>
+  </form>
   <ul>
     <li
       is="todo-item"
@@ -513,7 +517,7 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
+      <button v-on:click="$emit(\'remove\')">Supprimer</button>\
     </li>\
   ',
   props: ['title']
@@ -553,11 +557,15 @@ new Vue({
 
 {% raw %}
 <div id="todo-list-example" class="demo">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
+  <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Ajouter une tâche</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="Ex. nourrir le chat"
+    >
+    <button>Add</button>
+  </form>
   <ul>
     <li
       is="todo-item"
@@ -573,7 +581,7 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
+      <button v-on:click="$emit(\'remove\')">Supprimer</button>\
     </li>\
   ',
   props: ['title']

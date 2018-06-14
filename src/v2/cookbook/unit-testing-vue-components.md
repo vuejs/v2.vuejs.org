@@ -44,11 +44,11 @@ export default {
 ```
 
 ```js
-import { shallow } from "@vue/test-utils";
+import { shallowMount } from '@vue/test-utils'
 
 test("Foo", () => {
   // render the component
-  const wrapper = shallow(Hello);
+  const wrapper = shallowMount(Hello)
 
   // should not allow for `username` less than 7 characters, excludes whitespace
   wrapper.setData({ username: " ".repeat(7) });
@@ -82,7 +82,7 @@ Dans les équipes où les développeurs sont nombreux, les tests automatiques pe
 
 #### Pour commencer
 
-Le package officiel pour tester les composants Vue est [Vue Test Utils](https://github.com/vuejs/vue-test-utils). Le template `webpack` pour [vue-cli](https://github.com/vuejs/vue-cli) contient soit Karma soit Jest. Ces deux test runners sont très bien supportés par VueJs. On peut trouver quelques [guides](https://vue-test-utils.vuejs.org/fr/guides/) dans la documentation de Vue Test Utils.
+Le package officiel pour tester les composants Vue est [Vue Test Utils](https://github.com/vuejs/vue-test-utils). Le template `webpack` pour [vue-cli](https://github.com/vuejs/vue-cli) contient soit Karma soit Jest. Ces deux test runners sont très bien supportés par Vue.js. On peut trouver quelques [guides](https://vue-test-utils.vuejs.org/fr/guides/) dans la documentation de Vue Test Utils.
 
 ## Exemple concret
 
@@ -145,28 +145,28 @@ Ce que l'on doit tester :
 Et enfin la version naïve de nos tests
 
 ```js
-import { shallow } from "@vue/test-utils";
+import { shallowMount } from '@vue/test-utils'
 
-describe("Foo", () => {
-  it("renders a message and responds correctly to user input", () => {
-    const wrapper = shallow(Foo, {
-      data: {
-        message: "Hello World",
-        username: ""
-      }
-    });
+describe('Foo', () => {
+  it('restitue un message et répond correctement à la saisie de l\'utilisateur', () => {
+      const wrapper = shallowMount(Foo, {
+    data: {
+      message: 'Hello World',
+      username: ''
+    }
+  })
 
-    // Vérifions que le message est affiché
-    expect(wrapper.find(".message").text()).toEqual("Hello World");
+  // vérifie si le message est restitué
+  expect(wrapper.find('.message').text()).toEqual('Hello World')
 
-    // Testons que l'erreur est bien renderée
-    expect(wrapper.find(".error").exists()).toBeTruthy();
+  // vérifie que `error` est rendue
+  expect(wrapper.find('.error').exists()).toBeTruthy()
 
-    // Changeons le `username` et vérifions que l'érreur a disparu
-    wrapper.setData({ username: "Lachlan" });
-    expect(wrapper.find(".error").exists()).toBeFalsy();
-  });
-});
+  // met à jour `username` et vérifie que `error` n'est plus rendu
+  wrapper.setData({ username: 'Lachlan' })
+  expect(wrapper.find('.error').exists()).toBeFalsy()
+  })
+})
 ```
 
 Ce premier test n'est pas parfait. On peut y voir plusieurs problèmes :
@@ -184,14 +184,14 @@ L'exemple ci-dessous rend ce test un peu meilleur :
 _Test amelioré_ :
 
 ```js
-import { shallow } from "@vue/test-utils";
-import Foo from "./Foo";
+import { shallowMount } from '@vue/test-utils'
+import Foo from './Foo'
 
 const factory = (values = {}) => {
-  return shallow(Foo, {
-    data: { ...values }
-  });
-};
+  return shallowMount(Foo, {
+    data: { ...values  }
+  })
+}
 
 describe("Foo", () => {
   it("renders a welcome message", () => {
@@ -224,7 +224,7 @@ describe("Foo", () => {
 
 À noter :
 
-Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallow(Foo)` dans chaque test. Un autre avantage important: Quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés dans cette `factory`.
+Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallowMount(Foo)` dans chaque test. Un autre avantage important : quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés dans cette `factory`.
 
 ## Pour aller plus loin
 
@@ -234,7 +234,7 @@ Le test précédent est assez simple. En pratique on souhaitera souvent vérifie
 * faire des `commit` ou des `dispatch` de mutations ou d'actions a un store `Vuex`
 * tester l'interactivité
 
-Plusieurs d'exemples illustrant ce genre de tests sont disponibles dans les [guides](https://vue-test-utils.vuejs.org/fr/guides/) de Vue Test Utils.
+Il existe des exemples plus complets illustrant ce genre de tests dans les [guides](https://vue-test-utils.vuejs.org/guides/) de Vue Test Utils.
 
 Vue Test Utils et le gigantesque ecosystème JavaScript fournissant plein d’outils facilitant une couverture de test proche de 100%. Mais les tests unitaires ne sont qu’une partie de la pyramide de tests. On peut y inclure des tests d’intégration (e2e ou end to end), et du snapshot testing. Les tests unitaires sont les plus petits et les plus simples des tests - Ils vérifient les plus petites unités de travail, isolant ainsi chaque partie d’un même composant.
 
