@@ -810,9 +810,9 @@ components/
 
 ### Nom des composants à une seule instance <sup data-p="b">fortement recommandé</sup>
 
-**Les composants qui devraient uniquement avoir une seule instance active devraient commencer par le préfixe `The` pour démontrer qu'il ne peut y en avoir qu'un.**
+**Les composants qui devraient uniquement avoir une seule instance active devraient commencer par le préfixe `The` pour indiquer qu'il ne peut y en avoir qu'un.**
 
-Cela ne signifie pas que le composant doit être utilisé uniquement sur une seule page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props, c'est une bonne indication. Cela reste une bonne indication pour informer que c'est un composant réutilisable n'est utilisé qu'une fois par page _pour le moment_.
+Cela ne signifie pas que le composant doit être utilisé uniquement sur une seule page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props c'est une bonne indication que c'est en fait un composant réutilisable qui n'est utilisé qu'une fois par page _pour le moment_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### À éviter
