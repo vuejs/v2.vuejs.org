@@ -2,7 +2,7 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.5.13
+vue_version: 2.5.16
 gz_size: "30.67"
 ---
 
@@ -50,7 +50,7 @@ $ npm install vue
 
 ## CLI
 
-Vue.js는 단일 페이지 응용 프로그램을 빠르게 스캐폴딩하기 위한 [공식 CLI](https://github.com/vuejs/vue-cli)를 제공합니다. 현대적인 프론트엔드 워크플로우를 위해 잘 구성된 빌드 설정을 제공합니다. 핫 리로드, lint-on-save 및 프로덕션 준비가 된 빌드로 시작하고 실행하는데 몇 분 밖에 걸리지 않습니다.
+Vue.js는 단일 페이지 응용 프로그램을 빠르게 스캐폴딩하기 위한 [공식 CLI](https://github.com/vuejs/vue-cli)를 제공합니다. 현대적인 프론트엔드 워크플로우를 위해 잘 구성된 빌드 설정을 제공합니다. 핫 리로드, lint-on-save 및 프로덕션 준비가 된 빌드로 시작하고 실행하는데 몇 분 밖에 걸리지 않습니다. 상세한 내용은 [Vue CLI 문서](https://cli.vuejs.org) 를 참고하기 바랍니다.
 
 ``` bash
 # vue-cli 설치
