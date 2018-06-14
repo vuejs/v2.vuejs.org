@@ -2,7 +2,7 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.5.13
+vue_version: 2.5.16
 gz_size: "30.67"
 ---
 
