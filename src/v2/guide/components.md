@@ -16,7 +16,7 @@ Vue.component('button-counter', {
       count: 0
     }
   },
-  template: '<button v-on:click="count++">Vous m\'avez cliquez {{ count }} fois.</button>'
+  template: '<button v-on:click="count++">Vous m\'avez cliqué {{ count }} fois.</button>'
 })
 ```
 
@@ -43,7 +43,7 @@ Vue.component('button-counter', {
       count: 0
     }
   },
-  template: '<button v-on:click="count += 1">Vous m\'avez cliquez {{ count }} fois.</button>'
+  template: '<button v-on:click="count += 1">Vous m\'avez cliqué {{ count }} fois.</button>'
 })
 new Vue({ el: '#components-demo' })
 </script>
@@ -112,7 +112,7 @@ Vue.component('button-counter2', {
   data: function () {
     return buttonCounter2Data
   },
-  template: '<button v-on:click="count++">Vous m\'avez cliquez {{ count }} fois.</button>'
+  template: '<button v-on:click="count++">Vous m\'avez cliqué {{ count }} fois.</button>'
 })
 new Vue({ el: '#components-demo3' })
 </script>
