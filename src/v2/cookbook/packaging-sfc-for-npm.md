@@ -172,7 +172,7 @@ With the package.json `scripts` section ready and the SFC wrapper in place, all 
 import vue from 'rollup-plugin-vue'; // Handle .vue SFC files
 import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable browser support
 export default {
-    input: 'build/wrapper.js', // Path relative to package.json
+    input: 'src/wrapper.js', // Path relative to package.json
     output: {
         name: 'MyComponent',
         exports: 'named',
