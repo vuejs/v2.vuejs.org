@@ -59,6 +59,36 @@ the value of `lovingVue` will be passed to the `checked` prop. The `lovingVue` p
 
 <p class="tip">Note that you still have to declare the <code>checked</code> prop in component's <code>props</code> option.</p>
 
+Radio buttons are a bit different. A radio button should be checked when its `value` matches the `v-model`.
+
+```js
+Vue.component('base-radiobutton', {
+  model: {
+    prop: 'modelValue',
+  },
+  props: {
+    value: String,
+    modelValue: String,
+  },
+  template: `
+    <input
+      type="radio"
+      v-bind:value="value"
+      v-bind:checked="value === modelValue"
+      @input="$emit('input', value)"
+    />
+  `
+})
+```
+
+Now when using `v-model` on this component:
+
+```html
+<base-radiobutton v-model="lovingVue"></base-radiobutton>
+```
+
+the value of `lovingVue` will be passed to the `modelValue` prop. And because we didn't override the `model.event` option, the `lovingVue` property will then be updated when `<base-radiobutton>` emits the standard `input` event with a new value.
+
 ## Binding Native Events to Components
 
 There may be times when you want to listen directly to a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`:
