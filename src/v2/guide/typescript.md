@@ -35,7 +35,7 @@ See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handb
 
 ## Development Tooling
 
-## Project Creation
+### Project Creation
 
 [Vue CLI 3](https://github.com/vuejs/vue-cli) can generate new projects that use TypeScript. To get started:
 
@@ -47,7 +47,7 @@ npm install --global @vue/cli
 vue create my-project-name
 ```
 
-## Editor Support
+### Editor Support
 
 For developing Vue applications with TypeScript, we strongly recommend using [Visual Studio Code](https://code.visualstudio.com/), which provides great out-of-the-box support for TypeScript. If you are using [single-file components](./single-file-components.html) (SFCs), get the awesome [Vetur extension](https://github.com/vuejs/vetur), which provides TypeScript inference inside SFCs and many other great features.
 
