@@ -147,7 +147,7 @@ const app = new Vue({
       }
       if (!this.email) {
         this.errors.push('Email required.');
-      } else if(!this.validEmail(this.email)) {
+      } else if (!this.validEmail(this.email)) {
         this.errors.push('Valid email required.');        
       }
       
@@ -224,7 +224,7 @@ const app = new Vue({
   },
   computed: {
      total: function () {
-       // must parse cuz Vue turns empty value to string
+       // must parse because Vue turns empty value to string
        return Number(this.weapons) +
          Number(this.shields) +
          Number(this.coffee) +
@@ -262,11 +262,12 @@ In my final example, we built something that makes use of Ajax to validate at th
 function main(args) {
     return new Promise((resolve, reject) => {
         // bad product names: vista, empire, mbp
-        let badNames = ['vista', 'empire', 'mbp'];
+        const badNames = ['vista', 'empire', 'mbp'];
         
         if (badNames.includes(args.name)) {
           reject({error: 'Existing product'});
         }
+        
         resolve({status: 'ok'});
     });
 }
