@@ -53,7 +53,11 @@ We should be able to access our Vue.js app on `localhost:8080`.
 
 ## Real-World Example
 
-In the previous example, we used a simple, zero-configuration command-line [http server](https://github.com/indexzero/http-server) to serve our Vue.js app. Your colleagues are impressed but your boss is still shaking his head because we chose not to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/). Now we are going to make it right.
+In the previous example, we used a simple, zero-configuration command-line [http server](https://github.com/indexzero/http-server) to serve our Vue.js app which is perfectly ok for quick prototyping and _may_ even be ok for simple production scenarios. After all, the documentation says:
+
+> It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
+
+Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
 
 Let's refactor our `Dockerfile` to use NGINX:
 
