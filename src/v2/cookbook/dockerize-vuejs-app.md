@@ -1,7 +1,7 @@
 ---
 title: Dockerize Vue.js App
 type: cookbook
-order: 8
+order: 13
 ---
 
 ## Simple Example
