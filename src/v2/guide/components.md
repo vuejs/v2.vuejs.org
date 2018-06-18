@@ -74,7 +74,7 @@ new Vue({ el: '#components-demo2' })
 </script>
 {% endraw %}
 
-Notez que lors du clique sur les boutons, chacun d'entre eux maintient son propre compteur séparé des autres. C'est parce que chaque fois que vous utilisez un composant, une nouvelle **instance** est créée.
+Notez que lors du clic sur les boutons, chacun d'entre eux maintient son propre compteur séparé des autres. C'est parce que chaque fois que vous utilisez un composant, une nouvelle **instance** est créée.
 
 ### `data` doit être une fonction
 
@@ -126,7 +126,7 @@ Il est commun pour une application d'être organisée en un arbre de composants 
 
 Par exemple, vous pouvez avoir des composants pour l'entête, la barre latérale, la zone de contenu ; chacun contenant lui aussi d'autres composants pour la navigation, les liens, les billets de blog, etc.
 
-Pour utiliser ces composants dans des templates, ils doivent être enregistrés pour que Vue les connaissent. Il y a deux types d'enregistrement de composant : **global** et **local**. Jusqu'ici, nous avons uniquement enregistré des composants globalement en utilisant `Vue.component` :
+Pour utiliser ces composants dans des templates, ils doivent être enregistrés pour que Vue les connaisse. Il y a deux types d'enregistrement de composant : **global** et **local**. Jusqu'ici, nous avons uniquement enregistré des composants globalement en utilisant `Vue.component` :
 
 ```js
 Vue.component('my-component-name', {
@@ -331,7 +331,7 @@ Quand nous cliquons sur le bouton, nous avons besoin de communiquer au parent qu
 </button>
 ```
 
-Quand nous somme sur notre billet de blog, nous pouvons écouter cet évènement avec `v-on`, exactement comme nous le ferrions avec un évènement natif du DOM :
+Quand nous sommes sur notre billet de blog, nous pouvons écouter cet évènement avec `v-on`, exactement comme nous le ferions avec un évènement natif du DOM :
 
 ```html
 <blog-post
@@ -627,6 +627,6 @@ Il doit être noté que **cette limitation _n'_affecte _pas_ les templates sous 
 - [Les composants monofichier (`.vue`)](single-file-components.html)
 - [`<script type="text/x-template">`](components-edge-cases.html#X-Templates)
 
-C'est tout ce que vous avez besoin de savoir à propos des cas particuliers pour le moment. Vous voilà arrivé à la fin de l'_Essentiel_ de Vue. Félicitation ! Il reste encore beaucoup à apprendre, mais d'abord, nous vous recommandons de faire une pause pour jouer avec Vue par vous même et construire quelque chose d'amusant.
+C'est tout ce que vous avez besoin de savoir à propos des cas particuliers pour le moment. Vous voilà arrivé à la fin de l'_Essentiel_ de Vue. Félicitations ! Il reste encore beaucoup à apprendre, mais d'abord, nous vous recommandons de faire une pause pour jouer avec Vue par vous-même et construire quelque chose d'amusant.
 
 Une fois que vous vous sentirez à l'aise avec les connaissances que vous venez fraichement d’acquérir, nous vous recommandons de revenir pour lire le guide complet à propos des [Composants dynamiques et asynchrones](components-dynamic-async.html) ainsi que les autres pages dans la partie Au cœur des composants de la barre de navigation latérale.
