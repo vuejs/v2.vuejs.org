@@ -220,7 +220,7 @@ Vous allez au moins vouloir inclure le contenu du billet :
 <div v-html="content"></div>
 ```
 
-Si vous essayez cela dans votre template cependant, Vue va afficher une erreur, expliquant que **tout composant doit avoir un unique élément racine**. Vous pouvez fixer cette erreur en imbriquant le template dans un élément parent comme :
+Si vous essayez cela dans votre template cependant, Vue va afficher une erreur, expliquant que **tout composant doit avoir un unique élément racine**. Vous pouvez corriger cette erreur en imbriquant le template dans un élément parent comme :
 
 ```html
 <div class="blog-post">
@@ -629,4 +629,4 @@ Il doit être noté que **cette limitation _n'_affecte _pas_ les templates sous 
 
 C'est tout ce que vous avez besoin de savoir à propos des cas particuliers pour le moment. Vous voilà arrivé à la fin de l'_Essentiel_ de Vue. Félicitations ! Il reste encore beaucoup à apprendre, mais d'abord, nous vous recommandons de faire une pause pour jouer avec Vue par vous-même et construire quelque chose d'amusant.
 
-Une fois que vous vous sentirez à l'aise avec les connaissances que vous venez fraichement d’acquérir, nous vous recommandons de revenir pour lire le guide complet à propos des [Composants dynamiques et asynchrones](components-dynamic-async.html) ainsi que les autres pages dans la partie Au cœur des composants de la barre de navigation latérale.
+Une fois que vous vous sentirez à l'aise avec les connaissances que vous venez fraichement d’acquérir, nous vous recommandons de revenir pour lire le guide complet à propos des [Composants dynamiques et asynchrones](components-dynamic-async.html) ainsi que les autres pages de la partie Composants en détails de la barre de navigation latérale.
