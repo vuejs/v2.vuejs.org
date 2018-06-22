@@ -151,7 +151,7 @@ Vue.directive('color-swatch', function (el, binding) {
 })
 ```
 
-## Littéraux objet
+## Objets littéraux
 
 Si votre directive a besoin de plusieurs valeurs, vous pouvez également passer un objet JavaScript. Souvenez-vous, une directive peut accepter n'importe quelle expression JavaScript.
 
