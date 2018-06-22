@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Quand la page se charge, cet élément prend le focus (notez que `autofocus` ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
+Quand la page se charge, cet élément prend le focus (notez que `autofocus` ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessus devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
 
 ``` js
 // Enregistrer une directive globale appelée `v-focus`
