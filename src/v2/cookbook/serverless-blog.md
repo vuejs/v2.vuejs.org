@@ -14,17 +14,23 @@ We're going to quickly build a CMS-powered blog with Vue.js. It uses [ButterCMS]
 
 Run this in your commandline:
 
-`npm install buttercms --save`
+```bash
+npm install buttercms --save
+```
 
 Butter can also be loaded using a CDN: 
 
-`<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>`
+```html
+<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>
+```
 
 ## Quickstart
 
 Set your API token:
 
-`var butter = require('buttercms')('your_api_token');`
+```javascript
+var butter = require('buttercms')('your_api_token');
+```
 
 Using ES6:
 
@@ -103,7 +109,7 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
         butter.post.list({
           page: 1,
           page_size: 10
-        }).then((res) => {
+        }).then(res => {
           this.posts = res.data.data
         })
       }
@@ -155,9 +161,9 @@ Now create `components/BlogPost.vue` which will be your Blog Post page to list a
     methods: {
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
-          .then((res) => {
+          .then(res => {
             this.post = res.data
-          }).catch((res) => {
+          }).catch(res => {
             console.log(res)
           })
       }
@@ -211,10 +217,9 @@ Updated `<script>` section in `components/BlogPost.vue`:
     methods: {
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
-          .then((res) => {
-            // console.log(res.data)
+          .then(res => {
             this.post = res.data
-          }).catch((res) => {
+          }).catch(res => {
             console.log(res)
           })
       }
@@ -247,10 +252,10 @@ Here's an example of listing all categories and getting posts by category. Call 
 
 ```javascript
 methods: {
-  ...
+  // ...
   getCategories() {
     butter.category.list()
-      .then((res) => {
+      .then(res => {
         console.log('List of Categories:')
         console.log(res.data.data)
       })
@@ -259,14 +264,14 @@ methods: {
     butter.category.retrieve('example-category', {
         include: 'recent_posts'
       })
-      .then((res) => {
+      .then(res => {
         console.log('Posts with specific category:')
         console.log(res)
       })
   }
 },
 created() {
-  ...
+  // ...
   this.getCategories()
   this.getPostsByCategory()
 }
