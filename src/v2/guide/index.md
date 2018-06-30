@@ -32,7 +32,11 @@ or:
 
 The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
 
+If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+
 ## Declarative Rendering
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank">Try this lesson on Scrimba</a></div>
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
@@ -104,6 +108,8 @@ Here we are encountering something new. The `v-bind` attribute you are seeing is
 If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
 ## Conditionals and Loops
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank">Try this lesson on Scrimba</a></div>
 
 It's easy to toggle the presence of an element, too:
 
@@ -189,6 +195,8 @@ In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a 
 
 ## Handling User Input
 
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank">Try this lesson on Scrimba</a></div>
+
 To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
 
 ``` html
@@ -264,6 +272,8 @@ var app6 = new Vue({
 {% endraw %}
 
 ## Composing with Components
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank">Try this lesson on Scrimba</a></div>
 
 The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
