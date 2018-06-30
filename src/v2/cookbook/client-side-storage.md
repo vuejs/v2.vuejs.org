@@ -22,12 +22,14 @@ This example has one form field bound to a Vue value called `name`. Here's the J
 
 ``` js
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data: {
-    name:''
+    name: ''
   },
   mounted() {
-    if(localStorage.name) this.name = localStorage.name;
+    if (localStorage.name) {
+      this.name = localStorage.name;
+    }
   },
   watch: {
     name(newName) {
@@ -37,7 +39,7 @@ const app = new Vue({
 });
 ```
 
-Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from localStorage. To handle writing the data base, we watch the `name` value and on change, immediately write it. 
+Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from localStorage. To handle writing the data base, we watch the `name` value and on change, immediately write it.
 
 You can run this yourself here:
 
@@ -75,12 +77,16 @@ Now we've got two fields (again, bound to a Vue instance) but now there is the a
 const app = new Vue({
   el:'#app',
   data: {
-    name:'',
-    age:0
+    name: '',
+    age: 0
   },
   mounted() {
-    if(localStorage.name) this.name = localStorage.name;
-    if(localStorage.age) this.age = localStorage.age;
+    if (localStorage.name) {
+      this.name = localStorage.name;
+    }
+    if (localStorage.age) {
+      this.age = localStorage.age;
+    }
   },
   methods: {
     persist() {
@@ -106,15 +112,15 @@ As mentioned above, Local Storage only works with simple values. To store more c
   <h2>Cats</h2>
   <div v-for="(cat,n) in cats">
     <p>
-    <span class="cat">{{cat}}</span> <button @click="removeCat(n)">Remove</button>
+    <span class="cat">{{ cat }}</span> <button @click="removeCat(n)">Remove</button>
     </p>
   </div>
-  
+
   <p>
-    <input v-model="newCat"> 
+    <input v-model="newCat">
     <button @click="addCat">Add Cat</button>
   </p>
-  
+
 </div>
 ```
 
@@ -122,14 +128,14 @@ This "app" consists of a simple list on top (with a button to remove a cat) and 
 
 ``` js
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data: {
-    cats:[],
-    newCat:null
+    cats: [],
+    newCat: null
   },
   mounted() {
-    
-    if(localStorage.getItem('cats')) {
+
+    if (localStorage.getItem('cats')) {
       try {
         this.cats = JSON.parse(localStorage.getItem('cats'));
       } catch(e) {
@@ -140,13 +146,16 @@ const app = new Vue({
   methods: {
     addCat() {
       // ensure they actually typed something
-      if(!this.newCat) return;
+      if (!this.newCat) {
+        return;
+      }
+
       this.cats.push(this.newCat);
       this.newCat = '';
       this.saveCats();
     },
     removeCat(x) {
-      this.cats.splice(x,1);
+      this.cats.splice(x, 1);
       this.saveCats();
     },
     saveCats() {

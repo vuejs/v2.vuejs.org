@@ -41,7 +41,7 @@ new Vue({
   methods: {
     initializeChoices: function () {
       let list = []
-      // lets load up our select with many choices 
+      // lets load up our select with many choices
       // so it will use a lot of memory
       for (let i = 0; i < 1000; i++) {
         list.push({
@@ -123,7 +123,7 @@ new Vue({
 
 ## Details about the Value
 
-Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience. 
+Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience.
 
 Consider the types of devices your users may be using and what their normal flow will be. Could they use memory constrained laptops or mobile devices? Do your users typically do lots of in-application navigation? If either of these are true, then good memory management practices can help you avoid the worst case scenario of crashing a user’s browser. Even if neither of these are true, you can still potentially have degradation of performance over extended usage of your app if you are not careful.
 

@@ -14,8 +14,8 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 - [Forum](https://forum.vuejs.org/french) : Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
 - [Chat](https://discordapp.com/channels/325477692906536972/360669119948783616) | [En](https://chat.vuejs.org/) : Un endroit où les développeurs peuvent se rencontrer et discuter en temps réel.
-- [Meetups](https://www.vuemeetups.org): Envie de rencontrer des utilisateurs de Vue.js enthousiastes comme vous ? Intéressé pour devenir un leader de communauté ? Nous avons l'aide et le support qu'il vous faut juste ici !
-- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les rapports de bogue (« issues ») GitHub sont là pour ça. Les propositions de fusion (« pull requests ») sont également les bienvenues !
+- [Meetups (EN)](https://www.vuemeetups.org): Envie de rencontrer des utilisateurs de Vue.js enthousiastes comme vous ? Intéressé pour devenir un leader de communauté ? Nous avons l'aide et le support qu'il vous faut juste ici !
+- [GitHub (EN)](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les rapports de bogue (« issues ») GitHub sont là pour ça. Les propositions de fusion (« pull requests ») sont également les bienvenues !
 
 ### Explorer l'écosystème
 

@@ -185,7 +185,7 @@ new Vue({
     posts: [
       { id: 1, title: 'Mon initiation avec Vue' },
       { id: 2, title: 'Blogger avec Vue' },
-      { id: 3, title: 'Pourquoi Vue est tellement cool' },
+      { id: 3, title: 'Pourquoi Vue est tellement cool' }
     ]
   }
 })

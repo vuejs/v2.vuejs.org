@@ -955,7 +955,7 @@ Jusqu'à présent, nous avons réalisé des transitions pour :
 Alors, qu'en est-il lorsque nous avons une liste complète d'éléments où nous voulons faire un rendu simultané, par exemple avec `v-for` ? Dans ce cas, nous allons utiliser le composant `<transition-group>`. Cependant avant de plonger dans un exemple, il y a quelques éléments importants à connaitre sur ce composant :
 
 - Contrairement à `<transition>`, il rend un élément réel : par défaut un `<span>`. Vous pouvez modifier l'élément rendu avec l'attribut `tag`.
-  - [Les modes de transition](#Les-modes-de-transition) ne sont pas disponibles car nous ne pouvons plus alterner entre des éléments mutuellement exclusifs.
+- [Les modes de transition](#Les-modes-de-transition) ne sont pas disponibles car nous ne pouvons plus alterner entre des éléments mutuellement exclusifs.
 - Les éléments à l'intérieur **doivent toujours avoir** un attribut `key` unique
 
 ### Transitions de liste entrantes/sortantes

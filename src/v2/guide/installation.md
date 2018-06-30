@@ -57,7 +57,7 @@ $ npm install vue
 
 ## CLI
 
-Vue.js offre une [CLI](https://github.com/vuejs/vue-cli) (interface en ligne de commande) officielle pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de builds pré-configurés pour un workflow frontend moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêts pour la production. Consultez [la documentation Vue CLI](https://github.com/vuejs/vue-cli/blob/dev/docs/README.md#introduction) pour plus de détails.
+Vue.js offre une [CLI officielle](https://github.com/vuejs/vue-cli) (« interface en ligne de commande ») pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de builds pré-configurés pour un workflow frontend moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêts pour la production. Consultez [la documentation Vue CLI](https://cli.vuejs.org) pour plus de détails.
 
 <p class="tip">Utiliser la CLI nécessite des connaissances préalables en Node.js et les outils de build associés. Si vous êtes nouveau sur Vue ou les outils de build front-end, nous vous recommandons fortement de parcourir <a href="./">le guide</a> sans aucun outil de build avant d'utiliser l'interface CLI.</p>
 

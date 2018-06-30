@@ -22,7 +22,7 @@ Ayant un champ d'action similaire, nous avons passé plus de temps à affiner ce
 
 Ceci étant dit, il est inévitable que la comparaison puisse paraitre biaisée en faveur de Vue pour certains utilisateurs de React, puisque beaucoup des sujets explorés sont subjectifs dans une certaine mesure. Nous reconnaissons l'existence de préférences techniques différentes, et cette comparaison va avoir pour principal but de décrire pourquoi vous pourriez potentiellement préférer Vue s'il s'avère que vos préférences coïncident avec les nôtres.
 
-La communauté React [a été sollicitée](https://github.com/vuejs/vuejs.org/issues/364) pour nous aider à atteindre cette neutralité, avec des remerciements en particulier à Dan Abramov de l'équipe React. Il a été extrêmement généreux en accordant son temps et son expertise pour nous aider à remanier ce document jusqu'à ce que le résultat final [convienne](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) aux deux parties.
+Plusieurs des sections plus bas peuvent être incorrectes du fait de la récente mise à jour de React 16+. Nous avons planifié de travailler avec la communauté React pour retravailler ces sections dans un futur proche.
 
 ### Performance à l'exécution
 
@@ -216,15 +216,9 @@ Il semble aussi y avoir une différence de philosophie dans le design des APIs q
 
 ## Polymer
 
-Polymer est encore un autre projet sponsorisé par Google qui a également été une source d'inspiration pour Vue. Les composants de Vue peuvent être grosso modo comparés à ceux des éléments personnalisés de Polymer et les deux fournissent un style de développement vraiment similaire. La plus grosse différence est que Polymer est construit sur la base des dernières fonctionnalités de *Web Components* et requiert donc des *polyfills* complexes pour fonctionner (avec des performances dégradées) dans les navigateurs qui ne supportent pas ces fonctionnalités nativement. En revanche, Vue fonctionne sans aucune dépendance dans tous les navigateurs après IE9.
+Polymer est encore un autre projet sponsorisé par Google qui a également été une source d'inspiration pour Vue. Les composants de Vue peuvent être grosso modo comparés à ceux des éléments personnalisés de Polymer et les deux fournissent un style de développement vraiment similaire. La plus grosse différence est que Polymer est construit sur la base des dernières fonctionnalités de Web Components et requiert donc des polyfills complexes pour fonctionner (avec des performances dégradées) dans les navigateurs qui ne supportent pas ces fonctionnalités nativement. En revanche, Vue fonctionne sans aucune dépendance dans tous les navigateurs après IE9.
 
-Avec Polymer 1.0, l'équipe a également créé un système de liaison de données vraiment limité afin de compenser les performances. Par exemple, les seules expressions supportées dans les templates Polymer sont les négations booléennes et l'appel de simples méthodes. Son implémentation des propriétés calculées n'est pas non plus très flexible.
-
-Les éléments personnalisés de Polymer sont créés dans des fichiers HTML, ce qui vous limite à du simple JavaScript/CSS (et les fonctionnalités supportées par les navigateurs actuels). En comparaison, les fichiers de composant unique de Vue vous permettent facilement d'utiliser ES2015+ et le préprocesseur CSS de votre choix.
-
-Quand vous déployez en production, Polymer recommande de tout charger à la volée avec des imports HTML, en s'appuyant sur l'implémentation dans les navigateurs de la specicification, et du support de HTTP/2 côté client et côté serveur. Cela peut ou non être faisable en fonction de l'audience ciblée ou de l'environnement serveur. Au cas où vous ne souhaiteriez pas cela, vous pouvez utiliser un outil appelé Vulcanizer pour empaqueter vos éléments Polymer. De ce côté, Vue peut combiner ses fonctionnalités de composant asynchrone avec la fonctionnalité de scission de code de webpack pour facilement découper des parties du paquetage (« bundle ») applicatif afin qu'elles soient chargées à la volée. Cela assure l'entière compatibilité avec les vieux navigateurs en conservant une excellente performance au chargement.
-
-Il est aussi totalement possible d'offrir une intégration profonde entre Vue et les specs des Web Components, Custom Elements, Shadow DOM — cependant, nous attendons toujours que les spécifications murissent et soient largement implémentées dans tous les navigateurs majeurs avant de sérieusement nous pencher sur la question.
+Avec Polymer, l'équipe a également créé un système de liaison de données vraiment limité afin de compenser les performances. Par exemple, les seules expressions supportées dans les templates Polymer sont les négations booléennes et l'appel de simples méthodes. Son implémentation des propriétés calculées n'est pas non plus très flexible.
 
 ## Riot
 

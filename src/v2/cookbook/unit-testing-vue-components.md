@@ -149,22 +149,22 @@ import { shallowMount } from '@vue/test-utils'
 
 describe('Foo', () => {
   it('restitue un message et répond correctement à la saisie de l\'utilisateur', () => {
-      const wrapper = shallowMount(Foo, {
-    data: {
-      message: 'Hello World',
-      username: ''
-    }
-  })
+    const wrapper = shallowMount(Foo, {
+      data: {
+        message: 'Hello World',
+        username: ''
+      }
+    })
 
-  // vérifie si le message est restitué
-  expect(wrapper.find('.message').text()).toEqual('Hello World')
+    // vérifie si le message est restitué
+    expect(wrapper.find('.message').text()).toEqual('Hello World')
 
-  // vérifie que `error` est rendue
-  expect(wrapper.find('.error').exists()).toBeTruthy()
+    // vérifie que `error` est rendue
+    expect(wrapper.find('.error').exists()).toBeTruthy()
 
-  // met à jour `username` et vérifie que `error` n'est plus rendu
-  wrapper.setData({ username: 'Lachlan' })
-  expect(wrapper.find('.error').exists()).toBeFalsy()
+    // met à jour `username` et vérifie que `error` n'est plus rendu
+    wrapper.setData({ username: 'Lachlan' })
+    expect(wrapper.find('.error').exists()).toBeFalsy()
   })
 })
 ```
@@ -224,7 +224,7 @@ describe("Foo", () => {
 
 À noter :
 
-Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallowMount(Foo)` dans chaque test. Un autre avantage important : quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés dans cette `factory`.
+Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallowMount(Foo)` dans chaque test. Un autre avantage important : quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés une fois.
 
 ## Pour aller plus loin
 
