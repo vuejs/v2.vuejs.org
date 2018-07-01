@@ -10,6 +10,7 @@ special_sponsors:
 platinum_sponsors:
   - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit-wide.png
+    alt_img: bit.png
   - url: http://tooltwist.com/
     img: tooltwist.png
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
