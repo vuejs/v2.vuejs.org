@@ -64,8 +64,9 @@ Immediately writing the value may not advisable. Let's consider a slightly more 
 
 ``` html
 <div id="app">
-  My name is <input v-model="name">
-  and I am <input v-model="age"> years old.
+  <p>
+    My name is <input v-model="name">
+    and I am <input v-model="age"> years old.
   <p/>
   <button @click="persist">Save</button>
 </div>
@@ -75,7 +76,7 @@ Now we've got two fields (again, bound to a Vue instance) but now there is the a
 
 ``` js 
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data: {
     name: '',
     age: 0
@@ -120,7 +121,6 @@ As mentioned above, Local Storage only works with simple values. To store more c
     <input v-model="newCat"> 
     <button @click="addCat">Add Cat</button>
   </p>
-  
 </div>
 ```
 
@@ -134,7 +134,6 @@ const app = new Vue({
     newCat: null
   },
   mounted() {
-    
     if (localStorage.getItem('cats')) {
       try {
         this.cats = JSON.parse(localStorage.getItem('cats'));
@@ -159,7 +158,7 @@ const app = new Vue({
       this.saveCats();
     },
     saveCats() {
-      let parsed = JSON.stringify(this.cats);
+      const parsed = JSON.stringify(this.cats);
       localStorage.setItem('cats', parsed);
     }
   }
