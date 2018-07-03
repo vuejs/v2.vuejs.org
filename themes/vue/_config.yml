@@ -6,13 +6,11 @@ vue_version: 2.5.16
 special_sponsors:
   - url: https://stdlib.com
     img: stdlib.png
-  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
-    img: bit.png
-    wide_img: bit-wide.png
-    big_width: 120px
-    big_height: 120px
 
 platinum_sponsors:
+  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+    img: bit-wide.png
+    alt_img: bit.png
   - url: http://tooltwist.com/
     img: tooltwist.png
     name: tooltwist
