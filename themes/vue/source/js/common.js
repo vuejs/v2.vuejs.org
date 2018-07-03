@@ -2,6 +2,7 @@
   initHashLevelRedirects()
   initMobileMenu()
   initVideoModal()
+  initA11yMenu()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -532,6 +533,81 @@
         return result.toUpperCase()
       default:
         return result
+    }
+  }
+
+  /**
+   * Add keyboard access to name navigation
+   */
+  function initA11yMenu() {
+    const KEY_UP = 38;
+    const KEY_DOWN = 40;
+    const KEY_TAB = 9;
+    
+    // Get all flyout menus
+    let menuItems = document.querySelectorAll('.nav-dropdown-container');
+
+    for (let i = 0; i < menuItems.length; i++) {
+      const list = menuItems[i];
+
+      // Get the anchor that triggers flyout menu
+      const menuParent = list.querySelector('a[aria-haspopup="true"]');
+
+      // Get flyout menu container
+      let menuContainer = list.querySelector('.nav-dropdown');
+  
+      // All items in menu
+      let menu = Array.prototype.slice.call(menuContainer.querySelectorAll('.nav-dropdown-items a'));
+  
+      if (list) {
+        // If user uses down arrow when on flyout menu parent, menu expands
+        list.addEventListener('keydown', function (e) {
+          if (e.keyCode === KEY_DOWN) {
+            e.preventDefault();
+            if (document.activeElement === menuParent) {
+              menuContainer.setAttribute('aria-expanded', true);
+              menuContainer.classList.add('open');
+              menu[0].focus();
+            }
+          }
+          return false;
+        }, false);
+      }
+
+      // Allow user to navigate items with Up and Down keyboard keys, escape flyout menu with Tab key
+      for (let i = 0; i < menu.length; i++) {
+        const item = menu[i];
+        item.addEventListener('keydown', function (e) {
+          const firstElement = menu[0].parentElement;
+          const lastElement = menu[menu.length-1].parentElement;
+
+          const el = document.activeElement;
+
+          switch (e.keyCode) {
+            case KEY_UP:
+              e.preventDefault();
+              if (el.parentElement !== firstElement) {
+                menu[menu.indexOf(el)-1].focus();
+              } else {
+                lastElement.firstElementChild.focus();
+              }
+              break;
+            case KEY_DOWN:
+              e.preventDefault();
+              if (el.parentElement !== lastElement) {
+                menu[menu.indexOf(el)+1].focus();
+              } else {
+                menu[0].focus();
+              }
+              break;
+            case KEY_TAB:
+              // Escape flyout menu
+              menuContainer.setAttribute('aria-expanded', false);
+              menuContainer.classList.remove('open');
+              break;
+          }
+        }, false);
+      }
     }
   }
 })()
