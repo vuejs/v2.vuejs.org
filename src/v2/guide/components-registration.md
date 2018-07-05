@@ -16,7 +16,7 @@ Vue.component('my-component-name', { /* ... */ })
 
 Le nom du composant est le premier argument de `Vue.component`.
 
-Le nom que vous donnez à un composant peut dépendre de l'endroit où vous avez l'intention de l'utiliser. Lorsque vous utilisez un composant directement dans le DOM (par opposition à une chaine ou un [composant monofichiers](single-file-components.html)), nous vous recommandons fortement de suivre [les règles du W3C](https://www.w3.org/TR/custom-elements/#concepts) pour les noms de balises personnalisés (tout en minuscules, contenir un trait d'union). Cela vous permet d'éviter les conflits avec les éléments HTML actuels et futurs.
+Le nom que vous donnez à un composant peut dépendre de l'endroit où vous avez l'intention de l'utiliser. Lorsque vous utilisez un composant directement dans le DOM (par opposition à une chaine ou un [composant monofichiers](single-file-components.html)), nous vous recommandons fortement de suivre [les règles du W3C](https://www.w3.org/TR/custom-elements/#concepts) pour les noms de balises personnalisées (tout en minuscules, contenir un trait d'union). Cela vous permet d'éviter les conflits avec les éléments HTML actuels et futurs.
 
 Vous pouvez voir d'autres recommandations pour les noms de composants dans le guide des [Conventions](../style-guide/#Base-component-names-strongly-recommended).
 
@@ -42,7 +42,7 @@ Lors de la définition d'un composant en PascalCase, vous pouvez utiliser l'un o
 
 ## Création globale
 
-Jusque là, nous avons créé des composants seulement avec la manière suivante : `Vue.component` : 
+Jusque là, nous avons créé des composants seulement avec la manière suivante `Vue.component` : 
 
 ```js
 Vue.component('my-component-name', {
@@ -50,7 +50,7 @@ Vue.component('my-component-name', {
 })
 ```
 
-Ces composants sont **enregistrés globalement**. Cela signifie qu'ils peuvent être utilisés dans le template de n'importe quelle instance Vue (`new Vue`) créée après. Par exemple : 
+Ces composants sont **enregistrés globalement**. Cela signifie qu'ils peuvent être utilisés dans le template de n'importe quelle instance Vue (`new Vue`) créée ultérieurement. Par exemple : 
 
 ```js
 Vue.component('component-a', { /* ... */ })
@@ -68,11 +68,11 @@ new Vue({ el: '#app' })
 </div>
 ```
 
-Cela s'applique même à tous les sous-composants, ce qui signifie que ces trois composants seront également disponibles _l'un dans l'autre_.
+Cela s'applique même à tous les sous-composants, ce qui signifie que ces trois composants seront également disponibles _les uns des autres_.
 
 ## Création locale
 
-La création globale n'est souvent pas idéale. Par exemple, si vous utilisez un système de build comme webpack, la création globale de composants fait que même si vous arrêtez d'utiliser un composant, il peut toujours être inclus dans votre build final. Cela augmente inutilement la quantité de JavaScript que vos utilisateurs doivent télécharger.
+La création globale n'est souvent pas idéale. Par exemple, si vous utilisez un système de build comme webpack, la création globale de composants signifie que même si vous arrêtez d'utiliser un composant, il peut toujours être inclus dans votre build final. Cela augmente inutilement la quantité de JavaScript que vos utilisateurs doivent télécharger.
 
 Dans ce cas, vous pouvez définir vos composants en tant qu'objets JavaScript simples :
 
