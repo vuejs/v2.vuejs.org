@@ -323,7 +323,7 @@ The problem is, this button doesn't do anything:
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. To emit an event to the parent, we can call the built-in [**`$emit`** method](../api/#Instance-Methods-Events), passing the name of the event:
+When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. To emit an event to the parent, we can call the built-in [**`$emit`** method](../api/#vm-emit), passing the name of the event:
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
