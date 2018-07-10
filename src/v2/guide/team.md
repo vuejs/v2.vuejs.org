@@ -670,10 +670,10 @@ order: 803
       github: 'alexjoverm',
       twitter: 'alexjoverm',
       reposPersonal: [
-        'v-runtime-template', 'v-lazy-image'
+        'v-runtime-template', 'v-lazy-image', 'vue-testing-series'
       ],
       links: [
-        'https://alexjoverm.com'
+        'https://alexjover.com'
       ]
     },
     {
