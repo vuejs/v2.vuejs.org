@@ -211,7 +211,7 @@ Updated `<script>` section in `components/BlogPost.vue`:
     name: 'blog-post',
     data() {
       return {
-        post: {}
+        post: null
       }
     },
     methods: {
