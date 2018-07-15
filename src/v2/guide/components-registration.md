@@ -94,7 +94,7 @@ new Vue({
 })
 ```
 
-For each property in the `components` object, the key will be the name of the custom element, while the value will contain the options object for the component.
+For each property in the `components` object, the key will be the name of the custom element using [kebab-case](#Name-Casing), while the value will contain the options object for the component.
 
 Note that **locally registered components are _not_ also available in subcomponents**. For example, if you wanted `ComponentA` to be available in `ComponentB`, you'd have to use:
 
