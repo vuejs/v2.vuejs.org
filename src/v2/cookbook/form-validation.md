@@ -119,7 +119,8 @@ For the second example, the second text field (age) was switched to email which 
   @submit="checkForm"
   action="https://vuejs.org/"
   method="post"
-  novalidate="true">
+  novalidate="true"
+>
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
