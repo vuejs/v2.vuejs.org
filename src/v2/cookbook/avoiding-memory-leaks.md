@@ -3,6 +3,7 @@ title: Avoiding Memory Leaks
 type: cookbook
 order: 10
 ---
+
 ## Introduction
 
 If you are developing applications with Vue, then you need to watch out for memory leaks. This issue is especially important in Single Page Applications (SPAs) because by design, users should not have to refresh their browser when using an SPA, so it is up to the JavaScript application to clean up components and make sure that garbage collection takes place as expected.
@@ -13,20 +14,27 @@ Memory leaks in Vue applications do not typically come from Vue itself, rather t
 
 The following example shows a memory leak caused by using the [Choices.js](https://github.com/jshjohnson/Choices) library in a Vue component and not properly cleaning it up. Later, we will show how to remove the Choices.js footprint and avoid the memory leak.
 
-In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak. 
+In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak.
 
 ```html
 <link rel='stylesheet prefetch' href='https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3'>
 <script src='https://joshuajohnson.co.uk/Choices/assets/scripts/dist/choices.min.js?version=3.0.3'></script>
 
 <div id="app">
-  <button v-if="showChoices" @click="hide">Hide</button>
-  <button v-if="!showChoices" @click="show">Show</button>
+  <button
+    v-if="showChoices"
+    @click="hide"
+  >Hide</button>
+  <button
+    v-if="!showChoices"
+    @click="show"
+  >Show</button>
   <div v-if="showChoices">
     <select id="choices-single-default"></select>
   </div>
 </div>
 ```
+
 ```js
 new Vue({
   el: "#app",
@@ -41,7 +49,7 @@ new Vue({
   methods: {
     initializeChoices: function () {
       let list = []
-      // lets load up our select with many choices 
+      // lets load up our select with many choices
       // so it will use a lot of memory
       for (let i = 0; i < 1000; i++) {
         list.push({
@@ -67,6 +75,7 @@ new Vue({
   }
 })
 ```
+
 To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on Mac, choose Chrome Top Navigation > Window > Task Manager or on Windows, use the Shift+Esc shortcut. Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
 
 ![Memory Leak Example](/images/memory-leak-example.png)
@@ -112,7 +121,7 @@ new Vue({
       })
     },
     hide: function () {
-      // now we can use the reference to Choices to perform clean up here 
+      // now we can use the reference to Choices to perform clean up here
       // prior to removing the elements from the DOM
       this.choicesSelect.destroy()
       this.showChoices = false
@@ -123,7 +132,7 @@ new Vue({
 
 ## Details about the Value
 
-Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience. 
+Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience.
 
 Consider the types of devices your users may be using and what their normal flow will be. Could they use memory constrained laptops or mobile devices? Do your users typically do lots of in-application navigation? If either of these are true, then good memory management practices can help you avoid the worst case scenario of crashing a user’s browser. Even if neither of these are true, you can still potentially have degradation of performance over extended usage of your app if you are not careful.
 
