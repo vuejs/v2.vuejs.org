@@ -134,10 +134,6 @@ MobX est devenu populaire dans la communauté React et utilise actuellement un s
 
 Les bibliothèques de type React essayent généralement de partager le plus possible leur API et leur écosystème avec React. Pour cette raison, la grande majorité des comparaisons ci-dessus leur seront également applicables. La principale différence sera généralement un écosystème réduit, souvent de manière significative, par rapport à React. Étant donné que ces bibliothèques ne peuvent pas être 100% compatibles dans l'écosystème React, certaines bibliothèques d'outils et de compagnons ne peuvent pas être utilisables. Ou, même s'ils semblent fonctionner, ils peuvent se bloquer à tout moment à moins que votre bibliothèque spécifique de type React ne soit officiellement supportée par React.
 
-### Preact and Other React-Like Libraries
-
-React-like libraries usually try to share as much of their API and ecosystem with React as is feasible. For that reason, the vast majority of comparisons above will also apply to them. The main difference will typically be a reduced ecosystem, often significantly, compared to React. Since these libraries cannot be 100% compatible with everything in the React ecosystem, some tooling and companion libraries may not be usable. Or, even if they appear to work, they could break at any time unless your specific React-like library is officially supported on par with React.
-
 ## AngularJS (Angular 1)
 
 Une partie de la syntaxe de Vue ressemblera très fortement à celle de AngularJS (ex : `v-if` vs `ng-if`). Cela est dû au fait qu'il y a beaucoup de choses pour lesquelles AngularJS a vu juste et que cela a été une source d'inspiration pour Vue très tôt dans son développement. Cependant, AngularJS vient également avec de nombreux soucis. C'est là que Vue a tenté d'apporter une amélioration significative.
