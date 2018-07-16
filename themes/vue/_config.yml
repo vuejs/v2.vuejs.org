@@ -76,6 +76,9 @@ gold_sponsors:
   - url: https://piio.co/vuejs?ref=vuejs
     img: piio.png
     name: piio
+  - url: https://tidelift.com/subscription/npm/vue
+    img: tidelift.png
+    name: tidelift
 
 silver_sponsors:
   - url: https://dopamine.bg/
