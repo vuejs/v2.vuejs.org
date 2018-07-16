@@ -2,14 +2,14 @@
 
 <%_ for (const sponsor of theme.platinum_sponsors) {_%>
 <a href="<%- sponsor.url %>" target="_blank" style="width: 160px;">
-  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;" alt="<%-sponsor.name-%>">
 </a>
 <%_ } _%>
 <br>
 <br>
 <%_ for (const sponsor of theme.gold_sponsors) {_%>
 <a href="<%- sponsor.url %>" target="_blank" style="width: 120px;">
-  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 120px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 120px;" alt="<%-sponsor.name-%>">
 </a>
 <%_ } _%>
 <br>
@@ -19,13 +19,13 @@
 <div class="open-collective-sponsors">
   <h3>Sponsors OpenCollective</h3>
   <h4>Platinum</h4>
-  <%_ for (let i = 0; i < 3; i++) {_%>
+  <%_ for (let i = 0; i < 2; i++) {_%>
   <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
     <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
   </a>
   <%_ } _%>
   <h4>Or</h4>
-  <%_ for (let i = 0; i < 10; i++) {_%>
+  <%_ for (let i = 0; i < 8; i++) {_%>
   <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
     <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
   </a>

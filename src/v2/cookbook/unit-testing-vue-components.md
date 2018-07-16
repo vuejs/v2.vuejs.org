@@ -82,7 +82,7 @@ Dans les équipes où les développeurs sont nombreux, les tests automatiques pe
 
 #### Pour commencer
 
-Le package officiel pour tester les composants Vue est [Vue Test Utils](https://github.com/vuejs/vue-test-utils). Le template `webpack` pour [vue-cli](https://github.com/vuejs/vue-cli) contient soit Karma soit Jest. Ces deux test runners sont très bien supportés par Vue.js. On peut trouver quelques [guides](https://vue-test-utils.vuejs.org/fr/guides/) dans la documentation de Vue Test Utils.
+Le package officiel pour tester les composants Vue est [Vue Test Utils](https://github.com/vuejs/vue-test-utils). Le template `webpack` pour [vue-cli](https://github.com/vuejs/vue-cli) contient soit Karma soit Jest. Ces deux test runners sont très bien supportés par Vue.js. On peut trouver quelques [guides](https://vue-test-utils.vuejs.org/guides/) dans la documentation de Vue Test Utils.
 
 ## Exemple concret
 
@@ -224,7 +224,7 @@ describe("Foo", () => {
 
 À noter :
 
-Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallowMount(Foo)` dans chaque test. Un autre avantage important : quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés une fois.
+Au début du code, on déclare la fonction `factory` qui prend l'objet `values` et en construit le `data` pour renvoyer une nouvelle instance de `wrapper`. Du coup, plus besoin de dupliquer `const wrapper = shallowMount(Foo)` dans chaque test. Un autre avantage important : quand des composants plus complexes vont devoir être testés, le `mock` ou le `stub` d'une méthode ou d'une propriété calculée pourront facilement être mutualisés une seule fois.
 
 ## Pour aller plus loin
 
