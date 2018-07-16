@@ -38,7 +38,7 @@ We'll create a base icon (`IconBase.vue`) component that uses a slot.
     <title
       :id="iconName"
       lang="en"
-    >{{iconName}} icon</title>
+    >{{ iconName }} icon</title>
     <g :fill="iconColor">
       <slot />
     </g>
