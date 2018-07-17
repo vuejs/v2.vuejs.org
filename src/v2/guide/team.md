@@ -679,7 +679,6 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
-      twitter: 'ChopinAlexandre',
       work: {
         org: 'Orion',
         orgUrl: 'https://orion.sh'
@@ -736,7 +735,6 @@ order: 803
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',
-      twitter: 'MachinisteWeb',
       work: {
         role: 'Cofounder',
         org: 'Orchard ID',
