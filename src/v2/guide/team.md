@@ -736,7 +736,7 @@ order: 803
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',
-      twitter: 'ZetesEthique'
+      twitter: 'ZetesEthique',
       work: {
         role: 'Cofounder',
         org: 'Orchard ID',
