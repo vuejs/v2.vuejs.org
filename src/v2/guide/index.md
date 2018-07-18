@@ -291,10 +291,12 @@ Vue.component('todo-item', {
 Now you can compose it in another component's template:
 
 ``` html
-<ol>
-  <!-- Create an instance of the todo-item component -->
-  <todo-item></todo-item>
-</ol>
+<div id="app-7-1">
+  <ol>
+    <!-- Create an instance of the todo-item component -->
+    <todo-item></todo-item>
+  </ol>
+</div>
 ```
 
 But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
@@ -306,7 +308,11 @@ Vue.component('todo-item', {
   // This prop is called todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
-})
+});
+
+var app7_1 = new Vue({
+  el: '#app-7-1'
+});
 ```
 
 Now we can pass the todo into each repeated component using `v-bind`:
