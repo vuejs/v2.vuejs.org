@@ -659,6 +659,24 @@ order: 803
 
   var partners = [
     {
+      name: 'Alex Jover',
+      title: 'Vue Components Squeezer',
+      city: 'Alicante, Spain',
+      languages: ['es', 'en'],
+      work: {
+        role: 'Web, PWA and Performance Consultant',
+        org: 'Freelance'
+      },
+      github: 'alexjoverm',
+      twitter: 'alexjoverm',
+      reposPersonal: [
+        'v-runtime-template', 'v-lazy-image', 'vue-testing-series'
+      ],
+      links: [
+        'https://alexjover.com'
+      ]
+    },
+    {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
       city: 'Paris, France',
