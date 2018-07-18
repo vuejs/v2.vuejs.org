@@ -679,6 +679,7 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
+      twitter: '_achopin',
       work: {
         org: 'Orion',
         orgUrl: 'https://orion.sh'
