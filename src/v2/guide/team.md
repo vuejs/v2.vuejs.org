@@ -654,6 +654,24 @@ order: 803
       reposPersonal: [
         'vue-computed-helpers', 'vue-content-placeholders'
       ]
+    },
+    {
+      name: 'GU Yiling',
+      city: 'Shanghai, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Senior web developer',
+        org: 'Baidu, inc.',
+        orgUrl: 'https://www.baidu.com/'
+      },
+      github: 'Justineo',
+      twitter: '_justineo',
+      reposOfficial: [
+        'vue', 'cn.vuejs.org'
+      ],
+      reposPersonal: [
+        'Justineo/vue-awesome', 'ecomfe/vue-echarts', 'ecomfe/veui'
+      ]
     }
   ]))
 
