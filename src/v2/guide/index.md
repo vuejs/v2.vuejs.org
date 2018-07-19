@@ -32,7 +32,7 @@ ou:
 
 La page d'[installation](installation.html) vous offre d'autres manières d'installer Vue. Notez que nous **ne** recommandons **pas** aux débutants de commencer avec `vue-cli`, surtout si vous n'êtes pas encore familier avec les outils de *build* basés sur Node.js.
 
-Si vous préférez quelque chose de plus intéractif, vous pouvez également consulter [cette série de tutoriels sur Scrimba](https://scrimba.com/playlist/pXKqta), ce qui vous donnera un mélange de démonstration visuelle et de jeu avec le code que vous pourrez mettre en pause à n'importe quel moment.
+Si vous préférez quelque chose de plus interactif, vous pouvez également consulter [cette série de tutoriels sur Scrimba](https://scrimba.com/playlist/pXKqta), ce qui vous donnera un mélange de démonstration visuelle et de jeu avec le code que vous pourrez mettre en pause à n'importe quel moment.
 
 ## Rendu déclaratif
 
