@@ -34,10 +34,18 @@
 
 <script>
 window.addEventListener('load', function () {
+  const searchUrl = [
+    'https://opencollective.com/vuejs/tiers/platinum-sponsors/1/website',
+    'https://opencollective.com/vuejs/tiers/gold-sponsors/7/website'
+  ];
+  const replaceUrl = 'https://opencollective.com/vuejs';
   [].forEach.call(document.querySelectorAll('.open-collective-sponsors img'), function (img) {
     if (img.width === 1) {
       img.width = 0
       img.parentElement.style.margin = '0 -1px 0 0'
+    }
+    if (searchUrl.indexOf(img.parentElement.href) !== -1) {
+      img.parentElement.setAttribute('href', replaceUrl)
     }
   })
 })
