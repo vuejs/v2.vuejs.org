@@ -244,7 +244,7 @@ Les tests d’intégration testent l’interaction de plusieurs composants. Il s
 
 Les tests unitaires sont souvent utilisés lors du développement, soit pour aider le développeur à concevoir l’architecture d’un composant, soit pour l’aider a refactorer un composant existant. Ils sont souvent exécutés après chaque changement du code.
 
-Les test de plus haut niveau comme les tests d’intégration son plus lent a l’exécution. Ces tests sont plutôt lancés avant de déployer une mise à jour en production, pour s’assurer que chaque partie du logiciel fonctionne correctement.
+Les test de plus haut niveau comme les tests d’intégration sont plus lent a l’exécution. Ces tests sont plutôt lancés avant de déployer une mise à jour en production, pour s’assurer que chaque partie du logiciel fonctionne correctement.
 
 Plus d’info sur comment tester des composants VueJs dans le livre de [Edd Yerburgh](https://eddyerburgh.me/) membre de la core team de VueJs : [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) (en anglais).
 
