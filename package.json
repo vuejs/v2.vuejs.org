@@ -23,6 +23,7 @@
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1",
+    "hoek": "^5.0.3",
     "request": "^2.85.0"
   }
 }
