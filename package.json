@@ -9,6 +9,9 @@
     "build": "node pre-deploy.js && hexo clean && hexo generate",
     "deploy": "npm run build && hexo deploy"
   },
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
     "hexo": "^3.6.0",
     "hexo-deployer-git": "0.3.1",
