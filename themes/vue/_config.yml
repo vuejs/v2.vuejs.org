@@ -13,55 +13,91 @@ platinum_sponsors:
     alt_img: bit.png
   - url: http://tooltwist.com/
     img: tooltwist.png
+    name: tooltwist
   - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
+    name: vue school
   - url: https://vehikl.com/
     img: vehikl.png
+    name: vehikl
+  - url: https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
+    img: nativescript.png
+    name: nativescript
 
 gold_sponsors:
-  - url: https://laravel.com
-    img: laravel.png
-  - url: https://htmlburger.com
-    img: htmlburger.png
-  - url: https://chaitin.cn/en/
-    img: chaitin.png
-  - url: https://www.frontenddeveloperlove.com/
-    img: frontend-love.png
-  - url: https://onsen.io/vue/
-    img: onsen-ui.png
-  - url: https://vuetifyjs.com
-    img: vuetify.png
-  - url: https://neds.com.au/
-    img: neds.png
-  - url: https://hackr.io/tutorials/learn-vue-js
-    img: hackr-io.png
-  - url: https://icons8.com/
-    img: icons8.png
-  - url: https://vuejobs.com/?ref=vuejs
-    img: vuejobs.png
-  - url: https://codepilot.ai
-    img: codepilot.png
-  - url: https://teamextension.io/
-    img: teamextension.png
-  - url: http://aaha.co/
-    img: aaha.png
-  - url: https://www.valuecoders.com
-    img: valuecoders.png
-  - url: https://www.nsoft.com/careers/
-    img: nsoft.png
   - url: https://www.vuemastery.com/
     img: vuemastery.png
+    name: vue mastery
+  - url: https://laravel.com
+    img: laravel.png
+    name: laravel
+  - url: https://htmlburger.com
+    img: htmlburger.png
+    name: html burger
+  - url: https://chaitin.cn/en/
+    img: chaitin.png
+    name: chaitin
+  - url: https://www.frontenddeveloperlove.com/
+    img: frontend-love.png
+    name: frontend love
+  - url: https://onsen.io/vue/
+    img: onsen-ui.png
+    name: onsen ui
+  - url: https://vuetifyjs.com
+    img: vuetify.png
+    name: vuetify
+  - url: https://neds.com.au/
+    img: neds.png
+    name: neds
+  - url: https://hackr.io/tutorials/learn-vue-js
+    img: hackr-io.png
+    name: hacker io
+  - url: https://icons8.com/
+    img: icons8.png
+    name: icons 8
+  - url: https://vuejobs.com/?ref=vuejs
+    img: vuejobs.png
+    name: vue jobs
+  - url: https://codepilot.ai
+    img: codepilot.png
+    name: code pilot
+  - url: https://teamextension.io/
+    img: teamextension.png
+    name: team extension
+  - url: http://aaha.co/
+    img: aaha.png
+    name: aaha
+  - url: https://www.valuecoders.com
+    img: valuecoders.png
+    name: value coders dot org
+  - url: https://www.nsoft.com/careers/
+    img: nsoft.png
+    name: n soft
+  - url: https://coreui.io/?utm_source=vuejs&utm_medium=logo&utm_campaign=homepage
+    img: coreui.png
+    name: core ui
+  - url: https://piio.co/vuejs?ref=vuejs
+    img: piio.png
+    name: piio
+  - url: https://tidelift.com/subscription/npm/vue
+    img: tidelift.png
+    name: tidelift
 
 silver_sponsors:
   - url: https://dopamine.bg/
     img: dopamine.png
+    name: dopamine
 
 bronze_sponsors:
   - url: http://tighten.co/
     img: http://i.imgur.com/T7fQYLT.png
+    name: tighten co
   - url: https://alligator.io
     img: https://alligator.io/images/alligator-logo.svg
+    name: alligator dot io
   - url: https://www.accelebrate.com/
     img: https://www.accelebrate.com/assets/images/accelebrate_logo@2x.png
+    name: accelebrate
   - url: https://pullstring.com
     img: https://i.imgur.com/hQHW6TB.png
+    name: pull string

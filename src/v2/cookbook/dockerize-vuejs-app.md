@@ -109,7 +109,7 @@ Let's see how these concepts actually affect our decision of dockerizing our Vue
 
 ### Effects of Microservices
 
-By adopting the [microservices architectural style](https://martinfowler.com/microservices/), we end up building a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms. These services are built around business capabilities and independently deployable by fully automated deployment machinery. 
+By adopting the [microservices architectural style](https://martinfowler.com/microservices/), we end up building a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms. These services are built around business capabilities and independently deployable by fully automated deployment machinery.
 
 So, committing to this architectural approach most of the time implies developing and delivering our front-end as an independent service.
 

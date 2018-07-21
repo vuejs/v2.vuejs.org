@@ -6,9 +6,9 @@ order: 11
 
 ## Base Example
 
-Client-side storage is an excellent way to quickly add performance gains to an application. By storing data on the browser itself, you can skip fetching information from the server every time the user needs it. While especially useful when offline, even online users will benefit from using data locally versus a remote server. Client-side storage can be done with [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies), [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (technically "Web Storage"), [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), and [WebSQL](https://www.w3.org/TR/webdatabase/) (a deprecated method that should not be used in new projects). 
+Client-side storage is an excellent way to quickly add performance gains to an application. By storing data on the browser itself, you can skip fetching information from the server every time the user needs it. While especially useful when offline, even online users will benefit from using data locally versus a remote server. Client-side storage can be done with [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies), [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (technically "Web Storage"), [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), and [WebSQL](https://www.w3.org/TR/webdatabase/) (a deprecated method that should not be used in new projects).
 
-In this cookbook entry we'll focus on Local Storage, the simplest of the storage mechanisms. Local Storage uses a key/value system for storing data. It is limited to storing only simple values but complex data can be stored if you are willing to encode and decode the values with JSON. In general, Local Storage is appropriate for smaller sets of data you would want to persist, things like user preferences or form data. Larger data with more complex storage needs would be better stored typically in IndexedDB. 
+In this cookbook entry we'll focus on Local Storage, the simplest of the storage mechanisms. Local Storage uses a key/value system for storing data. It is limited to storing only simple values but complex data can be stored if you are willing to encode and decode the values with JSON. In general, Local Storage is appropriate for smaller sets of data you would want to persist, things like user preferences or form data. Larger data with more complex storage needs would be better stored typically in IndexedDB.
 
 Let's begin with a simple form based example:
 
@@ -39,7 +39,7 @@ const app = new Vue({
 });
 ```
 
-Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from localStorage. To handle writing the data base, we watch the `name` value and on change, immediately write it. 
+Focus on the `mounted` and `watch` parts. We use `mounted` to handle loading the value from localStorage. To handle writing the data base, we watch the `name` value and on change, immediately write it.
 
 You can run this yourself here:
 
@@ -67,14 +67,16 @@ Immediately writing the value may not advisable. Let's consider a slightly more 
   <p>
     My name is <input v-model="name">
     and I am <input v-model="age"> years old.
-  <p/>
-  <button @click="persist">Save</button>
+  </p>
+  <p>
+    <button @click="persist">Save</button>
+  </p>
 </div>
 ```
 
 Now we've got two fields (again, bound to a Vue instance) but now there is the addition of a button that runs a `persist` method. Let's look at the JavaScript.
 
-``` js 
+``` js
 const app = new Vue({
   el: '#app',
   data: {
@@ -106,19 +108,20 @@ As before, `mounted` is used to load persisted data, if it exists. This time, th
 
 ## Working with Complex Values
 
-As mentioned above, Local Storage only works with simple values. To store more complex values, like objects or arrays, you must serialize and deserialize the values with JSON. Here is a more advanced example that persists an array of cats (the best kind of array possible). 
+As mentioned above, Local Storage only works with simple values. To store more complex values, like objects or arrays, you must serialize and deserialize the values with JSON. Here is a more advanced example that persists an array of cats (the best kind of array possible).
 
 ``` html
 <div id="app">
   <h2>Cats</h2>
-  <div v-for="(cat,n) in cats">
+  <div v-for="(cat, n) in cats">
     <p>
-    <span class="cat">{{ cat }}</span> <button @click="removeCat(n)">Remove</button>
+      <span class="cat">{{ cat }}</span>
+      <button @click="removeCat(n)">Remove</button>
     </p>
   </div>
-  
+
   <p>
-    <input v-model="newCat"> 
+    <input v-model="newCat">
     <button @click="addCat">Add Cat</button>
   </p>
 </div>
@@ -148,7 +151,7 @@ const app = new Vue({
       if (!this.newCat) {
         return;
       }
-      
+
       this.cats.push(this.newCat);
       this.newCat = '';
       this.saveCats();

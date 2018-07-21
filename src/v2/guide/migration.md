@@ -644,7 +644,7 @@ Since `v-ref` is no longer a directive, but a special attribute, it can also be 
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
+Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by giving each item the same `ref`:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
