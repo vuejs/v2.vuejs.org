@@ -130,5 +130,5 @@ So, creating a Docker image for our Vue.js app is a good choice here because tha
 If your company is not into Docker and Kubernetes just yet or you simply want to get your MVP out the door, maybe dockerizing your Vue.js app is not what you need.
 
 Common alternatives are:
-* leveraging an all-in-one platform like [netlify](https://www.netlify.com/);
+* leveraging an all-in-one platform like [Netlify](https://www.netlify.com/);
 * hosting your SPA on [Amazon S3](https://aws.amazon.com/s3/) and serving it with [Amazon CloudFront](https://aws.amazon.com/cloudfront/) (see [this](https://serverless-stack.com/chapters/deploy-the-frontend.html) link for a detailed guide).
