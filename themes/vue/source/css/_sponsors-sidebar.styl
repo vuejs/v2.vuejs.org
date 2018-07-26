@@ -28,9 +28,18 @@
 #sidebar-sponsors-special
   margin-top -10px
 
+#sidebar-sponsors-platinum-left
+  display block
+
+#sidebar-sponsors-platinum-right
+  display none
+  position fixed
+  z-index 99
+  top 90px
+  right 20px
+
 @media screen and (min-width: 1300px)
-  #sidebar-sponsors-platinum
-    position fixed
-    z-index 99
-    top 90px
-    right 20px
+  #sidebar-sponsors-platinum-left
+    display none
+  #sidebar-sponsors-platinum-right
+    display block
