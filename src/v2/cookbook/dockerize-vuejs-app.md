@@ -57,7 +57,7 @@ In the previous example, we used a simple, zero-configuration command-line [http
 
 > It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 
-Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
+Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
 
 Let's refactor our `Dockerfile` to use NGINX:
 
