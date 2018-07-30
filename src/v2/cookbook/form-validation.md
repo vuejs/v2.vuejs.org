@@ -134,7 +134,7 @@ For the second example, the second text field (age) was switched to email which 
     <input
       id="name"
       v-model="name"
-      type="text
+      type="text"
       name="name"
     >
   </p>
