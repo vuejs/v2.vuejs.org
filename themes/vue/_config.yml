@@ -82,6 +82,9 @@ gold_sponsors:
   - url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
     name: tidelift
+  - url: https://webdock.io/en
+    img: webdock.png
+    name: webdock
 
 silver_sponsors:
   - url: https://dopamine.bg/
