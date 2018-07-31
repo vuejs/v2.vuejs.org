@@ -1940,13 +1940,13 @@ export default {
     list: []
   },
   mutations: {
-    REMOVE_TODO (state, todoId) {
+    todoRemoved (state, todoId) {
       state.list = state.list.filter(todo => todo.id !== todoId)
     }
   },
   actions: {
     removeTodo ({ commit, state }, todo) {
-      commit('REMOVE_TODO', todo.id)
+      commit('todoRemoved', todo.id)
     }
   }
 }
