@@ -57,9 +57,9 @@ In the previous example, we used a simple, zero-configuration command-line [http
 
 > It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 
-Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
+Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [nginx](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage nginx to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
 
-Let's refactor our `Dockerfile` to use NGINX:
+Let's refactor our `Dockerfile` to use nginx:
 
  ```docker
 # build stage
@@ -80,7 +80,7 @@ CMD ["nginx", "-g", "daemon off;"]
 Ok, let's see what's going on here:
 * we have split our original `Dockerfile` in multiple stages by leveraging the Docker [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) feature;
 * the first stage is responsible for building a production-ready artifact of our Vue.js app;
-* the second stage is responsible for serving such artifact using NGINX.
+* the second stage is responsible for serving such artifact using nginx.
 
 Now let's build the Docker image of our Vue.js app:
 
