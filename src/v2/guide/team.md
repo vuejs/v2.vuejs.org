@@ -391,7 +391,7 @@ order: 803
         'rollup-plugin-vue', 'vue-issue-helper'
       ],
       reposPersonal: [
-        'vue-keynote', 'bootstrap-for-vue', 'vue-interop'
+        'keynote', 'bootstrap-for-vue', 'vue-interop'
       ],
       links: [
         'https://znck.me', 'https://www.codementor.io/znck'
