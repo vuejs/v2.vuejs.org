@@ -18,13 +18,17 @@ Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli
 
 Before you can debug your Vue components from VS Code you need to update the generated Webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by Webpack.
 
+#### Vue CLI 2.X
+
 Go to `config/index.js` and find the `devtool` property. Update it to:
 
 ```json
 devtool: 'source-map',
 ```
 
-With Vue CLI 3 you need set `devtool` property inside `vue.config.js`:
+#### Vue CLI 3.X
+
+You need set `devtool` property inside `vue.config.js`. Create this file in the root directory of your project if it doesn't already exist.
 
 ```js
 module.exports = {
@@ -53,7 +57,8 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
-      }
+      },
+      "sourceMaps": true
     }
   ]
 }
