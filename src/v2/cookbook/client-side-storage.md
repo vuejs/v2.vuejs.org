@@ -181,6 +181,7 @@ While the Local Storage API is relatively simple, it is missing some basic featu
 
 * [vue-local-storage](https://github.com/pinguinjkeke/vue-local-storage)
 * [vue-reactive-storage](https://github.com/ropbla9/vue-reactive-storage)
+* [vue2-storage](https://github.com/yarkovaleksei/vue2-storage)
 
 ## Wrapping Up
 
