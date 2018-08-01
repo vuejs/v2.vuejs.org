@@ -50,7 +50,7 @@ For the purposes of this section, assume the following file structure:
 ```
 package.json
 build/
-   rollup.config.json
+   rollup.config.js
 src/
    wrapper.js
    my-component.vue
