@@ -78,7 +78,7 @@ Now we've got two fields (again, bound to a Vue instance) but now there is the a
 
 ``` js
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data: {
     name: '',
     age: 0
@@ -161,7 +161,7 @@ const app = new Vue({
       this.saveCats();
     },
     saveCats() {
-      let parsed = JSON.stringify(this.cats);
+      const parsed = JSON.stringify(this.cats);
       localStorage.setItem('cats', parsed);
     }
   }
