@@ -85,6 +85,9 @@ gold_sponsors:
   - url: https://webdock.io/en
     img: webdock.png
     name: webdock
+  - url: https://syncfusion.com/products/vue
+    img: syncfusion.png
+    name: syncfusion
 
 silver_sponsors:
   - url: https://dopamine.bg/
