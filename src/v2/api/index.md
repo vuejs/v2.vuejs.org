@@ -2140,7 +2140,7 @@ type: api
 
 - **Modifiers:**
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast input string to numbers
+  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
 - **Usage:**

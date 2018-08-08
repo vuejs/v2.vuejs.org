@@ -368,7 +368,7 @@ If you want user input to be automatically typecast as a number, you can add the
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string. If the value cannot be parsed with `parseFloat()`, then the original value is returned.
 
 ### `.trim`
 
