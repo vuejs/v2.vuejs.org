@@ -1590,11 +1590,11 @@ type: api
 
   - If both event and callback are given, remove the listener for that specific callback only.
 
-### vm.$emit( eventName, [...args] )
+### vm.$emit( eventName, [...arguments] )
 
 - **Arguments:**
   - `{string} eventName`
-  - `[...args]`
+  - `[...arguments]`
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
