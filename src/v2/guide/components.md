@@ -340,6 +340,9 @@ Then on our blog post, we can listen for this event with `v-on`, just as we woul
 ></blog-post>
 ```
 
+<p class="tip">Unlike native events, custom events do not bubble up to ancestors in the DOM. The only place you can listen for a custom event is within the parent component on the component element referencing the one where the emitting happens, like where you would put the `v-model` attribute. Listening in any grandparent component or in any ancestor element of the component element within the parent component will not work.</p>
+
+
 {% raw %}
 <div id="blog-posts-events-demo" class="demo">
   <div :style="{ fontSize: postFontSize + 'em' }">
