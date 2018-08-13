@@ -118,3 +118,18 @@ Vue.component('example', {
   }
 })
 ```
+
+Since `$nextTick()` returns a promise, you can achieve the same as the above using the new [ES7 async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax:
+
+```
+...
+  methods: {
+    async updateMessage: function () {
+      this.message = 'updated'
+      console.log(this.$el.textContent) // => 'not updated'
+      await this.$nextTick()
+      console.log(this.$el.textContent) // => 'updated'
+    }
+  }
+...
+```
