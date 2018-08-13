@@ -67,6 +67,8 @@ export default {
 };
 ```
 
+<iframe src="https://codesandbox.io/embed/1o45zvxk0q" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
 ## Real-World Example: Creating a Google Map Loader component
 
 Let's analyze the code piece by piece and see what is actually happening.
@@ -418,5 +420,5 @@ export default {
 
 In our script we need to import the required factory components and set data that will be passed to the markers and lines.
 
-## When To Avoid This Pattern:
+## When To Avoid This Pattern
 It might be tempting to create a very complex solutions based on the example, but at some point we can get to the situation where this abstraction becomes an independent part of the code living in our codebase. If we get to that point it might be worth considering extraction to an add-on.
