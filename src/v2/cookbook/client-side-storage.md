@@ -23,17 +23,15 @@ This example has one form field bound to a Vue value called `name`. Here's the J
 ``` js
 const app = new Vue({
   el: '#app',
-  data: {
-    name: ''
-  },
-  mounted() {
-    if (localStorage.name) {
-      this.name = localStorage.name;
-    }
-  },
-  watch: {
-    name(newName) {
-      localStorage.name = newName;
+  computed: {
+    name: {
+      get() {
+        const name = localStorage.name;
+        return name ? name : '';
+      },
+      set(name) {
+        localStorage.name = name;
+      }
     }
   }
 });
