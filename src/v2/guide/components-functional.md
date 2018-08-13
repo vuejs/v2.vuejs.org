@@ -6,21 +6,54 @@ order: 105
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-## Functional Components
+## Introduction
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+Consider a simple anchored heading component, whose output might look like:
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
+``` html
+<h1>
+  <a name="hello-world" href="#hello-world">
+    Hello world!
+  </a>
+</h1>
+```
+
+It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+
+In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). Since functional components are just functions, they're much cheaper to render.
+
+> Note: The lack of a persistent instance also means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+
+There are two common use-cases for functional components:
+
+* **Presentational** components: frequently-used pieces of a user interface like our linked heading above, simple buttons, form inputs, etc.
+* **Higher-order** or **wrapper** components: components that will delegate to other components
+
+A **functional component** can use a template (since 2.5.0+) in a [single file component](single-file-components.html):
+
+``` html
+<template functional>
+// slots, template logic, etc (v-if and v-for) are all usable here
+</template>
+
+<script>
+  export default {
+    name: 'MyComponent',
+    props: {
+    // ...
+    }
+  }
+</script>
+```
+
+or a [render function](render-function.html):
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // Props are optional
   props: {
     // ...
   },
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
   render: function (createElement, context) {
     // ...
   }
@@ -29,28 +62,152 @@ Vue.component('my-component', {
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
 
-In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
-
-``` html
-<template functional>
-</template>
-```
-
-Everything the component needs is passed through `context`, which is an object containing:
+Each of these is explained in more detail below. In both cases, everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
 - `slots`: A function returning a slots object
-- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
+- `data`: The entire [data object](render-function.html#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
 - `parent`: A reference to the parent component
 - `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
 - `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
 
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+## Presentational Functional Components
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+### As Single File Components
 
-They're also very useful as wrapper components. For example, when you need to:
+If you're using single file components for the rest of your app, it may be convenient to use this pattern for presentational functional components too. Building them is much the same as building normal single file components: 
+
+``` html
+<template functional>
+  <h1>
+    <a name="props.name" href="props.href">
+      <slot></slot>
+    </a>
+  </h1>
+</template>
+
+<script>
+  export default {
+    name: 'MyComponent',
+    props: {
+      name: {
+        required: true;
+        type: String;
+      },
+      href: {
+        required: true,
+        type: String
+      }
+    }
+  }
+</script>
+```
+
+The `functional` keyword on the `<template>` element makes this a functional compontent. Rather than having access to `name` and `href` props directly, you have access to the `context` object and its `props` property.
+
+You can use this component just as you would any standard component:
+
+```
+<my-component name="anchor-1" href="#endnote-1">
+  My anchored heading
+</my-component>
+```
+
+### With Render Functions
+
+In some cases you want to use pure Javascript, in the form of a render function, rather than a template to define your component output. There's a lot to learn about render functions, and you can [read about them on their own page](render-function.html).
+
+A presentational functional component can be written with a render function. Consider our anchored heading again, first as a **standard** component:
+
+``` js
+Vue.component('my-component', {
+  props: {
+    name: {
+      required: true,
+      type: String
+    },
+    href: {
+      required: true,
+      type: String
+    }
+  },
+  render: function (createElement) {
+    return createElement( 
+      'h1',
+      [ createElement(
+        'a',
+        {
+          attrs: {
+            name: this.name,
+            href: this.href
+          }
+        },
+        this.$slots.default
+        ) ]
+    )
+  }
+})
+```
+
+And now as a functional component, with `functional: true`:
+
+``` js
+Vue.component('my-component', {
+  functional: true,
+  props: {
+    name: {
+      required: true,
+      type: String
+    },
+    href: {
+      required: true,
+      type: String
+    }
+  },
+  render: function (createElement, context) {
+    return createElement( 
+      'h1',
+      [ createElement(
+        'a',
+        {
+          attrs: {
+            name: context.props.name,
+            href: context.props.href
+          }
+        },
+        context.slots().default
+        ) ]
+    )
+  }
+})
+```
+
+After adding `functional: true`, updating the render function of our anchored heading component requires:
+
+* adding the `context` argument
+* updating references to props like: `context.props.name`
+* updating `this.$slots.default` to `context.slots().default` (See the [section below](#slots-vs-children) on `slots().default` vs `children`.
+
+### `slots()` vs `children`
+
+You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+
+``` html
+<my-functional-component>
+  <p slot="foo">
+    first
+  </p>
+  <p>second</p>
+</my-functional-component>
+```
+
+For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+
+
+## Wrapper Components
+
+Functional components can also be useful as wrapper components. For example, when you need to:
 
 - Programmatically choose one of several other components to delegate to
 - Manipulate children, props, or data before passing them on to a child component
@@ -123,101 +280,3 @@ If you are using template-based functional components, you will also have to man
   </button>
 </template>
 ```
-
-### `slots()` vs `children`
-
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
-
-``` html
-<my-functional-component>
-  <p slot="foo">
-    first
-  </p>
-  <p>second</p>
-</my-functional-component>
-```
-
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
-
-## Template Compilation
-
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
-
-{% raw %}
-<div id="vue-compile-demo" class="demo">
-  <textarea v-model="templateText" rows="10"></textarea>
-  <div v-if="typeof result === 'object'">
-    <label>render:</label>
-    <pre><code>{{ result.render }}</code></pre>
-    <label>staticRenderFns:</label>
-    <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
-    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
-  </div>
-  <div v-else>
-    <label>Compilation Error:</label>
-    <pre><code>{{ result }}</code></pre>
-  </div>
-</div>
-<script>
-new Vue({
-  el: '#vue-compile-demo',
-  data: {
-    templateText: '\
-<div>\n\
-  <header>\n\
-    <h1>I\'m a template!</h1>\n\
-  </header>\n\
-  <p v-if="message">\n\
-    {{ message }}\n\
-  </p>\n\
-  <p v-else>\n\
-    No message.\n\
-  </p>\n\
-</div>\
-    ',
-  },
-  computed: {
-    result: function () {
-      if (!this.templateText) {
-        return 'Enter a valid template above'
-      }
-      try {
-        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
-        return {
-          render: this.formatFunction(result.render),
-          staticRenderFns: result.staticRenderFns.map(this.formatFunction)
-        }
-      } catch (error) {
-        return error.message
-      }
-    }
-  },
-  methods: {
-    formatFunction: function (fn) {
-      return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
-    }
-  }
-})
-console.error = function (error) {
-  throw new Error(error)
-}
-</script>
-<style>
-#vue-compile-demo {
-  -webkit-user-select: inherit;
-  user-select: inherit;
-}
-#vue-compile-demo pre {
-  padding: 10px;
-  overflow-x: auto;
-}
-#vue-compile-demo code {
-  white-space: pre;
-  padding: 0
-}
-#vue-compile-demo textarea {
-  width: 100%;
-  font-family: monospace;
-}
-</style>
-{% endraw %}
