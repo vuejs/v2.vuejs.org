@@ -215,10 +215,20 @@ Functional components can also be useful as wrapper components. For example, whe
 Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
 
 ``` js
-var EmptyList = { /* ... */ }
-var TableList = { /* ... */ }
-var OrderedList = { /* ... */ }
-var UnorderedList = { /* ... */ }
+
+/* The first argument of createElement can take a component options object, 
+or a function that resolves to one */
+
+var EmptyList = { /* component options */ }
+var TableList = function(items) { 
+                  return { /* component options */ }
+                }
+var OrderedList = function(items) { 
+                  return { /* component options */ }
+                }
+var UnorderedList = function(items) { 
+                  return { /* component options */ }
+                }
 
 Vue.component('smart-list', {
   functional: true,
@@ -234,10 +244,10 @@ Vue.component('smart-list', {
       var items = context.props.items
 
       if (items.length === 0)           return EmptyList
-      if (typeof items[0] === 'object') return TableList
-      if (context.props.isOrdered)      return OrderedList
+      if (typeof items[0] === 'object') return TableList(items)
+      if (context.props.isOrdered)      return OrderedList(items)
 
-      return UnorderedList
+      return UnorderedList(items)
     }
 
     return createElement(
@@ -249,7 +259,7 @@ Vue.component('smart-list', {
 })
 ```
 
-### Passing Attributes and Events to Child Elements/Components
+### Passing Attributes and Events to Child Elements or Components
 
 On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
 
@@ -296,7 +306,7 @@ Functional components, however, require you to explicitly define this behavior:
 </script>
 ```
 
-Since we have access to the `context` object, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+Since we have access to the `context` object, we can use `data.attrs` to pass along any HTML attributes and `listeners` (the alias for `data.on`) to pass along any event listeners.
 
 When using a render function, we can pass `context.data` (the entire [data object](render-function.html#The-Data-Object-In-Depth)) as the second argument to `createElement`. In doing so, we are transparently passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
 
