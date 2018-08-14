@@ -62,7 +62,7 @@ Vue.component('my-component', {
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
 
- <a id="context-object"></a> Each of these is explained in more detail below. In both cases, everything the component needs is passed through `context`, which is an object containing:
+ <a id="context-object"></a> Each of these approaches is explained in more detail below. In both cases, everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
@@ -104,9 +104,9 @@ If you're using single-file components for the rest of your app, it may be conve
 </script>
 ```
 
-The `functional` keyword on the `<template>` element makes this a functional compontent. Rather than having access to `name` and `href` props directly, you have access to the `context` object and its `props` property.
+The `functional` keyword on the `<template>` element makes this a functional compontent. Rather than having access to the `name` and `href` props directly, we have access to the `context` object and its `props` property.
 
-You can use this component just as you would any standard component:
+This component can be used just as any standard component:
 
 ```
 <my-functional-component name="anchor-1" href="#endnote-1">
@@ -116,7 +116,7 @@ You can use this component just as you would any standard component:
 
 ### With Render Functions
 
-In some cases pure Javascript, in the form of a render function, is preferable to a template to define component output. There's a lot to learn about render functions, and you can [read about them on their own page](render-function.html).
+In some cases we may use pure Javascript, in the form of a render function, rather than a template, to define component output. There's a lot to learn about render functions, and you can [read about them on their own page](render-function.html).
 
 A presentational functional component can be written with a render function. Consider our anchored heading again, first as a **standard** component:
 
@@ -135,22 +135,24 @@ Vue.component('my-component', {
   render: function (createElement) {
     return createElement( 
       'h1',
-      [ createElement(
-        'a',
-        {
-          attrs: {
-            name: this.name,
-            href: this.href
-          }
-        },
-        this.$slots.default
-        ) ]
+      [ 
+        createElement(
+          'a',
+          {
+            attrs: {
+              name: this.name,
+              href: this.href
+            }
+          },
+          this.$slots.default
+        )
+      ]
     )
   }
 })
 ```
 
-And now as a functional component, with `functional: true`:
+And now as a **functional** component, with `functional: true`:
 
 ``` js
 Vue.component('my-functional-component', {
@@ -168,16 +170,18 @@ Vue.component('my-functional-component', {
   render: function (createElement, context) {
     return createElement( 
       'h1',
-      [ createElement(
-        'a',
-        {
-          attrs: {
-            name: context.props.name,
-            href: context.props.href
-          }
-        },
-        context.slots().default
-        ) ]
+      [ 
+        createElement(
+          'a',
+          {
+            attrs: {
+              name: context.props.name,
+              href: context.props.href
+            }
+          },
+          context.slots().default
+        )
+      ]
     )
   }
 })
@@ -261,7 +265,7 @@ Vue.component('smart-list', {
 
 ### Passing Attributes and Events to Child Elements or Components
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+On normal components, attributes *not* defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
 
 For example, given this component:
 
@@ -279,7 +283,7 @@ For example, given this component:
 </script>
 ```
 
-the following usage will produce a button with `aria-role="button"`, and a click handler that calls `sayHelloWorld`:
+the following usage will produce a `button` element with `aria-role="button"`, and a click handler that calls `sayHelloWorld`:
 
 ```
 <my-standard-button @click="sayHelloWorld" aria-role="button">
