@@ -67,6 +67,8 @@ export default {
 };
 ```
 
+This is just part of a working example, you can find the whole example in the Codesandbox below.
+
 <iframe src="https://codesandbox.io/embed/1o45zvxk0q" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Real-World Example: Creating a Google Map Loader component
@@ -117,8 +119,7 @@ export default {
   },
 ```
 
-- on `mounted` hook we create an instance of `GoogleMapsApi` and `Map` object from the `GoogleMapsApi`
-- we set the values of `google` and `map` to the created instances
+- on `mounted` hook we create an instance of `GoogleMapsApi` and `Map` object from the `GoogleMapsApi` and we set the values of `google` and `map` to the created instances
 
 ```js
   async mounted() {
@@ -139,7 +140,7 @@ export default {
 };
 ```
 
-So far so good, with that done we could continue adding the other objects to the map (Markers, Lines, etc.) and using it as a ordinary map component. But we want to use our `GoogleMapLoader` component only as a loader that prepares the map, not renders anything on it.
+So far so good, with that done we could continue adding the other objects to the map (Markers, Polylines, etc.) and using it as a ordinary map component. But we want to use our `GoogleMapLoader` component only as a loader that prepares the map, not renders anything on it.
 
 To achieve that we need to allow parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the `GoogleMapLoader` component. That's where `scoped slots` really shine. Scoped slots allow us to expose the properties set in a child component to the parent component. It may sound like an inception, but bear with me one more minute.
 
@@ -151,18 +152,15 @@ In the template, we render the `GoogleMapLoader` component and pass props that a
 
 ```html
 <template>
-  <div class="google-map">
-    <GoogleMapLoader
-      class="google-map__map"
-      :mapConfig="mapConfig"
-      mapHeight="460px"
-      apiKey="yourApiKey"
-    />
-  </div>
+  <GoogleMapLoader
+    :mapConfig="mapConfig"
+    mapHeight="460px"
+    apiKey="yourApiKey"
+  />
 </template>
 ```
 
-Our script tag looks like this at this stage
+Our script tag will look like below at this stage.
 
 ```js
 <script>
@@ -220,7 +218,7 @@ So finally we can add a scoped slot that will do the job and allow us to access 
 </template>
 ```
 
-Now when we have the slot in the child component we need to receive and consume the exposed object in the parent component.
+Now when we have the slot in the child component we need to receive and consume the exposed props in the parent component.
 
 ### Receive exposed props in the parent component using `slot-scope` attribute.
 
@@ -230,7 +228,6 @@ To receive the props in the parent component we declare a template element and u
 
 ```html
 <GoogleMapLoader
-  class="google-map__map"
   :mapConfig="mapConfig"
   mapHeight="460px"
   apiKey="yourApiKey"
@@ -250,7 +247,7 @@ Scoped slots allow us to pass a template to the slot instead of passing a render
 
 ### Create factory components for Markers and Polylines
 
-We will now create two factory components that will be used to create elements in the `VesselsGoogleMap`
+Now when we have our map ready we will create two factory components that will be used to add elements to the `VesselsGoogleMap`.
 
 `GoogleMapMarker.vue`
 
@@ -319,7 +316,7 @@ export default {
 };
 ```
 
-- both of them receive `google` from which we extract required object (Marker or Polyline) and `map` which gives as a reference to the map on which we want to place our elements.
+- both of them receive `google` from which we extract required object (Marker or Polyline) and `map` which gives as a reference to the map on which we want to place our element.
 
 - each receive also a prop with data required to create a corresponding element.
 
@@ -328,11 +325,16 @@ export default {
 
 ### Add elements to map
 
+Now let's use our factory components to add elements to our map.
+
 `VesselsGoogleMap.vue`
+
+To add elements to our map we render the factory component and pass the `google` and `map` objects.
+
+We also need to provide data required by the element itself (in our case `marker` object with position of the marker, `path` object with polyline coordinates.
 
 ```html
 <GoogleMapLoader
-  class="google-map__map"
   :mapConfig="mapConfig"
   mapHeight="460px"
   apiKey="yourApiKey"
@@ -356,9 +358,7 @@ export default {
 </GoogleMapLoader>
 ```
 
-To add elements to our map we render the factory component and pass the `google` and `map` objects.
-
-We also need to provide data required by the element itself (in our case `marker` object with position of the marker, `path` object with polyline coordinates.
+In our script we need to import the required factory components and set data that will be passed to the markers and lines.
 
 ```js
 import {
@@ -402,7 +402,9 @@ export default {
 }
 ```
 
-In our script we need to import the required factory components and set data that will be passed to the markers and lines.
-
 ## When To Avoid This Pattern
 It might be tempting to create a very complex solutions based on the example, but at some point we can get to the situation where this abstraction becomes an independent part of the code living in our codebase. If we get to that point it might be worth considering extraction to an add-on.
+
+## Wrapping Up
+That's it. With all those bits and pieces created we can now re-use the `GoogleMapLoader` component as a base for all our maps by passing different templates to each one of them. Imagine that you need to create another map with different Markers or just Markers without Polylines. By using the above pattern it becomes very easy as we just need to pass different content to the `GoogleMapLoader` component.
+This pattern is not strictly connected to Google Maps, it can be used with any library to set the base component and expose the library's API that might be then used in the component that summoned the base component.
