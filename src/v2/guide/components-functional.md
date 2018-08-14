@@ -12,13 +12,13 @@ Consider a simple anchored heading component, whose output might look like:
 
 ``` html
 <h1>
-  <a name="hello-world" href="#hello-world">
+  <a name="anchor-1" href="#endnote-1">
     Hello world!
   </a>
 </h1>
 ```
 
-It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+It doesn't need to manage any state, or watch any state passed to it, and it has no lifecycle methods. It only needs to accept a couple of props, `name` and  `href`.
 
 In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). Since functional components are just functions, they're much cheaper to render.
 
@@ -26,10 +26,10 @@ In cases like this, we can mark components as `functional`, which means that the
 
 There are two common use-cases for functional components:
 
-* **Presentational** components: frequently-used pieces of a user interface like our linked heading above, simple buttons, form inputs, etc.
+* **Presentational** components: frequently-used pieces of a user interface, like our linked heading above, simple buttons, form inputs, etc.
 * **Higher-order** or **wrapper** components: components that will delegate to other components
 
-A **functional component** can use a template (since 2.5.0+) in a [single file component](single-file-components.html):
+A **functional component** can use a template (since 2.5.0+) in a [single-file component](single-file-components.html):
 
 ``` html
 <template functional>
@@ -38,7 +38,7 @@ A **functional component** can use a template (since 2.5.0+) in a [single file c
 
 <script>
   export default {
-    name: 'MyComponent',
+    name: 'my-component',
     props: {
     // ...
     }
@@ -62,7 +62,7 @@ Vue.component('my-component', {
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
 
-Each of these is explained in more detail below. In both cases, everything the component needs is passed through `context`, which is an object containing:
+ <a id="context-object"></a> Each of these is explained in more detail below. In both cases, everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
@@ -74,9 +74,9 @@ Each of these is explained in more detail below. In both cases, everything the c
 
 ## Presentational Functional Components
 
-### As Single File Components
+### As Single-File Components
 
-If you're using single file components for the rest of your app, it may be convenient to use this pattern for presentational functional components too. Building them is much the same as building normal single file components: 
+If you're using single-file components for the rest of your app, it may be convenient to use this pattern for presentational functional components too. Building them is much the same as building normal single-file components: 
 
 ``` html
 <template functional>
@@ -89,7 +89,7 @@ If you're using single file components for the rest of your app, it may be conve
 
 <script>
   export default {
-    name: 'MyComponent',
+    name: 'my-functional-component',
     props: {
       name: {
         required: true;
@@ -109,14 +109,14 @@ The `functional` keyword on the `<template>` element makes this a functional com
 You can use this component just as you would any standard component:
 
 ```
-<my-component name="anchor-1" href="#endnote-1">
+<my-functional-component name="anchor-1" href="#endnote-1">
   My anchored heading
-</my-component>
+</my-functional-component>
 ```
 
 ### With Render Functions
 
-In some cases you want to use pure Javascript, in the form of a render function, rather than a template to define your component output. There's a lot to learn about render functions, and you can [read about them on their own page](render-function.html).
+In some cases pure Javascript, in the form of a render function, is preferable to a template to define component output. There's a lot to learn about render functions, and you can [read about them on their own page](render-function.html).
 
 A presentational functional component can be written with a render function. Consider our anchored heading again, first as a **standard** component:
 
@@ -153,7 +153,7 @@ Vue.component('my-component', {
 And now as a functional component, with `functional: true`:
 
 ``` js
-Vue.component('my-component', {
+Vue.component('my-functional-component', {
   functional: true,
   props: {
     name: {
@@ -187,11 +187,11 @@ After adding `functional: true`, updating the render function of our anchored he
 
 * adding the `context` argument
 * updating references to props like: `context.props.name`
-* updating `this.$slots.default` to `context.slots().default` (See the [section below](#slots-vs-children) on `slots().default` vs `children`.
+* updating `this.$slots.default` to `context.slots().default` (See the [section below](#slots-vs-children) on `slots().default` vs `children`).
 
 ### `slots()` vs `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+You may wonder why the [context object](#context-object) provides both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
 
 ``` html
 <my-functional-component>
@@ -202,7 +202,7 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+For this component, `children` will give you an array of both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
 
 
 ## Wrapper Components
@@ -253,7 +253,52 @@ Vue.component('smart-list', {
 
 On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
 
+For example, given this component:
+
+```html
+<template>
+  <button>
+    <slot></slot>
+  </button>
+</template>
+
+<script>
+  export default {
+    name: 'my-standard-button'
+  }
+</script>
+```
+
+the following usage will produce a button with `aria-role="button"`, and a click handler that calls `sayHelloWorld`:
+
+```
+<my-standard-button @click="sayHelloWorld" aria-role="button">
+  Click me
+</my-standard-button>
+```
+
 Functional components, however, require you to explicitly define this behavior:
+
+```html
+<template functional>
+  <button
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot></slot>
+  </button>
+</template>
+
+<script>
+  export default {
+    name: 'my-functional-button'
+  }
+</script>
+```
+
+Since we have access to the `context` object, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+
+When using a render function, we can pass `context.data` (the entire [data object](render-function.html#The-Data-Object-In-Depth)) as the second argument to `createElement`. In doing so, we are transparently passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
 
 ```js
 Vue.component('my-functional-button', {
@@ -263,20 +308,4 @@ Vue.component('my-functional-button', {
     return createElement('button', context.data, context.children)
   }
 })
-```
-
-By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
-
-If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
-
-```html
-<template functional>
-  <button
-    class="btn btn-primary"
-    v-bind="data.attrs"
-    v-on="listeners"
-  >
-    <slot/>
-  </button>
-</template>
 ```
