@@ -6,15 +6,15 @@ order: 11
 
 ## Base Example
 
-There are situations when you want the template inside the slot to be able to access data from the child component that hosts the slot content. This is particularly useful when you need freedom in creating custom templates that uses the child component data properties. That is a typical use case for scoped slots.
+There are situations when you want the template inside the slot to be able to access data from the child component that is responsible for rendering the slot content. This is particularly useful when you need freedom in creating custom templates that use the child component's data properties. That is a typical use case for scoped slots.
 
-We will concentrate on a non-typical variation of that use case.
+Imagine a component that configures and prepares an external API to be used in another component, but is not tightly coupled with any specific template. Such a component could then be reused in multiple places rendering different templates but using the same base object with specific API.
 
-Imagine a component that configures and prepares an external API to be used in another component, but is not tightly coupled with any specific template. That component could then be reused in multiple places rendering different templates but using the same base object with specific API.
+We'll create a component (`GoogleMapLoader.vue`) that initializes `Google Maps API`, creates a `google` and `map` objects and exposes those objects to the parent component in which the `GoogleMapLoader` is used.
 
-We'll create a component (`GoogleMapLoader.vue`) that initialize `Google Maps API`, creates a `google` and `map` objects and exposes those objects in the parent component in which the `GoogleMapLoader` is used.
+See below a basic example of how this can be achieved. We will analyze the code piece by piece and see what is actually happening in the next section.
 
-This is how our template will look like.
+The template part will look as below
 
 ```html
 <template>
@@ -30,7 +30,7 @@ This is how our template will look like.
 </template>
 ```
 
-And our script will look like this, we'll have some props passed to the component that allows us to set the `Google Map API` and `map` object:
+Our script will look like this, we'll have some props passed to the component which allows us to set the `Google Map API` and `map` object:
 
 ```js
 import GoogleMapsApiLoader from "google-maps-api-loader";
@@ -71,13 +71,11 @@ export default {
 
 ## Real-World Example: Creating a Google Map Loader component
 
-Let's analyze the code piece by piece and see what is actually happening.
-
-### Create a component that initialize our map.
+### Create a component that initializes our map.
 
 `GoogleMapLoader.vue`
 
-In the template we create a container for the map that will be used to mount the Map object extracted from the Google Maps API.
+In the template we create a container for the map which will be used to mount the Map object extracted from the Google Maps API.
 
 ```html
 <template>
@@ -89,9 +87,9 @@ In the template we create a container for the map that will be used to mount the
 
 Inside the script part:
 
-- we receive a props from the parent component that will allows us to set the Google Map:
+- we receive props from the parent component which will allow us to set the Google Map:
 
-  - `mapConfig` - Google Maps config object [(go to documentation)](https://developers.google.com/maps/documentation/javascript/reference/3/map#MapOptions])
+  - `mapConfig` - Google Maps config object [(see documentation)](https://developers.google.com/maps/documentation/javascript/reference/3/map#MapOptions])
 
   - `apiKey` - our personal api key required by Google Maps
 
@@ -141,15 +139,15 @@ export default {
 };
 ```
 
-So far so good, with that prepared we could continue adding the other objects to the map (Markers, Lines, etc.) and using it as a ordinary map component. But we want to use our `GoogleMapLoader` component only as a loader that prepares the map, not renders anything on it.
+So far so good, with that done we could continue adding the other objects to the map (Markers, Lines, etc.) and using it as a ordinary map component. But we want to use our `GoogleMapLoader` component only as a loader that prepares the map, not renders anything on it.
 
-To achieve that we need to allow parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the loader component. That's where `scoped slots` do their magic. Scoped slots allows us to expose the properties set in a child component to the parent component. It may sound like an inception, but bear with me one more minute.
+To achieve that we need to allow parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the `GoogleMapLoader` component. That's where `scoped slots` really shine. Scoped slots allow us to expose the properties set in a child component to the parent component. It may sound like an inception, but bear with me one more minute.
 
 ### Create component that uses our initializer component.
 
 `VesselsGoogleMap.vue`
 
-In the template we render the `GoogleMapLoader` component and pass the props that are required to initialize the map.
+In the template, we render the `GoogleMapLoader` component and pass props that are required to initialize the map.
 
 ```html
 <template>
@@ -164,7 +162,7 @@ In the template we render the `GoogleMapLoader` component and pass the props tha
 </template>
 ```
 
-Our script tag looks like that at this stage
+Our script tag looks like this at this stage
 
 ```js
 <script>
@@ -195,20 +193,6 @@ export default {
   },
 }
 </script>
-
-<style scoped lang='scss'>
-  .google-map {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: solid 1px #FFF;
-
-    &__map {
-      height: 460px;
-      width: 100%;
-    }
-  }
-</style>
 ```
 
 Still no scoped slots yet. Let's add one.
@@ -262,7 +246,7 @@ After doing that even though the `google` and `map` props does not exist in the 
 
 Yeah, ok, but why would I do things like that, what is the use of all that?
 
-Scoped slots allows us to pass a template to the slot instead of passing a rendered element. It’s called a “scoped” slot because although the template is rendered in the parent component scope, it will have access to certain child component data. That gives us a freedom to fill the template with custom content from the parent component.
+Scoped slots allow us to pass a template to the slot instead of passing a rendered element. It’s called a “scoped” slot because although the template is rendered in the parent component scope, it will have access to certain child component data. That gives us a freedom to fill the template with custom content from the parent component.
 
 ### Create factory components for Markers and Polylines
 
@@ -374,7 +358,7 @@ export default {
 
 To add elements to our map we render the factory component and pass the `google` and `map` objects.
 
-We also need to provide data required by the element itself (in our case `marker` object with position of the marker, `path` object with polyline co-ordinates.
+We also need to provide data required by the element itself (in our case `marker` object with position of the marker, `path` object with polyline coordinates.
 
 ```js
 import {
