@@ -104,7 +104,7 @@ If you're using single-file components for the rest of your app, it may be conve
 </script>
 ```
 
-The `functional` keyword on the `<template>` element makes this a functional compontent. Rather than having access to the `name` and `href` props directly, we have access to the `context` object and its `props` property.
+The `functional` keyword on the `<template>` element makes this a functional component. Rather than having access to the `name` and `href` props directly, we have access to the `context` object and its `props` property.
 
 This component can be used just as any standard component:
 
