@@ -157,7 +157,7 @@ Les designers peuvent changer d'avis. Les exigences du produit peuvent aussi év
 
 ## Quand éviter ce pattern
 
-Ce système est particulièrement utile quand vous avez un grand nombre d'icônes utilisées de façons différentes à travers votre site. Si la même icône est utilisée de nombreuses fois sur la même page (par exemple, un tableau avec une icône de suppression sur chaque ligne), il peut être plus optimsé de définir un _sprite_ SVG contenant des `<symbol/>` entre des balises `<defs>` et de les référencer dans des balises `<use>`.
+Ce système est particulièrement utile quand vous avez un grand nombre d'icônes utilisées de façons différentes à travers votre site. Si la même icône est utilisée de nombreuses fois sur la même page (par exemple, un tableau avec une icône de suppression sur chaque ligne), il peut être plus optimisé de définir un _sprite_ SVG contenant des `<symbol/>` entre des balises `<defs>` et de les référencer dans des balises `<use>`.
 
 ## Patterns alternatifs
 
