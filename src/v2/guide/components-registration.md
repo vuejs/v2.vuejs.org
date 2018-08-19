@@ -86,7 +86,7 @@ Then define the components you'd like to use in a `components` option:
 
 ```js
 new Vue({
-  el: '#app'
+  el: '#app',
   components: {
     'component-a': ComponentA,
     'component-b': ComponentB
