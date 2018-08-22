@@ -786,7 +786,7 @@ Vue.config.keyCodes.f1 = 112
 
 `$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
 One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
