@@ -99,6 +99,10 @@
     padding-left: 1.5em
     // FIX: Some link click targets are covered without this
     position: inherit
+    // FIX: For nested lists, the top margins on ul/ol
+    // creates extra space at the top. (Issue: 1308)
+    ul, ol
+      margin: 0;
   a
     color: $green
     font-weight: 600
