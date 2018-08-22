@@ -157,6 +157,10 @@ Beyond the recommendations made above for [Potential Dangers](#Potential-Dangers
 
 Then use what you learn to also review the source code of your dependencies for potentially dangerous patterns, if any of them include 3rd-party components or otherwise influence what's rendered to the DOM.
 
-### Backend Coordination
+## Backend Coordination
 
 HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) and cross-site script inclusion (XSSI), are primarily addressed on the backend, so aren't a concern of Vue's. However, it's still a good idea to communicate with your backend team to learn how to best interact with their API, e.g. by submitting CSRF tokens with form submissions.
+
+## Server-Side Rendering (SSR)
+
+There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](https://ssr.vuejs.org/) to avoid vulnerabilities.
