@@ -6,7 +6,7 @@ order: 502
 
 ## Giải pháp chính thức theo kiến trúc Flux
 
-Các ứng dụng lớn có xu hướng ngày càng trở nên phức tạp do có nhiều thành phần trạng thái (state) khác nhau và các giao tiếp giữa các thành phần ấy. Để giải quyết vấn đề này, Vue cung cấp [vuex](https://github.com/vuejs/vuex): thư viện quản lí trạng thái chính thức, lấy cảm hứng từ [Elm](http://elm-lang.org/). Vuex thậm chí còn được tích hợp vào [vue-devtools](https://github.com/vuejs/vue-devtools), cung cấp tính năng [time-travel debugging](src/v2/guide/state-management.md) mà không cần phải cài đặt gì thêm.
+Các ứng dụng lớn có xu hướng ngày càng trở nên phức tạp do có nhiều thành phần trạng thái (state) khác nhau và các giao tiếp giữa các thành phần ấy. Để giải quyết vấn đề này, Vue cung cấp [vuex](https://github.com/vuejs/vuex): thư viện quản lí trạng thái chính thức, lấy cảm hứng từ [Elm](http://elm-lang.org/). Vuex thậm chí còn được tích hợp vào [vue-devtools](https://github.com/vuejs/vue-devtools), cung cấp tính năng [time-travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif) mà không cần phải cài đặt gì thêm.
 
 ### Thông tin dành cho các lập trình viên React
 
