@@ -6,9 +6,9 @@ order: 504
 
 ## Reporting Vulnerabilities
 
-When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please contact a [member of the core team](https://vuejs.org/v2/guide/team.html) directly so that the issue can be addressed before it's well-known.
+When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [vuejs.org@gmail.com](mailto:vuejs.org@gmail.com).
 
-While the discovery of new vulnerabilities is rare, we recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
+While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
 
 ## What Vue Does to Protect You
 
@@ -32,7 +32,7 @@ then it would be escaped to the following HTML:
 &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;
 ```
 
-thus preventing the script injection. This escaping is done using native browser APIs, like setting `textContent`, so a vulnerability can only exist if the browser itself is vulnerable.
+thus preventing the script injection. This escaping is done using native browser APIs, like `textContent`, so a vulnerability can only exist if the browser itself is vulnerable.
 
 ### Attribute bindings
 
