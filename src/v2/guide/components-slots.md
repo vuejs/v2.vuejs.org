@@ -210,7 +210,7 @@ Now when we use the `<todo-list>` component, we can optionally define an alterna
   </template>
 </todo-list>
 ```
-
+> Take care, in 2.2.x vue uses `slot` instead of `slot-scope`
 > In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
 
 ### Destructuring `slot-scope`
