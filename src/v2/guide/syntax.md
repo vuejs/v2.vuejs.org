@@ -102,11 +102,7 @@ Ces expressions seront évaluées en tant que JavaScript au sein de la portée d
 
 ## Directives
 
-<<<<<<< HEAD
 Les directives sont des attributs spéciaux avec le préfixe `v-`. Les valeurs attendues pour les attributs de directives sont **une unique expression JavaScript** (à l'exception de `v-for`, qui sera expliquée plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
-=======
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception of `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
->>>>>>> upstream/master
 
 ``` html
 <p v-if="seen">Maintenant vous me voyez</p>
