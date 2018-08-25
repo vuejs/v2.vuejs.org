@@ -78,7 +78,7 @@ data: {
 }
 ```
 
-La seule exception à cela est l'utilisation de `Object.freeze()`, qui prévient les propriétés existantes d'être changées, ce qui implique que le système de réactivité ne peut pas traquer les changements.
+La seule exception à cela est l'utilisation de `Object.freeze()`, qui empêche les propriétés existantes d'être changées, ce qui implique que le système de réactivité ne peut pas traquer les changements.
 
 ```js
 var obj = {
