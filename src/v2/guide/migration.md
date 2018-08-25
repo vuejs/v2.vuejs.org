@@ -154,7 +154,7 @@ Utilisez le nouveau hook `beforeCreate` à la place. Il fait la même chose. Il 
 
 ### `ready` <sup>remplacé</sup>
 
-Utilisez le hook `mounted` à la place. Il est a noté qu'avec `mounted`, il n'y a aucune garantie de présence dans le document (DOM réel). Pour s'en assurer, il faut inclure `Vue.nextTick` / `vm.$nextTick`. Par exemple :
+Utilisez la fonction hook `mounted` à la place. Il est a noté qu'avec `mounted`, il n'y a aucune garantie de présence dans le document (DOM réel). Pour s'en assurer, il faut inclure `Vue.nextTick` / `vm.$nextTick`. Par exemple :
 
 ``` js
 mounted: function () {
@@ -890,7 +890,7 @@ methods: {
 }
 ```
 
-utilisez le [`debounce` de lodash](https://lodash.com/docs/4.15.0#debounce) (ou également [`throttle`](https://lodash.com/docs/4.15.0#throttle)) pour limiter directement l'appel des méthodes couteuses en ressource. Vous pouvez ainsi arriver au même résultat qu'au-dessus ainsi :
+utilisez la fonction [`debounce` de lodash](https://lodash.com/docs/4.15.0#debounce) (ou également [`throttle`](https://lodash.com/docs/4.15.0#throttle)) pour limiter directement l'appel des méthodes couteuses en ressource. Vous pouvez ainsi arriver au même résultat qu'au-dessus ainsi :
 
 ``` html
 <input v-on:keyup="doStuff">
@@ -974,7 +974,7 @@ Au lieu de :
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-Utilisez le [`orderBy` de lodash](https://lodash.com/docs/4.15.0#orderBy) (ou également [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) dans une propriété calculée :
+Utilisez la fonction [`orderBy` de lodash](https://lodash.com/docs/4.15.0#orderBy) (ou également [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) dans une propriété calculée :
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
