@@ -4,7 +4,7 @@ type: guide
 order: 503
 ---
 
-## Le Guide complet du rendu côté serveur
+## Le guide complet du rendu côté serveur
 
 Nous avons créé un guide dédié à la création d'applications Vue utilisant du rendu côté serveur. C'est un guide avancé pour ceux qui sont déjà habitués au développement côté client avec Vue, au développement serveur avec Node.js et à webpack. Vous pouvez y accéder à l'adresse [ssr.vuejs.org](https://ssr.vuejs.org/).
 

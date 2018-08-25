@@ -4,7 +4,7 @@ type: guide
 order: 103
 ---
 
-> Cette page présume que vous connaissez déjà les bases sur les [Composants](components.html). Lisez cette section en premier si vous découvrez les composants.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez [cette partie](components.html) en premier si les composants sont quelque chose de nouveau pour vous.
 
 ## Noms d'événements
 

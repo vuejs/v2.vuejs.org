@@ -4,7 +4,7 @@ type: guide
 order: 106
 ---
 
-> Cette page présume que vous connaissez déjà les bases sur les [Composants](components.html). Lisez cette section en premier si vous découvrez les composants.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez [cette partie](components.html) en premier si les composants sont quelque chose de nouveau pour vous.
 
 <p class="tip">Toutes les fonctionnalités sur cette page documentent la gestion de cas limites, c'est-à-dire des situations peu ordinaires qui requièrent parfois de contourner légèrement les règles de Vue. Notez cependant qu'elles ont toutes des inconvénients ou des situations où elles peuvent s'avérer dangereuses. Celles-si sont décrites dans chaque cas, donc gardez-les en tête quand vous décidez d'utiliser chaque fonctionnalité.</p>
 

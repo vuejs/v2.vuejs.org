@@ -4,9 +4,9 @@ type: guide
 order: 101
 ---
 
-> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez cela en premier si vous êtes nouveau aux composants.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez [cette partie](components.html) en premier si les composants sont quelque chose de nouveau pour vous.
 
-## Les noms de composant
+## Noms de composant
 
 Lors de la création de composants, il faudra toujours spécifier un nom. Par exemple, la déclaration se fera comme suit : 
 
@@ -20,7 +20,7 @@ Le nom que vous donnez à un composant peut dépendre de l'endroit où vous avez
 
 Vous pouvez voir d'autres recommandations pour les noms de composants dans le guide des [Conventions](../style-guide/#Base-component-names-strongly-recommended).
 
-### La casse des noms
+### Casse des noms
 
 Vous avez deux options pour définir vos noms de composant :
 
@@ -201,10 +201,10 @@ const requireComponent = require.context(
 )
 
 requireComponent.keys().forEach(fileName => {
-  // Récupérer la configuration du composent
+  // Récupérer la configuration du composant
   const componentConfig = requireComponent(fileName)
 
-  // Récupérer le nom du composent en PascalCase
+  // Récupérer le nom du composant en PascalCase
   const componentName = upperFirst(
     camelCase(
       // Enlever le début de chaine `'./` et l'extension du nom de fichier

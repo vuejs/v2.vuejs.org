@@ -205,7 +205,7 @@ Vous voyez au-dessus que nous pouvons utiliser `v-bind` pour dynamiquement passe
 
 C'est tout ce que vous avez besoin de savoir à propos des props pour le moment, mais une fois que vous aurez fini de lire cette page et que vous vous sentirez à l'aise avec son contenu, nous vous recommandons de revenir pour lire le guide complet à propos des [props](components-props.html).
 
-## Un élément racine unique
+## Élément racine unique
 
 Quand nous réalisons un composant `<blog-post>`, votre template va éventuellement contenir plus que juste le titre :
 

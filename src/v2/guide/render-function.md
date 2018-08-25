@@ -4,7 +4,7 @@ type: guide
 order: 303
 ---
 
-## Les bases
+## Bases
 
 Vue vous recommande l'utilisation de templates pour construire votre HTML dans la grande majorité des cas. Il y a cependant des situations où vous aurez réellement besoin de toute la puissance programmatique de JavaScript. C'est là que vous pouvez utiliser les **fonctions de rendu**, une alternative aux templates qui est plus proche du compilateur.
 
@@ -120,7 +120,7 @@ render: function (createElement) {
 
 Et dans les deux cas, Vue va automatiquement garder la page à jour, même quand `blogTitle` change.
 
-### Le DOM virtuel
+### DOM virtuel
 
 Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être faits sur le vrai DOM. Prêtons attention à cette ligne :
 
@@ -130,7 +130,7 @@ return createElement('h1', this.blogTitle)
 
 Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quelle sorte de rendu de nœud il va falloir faire sur la page en incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construits par un arbre de composants Vue.
 
-## Les arguments de `createElement`
+## Arguments de `createElement`
 
 La seconde chose à laquelle vous allez devoir vous familiariser est la manière d'utiliser les fonctionnalités des templates avec la fonction `createElement`. Voici les arguments que la fonction `createElement` accepte :
 
@@ -164,7 +164,7 @@ createElement(
 )
 ```
 
-### L'objet de données dans le détail
+### Objet de données dans le détail
 
 Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:style` ont un traitement spécial dans les templates, ils ont leurs propres champs dans les objets de données VNode. Cet objet vous permet également d'insérer des attributs HTML normaux ainsi que des propriétés du DOM comme `innerHTML` (cela remplace la directive `v-html`) :
 
