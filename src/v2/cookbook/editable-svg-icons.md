@@ -35,7 +35,10 @@ Créons un composant icône de base (`IconBase.vue`) disposant d'un `slot`.
     :aria-labelledby="iconName"
     role="presentation"
   >
-    <title :id="iconName" lang="en">{{iconName}} icon</title>
+    <title
+      :id="iconName"
+      lang="en"
+    >{{ iconName }} icon</title>
     <g :fill="iconColor">
       <slot />
     </g>
@@ -82,12 +85,20 @@ Et si on souhaite afficher l'icône dans d'autres tailles :
 
 ```html
 <p>
-  <!-- on peut lui passer une `width` et une `height` plus petite grâce aux props -->
-  <icon-base width="12" height="12" icon-name="write"><icon-write /></icon-base>
-  <!-- ou ne rien passer du tout et utiliser la width par défaut : 18 -->
+  <!-- vous pouvez lui passer une `width` et une `height` plus petite grâce aux props -->
+  <icon-base
+    width="12"
+    height="12"
+    icon-name="write"
+  ><icon-write /></icon-base>
+  <!-- ou utiliser la valeur par défaut qui est : 18 -->
   <icon-base icon-name="write"><icon-write /></icon-base>
   <!-- ou même l'agrandir :) -->
-  <icon-base width="30" height="30" icon-name="write"><icon-write /></icon-base>
+  <icon-base
+    width="30"
+    height="30"
+    icon-name="write"
+  ><icon-write /></icon-base>
 </p>
 ```
 
@@ -99,16 +110,23 @@ Mettre des icônes SVG dans des composants devient nécessaire lorsque l'on souh
 
 ```html
 <template>
-  <svg @click="startScissors"
+  <svg
+    @click="startScissors"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     width="100"
     height="100"
     aria-labelledby="scissors"
     role="presentation"
-    >
-    <title id="scissors" lang="en">Scissors Animated Icon</title>
-    <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
+  >
+    <title
+      id="scissors"
+      lang="en"
+    >Scissors Animated Icon</title>
+    <path
+      id="bk"
+      fill="#fff"
+      d="M0 0h100v100H0z"/>
     <g ref="leftscissor">
       <path d="M..."/>
       ...

@@ -368,7 +368,7 @@ Si vous voulez que la saisie utilisateur soit automatiquement convertie en nombr
 <input v-model.number="age" type="number">
 ```
 
-C'est souvent utile, parce que même avec `type="number"`, la valeur des éléments input HTML retourne toujours une chaine de caractères.
+C'est souvent utile, parce que même avec `type="number"`, la valeur des éléments de saisie HTML retourne toujours une chaine de caractères. Si la valeur ne peut pas être transformer avec `parseFloat()`, alors la valeur originale est retournée.
 
 ### `.trim`
 

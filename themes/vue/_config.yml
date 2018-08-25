@@ -3,6 +3,12 @@ google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.16
 
+platinum_sponsors_china:
+  - url: https://www.geekbang.org/
+    img: geekbang.png
+  - url: https://gitee.com/?from=vue
+    img: gitee.png
+
 special_sponsors:
   - url: https://stdlib.com
     img: stdlib.png
@@ -20,6 +26,9 @@ platinum_sponsors:
   - url: https://vehikl.com/
     img: vehikl.png
     name: vehikl
+  - url: https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
+    img: nativescript.png
+    name: nativescript
 
 gold_sponsors:
   - url: https://www.vuemastery.com/
@@ -79,6 +88,12 @@ gold_sponsors:
   - url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
     name: tidelift
+  - url: https://webdock.io/en
+    img: webdock.png
+    name: webdock
+  - url: https://syncfusion.com/products/vue
+    img: syncfusion.png
+    name: syncfusion
 
 silver_sponsors:
   - url: https://dopamine.bg/

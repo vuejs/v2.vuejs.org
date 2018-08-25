@@ -136,25 +136,25 @@ Vue.component('base-input', {
 
 Dans certains cas, nous pouvons avoir besoin d'une « liaison à double sens » (*two-way binding*) pour une prop. Malheureusement, une vraie liaison à double sens peut créer des problèmes de maintenance, car les composants enfant peuvent faire muter le parent sans que la source de cette mutation soit explicite que ce soit dans le parent ou l'enfant.
 
-C'est pourquoi à la place, nous recommandons d'émettre des événements en suivant le modèle `update:mon-nom-de-prop`. Par exemple, dans un composant hypothétique avec une prop `titre`, nous pourrions communiquer l'intention d'assigner une nouvelle valeur avec :
+C'est pourquoi à la place, nous recommandons d'émettre des événements en suivant le modèle `update:myPropName`. Par exemple, dans un composant hypothétique avec une prop `title`, nous pourrions communiquer l'intention d'assigner une nouvelle valeur avec :
 
 ```js
-this.$emit('update:titre', nouveauTitre)
+this.$emit('update:title', nouveauTitre)
 ```
 
 Ensuite le parent peut écouter cet événement et mettre à jour une propriété de donnée locale s'il le désire. Par exemple :
 
 ```html
 <text-document
-  v-bind:titre="doc.titre"
-  v-on:update:titre="doc.titre = $event"
+  v-bind:title="doc.title"
+  v-on:update:title="doc.title = $event"
 ></text-document>
 ```
 
 Pour plus de commodité, nous proposons un raccourci pour cette technique avec le modificateur `.sync` :
 
 ```html
-<text-document v-bind:titre.sync="doc.titre"></text-document>
+<text-document v-bind:title.sync="doc.title"></text-document>
 ```
 
 Le modificateur `.sync` peut également être utilisé avec `v-bind` quand on utilise un objet pour assigner plusieurs props à la fois :
@@ -163,6 +163,6 @@ Le modificateur `.sync` peut également être utilisé avec `v-bind` quand on ut
 <text-document v-bind.sync="doc"></text-document>
 ```
 
-Cela passe chaque propriété dans l'objet `doc` (p. ex. `titre`) en tant que prop individuelle, puis ajoute des écouteurs `v-on` de mise à jour pour chacune.
+Cela passe chaque propriété dans l'objet `doc` (p. ex. `title`) en tant que prop individuelle, puis ajoute des écouteurs `v-on` de mise à jour pour chacune.
 
-<p class="tip">Utiliser <code>v-bind.sync</code> avec un objet littéral, par exemple <code>v-bind.sync="{ titre: doc.titre }"</code>, ne fonctionnera pas. En effet, il y a trop de cas particuliers à considérer pour pouvoir analyser une telle expression.</p>
+<p class="tip">Utiliser <code>v-bind.sync</code> avec un objet littéral, par exemple <code>v-bind.sync="{ title: doc.title }"</code>, ne fonctionnera pas. En effet, il y a trop de cas particuliers à considérer pour pouvoir analyser une telle expression.</p>

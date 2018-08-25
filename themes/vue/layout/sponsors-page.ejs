@@ -91,12 +91,12 @@ Les soutiens récurrents viennent avec des avantages exclusifs comme avoir son n
 <%_ } _%>
 </p>
 
-<h3>Platine OpenCollective</h3>
+<h3>Sponsors spéciaux (Chine)</h3>
 
-<p class="open-collective-sponsors sponsor-section">
-<%_ for (let i = 0; i < 3; i++) {_%>
-  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
-    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+<p class="platinum">
+<%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
   </a>
 <%_ } _%>
 </p>

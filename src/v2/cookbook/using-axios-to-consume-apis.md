@@ -61,7 +61,10 @@ This is a lot easier for us to display, so we can now update our HTML to display
 ```html
 <div id="app">
   <h1>Bitcoin Price Index</h1>
-  <div v-for="currency in info" class="currency">
+  <div
+    v-for="currency in info"
+    class="currency"
+  >
     {{ currency.description }}:
     <span class="lighten">
       <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
@@ -141,7 +144,11 @@ new Vue({
   <section v-else>
     <div v-if="loading">Loading...</div>
 
-    <div v-else v-for="currency in info" class="currency">
+    <div
+      v-else
+      v-for="currency in info"
+      class="currency"
+    >
       {{ currency.description }}:
       <span class="lighten">
         <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}

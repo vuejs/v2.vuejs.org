@@ -40,7 +40,10 @@ new Vue({
 ```html
 <div id="app">
   <h1 class="centered">Scroll me</h1>
-  <div class="box" v-scroll="handleScroll">
+  <div
+    v-scroll="handleScroll"
+    class="box"
+  >
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque amet harum aut ab veritatis earum porro praesentium ut corporis. Quasi provident dolorem officia iure fugiat, eius mollitia sequi quisquam.</p>
   </div>
 </div>

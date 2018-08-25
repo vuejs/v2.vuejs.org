@@ -8,7 +8,7 @@ C'est maintenant l'heure du grand plongeon ! L'une des fonctionnalités les plus
 
 ## Comment les modifications sont tracées ?
 
-Lorsque vous passez un simple objet JavaScript à une instance de Vue via son option `data`, Vue parcourra toutes ses propriétés et les convertira en accesseurs/mutateurs (getters/setters) en utilisant [Object.defineProperty](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty). Il s'agit d'une fonctionnalité ES5 uniquement et qui ne peut pas être émulée, c'est pourquoi Vue ne prend pas en charge IE8 et les versions antérieures.
+Lorsque vous passez un simple objet JavaScript à une instance de Vue via son option `data`, Vue parcourra toutes ses propriétés et les convertira en accesseurs / mutateurs (« [getters/setters](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Utiliser_les_objets#Defining_getters_and_setters) ») en utilisant [Object.defineProperty](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty). Il s'agit d'une fonctionnalité ES5 uniquement et qui ne peut pas être émulée, c'est pourquoi Vue ne prend pas en charge IE8 et les versions antérieures.
 
 Les accesseurs/mutateurs sont invisibles pour l'utilisateur, mais sous le capot, ils permettent à Vue d'effectuer le suivi des dépendances et la notification de changement quand les propriétés sont accédées ou modifiées. Une des limitations est que les consoles des navigateurs formatent les accesseurs/mutateurs différemment lorsque les objets de données convertis sont logués, vous pouvez donc installer [vue-devtools](https://github.com/vuejs/vue-devtools) pour avoir une interface plus sympathique lors de l'inspection.
 

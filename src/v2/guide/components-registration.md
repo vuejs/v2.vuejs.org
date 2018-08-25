@@ -86,7 +86,7 @@ Puis définissez les composants que vous souhaitez utiliser dans l'option `compo
 
 ```js
 new Vue({
-  el: '#app'
+  el: '#app',
   components: {
     'component-a': ComponentA,
     'component-b': ComponentB
@@ -207,7 +207,7 @@ requireComponent.keys().forEach(fileName => {
   // Récupérer le nom du composent en PascalCase
   const componentName = upperFirst(
     camelCase(
-      // Enlever la chaine `'./` et l'extension du nom de fichier
+      // Enlever le début de chaine `'./` et l'extension du nom de fichier
       fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
   )
@@ -215,7 +215,7 @@ requireComponent.keys().forEach(fileName => {
   // Créer un composant global
   Vue.component(
     componentName,
-    // Chercher les options du composant dans `.default`, qui 
+    // Chercher les options du composant dans `.default`, qui
     // existera si le composant a été exporté avec `export default`,
     // sinon revenez à la racine du module.
     componentConfig.default || componentConfig

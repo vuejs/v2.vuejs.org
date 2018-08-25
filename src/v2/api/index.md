@@ -2140,7 +2140,7 @@ type: api
 
 - **Modificateurs :**
   - [`.lazy`](../guide/forms.html#lazy) - écoute les évènements `change` au lieu de `input`
-  - [`.number`](../guide/forms.html#number) - convertit en nombres les chaines de caractères en entrée
+  - [`.number`](../guide/forms.html#number) - convertit les chaines de caractères d'entrée en nombres
   - [`.trim`](../guide/forms.html#trim) - retire les blancs autour des chaines de caractères en entrée
 
 - **Utilisation :**
