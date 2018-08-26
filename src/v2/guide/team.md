@@ -600,6 +600,9 @@ order: 803
       work: {
         role: 'Consultant'
       },
+      reposOfficial: [
+        'news.vuejs.org'
+      ],
       reposPersonal: [
         'shentao/vue-multiselect'
       ]
