@@ -504,7 +504,7 @@ order: 803
       reposPersonal: [
         'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
       ],
-      [
+      links: [
         'http://patreon.com/akryum'
       ]
     },
