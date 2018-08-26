@@ -372,7 +372,7 @@ order: 803
         'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
-        'https://cuusoo.com', 'http://frapwings.jp'
+        'https://www.patreon.com/kazupon', 'https://cuusoo.com', 'http://frapwings.jp'
       ]
     },
     {
@@ -503,6 +503,9 @@ order: 803
       ],
       reposPersonal: [
         'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
+      ],
+      [
+        'http://patreon.com/akryum'
       ]
     },
     {
