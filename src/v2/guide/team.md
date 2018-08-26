@@ -672,6 +672,21 @@ order: 803
       reposPersonal: [
         'Justineo/vue-awesome', 'ecomfe/vue-echarts', 'ecomfe/veui'
       ]
+    },
+    {
+      name: 'ULIVZ',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'AntFinancial',
+        orgUrl: 'https://www.antfin.com'
+      },
+      github: 'ulivz',
+      twitter: '_ulivz',
+      reposOfficial: [
+        'vuepress'
+      ]
     }
   ]))
 
