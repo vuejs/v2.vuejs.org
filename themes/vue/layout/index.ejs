@@ -30,10 +30,11 @@
 
 <div id="special-sponsor">
   <h3>Special Sponsor</h3>
-  <a href="https://stdlib.com/" target="_blank">
-    <img src="/images/stdlib.png" style="width:160px" alt="Standard Library Logo">
+  <% var specialSponsor = theme.special_sponsors[0]; %>
+  <a href="<%- specialSponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
     <br>
-    <span>Function as a Service Platform and Library</span>
+    <span><%- specialSponsor.description %></span>
   </a>
 </div>
 
