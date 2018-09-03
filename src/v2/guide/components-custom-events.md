@@ -1,10 +1,10 @@
 ---
-title: Événements personnalisés
+title: Évènements personnalisés
 type: guide
 order: 103
 ---
 
-> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez [cette partie](components.html) en premier si les composants sont quelque chose de nouveau pour vous.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez-les en premier si les composants sont quelque chose de nouveau pour vous.
 
 ## Noms d'événements
 

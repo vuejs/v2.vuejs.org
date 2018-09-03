@@ -4,11 +4,11 @@ type: guide
 order: 101
 ---
 
-> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez [cette partie](components.html) en premier si les composants sont quelque chose de nouveau pour vous.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez-les en premier si les composants sont quelque chose de nouveau pour vous.
 
 ## Noms de composant
 
-Lors de la création de composants, il faudra toujours spécifier un nom. Par exemple, la déclaration se fera comme suit : 
+Lors de la création de composants, il faudra toujours spécifier un nom. Par exemple, la déclaration se fera comme suit :
 
 ```js
 Vue.component('my-component-name', { /* ... */ })
