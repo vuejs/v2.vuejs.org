@@ -98,60 +98,38 @@ Vue와 React 모두 거의 대부분의 일반적인 애플리케이션에서 �
 
 ### HTML & CSS
 
-React에서는 모든 것이 JavaScript만으로 매우 심플하고 우아한 느낌을 줍니다. 불행한 현실은 JavaScript내에서 HTML과 CSS를 사용하면서 기존 모델의 일부 문제를 해결 할 때 자체적으로 고통을 초래할 수 있다는 것입니다. Vue에서 대신 우리는 웹 기술을 수용하고 그 위에 구축했습니다. 그 의미를 보여주기 위해 몇 가지 예를 살펴 보겠습니다.
+React에서는 모든 것이 JavaScript입니다. JSX를 통해서 HTML 구조가 들어와있을 뿐만 아니라 요즘에는 CSS 관리도 JavaScript에서 하는 추세죠. 이 접근 법도 나름대로 장점이 있습니다만 모든 개발자들에게 적합하다고 하기에는 단점이 좀 있습니다.
 
-Vue는 고전의 웹 기술을 받아들이고 그 위에서 만듭니다. 이 의미를 설명하기 위해 몇가지 예를 살펴보겠습니다.
+Vue는 고전적인 웹기술들을 받아들여서 그 기반 위에 만들어졌습니다. 몇 가지 예를 통해서 무슨 뜻인지 살펴보겠습니다.
 
-React에서 모든 컴포넌트는 JavaScript 내에서 작동하는 선언적 XML 유사 구문 인 JSX를 사용하여 렌더링 함수 내에서 UI를 표현합니다. 다음은 [React 커뮤니티에 의해 심사받은 예](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684) 입니다.
+#### JSX vs Template
 
-``` jsx
-render () {
-  let { items } = this.props
-
-  let children
-  if (items.length > 0) {
-    children = (
-      <ul>
-        {items.map(item =>
-          <li key={item.id}>{item.name}</li>
-        )}
-      </ul>
-    )
-  } else {
-    children = <p>No items found.</p>
-  }
-```
+React에서 모든 컴포넌트는 JSX를 사용하는 렌더링 함수를 통해서 UI를 표현합니다. JSX는 JavaScript에서 작동하는 선언적인 XML 유사 문법입니다.
 React에서 모든 컴포넌트는 JavaScript에서 작동하는 선언적 XML 유사 구문인 JSX를 사용해 렌더링 함수 안에서 UI를 표현합니다.
 
-JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
+JSX를 이용하는 렌더링 함수를 사용하면 몇 가지 장점이 있습니다.
 
-- 전체 프로그래밍 언어 (JavaScript)의 기능을 사용하여 화면를 빌드 할 수 있습니다.
-- JSX의 툴링 지원 (예: linting, 형 검사, 에디터 자동완성)은 현재 Vue 템플릿에 사용할 수 있는 것보다 더 진보 된 기능입니다.
+- 완전한 프로그레밍 언어(JavaScript)를 이용해서 뷰를 만들 수 있습니다. 임시 변수, 플로우 제어에 스코프 내에서 직접적으로 JavaScript의 값을 가져다 쓸 수도 있겠죠.
+- JSX의 툴 지원(예: linting, 형 검사, 자동완성 기능)은 어떤 측면에서 현재 사용할 수 있는 Vue 템플릿보다 더 진보된 기능입니다.
 
-Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어 [JSX 지원](render-function.html#JSX)을 가지고 있습니다. 때로는 그 강력함이 필요하기 때문입니다. 그러나 기본적으로 우리는 더 간단한 대안으로 템플릿을 제공합니다.
+Vue에서도 [렌더링 함수](render-function.html)에 심지어 [JSX 지원](render-function.html#JSX)을 쓸 수 있습니다. 때로는 그 힘이 필요하거든요. 하지만 기본적으로는 템플릿 이용을 더 간단한 대안으로 제공합니다. 때로는 그 강력함이 필요하기 때문입니다. 그러나 기본적으로 우리는 더 간단한 대안으로 템플릿을 제공합니다. 잘 작동하는 HTML은 Vue 템플릿으로도 잘 작동하며 여기에서 오는 장점들이 있습니다.
 
-- HTML로 작업해온 많은 개발자에게 템플릿은 읽고 쓰는 것이 자연스럽습니다. 기본 설정 자체는 다소 주관적일 수 있으나 개발자가 생산성을 높일 수 있습니다.
+- HTML로 작업해온 많은 개발자에게는 템플릿을 읽고 쓰는 것이 어렵지 않습니다. 선호라는 것은 다소 주관적일 수도 있겠지만 개발자의 생산성이 올라간다면 그건 객관적인 거죠.
+- HTML 기반 템플릿을 이용하면 기존의 어플리케이션을 Vue로 점진적으로 이전하기가 훨씬 쉽습니다.
+- 또한 디자이너와 경험이 적은 개발자들이 코드를 분석하고 기여하기에도 훨씬 쉽습니다.(역자: 러닝 커브가 낮습니다)
+- Vue 템플릿을 쓸 때 Pug(이전의 Jade)같은 프리프로세서를 사용할 수도 있습니다.
 
-몇 가지 장점은 다음과 같습니다.
+어떤 사람들은 템플릿을 작성하기 위해서는 별도의 언어(DSL, Domain-Specific Language)를 또 배워야 한다고도 합니다. 하지만 저희가 볼 때는 그 차이가 기껏해봐야 매우 피상적인 수준이라고 생각합니다. 먼저 JSX도 사용하려면 학습을 해야 합니다. JSX도 플레인 JavaScript에 문법이 추가되어 있어서 JavaScript에 익숙한 사람이라면 공부할 것이 많지는 않겠지만 따로 더 배울게 없다고 할 수는 없죠. 비슷하게 템플릿도 플레인 HTML에 문법을 추가한 것이라서 HTML에 익숙한 사람에게는 공부할 것이 많지 않습니다. 별도의 언어(역자: 템플릿 문법)를 써서 사용자들이 더 적은 코드(예: `v-on` 수식어)를 써서 더 많을 것을 처리할 수 있습니다. JSX나 렌더링 함수를 쓰면 같은 일을 처리하기 위해서 더 많은 코드를 써야 합니다.
 
-- 템플릿을 작성하는 동안 구현 및 문법 결정을 줄입니다.
-- 템플릿은 항상 선언적입니다.
-- 모든 유효한 HTML이 템플릿에서 유효합니다.
-- 영어와 비슷합니다 (예: 항목들 중 각 항목).
-- 자바 스크립트의 고급 버전은 가독성을 높이기 위해 요구되지 않습니다.
+좀 더 높은 수준에서 이야기하자면 컴포넌트는 표현형과 논리형 두 가지로 나눌 수 있습니다. 템플릿은 표현형 컴포넌트에, 렌더링 함수와 JSX는 논리형 컴포넌트에 사용하는 것이 좋습니다. 어떤 어플리케이션을 만드는가에 따라 어느 형의 컴포넌트가 많을 지는 다릅니다만 일반적으로는 표현형 컴포넌트가 더 많습니다.
 
-이는 개발자가 작성하는 것이 훨씬 쉬울뿐만 아니라 설계자와 경험이 부족한 개발자도 파싱 및 코드 작성을 훨씬 쉽게 할 수 있습니다.
-
-템플릿을 작성하기 위한 추가적인 DSL(Domain-Specific Language)를 배워야한다고 말하는 사람들도 있습니다. 이 차이는 표면적입니다. 첫째로 JSX는 사용자가 아무것도 배울 것이 없다는 것을 의미하지 않습니다. 즉, 일반 JavaScript 위에 추가 구문이 있으므로 JavaScript에 익숙한 사람은 쉽게 배울 수 있지만 본질적으로 바로 사용한다는 것은 잘못된 것입니다. 마찬가지로, 템플릿은 일반적인 HTML위에 추가 구문일 뿐이므로 이미 HTML에 익숙한 사용자들에게는 학습 비용이 매우 적습니다. DSL을 사용하면 사용자가 적은 코드 (예 `v-on`)으로 더 많은 것을 처리할 수 있습니다. 동일한 작업에는 일반적인 JSX 또는 렌더링 함수를 사용할 떄 더 많은 코드를 포함할 수 있습니다.
-
-상위 레벨에서, 우리는 컴포넌트를 두개의 카테고리, 즉 프레젠테이션과 논리적으로 분류할 수 있습니다. 프레젠테이션 컴포넌트 용 템플릿을 사용하고 논리적 컴포넌트 / JSX를 렌더링 하는 것이 좋습니다. 이러한 컴포넌트의 비율은 구축중인 앱의 형태에 따라 다르지만 일반적으로 프레젠테이션 방식을 사용합니다.
 #### 컴포넌트 범위의 CSS
 
-컴포넌트를 여러 파일 (예: [CSS 모듈](https://github.com/gajus/react-css-modules))을 통해 배포하지 않는 한 React의 CSS 범위 지정은 CSS-in-JS 방식으로 해결합니다. (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), 그리고 [emotion](https://github.com/emotion-js/emotion)) 이는 일반적인 CSS 작성 프로세스와는 다른 새로운 컴포넌트 지향 스타일링 패러다임을 도입합니다. 또한 빌드타임에 단일 스타일시트에 CSS를 추출할 수 있는 지원이 있지만 스타일이 제대로 작동하려면 런타임이 번들에 포함되어야하는 것이 일반적입니다. 스타일을 작성하는 동안 JavaScript의 역동적인 기능을 사용할 수 있지만 번들 크기 및 런타임 비용은 종종 높아집니다.
+컴포넌트를 여러 파일 (예: [CSS 모듈](https://github.com/gajus/react-css-modules))을 통해 배포하지 않는 한 React의 CSS 범위 지정은 CSS-in-JS 방식으로 해결합니다. (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), 그리고 [emotion](https://github.com/emotion-js/emotion)) 이는 일반적인 CSS 작성 프로세스와는 다른 새로운 컴포넌트 지향 스타일링 패러다임을 뜻합니다. 또한 빌드타임에 단일 스타일시트에 CSS를 추출할 수 있는 지원이 있지만 스타일이 제대로 작동하려면 런타임이 번들에 포함되어야하는 것이 일반적입니다. 스타일을 작성하는 동안 JavaScript의 역동적인 기능을 사용할 수 있지만 증가한 번들 크기 및 런타임 비용으로 종종 그 대가를 치룹니다.
 
-CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-components-vue](https://github.com/styled-components/vue-styled-components)와 [vue-emotion](https://github.com/egoist/vue-emotion)). React와 Vue의 가장 큰 차이점은 Vue의 기본 스타일 지정 방법은 [싱글 파일 컴포넌트](single-file-components.html)에서 보다 익숙한 `style` 태그를 사용한다는 것 입니다.
+CSS-in-JS의 팬이라면 유명한 CSS-in-JS 라이브러리들도 Vue를 지원한다는 점을 눈여겨봐주시기 바랍니다.(예 [styled-components-vue](https://github.com/styled-components/vue-styled-components)와 [vue-emotion](https://github.com/egoist/vue-emotion)). 여기서 React와 Vue의 가장 큰 차이점은 Vue에서는 기본 스타일링 방식으로 [싱글 파일 컴포넌트](single-file-components.html) 안에서 우리에게 익숙한 `style` 태그를 사용한다는 것입니다.
 
-반면에 Vue는 [싱글 파일 컴포넌트](single-file-components.html) 내에서 CSS에 대한 모든 액세스 권한을 제공합니다.
+[싱글 파일 컴포넌트](single-file-components.html)를 통해서 다른 컴포넌트 코드와 마찬가지로 CSS에 접근할 수 있습니다.
 
 ``` html
 <style scoped>
@@ -163,7 +141,7 @@ CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-compon
 </style>
 ```
 
-옵션인 `scoped` 속성은 엘리먼트에 유일한 속성(예 : `data-v-21e5b78`)을 추가하고 `.list-container:hover`를 `.list-container[data-v-21e5b78]:hover`로 컴파일 합니다.
+옵션인 `scoped` 속성은 자동적으로 엘리먼트에 유일한 속성(예 : `data-v-21e5b78`)을 추가해서 `.list-container:hover`를 `.list-container[data-v-21e5b78]:hover`로 컴파일 합니다.
 
 마지막으로 Vue의 싱글 파일 컴포넌트의 스타일은 매우 유연합니다. [vue-loader](https://github.com/vuejs/vue-loader)를 통해 전처리기, 포스트 프로세서 및 [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html)와의 긴밀한 통합을 할 수 있습니다.  모든 스타일은 `<style>` 엘리먼트 안에 있습니다.
 
