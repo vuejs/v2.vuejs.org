@@ -160,7 +160,7 @@ new Vue({
 </script>
 {% endraw %}
 
-키의 두번째 전달 인자를 제공할 수도 있습니다.
+키에 대한 두번째 전달 인자를 제공할 수도 있습니다.
 
 ``` html
 <div v-for="(value, key) in object">
