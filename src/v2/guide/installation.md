@@ -2,8 +2,8 @@
 title: Cài đặt
 type: guide
 order: 1
-vue_version: 2.5.13
-gz_size: "30.67"
+vue_version: 2.5.17
+gz_size: "30.90"
 ---
 
 ### Khả năng tương thích
@@ -37,7 +37,7 @@ Chỉ cần tải file thư viện về rồi sử dụng nó trong thẻ script
 Chúng tôi khuyến khích trỏ đến một phiên bản cụ thể mà bạn có thể tự thay đổi nếu cần:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 ```
 
 Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).

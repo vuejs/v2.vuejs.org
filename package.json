@@ -2,7 +2,7 @@
   "name": "vuejs.org",
   "private": true,
   "hexo": {
-    "version": "3.7.0"
+    "version": "3.7.1"
   },
   "scripts": {
     "start": "hexo server",
@@ -23,6 +23,7 @@
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1",
+    "npm": "^6.4.0",
     "request": "^2.85.0"
   }
 }

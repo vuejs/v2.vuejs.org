@@ -14,6 +14,10 @@ $border = #ddd
   .aa-dropdown-menu
     min-width: 515px
 
+.algolia-autocomplete .algolia-docsearch-suggestion--wrapper
+  padding-top: 0
+  border-bottom: 1px solid $border
+
 .algolia-docsearch-suggestion
   border-color: $border
 
@@ -23,8 +27,14 @@ $border = #ddd
 .algolia-docsearch-suggestion--subcategory-column
   border-color: $border
 
-.algolia-docsearch-suggestion--category-header
+.algolia-autocomplete .algolia-docsearch-suggestion
+  padding: 0
+
+.algolia-autocomplete .algolia-docsearch-suggestion.algolia-docsearch-suggestion__main .algolia-docsearch-suggestion--category-header
+  color: #fff
+  padding-left: .5rem
   background: $green
+  font-weight: 700
 
 .algolia-docsearch-footer
   border-color: $border
@@ -32,8 +42,14 @@ $border = #ddd
 .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--highlight
   background: rgba(255, 255, 255, 0.6)
 
-.algolia-docsearch-suggestion--highlight
+.algolia-autocomplete .algolia-docsearch-suggestion--highlight
   color: #2c815b
+
+.algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight
+  box-shadow: inset 0 -2px 0 0 $green
 
 .aa-cursor .algolia-docsearch-suggestion--content
   color: $dark
+
+.algolia-autocomplete .ds-dropdown-menu .ds-suggestions
+  margin-top: 0
