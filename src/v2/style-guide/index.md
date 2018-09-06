@@ -44,9 +44,9 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### 컴포넌트 이름에 합성어 사용 <sup data-p="a">필수</sup>
 
-**root컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용하여야 한다.**
+**root컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용하여야 합니다.**
 
-모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해준다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
+모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해줍니다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
 
@@ -85,9 +85,10 @@ export default {
 
 ### 컴포넌트 데이터 <sup data-p="a">필수</sup>
 
-**Component `data` must be a function.**
+**컴포넌트의 `data` 는 반드시 함수여야 다.**
 
 When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 속성은 값으로 오브젝트를 반환하는 함수여야 합니다.
 
 {% raw %}
 <details>
