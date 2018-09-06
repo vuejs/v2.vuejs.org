@@ -87,7 +87,6 @@ export default {
 
 **컴포넌트의 `data` 는 반드시 함수여야 다.**
 
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
 컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 속성은 값으로 오브젝트를 반환하는 함수여야 합니다.
 
 {% raw %}
