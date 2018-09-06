@@ -6,11 +6,11 @@ type: style-guide
 
 이 문서는 뷰 코드에 대한 공식 스타일 가이드입니다. 만약 현재 뷰를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+대부분의 경우 우리는 HTML과 자바스크립트에 대한 제안은 일반적으로 피합니다. 우리는 당신이 세미콜론이나 쉼표(trailing commas)에 대한 사용여부는 신경쓰지 않습니다. 우리는 당신이 HTML의 속성값을 위해 작음따옴표를 사용하지는 큰따옴표를 사용하는지 신경쓰지 않습니다. 그러나 특정 패턴이 뷰 컨텍스트에서 유용하다고 발견된 경우 예외가 존재합니다.
 
 > **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
 
-Finally, we've split rules into four categories:
+마지막으로, 우리는 규칙을 4가지 범주로 분류하였습니다.
 
 
 
@@ -18,11 +18,11 @@ Finally, we've split rules into four categories:
 
 ### 우선순위 A: 필수
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+이 규칙은 오류를 예방하는데 도움을 주기 때문에 모든 비용을 통해서 학습하고 준수하여야 합니다. 예외상황이 존재하겠지만 매우 드물며 자바스크립트와 뷰에 대한 전문 지식이 있어야 만들 수 있습니다.
 
 ### 우선순위 B: 매우 추천함
 
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
+이 규칙은 대부분의 프로젝트에서 가독성 그리고 개발자경험을 향상시키는 것으로 발견되었습니다. 해당 규칙을 위반해도 코드는 여전히 실행되지만 위반은 드물고 정당합니다.
 
 ### 우선순위 C: 추천함
 
@@ -44,10 +44,9 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### 컴포넌트 이름에 합성어 사용 <sup data-p="a">필수</sup>
 
-**Component names should always be multi-word, except for root `App` components.**
+**root컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용하여야 한다.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
-
+모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해준다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
 
