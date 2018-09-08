@@ -1703,7 +1703,7 @@ computed: {
 
 
 
-### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### `v-if`/`v-else-if`/`v-else` without `key` <sup data-p="d">use with caution</sup>
 
 **It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
