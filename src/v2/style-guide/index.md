@@ -34,7 +34,7 @@ Where multiple, equally good options exist, an arbitrary choice can be made to e
 
 ### 우선순위 D: 주의요함
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+뷰의 몇 가지 은 특성은 드문 엣지 케이스 또는 레거시 코드로의 부터 마이크레이션을 위해 존재합니다. 그러나 그것들을 남용하면 당신의 코드를 유지보수하기 어렵게만들거나 버그를 발생시키는 원인이 될 수 있습니다. 이 규칙은 잠재적 위험요소를 인식시켜주고 언제 그리고 왜 피해야되는지 설명해 줍니다.
 
 
 
@@ -85,14 +85,14 @@ export default {
 
 ### 컴포넌트 데이터 <sup data-p="a">필수</sup>
 
-**컴포넌트의 `data` 는 반드시 함수여야 다.**
+**컴포넌트의 `data` 는 반드시 함수여야 합니다.**
 
 컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 속성은 값으로 오브젝트를 반환하는 함수여야 합니다.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>상세 설명</h4>
 </summary>
 {% endraw %}
 
@@ -178,9 +178,9 @@ new Vue({
 
 ### Props 정의 <sup data-p="a">필수</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Prop은 가능한 상세하게 정의되어야 합니다.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+커밋 된 코드에서, prop 정의는 적어도 타입은 명시되도록 가능한 상세하게 정의되어야 합니다.
 
 {% raw %}
 <details>
@@ -237,9 +237,9 @@ props: {
 
 ### `v-for`에 키 지정  <sup data-p="a">필수</sup>
 
-**Always use `key` with `v-for`.**
+**`v-for`는 `key`와 항상 함께 사용되어야 합니다.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+서브트리의 내부 컴포넌트 상태를 유지하기 위해 `v-for`는 _항상_ `key`와 함께 요구됩니다. 비록 엘리먼트이긴 하지만 에니메이션의 [객체 불변성](https://bost.ocks.org/mike/constancy/)과 같이 예측 가능한 행동을 유지하는것은 좋은 습관입니다.
 
 {% raw %}
 <details>
