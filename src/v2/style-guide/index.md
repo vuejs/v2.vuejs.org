@@ -26,11 +26,11 @@ type: style-guide
 
 ### 우선순위 C: 추천함
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+동일하게 좋은 여러가지 옵션이 존재하는 경우, 일관성을 보장하기 위해 임의의 선택을 할 수 있습니다. 이 규칙은 각각의 수용가능한 옵션을 설명하고 기본 선택을 제안합니다. 즉, 일관성 있고 좋은 이유가 있으면 당신의 코드베이스에서 자유롭게 다른 선택을 할 수 있습니다. 좋은 이유가 있어야 합니다! 커뮤니티 표준에 적응되기 위해서 당신은 다음과 같이 해야합니다.
 
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+1. 당신이 마주하는 대부분의 커뮤니티 코드를 더 쉽게 분석할 수 있도록 훈련하세요
+2. 커뮤니티 코드 예제를 수정하기 한고 복사 그리고 붙혀넣기 할 수 있어야 합니다
+3. 적어도 뷰에 있어서는 당신이 선호하는 코딩 스타일을 수용하는 새로운 직원을 자주 찾을 것입니다
 
 ### 우선순위 D: 주의요함
 
