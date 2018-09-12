@@ -306,13 +306,13 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 ### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">essential</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**`v-for`가 사용된 엘리먼트에 절대 `v-if`를 사용하지 마세요.**
 
-There are two common cases where this can be tempting:
+사용 가능해 보이는 두 가지 일반적인 경우가 있습니다:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- 리스트 목록을 필터링하기 위해서 입니다 (e.g. `v-for="user in users" v-if="user.isActive"`).  이 경우 users을 새로운 computed 속성으로 필더링된 목록으로 대체하십시오(e.g. `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- 숨기기 위해 리스트의 랜더링을 피할 때 입니다 (e.g. `v-for="user in users" v-if="shouldShowUsers"`). 이 경우 `v-if`를 컨테이너 엘리먼트로 옮기세요 (e.g. `ul`, `ol`).
 
 {% raw %}
 <details>
