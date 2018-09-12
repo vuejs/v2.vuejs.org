@@ -196,4 +196,6 @@ Generally speaking, `v-if` has higher toggle costs while `v-show` has higher ini
 
 ## `v-if` with `v-for`
 
+> Use v-if and v-for toghter is **not recommended**. See the style guide for futher infomation [Avoid v-if with v-for](https://vuejs.org/v2/style-guide/#Avoid-v-if-with-v-for-essential)
+
 When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
