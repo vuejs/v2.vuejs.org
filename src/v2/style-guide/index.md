@@ -248,7 +248,7 @@ props: {
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+할일 목록이 있다고 가정 해보자:
 
 ``` js
 data: function () {
@@ -306,13 +306,13 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 ### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">essential</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**`v-for` 와 같은 요소(element)에 `v-if` 를 사용하지 말아라.**
 
-There are two common cases where this can be tempting:
+이것은 보통 생각나게 할 수 있는 두 가지 케이스가 있다:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- 목록 안의 아이템을 필터링 하라 (e.g. `v-for="user in users" v-if="user.isActive"`). 이 경우에, `users`를 필터링 된 목록을 반환하는 새로운 computed 속성으로 변경하라 (e.g. `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- 리스트를 숨길 필요가 있을 경우 렌더링을 피하라 (e.g. `v-for="user in users" v-if="shouldShowUsers"`). 이 경우에, 컨테이너의 요소로 `v-if` 를 옮겨라 (e.g. `ul`, `ol`).
 
 {% raw %}
 <details>
