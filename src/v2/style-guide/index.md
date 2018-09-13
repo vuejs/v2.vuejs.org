@@ -4,7 +4,7 @@ type: style-guide
 
 # 스타일 가이드 <sup class="beta">베타</sup>
 
-이 문서는 뷰 코드에 대한 공식 스타일 가이드입니다. 만약 현재 뷰를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
+이 문서는 Vue 코드에 대한 공식 스타일 가이드입니다. 만약 현재 Vue를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
 
 대부분의 경우 우리는 HTML과 자바스크립트에 대한 제안은 일반적으로 피합니다. 우리는 당신이 세미콜론이나 쉼표(trailing commas)에 대한 사용여부는 신경쓰지 않습니다. 우리는 당신이 HTML의 속성값을 위해 작음따옴표를 사용하지는 큰따옴표를 사용하는지 신경쓰지 않습니다. 그러나 특정 패턴이 뷰 컨텍스트에서 유용하다고 발견된 경우 예외가 존재합니다.
 
@@ -44,7 +44,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### 컴포넌트 이름에 합성어 사용 <sup data-p="a">필수</sup>
 
-**root컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용하여야 합니다.**
+**root 컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용해야한다.**
 
 모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해줍니다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
 {% raw %}<div class="style-example example-bad">{% endraw %}
@@ -85,18 +85,18 @@ export default {
 
 ### 컴포넌트 데이터 <sup data-p="a">필수</sup>
 
-**컴포넌트의 `data` 는 반드시 함수여야 다.**
+**컴포넌트의 `data` 는 반드시 함수여야한다.**
 
-컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 속성은 값으로 오브젝트를 반환하는 함수여야 합니다.
+컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 프로퍼티의 값은 반드시 객체(object)를 반환하는 함수여야 한다.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+`data` 의 값이 오브젝트일 경우, 컴포넌트의 모든 인스턴스가 공유한다. 예를 들어, 다음 data 를 가진 `TodoList` 컴포넌트를 상상해보자.
 
 ``` js
 data: {
@@ -105,9 +105,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+이 컴포넌트는 재사용하여 사용자가 여러 목록(e.g. 쇼핑, 소원, 오늘 할일 등)을 유지할 수 있도록 해야 할 수 있다. 컴포넌트의 모든 인스턴스가 동일한 data 객체를 참조하므로, 하나의 목록의 타이틀을 변경할 때 다른 모든 리스트의 타이틀도 변경될 것이다. Todo를 추가/수정/삭제하는 경우에도 마찬가지다.
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+대신 우리는 각 컴포넌트의 인스턴스 자체 data만을 관리하기를 원한다. 이렇게 하려면 각 인스턴스는 고유한 data 객체를 생성해야 한다. JavaScript에서는 함수안에서 객체를 반환하는 방법으로 해결할 수 있다:
 
 ``` js
 data: function () {
@@ -178,21 +178,21 @@ new Vue({
 
 ### Props 정의 <sup data-p="a">필수</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Prop 는 가능한 자세히 정의해야한다.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+커멧된 코드에서, prop 는 적어도 type을 지정하고 항상 가능한 자세히 정의해야 항상 가능한한 자세해야 한다.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+자세한 [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) 두 가지 이점을 갖는다:
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- 이 API는 컴포넌트의 API를 문서화하므로 컴포넌트의 사용 방법을 쉽게 알 수 있다.
+- 개발 중에, Vue는 컴포넌트의 타입이 잘못 지정된 props를 전달하면 경고 메시지를 표시하여 오류의 잠재적 원인을 파악할 수 있도록 도와준다.
 
 {% raw %}</details>{% endraw %}
 
@@ -235,20 +235,20 @@ props: {
 
 
 
-### `v-for`에 키 지정  <sup data-p="a">필수</sup>
+### `v-for` 에 `key` 지정  <sup data-p="a">필수</sup>
 
-**Always use `key` with `v-for`.**
+**`v-for` 와 `key`를 항상 같이 사용하라.**
 
 `key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+할일 목록이 있다고 가정 해보자:
 
 ``` js
 data: function () {
@@ -267,7 +267,7 @@ data: function () {
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+그 다음 알파벳순으로 정렬한다. DOM 이 업데이트될 때, Vue는 가능한 적은 DOM 전이(mutations)를 수행하기 위해 렌더링을 최적화한다. 즉, 첫번째 할일 엘리먼트를 지우고, 리스트의 마지막에 다시 추가한다.
 
 The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
 
@@ -304,20 +304,20 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">essential</sup>
+### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">필수</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**`v-for` 와 같은 요소(element)에 `v-if` 를 사용하지 말아라.**
 
-There are two common cases where this can be tempting:
+이것은 보통 생각나게 할 수 있는 두 가지 케이스가 있다:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- 목록 안의 아이템을 필터링 하라 (e.g. `v-for="user in users" v-if="user.isActive"`). 이 경우에, `users`를 필터링 된 목록을 반환하는 새로운 computed 속성으로 변경하라 (e.g. `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- 리스트를 숨길 필요가 있을 경우 렌더링을 피하라 (e.g. `v-for="user in users" v-if="shouldShowUsers"`). 이 경우에, 컨테이너의 요소로 `v-if` 를 옮겨라 (e.g. `ul`, `ol`).
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -370,7 +370,7 @@ computed: {
 </ul>
 ```
 
-We get the following benefits:
+다음과 같은 이점을 얻을 수 있다:
 
 - The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
 - Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
@@ -408,7 +408,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 나쁨
 
 ``` html
 <ul>
@@ -436,7 +436,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 좋음
 
 ``` html
 <ul>
@@ -463,7 +463,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### 컴포넌트 스타일 스코프 <sup data-p="a">필수</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
@@ -476,7 +476,7 @@ This makes overriding internal styles easier, with human-readable class names th
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -564,12 +564,12 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 ### Private 속성 이름 <sup data-p="a">필수</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**플러그인, mixin 등에서 커스텀 사용자 private 프로터피에는 항상 접두사 `$_`를 사용하라. 그 다음 다른 사람의 코드와 충돌을 피하려면 named scope를 포함하라. (e.g. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -732,7 +732,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -845,7 +845,7 @@ If a component only makes sense in the context of a single parent component, tha
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -921,7 +921,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1102,7 +1102,7 @@ OR
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1322,7 +1322,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1750,7 +1750,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
