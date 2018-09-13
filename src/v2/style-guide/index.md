@@ -47,6 +47,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 **root 컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용해야한다.**
 
 모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해줍니다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
 
