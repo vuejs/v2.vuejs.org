@@ -239,7 +239,7 @@ props: {
 
 **`v-for` 와 `key`를 항상 같이 사용하라.**
 
-`key` with `v-for` is _항상_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
 
 {% raw %}
 <details>
@@ -267,7 +267,7 @@ data: function () {
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+그 다음 알파벳순으로 정렬한다. DOM 이 업데이트될 때, Vue는 가능한 적은 DOM 전이(mutations)를 수행하기 위해 렌더링을 최적화한다. 즉, 첫번째 할일 엘리먼트를 지우고, 리스트의 마지막에 다시 추가한다.
 
 The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
 
@@ -304,7 +304,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">essential</sup>
+### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">필수</sup>
 
 **`v-for` 와 같은 요소(element)에 `v-if` 를 사용하지 말아라.**
 
@@ -463,7 +463,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### 컴포넌트 스타일 스코프 <sup data-p="a">필수</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
@@ -564,7 +564,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 ### Private 속성 이름 <sup data-p="a">필수</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**플러그인, mixin 등에서 커스텀 사용자 private 프로터피에는 항상 접두사 `$_`를 사용하라. 그 다음 다른 사람의 코드와 충돌을 피하려면 named scope를 포함하라. (e.g. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
