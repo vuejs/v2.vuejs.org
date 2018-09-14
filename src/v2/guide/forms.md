@@ -12,6 +12,8 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
+<p class="tip">Due to the way Android autocomplete works the input event is not triggered until the autocomplete item is selected. Use `v-bind` and `v-on:input` instead of `v-model` to achieve the desired result.</p>
+
 ### Text
 
 ``` html
