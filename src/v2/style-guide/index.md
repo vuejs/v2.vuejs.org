@@ -1703,7 +1703,7 @@ computed: {
 
 
 
-### `v-if` / `v-if-else` / `v-else` sans `key` <sup data-p="d">faire attention</sup>
+### `v-if` / `v-else-if`/ `v-else` sans `key` <sup data-p="d">faire attention</sup>
 
 **Il est généralement préférable d'utiliser `key` avec `v-if` + `v-else`, si les éléments sont de même type (c.-à-d. avec deux éléments `<div>` par ex.).**
 

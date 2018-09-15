@@ -2431,7 +2431,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **Utilisation :**
 
-  `<transition-group>` sert d'effets de transition pour de **multiples** éléments/composants. Le rendu de `<transition-group>` donne un nouvel élément dans le DOM. Par défaut, il s'agit d'un `<span>`, mais vous pouvez configurer le type d'élément en sortie via l'attribut `tag`.
+  `<transition-group>` sert d'effets de transition pour de **multiples** éléments / composants. Le rendu de `<transition-group>` donne un nouvel élément dans le DOM. Par défaut, il s'agit d'un `<span>`, mais vous pouvez configurer le type d'élément en sortie via l'attribut `tag`.
 
   Notez que chaque enfant dans un `<transition-group>` doit avoir une **clé unique** pour que les animations fonctionnent correctement.
 

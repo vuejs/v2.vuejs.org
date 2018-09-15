@@ -10,8 +10,9 @@ platinum_sponsors_china:
     img: gitee.png
 
 special_sponsors:
-  - url: https://stdlib.com
-    img: stdlib.png
+  - url: https://code.xyz/
+    img: codexyz.png
+    description: Créer des APIs pour votre navigateur web
 
 platinum_sponsors:
   - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
@@ -94,6 +95,9 @@ gold_sponsors:
   - url: https://syncfusion.com/products/vue
     img: syncfusion.png
     name: syncfusion
+  - url: https://kintohub.com
+    img: kintohub.png
+    name: kinto hub
 
 silver_sponsors:
   - url: https://dopamine.bg/
@@ -113,3 +117,9 @@ bronze_sponsors:
   - url: https://pullstring.com
     img: https://i.imgur.com/hQHW6TB.png
     name: pull string
+  - url: https://www.earthlink.ro
+    img: https://i.imgur.com/qX0SNa7.png
+    name: earthlink
+  - url: https://polyglotengineer.com/derek.pollard
+    img: https://polyglotengineer.com/DP.png
+    name: Derek Pollard
