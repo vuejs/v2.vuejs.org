@@ -1,13 +1,13 @@
-<h1>Sponsor Vue.js Development</h1>
+<h1>Vue.js Entwicklung unterstützen</h1>
 
 <p>
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+Vue.js ist ein MIT lizenziertes, quelloffenes Projekt und vollständig kostenlos.
+Jedoch ist der geforderte Aufwand um das Projekt zu warten und neue Features zu entwicken ohne entsprechende finanzielle Unterstützung nicht tragbar. Du kannst die Entwicklung von Vue.js via folgender Methoden unterstützen:
 </p>
 
-<h2 id="One-time-Donations">One-time Donations</h2>
+<h2 id="One-time-Donations">Einmalige Spenden</h2>
 
-<p>We accept donations through these channels:</p>
+<p>Wir akzeptieren folgende Kanäle für Spenden:</p>
 
 <div id="one-time-donations">
   <a href="https://www.paypal.me/evanyou" target="_blank">
@@ -21,7 +21,7 @@ However, the amount of effort needed to maintain and develop new features for th
 </div>
 
 <div id="coin-details" v-if="type && coins[type]">
-  <p>{{ coins[type].name }} Address:<br>{{ coins[type].address }}</p>
+  <p>{{ coins[type].name }} Adresse:<br>{{ coins[type].address }}</p>
   <img :src="'/images/coin-' + type + '.png'">
 </div>
 <script>
@@ -54,24 +54,24 @@ window.addEventListener('hashchange', function () {
 })
 </script>
 
-<h2 id="Recurring-Pledges">Recurring Pledges</h2>
+<h2 id="Recurring-Pledges">Wiederkehrende Spenden</h2>
 
 <p>
-Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.
+Wiederkehrende Spenden kommen mit exklusiven Vorteilen, beispw. kann dein Name in der GitHub Repository aufgeführt oder das Logo deiner Firma auf dieser Seite angezeigt werden.
 </p>
 
 <ul>
   <li>
-    <a href="https://www.patreon.com/evanyou" target="_blank">Become a backer or sponsor via Patreon</a> (goes directly to support Evan You's full-time work on Vue)
+    <a href="https://www.patreon.com/evanyou" target="_blank">Werde Sponsor mit Patreon</a> (geht direkt an Evan You um seine Vollzeittätigkeit an Vue zu unterstützen)
   </li>
   <li>
-    <a href="https://opencollective.com/vuejs">Become a backer or sponsor via OpenCollective</a> (goes into a fund with transparent expense models supporting community efforts and events)
+    <a href="https://opencollective.com/vuejs">Werde Sponsor mit OpenCollective</a> (geht an einen transparenten Fonds um Veranstaltungen und die Bemühungen der Community zu unterstützen)
   </li>
 </ul>
 
-<h2>Current Premium Sponsors:</h2>
+<h2>Derzeitige Premium Sponsoren:</h2>
 
-<h3>Special Sponsors</h3>
+<h3>Außerordentliche Sponsoren</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.special_sponsors) {_%>
@@ -81,7 +81,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Platinum</h3>
+<h3>Platin</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors) {_%>
@@ -91,7 +91,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>OpenCollective Platinum</h3>
+<h3>OpenCollective Platin</h3>
 
 <p class="open-collective-sponsors sponsor-section">
 <%_ for (let i = 0; i < 3; i++) {_%>
@@ -121,7 +121,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Patreon Silver</h3>
+<h3>Patreon Silber</h3>
 
 <p class="patreon-sponsors sponsor-section">
 <%_ for (const sponsor of theme.silver_sponsors) {_%>
@@ -132,9 +132,9 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 </p>
 
 <p>
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: <b>it ensures the project that your product relies on stays healthy and actively maintained.</b> It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+Wenn du ein Geschäft betreibst und Vue in einem gewinnbringenden Produkt einsetzt ist es unternehmerisch sinnvoll die Entwicklung von Vue zu sponsern: <b>Es stellt sicher, dass das Projekt, auf welches dein Produkt angewiesen ist, gesund bleibt und aktiv gewartet wird.</b> Es kann auch deinen Bekanntheitsgrad in der Vue-Community erhöhen und es dir erleichern neue Vue-Entwckler anzuziehen.
 </p>
 
 <p>
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+Wenn du Vue als Individuum benuzt und gesteigerte Produktivität erfahren hast, überlege bitte, ob du dich mit einer Spende bedanken kannst - beispw. könntest du mir hin und wieder einen Kaffee ausgeben :)
 </p>
