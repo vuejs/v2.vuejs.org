@@ -361,6 +361,8 @@ type: api
 - **Usage:**
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  
+  This method has to be called before calling `new Vue()`
 
   When this method is called on the same plugin multiple times, the plugin will be installed only once.
 
