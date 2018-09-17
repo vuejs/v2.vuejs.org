@@ -208,7 +208,7 @@ Vue.component('my-component', {
     propF: {
       validator: function (value) {
         // The value must match one of these strings
-        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        return ['success', 'warning', 'danger'].includes(value)
       }
     }
   }
