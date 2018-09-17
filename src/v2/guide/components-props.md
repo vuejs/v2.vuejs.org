@@ -289,7 +289,7 @@ Dans ce cas, deux valeurs différentes de `class` sont définies :
 - `form-control`, qui va être appliqué dans le template du composant,
 - `date-picker-theme-dark`, qui va être passé au composant depuis son parent.
 
-Pour la plupart des attributs, la valeur fournie par le composant va remplacer la valeur définie par le composant. Aussi par exemple, passer `type="text"` va remplacer `type="date"` et probablement tout casser ! Heureusement, les attributs `class` et `style` sont plus malins. Ces deux valeurs sont fusionnées, fournissant la valeur finale `form-control date-picker-theme-dark`.
+Pour la plupart des attributs, la valeur fournie par le parent va remplacer la valeur définie par le composant. Aussi par exemple, passer `type="text"` va remplacer `type="date"` et probablement tout casser ! Heureusement, les attributs `class` et `style` sont plus malins. Ces deux valeurs sont fusionnées, fournissant la valeur finale `form-control date-picker-theme-dark`.
 
 ### Désactiver l'héritage d'attribut
 
