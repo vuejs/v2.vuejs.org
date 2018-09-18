@@ -1,5 +1,5 @@
 ---
-title: Debugging in VS Code and Chrome
+title: Debugging in VS Code and Chrome/Firefox
 type: cookbook
 order: 8
 ---
@@ -10,7 +10,10 @@ This recipe shows how to use the [Debugger for Chrome](https://github.com/Micros
 
 ## Prerequisites
 
-You must have Chrome and VS Code installed. Make sure to get the latest version of [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension installed in VS Code.
+You must have Chrome/Firefox and VS Code installed. 
+
+ - (For Chrome) Make sure to get the latest version of [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension installed in VS Code.
+ - (For Firefox) Make sure to get the latest version of [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug) extension installed in VS Code.
 
 Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli), with the instructions for installation documented in the readme of the project. Change into the newly created application directory and open VS Code.
 
@@ -34,7 +37,7 @@ module.exports = {
 }
 ```
 
-### Launching the Application from VS Code
+### Launching the Application from VS Code (Chrome)
 
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome** for the environment. Replace content of the generated launch.json with the following two configurations:
 
@@ -57,6 +60,31 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
     }
   ]
 }
+```
+
+### Launching the Application from VS Code (Firefox)
+
+Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Firefox** for the environment. Replace content of the generated launch.json with the following  configurations:
+
+![Add Chrome Configuration](/images/config_add.png)
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [{
+    "type": "firefox",
+    "request": "launch",
+    "reAttach": true,
+    "name": "vuejs: serve",
+    "url": "http://localhost:8080",
+    "webRoot": "${workspaceFolder}",
+    "pathMappings": [{
+      "url": "webpack:///src/*",
+      "path": "${webRoot}/*"
+    }]
+  }]
+}
+
 ```
 
 ## Setting a Breakpoint
