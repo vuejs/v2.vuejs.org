@@ -2524,7 +2524,8 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   <keep-alive max="10">
     <component></component>
   </keep-alive>
-
+   ```
+   
 ### slot
 
 - **Props:**
