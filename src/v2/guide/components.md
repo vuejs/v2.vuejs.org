@@ -20,7 +20,7 @@ Vue.component('button-counter', {
 })
 ```
 
-Les composants sont des instances de Vue réutilisables avec un nom : dans notre cas `<button-counter>`. Nous pouvons utiliser ce composant en tant qu'élément personnalisé à l'intérieure d'une instance de Vue racine créée avec `new Vue` :
+Les composants sont des instances de Vue réutilisables avec un nom : dans notre cas `<button-counter>`. Nous pouvons utiliser ce composant en tant qu'élément personnalisé à l'intérieur d'une instance de Vue racine créée avec `new Vue` :
 
 ```html
 <div id="components-demo">
