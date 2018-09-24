@@ -6,11 +6,12 @@ order: 104
 
 > Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez-les en premier si les composants sont quelque chose de nouveau pour vous.
 
-## Les « Slot content » ou « Contenu de slot »
+## Les contenu de slot
 
-Vue implémente une API de distribution de contenu inspirée du [Brouillon de spécification des WebComponents](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) utilisant l'élément `<slot>` comme zone de distribution de contenu.
+Vue implémente une API de distribution de contenu inspirée du [brouillon de spécification des WebComponents](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) utilisant l'élément `<slot>` comme zone de distribution de contenu.
 
 Cela vous permet de composer vos composants ainsi :
+
 ``` html
 <navigation-link url="/profile">
   Mon profil
@@ -50,9 +51,9 @@ Ou encore faire appel à d'autres composants :
 
 Si `<navigation-link>` ne contient **pas** d'élément `<slot>`, le contenu enfant sera simplement ignoré.
 
-## Les Slots nommés
+## Les slots nommés
 
-Dans certains cas, il peut être intéressant d'avoir plusieurs éléments `<slot>`. Dans un exemple hypothétique, voici le template d'un composant `<base-layout>`:
+Dans certains cas, il peut être intéressant d'avoir plusieurs éléments `<slot>`. Dans un exemple hypothétique, voici le template d'un composant `<base-layout>` :
 
 ``` html
 <div class="container">
@@ -101,7 +102,7 @@ Afin de distribuer le contenu dans les éléments `<slot>` appropriés, il suffi
 </base-layout>
 ```
 
-Ou utiliser l'attribut `slot` directement sur un élément normal:
+ou utiliser l'attribut `slot` directement sur un élément normal:
 
 ``` html
 <base-layout>
@@ -145,7 +146,7 @@ Pour procéder de la sorte, il est possible de spécifier le contenu par défaut
 
 Si le `<slot>` est rempli dans le composant parent, le contenu par défaut est remplacé.
 
-## Scope de compilation du template
+## Portée de compilation du template
 
 Quand on utilise des données dans le slot, comme dans l'exemple suivant :
 
@@ -155,11 +156,11 @@ Quand on utilise des données dans le slot, comme dans l'exemple suivant :
 </navigation-link>
 ```
 
-Le `<slot>` bénéficie des mêmes propriétés d'instance (même « scope » ou « contexte ») que le reste du template parent. Le `<slot>` **ne** bénéficie en aucun cas des éléments du « scope » de l'instance de `<navigation-link>`. Par exemple, tenter d'accéder à la props `url` ne fonctionnera pas. À titre de règle générale, souvenez-vous que :
+Le `<slot>` bénéficie des mêmes propriétés d'instance (même « contexte ») que le reste du template parent. Le `<slot>` **ne** bénéficie en aucun cas des éléments de portée de l'instance de `<navigation-link>`. Par exemple, tenter d'accéder à la props `url` ne fonctionnera pas. À titre de règle générale, souvenez-vous que :
 
 > Tout ce qui est dans le `<template>` parent est compilé dans le contexte parent. Tout ce qui est dans le `<template>` enfant est compilé dans le contexte enfant.
 
-## Les slots scopés (ou slots avec accès au scope enfant)
+## Les slots avec portée
 
 > Nouveauté en 2.1.0+
 
@@ -176,9 +177,9 @@ Dans certains cas, il peut être intéressant lors de l'utilisation d'un composa
 </ul>
 ```
 
-Dans certaines parties de l'application, il serait intéressant de personnaliser le rendu pour chaque élément de la liste, plutôt que d'afficher seulement `todo.text`. C'est possible avec les slots scopés.
+Dans certaines parties de l'application, il serait intéressant de personnaliser le rendu pour chaque élément de la liste, plutôt que d'afficher seulement `todo.text`. C'est possible avec les slots avec portée.
 
-Pour utiliser cette fonctionnalité, nous allons englober le contenu des todos dans un élément `<slot>`, et lui fournir des données appartenant/pertinentes à son contexte : dans notre cas, l'objet `todo`) :
+Pour utiliser cette fonctionnalité, nous allons englober le contenu des todos dans un élément `<slot>`, et lui fournir des données appartenant / pertinentes à son contexte : dans notre cas, l'objet `todo`) :
 
 ```html
 <ul>
@@ -201,11 +202,11 @@ Lorsqu'on utilise le composant `<todo-list>`, il devient alors possible de fourn
 ```html
 <todo-list v-bind:todos="todos">
   <!-- Définir `slotProps` pour assigner les données du slot dans une variable -->
-  <template slot-scope="lesPropsDuSlot">
+  <template slot-scope="slotProps">
     <!-- Ici, nous allons personnaliser le rendu du slot -->
-    <!-- `lesPropsDuSlot` contiendra les props fournies par v-bind dans le slot enfant -->
-    <span v-if="lesPropsDuSlot.todo.isComplete">✓</span>
-    {{ lesPropsDuSlot.todo.text }}
+    <!-- `slotProps` contiendra les props fournies par v-bind dans le slot enfant -->
+    <span v-if="slotProps.todo.isComplete">✓</span>
+    {{ slotProps.todo.text }}
   </template>
 </todo-list>
 ```
@@ -214,7 +215,7 @@ Lorsqu'on utilise le composant `<todo-list>`, il devient alors possible de fourn
 
 ### Affectation par décomposition du `slot-scope`
 
-La valeur de l'attribut `slot-scope` peut actuellement recevoir une expression JavaScript valide qui pourrait apparaitre en argument de définition d'une fonction. Attention cependant, cette fonctionnalité est soumise à l'utilisation des environnements suivants : [Composants monofichiers](single-file-components.html) ou [Navigateurs modernes](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Affecter_par_d%C3%A9composition#Compatibilité_des_navigateurs) vous pouvez alors utiliser [Affecter par décomposition (ES2015)](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Affecter_par_d%C3%A9composition) dans l'expression, de cette manière :
+La valeur de l'attribut `slot-scope` peut actuellement recevoir une expression JavaScript valide qui pourrait apparaitre en argument de définition d'une fonction. Attention cependant, cette fonctionnalité n'est utilisable que dans des environnements de [composants monofichiers](single-file-components.html) ou des [navigateurs modernes](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Affecter_par_d%C3%A9composition#Compatibilité_des_navigateurs). Vous pouvez alors utiliser une [affectation par décomposition (ES2015)](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Affecter_par_d%C3%A9composition) dans l'expression, de cette manière :
 
 ```html
 <todo-list v-bind:todos="todos">
@@ -225,4 +226,4 @@ La valeur de l'attribut `slot-scope` peut actuellement recevoir une expression J
 </todo-list>
 ```
 
-Cela peut être pratique pour rendre vos slot scopés un peu plus lisibles.
+Cela peut être pratique pour rendre vos slot avec portée un peu plus lisibles.
