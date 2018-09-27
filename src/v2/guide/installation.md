@@ -162,7 +162,7 @@ Ajoutez au fichier `package.json` de votre projet :
 }
 ```
 
-### Mode dévelopement vs. mode production
+### Mode développement vs. mode production
 
 Les modes développement et production sont écrits en dur dans les builds UMD : les fichiers non minifiés sont pour le développement, et les fichier minifiés sont pour la production.
 
