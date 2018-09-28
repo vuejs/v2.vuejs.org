@@ -8,7 +8,11 @@ Vue's community is growing incredibly fast and if you're reading this, there's a
 
 Now we'll answer both what the community can do for you and what you can do for the community.
 
-## Resources You'll Enjoy
+## Resources
+
+### Code of Conduct
+
+Our [Code of Conduct](/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
 
 ### Get Support
 
