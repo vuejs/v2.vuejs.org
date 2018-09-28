@@ -26,7 +26,7 @@ Some of the sections below may also be slightly outdated due to recent updates i
 
 ### Runtime Performance
 
-Both React and Vue are exceptionally and similarly fast, so speed is unlikely to be a deciding factor in choosing between them. For specific metrics though, check out this [3rd party benchmark](http://www.stefankrause.net/js-frameworks-benchmark7/table.html), which focuses on raw render/update performance with very simple component trees.
+Both React and Vue are exceptionally and similarly fast, so speed is unlikely to be a deciding factor in choosing between them. For specific metrics though, check out this [3rd party benchmark](https://stefankrause.net/js-frameworks-benchmark8/table.html), which focuses on raw render/update performance with very simple component trees.
 
 #### Optimization Efforts
 
@@ -178,7 +178,7 @@ Finally, although not as deeply integrated with TypeScript as Angular is, Vue al
 
 ### Runtime Performance
 
-Both frameworks are exceptionally fast, with very similar metrics on benchmarks. You can [browse specific metrics](http://www.stefankrause.net/js-frameworks-benchmark7/table.html) for a more granular comparison, but speed is unlikely to be a deciding factor.
+Both frameworks are exceptionally fast, with very similar metrics on benchmarks. You can [browse specific metrics](https://stefankrause.net/js-frameworks-benchmark8/table.html) for a more granular comparison, but speed is unlikely to be a deciding factor.
 
 ### Size
 
@@ -204,7 +204,7 @@ That said, it would probably make a better comparison between Vue core and Ember
 
 - Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
 
-- Performance-wise, Vue outperforms Ember [by a fair margin](http://www.stefankrause.net/js-frameworks-benchmark7/table.html), even after the latest Glimmer engine update in Ember 2.x. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
+- Performance-wise, Vue outperforms Ember [by a fair margin](https://stefankrause.net/js-frameworks-benchmark8/table.html), even after the latest Glimmer engine update in Ember 2.x. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
 
 ## Knockout
 
