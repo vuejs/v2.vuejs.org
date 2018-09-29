@@ -306,8 +306,8 @@ This can be especially useful in combination with the `$attrs` instance property
 
 ```js
 {
-  class: 'username-input',
-  placeholder: 'Enter your username'
+  type: 'email',
+  placeholder: 'Enter your email'
 }
 ```
 
