@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Writing Testable Components
 
-A component's render output is primarily determined by the props they receive. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
+A component's render output is primarily determined by the props it receives. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
 
 ``` html
 <template>
