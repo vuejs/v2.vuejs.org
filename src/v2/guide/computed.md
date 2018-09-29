@@ -75,7 +75,7 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 
 콘솔에서 이 예제를 직접 해볼 수 있습니다. `vm.reversedMessage`의 값은 항상 `vm.message`의 값에 의존합니다.
 
-일반 속성처럼 computed 속성에도 템플릿에서 데이터 바인딩 할 수 있습니다. Vue는 `vm.reversedMessage`가 `vm.message`에 의존하는 것을 알고 있기 때문에 `vm.message`가 바뀔 때 `vm.reversedMessage`에 의존하는 바인딩을 모두 업데이트할 것입니다. 그리고 가장 중요한 것은 우리가 선언적으로(역자 주: 선언형 패러다임에 따라서, 즉 이 데이터의 정의는 이러하다라고 해서) 의존 관계를 만들었다는 것입니다. computed 속성의 getter 함수는 사이드 이펙트가 없어 코드를 테스트하거나 이해하기 쉽습니다.
+일반 속성처럼 computed 속성에도 템플릿에서 데이터 바인딩 할 수 있습니다. Vue는 `vm.reversedMessage`가 `vm.message`에 의존하는 것을 알고 있기 때문에 `vm.message`가 바뀔 때 `vm.reversedMessage`에 의존하는 바인딩을 모두 업데이트할 것입니다. 그리고 가장 중요한 것은 우리가 선언적으로(역자 주: 선언형 프로그래밍 방식에 따라서(아래 computed와 watch 비교에 추가 설명)) 의존 관계를 만들었다는 것입니다. computed 속성의 getter 함수는 사이드 이펙트가 없어 코드를 테스트하거나 이해하기 쉽습니다.
 
 ### computed 속성의 캐싱 vs 메소드
 
