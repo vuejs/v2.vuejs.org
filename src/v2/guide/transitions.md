@@ -1174,7 +1174,6 @@ new Vue({
 
 ``` css
 .list-complete-item {
-  transition: all 1s;
   display: inline-block;
   margin-right: 10px;
 }
@@ -1183,8 +1182,14 @@ new Vue({
   opacity: 0;
   transform: translateY(30px);
 }
+.list-complete-enter-active, .list-complete-leave-active {
+  transition: all 1s;
+}
 .list-complete-leave-active {
   position: absolute;
+}
+.list-complete-move {
+  transition: transform 1s;
 }
 ```
 
@@ -1225,7 +1230,6 @@ new Vue({
 </script>
 <style>
 .list-complete-item {
-  transition: all 1s;
   display: inline-block;
   margin-right: 10px;
 }
@@ -1233,8 +1237,14 @@ new Vue({
   opacity: 0;
   transform: translateY(30px);
 }
+.list-complete-enter-active, .list-complete-leave-active {
+  transition: all 1s;
+}
 .list-complete-leave-active {
   position: absolute;
+}
+.list-complete-move {
+  transition: transform 1s;
 }
 </style>
 {% endraw %}
