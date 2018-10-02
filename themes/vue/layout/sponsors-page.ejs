@@ -91,6 +91,16 @@ Les soutiens récurrents viennent avec des avantages exclusifs comme avoir son n
 <%_ } _%>
 </p>
 
+<h3>OpenCollective Platine</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
 <h3>Sponsors spéciaux (Chine)</h3>
 
 <p class="platinum">
@@ -111,7 +121,7 @@ Les soutiens récurrents viennent avec des avantages exclusifs comme avoir son n
 <%_ } _%>
 </p>
 
-<h3>Or OpenCollective</h3>
+<h3>opencollective Or</h3>
 
 <p class="open-collective-sponsors sponsor-section">
 <%_ for (let i = 0; i < 10; i++) {_%>
@@ -121,12 +131,22 @@ Les soutiens récurrents viennent avec des avantages exclusifs comme avoir son n
 <%_ } _%>
 </p>
 
-<h3>Patreon Silver</h3>
+<h3>Patreon Argent</h3>
 
 <p class="patreon-sponsors sponsor-section">
 <%_ for (const sponsor of theme.silver_sponsors) {_%>
   <a href="<%- sponsor.url %>" target="_blank">
     <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>OpenCollective Argent</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 5; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/silver-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/silver-sponsors/<%- i %>/avatar.svg">
   </a>
 <%_ } _%>
 </p>

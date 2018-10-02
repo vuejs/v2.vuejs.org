@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Écrire des composants testables
 
-Une bonne partie du code en sortie du rendu d'un composant est principalement déterminée par les props qu'il reçoit. En fait, si le rendu d'un composant dépend uniquement de ses props, il devient assez facile à tester, de la même manière que l'on ferait une assertion sur la valeur de retour d'une fonction pure avec différents arguments. Voici un exemple :
+Une bonne partie du code en sortie du rendu d'un composant est principalement déterminée par les props qu'il reçoit. Si le rendu d'un composant dépend uniquement de ses props, il devient assez facile à tester, de la même manière que l'on ferait une assertion sur la valeur de retour d'une fonction pure avec différents arguments. Voici un exemple :
 
 ``` html
 <template>

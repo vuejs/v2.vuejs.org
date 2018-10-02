@@ -8,7 +8,11 @@ La communauté Vue grandit incroyablement vite et si vous lisez ceci, il y a de 
 
 Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous et ce que vous pouvez faire pour la communauté.
 
-## Ressources qui te plairont
+## Ressources
+
+### Code de conduite
+
+Le [code de conduite](/coc) est un guide pour rendre facile l'enrichissement de tous et la communauté technique à laquelle nous participons
 
 ### Obtenir de l'aide
 

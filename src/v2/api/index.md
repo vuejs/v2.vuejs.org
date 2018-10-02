@@ -360,7 +360,9 @@ type: api
 
 - **Utilisation :**
 
-  Installe un plugin Vue.js. Si l'argument plugin est de type Object, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
+  Installe un plugin Vue.js. Si l'argument plugin est de type `Object`, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
+
+  Cette méthode doit être appelée avant d'appeler `new Vue()`
 
   Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installé qu'une seule fois.
 

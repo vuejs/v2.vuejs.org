@@ -226,7 +226,9 @@ order: 803
     'Thessaloniki, Greece': [40.640063, 22.944419],
     'Tokyo, Japan': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538]
+    'Wrocław, Poland': [51.107885, 17.038538],
+    'Boston, MA, USA': [42.360081, -71.058884],
+    'Kyiv, Ukraine': [50.450100, 30.523399]
   }
   var languageNameFor = {
     en: 'English',
@@ -243,7 +245,8 @@ order: 803
     hi: 'हिंदी',
     fa: 'فارسی',
     ko: '한국어',
-    ro: 'Română'
+    ro: 'Română',
+    uk: 'Українська'
   }
 
   var team = [{
@@ -372,7 +375,7 @@ order: 803
         'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
-        'https://cuusoo.com', 'http://frapwings.jp'
+        'https://www.patreon.com/kazupon', 'https://cuusoo.com', 'http://frapwings.jp'
       ]
     },
     {
@@ -503,6 +506,9 @@ order: 803
       ],
       reposPersonal: [
         'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
+      ],
+      links: [
+        'http://patreon.com/akryum'
       ]
     },
     {
@@ -600,6 +606,9 @@ order: 803
       work: {
         role: 'Consultant'
       },
+      reposOfficial: [
+        'news.vuejs.org'
+      ],
       reposPersonal: [
         'shentao/vue-multiselect'
       ]
@@ -691,6 +700,37 @@ order: 803
   ]))
 
   var partners = [
+    {
+      name: 'Jen Looper',
+      title: 'Queen Fox',
+      city: 'Boston, MA, USA',
+      languages: ['en', 'fr'],
+      work: {
+        role: 'CEO',
+        org: 'Vue Vixens'
+      },
+      github: 'jlooper',
+      twitter: 'jenlooper',
+      links: [
+        'https://vuevixens.org/',
+        'https://nativescript-vue.org/'
+      ]
+    },
+    {
+      name: 'Natalia Tepluhina',
+      title: 'Fox Tech Guru',
+      city: 'Kyiv, Ukraine',
+      languages: ['uk', 'ru', 'en'],
+      work: {
+        role: 'CTO',
+        org: 'Vue Vixens',
+      },
+      github: 'NataliaTepluhina',
+      twitter: 'N_Tepluhina',
+      links: [
+        'https://vuevixens.org/'
+      ]
+    },
     {
       name: 'Alex Jover',
       title: 'Vue Components Squeezer',
