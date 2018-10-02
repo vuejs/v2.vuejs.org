@@ -35,7 +35,7 @@ EXPOSE 8080
 CMD [ "http-server", "dist" ]
 ```
 
-Il peut sembler redondant de copier `package.json` et `package-lock.json` et ensuite tous les fichiers et dossiers du projet en deux étapes différentes mais il y a [une très bonne raison pour ça](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/) (résumé: ça nous permet de prendre avantage de la mise en cache des `Docker layers`)
+Il peut sembler redondant de copier `package.json` et `package-lock.json` et ensuite tous les fichiers et dossiers du projet en deux étapes différentes mais il y a [une très bonne raison pour ça](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/) (résumé : ça nous permet de prendre avantage de la mise en cache des `Docker layers`)
 
 Maintenant on peut construire l'image Docker de notre app Vue.js :
 
@@ -53,7 +53,7 @@ On devrait pouvoir avoir accès à notre app sur `localhost:8080`.
 
 ## Exemple réel
 
-Dans l'exemple précédant, on a utilisé la ligne de commande [http-server](https://github.com/indexzero/http-server) sans configuration pour servir notre app Vue.js qui est parfaitement suffisent pour du prototypage rapide et pourrait même être suffire pour de simples scénarios de production. Après tout, la documentation dit :
+Dans l'exemple précédant, on a utilisé la ligne de commande [http-server](https://github.com/indexzero/http-server) sans configuration pour servir notre app Vue.js qui est parfaitement suffisent pour du prototypage rapide et pourrait même suffire pour de simples scénarios de production. Après tout, la documentation dit :
 
 > C'est assez puissant pour être utilisé en production, mais c'est assez simple et facile à détourner pour être utilisable pour les tests, le développement local et l’apprentissage.
 
@@ -109,13 +109,13 @@ Regardons comment ces concepts affectent notre décision de dockeriser notre app
 
 ### Les effets des microservices
 
-En adoptant le [style d'architectural des microservices](https://martinfowler.com/microservices/), on finit par construire une seule application comme une suite de petits services, chaque service est lancé de manière indépendante et communique avec des mécanismes légers. Ces services sont construits autour des besoins du bizness et sont déployés indépendamment via des méthodes de déploiement automatisées.
+En adoptant le [style d'architectural des microservices](https://martinfowler.com/microservices/), on finit par construire une seule application comme une suite de petits services, chaque service est lancé de manière indépendante et communique avec des mécanismes légers. Ces services sont construits autour des besoins du métier et sont déployés indépendamment via des méthodes de déploiement automatisées.
 
 Alors, utiliser cette approche architecturale implique dans la plupart des cas de développer et livrer notre front-end comme un service indépendant.
 
 ### Les effets du DevOps
 
-L'adoption de la culture, des outils et des pratiques d’ingénierie agile [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) a, entre autres, le bon effet d'augmenter la collaboration entre les rôles de développement et des opérations. Un des principaux problèmes dans le passé (et encore aujourd'hui parfois) est que l'équipe de développement tend à être intéressée par les opérations et la maintenance du système une fois que ça a été donné à l'équipe d'intégration (DevOps), et cette dernière tend à ne pas être vraiment au courant du but du système, et donc est réticente à satisfaire les besoins opérationnels du système (aussi appelé "les caprices des développeurs").
+L'adoption de la culture, des outils et des pratiques d’ingénierie agile [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) a, entre autres, le bon effet d'augmenter la collaboration entre les rôles de développement et des opérations. Un des principaux problèmes dans le passé (et encore aujourd'hui parfois) est que l'équipe de développement tend à être intéressée par les opérations et la maintenance du système une fois que ça a été donné à l'équipe d'intégration (DevOps), et cette dernière tend à ne pas être vraiment au courant du but du système, et donc est réticente à satisfaire les besoins opérationnels du système (aussi appelé « les caprices des développeurs »).
 
 Livrer notre app Vue.js avec une image Docker aide à réduire, sinon supprimer totalement, les différences entre lancer le service sur l'ordinateur d'un développeur, un environnement de production ou n'importe quel autre environnement.
 
