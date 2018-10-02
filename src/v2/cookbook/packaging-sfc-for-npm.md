@@ -1,12 +1,12 @@
 ---
-title: Packaging Vue Components for npm
+title: Packaging Vue Components for npm (EN)
 type: cookbook
 order: 12
 ---
 
 ## Base Example
 
-Vue components by nature are meant to be re-used. This is easy when the component is only used within a single application. But how can you write a component once and use it in multiple sites/applications? Perhaps the easiest solution is via npm.
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>Vue components by nature are meant to be re-used. This is easy when the component is only used within a single application. But how can you write a component once and use it in multiple sites/applications? Perhaps the easiest solution is via npm.</p>
 
 By packaging your component to be shared via npm, it can be imported/required into a build process for use in full-fledged web applications:
 

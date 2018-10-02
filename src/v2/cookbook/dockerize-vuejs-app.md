@@ -1,12 +1,12 @@
 ---
-title: Dockerize Vue.js App
+title: Dockerize Vue.js App (EN)
 type: cookbook
 order: 13
 ---
 
 ## Simple Example
 
-So you built your first Vue.js app using the amazing [Vue.js webpack template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run it in a Docker container.
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>So you built your first Vue.js app using the amazing [Vue.js webpack template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run it in a Docker container.</p>
 
 Let's start by creating a `Dockerfile` in the root folder of our project:
 

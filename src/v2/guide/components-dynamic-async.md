@@ -1,20 +1,20 @@
 ---
-title: Dynamic & Async Components
+title: Composants dynamiques et asynchrones
 type: guide
 order: 105
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Cette page suppose que vous avez déjà lu les principes de base des [composants](components.html). Lisez-les en premier si les composants sont quelque chose de nouveau pour vous.
 
-## `keep-alive` with Dynamic Components
+## `keep-alive` avec les composants dynamiques
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+Précédemment, nous avons utilisé l'attribut `is` pour basculer entre des composants dans une interface avec des onglets :
 
 ```html
-<component v-bind:is="currentTabComponent"></component>
+<component v-bind:is="composantOngletActuel"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+Toutefois, lors de la bascule d'un composant à l'autre, vous voudrez parfois maintenir leur état ou éviter de refaire leur rendu pour des raisons de performance. Par exemple, en détaillant un peu plus notre interface avec onglets :
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -25,7 +25,7 @@ When switching between these components though, you'll sometimes want to maintai
     v-on:click="currentTab = tab"
   >{{ tab }}</button>
   <component
-    v-bind:is="currentTabComponent"
+    v-bind:is="composantOngletActuel"
     class="dynamic-component-demo-tab"
   ></component>
 </div>
@@ -74,14 +74,14 @@ Vue.component('tab-posts', {
           <div v-html="selectedPost.content"></div>\
         </div>\
         <strong v-else>\
-          Click on a blog title to the left to view it.\
+          Cliquez sur un titre du blog à gauche pour le consulter.\
         </strong>\
       </div>\
     </div>\
   '
 })
 Vue.component('tab-archive', {
-  template: '<div>Archive component</div>'
+  template: '<div>Composant archive</div>'
 })
 new Vue({
   el: '#dynamic-component-demo',
@@ -90,7 +90,7 @@ new Vue({
     tabs: ['Posts', 'Archive']
   },
   computed: {
-    currentTabComponent: function () {
+    composantOngletActuel: function () {
       return 'tab-' + this.currentTab.toLowerCase()
     }
   }
@@ -149,18 +149,18 @@ new Vue({
 </style>
 {% endraw %}
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+Vous remarquerez que si vous sélectionnez un post, puis basculez sur l'onglet _Archive_, puis rebasculer à nouveau sur _Posts_, il n'affiche plus le post que vous avez initialement sélectionné. En effet, chaque fois que vous basculez vers un nouvel onglet, Vue crée une nouvelle instance du `composantOngletActuel`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+Recréer des composants dynamiques est d'habitude un comportement utile, mais dans ce cas précis, nous aimerions bien que ces instances de composants onglets soient mises en cache après qu'elles aient été créées pour la première fois. Pour résoudre ce problème, nous pouvons envelopper notre composant dynamique dans un élément `<keep-alive>` :
 
 ``` html
-<!-- Inactive components will be cached! -->
+<!-- Les composants inactifs seront mis en cache ! -->
 <keep-alive>
-  <component v-bind:is="currentTabComponent"></component>
+  <component v-bind:is="composantOngletActuel"></component>
 </keep-alive>
 ```
 
-Check out the result below:
+Observez le résultat ci-dessous :
 
 {% raw %}
 <div id="dynamic-component-keep-alive-demo" class="demo">
@@ -172,7 +172,7 @@ Check out the result below:
   >{{ tab }}</button>
   <keep-alive>
     <component
-      v-bind:is="currentTabComponent"
+      v-bind:is="composantOngletActuel"
       class="dynamic-component-demo-tab"
     ></component>
   </keep-alive>
@@ -185,7 +185,7 @@ new Vue({
     tabs: ['Posts', 'Archive']
   },
   computed: {
-    currentTabComponent: function () {
+    composantOngletActuel: function () {
       return 'tab-' + this.currentTab.toLowerCase()
     }
   }
@@ -193,81 +193,81 @@ new Vue({
 </script>
 {% endraw %}
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered. See [this fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) for the complete code.
+Désormais, l'onglet _Posts_ conserve son état (le post sélectionné) même lorsqu'il n'est pas dessiné. Consultez [ce fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) pour le code complet.
 
-<p class="tip">Note that `<keep-alive>` requires the components being switched between to all have names, either using the `name` option on a component, or through local/global registration.</p>
+<p class="tip">Notez que `<keep-alive>` requiert que tous les sous-composants aient un nom, soit via l'option `name` des composants, soit via une inscription locale/globale de ces composants.</p>
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+Pour plus de détails sur `<keep-alive>`, consultez la [référence API](../api/#keep-alive).
 
-## Async Components
+## Composants asynchrones
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
+Dans de grosses applications, nous pouvons avoir besoin de diviser l'application en morceaux plus petits et charger un composant depuis le serveur seulement lorsque celui-ci est requis. Pour rendre cela plus facile, Vue vous permet de définir un composant en tant que fonction usine qui va résoudre de façon asynchrone la définition de votre composant. Vue déclenchera la fonction usine seulement lorsque le rendu du composant est nécessaire, et mettra en cache le résultat pour les futurs nouveaux rendus. Par exemple :
 
 ``` js
-Vue.component('async-example', function (resolve, reject) {
+Vue.component('exemple-async', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // Passe la définition du composant à la fonction de rappel `resolve`
     resolve({
-      template: '<div>I am async!</div>'
+      template: '<div>Je suis asynchrone !</div>'
     })
   }, 1000)
 })
 ```
 
-As you can see, the factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+Comme vous pouvez le voir, la fonction usine reçoit en paramètre `resolve`, une fonction de rappel (*callback*) qui sera appelée lorsque vous aurez récupéré la définition du composant depuis le serveur. Vous pouvez également appeler `reject(raison)` pour indiquer que le chargement a échoué pour une certaine raison. Le `setTimeout` est là en guise de démonstration ; à vous de décider comment vous souhaitez récupérer le composant. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec la [fonctionnalité de découpage de code de webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
-Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
-  require(['./my-async-component'], resolve)
+Vue.component('exemple-webpack-async', function (resolve) {
+  // Cette syntaxe spéciale `require` indique à webpack de
+  // diviser automatiquement votre code en sortie en paquets
+  // qui seront chargés via des requêtes AJAX.
+  require(['./mon-composant-async'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can do:
+Vous pouvez également retourner une `Promise` dans la fonction usine, ainsi avec webpack 2 et la syntaxe ES2015 vous pourrez écrire :
 
 ``` js
 Vue.component(
-  'async-webpack-example',
-  // The `import` function returns a Promise.
-  () => import('./my-async-component')
+  'exemple-webpack-async',
+  // La fonction `import` retourne une `Promise`.
+  () => import('./mon-composant-async')
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+Quand vous utilisez [l'inscription locale](components.html#Local-Registration) de composant, vous pouvez aussi fournir directement une fonction qui retourne une `Promise` :
 
 ``` js
 new Vue({
   // ...
   components: {
-    'my-component': () => import('./my-async-component')
+    'mon-composant': () => import('./mon-composant-async')
   }
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et souhaitez utiliser les composants asynchrones, son créateur a malheureusement [été très clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone n'est pas quelque-chose que Browserify supportera un jour. Officiellement du moins. La communauté Browserify a trouvé [quelques solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent s'avérer utiles pour les applications complexes existantes. Pour tous les autres scénarios, nous recommandons d'utiliser webpack pour un support natif et de première classe de l'asynchrone.</p>
 
-### Handling Loading State
+### Gérer l'état de chargement
 
-> New in 2.3.0+
+> Nouveauté de la 2.3.0+
 
-The async component factory can also return an object of the following format:
+La fabrique de composants asynchrones peut aussi retourner un objet avec le format suivant :
 
 ``` js
 const AsyncComponent = () => ({
-  // The component to load (should be a Promise)
-  component: import('./MyComponent.vue'),
-  // A component to use while the async component is loading
+  // Le composant à charger (doit être une `Promise`)
+  component: import('./MonComposant.vue'),
+  // Un composant à utiliser pendant que le composant asynchrone se charge
   loading: LoadingComponent,
-  // A component to use if the load fails
+  // Un composant d'erreur à utiliser au cas où le chargement échoue
   error: ErrorComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // Le délai à patienter avant d'afficher le composant de chargement. Par défaut : 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // Le composant d'erreur sera affiché si un délai de timeout est fourni et dépassé.
+  // Par défaut: délai infini.
   timeout: 3000
 })
 ```
 
-> Note that you must use [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ if you wish to use the above syntax for route components.
+> Notez que vous devez utiliser [Vue Router](https://github.com/vuejs/vue-router) en version 2.4.0+ si vous souhaitez utiliser la syntaxe ci-dessus pour des composants de routes.

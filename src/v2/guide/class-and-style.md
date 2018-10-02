@@ -1,24 +1,24 @@
 ---
-title: Class and Style Bindings
+title: Liaisons de classes et de styles
 type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+Un besoin classique de la liaison de données est la manipulation de la liste des classes d'un élément, ainsi que ses styles en ligne. Puisque ce sont tous deux des attributs, il est possible d'utiliser `v-bind`  pour les gérer : il faut simplement générer une chaine de caractère avec nos expressions. Cependant la concaténation de chaine de caractères est fastidieuse et source d'erreur. Pour cette raison, Vue fournit des améliorations spécifiques quand `v-bind` est utilisé avec `class` et `style`. En plus des chaines de caractères, l'expression peut évaluer des objets ou des tableaux.
 
-## Binding HTML Classes
+## Liaison de Classes HTML
 
-### Object Syntax
+### Syntaxe Objet
 
-We can pass an object to `v-bind:class` to dynamically toggle classes:
+Il est possible de passer un objet à `v-bind:class` pour permuter les classes automatiquement :
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
+La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [considérée comme vraie](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `v-bind:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+Vous pouvez permuter plusieurs classes en ayant plus de champs dans l'objet. De plus, la directive `v-bind:class` peut aussi coexister avec l'attribut `class`. Donc, avec le template suivant :
 
 ``` html
 <div class="static"
@@ -26,7 +26,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 </div>
 ```
 
-And the following data:
+Et les données suivantes :
 
 ``` js
 data: {
@@ -35,15 +35,15 @@ data: {
 }
 ```
 
-It will render:
+Le rendu sera :
 
 ``` html
 <div class="static active"></div>
 ```
 
-When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+Quand `isActive` ou `hasError` change, la liste des classes sera mise à jour en conséquence. Par exemple, si `hasError` devient `true`, la liste des classes deviendra `"static active text-danger"`.
 
-The bound object doesn't have to be inline:
+L'objet lié n'a pas besoin d'être déclaré dans l'attribut :
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -57,7 +57,7 @@ data: {
 }
 ```
 
-This will render the same result. We can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
+Ceci rendra le même résultat. Il est également possible de lier une [propriété calculée](computed.html) qui retourne un objet. C'est une méthode courante et puissante :
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -77,9 +77,9 @@ computed: {
 }
 ```
 
-### Array Syntax
+### Syntaxe Tableau
 
-We can pass an array to `v-bind:class` to apply a list of classes:
+Il est possible de passer un tableau à `v-bind:class` pour appliquer une liste de classes :
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]"></div>
@@ -91,33 +91,33 @@ data: {
 }
 ```
 
-Which will render:
+Ce qui rendra :
 
 ``` html
 <div class="active text-danger"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+Si vous voulez permuter une classe de la liste en fonction d'une condition, vous pouvez le faire avec une expression ternaire :
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
+Ceci appliquera toujours la classe `errorClass`, mais appliquera `activeClass` uniquement quand `isActive` vaut `true`.
 
-However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
+En revanche, cela peut être un peu verbeux si vous avez plusieurs classes conditionnelles. C'est pourquoi il est aussi possible d'utiliser la syntaxe objet dans la syntaxe tableau :
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
-### With Components
+### Avec des Composants
 
-> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
+> Cette section suppose la connaissance de [Vue Composants](components.html). N'hésitez pas à l'ignorer et y revenir plus tard.
 
-When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
+Quand vous utilisez l'attribut `class` sur un composant personnalisé, ces classes seront ajoutées à l'élément à la racine du composant. Les classes présentes sur cet élément ne seront pas réécrites.
 
-For example, if you declare this component:
+Par exemple, si vous déclarez ce composant :
 
 ``` js
 Vue.component('my-component', {
@@ -125,35 +125,35 @@ Vue.component('my-component', {
 })
 ```
 
-Then add some classes when using it:
+​Puis ajoutez quelques classes quand vous l'utilisez :
 
 ``` html
 <my-component class="baz boo"></my-component>
 ```
 
-The rendered HTML will be:
+Le rendu HTML sera :
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-The same is true for class bindings:
+C'est aussi vrai pour la liaison de classe :
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-When `isActive` is truthy, the rendered HTML will be:
+Quand la propriété `isActive` est évaluée à vrai, le rendu HTML sera :
 
 ``` html
 <p class="foo bar active">Hi</p>
 ```
 
-## Binding Inline Styles
+## Liaison de Styles HTML
 
-### Object Syntax
+### Syntaxe objet
 
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+La syntaxe objet pour `v-bind:style` est assez simple - cela ressemble presque à du CSS, sauf que c'est un objet JavaScript. Vous pouvez utiliser camelCase ou kebab-case (utilisez des apostrophes avec kebab-case) pour les noms des propriétés CSS :
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -165,7 +165,7 @@ data: {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+C'est souvent une bonne idée de lier directement un objet de style, pour que le template soit plus propre :
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -179,28 +179,28 @@ data: {
 }
 ```
 
-Again, the object syntax is often used in conjunction with computed properties that return objects.
+Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétés calculées retournant des objets.
 
-### Array Syntax
+### Syntaxe tableau
 
-The array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+La syntaxe tableau pour `v-bind:style` permet d'appliquer plusieurs objets de style à un même élément.
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
-### Auto-prefixing
+### Préfixage automatique
 
-When you use a CSS property that requires [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `v-bind:style`, for example `transform`, Vue will automatically detect and add appropriate prefixes to the applied styles.
+Quand vous utilisez une propriété CSS qui nécessite un [préfixe vendeur](https://developer.mozilla.org/fr/docs/Glossaire/Pr%C3%A9fixe_Vendeur) dans `v-bind:style`, par exemple `transform`, Vue le détectera automatiquement, et ajoutera les préfixes appropriés aux styles appliqués.
 
-### Multiple Values
+### Valeurs multiples
 
 > 2.3.0+
 
-Starting in 2.3.0+ you can provide an array of multiple (prefixed) values to a style property, for example:
+Introduit dans la 2.3.0+, vous pouvez fournir de multiples valeurs de préfixes à une propriété style, par exemple :
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+Ceci rendra uniquement la dernière valeur dans le tableau supportée par le navigateur. Dans cet exemple, cela rendra `display: flex` pour les navigateurs qui supportent la version sans préfixe de flexbox.

@@ -3,142 +3,142 @@ title: API
 type: api
 ---
 
-## Global Config
+## Configuration globale
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :
 
 ### silent
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `false`
+- **Par défaut :** `false`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Supprime tous les logs et warnings de Vue.js.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Type :** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Par défaut :** `{}`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
-  Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
-    return child + 1
+  Vue.config.optionMergeStrategies._mon_option = function (parent, enfant, vm) {
+    return enfant + 1
   }
 
-  const Profile = Vue.extend({
-    _my_option: 1
+  const Profil = Vue.extend({
+    _mon_option: 1
   })
 
-  // Profile.options._my_option = 2
+  // Profil.options._mon_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Définit des stratégies personnalisées de fusion pour les options.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfants en tant que premier et second argument, respectivement. L'instance de Vue est passée en troisième argument.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Voir aussi :** [Stratégie de fusion des options personnalisées](../guide/mixins.html#Strategie-de-fusion-des-options-personnalisees)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Par défaut :** `true` (`false` dans les versions de production)
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // assurez-vous d'assigner ça de manière synchrone immédiatement après avoir chargé Vue
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Autorise ou non l'inspection des [vue-devtools](https://github.com/vuejs/vue-devtools). Cette option a comme valeur par défaut `true` dans les versions de développement et `false` dans les versions de production. Vous pouvez l'assigner à `true` pour activer l'inspection avec les versions de production.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Default:** `undefined`
+- **Par défaut :** `undefined`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // gérer le cas d'erreur `info` est une information spécifique
+    // à Vue sur l'erreur, par exemple dans quel hook du cycle de vie
+    // l'erreur a été trouvée. Disponible uniquement en 2.2.0+
   }
   ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et les appels aux observateurs. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance de Vue associée.
 
-  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > En 2.2.0+, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > En 2.4.0+ ce hook capture également les erreurs lancées depuis un gestionnaire d'évènement Vue personnalisé.
 
-  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > [Sentry](https://sentry.io) et [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) fournissent une intégration officielle utilisant cette option.
 
 ### warnHandler
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Default:** `undefined`
+- ***Par défaut :** `undefined`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` is the component hierarchy trace
+    // `trace` est la trace de hiérarchie de composant
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Assigne un gestionnaire personnalisé pour les avertissements à l'exécution de Vue. Notez que cela n'est fonctionnel qu'en développement et est ignoré en production.
 
 ### ignoredElements
 
-- **Type:** `Array<string | RegExp>`
+- **Type :** `Array<string | RegExp>`
 
-- **Default:** `[]`
+- **Par défaut :** `[]`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component',
-    'another-web-component',
-    // Use a `RegExp` to ignore all elements that start with "ion-"
-    // 2.5+ only
+    'mon-web-component',
+    'un-autre-web-component',
+    // Utilisez une `RegExp` pour ignorer tous les éléments qui commencent par « ion- »
+    // 2.5+ seulement
     /^ion-/
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Indique à Vue d'ignorer les éléments personnalisés définis en dehors de Vue (ex. : en utilisant les API Web Components). Autrement, un message d'avertissement `Unknown custom element` sera affiché, supposant que vous avez oublié d'inscrire un composant global ou fait une faute de frappe dans son nom.
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **Type :** `{ [key: string]: number | Array<number> }`
 
-- **Default:** `{}`
+- **Par défaut :** `{}`
 
-- **Usage:**
+- **Utilisation :**
 
-  ``` js
+  ```js
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // La camelCase ne marche pas
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // à la place vous devez utiliser la kebab-case avec des guillemets doubles
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -148,148 +148,148 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for `v-on`.
+  Définit des alias pour les touches avec `v-on`.
 
 ### performance
 
-> New in 2.2.0+
+> Nouveau dans la 2.2.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `false (from 2.2.3+)`
+- **Par défaut :** `false` (à partir de la 2.2.3+)
 
-- **Usage**:
+- **Utilisation :**
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Assignez ceci à `true` pour activer le suivi des performances pour l'initialisation, la compilation, le rendu et la mise à jour des composants dans la timeline des outils développeur des navigateurs. Fonctionne uniquement en mode développement et dans les navigateurs supportant l'API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 ### productionTip
 
-> New in 2.2.0+
+> Nouveau dans la 2.2.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `true`
+- **Par défaut :** `true`
 
-- **Usage**:
+- **Utilisation :**
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Assignez ceci à `false` pour ne plus avoir la notification de production au démarrage de Vue.
 
-## Global API
+## API globale
 
 ### Vue.extend( options )
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} options`
 
-- **Usage:**
+- **Utilisation :**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Crée une « sous-classe » du constructeur de base Vue. L'argument doit être un objet contenant les options du composant.
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  Le cas spécial à noter ici est l'option `data` - il doit s'agir d'une fonction quand utilisé avec `Vue.extend()`.
 
   ``` html
-  <div id="mount-point"></div>
+  <div id="point-de-montage"></div>
   ```
 
   ``` js
-  // create constructor
-  var Profile = Vue.extend({
-    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+  // crée un constructeur réutilisable
+  var Profil = Vue.extend({
+    template: '<p>{{prenom}} {{nom}} alias {{alias}}</p>',
     data: function () {
       return {
-        firstName: 'Walter',
-        lastName: 'White',
+        prenom: 'Walter',
+        nom: 'White',
         alias: 'Heisenberg'
       }
     }
   })
-  // create an instance of Profile and mount it on an element
-  new Profile().$mount('#mount-point')
+  // crée une instance de Profil et la monte sur un élément
+  new Profil().$mount('#point-de-montage')
   ```
 
-  Will result in:
+  Cela donnera comme résultat :
 
   ``` html
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Voir aussi :** [Composants](../guide/components.html)
 
-### Vue.nextTick( [callback, context] )
+### Vue.nextTick( [callback, contexte] )
 
-- **Arguments:**
+- **Arguments :**
   - `{Function} [callback]`
-  - `{Object} [context]`
+  - `{Object} [contexte]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Reporte l'exécution de la fonction de rappel au prochain cycle de mise à jour du DOM. Utilisez-le immédiatement après avoir changé des données afin d'attendre la mise à jour du DOM.
 
   ``` js
-  // modify data
-  vm.msg = 'Hello'
-  // DOM not updated yet
+  // modification de données
+  vm.msg = 'Salut'
+  // le DOM n'a pas encore été mis à jour
   Vue.nextTick(function () {
-    // DOM updated
+    // le DOM est à jour
   })
 
-  // usage as a promise (2.1.0+, see note below)
+  // utilisation en tant que promesse (2.1.0+, voir la note ci-dessous)
   Vue.nextTick()
     .then(function () {
-      // DOM updated
+      // le DOM est à jour
     })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Nouveauté de la 2.1.0+ : retourne une promesse si aucune fonction de rappel n'est fournie et si les promesses sont supportées par l'environnement d'exécution. Notez que Vue ne fournit pas de polyfill aux promesses. Aussi, si vous ciblez des navigateurs qui ne supportent pas les promesses nativement (on parle de toi, IE), vous pouvez fournir un polyfill vous-même.
 
-- **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **Voir aussi :** [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
-### Vue.set( target, key, value )
+### Vue.set( cible, clé, valeur )
 
-- **Arguments:**
-  - `{Object | Array} target`
-  - `{string | number} key`
-  - `{any} value`
+- **Arguments :**
+  - `{Object | Array} cible`
+  - `{string | number} clé`
+  - `{any} valeur`
 
-- **Returns:** the set value.
+- **Retourne:** la valeur assignée.
 
-- **Usage:**
+- **Utilisation :**
 
-  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
+  Assigne une propriété à un objet réactif, s'assurant que la nouvelle propriété soit également réactive de manière à déclencher une nouvelle mise à jour de la vue. Ceci doit être utilisé pour les nouvelles propriétés d'objets réactifs car Vue ne peut pas détecter normalement les ajouts de propriétés (par ex. `this.myObject.newProperty = 'bonjour'`).
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">L'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
-### Vue.delete( target, key )
+### Vue.delete( cible, clé )
 
-- **Arguments:**
-  - `{Object | Array} target`
-  - `{string | number} key/index`
+- **Arguments :**
+  - `{Object | Array} cible`
+  - `{string | number} clé`
 
-  > Only in 2.2.0+: Also works with Array + index.
+  > Seulement dans la 2.2.0+ : fonctionne aussi avec Array + index.
 
-- **Usage:**
+- **Utilisation :**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Supprime une propriété d'un objet cible. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">L'objet cible ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
-### Vue.directive( id, [definition] )
+### Vue.directive( id, [définition] )
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
-  - `{Function | Object} [definition]`
+  - `{Function | Object} [définition]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Register or retrieve a global directive.
+  Inscrit ou récupère une directive globale.
 
   ``` js
-  // register
-  Vue.directive('my-directive', {
+  // inscrit une directive
+  Vue.directive('ma-directive', {
     bind: function () {},
     inserted: function () {},
     update: function () {},
@@ -297,116 +297,116 @@ type: api
     unbind: function () {}
   })
 
-  // register (function directive)
-  Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+  // inscription (directive comme simple fonction)
+  Vue.directive('ma-directive', function () {
+    // cette fonction sera appelée comme `bind` et `update` ci-dessus
   })
 
-  // getter, return the directive definition if registered
-  var myDirective = Vue.directive('my-directive')
+  // accesseur, retourne la définition de la directive si inscrite
+  var maDirective = Vue.directive('ma-directive')
   ```
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
-### Vue.filter( id, [definition] )
+### Vue.filter( id, [définition] )
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
-  - `{Function} [definition]`
+  - `{Function} [définition]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Register or retrieve a global filter.
+  Inscrit ou récupère un filtre global.
 
   ``` js
-  // register
-  Vue.filter('my-filter', function (value) {
-    // return processed value
+  // inscrit un filtre
+  Vue.filter('mon-filtre', function (value) {
+    // retourne la valeur modifiée
   })
 
-  // getter, return the filter if registered
-  var myFilter = Vue.filter('my-filter')
+  // accesseur, retourne le filtre si inscrit
+  var monFiltre = Vue.filter('mon-filtre')
   ```
 
-- **See also:** [Filters](../guide/filters.html)
+- **Voir aussi :** [Filtres](../guide/filters.html)
 
-### Vue.component( id, [definition] )
+### Vue.component( id, [définition] )
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
-  - `{Function | Object} [definition]`
+  - `{Function | Object} [définition]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Inscrit ou récupère un composant global. L'inscription assigne aussi automatiquement la propriété `name` du composant au paramètre `id` donné.
 
   ``` js
-  // register an extended constructor
-  Vue.component('my-component', Vue.extend({ /* ... */ }))
+  // inscrit un constructeur étendu
+  Vue.component('mon-composant', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
-  Vue.component('my-component', { /* ... */ })
+  // inscrit un composant avec un objet options (appelle automatiquement Vue.extend)
+  Vue.component('mon-composant', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
-  var MyComponent = Vue.component('my-component')
+  // récupère un composant inscrit (retourne toujours le constructeur)
+  var MonComposant = Vue.component('mon-composant')
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Voir aussi :** [Composants](../guide/components.html)
 
 ### Vue.use( plugin )
 
-- **Arguments:**
+- **Arguments :**
   - `{Object | Function} plugin`
 
-- **Usage:**
+- **Utilisation :**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
-  
-  This method has to be called before calling `new Vue()`
+  Installe un plugin Vue.js. Si l'argument plugin est de type `Object`, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Cette méthode doit être appelée avant d'appeler `new Vue()`
 
-- **See also:** [Plugins](../guide/plugins.html)
+  Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installé qu'une seule fois.
+
+- **Voir aussi :** [Plugins](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} mixin`
 
-- **Usage:**
+- **Utilisation :**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Applique une mixin globale, qui affecte toutes les instances de Vue créées par la suite. Cela peut être utilisé par les créateurs de plugins pour injecter un composant personnalisé dans les composants. **Non recommandé dans le code applicatif**.
 
-- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **Voir aussi :** [Mixin global](../guide/mixins.html#Mixin-global)
 
 ### Vue.compile( template )
 
-- **Arguments:**
+- **Arguments :**
   - `{string} template`
 
-- **Usage:**
+- **Utilisation :**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  Compile une string template en une fonction de rendu. **Disponible uniquement sur la version complète.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
 
   new Vue({
     data: {
-      msg: 'hello'
+      msg: 'salut'
     },
     render: res.render,
     staticRenderFns: res.staticRenderFns
   })
   ```
 
-- **See also:** [Render Functions](../guide/render-function.html)
+- **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
 ### Vue.version
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **Détails :** donne la version de Vue installée sous forme de `String`. C'est particulièrement utile pour les plugins et les composants de la communauté, où vous pouvez être amenés à utiliser différentes stratégies pour différentes versions.
 
-- **Usage**:
+- **Utilisation :**
 
   ```js
   var version = Number(Vue.version.split('.')[0])
@@ -416,7 +416,7 @@ type: api
   } else if (version === 1) {
     // Vue v1.x.x
   } else {
-    // Unsupported versions of Vue
+    // Versions non supportées de Vue
   }
   ```
 
@@ -424,99 +424,99 @@ type: api
 
 ### data
 
-- **Type:** `Object | Function`
+- **Type :** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Restriction :** accepte uniquement une fonction lorsqu'utilisé dans une définition de composant.
 
-- **Details:**
+- **Détails :**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
+  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs / mutateurs (*getter/setters*) afin de les rendre « réactives ». **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée. Il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Une fois observé, vous ne pouvez plus ajouter de propriétés réactives à l'objet de données racine. C'est pourquoi il est recommandé de déclarer dès le départ toutes les propriétés réactives à la racine de l'objet de données, avant de créer l'instance.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Après que l'instance ait été créée, l'objet de données initial peut être accédé via `vm.$data`. L'instance de Vue servira également de proxy pour toutes les propriétés trouvées dans l'objet de données, donc `vm.a` sera l'équivalent de `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._propriete`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
+  Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées ! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraiche des données initiales.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Si nécessaire, un clone profond de l'objet original peut être obtenu en passant `vm.$data` à travers `JSON.parse(JSON.stringify(...))`.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // création directe d'instances
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
-  var Component = Vue.extend({
+  // data doit être une fonction lorsqu'utilisée dans Vue.extend()
+  var Composant = Vue.extend({
     data: function () {
       return { a: 1 }
     }
   })
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Notez que si vous utilisez la fonctions fléchées avec la propriété `data`, `this` ne sera plus l'instance du composant, mais vous pouvez toujours la récupérer en tant que premier argument de la fonction :
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **Type :** `Array<string> | Object`
 
-- **Details:**
+- **Détails :**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Une liste ou un objet décrivant les attributs exposés par le composant afin de passer des données depuis le composant parent. Ce paramètre a une syntaxe simple basée sur un tableau (`Array`) et une syntaxe alternative basée sur un objet (`Object`) qui permet une configuration avancée telle qu'une vérification de typage, des contrôles de validation personnalisés et des valeurs par défaut.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
-  // simple syntax
-  Vue.component('props-demo-simple', {
-    props: ['size', 'myMessage']
+  // syntaxe simple
+  Vue.component('props-démo-simple', {
+    props: ['taille', 'monMessage']
   })
 
-  // object syntax with validation
-  Vue.component('props-demo-advanced', {
+  // syntaxe avancée avec validation
+  Vue.component('props-démo-avancée', {
     props: {
-      // type check
-      height: Number,
-      // type check plus other validations
-      age: {
-        type: Number,
+      // juste une vérification de type
+      hauteur: Number,
+      // vérification du type ainsi que d'autres validations
+      âge: {
+        type : Number,
         default: 0,
         required: true,
-        validator: function (value) {
-          return value >= 0
+        validator: function (valeur) {
+          return valeur >= 0
         }
       }
     }
   })
   ```
 
-- **See also:** [Props](../guide/components.html#Props)
+- **Voir aussi :** [Props](../guide/components.html#Props)
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **Type :** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restriction :** utilisé uniquement si l'instance est créée via `new`.
 
-- **Details:**
+- **Détails :**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Passe des valeurs d'attribut à l'instance durant sa création. Cette propriété a pour but principal de faciliter les tests unitaires.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   var Comp = Vue.extend({
@@ -526,20 +526,20 @@ type: api
 
   var vm = new Comp({
     propsData: {
-      msg: 'hello'
+      msg: 'salut'
     }
   })
   ```
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Type :** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **Détails :**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Les propriétés calculées qui seront ajoutées à l'instance de Vue. Tous les accesseurs (« getters ») et mutateurs (« setters ») ont leur contexte `this` automatiquement lié à l'instance de Vue.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Notez que si vous utilisez la fonctions fléchées avec la propriété `data`, `this` ne sera plus l'instance du composant, mais vous pouvez toujours la récupérer en tant que premier argument de la fonction :
 
   ```js
   computed: {
@@ -547,19 +547,19 @@ type: api
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent. Notez que si une certaine dépendance est en dehors de la portée de l'instance (et donc non réactive), la propriété calculée ne sera __pas__ mise à jour.
 
-- **Example:**
+- **Exemple :**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only
+      // accesseur uniquement
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // accesseur et mutateur à la fois
       aPlus: {
         get: function () {
           return this.a + 1
@@ -576,19 +576,19 @@ type: api
   vm.aDouble // => 4
   ```
 
-- **See also:** [Computed Properties](../guide/computed.html)
+- **Voir aussi :** [Propriétés calculées](../guide/computed.html)
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **Type :** `{ [key: string]: Function }`
 
-- **Details:**
+- **Détails :**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Les méthodes qui seront ajoutées à l'instance de Vue. Vous pouvez accéder à ces méthodes directement depuis l'instance VM ou les utiliser à travers des expressions de directives. Toutes les méthodes ont leur contexte d'appel `this` automatiquement assigné à l'instance de Vue.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une méthode__ (exemple: `plus: () => this.a++`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
 
-- **Example:**
+- **Exemple :**
 
   ```js
   var vm = new Vue({
@@ -603,17 +603,17 @@ type: api
   vm.a // 2
   ```
 
-- **See also:** [Event Handling](../guide/events.html)
+- **Voir aussi :** [Gestion des évènements](../guide/events.html)
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object | Array}`
+- **Type :** `{ [key: string]: string | Function | Object | Array }`
 
-- **Details:**
+- **Détails :**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de rappel exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appellera `$watch()` pour chaque clé de l'objet à l'initialisation.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   var vm = new Vue({
@@ -629,19 +629,19 @@ type: api
       }
     },
     watch: {
-      a: function (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
+      a: function (valeur, ancienneValeur) {
+        console.log('nouveau: %s, ancien: %s', valeur, ancienneValeur)
       },
-      // string method name
-      b: 'someMethod',
-      // deep watcher
+      // nom d'une méthode
+      b: 'uneMéthode',
+      // observateur profond (deep watcher)
       c: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: function (valeur, ancienneValeur) { /* ... */ },
         deep: true
       },
-      // the callback will be called immediately after the start of the observation
+      // la fonction de rappel va être appelée immédiatement après le début de l'observation
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: function (valeur, ancienneValeur) { /* ... */ },
         immediate: true
       },
       e: [
@@ -652,87 +652,87 @@ type: api
       'e.f': function (val, oldVal) { /* ... */ }
     }
   })
-  vm.a = 2 // => new: 2, old: 1
+  vm.a = 2 // => nouveau : 2, ancien : 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `saisie: nouvelleValeur => this.actualiserSuggestions(nouvelleValeur)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.actualiserSuggestions` vaudra `undefined`.</p>
 
-- **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
+- **Voir aussi :** [Méthodes et données d'instance - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Type :** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restriction :** uniquement respecté quand l'instance est créée via `new`.
 
-- **Details:**
+- **Détails :**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Fournit à l'instance de Vue un élément existant du DOM sur lequel se monter. Cela peut être une `String` représentant un sélecteur CSS ou une référence à un `HTMLElement`.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Une fois l'instance montée, l'élément correspondant sera accessible via `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Si cette option est disponible à l'instanciation, l'instance sera immédiatement compilée; sinon, l'utilisateur devra explicitement appeler `vm.$mount()` pour démarrer manuellement la compilation.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">L'élément fourni sert seulement de point de montage. Contrairement à Vue 1.x, l'élément monté sera remplacé par le DOM généré par Vue dans tous les cas. C'est pourquoi il n'est pas recommandé de monter l'instance racine sur `<html>` ou `<body>`.</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">Si ni la fonction `render` ni l'option `template` ne sont présentes, le code HTML de l'élément du DOM sur lequel le composant est monté sera extrait et défini comme template de ce composant. Dans ce cas, la version "Runtime + Compilateur" de Vue doit être utilisée.</p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+- **Voir aussi :**
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
+  - [Runtime + Compiler vs. Runtime seul](../guide/installation.html#Runtime-Compiler-vs-Runtime-seul)
 
 ### template
 
-- **Type:** `string`
+- **Type :** `string`
 
-- **Details:**
+- **Détails :**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Un template sous forme de chaine de caractères qui sera utilisé comme balisage HTML pour l'instance de Vue. Le template viendra **remplacer** l'élément monté. Tout code HTML existant à l'intérieur de l'élément monté sera ignoré, à moins que des emplacements de distribution de contenu (slots) soient présents dans le template.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Si la chaine de caractères commence par `#`, elle sera évaluée comme `querySelector` et le `innerHTML` de l'élément sélectionné sera utilisé comme template. Cela permet d'utiliser l'astuce du `<script type="x-template">` pour inclure des templates.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">D'un point de vue sécurité, vous devriez uniquement utiliser des templates Vue auxquels vous pouvez faire confiance. N'utilisez jamais du contenu généré côté utilisateur comme template.</p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Si la fonction `render` est présente comme option de l'instance de Vue, le template sera ignoré.</p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Voir aussi :**
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
+  - [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
 
 ### render
 
-  - **Type:** `(createElement: () => VNode) => VNode`
+  - **Type :** `(createElement: () => VNode) => VNode`
 
-  - **Details:**
+  - **Détails :**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Une alternative aux templates en chaine de caractères vous permettant d'exploiter toute la puissance programmatique de JavaScript. La fonction de rendu `render` reçoit une méthode `createElement` comme premier argument servant à créer des `VNode`s.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Si le composant est un composant fonctionnel, la fonction `render` recevra aussi un argument supplémentaire `context`, qui donne accès aux données contextuelles puisque les composants fonctionnels sont sans instance.
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">La fonction `render` a la priorité par rapport à la fonction de rendu compilée à partir de l'option `template`, ou par rapport au template HTML de l'élément d'ancrage dans le DOM qui est spécifié par l'option `el`.</p>
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0+
+> Nouveau dans la 2.2.0+
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **Type :** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **Détails :**
 
-    **Only works in development mode.**
+    **Fonctionne uniquement en mode développement.**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    Fournit un rendu alternatif en sortie quand la fonction `render` par défaut rencontre une erreur. L'erreur sera passée à `renderError` comme second argument. C'est particulièrement appréciable quand utilisé conjointement avec du rechargement à chaud (hot-reload).
 
-  - **Example:**
+  - **Exemple :**
 
     ``` js
     new Vue({
       render (h) {
-        throw new Error('oops')
+        throw new Error('oups')
       },
       renderError (h, err) {
         return h('pre', { style: { color: 'red' }}, err.stack)
@@ -740,233 +740,233 @@ type: api
     }).$mount('#app')
     ```
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
-## Options / Lifecycle Hooks
+## Options / Cycle de vie des hooks
 
-<p class="tip">All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.</p>
+<p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  Appelé de manière synchrone juste après que l'instance ait été initialisée, et avant l'observation des données et l'installation des évènements / observateurs.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### created
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Appelé de manière synchrone après que l'instance ait été créée. À ce stade, l'instance a fini de traiter les options, ce qui signifie que les éléments suivants ont été installés: observation des données, propriétés calculées, méthodes, fonctions de retour des observateurs et évènements. Cependant, la propriété `$el` n'est pas encore disponible.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Appelé juste avant que le montage commence: la fonction `render` est sur le point d'être appelée pour la première fois.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### mounted
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Appelé juste après que l'instance ait été montée, là où `el` est remplacé par le nouvellement créé `vm.$el`. Si l'instance à la racine est montée sur un élément du document, alors `vm.$el` sera aussi dans le document quand `mounted` est appelé.
 
-  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
+  Notez que `mounted` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `mounted` :
 
   ``` js
   mounted: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
+  Appelé quand les données changent, avant le patch du DOM virtuel. C'est le bon endroit pour accéder au DOM existant avant la mise à jour, par ex. pour retirer manuellement des écouteurs d'évènement.
 
-  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur car seul le rendu initial est généré côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### updated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Appelé après qu'un changement d'une donnée ait causé un nouveau rendu et patch du DOM virtuel.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  Le DOM du composant aura été mis à jour quand ce hook est appelé, donc vous pouvez effectuer des opérations dépendantes du DOM ici. Cependant, dans la plupart des cas, vous devriez éviter de changer l'état dans ce hook. Pour réagir à des changements d'état, il vaut généralement mieux utiliser une [propriété calculée](#computed) ou un [observateur](#watch) à la place.
 
-  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `updated`:
+  Notez que `updated` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `updated` :
 
   ``` js
   updated: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### activated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called when a kept-alive component is activated.
+  Appelé quand un composant gardé en vie (`keep-alive`) est activé.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Voir aussi :**
+  - [Composants intégrés par défaut - keep-alive](#keep-alive)
+  - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called when a kept-alive component is deactivated.
+  Appelé quand un composant gardé en vie (`keep-alive`) est désactivé.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Voir aussi :**
+  - [Composants intégrés par défaut - keep-alive](#keep-alive)
+  - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Appelé juste avant qu'une instance de Vue ne soit détruite. À ce stade, l'instance est toujours pleinement fonctionnelle.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### destroyed
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Details:**
+- **Détails :**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Appelé après qu'une instance de Vue ait été détruite. Quand ce hook est appelé, toutes les directives de l'instance de Vue ont été détachées, tous les écouteurs d'évènements ont été supprimés et toutes les instances de Vue enfants ont également été détruites.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### errorCaptured
 
-> New in 2.5.0+
+> Nouveau dans la 2.5.0+
 
-- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+- **Type :** `(err: Error, vm: Component, info: string) => ?boolean`
 
-- **Details:**
+- **Détails :**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  Appelé quand une erreur provenant de n'importe quel composant enfant est capturée. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
 
-  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+  <p class="tip">Vous pouvez modifier l'état du composant dans ce hook. Il est cependant important d'avoir une condition dans votre template ou fonction de rendu qui court-circuite les autres composants quand une erreur est capturée. Autrement le composant va partir dans une boucle de rendu infinie.</p>
 
-  **Error Propagation Rules**
+  **Règles de propagation d'erreur**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - Par défaut, toutes les erreurs sont toujours envoyées à l'objet global `config.errorHandler` s'il est défini. Donc ces erreurs peuvent toujours être reportées à un service d'analyse centralisé.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - Si des hooks `errorCaptured` multiples existent sur une chaine de composant hérité ou sur une chaine parente, toutes seront invoquées avec la même erreur.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - Si le hook `errorCaptured` renvoie lui-même une erreur, l'erreur originalement capturée et l'erreur courante seront toutes deux envoyées au `config.errorHandler` global.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - Un hook `errorCaptured` peut retourner `false` pour empêcher la propagation de l'erreur vers le haut. Il est essentiel d'indiquer que « cette erreur a été traitée et doit être ignorée ». Cela empèchera n'importe quel hook `errorCaptured` supplémentaire ou le `config.errorHandler` d'être invoqué par cette erreur.
 
-## Options / Assets
+## Options / Ressources
 
 ### directives
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Details:**
+- **Détails :**
 
-  A hash of directives to be made available to the Vue instance.
+  Un objet de mappage des directives à mettre à disposition de l'instance de Vue.
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
 ### filters
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Details:**
+- **Détails :**
 
-  A hash of filters to be made available to the Vue instance.
+  Un objet de mappage des filtres à mettre à disposition de l'instance de Vue.
 
-- **See also:** [`Vue.filter`](#Vue-filter)
+- **Voir aussi :** [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Details:**
+- **Détails :**
 
-  A hash of components to be made available to the Vue instance.
+  Un objet de mappage des composants à mettre à disposition de l'instance de Vue.
 
-- **See also:** [Components](../guide/components.html)
+- **Voir aussi :** [Composants](../guide/components.html)
 
-## Options / Composition
+## Options / Divers
 
 ### parent
 
-- **Type:** `Vue instance`
+- **Type :** `Instance de Vue`
 
-- **Details:**
+- **Détails :**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Spécifie l'instance parente pour l'instance qui va être créée. Établit une relation parent-enfant entre les deux. Le parent sera accessible via `this.$parent` pour l'enfant, et l'enfant sera ajouté à la liste `$children` du parent.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Utilisez `$parent` et `$children` avec parcimonie - ils servent surtout comme écoutille de secours. Préférez l'utilisation de propriétés et d'évènements pour la communication parent-enfant.</p>
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **Type :** `Array<Object>`
 
-- **Details:**
+- **Détails :**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  L'option `mixins` accepte une liste d'objets mixin. Ces objets mixin peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre mixin contient un hook `created` et que le composant lui-même en a également un, les deux fonctions seront appelées.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Les hooks de *mixin* sont appelés dans l'ordre dans lequel ils sont fournis, et appelés avant les propres hooks du composant.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   var mixin = {
@@ -980,24 +980,24 @@ type: api
   // => 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **Voir aussi :** [Mixins](../guide/mixins.html)
 
 ### extends
 
-- **Type:** `Object | Function`
+- **Type :** `Object | Function`
 
-- **Details:**
+- **Détails :**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Permet d'étendre déclarativement un autre composant (qui peut être un simple objet d'options ou un constructeur) sans avoir à utiliser `Vue.extend`. C'est destiné en premier lieu à rendre plus facile les extensions entre composants monofichiers.
 
-  This is similar to `mixins`.
+  Cette option est similaire à `mixins`.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // étend `CompA` sans avoir à appeler `Vue.extend` sur l'un ou l'autre
   var CompB = {
     extends: CompA,
     ...
@@ -1006,31 +1006,31 @@ type: api
 
 ### provide / inject
 
-> New in 2.2.0+
+> Nouveau dans la 2.2.0+
 
-- **Type:**
-  - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
+- **Type :**
+  - **provide :** `Object | () => Object`
+  - **inject :** `Array<string> | { [key: string]: string | Symbol | Object }`
 
-- **Details:**
+- **Détails :**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` et `inject` sont fournis principalement pour des cas d'utilisation avancés dans les bibliothèques de plugins / composants. Il n'est PAS recommandé de les utiliser dans du code applicatif générique.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  Ces deux options sont utilisées ensemble pour permettre à un composant parent de servir d'injecteur de dépendances pour tous ses descendants, peu importe la profondeur de la hiérarchie de composants, tant qu'ils sont dans la même chaine parente. Si vous êtes familiers avec React, c'est très similaire à la fonctionnalité de contexte dans React.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  L'option `provide` doit être un objet ou une fonction retournant un objet. Cet objet contient les propriétés qui sont disponibles pour l'injection dans ses descendants. Vous pouvez utiliser des `Symbol` ES2015 comme clés dans cet objet, mais seulement dans les environnements supportant nativement `Symbol` et `Reflect.ownKeys`.
 
-  The `inject` option should be either:
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  L'option `inject` doit être soit :
+  - un `Array` de `String`, ou
+  - un objet où les clés sont les noms des liaisons locales et où les valeurs sont :
+    - les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles, ou
+    - un objet où :
+      - la propriété `from` est la clé (`String` ou `Symbol`) à rechercher dans les injections disponibles, et
+      - la propriété `default` est utilisé comme valeur de substitution.
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > Note : les liaisons `provide` et `inject` ne sont PAS réactives. C'est intentionnel. Cependant, si vous passez un objet observé, les propriétés sur cet objet resteront réactives.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   // parent component providing 'foo'
@@ -1041,8 +1041,8 @@ type: api
     // ...
   }
 
-  // child component injecting 'foo'
-  var Child = {
+  // le composant enfant injectant 'foo'
+  var Enfant = {
     inject: ['foo'],
     created () {
       console.log(this.foo) // => "bar"
@@ -1051,7 +1051,7 @@ type: api
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Avec les `Symbol` ES2015, la fonction `provide` et l'objet `inject` :
   ``` js
   const s = Symbol()
 
@@ -1063,17 +1063,17 @@ type: api
     }
   }
 
-  const Child = {
+  const Enfant = {
     inject: { s },
     // ...
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > Les deux prochains exemples fonctionnent seulement avec Vue 2.2.1+. En dessous de cette version, les valeurs injectées étaient résolues après l'initialisation des `props` et de `data`.
 
-  Using an injected value as the default for a prop:
+  En utilisant une valeur injectée comme valeur par défaut pour une prop :
   ```js
-  const Child = {
+  const Enfant = {
     inject: ['foo'],
     props: {
       bar: {
@@ -1085,9 +1085,9 @@ type: api
   }
   ```
 
-  Using an injected value as data entry:
+  En utilisant une valeur injectée comme entrée de données :
   ```js
-  const Child = {
+  const Enfant = {
     inject: ['foo'],
     data () {
       return {
@@ -1097,7 +1097,7 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > Dans la 2.5.0+ les injections peuvent être optionnelles avec une valeur par défaut :
 
   ``` js
   const Child = {
@@ -1107,7 +1107,7 @@ type: api
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  S'il est nécessaire de de pouvoir injecter via une propriété avec un nom différent, utilisez `from` pour indiquer la source de la propriété :
 
   ``` js
   const Child = {
@@ -1120,7 +1120,7 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  De façon similaire aux valeurs par défaut des props, vous devez utiliser une fabrique de fonctions pour les valeurs non primitives :
 
   ``` js
   const Child = {
@@ -1133,76 +1133,76 @@ type: api
   }
   ```
 
-## Options / Misc
+## Options / Divers
 
 ### name
 
-- **Type:** `string`
+- **Type :** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Restriction :** respecté uniquement lorsqu'utilisé comme option du composant.
 
-- **Details:**
+- **Détails :**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Permet au composant de s'invoquer lui-même récursivement dans son template. Notez que lorsqu'un composant est déclaré globalement avec `Vue.component()`, l'identifiant global est automatiquement assigné à sa propriété `name`.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Un autre bénéfice du fait de spécifier une option `name` est le débogage. Les composants nommés donnent des messages d'avertissement plus utiles. De plus, lorsque vous inspectez une application via les [vue-devtools](https://github.com/vuejs/vue-devtools), les composants non nommés s'afficheront en tant que `<AnonymousComponent>`, ce qui n'est pas très instructif. En fournissant une option `name`, vous obtiendrez bien plus d'informations dans l'arbre de composants.
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Type :** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Par défaut :** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restrictions :** Cette option n'est disponible que dans la version complète du build, avec la compilation dans le navigateur.
 
-- **Details:**
+- **Détails :**
 
-  Change the plain text interpolation delimiters.
+  Change les délimiteurs d'interpolation de texte. **Cette option est uniquement disponible en version complète.**
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Les délimiteurs ont été changés pour suivre le style des templates ES6
   ```
 
 ### functional
 
-- **Type:** `boolean`
+- **Type :** `Boolean`
 
-- **Details:**
+- **Détails :**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+  Rend le composant sans état (pas de propriété `data`) et sans instance (pas de contexte `this`). Il s'agit simplement d'une fonction `render` qui retourne des nœuds virtuels, ce qui réduit fortement les couts en performance au rendu pour ce type de composants.
 
-- **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Voir aussi :** [Composants fonctionnels](../guide/render-function.html#Composants-fonctionnels)
 
 ### model
 
-> New in 2.2.0
+> Nouveau dans la 2.2.0
 
-- **Type:** `{ prop?: string, event?: string }`
+- **Type :** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **Détails :**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Permet à un composant personnalisé de définir la prop et l'évènement utilisé quand il est utilisé avec `v-model`. Par défaut, `v-model` sur un composant utilise `value` comme prop et `input` comme évènement, mais certains types de champs de saisie comme les cases à cocher et les boutons radio peuvent vouloir utiliser la prop `value` à d'autres fins. Utiliser l'option `model` peut éviter le conflit dans ce genre de cas.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
-  Vue.component('my-checkbox', {
+  Vue.component('ma-checkbox', {
     model: {
       prop: 'checked',
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // cela permet d'utiliser la prop `value` à d'autres fins
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // utilise `checked` comme prop qui prend la place de `value`
       checked: {
-        type: Number,
+        type : Number,
         default: 0
       }
     },
@@ -1211,155 +1211,155 @@ type: api
   ```
 
   ``` html
-  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  <ma-checkbox v-model="foo" value="une certaine valeur"></ma-checkbox>
   ```
 
-  The above will be equivalent to:
+  Le code ci-dessus est équivalent à :
 
   ``` html
-  <my-checkbox
+  <ma-checkbox
     :checked="foo"
     @change="val => { foo = val }"
-    value="some value">
-  </my-checkbox>
+    value="une certaine valeur">
+  </ma-checkbox>
   ```
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `true`
+- **Par défaut :** `true`
 
-- **Details:**
+- **Détails :**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Par défaut, les attributs de portée parente qui ne sont pas reconnus en tant que props vont « échouer » et être appliqués à l'élément racine du composant enfant en tant qu'attribut HTML normal. Quand on crée un composant qui encapsule un élément cible ou un autre composant, cela peut ne pas être le comportement souhaité. En mettant `inheritAttrs` à `false`, ce comportement par défaut peut être désactivé. Les attributs sont disponibles via la propriété d'instance `$attrs` (aussi nouvelle en 2.4) et peuvent être explicitement liée a un élément non-racine en utilisant `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Note : cette option n'affecte **pas** les liaisons `class` et `style`.
 
 ### comments
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `false`
+- **Par défaut :** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restrictions :** Cette option est uniquement disponible dans le build complet, avec la compilation dans le navigateur.
 
-- **Details:**
+- **Détails :**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Quand mis à `true`, cela va conserver et faire le rendu HTML des commentaires trouvés dans les templates. Le comportement par défaut est de les enlever.
 
-## Instance Properties
+## Propriétés d'instance
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Details:**
+- **Détails :**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  L'objet `data` est ce que l'instance de Vue observe. L'instance de Vue agit comme un proxy pour l'accès aux propriétés de cet objet `data`.
 
-- **See also:** [Options / Data - data](#data)
+- **Voir aussi :** [Options / Data - data](#data)
 
 ### vm.$props
 
-> New in 2.2.0+
+> Nouveau dans la 2.2.0+
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Details:**
+- **Détails :**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  Un objet représentant les props actuelles qu'un composant a reçues. L'instance de Vue agit comme un proxy pour accéder aux propriétés sur son objet `props`.
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Type :** `HTMLElement`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  The root DOM element that the Vue instance is managing.
+  L'élément racine du DOM que gère l'instance de Vue.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Les options d'instanciation utilisées pour cette instance de Vue. C'est utile lorsque vous voulez inclure des propriétés personnalisées dans les options:
 
   ``` js
   new Vue({
-    customOption: 'foo',
+    optionPersonnalisée: 'foo',
     created: function () {
-      console.log(this.$options.customOption) // => 'foo'
+      console.log(this.$options.optionPersonnalisée) // => 'foo'
     }
   })
   ```
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Type :** `Instance de Vue`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  The parent instance, if the current instance has one.
+  L'instance parente, si l'instance actuelle en a une.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Type :** `Instance de Vue`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  L'instance de Vue à la racine de l'arbre de composants actuel. Si l'instance actuelle n'a pas de parents, la valeur sera l'instance elle-même.
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Type :** `Array<Instance de Vue>`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Les composants enfants directs de l'instance actuelle. **Notez que l'ordre des enfants n'est pas garanti pour `$children`, et que cette propriété n'est pas réactive.** Si vous vous retrouvez à essayer d'utiliser `$children` pour de la liaison de données, optez plutôt pour un `Array` et `v-for` pour générer les composants enfants, en utilisant l'`Array` comme unique source fiable.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Type :** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Distribution-de-contenu-avec-des-slots). Chaque [slot nommé](../guide/components.html#Slots-nommes) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les nœuds non inclus dans un slot nommé.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Accéder à `vm.$slots` est plus utile lorsque vous écrivez un composant avec une [fonction de rendu](../guide/render-function.html).
 
-- **Example:**
+- **Exemple :**
 
   ```html
   <blog-post>
     <h1 slot="header">
-      About Me
+      À propos de moi
     </h1>
 
-    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+    <p>Voici du contenu pour la page, qui sera inclus dans vm.$slots.default, car il n'est pas à l'intérieur d'un slot nommé.</p>
 
     <p slot="footer">
       Copyright 2016 Evan You
     </p>
 
-    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+    <p>Si j'ai du contenu ici, il sera aussi inclus dans vm.$slots.default.</p>
   </blog-post>
   ```
 
@@ -1378,237 +1378,237 @@ type: api
   })
   ```
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+- **Voir aussi :**
+  - [Composant `<slot>`](#slot-1)
+  - [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
+  - [Fonctions de rendu - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0+
+> Nouveau dans la 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Utilisé pour accéder programmatiquement aux [slots avec portée](../guide/components.html#Slots-avec-portee). Pour chaque slot, y compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Accéder à `vm.$scopedSlots` est surtout utile lors de l'écriture d'un composant avec une [fonction de rendu](../guide/render-function.html).
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+- **Voir aussi :**
+  - [Composant `<slot>`](#slot-1)
+  - [Slots avec portée](../guide/components.html#Slots-avec-portee)
+  - [Fonctions de rendu - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
+  Un objet contenant des éléments du DOM et des composants, ayant des [attributs `ref`](#ref) enregistrée.
 
-- **See also:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
-  - [Special Attributes - ref](#ref)
+- **Voir aussi :**
+  - [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
+  - [Attributs spéciaux - ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Whether the current Vue instance is running on the server.
+  Vaut `true` si l'instance actuelle de Vue s'exécute côté serveur.
 
-- **See also:** [Server-Side Rendering](../guide/ssr.html)
+- **Voir aussi :** [Rendu côté serveur](../guide/ssr.html)
 
 ### vm.$attrs
 
-- **Type:** `{ [key: string]: string }`
+- **Type :** `{ [key: string]: string }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contient les attributs liés de portée parente (à l'exception de `class` et `style`) qui ne sont pas reconnus (et extrait) en tant que props. Quand un composant n'a aucune props de déclarée, il contient essentiellement toutes les liaisons de portée parente (à l'exception de `class` et `style`), et peut être passé à l'intérieur d'un composant enfant via `v-bind="$attrs"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
 ### vm.$listeners
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **Type :** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating transparent wrapper components.
+  Contient le gestionnaire d'évènement `v-on` de portée parente (sans le modificateur `.native`). Il peut être passé à l'intérieur d'un composant enfant via `v-on="$listeners"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
-## Instance Methods / Data
+## Méthodes et données d'instance
 
-### vm.$watch( expOrFn, callback, [options] )
+### vm.$watch( expOuFn, callback, [options] )
 
-- **Arguments:**
+- **Arguments :**
   - `{string | Function} expOrFn`
   - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Retourne :** `{Function} unwatch`
 
-- **Usage:**
+- **Utilisation :**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
+  Observe les changements sur l'instance de Vue à partir d'une expression ou d'une fonction calculée. La fonction de rappel est appelée avec la nouvelle et l'ancienne valeur. L'expression accepte uniquement les chemins simples délimités par des points. Pour des expressions plus complexes, utilisez plutôt une fonction.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Note: lors de la modification (et non la réassignation) d'un <code>Object</code> ou d'un <code>Array</code>, l'ancienne valeur sera la même que la nouvelle valeur car ils référencient le même <code>Object</code>/<code>Array</code>. Vue ne conserve pas de copie de la valeur avant modification.</p>
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   // keypath
-  vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+  vm.$watch('a.b.c', function (nouvelleValeur, ancienneValeur) {
+    // fait quelque-chose
   })
 
-  // function
+  // fonction
   vm.$watch(
     function () {
       return this.a + this.b
     },
-    function (newVal, oldVal) {
-      // do something
+    function (nouvelleValeur, ancienneValeur) {
+      // fait quelque-chose
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retourne une fonction `unwatch` qui une fois exécutée stoppe le déclenchement de la fonction `callback` :
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // plus tard, démonte l'observateur
   unwatch()
   ```
 
 - **Option: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Pour aussi détecter les changements des valeurs imbriquées dans les objets, vous devez passer `deep: true` dans l'argument des options. Notez que vous n'avez pas besoin de cela pour observer les modifications d'un `Array`.
 
   ``` js
-  vm.$watch('someObject', callback, {
+  vm.$watch('monObjet', callback, {
     deep: true
   })
-  vm.someObject.nestedValue = 123
-  // callback is fired
+  vm.monObjet.valeurImbriquée = 123
+  // la fonction de rappel est déclenchée
   ```
 
 - **Option: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Passer `immediate: true` dans les options déclenchera immédiatement la fonction `callback` avec la valeur actuelle de l'expression :
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // la fonction `callback` est immédiatement déclenchée avec la valeur actuelle de `a`
   ```
 
-### vm.$set( target, key, value )
+### vm.$set( cible, clé, valeur )
 
-- **Arguments:**
-  - `{Object | Array} target`
-  - `{string | number} key`
-  - `{any} value`
+- **Arguments :**
+  - `{Object | Array} cible`
+  - `{string | number} clé`
+  - `{any} valeur`
 
-- **Returns:** the set value.
+- **Retourne :** la valeur assignée
 
-- **Usage:**
+- **Utilisation :**
 
-  This is the **alias** of the global `Vue.set`.
+  C'est un **alias** à la fonction globale `Vue.set`.
 
-- **See also:** [Vue.set](#Vue-set)
+- **Voir aussi :** [Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+### vm.$delete( cible, clé )
 
-- **Arguments:**
-  - `{Object | Array} target`
-  - `{string | number} key`
+- **Arguments :**
+  - `{Object | Array} cible`
+  - `{string | number} clé`
 
-- **Usage:**
+- **Utilisation :**
 
-  This is the **alias** of the global `Vue.delete`.
+  C'est un **alias** à la fonction globale `Vue.delete`.
 
-- **See also:** [Vue.delete](#Vue-delete)
+- **Voir aussi :** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Méthodes et Évènements d'Instance
 
-### vm.$on( event, callback )
+### vm.$on( évènement, callback )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+- **Arguments :**
+  - `{string | Array<string>} évènement` (`Array` supportée unique depuis la 2.2.0)
   - `{Function} callback`
 
-- **Usage:**
+- **Utilisation :**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Écoute un évènement personnalisé sur l'instance `vm`. Les évènements peuvent être déclenchés avec `vm.$emit`. La fonction de rappel recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'évènement.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   vm.$on('test', function (msg) {
     console.log(msg)
   })
-  vm.$emit('test', 'hi')
-  // => "hi"
+  vm.$emit('test', 'salut')
+  // => "salut"
   ```
 
-### vm.$once( event, callback )
+### vm.$once( évènement, callback )
 
-- **Arguments:**
-  - `{string} event`
+- **Arguments :**
+  - `{string} évènement`
   - `{Function} callback`
 
-- **Usage:**
+- **Utilisation :**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Écoute un évènement personnalisé, mais qu'une seule fois. L'écouteur sera supprimé une fois déclenché pour la première fois.
 
 ### vm.$off( [event, callback] )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+- **Arguments :**
+  - `{string | Array<string>} évènement` (les tableaux sont seulement supportés dans la 2.2.2+)
   - `{Function} [callback]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Remove custom event listener(s).
+  Supprime un ou des écouteurs d'évènements.
 
-  - If no arguments are provided, remove all event listeners;
+  - Si aucun argument n'est fourni, supprime tous les écouteurs d'évènements;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Si seul l'argument événément est fourni, supprime tous les écouteurs de cet évènement;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Si l'évènement et la fonction de rappel sont fournis, supprime l'écouteur uniquement pour cet événément et cette fonction de rappel spécifique.
 
 ### vm.$emit( eventName, [...args] )
 
-- **Arguments:**
-  - `{string} eventName`
-  - `[...args]`
+- **Arguments :**
+  - `{string} nom d'évènement`
+  - `[...arguments]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Déclenche un évènement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction de rappel de l'écouteur.
 
-- **Examples:**
+- **Exemples:**
 
-  Using `$emit` with only an event name:
+  Utiliser `$emit` avec un nom d'évènement :
 
   ```js
   Vue.component('welcome-button', {
     template: `
       <button v-on:click="$emit('welcome')">
-        Click me to be welcomed
+        Cliquez-moi pour être salué
       </button>
     `
   })
@@ -1623,7 +1623,7 @@ type: api
     el: '#emit-example-simple',
     methods: {
       sayHi: function () {
-        alert('Hi!')
+        alert('Salut !')
       }
     }
   })
@@ -1636,7 +1636,7 @@ type: api
     Vue.component('welcome-button', {
       template: `
         <button v-on:click="$emit('welcome')">
-          Click me to be welcomed
+          Cliquez-moi pour être salué
         </button>
       `
     })
@@ -1644,20 +1644,20 @@ type: api
       el: '#emit-example-simple',
       methods: {
         sayHi: function () {
-          alert('Hi!')
+          alert('Salut !')
         }
       }
     })
   </script>
   {% endraw %}
 
-  Using `$emit` with additional arguments:
+  Utiliser `$emit` avec des arguments additionnels :
 
   ```js
   Vue.component('magic-eight-ball', {
     data: function () {
       return {
-        possibleAdvice: ['Yes', 'No', 'Maybe']
+        possibleAdvice: ['Oui', 'Non', 'Peut-être']
       }
     },
     methods: {
@@ -1668,7 +1668,7 @@ type: api
     },
     template: `
       <button v-on:click="giveAdvice">
-        Click me for advice
+        Cliquez-moi pour un indice
       </button>
     `
   })
@@ -1699,7 +1699,7 @@ type: api
     Vue.component('magic-eight-ball', {
       data: function () {
         return {
-          possibleAdvice: ['Yes', 'No', 'Maybe']
+          possibleAdvice: ['Oui', 'Non', 'Peut-être']
         }
       },
       methods: {
@@ -1710,7 +1710,7 @@ type: api
       },
       template: `
         <button v-on:click="giveAdvice">
-          Click me for advice
+          Cliquez-moi pour un indice
         </button>
       `
     })
@@ -1725,198 +1725,198 @@ type: api
   </script>
   {% endraw %}
 
-## Instance Methods / Lifecycle
+## Méthodes d'Instance / Cycle de Vie
 
-### vm.$mount( [elementOrSelector] )
+### vm.$mount( [élémentOuSelecteur] )
 
-- **Arguments:**
-  - `{Element | string} [elementOrSelector]`
-  - `{boolean} [hydrating]`
+- **Arguments :**
+  - `{Element | string} [élémentOuSelecteur]`
+  - `{boolean} [hydratation]`
 
-- **Returns:** `vm` - the instance itself
+- **Retourne :** `vm` - l'instance elle-même
 
-- **Usage:**
+- **Utilisation :**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Si une Instance de Vue n'a pas reçu l'option `el` à l'instanciation, il sera dans un état « non monté », sans élément du DOM associé. `vm.$mount()` peut être utilisé pour démarrer manuellement le montage d'une Instance de Vue non montée.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Si l'argument `élémentOuSelecteur` n'est pas fourni, le rendu du template se fera dans un élément hors du document, et vous devrez utiliser les API natives du DOM pour l'insérer vous-même dans le document.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  La méthode retourne l'instance elle-même afin que vous puissiez chainer d'autres méthodes d'instance ensuite.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
-  var MyComponent = Vue.extend({
-    template: '<div>Hello!</div>'
+  var MonComposant = Vue.extend({
+    template: '<div>Salut!</div>'
   })
 
-  // create and mount to #app (will replace #app)
-  new MyComponent().$mount('#app')
+  // crée et monte sur #app (remplacera #app)
+  new MonComposant().$mount('#app')
 
-  // the above is the same as:
-  new MyComponent({ el: '#app' })
+  // le code ci-dessus est l'équivalent de :
+  new MonComposant({ el: '#app' })
 
-  // or, render off-document and append afterwards:
-  var component = new MyComponent().$mount()
-  document.getElementById('app').appendChild(component.$el)
+  // ou bien, fait le rendu hors du document et l'insère par la suite
+  var composant = new MonComposant().$mount()
+  document.getElementById('app').appendChild(composant.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **Voir aussi :**
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
+  - [Rendu côté serveur](../guide/ssr.html)
 
 ### vm.$forceUpdate()
 
-- **Usage:**
+- **Utilisation :**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Force l'Instance de Vue à refaire son rendu. Notez que cela n'affecte pas tous les composants enfants, seulement l'instance elle-même et les composants enfants avec un contenu de slot inséré.
 
 ### vm.$nextTick( [callback] )
 
-- **Arguments:**
+- **Arguments :**
   - `{Function} [callback]`
 
-- **Usage:**
+- **Utilisation :**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Reporte l'exécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Nouveau dans la 2.1.0+ : retourne une promesse si aucune fonction de rappel n'est fournie et si les promesses ne sont pas supportées dans l'environnement d'exécution. Notez que Vue ne fournit pas de polyfill aux promesses. Aussi, si vous ciblez des navigateurs qui ne supportent pas les promesses nativement (on parle de toi, IE), vous pouvez fournir un polyfill vous-même.
 
-- **Example:**
+- **Exemple :**
 
   ``` js
   new Vue({
     // ...
     methods: {
       // ...
-      example: function () {
-        // modify data
-        this.message = 'changed'
-        // DOM is not updated yet
+      exemple: function () {
+        // modifie des données
+        this.message = 'changé'
+        // le DOM n'est pas encore mis à jour
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
-          this.doSomethingElse()
+          // le DOM est maintenant à jour
+          // `this` est lié à l'instance courante
+          this.faireAutreChose()
         })
       }
     }
   })
   ```
 
-- **See also:**
+- **Voir aussi :**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
 ### vm.$destroy()
 
-- **Usage:**
+- **Utilisation :**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Détruit complètement une instance de Vue `vm`. Supprime ses connexions avec d'autres instances de Vue, détache toutes ses directives, désactive tous les écouteurs d'évènements.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Déclenche les hooks `beforeDestroy` et `destroyed`.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">Dans les cas d'utilisation normaux, vous ne devriez pas avoir à appeler cette méthode vous-même. Contrôlez plutôt le cycle de vie de vos composants enfants de manière pilotée par les données, en utilisant `v-if` et `v-for`.</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ## Directives
 
 ### v-text
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-- **Details:**
+- **Détails :**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  Met à jour le contenu textuel (`textContent`) de l'élément. Si vous n'avez besoin de mettre à jour qu'une partie de ce contenu, vous devriez utiliser les interpolations `{% raw %}{{ Mustache }}{% endraw %}`.
 
-- **Example:**
+- **Exemple :**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- même chose que -->
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Text)
+- **Voir aussi :** [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Texte)
 
 ### v-html
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-- **Details:**
+- **Détails :**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  Met à jour le contenu HTML (`innerHTML`) de l'élément. **Notez que les contenus sont insérés en pur HTML - ils ne seront pas compilés en tant que templates Vue**. Si vous vous retrouvez à vouloir composer des templates avec `v-html`, essayez de repenser la solution en utilisant des composants à la place.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">Faire le rendu dynamique de code HTML arbitraire sur votre site web peut être très dangereux car cela peut mener facilement à des [attaques XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez `v-html` uniquement avec du contenu de confiance et **jamais** avec du contenu fourni par les utilisateurs.</p>
 
-  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
+  <p class="tip">Dans les [composants monofichiers](../guide/single-file-components.html), les styles `scoped` ne seront pas appliqués aux contenus à l'intérieur de `v-html`, car ce HTML n'est pas gérer par le compilateur de template de Vue. Si vous voulez cibler le contenu `v-html` dans une CSS avec portée, vous devez utiliser à la place les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) ou un élément `<style>` global supplémentaire avec une stratégie de portée manuelle comme avec BEM.</p>
 
-- **Example:**
+- **Exemple :**
 
   ```html
   <div v-html="html"></div>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
+- **Voir aussi :** [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Interpetation-du-HTML)
 
 ### v-show
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
-- **Usage:**
+- **Utilisation :**
 
-  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
+  Permute l'affichage de l'élément avec la propriété CSS `display` selon si la valeur de l'expression est « [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) » ou non.
 
-  This directive triggers transitions when its condition changes.
+  Cette directive déclenche des transitions quand sa condition change.
 
-- **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Voir aussi :** [Rendu conditionnel - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
-- **Usage:**
+- **Utilisation :**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Fait le rendu conditionnel de l'élément selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non. L'élément et les directives / composants qu'il contient sont détruits et reconstruits durant la permutation. Si l'élément est un `<template>`, son contenu sera extrait en tant que bloc conditionnel.
 
-  This directive triggers transitions when its condition changes.
+  Cette directive déclenche des transitions quand sa condition change.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+<p class="tip">Quand utilisé avec v-if, v-for a une plus grande priorité par rapport à v-if. Voir le <a href="../guide/list.htmll#v-for-avec-v-if">guide sur le rendu de listes</a> pour plus de détails.</p>
 
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Voir aussi :** [Rendu conditionnel - v-if](../guide/conditional.html)
 
 ### v-else
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** l'élément précédent doit avoir une directive `v-if` ou `v-else-if`.
 
-- **Usage:**
+- **Utilisation :**
 
-  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
+  Dénote un bloc « else » pour `v-if` ou pour une chaine `v-if` / `v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
-    Now you see me
+    Là vous me voyez
   </div>
   <div v-else>
-    Now you don't
+    Là vous ne me voyez pas
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **Voir aussi :** [Rendu conditionnel - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
-> New in 2.1.0+
+> Nouveauté en 2.1.0+
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** l'élément précédent doit avoir une directive `v-if` or `v-else-if`.
 
-- **Usage:**
+- **Utilisation :**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  Dénote un bloc « else if » pour `v-if`. Peut être enchainé plusieurs fois.
 
   ```html
   <div v-if="type === 'A'">
@@ -1929,19 +1929,19 @@ type: api
     C
   </div>
   <div v-else>
-    Not A/B/C
+    Ni A, ni B, ni C
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Voir aussi :** [Rendu conditionnel - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Attend comme valeur :** `Array | Object | number | string`
 
-- **Usage:**
+- **Utilisation :**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  Fait le rendu de l'élément ou du bloc template plusieurs fois selon les données sources. La valeur de la directive doit utiliser la syntaxe spéciale `alias in expression` pour fournir un alias à l'élément courant dans l'itération:
 
   ``` html
   <div v-for="item in items">
@@ -1949,7 +1949,7 @@ type: api
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  Comme alternative, vous pouvez aussi spécifier un alias pour l'index courant dans l'itération (ou la clé si utilisée sur un `Object`):
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1957,7 +1957,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  Le comportement par défaut de `v-for` est qu'il essaiera de patcher les éléments actuellement en place sans les déplacer. Pour le forcer à réordonner les éléments, vous devez fournir un indice de tri avec l'attribut spécial `key` :
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1965,217 +1965,217 @@ type: api
   </div>
   ```
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Quand utilisé conjointement avec v-if, v-for a une plus grande priorité que v-if. Consultez le <a href="../guide/list.html#v-for-with-v-if">guide de rendu de listes</a> pour plus de détails.</p>
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  L'usage détaillé pour `v-for` est expliqué dans la section du guide indiquée ci-dessous.
 
-- **See also:**
-  - [List Rendering](../guide/list.html)
+- **Voir aussi :**
+  - [Rendu de liste](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Notation abrégée :** `@`
 
-- **Expects:** `Function | Inline Statement | Object`
+- **Attend comme valeur :** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **Argument de la fonction de rappel (callback) :** `event`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+- **Modificateurs :**
+  - `.stop` - appelle `event.stopPropagation()`.
+  - `.prevent` - appelle `event.preventDefault()`.
+  - `.capture` - ajoute l'écouteur d'évènement en mode capture.
+  - `.self` - déclenche le gestionnaire d'évènement uniquement si l'évènement provient de cet élément.
+  - `.{keyCode | keyAlias}` - déclenche le gestionnaire d'évènement uniquement pour certaines touches du clavier.
+  - `.native` - écoute un évènement natif sur l'élément racine d'un composant.
+  - `.once` - déclenche le gestionnaire d'évènement une seule fois maximum.
+  - `.left` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton gauche de la souris.
+  - `.right` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton droit de la souris.
+  - `.middle` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton du milieu de la souris.
+  - `.passive` - (2.3.0+) attache un évènement du DOM avec `{ passive: true }`.
 
-- **Usage:**
+- **Utilisation :**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+  Attache un écouteur d'évènement à l'élément. Le type d'évènement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
-  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
+  Quand utilisé sur un élément standard, il écoute uniquement les [**évènements natifs du DOM**](https://developer.mozilla.org/fr/docs/Web/Events). Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  Lorsque des évènements natifs du DOM sont écoutés, la méthode reçoit l'évènement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires évènement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
 
-- **Example:**
+- **Exemple :**
 
   ```html
-  <!-- method handler -->
-  <button v-on:click="doThis"></button>
+  <!-- nom de méthode -->
+  <button v-on:click="faireCeci"></button>
 
-  <!-- inline statement -->
-  <button v-on:click="doThat('hello', $event)"></button>
+  <!-- ligne d'instruction -->
+  <button v-on:click="faireCela('hello', $event)"></button>
 
-  <!-- shorthand -->
-  <button @click="doThis"></button>
+  <!-- notation abrégée -->
+  <button @click="faireCeci"></button>
 
-  <!-- stop propagation -->
-  <button @click.stop="doThis"></button>
+  <!-- stoppe la propagation -->
+  <button @click.stop="faireCeci"></button>
 
-  <!-- prevent default -->
-  <button @click.prevent="doThis"></button>
+  <!-- empêche le comportement par défaut -->
+  <button @click.prevent="faireCeci"></button>
 
-  <!-- prevent default without expression -->
+  <!-- empêche le comportement par défaut sans expression -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
-  <button @click.stop.prevent="doThis"></button>
+  <!-- enchainer les modificateurs -->
+  <button @click.stop.prevent="faireCeci"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- modificateur de touche avec un keyAlias -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- modificateur de touche avec un keyCode -->
   <input @keyup.13="onEnter">
 
-  <!-- the click event will be triggered at most once -->
-  <button v-on:click.once="doThis"></button>
+  <!-- l'évènement click sera déclenché une seule fois maximum -->
+  <button v-on:click.once="faireCeci"></button>
 
-  <!-- object syntax (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
+  <!-- syntaxe objet (2.4.0+) -->
+  <button v-on="{ mousedown: faireCeci, mouseup: faireCela }"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  Écouter des évènements personnalisés sur un composant enfant (le gestionnaire est appelé quand `mon-evenement` est émis depuis l'enfant):
 
   ```html
-  <my-component @my-event="handleThis"></my-component>
+  <mon-composant @mon-evenement="faireCeci"></mon-composant>
 
-  <!-- inline statement -->
-  <my-component @my-event="handleThis(123, $event)"></my-component>
+  <!-- ligne d'instruction -->
+  <mon-composant @mon-evenement="faireCeci(123, $event)"></mon-composant>
 
-  <!-- native event on component -->
-  <my-component @click.native="onClick"></my-component>
+  <!-- évènement natif sur le composant -->
+  <mon-composant @click.native="onClick"></mon-composant>
   ```
 
-- **See also:**
-  - [Event Handling](../guide/events.html)
-  - [Components - Custom Events](../guide/components.html#Custom-Events)
+- **Voir aussi :**
+  - [Gestion des évènements](../guide/events.html)
+  - [Composants - Évènements personnalisés](../guide/components.html#Evenements-personnalises)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Notation abrégée :** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Attend comme valeur :** `any (avec argument) | Object (sans argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Argument :** `attrOuProp (optionnel)`
 
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+- **Modificateurs :**
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle différence ?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
+  - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
+  - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un gestionnaire `v-on` qui met à jour la valeur liée.
 
-- **Usage:**
+- **Utilisation :**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Lie dynamiquement un ou plusieurs attributs HTML ou props de composants à une expression.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  Quand utilisér pour lier un attribut `class` ou `style`, la directive supporte des types additionnels de valeur tels que `Array` ou `Object`. Consultez la section du guide en lien ci-dessous pour plus de détails.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  Quand utilisée pour lier à une prop de composant, la prop doit être bien déclarée dans le composant enfant.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  Utilisée sans argument, la directive peut lier un objet contenant des paires clé-valeur d'attributs. Notez que dans ce mode, `class` et `style` ne supportent pas les `Array` ou `Object`.
 
-- **Example:**
+- **Exemple :**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- lie un attribut -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- notation abrégée -->
   <img :src="imageSrc">
 
-  <!-- with inline string concatenation -->
+  <!-- avec de la concaténation de chaines de caractères -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- class binding -->
+  <!-- liaison de classes -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- liaison de styles -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
-  <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+  <!-- lie un objet d'attributs -->
+  <div v-bind="{ id: uneProp, 'autre-attr': uneAutreProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- lie un attribut du DOM avec le modificateur prop -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
-  <my-component :prop="someThing"></my-component>
+  <!-- liaison de prop. "prop" doit être déclaré dans mon-composant. -->
+  <mon-composant :prop="uneValeur"></mon-composant>
 
-  <!-- pass down parent props in common with a child component -->
-  <child-component v-bind="$props"></child-component>
+  <!-- transmet les props parentes à un composant enfant -->
+  <composant-enfant v-bind="$props"></composant-enfant>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  Le modificateur `.camel` permet de réécrire en camelCase un nom d'attribut de `v-bind` si vous déclarez vos templates dans le DOM, p. ex. l'attribut SVG `viewBox` :
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  `.camel` n'est pas nécessaire si vous utilisez des templates en chaine de caractères ou si vous les compilez avec `vue-loader`/`vueify`.
 
-- **See also:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+- **Voir aussi :**
+  - [Liaisons de classe et de style](../guide/class-and-style.html)
+  - [Composants - Props de composant](../guide/components.html#Props)
+  - [Composants - Modificateur `.sync`](../guide/components.html#Modificateur-sync)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Attend comme valeur :** variable selon les éléments des champs de formulaire ou les valeurs en sortie de composants
 
-- **Limited to:**
+- **Limité à :**
   - `<input>`
   - `<select>`
   - `<textarea>`
-  - components
+  - composants
 
-- **Modifiers:**
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
-  - [`.trim`](../guide/forms.html#trim) - trim input
+- **Modificateurs :**
+  - [`.lazy`](../guide/forms.html#lazy) - écoute les évènements `change` au lieu de `input`
+  - [`.number`](../guide/forms.html#number) - convertit les chaines de caractères d'entrée en nombres
+  - [`.trim`](../guide/forms.html#trim) - retire les blancs autour des chaines de caractères en entrée
 
-- **Usage:**
+- **Utilisation :**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  Crée une liaison bidirectionnelle sur un élément de saisie d'un formulaire ou sur un composant. Pour une utilisation détaillée et d'autres notes, consultez la section du guide en lien ci-dessous.
 
-- **See also:**
-  - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+- **Voir aussi :**
+  - [Liaisons sur les champs de formulaire](../guide/forms.html)
+  - [Composants - Composants de champ de formulaire utilisant les évènements personnalisés](../guide/components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises)
 
 ### v-pre
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
-- **Usage:**
+- **Utilisation :**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de nœuds sans directives, cela peut aussi accélérer la compilation.
 
-- **Example:**
+- **Exemple :**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ ceci ne sera pas compilé }}</span>
    ```
 
 ### v-cloak
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
-- **Usage:**
+- **Utilisation :**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  Cette directive restera sur l'élément jusqu'à ce que l'instance de Vue associée ait fini sa compilation. Combiné avec des règles CSS telles que `[v-cloak] { display: none }`, cette directive peut être utilisée pour cacher des liaisons moustaches encore non compilées jusqu'à ce que l'instance de Vue soit prête.
 
-- **Example:**
+- **Exemple :**
 
   ```css
   [v-cloak] {
@@ -2189,47 +2189,47 @@ type: api
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  L'élément `<div>` ne sera pas visible jusqu'à ce que la compilation soit terminée.
 
 ### v-once
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
-- **Details:**
+- **Détails :**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  Fait le rendu de l'élément ou du composant qu'**une seule fois** seulement. Lors des nouveaux rendus par la suite, l'élément/composant et tous ses enfants seront traités comme du contenu statique et ignorés. Cela peut être utilisé pour optimiser les performances à la mise à jour d'un composant.
 
   ```html
-  <!-- single element -->
-  <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- sur un seul élément -->
+  <span v-once>Ceci ne changera jamais : {{msg}}</span>
+  <!-- l'élément a des enfants -->
   <div v-once>
-    <h1>comment</h1>
+    <h1>commentaire</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
-  <my-component v-once :comment="msg"></my-component>
-  <!-- `v-for` directive -->
+  <!-- composant -->
+  <mon-composant v-once :commentaire="msg"></mon-composant>
+  <!-- directive `v-for` -->
   <ul>
-    <li v-for="i in list" v-once>{{i}}</li>
+    <li v-for="i in liste" v-once>{{i}}</li>
   </ul>
   ```
 
-- **See also:**
-  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
+- **Voir aussi :**
+  - [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Texte)
+  - [Composants - Composants statiques peu couteux avec `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Attributs spéciaux
 
 ### key
 
-- **Expects:** `number | string`
+- **Attend comme valeur :** `number | string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  L'attribut spécial `key` est principalement utilisé comme marqueur pour l'algorithme de DOM virtuel de Vue afin d'identifier les *VNodes* lors du différentiel entre la nouvelle liste des nœuds et la liste précédente. Sans clés, Vue utilise un algorithme qui minimise le déplacement de nœuds et essaie de patcher/réutiliser le plus possible les éléments présents du même type. Avec des clés, cela réordonnera les éléments en se basant sur le nouvel ordre de clés, et les éléments avec des clés qui ne sont plus présentes seront toujours supprimés/détruits.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Les enfants d'un même parent commun doivent avoir des **clés uniques**. Des clés en doublons causeront des erreurs de rendu.
 
-  The most common use case is combined with `v-for`:
+  Le cas d'utilisation le plus classique est la combinaison avec `v-for`:
 
   ``` html
   <ul>
@@ -2237,64 +2237,64 @@ type: api
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Il peut aussi être utilisé pour forcer le remplacement d'un élément/composant au lieu de le réutiliser. Cela peut être utile lorsque vous voulez :
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Déclencher correctement les hooks de cycle de vie d'un composant
+  - Déclencher des transitions
 
-  For example:
+  Par exemple :
 
   ``` html
   <transition>
-    <span :key="text">{{ text }}</span>
+    <span :key="texte">{{ texte }}</span>
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Quand `texte` change, le `<span>` sera toujours remplacé plutôt que d'être patché, afin qu'une transition soit déclenchée.
 
 ### ref
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` est utilisé pour inscrire une référence à un élément ou à un composant enfant. La référence sera inscrite sous l'objet `$refs` du composant parent. Lorsqu'utilisée sur un élément du DOM, la référence sera cet élément; lorsqu'utilisée sur un composant enfant, la référence sera l'instance du composant :
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p sera le nœud du DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child component instance -->
-  <child-component ref="child"></child-component>
+  <!-- vm.$refs.enfant sera l'instance du composant enfant -->
+  <comp-enfant ref="enfant"></comp-enfant>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Quand utilisé sur des éléments/composants avec `v-for`, la référence inscrite sera un `Array` contenant les nœuds du DOM ou les instances de composant.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-mêmes résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
 
-- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Voir aussi :** [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
 
 ### slot
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Utilisé sur du contenu inséré dans les composants enfants afin d'indiquer à quel slot nommé le contenu doit être associé.
 
-  For detailed usage, see the guide section linked below.
+  Pour un usage détaillé, veuillez consulter la section du guide en lien ci-dessous.
 
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
+- **Voir aussi :** [Slots nommés](../guide/components.html#Slots-nommes)
 
 ### slot-scope
 
-> New in 2.5.0+
+> Nouveau dans la 2.5.0+
 
-- **Expects:** `function argument expression`
+- **Attend comme valeur :** `function argument expression`
 
-- **Usage:**
+- **Utilisation :**
 
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui la supportent, vous pouvez utiliser une expression de destructuration dans l'expression. Remplace [`scope`](#scope-replaced) dans la 2.5.0+.
 
-  This attribute does not support dynamic binding.
+  Cet attribut ne supporte pas les liaisons dynamiques.
 
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+- **Voir aussi :** [Slots avec portée](../guide/components.html#Slots-avec-portee)
 
 ### scope <sup>replaced</sup>
 
@@ -2306,60 +2306,60 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 ### is
 
-- **Expects:** `string | Object (component’s options object)`
+- **Attend comme valeur :** `string | Object (un objet d'options de composant)`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Utilisé pour les [composants dynamiques](../guide/components.html#Composants-dynamiques) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM).
 
-  For example:
+  Par exemple :
 
   ``` html
-  <!-- component changes when currentView changes -->
-  <component v-bind:is="currentView"></component>
+  <!-- le composant change quand la vue actuelle change -->
+  <component v-bind:is="vueActuelle"></component>
 
-  <!-- necessary because `<my-row>` would be invalid inside -->
-  <!-- a `<table>` element and so would be hoisted out      -->
+  <!-- nécessaire car `<ma-ligne>` sera invalide à l'intérieur -->
+  <!-- d'un élément `<table>` et donc sera écarté -->
   <table>
-    <tr is="my-row"></tr>
+    <tr is="ma-ligne"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  Pour un usage détaillé, suivez les liens dans la description ci-dessus.
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **Voir aussi :**
+  - [Composants dynamiques](../guide/components.html#Composants-dynamiques)
+  - [Limitations de l’analyse d’un template à partir du DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM)
 
-## Built-In Components
+## Composants intégrés par défaut
 
 ### component
 
 - **Props:**
   - `is` - string | ComponentDefinition | ComponentConstructor
-  - `inline-template` - boolean
+  - `inline-template` - booléen
 
-- **Usage:**
+- **Utilisation :**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  Un « métacomposant » pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
-  <component :is="componentId"></component>
+  <!-- un composant dynamique contrôlé par -->
+  <!-- la propriété `idComposant` de l'instance de vue -->
+  <component :is="idComposant"></component>
 
-  <!-- can also render registered component or component passed as prop -->
-  <component :is="$options.components.child"></component>
+  <!-- peut aussi faire le rendu de composants inscrits globalement ou passés comme prop -->
+  <component :is="$options.components.enfant"></component>
   ```
 
-- **See also:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Voir aussi :** [Composants dynamiques](../guide/components.html#Composants-dynamiques)
 
 ### transition
 
 - **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `name` - string, utilisé pour générer automatiquement des noms de classes CSS pour les transitions. p. ex. `name: 'fade'` donnera `.fade-enter`, `.fade-enter-active`, etc. Valeur par défaut : `"v"`.
+  - `appear` - booléen, indique si la transition doit être appliquée ou non au rendu initial. Valeur par défaut: `false`.
+  - `css` - booléen, indique si les classes CSS de transition doivent être appliquées ou non. Valeur par défaut: `true`. Si assigné à `false`, seuls les hooks JavaScript inscrits via les évènements du composant seront déclenchés.
+  - `type` - string, spécifie le type d'évènement de transition à attendre pour déterminer le timing de fin de transition. Les valeurs disponibles sont `"transition"` and `"animation"`. Par défaut, il détectera automatiquement le type ayant la durée la plus longue.
+  - `mode` - string, contrôle la séquence de timing des transitions entrantes/sortantes. Les modes disponibles sont `"out-in"` et `"in-out"`; par défaut en simultané.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2381,28 +2381,28 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - `after-leave`
   - `after-appear`
   - `enter-cancelled`
-  - `leave-cancelled` (`v-show` only)
+  - `leave-cancelled` (`v-show` uniquement)
   - `appear-cancelled`
 
-- **Usage:**
+- **Utilisation :**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
+  `<transition>` sert d'effets de transition pour un  **unique** élément / composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparait pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
 
   ```html
-  <!-- simple element -->
+  <!-- élément simple -->
   <transition>
-    <div v-if="ok">toggled content</div>
+    <div v-if="ok">contenu permuté</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- composant dynamique -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- hooks d'évènement -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
-      <div v-show="ok">toggled content</div>
+      <div v-show="ok">contenu permuté</div>
     </transition>
   </div>
   ```
@@ -2412,32 +2412,32 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
     ...
     methods: {
       transitionComplete: function (el) {
-        // for passed 'el' that DOM element as the argument, something ...
+        // pour l'élément du DOM 'el' passé en argument, faire quelque-chose...
       }
     }
     ...
   }).$mount('#transition-demo')
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transitions : entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### transition-group
 
 - **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+  - `tag` - string, par défaut `span`.
+  - `move-class` - surcharge la classe CSS appliquée durant le mouvement de transition.
+  - expose les mêmes props que `<transition>` à l'exception de `mode`.
 
-- **Events:**
-  - exposes the same events as `<transition>`.
+- **Évènements:**
+  - expose les mêmes évènements que `<transition>`.
 
-- **Usage:**
+- **Utilisation :**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
+  `<transition-group>` sert d'effets de transition pour de **multiples** éléments / composants. Le rendu de `<transition-group>` donne un nouvel élément dans le DOM. Par défaut, il s'agit d'un `<span>`, mais vous pouvez configurer le type d'élément en sortie via l'attribut `tag`.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Notez que chaque enfant dans un `<transition-group>` doit avoir une **clé unique** pour que les animations fonctionnent correctement.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` supporte les déplacements de transition via les transformations CSS. Quand la position à l'écran d'un élément enfant a changé après une mise à jour, une classe CSS de déplacement (auto générée à partir de l'attribut `name` ou configurée via l'attribut `move-class`) est appliquée. Si la propriété CSS `transform` permet les transitions quand la classe de déplacement est appliquée, l'élément sera animé de façon fluide jusqu'à sa destination en utilisant la [technique FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2447,37 +2447,37 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   </transition-group>
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transition : entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components matched by this will be cached.
-  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
+  - `include` - string ou RegExp. Seuls les composants correspondants seront mis en cache.
+  - `exclude` - string ou RegExp. Les composants correspondants ne seront pas mis en cache.
 
-- **Usage:**
+- **Utilisation :**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait : le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparait pas dans la chaine de composants du parent.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  Lorsqu'un composant est permuté à l'intérieur de `<keep-alive>`, ses hooks de cycle de vie `activated` et `deactivated` seront appelés en conséquence.
 
-  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > À partir de la 2.2.0+, `activated` et `deactivated` se déclencheront pour tous les composants imbriqués dans une arborescence `<keep-alive>`.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  Principalement utilisé pour préserver l'état du composant ou éviter un nouveau rendu.
 
   ```html
-  <!-- basic -->
+  <!-- basique -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- de multiples enfants conditionnels -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with `<transition>` -->
+  <!-- utilisé avec `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2485,54 +2485,54 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+  Notez que `<keep-alive>` est conçu pour le cas où il a un seul composant enfant direct qui est permuté. Il ne fonctionne pas si vous avez `v-for` à l'intérieur. Quand il y a de multiples enfants conditionnels, comme ci-dessus, `<keep-alive>` requiert qu'un seul enfant soit visible à la fois.
 
-- **`include` and `exclude`**
+- **`include` et `exclude`**
 
-  > New in 2.1.0+
+  > Nouveauté de la 2.1.0
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
+  Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière, soit une Array :
 
   ``` html
-  <!-- comma-delimited string -->
+  <!-- liste délimitée par des virgules -->
   <keep-alive include="a,b">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- expression régulière (utiliser `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- Array (utiliser `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  La correspondance est d'abord faite avec l'option `name` propre au composant, puis avec son nom d'inscription locale (la clé dans l'option `components` du parent) si l'option `name` n'est pas disponible. Les composants anonymes ne peuvent pas être mis en correspondance.
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` ne fonctionne pas avec les composants fonctionnels puisqu'ils n'ont pas d'instances à mettre en cache.</p>
 
-- **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Voir aussi :** [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
-  - `name` - string, Used for named slot.
+  - `name` - string, utilisé pour nommer le slot.
 
-- **Usage:**
+- **Utilisation :**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` sert d'emplacement de distribution de contenu dans les templates de composant. L'élement `<slot>` lui-même sera remplacé par le contenu.
 
-  For detailed usage, see the guide section linked below.
+  Pour un usage détaillé, consultez la section du guide en lien ci-dessous.
 
-- **See also:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Voir aussi :** [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
 
-## VNode Interface
+## Interface VNode
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- Veuillez vous référer à la [déclaration de classe VNode](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## Rendu côté serveur
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- Veuillez vous référer à la [documentation du package vue-server-renderer](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).

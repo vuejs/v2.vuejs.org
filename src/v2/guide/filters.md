@@ -1,20 +1,20 @@
 ---
-title: Filters
+title: Filtres
 type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations à moustaches et les expressions de v-bind** (ces dernières étant supportées depuis la 2.1.0+). Les filtres doivent être ajoutés à la fin de l'expression JavaScript, indiqués par le symbole de la barre verticale :
 
 ``` html
-<!-- in mustaches -->
+<!-- dans les moustaches -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- dans les v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-You can define local filters in a component's options:
+Vous pouvez définir les filtres locaux dans les options d'un composant :
 
 ``` js
 filters: {
@@ -26,7 +26,7 @@ filters: {
 }
 ```
 
-or define a filter globally before creating the Vue instance:
+ou définir un filtre globalement avant de créer l'instance de Vue :
 
 ``` js
 Vue.filter('capitalize', function (value) {
@@ -40,7 +40,7 @@ new Vue({
 })
 ```
 
-Below is an example of our `capitalize` filter being used:
+Ci-dessous un exemple du filtre `capitalize` en action :
 
 {% raw %}
 <div id="example_1" class="demo">
@@ -66,20 +66,20 @@ Below is an example of our `capitalize` filter being used:
 </script>
 {% endraw %}
 
-The filter's function always receives the expression's value (the result of the former chain) as its first argument. In the above example, the `capitalize` filter function will receive the value of `message` as its argument.
+La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaine) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
 
-Filters can be chained:
+Les filtres peuvent être chainés :
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+Dans ce cas, `filterA`, défini avec un seul argument, va recevoir la valeur de `message`. Puis la fonction `filterB` va être appelée avec le résultat de `filterA` passé dans `filterB` en tant que simple argument.
 
-Filters are JavaScript functions, therefore they can take arguments:
+Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments :
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Ici `filterA` est définie comme une fonction prenant trois arguments. La valeur de `message` va être passée en premier argument. La chaine de caractères `'arg1'` sera passée au filtre `filterA` en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.

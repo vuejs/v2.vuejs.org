@@ -8,6 +8,31 @@
     initSubHeaders()
     initLocationHashFuzzyMatching()
   }
+  initChat()
+
+  function initChat () {
+      var script = document.createElement("script");
+      window.gitter = {
+          chat: {
+              options: {
+                  room: "vuejs-fr/vue"
+              }
+          }
+      };
+      script.src = "https://sidecar.gitter.im/dist/sidecar.v1.js";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+      (function changeOpenChat() {
+          var name = document.getElementsByClassName("gitter-open-chat-button")[0];
+          if (name) {
+              name.innerHTML = 'Feedbacks';
+              name.classList.add("is-displayed");
+          } else {
+              setTimeout(changeOpenChat, 200);
+          }
+      }());
+  }
 
   // Most redirects should be specified in Hexo's
   // _config.yml. However, it can't handle hash-level
@@ -217,6 +242,7 @@
     })
 
     document.body.addEventListener('touchend', function (e) {
+
       end.y = e.changedTouches[0].clientY
       end.x = e.changedTouches[0].clientX
 

@@ -1,43 +1,43 @@
 ---
-title: Introduction
+title: Introduction (EN)
 type: cookbook
 order: 0
 ---
 
-## The Cookbook vs the Guide
+## Les tutoriels versus le guide
 
-How is the cookbook different from the guide? Why is this necessary?
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>En quoi les tutoriels sont-ils différent du guide ? Pourquoi est-ce nécessaire ?</p>
 
-* **Greater Focus**: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+* **Plus focalisé** : Dans le guide, nous racontons essentiellement une histoire. Chaque section se construit sur la base des précédentes et présume la connaissance de celles-ci. Dans les tutoriels, chaque tutoriel peut et devrait se suffire à lui-même. Cela signifie que les tutoriels peuvent se focaliser sur un aspect spécifique de Vue, plutôt que d'avoir à donner un aperçu global.
 
-* **Greater Depth**: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+* **Plus de profondeur** : Pour éviter de rendre le guide trop long, nous essayons d'inclure seulement les exemples les plus simples possible pour vous aider à comprendre chaque fonctionnalité. Puis nous passons à autre chose. Dans les tutoriels, nous pouvons inclure des exemples plus complexes, combinant les fonctionnalités de façon intéressante. Chaque tutoriel peut être aussi long et détaillé que besoin, afin de pleinement explorer son sujet.
 
-* **Teaching JavaScript**: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+* **Enseigner JavaScript** : Dans le guide, nous supposons que le lecteur est au moins moyennement familier avec la norme ES5 de JavaScript. Par exemple, nous n'expliquerons pas comment `Array.prototype.filter` fonctionne au sein d'une propriété calculée qui filtre une liste. Dans les tutoriels en revanche, des fonctionnalités essentielles de JavaScript (y-compris ES6/2015+) peuvent être explorées et expliquées pour montrer comment elles nous aident à construire de meilleures applications Vue.
 
-* **Exploring the Ecosystem**: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+* **Explorer l'écosystème** : Pour les fonctionnalités avancées, nous supposons que le lecteur a quelques connaissances sur l'écosystème. Par exemple, si vous voulez utiliser des composants monofichiers avec webpack, nous n'expliquerons pas comment configurer les parties qui ne concernent pas Vue dans la configuration de webpack. Dans les tutoriels, nous avons l'espace suffisant pour explorer plus en profondeur ces bibliothèques de l'écosystème - au moins dans la mesure où cela est universellement utile aux développeurs Vue.
 
-## Cookbook Contributions
+## Contributions au tutoriels
 
-### What we're looking for
+### What we're looking for (EN)
 
 The Cookbook gives developers examples to work off of that both cover common or interesting use cases, and also progressively explain more complex detail. Our goal is to move beyond a simple introductory example, and demonstrate concepts that are more widely applicable, as well as some caveats to the approach.
 
 If you're interested in contributing, please initiate collaboration by filing an issue under the tag **cookbook idea** with your concept so that we can help guide you to a successful pull request. After your idea has been approved, please follow the template below as much as possible. Some sections are required, and some are optional. Following the numerical order is strongly suggested, but not required.
 
-Recipes should generally:
+Les tutoriels doivent généralement :
 
-> * Solve a specific, common problem
-> * Start with the simplest possible example
-> * Introduce complexities one at a time
-> * Link to other docs, rather than re-explaining concepts
-> * Describe the problem, rather than assuming familiarity
-> * Explain the process, rather than just the end result
-> * Explain the pros and cons of your strategy, including when it is and isn't appropriate
-> * Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+> * Résoudre un problème spécifique et commun
+> * Commencer avec l'exemple le plus simple possible
+> * Introduire une complexité à la fois
+> * Comporter des liens vers d'autres sections de la documentation, plutôt que de réexpliquer les concepts
+> * Décrire le problème plutôt que de supposer que le lecteur est familier avec
+> * Expliquer le processus au-delà du simple résultat final
+> * Expliquer le pour et le contre de votre approche, en indiquant dans quels cas elle est appropriée ou non
+> * Mentionner des solutions alternatives si c'est pertinent, mais garder les explications en profondeur pour une autre recette.
 
 We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
 
-### Base Example
+### Base Example (EN)
 
 _required_
 
@@ -46,7 +46,7 @@ _required_
 3.  Show a small code sample.
 4.  Explain what this accomplishes in a sentence.
 
-### Details about the Value
+### Details about the Value (EN)
 
 _required_
 
@@ -55,7 +55,7 @@ _required_
 3.  Show very simple code samples of good and bad patterns.
 4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
 
-### Real-World Example
+### Real-World Example (EN)
 
 _required_
 
@@ -66,24 +66,24 @@ Demonstrate the code that would power a common or interesting use case, either b
 
 If you choose to do the latter, you should still talk through what it is and does.
 
-### Additional Context
+### Additional Context (EN)
 
 _optional_
 
 It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
 
-### When To Avoid This Pattern
+### When To Avoid This Pattern (EN)
 
 _optional_
 
 This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
 
-### Alternative Patterns
+### Alternative Patterns (EN)
 
 _required_
 
 This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
 
-## Thank you
+## Thank you (EN)
 
 It takes time to contribute to documentation, and if you spend the time to submit a PR to this section of our docs, you do so with our gratitude.
