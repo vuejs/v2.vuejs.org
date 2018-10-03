@@ -226,7 +226,9 @@ order: 803
     'Thessaloniki, Greece': [40.640063, 22.944419],
     'Tokyo, Japan': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538]
+    'Wrocław, Poland': [51.107885, 17.038538],
+    'Boston, MA, USA': [42.360081, -71.058884],
+    'Kyiv, Ukraine': [50.450100, 30.523399]
   }
   var languageNameFor = {
     en: 'English',
@@ -243,7 +245,8 @@ order: 803
     hi: 'हिंदी',
     fa: 'فارسی',
     ko: '한국어',
-    ro: 'Română'
+    ro: 'Română',
+    uk: 'Українська'
   }
 
   var team = [{
@@ -369,10 +372,10 @@ order: 803
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
+        'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
-        'https://cuusoo.com', 'http://frapwings.jp'
+        'https://www.patreon.com/kazupon', 'https://cuusoo.com', 'http://frapwings.jp'
       ]
     },
     {
@@ -391,7 +394,7 @@ order: 803
         'rollup-plugin-vue', 'vue-issue-helper'
       ],
       reposPersonal: [
-        'vue-keynote', 'bootstrap-for-vue', 'vue-interop'
+        'keynote', 'bootstrap-for-vue', 'vue-interop'
       ],
       links: [
         'https://znck.me', 'https://www.codementor.io/znck'
@@ -503,6 +506,9 @@ order: 803
       ],
       reposPersonal: [
         'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
+      ],
+      links: [
+        'http://patreon.com/akryum'
       ]
     },
     {
@@ -600,6 +606,9 @@ order: 803
       work: {
         role: 'Consultant'
       },
+      reposOfficial: [
+        'news.vuejs.org'
+      ],
       reposPersonal: [
         'shentao/vue-multiselect'
       ]
@@ -654,10 +663,92 @@ order: 803
       reposPersonal: [
         'vue-computed-helpers', 'vue-content-placeholders'
       ]
+    },
+    {
+      name: 'GU Yiling',
+      city: 'Shanghai, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Senior web developer',
+        org: 'Baidu, inc.',
+        orgUrl: 'https://www.baidu.com/'
+      },
+      github: 'Justineo',
+      twitter: '_justineo',
+      reposOfficial: [
+        'vue', 'cn.vuejs.org'
+      ],
+      reposPersonal: [
+        'Justineo/vue-awesome', 'ecomfe/vue-echarts', 'ecomfe/veui'
+      ]
+    },
+    {
+      name: 'ULIVZ',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'AntFinancial',
+        orgUrl: 'https://www.antfin.com'
+      },
+      github: 'ulivz',
+      twitter: '_ulivz',
+      reposOfficial: [
+        'vuepress'
+      ]
     }
   ]))
 
   var partners = [
+    {
+      name: 'Jen Looper',
+      title: 'Queen Fox',
+      city: 'Boston, MA, USA',
+      languages: ['en', 'fr'],
+      work: {
+        role: 'CEO',
+        org: 'Vue Vixens'
+      },
+      github: 'jlooper',
+      twitter: 'jenlooper',
+      links: [
+        'https://vuevixens.org/',
+        'https://nativescript-vue.org/'
+      ]
+    },
+    {
+      name: 'Natalia Tepluhina',
+      title: 'Fox Tech Guru',
+      city: 'Kyiv, Ukraine',
+      languages: ['uk', 'ru', 'en'],
+      work: {
+        role: 'CTO',
+        org: 'Vue Vixens',
+      },
+      github: 'NataliaTepluhina',
+      twitter: 'N_Tepluhina',
+      links: [
+        'https://vuevixens.org/'
+      ]
+    },
+    {
+      name: 'Alex Jover',
+      title: 'Vue Components Squeezer',
+      city: 'Alicante, Spain',
+      languages: ['es', 'en'],
+      work: {
+        role: 'Web, PWA and Performance Consultant',
+        org: 'Freelance'
+      },
+      github: 'alexjoverm',
+      twitter: 'alexjoverm',
+      reposPersonal: [
+        'v-runtime-template', 'v-lazy-image', 'vue-testing-series'
+      ],
+      links: [
+        'https://alexjover.com'
+      ]
+    },
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
@@ -679,7 +770,7 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
-      twitter: 'ChopinAlexandre',
+      twitter: '_achopin',
       work: {
         org: 'Orion',
         orgUrl: 'https://orion.sh'
@@ -736,7 +827,7 @@ order: 803
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',
-      twitter: 'MachinisteWeb',
+      twitter: 'ZetesEthique',
       work: {
         role: 'Cofounder',
         org: 'Orchard ID',

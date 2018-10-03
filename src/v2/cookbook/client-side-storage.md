@@ -78,7 +78,7 @@ Now we've got two fields (again, bound to a Vue instance) but now there is the a
 
 ``` js
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data: {
     name: '',
     age: 0
@@ -101,7 +101,7 @@ const app = new Vue({
 })
 ```
 
-As before, `mounted` is used to load persisted data, if it exists. This time, though, data is only persisted when the button is clicked. We could also do any validations or transformations here before storing the value. You could also store a date representing when the values were stored. With that metadata, the `mounted` method could make a logical call on whether or not to store the values again, such as in this version below. You can try this version below.
+As before, `mounted` is used to load persisted data, if it exists. This time, though, data is only persisted when the button is clicked. We could also do any validations or transformations here before storing the value. You could also store a date representing when the values were stored. With that metadata, the `mounted` method could make a logical call on whether or not to store the values again. You can try this version below.
 
 <p data-height="265" data-theme-id="0" data-slug-hash="rdOjLN" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="testing localstorage 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/rdOjLN/">testing localstorage 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -161,7 +161,7 @@ const app = new Vue({
       this.saveCats();
     },
     saveCats() {
-      let parsed = JSON.stringify(this.cats);
+      const parsed = JSON.stringify(this.cats);
       localStorage.setItem('cats', parsed);
     }
   }
@@ -181,6 +181,7 @@ While the Local Storage API is relatively simple, it is missing some basic featu
 
 * [vue-local-storage](https://github.com/pinguinjkeke/vue-local-storage)
 * [vue-reactive-storage](https://github.com/ropbla9/vue-reactive-storage)
+* [vue2-storage](https://github.com/yarkovaleksei/vue2-storage)
 
 ## Wrapping Up
 

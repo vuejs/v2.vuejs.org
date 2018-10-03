@@ -57,7 +57,7 @@ In the previous example, we used a simple, zero-configuration command-line [http
 
 > It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 
-Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
+Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
 
 Let's refactor our `Dockerfile` to use NGINX:
 
@@ -117,7 +117,7 @@ So, committing to this architectural approach most of the time implies developin
 
 The adoption of [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) culture, tools and agile engineering practices has, among other things, the nice effect of increasing the collaboration between the roles of development and operations. One of the main problem of the past (but also today in some realities) is that the dev team tended to be uninterested in the operation and maintenance of a system once it was handed over to the ops team, while the latter tended to be not really aware of the system's business goals and, therefore, reluctant in satisfying the operational needs of the system (also referred to as "whims of developers").
 
-So, delivering our Vue.js app as a Docker image helps reducing, if not removing entirely, the difference between running the service on a deveveloper's laptop, the production environment or any environment we may think of.
+So, delivering our Vue.js app as a Docker image helps reducing, if not removing entirely, the difference between running the service on a developer's laptop, the production environment or any environment we may think of.
 
 ### Effects of Continuous Delivery
 
@@ -130,5 +130,5 @@ So, creating a Docker image for our Vue.js app is a good choice here because tha
 If your company is not into Docker and Kubernetes just yet or you simply want to get your MVP out the door, maybe dockerizing your Vue.js app is not what you need.
 
 Common alternatives are:
-* leveraging an all-in-one platform like [netlify](https://www.netlify.com/);
+* leveraging an all-in-one platform like [Netlify](https://www.netlify.com/);
 * hosting your SPA on [Amazon S3](https://aws.amazon.com/s3/) and serving it with [Amazon CloudFront](https://aws.amazon.com/cloudfront/) (see [this](https://serverless-stack.com/chapters/deploy-the-frontend.html) link for a detailed guide).

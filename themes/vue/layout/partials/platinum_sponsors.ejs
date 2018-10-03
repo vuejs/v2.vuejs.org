@@ -1,14 +1,15 @@
-<div id="sidebar-sponsors-special">
+<div id="sidebar-sponsors-platinum-<%- context %>">
   <div class="main-sponsor">
-    <span>Special Sponsor</span>
+    <span>Platinum Sponsors</span>
     <div>
-    <%_ for (const sponsor of theme.special_sponsors) {_%>
+    <%_ for (const sponsor of theme.platinum_sponsors) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
       <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>
   </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    Become a Sponsor
+  </a>
 </div>
-
-<%- partial('partials/platinum_sponsors', { context: 'left' }) %>
