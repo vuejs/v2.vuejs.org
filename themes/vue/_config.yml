@@ -101,6 +101,9 @@ gold_sponsors:
   - url: https://opteo.com/vue
     img: opteo.png
     name: opteo
+  - url: https://issue.sh
+    img: issue-sh.png
+    name: issue sh
 
 silver_sponsors:
   - url: https://dopamine.bg/
