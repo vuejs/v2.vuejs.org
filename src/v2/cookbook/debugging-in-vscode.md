@@ -95,7 +95,7 @@ There are other methods of debugging, varying in complexity. The most popular an
 * Subscribe to specific parts of your application’s state for faster debugging
 * Visualize component hierarchy, and an animation allows you to collapse or expand the tree for specific hierarchy views.
 
-![Vuetron Heirarchy](/images/vuetron-heirarchy.gif)
+![Vuetron Hierarchy](/images/vuetron-hierarchy.gif)
 
 ### Simple Debugger Statement
 
