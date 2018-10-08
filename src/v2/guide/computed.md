@@ -35,7 +35,7 @@ var vm = new Vue({
   },
   computed: {
     // a computed getter
-    reversedMessage: function () {
+    reversedMessage() {
       // `this` points to the vm instance
       return this.message.split('').reverse().join('')
     }
@@ -57,7 +57,7 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    reversedMessage: function () {
+    reversedMessage() {
       return this.message.split('').reverse().join('')
     }
   }
@@ -88,7 +88,7 @@ You may have noticed we can achieve the same result by invoking a method in the 
 ``` js
 // in component
 methods: {
-  reverseMessage: function () {
+  reverseMessage() {
     return this.message.split('').reverse().join('')
   }
 }
@@ -100,7 +100,7 @@ This also means the following computed property will never update, because `Date
 
 ``` js
 computed: {
-  now: function () {
+  now() {
     return Date.now()
   }
 }
@@ -127,10 +127,10 @@ var vm = new Vue({
     fullName: 'Foo Bar'
   },
   watch: {
-    firstName: function (val) {
+    firstName(val) {
       this.fullName = val + ' ' + this.lastName
     },
-    lastName: function (val) {
+    lastName(val) {
       this.fullName = this.firstName + ' ' + val
     }
   }
@@ -147,7 +147,7 @@ var vm = new Vue({
     lastName: 'Bar'
   },
   computed: {
-    fullName: function () {
+    fullName() {
       return this.firstName + ' ' + this.lastName
     }
   }
@@ -165,11 +165,11 @@ Computed properties are by default getter-only, but you can also provide a sette
 computed: {
   fullName: {
     // getter
-    get: function () {
+    get() {
       return this.firstName + ' ' + this.lastName
     },
     // setter
-    set: function (newValue) {
+    set(newValue) {
       var names = newValue.split(' ')
       this.firstName = names[0]
       this.lastName = names[names.length - 1]
@@ -213,12 +213,12 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // whenever question changes, this function will run
-    question: function (newQuestion, oldQuestion) {
+    question(newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.debouncedGetAnswer()
     }
   },
-  created: function () {
+  created() {
     // _.debounce is a function provided by lodash to limit how
     // often a particularly expensive operation can be run.
     // In this case, we want to limit how often we access
@@ -229,19 +229,18 @@ var watchExampleVM = new Vue({
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
-    getAnswer:  function () {
+    getAnswer() {
       if (this.question.indexOf('?') === -1) {
         this.answer = 'Questions usually contain a question mark. ;-)'
         return
       }
       this.answer = 'Thinking...'
-      var vm = this
       axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
+        .then(response=>{
+          this.answer = _.capitalize(response.data.answer)
         })
-        .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+        .catch(error=>{
+          this.answer = 'Error! Could not reach the API. ' + error
         })
     }
   }
@@ -269,28 +268,27 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    question: function (newQuestion, oldQuestion) {
+    question(newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.debouncedGetAnswer()
     }
   },
-  created: function () {
+  created() {
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
-    getAnswer:  function () {
+    getAnswer() {
       if (this.question.indexOf('?') === -1) {
         this.answer = 'Questions usually contain a question mark. ;-)'
         return
       }
       this.answer = 'Thinking...'
-      var vm = this
       axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
+        .then(response=>{
+          this.answer = _.capitalize(response.data.answer)
         })
-        .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+        .catch(error=>{
+          this.answer = 'Error! Could not reach the API. ' + error
         })
     }
   }
