@@ -57,7 +57,7 @@ A Vue.js plugin should expose an `install` method. The method will be called wit
 ``` js
 MyPlugin.install = function (Vue, options) {
   // 1. add global method or property
-  Vue.myGlobalMethod = function () {
+  Vue.prototype.myGlobalMethod = function () {
     // something logic ...
   }
 
