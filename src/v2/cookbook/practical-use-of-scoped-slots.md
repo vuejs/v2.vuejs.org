@@ -1,7 +1,7 @@
 ---
 title: Practical use of scoped slots with GoogleMaps
 type: cookbook
-order: 13
+order: 14
 ---
 
 ## Base Example
