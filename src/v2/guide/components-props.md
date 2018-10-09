@@ -28,7 +28,7 @@ Again, if you're using string templates, this limitation does not apply.
 <p class="tip">
 in-DOM templates: a template defined directly inside your HTML document (i.e. `<template id="some-component"></template>` defined directly inside the body of your index.html and referenced with `new Vue.component('some-component', { template: '#some-component' })`.
   
-string templates: a template, which has been parsed by some pre-processor (or has been defined as a string). This includes defining the template as a string on your Vue instance, but also the `<tempalte></template>` sections from .vue files, as they are are being processed by Webpack before making their way to into the DOM`.
+string templates: a template, which has been parsed by some pre-processor (or has been defined as a string). This includes defining the template as a string on your Vue instance, but also the `<template></template>` sections from .vue files, as they are are being processed by Webpack before making their way to into the DOM`.
 </p>
 
 ## Prop Types
