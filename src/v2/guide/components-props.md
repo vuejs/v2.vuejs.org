@@ -23,13 +23,7 @@ Vue.component('blog-post', {
 <blog-post post-title="hello!"></blog-post>
 ```
 
-Again, if you're using string templates, this limitation does not apply.
-
-<p class="tip">
-in-DOM templates: a template defined directly inside your HTML document (i.e. `<template id="some-component"></template>` defined directly inside the body of your index.html and referenced with `new Vue.component('some-component', { template: '#some-component' })`.
-  
-string templates: a template, which has been parsed by some pre-processor (or has been defined as a string). This includes defining the template as a string on your Vue instance, but also the `<template></template>` sections from .vue files, as they are are being processed by Webpack before making their way to into the DOM`.
-</p>
+Again, if you're using string templates, this limitation does not apply. [Read more](components-string-and-dom-templates.html) about why string templates aren't case-insensitive and what exactly is the [difference between DOM and string templates](components-string-and-dom-templates.html).
 
 ## Prop Types
 
