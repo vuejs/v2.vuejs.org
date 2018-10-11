@@ -460,6 +460,8 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
 <p v-else>No todos left!</p>
 ```
 
+<p class="tip">Note that use of v-for and v-if on the same element is considered bad practice. For a detailed explanation, see the [Style Guide](../style-guide/#Avoid-v-if-with-v-for-essential).</p>
+
 ## `v-for` with a Component
 
 > This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
