@@ -125,7 +125,7 @@ There is no need to write your module multiple times. It is possible to prepare 
 
 <p class="tip">Remember, if you have an existing package.json file, it will likely contain a lot more than this one does. This merely illustrates a starting point. Also, the <i>packages</i> listed in devDependencies (not their versions) are the minimum requirements for rollup to create the three separate builds (umd, es, and unpkg) mentioned. As newer versions become available, they should be updated as necessary.</p>
 
-Our changes to package.json are complete. Next, we need a small wrapper to export/auto-install the actual SFC, plus a mimimal Rollup configuration, and we're set!
+Our changes to package.json are complete. Next, we need a small wrapper to export/auto-install the actual SFC, plus a minimal Rollup configuration, and we're set!
 
 ### What does my packaged component look like?
 
