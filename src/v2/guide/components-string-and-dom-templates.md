@@ -27,7 +27,7 @@ new Vue({
 ```
 
 ## String templates
-A template, which has been parsed by some bundler (i.e. Webpack) or has been defined as a string literal directly on the Vue instance. This also includes the `<template></template>` sections of a .vue files, as they are are being processed by Webpack before effectively making their way into the user's browser.
+A template, which has been parsed by some bundler (i.e. Webpack) or has been defined as a string literal directly on the Vue instance. This also includes the `<template></template>` sections of a `.vue` files, as they are are being processed by Webpack before effectively making their way into the user's browser.
 
 *some-component.vue*
 ```html
