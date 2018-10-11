@@ -2529,6 +2529,19 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
+- **`include` and `exclude`**
+
+> New in 2.5.0+
+
+The `max` props limit the maximum number of components for caching (FIFO)
+
+   ``` html
+  <!-- usage -->
+  <keep-alive max="10">
+    <component></component>
+  </keep-alive>
+   ```
+   
 ### slot
 
 - **Props:**
