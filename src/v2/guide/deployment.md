@@ -26,7 +26,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+But in Webpack 3 and earlier, you will need to use the minified version of vue throughout (`vue.min`) and you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
