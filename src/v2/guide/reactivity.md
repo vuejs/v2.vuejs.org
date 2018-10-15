@@ -99,7 +99,7 @@ Vue.nextTick(function () {
 
 There is also the `vm.$nextTick()` instance method, which is especially handy inside components, because it doesn't need global `Vue` and its callback's `this` context will be automatically bound to the current Vue instance:
 
-```
+``` js
 Vue.component('example', {
   template: '<span>{{ message }}</span>',
   data: function () {
@@ -121,7 +121,7 @@ Vue.component('example', {
 
 Since `$nextTick()` returns a promise, you can achieve the same as the above using the new [ES2016 async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax:
 
-```js
+``` js
   methods: {
     async updateMessage: function () {
       this.message = 'updated'
