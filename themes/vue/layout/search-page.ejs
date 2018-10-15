@@ -8,7 +8,7 @@
     <div class="search-footer">
       <p>
         <template v-if="totalResults">
-          <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
+          <strong>{{ totalResults }} hasil</strong> ditemukan di {{ queryTime }}ms
         </template>
       </p>
       <a target="_blank" href="https://www.algolia.com/">
@@ -25,7 +25,7 @@
     ></search-result>
   </template>
 
-  <p v-else>No results were found.</p>
+  <p v-else>Tidak ada hasil yang ditemukan</p>
 
   <div ref="infiniteScrollAnchor"></div>
 
