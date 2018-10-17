@@ -221,7 +221,7 @@ order: 803
     'Poznań, Poland': [52.4006553, 16.761583],
     'Seoul, South Korea': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
-    'Sydney, Australia': [-33.868820, 151.209290]
+    'Sydney, Australia': [-33.868820, 151.209290],
     'Taquaritinga, Brazil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
     'Thessaloniki, Greece': [40.640063, 22.944419],
