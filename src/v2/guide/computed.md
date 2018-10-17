@@ -77,6 +77,50 @@ You can open the console and play with the example vm yourself. The value of `vm
 
 You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
 
+### Computing Dependent On Objects or Arrays
+
+It is important to note that if the computed property is dependent on an object or array, changing part of the object or array will not trigger a change and update the computed property. You must provide an entirely new object or array in order to trigger the change and update the computed property.
+
+Consider the following example:
+``` js
+var vm = new Vue({
+  el: '#example',
+  data: {
+    name: {
+      first: 'John',
+      last: 'Doe'
+    }
+  },
+  computed: {
+    fullName: function () {
+      return this.name.first + ' ' + this.name.last;
+    }
+  }
+})
+```
+
+If you change the first or last name in the "name" object, it will not trigger the computed property to re-render.
+
+``` js
+// in component
+methods: {
+  changeFirstName: function () {
+    this.name.first = 'Jane'; // This will NOT cause the computed property "fullName" to re-render.
+  }
+}
+```
+
+Instead, you need to provide an entirely new object.
+
+``` js
+// in component
+methods: {
+  changeFirstName: function () {
+    this.name = { first: 'Jane', last: this.name.last }; // This WILL cause the computed property "fullName" to re-render.
+  }
+}
+```
+
 ### Computed Caching vs Methods
 
 You may have noticed we can achieve the same result by invoking a method in the expression:
