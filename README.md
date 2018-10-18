@@ -2,6 +2,15 @@
 
 Situs ini dibuat dengan [hexo](http://hexo.io/). Konten situs ditulis dengan format _Markdown_ berlokasi di `src`. _Pull request_ diterima!
 
+## _Pull Request_
+
+Lakukan _pull request_ dengan mebandingkan _branch_ lang_id dalam repo ini dengan _branch_ yang sudah kamu ubah. Contoh:
+
+```
+base fork: subjs/vuejs.org branch: lang_id
+head fork: isatrio/vuejs.org branch: master
+```
+
 ## Pengembangan
 
 ``` bash
