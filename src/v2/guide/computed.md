@@ -14,7 +14,7 @@ In-template expressions are very convenient, but they are meant for simple opera
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+At this point, the template is no longer simple. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
 
 That's why for any complex logic, you should use a **computed property**.
 
