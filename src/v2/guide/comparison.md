@@ -124,7 +124,7 @@ React Native enables you to write native-rendered apps for iOS and Android using
 
 At this moment, Weex is still in active development and is not as mature and battle-tested as React Native, but its development is driven by the production needs of the largest e-commerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
 
-With [Nativescript-Vue](https://github.com/nativescript-vue/nativescript-vue) Vue developers can not only build apps for the browser, but also truly cross platform native apps which comes as part of [NativeScript](https://www.nativescript.org/).
+Another option is [NativeScript-Vue](https://nativescript-vue.org/), a [NativeScript](https://www.nativescript.org/) plugin for building truly native applications using Vue.js.
 
 ### With MobX
 
