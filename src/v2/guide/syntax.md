@@ -58,6 +58,8 @@ new Vue({
 
 <p class="tip">웹사이트에서 임의의 HTML을 동적으로 렌더링하려면 [XSS 취약점](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 쉽게 이어질 수 있으므로 매우 위험할 가능성이 있습니다. 신뢰할 수 있는 콘텐츠에서만 HTML 보간을 사용하고 사용자가 제공한 콘텐츠에서는 **절대** 사용하면 안됩니다.</p>
 
+### 속성
+
 Mustaches는 HTML 속성에서 사용할 수 없습니다. 대신 [v-bind 디렉티브](../api/#v-bind)를 사용하세요:
 
 ``` html
