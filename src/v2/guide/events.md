@@ -230,7 +230,7 @@ When listening for keyboard events, we often need to check for specific keys. Vu
 <input @keyup.page-down="onPageDown">
 ```
 
-In the above example, the handler will only be called if `$event.key === 'PageDown'`.
+In the above example, the handler will only be called if `$event.key` is equal to `'PageDown'`.
 
 You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case.
 
