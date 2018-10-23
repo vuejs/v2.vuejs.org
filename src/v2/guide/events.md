@@ -236,7 +236,9 @@ You can directly use any valid key names exposed via [`KeyboardEvent.key`](https
 
 ### Key Codes
 
-The usage of `keyCode` attributes is deprecated, but can be used if needed:
+<p class="tip">The use of `keyCode` events [is deprecated](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) and may not be supported in new browsers.</p>
+
+Using `keyCode` attributes is also permitted:
 
 ``` html
 <input v-on:keyup.13="submit">
