@@ -331,7 +331,7 @@ When the `inline-template` special attribute is present on a child component, th
 </my-component>
 ```
 
-<p>Your inline template needs to be defined outside the DOM element to which Vue is attached.</p>
+<p>Your inline template needs to be defined inside the DOM element to which Vue is attached.</p>
 
 <p class="tip">However, <code>inline-template</code> makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the <code>template</code> option or in a <code>&lt;template&gt;</code> element in a <code>.vue</code> file.</p>
 
