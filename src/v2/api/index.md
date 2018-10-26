@@ -62,6 +62,8 @@ type: api
 
   Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
 
+  <p class="tip">If Vuex is used, you __have to__ set `Vue.config.devtools = true` __before you create the store__, or you'll get _No Vuex store detected_ in Vue Dev Tools.</p>
+
 ### errorHandler
 
 - **Type:** `Function`
