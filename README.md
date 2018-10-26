@@ -4,7 +4,7 @@ Situs ini dibuat dengan [hexo](http://hexo.io/). Konten situs ditulis dengan for
 
 ## _Pull Request_
 
-Lakukan _pull request_ dengan mebandingkan _branch_ lang_id dalam repo ini dengan _branch_ yang sudah kamu ubah. Contoh:
+Lakukan _pull request_ dengan membandingkan _branch_ lang_id dalam repo ini dengan _branch_ yang sudah kamu ubah. Contoh:
 
 ```
 base fork: subjs/vuejs.org branch: lang_id
@@ -27,7 +27,7 @@ $ yarn start # dev server di http:://localhost:4000
 
 Situs ini secara otomatis ter-_deploy_ ketika _commit_ masuk ke dalam `master`, melalui [Netlify](https://www.netlify.com).
 
-Jika kamu adalah maintainer dari sebuah _fork_ komunitas penerjemah dan ingin men-_deploy_ memlalui Netlify daripada halaman Github, tolong ping @yyx990803 dalam sebuah _issue_ untuk memohon sebuah keanggotaan tim Netlify dan pembaruan DNS.
+Jika kamu adalah _maintainer_ dari sebuah _fork_ komunitas penerjemah dan ingin men-_deploy_ memlalui Netlify daripada halaman Github, tolong ping @yyx990803 dalam sebuah _issue_ untuk memohon sebuah keanggotaan tim Netlify dan pembaruan DNS.
 
 ## Dalam penerjemahan
 
@@ -62,7 +62,7 @@ Terjemahan bahasa Jepang dikelola oleh [Vue.js japan user group](https://github.
 
 ### Korea
 
-Terjemahan bahasa Korean dikelola oleh [Vue.js Korean User group](https://github.com/vuejs-kr).
+Terjemahan bahasa Korea dikelola oleh [Vue.js Korean User group](https://github.com/vuejs-kr).
 
 * Repo terjemahan - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Pengelola utama - [ChangJoo Park](https://github.com/ChangJoo-Park)
@@ -80,13 +80,13 @@ Terjemahan bahasa Persia dikelola oleh VueJS-fa.
 
 ### Portugal - Brazil
 
-Terejamahan bahasa Portugal-Brazil dikelola oleh [Vuejs-Br](https://github.com/vuejs-br).
+Terjemahan bahasa Portugal-Brazil dikelola oleh [Vuejs-Br](https://github.com/vuejs-br).
 
 * Repo terjemahan - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
 
 ### Rusia
 
-Terejamahan bahasa Rusia dikelola oleh Translation Gang.
+Terjemahan bahasa Rusia dikelola oleh Translation Gang.
 
 * Repo terjemahan - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Pengelola utama - [Grigoriy Beziuk](https://gbezyuk.github.io)
@@ -106,7 +106,7 @@ Terjemahan bahasa Vietnam dikelola oleh [Vue.js Vietnam User group](https://gith
 
 ### Ingin membantu menterjemahkan?
 
-Jika kamu merasa ok dengan menerjemahankan sendiri, kamu bisa _fork_ repo, buat sebuah _issue_ _"work-in-progress"_ untuk memberi tahu lainnya jika kamu sedang melakukan penerjemahan, dan jalankan.
+Jika kamu merasa ok dengan menerjemahkan sendiri, kamu bisa _fork_ repo, buat sebuah _issue_ _"work-in-progress"_ untuk memberi tahu lainnya jika kamu sedang melakukan penerjemahan, dan jalankan.
 
 Jika kamu adalah seorang pemain tim, Gang Penerjemahan mungkin cocok dengan kamu. Beritahu kami jika kamu siap untuk bergabung dalam _international open-source translators community_. Jangan ragu untu mengontak [Grigoriy Beziuk](https://gbezyuk.github.io) atau siapapun dalam [tim](https://github.com/orgs/translation-gang/people). 
 
