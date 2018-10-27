@@ -49,7 +49,7 @@ Or even other components:
 </navigation-link>
 ```
 
-If `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
+If template `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
 
 ## Named Slots
 
