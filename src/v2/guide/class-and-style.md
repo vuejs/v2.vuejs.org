@@ -41,7 +41,7 @@ It will render:
 <div class="static active"></div>
 ```
 
-When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`. Note that if your class uses a hyphen, you must enclose it in single quotes to follow JavaScript's object key notation rules.
 
 The bound object doesn't have to be inline:
 
