@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them; we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
 
 ## Binding HTML Classes
 
@@ -18,7 +18,7 @@ We can pass an object to `v-bind:class` to dynamically toggle classes:
 
 The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `v-bind:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+You can toggle multiple classes by including more fields in the object. In addition, the `v-bind:class` directive can co-exist with the plain `class` attribute. So given the following template:
 
 ``` html
 <div class="static"
@@ -97,7 +97,7 @@ Which will render:
 <div class="active text-danger"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+If you would like to toggle a class in the list conditionally, you can do it with a ternary expression:
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
@@ -153,7 +153,7 @@ When `isActive` is truthy, the rendered HTML will be:
 
 ### Object Syntax
 
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+The object syntax for `v-bind:style` is pretty straightforward—it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
