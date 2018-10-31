@@ -167,7 +167,7 @@ computed: {
     // getter
     get: function () {
       return this.firstName + ' ' + this.lastName
-    },/
+    },
     // setter
     set: function (newValue) {
       var names = newValue.split(' ')
