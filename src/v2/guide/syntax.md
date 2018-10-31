@@ -54,7 +54,7 @@ new Vue({
 </script>
 {% endraw %}
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML—data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
 <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
 
@@ -66,7 +66,7 @@ Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directiv
 <div v-bind:id="dynamicId"></div>
 ```
 
-In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example: 
+In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example:
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -112,7 +112,7 @@ Here, the `v-if` directive would remove/insert the `<p>` element based on the tr
 
 ### Arguments
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Some directives can take an "argument," denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
 
 ``` html
 <a v-bind:href="url"> ... </a>
@@ -126,7 +126,7 @@ Another example is the `v-on` directive, which listens to DOM events:
 <a v-on:click="doSomething"> ... </a>
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
+Here the argument is the event name to listen to. Refer to [Event Handling](events.html) for more info.
 
 ### Modifiers
 
