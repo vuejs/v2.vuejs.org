@@ -13,10 +13,11 @@ Let's get started and we'll explain more things as we go.
 
 ## Getting Started
 
-First, you'll need to install `vue-cli`.
+First, you'll need to install `@vue/cli` and `@vue/cli-init`.
 
 ```
-$ npm install -g vue-cli
+$ npm install -g @vue/cli
+$ npm install -g @vue/cli-init
 ```
 
 Next, we're going to set up our project with a pre-existing Electron + Vue template.
@@ -25,7 +26,7 @@ Next, we're going to set up our project with a pre-existing Electron + Vue templ
 $ vue init simulatedgreg/electron-vue timer
 ```
 
-**Please read this whole paragraph before proceeding.** During the set up process, you'll be asked a series of questions to help you set up. When asked which Vue plugins to install; please choose `vue-electron` (we won't need the other options). You'll also be asked which build tool you would like to use; please choose `electron-builder`. We won't need anything else so if you're asked about ESLint or testing, you can say no to those (but you may want to use them in future projects).
+**Please read this whole paragraph before proceeding.** During the set up process, you'll be asked a series of questions to help you set up. When asked which Vue plugins to install; please choose `vue-electron` (we won't need the other options). You'll also be asked which build tool you would like to use; please choose `electron-builder`. We won't need anything else so if you're asked about Sass, ESLint or testing, you can say no to those (but you may want to use them in future projects).
 
 The `vue-electron` plugin makes Electron's APIs available for use within our Vue components. We'll use `electron-builder` to package our application into executables for Windows, Mac, and Linux.
 
