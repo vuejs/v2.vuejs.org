@@ -84,6 +84,9 @@ gold_sponsors:
   - url: https://courses.wilderminds.com/p/vue-js-by-example
     img: wilderminds.png
     name: wilder minds
+  - url: https://devsquad.com/
+    img: devsquad.png
+    name: dev squad
 
 silver_sponsors:
   - url: https://dopamine.bg/
