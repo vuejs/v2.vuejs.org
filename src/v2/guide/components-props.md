@@ -253,6 +253,18 @@ Vue.component('blog-post', {
 
 to validate that the value of the `author` prop was created with `new Person`.
 
+Furthermore, `type` can take an array of possible `types` to support multiple possible types.
+
+For example:
+
+```js
+Vue.component('blog-post', {
+  props: {
+    author: [Person, Boolean]
+  }
+})
+```
+
 ## Non-Prop Attributes
 
 A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
