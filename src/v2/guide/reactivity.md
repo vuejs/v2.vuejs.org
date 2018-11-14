@@ -123,7 +123,7 @@ Since `$nextTick()` returns a promise, you can achieve the same as the above usi
 
 ``` js
   methods: {
-    async updateMessage() {
+    updateMessage: async function () {
       this.message = 'updated'
       console.log(this.$el.textContent) // => 'not updated'
       await this.$nextTick()
