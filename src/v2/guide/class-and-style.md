@@ -100,7 +100,7 @@ Which will render:
 If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
 
 ``` html
-<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+<div v-bind:class="[isActive ? 'activeClass' : '', 'errorClass']"></div>
 ```
 
 This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
