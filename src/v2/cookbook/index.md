@@ -6,7 +6,7 @@ order: 0
 
 ## Les tutoriels versus le guide
 
-<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>En quoi les tutoriels sont-ils différent du guide ? Pourquoi est-ce nécessaire ?</p>
+<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>En quoi les tutoriels sont-ils différents du guide ? Pourquoi est-ce nécessaire ?</p>
 
 * **Plus focalisé** : Dans le guide, nous racontons essentiellement une histoire. Chaque section se construit sur la base des précédentes et présume la connaissance de celles-ci. Dans les tutoriels, chaque tutoriel peut et devrait se suffire à lui-même. Cela signifie que les tutoriels peuvent se focaliser sur un aspect spécifique de Vue, plutôt que d'avoir à donner un aperçu global.
 
@@ -16,13 +16,13 @@ order: 0
 
 * **Explorer l'écosystème** : Pour les fonctionnalités avancées, nous supposons que le lecteur a quelques connaissances sur l'écosystème. Par exemple, si vous voulez utiliser des composants monofichiers avec webpack, nous n'expliquerons pas comment configurer les parties qui ne concernent pas Vue dans la configuration de webpack. Dans les tutoriels, nous avons l'espace suffisant pour explorer plus en profondeur ces bibliothèques de l'écosystème - au moins dans la mesure où cela est universellement utile aux développeurs Vue.
 
-## Contributions au tutoriels
+## Contributions aux tutoriels
 
-### What we're looking for (EN)
+### Ce que nous attendons
 
-The Cookbook gives developers examples to work off of that both cover common or interesting use cases, and also progressively explain more complex detail. Our goal is to move beyond a simple introductory example, and demonstrate concepts that are more widely applicable, as well as some caveats to the approach.
+Les tutoriels apportent aux développeurs des exemples à utiliser pour couvrir des cas d'utilisation courants ou intéressants, et expliquent progressivement des points plus complexes. Notre but est d'aller au-delà d'un simple exemple d'introduction et de mettre en avant des concepts qui sont plus largement utilisables, avec les avertissements et restrictions inhérents à leurs utilisations.
 
-If you're interested in contributing, please initiate collaboration by filing an issue under the tag **cookbook idea** with your concept so that we can help guide you to a successful pull request. After your idea has been approved, please follow the template below as much as possible. Some sections are required, and some are optional. Following the numerical order is strongly suggested, but not required.
+Si vous êtes intéressé par l'idée de contribuer, vous pouvez ouvrir une *issue* sur le github sous le tag **cookbook idea** avec votre idée afin que nous puissions vous guider dans la création d'une *pull request* qui sera acceptée. Après que votre idée ait été validée, merci de suivre le plan ci-dessous autant que possible. Certaines sections sont obligatoires, d'autres sont optionnelles. Suivre l'ordre chronologique est fortement conseillé mais non obligatoire.
 
 Les tutoriels doivent généralement :
 
@@ -35,55 +35,56 @@ Les tutoriels doivent généralement :
 > * Expliquer le pour et le contre de votre approche, en indiquant dans quels cas elle est appropriée ou non
 > * Mentionner des solutions alternatives si c'est pertinent, mais garder les explications en profondeur pour une autre recette.
 
-We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
+Nous exigeons que vous suiviez le plan ci-dessous. Cependant nous comprenons que parfois vous ayez besoin de vous en écarter pour conserver une certaine clarté dans vos explications. Malgré tout, chaque exemple doit à un certain moment discuter les raisons de l'utilisation du modèle proposé, de préférence dans la section des modèles alternatifs.
 
-### Base Example (EN)
+### Exemple de base
 
-_required_
+_obligatoire_
 
-1.  Articulate the problem in a sentence or two.
-2.  Explain the simplest possible solution in a sentence or two.
-3.  Show a small code sample.
-4.  Explain what this accomplishes in a sentence.
+1.  Exprimer le problème en une à deux phrases.
+2.  Expliquer la plus simple solution en une à deux phrases.
+3.  Montrer un court extrait de code.
+4.  Expliquer ce que cela réalise en une phrase.
 
-### Details about the Value (EN)
+### Détails sur le contenu
 
-_required_
+_obligatoire_
 
-1.  Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2.  Show examples of common missteps and how they can be avoided.
-3.  Show very simple code samples of good and bad patterns.
-4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
+1.  Anticiper les questions que pourrait se poser une personne découvrant l'exemple. (les Blockquotes sont très bien pour ça)
+2.  Mettre en avant les erreurs classiques et comment elles peuvent être évitées.
+3.  Montrer de courts extraits de code de bon et mauvais patterns.
+4.  Argumenter sur le fait que c'est un bon pattern. L'utilisation de liens et références n'est pas obligatoire mais conseillée.
 
-### Real-World Example (EN)
+### Cas d'utilisation concret
 
-_required_
+_obligatoire_
 
-Demonstrate the code that would power a common or interesting use case, either by:
+Démontrer que le code répond à un cas d'utilisation commun ou intéressant soit en:
 
-1.  Walking through a few terse examples of setup, or
-2.  Embedding a codepen/jsfiddle example
+1.  détaillant quelques exemples simples ou
+2.  en utilisant un exemple dans codepen/jsfiddle
 
-If you choose to do the latter, you should still talk through what it is and does.
+Si vous choisissez le dernier, vous devrez quand même décrire ce que c'est et
+ce que cela fait.
 
-### Additional Context (EN)
+### Contexte additionnel
 
-_optional_
+_optionnel_
 
-It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
+Il est toujours utile d'écrire au sujet de ce pattern, quand / où il doit s'appliquer, pourquoi c'est une bonne solution tout en illustrant avec des morceaux de code ou en présentant des sources de lectures additionnelles.
 
-### When To Avoid This Pattern (EN)
+### Quand éviter ce pattern
 
-_optional_
+_optionnel_
 
-This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
+Cette section n'est pas obligatoire mais fortement recommandée. Il n'y a pas lieu de l'écrire pour des cas simples comme le changement de classes basées sur un changement d'état, mais pour des patterns plus avancés comme les "mixins", cela s'impose. La réponse pour la plupart des questions sur le développement est ["Cela dépend!"](https://codepen.io/rachsmith/pen/YweZbG), c'est le rôle de cette section. C'est ici que l'on va regarder objectivement quand ce pattern est utile, quand il doit être évité ou tout autre chose plus utile.
 
-### Alternative Patterns (EN)
+### Pattern alternatifs
 
-_required_
+_obligatoire_
 
-This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
+Cette section est requise quand vous avez écrit une section sur la nécessité d'éviter ce pattern dans certains cas. Il est important d'explorer d'autres méthodes pour que les lecteurs ne soient pas laissés dans l'expectative, alors qu'ils ont pu lire que dans certains cas c'est un antipattern. Considérez que les utilisateurs ont différentes bases de code et qu'ils résolvent différents problèmes. Est-ce que l'application est grosse ou petite ? Intègrent-ils Vue dans un projet existant, ou est-ce qu'ils construisent leur application à partir de rien ? Est-ce que leurs utilisateurs essaient de résoudre un problème ou plusieurs ? Y'a-t-il beaucoup de données asynchrones ? Toutes ces considérations vont avoir un impact sur les implémentations alternatives. Une bonne liste de tutoriels fournit aux développeurs ce contexte.
 
-## Thank you (EN)
+## Merci
 
-It takes time to contribute to documentation, and if you spend the time to submit a PR to this section of our docs, you do so with our gratitude.
+Contribuer à de la documentation prend du temps et si vous prenez le temps de soumettre une PR à cette section de notre documentation, vous aurez toute notre gratitude.
