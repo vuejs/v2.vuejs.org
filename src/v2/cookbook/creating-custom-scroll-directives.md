@@ -36,7 +36,7 @@ new Vue({
   }
 })
 ```
-
+When the element is inserted, a function, `f`, is created with the event, `evt`, as it's parameter. Then the scroll event listener is added, with the function `f`. When the user scrolls the `handleScroll` function checks if the `scrollY` of the window is greater than 50. If so, the element is displayed and the event listener is removed. 
 ```html
 <div id="app">
   <h1 class="centered">Scroll me</h1>
@@ -95,6 +95,57 @@ new Vue({
 ```
 
 Though we would remove the previous CSS transition from this implementation because it's now handled with JavaScript.
+
+## Advanced Example
+
+Sometimes, we may want to have the element reverse, fade away in this case, when the user scrolls up. We can easily do that with Vue, though the event listeners can not be removed after the threshold is reached.
+```js
+Vue.directive('scroll', {
+	inserted: function (el, binding) {
+  	let scrollEvent = function(e) {
+    	binding.value(e, el);
+    }
+    window.addEventListener('scroll', scrollEvent);
+  }
+})
+
+
+new Vue({
+  el: "#app",
+  methods: {
+  	scrollHandle: function(e, el){
+      opacityValue = (window.scrollY) / 300;
+      if (opacityValue < 0) {
+      	opacityValue = 0;
+      }
+      if (opacityValue > 300) {
+      	opacityValue = 1;
+      }
+      el.setAttribute('style','opacity: ' + opacityValue + ';');
+    }
+  }
+});
+```
+
+The effect, oppacity in this case, is calculated by taking the current scroll value, subtracting the lower limit and deviding that my the range. In this case the range was 0 - 300.
+
+```html
+<div id="app">
+  <h1 class="center" id="title">
+    Scroll Me
+  </h1>
+  <div v-scroll="scrollHandle" class="center" id="box"></div>
+  <div id="scroll"></div>
+</div>
+```
+
+> The css styling can make the scroll effect look more smooth
+
+```css
+  transition: opacity 100ms;
+```
+
+<script async src="//jsfiddle.net/GregariousAlex/xdvqkbrc/embed/result/"></script>
 
 ## The Benefit of Using Custom Directives
 
