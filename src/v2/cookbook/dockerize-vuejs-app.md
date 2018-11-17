@@ -35,9 +35,9 @@ EXPOSE 8080
 CMD [ "http-server", "dist" ]
 ```
 
-Il peut sembler redondant de copier `package.json` et `package-lock.json` et ensuite tous les fichiers et dossiers du projet en deux étapes différentes mais il y a [une très bonne raison pour ça](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/) (résumé : ça nous permet de prendre avantage de la mise en cache des `Docker layers`)
+Il peut sembler redondant de copier `package.json` et `package-lock.json` et ensuite tous les fichiers et dossiers du projet en deux étapes différentes mais il y a [une très bonne raison pour ça](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/) (résumé : cela nous permet de prendre avantage de la mise en cache des `Docker layers`)
 
-Maintenant on peut construire l'image Docker de notre app Vue.js :
+Maintenant nous pouvons construire l'image Docker de notre app Vue.js :
 
 ```bash
 docker build -t vuejs-cookbook/dockerize-vuejs-app .
@@ -49,15 +49,15 @@ Finalement, lançons notre app Vue.js dans un container Docker :
 docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
 ```
 
-On devrait pouvoir avoir accès à notre app sur `localhost:8080`.
+Nous devrions pouvoir accèder à notre app sur `localhost:8080`.
 
 ## Exemple réel
 
-Dans l'exemple précédant, on a utilisé la ligne de commande [http-server](https://github.com/indexzero/http-server) sans configuration pour servir notre app Vue.js qui est parfaitement suffisent pour du prototypage rapide et pourrait même suffire pour de simples scénarios de production. Après tout, la documentation dit :
+Dans l'exemple précédant, nous avons utilisé la ligne de commande [http-server](https://github.com/indexzero/http-server) sans configuration pour servir notre app Vue.js qui est parfaitement suffisant pour du prototypage rapide et pourrait même suffire pour de simples scénarios de production. Après tout, la documentation dit :
 
 > C'est assez puissant pour être utilisé en production, mais c'est assez simple et facile à détourner pour être utilisable pour les tests, le développement local et l’apprentissage.
 
-Néanmoins, pour un réel et complexe cas de production, il serait plus sage de se reposer sur les épaules de géants comme [NGINX](https://www.nginx.com/) ou [Apache](https://httpd.apache.org/) et c'est exactement ce que l'on va faire : on va utilisé NGINX pour servir notre app Vue.js parce qu'il est considéré comme une des solutions les plus performants et testées.
+Néanmoins, pour un réel et complexe cas de production, il serait plus sage de se reposer sur les épaules de géants comme [NGINX](https://www.nginx.com/) ou [Apache](https://httpd.apache.org/) et c'est exactement ce que nous allons faire : nous allons utiliser NGINX pour servir notre app Vue.js parce qu'il est considéré comme une des solutions les plus performantes et testées.
 
 Modifions notre `Dockerfile` pour utiliser NGINX:
 
@@ -94,11 +94,11 @@ Finalement, lançons notre app Vue.js dans un container Docker :
 docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
 ```
 
-On devrait avoir accès à notre app sur `localhost:8080`.
+Nous devrions avoir accès à notre app sur `localhost:8080`.
 
 ## Contexte additionnel
 
-Si vous lisez ce tutoriel, il y a des chances que vous savez déjà pourquoi vous avez décidé de dockeriser votre app Vue.js. Mais si vous avez simplement atterri sur cette page après avoir cliqué sur le bouton `j'ai de la chance` de Google, laissez-moi partager quelques bonnes raisons de le faire.
+Si vous lisez ce tutoriel, il y a des chances que vous sachiez déjà pourquoi vous avez décidé de dockeriser votre app Vue.js. Mais si vous avez simplement atterri sur cette page après avoir cliqué sur le bouton `j'ai de la chance` de Google, laissez-moi partager quelques bonnes raisons de le faire.
 
 La tendance actuelle est de créer des applications en utilisant l'approche [Cloud-Native](https://pivotal.io/cloud-native) qui tourne autour des mots suivant :
 * Microservices
@@ -109,7 +109,7 @@ Regardons comment ces concepts affectent notre décision de dockeriser notre app
 
 ### Les effets des microservices
 
-En adoptant le [style d'architectural des microservices](https://martinfowler.com/microservices/), on finit par construire une seule application comme une suite de petits services, chaque service est lancé de manière indépendante et communique avec des mécanismes légers. Ces services sont construits autour des besoins du métier et sont déployés indépendamment via des méthodes de déploiement automatisées.
+En adoptant le [style d'architectural des microservices](https://martinfowler.com/microservices/), nous finissons par construire une seule application comme une suite de petits services, chaque service est lancé de manière indépendante et communique avec des mécanismes légers. Ces services sont construits autour des besoins du métier et sont déployés indépendamment via des méthodes de déploiement automatisées.
 
 Alors, utiliser cette approche architecturale implique dans la plupart des cas de développer et livrer notre front-end comme un service indépendant.
 
