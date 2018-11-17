@@ -96,7 +96,7 @@ new Vue({
 
 Though we would remove the previous CSS transition from this implementation because it's now handled with JavaScript.
 
-## Advanced Example
+## Another Example
 
 Sometimes, we may want to have the element reverse, fade away in this case, when the user scrolls up. We can easily do that with Vue, though the event listeners can not be removed after the threshold is reached.
 ```js
