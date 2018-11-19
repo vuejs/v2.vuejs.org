@@ -3,9 +3,9 @@ google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.16
 
-platinum_sponsors_china:
-  - url: https://gitee.com/?from=vue
-    img: gitee.png
+platinum_sponsors_china: []
+  # - url: https://gitee.com/?from=vue
+  #   img: gitee.png
 
 special_sponsors:
   - url: https://stdlib.com/
