@@ -1569,7 +1569,7 @@ type: api
 ### vm.$once( event, callback )
 
 - **Arguments:**
-  - `{string} event`
+  - `{string | Array<string>} event` (array only supported in 2.2.2+)
   - `{Function} callback`
 
 - **Usage:**
