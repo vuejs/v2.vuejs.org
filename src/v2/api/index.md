@@ -2525,7 +2525,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   </keep-alive>
   ```
 
-<p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
