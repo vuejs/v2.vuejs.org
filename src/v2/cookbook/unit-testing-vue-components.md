@@ -64,7 +64,7 @@ test("Foo", () => {
 });
 ```
 
-Le code ci-dessus montre comment tester l'apparition d'un message d'erreur si le username n'est pas assez long. Il nous donne une idée de ce en quoi consistent les tests unitaires de composants VueJs : On render le composant, on lui fournit des données, puis on vérifie que le rendu correspond au données.
+Le code ci-dessus montre comment tester l'apparition d'un message d'erreur si le username n'est pas assez long. Il nous donne une idée de ce en quoi consistent les tests unitaires de composants Vue.js : On render le composant, on lui fournit des données, puis on vérifie que le rendu correspond au données.
 
 ## Pourquoi tester?
 
@@ -92,7 +92,7 @@ Un bon test unitaire se doit d'être :
 
 Reprenons l'exemple précédent, et ajoutons y le concept de <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">factory function</a> pour rendre nos tests plus compacts et plus clairs. Le composant devra donc :
 
-* Afficher un message 'Bienvenue sur le tutoriel VueJs'.
+* Afficher un message 'Bienvenue sur le tutoriel Vue.js'.
 * Demander à l'utilisateur son username
 * Afficher une erreur si le username fait moins de 7 caractères
 
@@ -120,7 +120,7 @@ export default {
 
   data () {
     return {
-      message: 'Bienvenue sur le tutoriel VueJs',
+      message: 'Bienvenue sur le tutoriel Vue.js',
       username: ''
     }
   },
@@ -196,7 +196,7 @@ describe("Foo", () => {
     const wrapper = factory();
 
     expect(wrapper.find(".message").text()).toEqual(
-      "Bienvenue sur le tutoriel VueJs"
+      "Bienvenue sur le tutoriel Vue.js"
     );
   });
 
@@ -244,7 +244,7 @@ Les tests unitaires sont souvent utilisés lors du développement, soit pour aid
 
 Les test de plus haut niveau comme les tests d’intégration sont plus lent a l’exécution. Ces tests sont plutôt lancés avant de déployer une mise à jour en production, pour s’assurer que chaque partie du logiciel fonctionne correctement.
 
-Plus d’info sur comment tester des composants VueJs dans le livre de [Edd Yerburgh](https://eddyerburgh.me/) membre de la core team de VueJs : [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) (en anglais).
+Plus d’info sur comment tester des composants Vue.js dans le livre de [Edd Yerburgh](https://eddyerburgh.me/) membre de la core team de Vue.js : [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) (en anglais).
 
 ## Quand éviter ce pattern
 
