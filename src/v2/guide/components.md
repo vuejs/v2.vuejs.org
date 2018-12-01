@@ -621,7 +621,7 @@ Le composant personnalisé `<blog-post-row>` sera considéré comme un contenu i
 </table>
 ```
 
-Il doit être noté que **cette limitation _n'_affecte _pas_ les templates sous forme de chaine de caractères provenant d'une des sources suivantes** :
+Il doit être noté que **cette limitation <em>n'</em>affecte _pas_ les templates sous forme de chaine de caractères provenant d'une des sources suivantes** :
 
 - Un template de chaine de caractères (par ex. `template: '...'`),
 - [Les composants monofichier (`.vue`)](single-file-components.html)
