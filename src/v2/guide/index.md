@@ -36,7 +36,7 @@ Si vous préférez quelque chose de plus interactif, vous pouvez également cons
 
 ## Rendu déclaratif
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank">Essayez cette partie sur Scrimba (EN)</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Essayez cette partie sur Scrimba (EN)</a></div>
 
 Au cœur de Vue.js, il y a un système qui va nous permettre de faire le rendu des données déclarativement dans le DOM en utilisant simplement cette syntaxe de template :
 
@@ -109,7 +109,7 @@ Si vous ouvrez votre console JavaScript une nouvelle fois et entrez `app2.messag
 
 ## Conditions et boucles
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank">Essayez cette partie sur Scrimba (EN)</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Essayez cette partie sur Scrimba (EN)</a></div>
 
 Il est assez simple de permuter la présence d'un élément :
 
@@ -195,7 +195,7 @@ Dans la console, entrez `app4.todos.push({ text: 'Nouvel élément' })`. Vous de
 
 ## Gestion des entrées utilisateur
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank">Essayez cette partie sur Scrimba (EN)</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Essayez cette partie sur Scrimba (EN)</a></div>
 
 Afin de permettre aux utilisateurs d’interagir avec votre application, nous pouvons utiliser la directive `v-on` pour attacher des écouteurs d’évènements qui invoquent des méthodes sur nos instances de Vue :
 
@@ -273,7 +273,7 @@ var app6 = new Vue({
 
 ## Composer avec des composants
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank">Essayez cette partie sur Scrimba (EN)</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Essayez cette partie sur Scrimba (EN)</a></div>
 
 Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interfaces applicatives peuvent être abstraits en un arbre de composants.
 

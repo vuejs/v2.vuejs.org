@@ -157,6 +157,8 @@ Pour plus de commodité, nous proposons un raccourci pour cette technique avec l
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
 
+<p class="tip">Notez que  <code>v-bind</code> avec le modificateur <code>.sync</code> <strong>ne</strong> fonctionne <strong>pas</strong> avec des expressions (par ex. <code>v-bind:title.sync="doc.title + '!'"</code> est invalide). À la place, vous devez seulement fournir le nom de la propriété que vous voulez lier, similaire à <code>v-model</code>.</p>
+
 Le modificateur `.sync` peut également être utilisé avec `v-bind` quand on utilise un objet pour assigner plusieurs props à la fois :
 
 ```html

@@ -360,9 +360,9 @@ type: api
 
 - **Utilisation :**
 
-  Installe un plugin Vue.js. Si l'argument plugin est de type `Object`, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
-
   Cette méthode doit être appelée avant d'appeler `new Vue()`
+
+  Installe un plugin Vue.js. Si l'argument plugin est de type `Object`, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
 
   Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installé qu'une seule fois.
 
@@ -2454,6 +2454,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **Props:**
   - `include` - string ou RegExp. Seuls les composants correspondants seront mis en cache.
   - `exclude` - string ou RegExp. Les composants correspondants ne seront pas mis en cache.
+  - `max` - number. Le nombre maximum d'instances de composant à mettre en cache.
 
 - **Utilisation :**
 
@@ -2489,7 +2490,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **`include` et `exclude`**
 
-  > Nouveauté de la 2.1.0
+  > Nouveauté de la 2.1.0+
 
   Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière, soit une Array :
 
@@ -2511,6 +2512,18 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   ```
 
   La correspondance est d'abord faite avec l'option `name` propre au composant, puis avec son nom d'inscription locale (la clé dans l'option `components` du parent) si l'option `name` n'est pas disponible. Les composants anonymes ne peuvent pas être mis en correspondance.
+
+- **`max`**
+
+  > Nouveauté de la 2.5.0+
+
+  Le nombre maximum d'instances de composant à mettre en cache. Une fois que ce nombre est atteind, l'instance du composant en cache qui a été le plus récemment accédé est détruit avant que la nouvelle instance soit créée.
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
 
   <p class="tip">`<keep-alive>` ne fonctionne pas avec les composants fonctionnels puisqu'ils n'ont pas d'instances à mettre en cache.</p>
 

@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-Dans les templates en chaine de caractères, par exemple Handlebars, nous pouvons écrire une structure conditionnelle comme ceci :
+Dans les templates en chaine de caractères, par exemple [Handlebars](https://handlebarsjs.com/), nous pourrions écrire une structure conditionnelle comme ceci :
 
 ``` html
 <!-- Template de Handlebars -->

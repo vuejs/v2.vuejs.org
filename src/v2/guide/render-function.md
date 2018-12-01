@@ -231,7 +231,11 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   slot: 'name-of-slot',
   // Autres propriétés spéciales de premier niveau
   key: 'myKey',
-  ref: 'myRef'
+  ref: 'myRef',
+  // Si vous appliquez le même nom de `ref` à plusieurs
+  // elements dans la fonction de rendu. Cela va faire de `$refs.myRef` un
+  // tableau
+  refInFor: true
 }
 ```
 
@@ -254,7 +258,7 @@ Vue.component('anchored-heading', {
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+      .replace(/(^-|-$)/g, '')
 
     return createElement(
       'h' + this.level,

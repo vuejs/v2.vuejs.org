@@ -4,15 +4,15 @@ root_domain: vuejs.org
 vue_version: 2.5.16
 
 platinum_sponsors_china:
-  - url: https://www.geekbang.org/
-    img: geekbang.png
-  - url: https://gitee.com/?from=vue
-    img: gitee.png
+  - url: https://studio.qcloud.coding.net/campaign/favorite-plugins/?utm_source=vue.js&utm_content=cs-logo
+    img: cloudstudio.png
+  - url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
+    img: dcloud.gif
 
 special_sponsors:
-  - url: https://code.xyz/
-    img: codexyz.png
-    description: Créer des APIs pour votre navigateur web
+  - url: https://stdlib.com/
+    img: stdlib.png
+    description: Créer les APIs dont vous avez besoin en quelques minutes plutôt qu'en quelques jours, gratuitement.
 
 platinum_sponsors:
   - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
@@ -56,18 +56,12 @@ gold_sponsors:
   - url: https://neds.com.au/
     img: neds.png
     name: neds
-  - url: https://hackr.io/tutorials/learn-vue-js
-    img: hackr-io.png
-    name: hacker io
   - url: https://icons8.com/
     img: icons8.png
     name: icons 8
   - url: https://vuejobs.com/?ref=vuejs
     img: vuejobs.png
     name: vue jobs
-  - url: https://codepilot.ai
-    img: codepilot.png
-    name: code pilot
   - url: https://teamextension.io/
     img: teamextension.png
     name: team extension
@@ -77,15 +71,6 @@ gold_sponsors:
   - url: https://www.valuecoders.com
     img: valuecoders.png
     name: value coders dot org
-  - url: https://www.nsoft.com/careers/
-    img: nsoft.png
-    name: n soft
-  - url: https://coreui.io/?utm_source=vuejs&utm_medium=logo&utm_campaign=homepage
-    img: coreui.png
-    name: core ui
-  - url: https://piio.co/vuejs?ref=vuejs
-    img: piio.png
-    name: piio
   - url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
     name: tidelift
@@ -95,12 +80,15 @@ gold_sponsors:
   - url: https://syncfusion.com/products/vue
     img: syncfusion.png
     name: syncfusion
-  - url: https://kintohub.com
-    img: kintohub.png
-    name: kinto hub
   - url: https://opteo.com/vue
     img: opteo.png
     name: opteo
+  - url: https://courses.wilderminds.com/p/vue-js-by-example
+    img: wilderminds.png
+    name: wilder minds
+  - url: https://devsquad.com/
+    img: devsquad.png
+    name: dev squad
 
 silver_sponsors:
   - url: https://dopamine.bg/

@@ -2,7 +2,7 @@
 
 ## Notre engagement
 
-Afin de favoriser un environnement ouvert et accueillant, nous nous engageons en tant que contributeurs et mainteneurs à veiller à ce que notre projet soit mené sans harcèlement pour quiconque, peu importe l'âge, la corpulence, les handicaps, les origines ethniques, les caractéristiques sexuelles, l'identité et l'expression de genre, le niveau d'expérience, l'éducation, le statut socioéconomique, la nationalité, l'identité personnelle, les génotype et phénotype, la religion, les opinions politiques ou l'identité et l'orientation sexuelle.
+Afin de favoriser un environnement ouvert et accueillant, nous nous engageons en tant que contributeurs et mainteneurs à veiller à ce que notre projet et notre communauté soient menés sans harcèlement pour quiconque, peu importe l'âge, la corpulence, les handicaps, les origines ethniques, les caractéristiques sexuelles, l'identité et l'expression de genre, le niveau d'expérience, l'éducation, le statut socioéconomique, la nationalité, l'identité personnelle, les génotype et phénotype, la religion, les opinions politiques ou l'identité et l'orientation sexuelle. Notez cependant que la religion, le parti politique ou une autre affiliation idéologique ne prévoit aucune exception pour le comportement que nous décrivons comme étant inacceptable dans le présent code de conduite.
 
 ## Nos standards
 

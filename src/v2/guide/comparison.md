@@ -124,7 +124,7 @@ React Native vous permet d'écrire des applications natives iOS et Android en ut
 
 Actuellement, Weex est toujours activement en développement et n'est pas aussi mature et bien testé que React Native, son développement est soutenu par les besoins en production du plus gros business e-commerce au monde, et l'équipe de Vue est aussi en étroite collaboration avec l'équipe de Weex pour assurer un passage en douceur pour les développeurs depuis Vue.
 
-Une autre option que les développeurs Vue auront bientôt est l'utilisation de [NativeScript](https://www.nativescript.org/), via un [plugin communautaire](https://github.com/rigor789/nativescript-vue).
+Une autre option est l'utilisation de [NativeScript](https://nativescript-vue.org/), un plugin [NativeScript](https://www.nativescript.org/) pour créer de vraies applications natives en utilisant Vue.js.
 
 ### Avec MobX
 

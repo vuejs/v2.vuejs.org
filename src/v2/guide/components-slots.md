@@ -136,7 +136,7 @@ Il ne peut y avoir qu'un seul **slot par défaut** qui recevra tous les élémen
 
 Dans certains cas, il peut être intéressant de fournir un contenu par défaut pour vos slots. Par exemple, qu'un composant `<submit-button>` contienne le texte 'Envoyer' par défaut et que ce contenu soit facilement modifié par 'Sauvegarder', 'Télécharger', ou autre.
 
-Pour procéder de la sorte, il est possible de spécifier le contenu par défaut d'une balise `<slot>`.
+Pour procéder de la sorte, il est possible de spécifier le contenu par défaut d'une balise `<slot>` dans votre template de composant :
 
 ```html
 <button type="submit">

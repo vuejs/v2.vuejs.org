@@ -118,3 +118,16 @@ Vue.component('example', {
   }
 })
 ```
+
+Depuis que `$nextTick()` retourne une promesse, vous pouvez parvenir au même résultat que ci-dessus avec la nouvelle syntaxe [async/await de ES2016](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) :
+
+``` js
+  methods: {
+    async updateMessage: function () {
+      this.message = 'mis à jour'
+      console.log(this.$el.textContent) // => 'pas mis à jour'
+      await this.$nextTick()
+      console.log(this.$el.textContent) // => 'mis à jour'
+    }
+  }
+```

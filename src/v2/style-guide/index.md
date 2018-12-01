@@ -1987,7 +1987,7 @@ export default {
   var enforcementTypes = {
     none: '<span title="Il n\'y a malheureusement aucun moyen de forcer ces règles.">auto discipline</span>',
     runtime: 'runtime error',
-    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
+    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank" rel="noopener noreferrer">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
