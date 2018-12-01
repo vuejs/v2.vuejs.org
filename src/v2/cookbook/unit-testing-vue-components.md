@@ -140,7 +140,7 @@ Ce que l'on doit tester :
 * si `error` est `true`, `<div class="error">` devrait être visible
 * si `error` est `false`, `<div class="error">` ne devrait pas être présent
 
-Et enfin la version naïve de nos tests
+Et enfin la version naïve de nos tests utilisant jest:
 
 ```js
 import { shallowMount } from '@vue/test-utils'
@@ -187,7 +187,7 @@ import Foo from './Foo'
 
 const factory = (values = {}) => {
   return shallowMount(Foo, {
-    data: { ...values  }
+    data() { return { ...values  }}
   })
 }
 
@@ -196,7 +196,7 @@ describe("Foo", () => {
     const wrapper = factory();
 
     expect(wrapper.find(".message").text()).toEqual(
-      "Welcome to the Vue.js cookbook"
+      "Bienvenue sur le tutoriel VueJs"
     );
   });
 
