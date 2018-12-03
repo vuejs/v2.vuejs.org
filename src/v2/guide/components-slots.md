@@ -227,3 +227,5 @@ The value of `slot-scope` can actually accept any valid JavaScript expression th
 ```
 
 This is a great way to make scoped slots a little cleaner.
+
+Note for beginners: `slot-scope` expects a literal string value of your JavaScript expression. Do __not__ use `v-bind:` with `slot-scope` __unless__ the returned value contains a string with the javascript expression you want scoped to your slot. If you're having problems accessing the scoped variables in your slot, then __make sure you haven't accidentally used `v-bind` on `slot-scope`__
