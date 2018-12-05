@@ -323,8 +323,8 @@ Now we can pass the todo into each repeated component using `v-bind`:
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
-      v-bind:key="item.id">
-    </todo-item>
+      v-bind:key="item.id"
+    ></todo-item>
   </ol>
 </div>
 ```
