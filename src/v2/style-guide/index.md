@@ -1707,7 +1707,7 @@ computed: {
 
 **It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended consequences](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
