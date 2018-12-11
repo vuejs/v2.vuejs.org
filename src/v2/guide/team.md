@@ -197,6 +197,7 @@ order: 803
   var cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
+    'Amsterdam, Netherlands': [4.895168, 52.370216],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
@@ -707,6 +708,54 @@ order: 803
   ]))
 
   var partners = [
+    {
+      name: 'Luke Thomas',
+      title: 'Creator of Vuejs Amsterdam',
+      city: 'Amsterdam, NL',
+      languages: ['nl', 'en', 'de'],
+      work: {
+        role: 'Creator',
+        org: 'Vuejs Amsterdam'
+      },
+      github: '',
+      twitter: '',
+      links: [
+        'https://vuejs.amsterdam',
+        'https://www.linkedin.com/in/luke-kenneth-thomas-578b3916a/?originalSubdomain=nl'
+      ]
+    },
+    {
+      name: 'Jos Gerards',
+      title: 'Organiser and Host of Vuejs Amsterdam & Frontend Love',
+      city: 'Amsterdam, NL',
+      languages: ['nl', 'en', 'de'],
+      work: {
+        role: 'Event Manager',
+        org: 'Vuejs Amsterdam'
+      },
+      github: '',
+      twitter: 'josgerards88',
+      links: [
+        'https://vuejs.amsterdam',
+        'https://www.linkedin.com/in/josgerards/'
+      ]
+    },
+    {
+      name: 'James McGlasson',
+      title: 'Head of Marketing Communications',
+      city: 'Amsterdam, NL',
+      languages: ['en', 'nl', 'de']
+      work: {
+        role: 'Head Of Marketing Communications',
+        org: 'Vuejs Amsterdam'
+      },
+      github: '',
+      twitter: '',
+      links: [
+        'https://vuejs.amsterdam',
+        'https://www.linkedin.com/in/jdog/'
+      ]
+    },
     {
       name: 'Jen Looper',
       title: 'Queen Fox',
