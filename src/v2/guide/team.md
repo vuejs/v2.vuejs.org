@@ -5,7 +5,6 @@ order: 803
 ---
 
 {% raw %}
-
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -150,7 +149,6 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
-
   </div>
 
   <div class="team">
@@ -191,7 +189,6 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
-
   </div>
 </div>
 
@@ -1257,5 +1254,4 @@ order: 803
   }
 })()
 </script>
-
 {% endraw %}
