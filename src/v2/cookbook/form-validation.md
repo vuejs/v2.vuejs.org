@@ -1,13 +1,12 @@
 ---
-title: Form Validation (EN)
+title: Form Validation
 type: cookbook
 order: 3
 ---
 
 ## Exemple de base
 
-<p>
-La validation des formulaires est supportée nativement par le navigateur. Parfois on va observer des différences sur la manière de gérer la validation en fonction des navigateurs ce qui fait que se reposer sur cette validation supportée nativement est des plus délicat. Même quand la validation est supportée parfaitement, il se peut que quand des validations personnalisées ou plus "manuelles" sont nécessaires, les solutions basées sur Vue soient plus appropriées. Commençons avec un exemple simple.</p>
+La validation des formulaires est supportée nativement par le navigateur. Parfois on va observer des différences sur la manière de gérer la validation en fonction des navigateurs ce qui fait que se reposer sur cette validation supportée nativement est des plus délicat. Même quand la validation est supportée parfaitement, il se peut que quand des validations personnalisées ou plus "manuelles" sont nécessaires, les solutions basées sur Vue soient plus appropriées. Commençons avec un exemple simple.
 
 Pour un formulaire avec trois champs, considérons que deux sont obligatoires. Regardons le HTML d'abord:
 
