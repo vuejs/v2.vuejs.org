@@ -230,7 +230,8 @@ order: 803
     'Toronto, Canada': [43.653226, -79.383184],
     'Wrocław, Poland': [51.107885, 17.038538],
     'Boston, MA, USA': [42.360081, -71.058884],
-    'Kyiv, Ukraine': [50.450100, 30.523399]
+    'Kyiv, Ukraine': [50.450100, 30.523399],
+    'Washington, DC, USA': [38.8935755,-77.0846156,12]
   }
   var languageNameFor = {
     en: 'English',
@@ -981,7 +982,23 @@ order: 803
       links: [
         'https://vuejsdevelopers.com'
       ]
-    }
+    },
+    {
+      name: 'Ben Hong',
+      title: '',
+      city: 'Washington, DC, USA',
+      languages: ['en', 'zh'],
+      work: {
+        role: 'Full Stack Engineer',
+        org: 'GitLab (Meltano)',
+      },
+      github: 'bencodezen',
+      twitter: 'bencodezen',
+      links: [
+        'https://www.vuemeetups.org',
+        'https://bencodezen.io/'
+      ]
+    },
   ]
 
   Vue.component('vuer-profile', {
