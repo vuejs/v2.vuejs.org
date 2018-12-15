@@ -231,7 +231,11 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   slot: 'name-of-slot',
   // Other special top-level properties
   key: 'myKey',
-  ref: 'myRef'
+  ref: 'myRef',
+  // If you are applying the same ref name to multiple
+  // elements in the render function. This will make `$refs.myRef` become an
+  // array
+  refInFor: true
 }
 ```
 
@@ -254,7 +258,7 @@ Vue.component('anchored-heading', {
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+      .replace(/(^-|-$)/g, '')
 
     return createElement(
       'h' + this.level,

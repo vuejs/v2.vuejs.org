@@ -67,6 +67,40 @@
   </div>
 </div>
 
+<div id="news">
+  <div class="inner">
+    <h3><label for="member_email">Subscribe to our Weekly Newsletter</label></h3>
+    <form
+      class="newsletter-form"
+      id="revue-form"
+      name="revue-form"
+      target="_blank"
+      action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
+      method="post"
+      @submit="subscribe"
+    >
+      <input
+        class="newsletter-input"
+        type="email"
+        name="member[email]"
+        id="member_email"
+        required
+        placeholder="Email address"
+      >
+      <input
+        class="button newsletter-button"
+        type="submit"
+        value="Subscribe"
+        name="member[subscribe]"
+        id="member_submit"
+      >
+    </form>
+    <p>
+      You can read the previous issues and listen to our podcast at <a href="https://news.vuejs.org" target="_blank">news.vuejs.org</a>.
+    </p>
+  </div>
+</div>
+
 <div id="footer">
   <p>
     <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
@@ -84,7 +118,10 @@
 </div>
 
 <div id="video-modal" class="modal">
-  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+  <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div><script src="https://player.vimeo.com/api/player.js"></script>
+  <p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.
+  </p>
 </div>
 
 <script>

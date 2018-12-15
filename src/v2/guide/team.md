@@ -221,6 +221,8 @@ order: 803
     'Poznań, Poland': [52.4006553, 16.761583],
     'Seoul, South Korea': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
+    'Singapore': [1.352083, 103.819839],
+    'Sydney, Australia': [-33.868820, 151.209290],
     'Taquaritinga, Brazil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
     'Thessaloniki, Greece': [40.640063, 22.944419],
@@ -228,7 +230,8 @@ order: 803
     'Toronto, Canada': [43.653226, -79.383184],
     'Wrocław, Poland': [51.107885, 17.038538],
     'Boston, MA, USA': [42.360081, -71.058884],
-    'Kyiv, Ukraine': [50.450100, 30.523399]
+    'Kyiv, Ukraine': [50.450100, 30.523399],
+    'Washington, DC, USA': [38.8935755,-77.0846156,12]
   }
   var languageNameFor = {
     en: 'English',
@@ -346,16 +349,20 @@ order: 803
     {
       name: 'Katashin',
       title: 'One of a Type State Manager',
-      city: 'Tokyo, Japan',
+      city: 'Singapore',
       languages: ['jp', 'en'],
       work: {
-        org: 'oRo Co., Ltd.',
-        orgUrl: 'https://www.oro.com'
+        role: 'Software Engineer',
+        org: 'ClassDo',
+        orgUrl: 'https://classdo.com'
       },
       github: 'ktsn',
       twitter: 'ktsn',
       reposOfficial: [
         'vuex', 'vue-class-component'
+      ],
+      reposPersonal: [
+        'vue-designer'
       ]
     },
     {
@@ -610,7 +617,8 @@ order: 803
         'news.vuejs.org'
       ],
       reposPersonal: [
-        'shentao/vue-multiselect'
+        'shentao/vue-multiselect',
+        'shentao/vue-global-events'
       ]
     },
     {
@@ -958,7 +966,39 @@ order: 803
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    }
+    },
+    {
+      name: 'Anthony Gore',
+      title: '',
+      city: 'Sydney, Australia',
+      languages: ['en'],
+      github: 'anthonygore',
+      twitter: 'anthonygore',
+      work: {
+        role: 'Author',
+        org: 'Vue.js Developers',
+        orgUrl: 'https://vuejsdevelopers.com/'
+      },
+      links: [
+        'https://vuejsdevelopers.com'
+      ]
+    },
+    {
+      name: 'Ben Hong',
+      title: '',
+      city: 'Washington, DC, USA',
+      languages: ['en', 'zh'],
+      work: {
+        role: 'Full Stack Engineer',
+        org: 'GitLab (Meltano)',
+      },
+      github: 'bencodezen',
+      twitter: 'bencodezen',
+      links: [
+        'https://www.vuemeetups.org',
+        'https://bencodezen.io/'
+      ]
+    },
   ]
 
   Vue.component('vuer-profile', {
@@ -972,7 +1012,7 @@ order: 803
         var work = this.profile.work
         var html = ''
         if (work.orgUrl) {
-          html += '<a href="' + work.orgUrl + '" target="_blank">'
+          html += '<a href="' + work.orgUrl + '" target="_blank" rel="noopener noreferrer">'
           if (work.org) {
             html += work.org
           } else {

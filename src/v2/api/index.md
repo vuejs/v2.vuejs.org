@@ -361,7 +361,7 @@ type: api
 - **Usage:**
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
-  
+
   This method has to be called before calling `new Vue()`
 
   When this method is called on the same plugin multiple times, the plugin will be installed only once.
@@ -2452,8 +2452,9 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components matched by this will be cached.
-  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
+  - `include` - string or RegExp or Array. Only components with matching names will be cached.
+  - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
+  - `max` - number. The maximum number of component instances to cache.
 
 - **Usage:**
 
@@ -2512,7 +2513,19 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+- **`max`**
+
+  > New in 2.5.0+
+
+  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+<p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 

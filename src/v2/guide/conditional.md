@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+In string templates, for example [Handlebars](https://handlebarsjs.com/), we would write a conditional block like this:
 
 ``` html
 <!-- Handlebars template -->

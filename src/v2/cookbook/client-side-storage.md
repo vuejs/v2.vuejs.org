@@ -60,7 +60,7 @@ And then finally, an example in Microsoft Edge. Note that you can find applicati
 
 <p class="tip">As a quick aside, these dev tools also offer you a way to remove storage values. This can be very useful when testing.</p>
 
-Immediately writing the value may not advisable. Let's consider a slightly more advanced example. First, the updated form.
+Immediately writing the value may not be advisable. Let's consider a slightly more advanced example. First, the updated form.
 
 ``` html
 <div id="app">
