@@ -378,6 +378,8 @@ If you want user input to be trimmed automatically, you can add the `trim` modif
 <input v-model.trim="msg">
 ```
 
+This trims out white-space from the input. 
+
 ## `v-model` with Components
 
 > If you're not yet familiar with Vue's components, you can skip this for now.
