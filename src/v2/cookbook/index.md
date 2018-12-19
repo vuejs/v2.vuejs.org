@@ -6,7 +6,7 @@ order: 0
 
 ## Les tutoriels versus le guide
 
-<p>Cette page est en cours de traduction. Pour nous aider, vous pouvez participer sur <a href="https://github.com/vuejs-fr/vuejs.org" target="_blank">le dépôt GitHub dédié de Vuejs-FR</a>.</p><p>En quoi les tutoriels sont-ils différents du guide ? Pourquoi est-ce nécessaire ?</p>
+<p>En quoi les tutoriels sont-ils différents du guide ? Pourquoi est-ce nécessaire ?</p>
 
 * **Plus focalisé** : Dans le guide, nous racontons essentiellement une histoire. Chaque section se construit sur la base des précédentes et présume la connaissance de celles-ci. Dans les tutoriels, chaque tutoriel peut et devrait se suffire à lui-même. Cela signifie que les tutoriels peuvent se focaliser sur un aspect spécifique de Vue, plutôt que d'avoir à donner un aperçu global.
 
