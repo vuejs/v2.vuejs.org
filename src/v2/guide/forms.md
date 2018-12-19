@@ -372,13 +372,11 @@ This is often useful, because even with `type="number"`, the value of HTML input
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
 
 ```html
 <input v-model.trim="msg">
 ```
-
-This trims out white-space from the input. 
 
 ## `v-model` with Components
 
