@@ -1430,6 +1430,8 @@ type: api
 
 ### vm.$attrs
 
+> New in 2.4.0+
+
 - **Type:** `{ [key: string]: string }`
 
 - **Read only**
@@ -1439,6 +1441,8 @@ type: api
   Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
+
+> New in 2.4.0+
 
 - **Type:** `{ [key: string]: Function | Array<Function> }`
 
