@@ -8,8 +8,14 @@ order: 803
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
-      <img v-if="profile.github"
+      <img v-if="profile.imageUrl"
+        :src="profile.imageUrl"
+        :alt="profile.name" width=80 height=80>
+      <img v-else-if="profile.github"
         :src="'https://github.com/' + profile.github + '.png'"
+        :alt="profile.name" width=80 height=80>
+      <img v-else-if="profile.twitter"
+        :src="'https://avatars.io/twitter/' + profile.twitter"
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
@@ -103,6 +109,10 @@ order: 803
             <i class="fa fa-codepen"></i>
             <span class="sr-only">CodePen</span>
           </a>
+          <a class=linkedin v-if="profile.linkedin" :href="'https://www.linkedin.com/in/' + profile.linkedin">
+            <i class="fa fa-linkedin"></i>
+            <span class="sr-only">LinkedIn</span>
+          </a>
         </footer>
       </dl>
     </div>
@@ -145,7 +155,7 @@ order: 803
 
     <vuer-profile
       v-for="profile in sortedTeam"
-      :key="profile.github"
+      :key="profile.name"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -185,7 +195,7 @@ order: 803
 
     <vuer-profile
       v-for="profile in sortedPartners"
-      :key="profile.github"
+      :key="profile.name"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -235,6 +245,7 @@ order: 803
   }
   var languageNameFor = {
     en: 'English',
+    nl: 'Nederlands',
     zh: '中文',
     vi: 'Tiếng Việt',
     pl: 'Polski',
@@ -710,50 +721,47 @@ order: 803
   var partners = [
     {
       name: 'Luke Thomas',
-      title: 'Creator of Vuejs Amsterdam',
-      city: 'Amsterdam, NL',
+      title: 'Creator of Vue.js Amsterdam',
+      city: 'Amsterdam, Netherlands',
       languages: ['nl', 'en', 'de'],
       work: {
         role: 'Creator',
-        org: 'Vuejs Amsterdam'
+        org: 'Vue.js Amsterdam'
       },
-      github: '',
-      twitter: '',
+      twitter: 'lukevscostas',
+      linkedin: 'luke-kenneth-thomas-578b3916a',
       links: [
-        'https://vuejs.amsterdam',
-        'https://www.linkedin.com/in/luke-kenneth-thomas-578b3916a/?originalSubdomain=nl'
+        'https://vuejs.amsterdam'
       ]
     },
     {
       name: 'Jos Gerards',
-      title: 'Organiser and Host of Vuejs Amsterdam & Frontend Love',
-      city: 'Amsterdam, NL',
+      title: 'Organizer and Host of Vue.js Amsterdam & Frontend Love',
+      city: 'Amsterdam, Netherlands',
       languages: ['nl', 'en', 'de'],
       work: {
         role: 'Event Manager',
-        org: 'Vuejs Amsterdam'
+        org: 'Vue.js Amsterdam'
       },
-      github: '',
       twitter: 'josgerards88',
+      linkedin: 'josgerards',
       links: [
-        'https://vuejs.amsterdam',
-        'https://www.linkedin.com/in/josgerards/'
+        'https://vuejs.amsterdam'
       ]
     },
     {
       name: 'James McGlasson',
       title: 'Head of Marketing Communications',
-      city: 'Amsterdam, NL',
-      languages: ['en', 'nl', 'de']
+      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1550707200&v=beta&t=6kPVnuYMxbxR_oAz3rdAeuDB-S8Om8e5W3zwbcH0dQI',
+      city: 'Amsterdam, Netherlands',
+      languages: ['en', 'nl', 'de'],
       work: {
         role: 'Head Of Marketing Communications',
-        org: 'Vuejs Amsterdam'
+        org: 'Vue.js Amsterdam'
       },
-      github: '',
-      twitter: '',
+      linkedin: 'jdog',
       links: [
-        'https://vuejs.amsterdam',
-        'https://www.linkedin.com/in/jdog/'
+        'https://vuejs.amsterdam'
       ]
     },
     {
@@ -1109,7 +1117,7 @@ order: 803
         )
       },
       hasSocialLinks: function () {
-        return this.profile.github || this.profile.twitter || this.profile.codepen
+        return this.profile.github || this.profile.twitter || this.profile.codepen || this.profile.linkedin
       }
     },
     methods: {
