@@ -730,6 +730,34 @@ order: 803
 
   var partners = [
     {
+      name: 'Pratik Patel',
+      title: 'Organizer of VueConf US',
+      city: 'Atlanta, GA, USA',
+      languages: ['en'],
+      work: {
+        role: 'Organizer',
+        org: 'VueConf US'
+      },
+      twitter: 'prpatel',
+      links: [
+        'https://us.vuejs.org/'
+      ]
+    },
+    {
+      name: 'Vincent Mayers',
+      title: 'Organizer of VueConf US',
+      city: 'Atlanta, GA, USA',
+      languages: ['en'],
+      work: {
+        role: 'Organizer',
+        org: 'VueConf US'
+      },
+      twitter: 'vincentmayers',
+      links: [
+        'https://us.vuejs.org/'
+      ]
+    },
+    {
       name: 'Luke Thomas',
       title: 'Creator of Vue.js Amsterdam',
       city: 'Amsterdam, Netherlands',
