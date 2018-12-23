@@ -128,12 +128,13 @@ module.exports = {
 
 ``` js
 const alias = require('rollup-plugin-alias')
+const path = require('path');
 
 rollup({
   // ...
   plugins: [
     alias({
-      'vue': 'vue/dist/vue.esm.js'
+      'vue': path.resolve('node_modules/vue/dist/vue.esm.js')
     })
   ]
 })
