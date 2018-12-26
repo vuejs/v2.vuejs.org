@@ -4,7 +4,7 @@ type: guide
 order: 402
 ---
 
-> [Vue CLI](https://cli.vuejs.org/) has built-in options for unit testing with [Jest](https://github.com/facebook/jest) or [Mocha](https://mochajs.org/) that works out of the box. We also have the official [vue-test-utils](https://vue-test-utils.vuejs.org/) which provides more detailed guidance for custom setups.
+> [Vue CLI](https://cli.vuejs.org/) has built-in options for unit testing with [Jest](https://github.com/facebook/jest) or [Mocha](https://mochajs.org/) that works out of the box. We also have the official [Vue Test Utils](https://vue-test-utils.vuejs.org/) which provides more detailed guidance for custom setups.
 
 ## Simple Assertions
 
