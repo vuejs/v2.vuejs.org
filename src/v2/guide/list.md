@@ -453,6 +453,8 @@ The above only renders the todos that are not complete.
 
 If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
 
+<p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
+
 ``` html
 <ul v-if="todos.length">
   <li v-for="todo in todos">
