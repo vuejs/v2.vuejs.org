@@ -1809,7 +1809,7 @@ button {
 
 **Les évènements et props devraient être préférés pour la communication entre composants parent-enfant, au lieu de l'utilisation de `this.$parent` ou la mutation des props.**
 
-Une application Vue idéale est une application où les props descendent et où les évènements remontent. Rester dans cette convention rend vos composants plus simples à à comprendre. Cependant, il y a quelques cas où la mutation des props ou `this.$parent` peut simplifier l'utilisation de deux composants qui sont fortement couplés.
+Une application Vue idéale est une application où les props descendent et où les évènements remontent. Rester dans cette convention rend vos composants plus simples à comprendre. Cependant, il y a quelques cas où la mutation des props ou `this.$parent` peut simplifier l'utilisation de deux composants qui sont fortement couplés.
 
 Le problème est qu'il y a beaucoup de _cas simples_ où leur utilisation offre de la facilité. Attention : ne vous laissez pas séduire par une apparente simplicité (être capable de comprendre le flux de votre état) pour une vision court-termiste (écrire moins de code).
 
