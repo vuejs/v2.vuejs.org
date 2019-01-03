@@ -83,9 +83,6 @@ gold_sponsors:
   - url: https://opteo.com/vue
     img: opteo.png
     name: opteo
-  - url: https://courses.wilderminds.com/p/vue-js-by-example
-    img: wilderminds.png
-    name: wilder minds
   - url: https://devsquad.com/
     img: devsquad.png
     name: dev squad
@@ -100,6 +97,9 @@ silver_sponsors:
   - url: https://dopamine.bg/
     img: dopamine.png
     name: dopamine
+  - url: https://gridsome.org/
+    img: gridsome.png
+    name: gridsome
 
 bronze_sponsors:
   - url: http://tighten.co/
