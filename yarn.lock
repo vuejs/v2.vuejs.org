@@ -1465,12 +1465,12 @@ hexo-log@^0.2.0:
     chalk "^1.1.1"
     hexo-bunyan "^1.0.0"
 
-hexo-offline@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/hexo-offline/-/hexo-offline-0.2.3.tgz#d08715f8118a9cc44401ac04fc2007165a454e56"
-  integrity sha512-iVlIKPdmjgtGBeG8TUo/2pkP34xGoSEW5aS0pjBebVKhSLALbZ+4tOwTlJJAJ8Eylq2ZjxqBPdIFPFBZ42m61A==
+hexo-offline@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-offline/-/hexo-offline-1.0.0.tgz#9c78fce0aaa05bf39c6ee2cab41cea34d5806c62"
+  integrity sha512-9vrcFvIB2JMTNJZsAnzoh3thvAhCg5RDvrJftvo909hIdgNt5VMWmkUg3jCQgDFUrq7OWljIVIBH8Z2R1/bOjw==
   dependencies:
-    sw-precache "^5.1.0"
+    sw-precache "^5.2.1"
 
 hexo-pagination@0.0.2:
   version "0.0.2"
@@ -1570,10 +1570,10 @@ highlight.js@^9.4.0:
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
   integrity sha512-Sc28JNQNDzaH6PORtRLMvif9RSn1mYuOoX3omVjnb0+HbpPygU2ALBI0R/wsiqCb4/fcp07Gdo8g+fhtFrQl6A==
 
-hoek@^5.0.3:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/hoek/-/hoek-5.0.4.tgz#0f7fa270a1cafeb364a4b2ddfaa33f864e4157da"
-  integrity sha512-Alr4ZQgoMlnere5FZJsIyfIjORBqZll5POhDsF4q64dPuJR6rNxXdDxtHSQq8OXRurhmx+PWYEE8bXRROY8h0w==
+hoek@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-6.1.2.tgz#99e6d070561839de74ee427b61aa476bd6bddfd6"
+  integrity sha512-6qhh/wahGYZHFSFw12tBbJw5fsAhhwrrG/y3Cs0YMTv2WzMnL0oLPnQJjv1QJvEfylRSOFuP+xCu+tdx0tD16Q==
 
 hosted-git-info@^2.1.4:
   version "2.7.1"
@@ -3421,7 +3421,7 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-sw-precache@^5.1.0:
+sw-precache@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/sw-precache/-/sw-precache-5.2.1.tgz#06134f319eec68f3b9583ce9a7036b1c119f7179"
   integrity sha512-8FAy+BP/FXE+ILfiVTt+GQJ6UEf4CVHD9OfhzH0JX+3zoy2uFk7Vn9EfXASOtVmmIVbL3jE/W8Z66VgPSZcMhw==
