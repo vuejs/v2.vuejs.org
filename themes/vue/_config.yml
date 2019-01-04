@@ -59,18 +59,12 @@ gold_sponsors:
   - url: https://icons8.com/
     img: icons8.png
     name: icons 8
-  - url: https://vuejobs.com/?ref=vuejs
-    img: vuejobs.png
-    name: vue jobs
-  - url: https://teamextension.io/
-    img: teamextension.png
-    name: team extension
-  - url: http://aaha.co/
-    img: aaha.png
-    name: aaha
   - url: https://www.valuecoders.com
     img: valuecoders.png
     name: value coders dot org
+  - url: https://vuejobs.com/?ref=vuejs
+    img: vuejobs.png
+    name: vue jobs
   - url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
     name: tidelift
@@ -91,7 +85,13 @@ gold_sponsors:
     name: inkoop
   - url: https://www.firesticktricks.com/
     img: firesticks.png
-    name: firesticks
+    name: firestick tricks
+  - url: https://github.com/marcus-hiles
+    img: marcushiles.png
+    name: Marcus Hiles
+  - url: https://isleofcode.com/
+    img: ioc.png
+    name: Isle of Code
 
 silver_sponsors:
   - url: https://dopamine.bg/
