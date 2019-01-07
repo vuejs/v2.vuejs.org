@@ -2472,7 +2472,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  Primarily used to preserve component state or avoid re-rendering.
 
   ```html
   <!-- basic -->
