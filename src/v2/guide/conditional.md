@@ -82,6 +82,8 @@ Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a
 
 Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
 
+<p class="tip">This doesn't work for single file components</p>
+
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
