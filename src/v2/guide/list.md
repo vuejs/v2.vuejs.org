@@ -233,6 +233,8 @@ It is recommended to provide a `key` with `v-for` whenever possible, unless the 
 
 Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
 
+<p class="tip">Don't use non-primitive values like objects and arrays as `v-for` keys. Use string or numeric values instead.</p>
+
 ## Array Change Detection
 
 ### Mutation Methods

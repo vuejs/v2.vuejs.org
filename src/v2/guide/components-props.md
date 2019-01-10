@@ -62,7 +62,9 @@ You've also seen props assigned dynamically with `v-bind`, such as in:
 <blog-post v-bind:title="post.title"></blog-post>
 
 <!-- Dynamically assign the value of a complex expression -->
-<blog-post v-bind:title="post.title + ' by ' + post.author.name"></blog-post>
+<blog-post
+  v-bind:title="post.title + ' by ' + post.author.name"
+></blog-post>
 ```
 
 In the two examples above, we happen to pass string values, but _any_ type of value can actually be passed to a prop.
@@ -108,7 +110,12 @@ In the two examples above, we happen to pass string values, but _any_ type of va
 ```html
 <!-- Even though the object is static, we need v-bind to tell Vue that -->
 <!-- this is a JavaScript expression rather than a string.             -->
-<blog-post v-bind:author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blog-post>
+<blog-post
+  v-bind:author="{
+    name: 'Veronica',
+    company: 'Veridian Dynamics'
+  }"
+></blog-post>
 
 <!-- Dynamically assign to the value of a variable. -->
 <blog-post v-bind:author="post.author"></blog-post>
