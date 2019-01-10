@@ -1,12 +1,10 @@
 ---
 title: Unit Testing
 type: guide
-order: 403
+order: 402
 ---
 
-## Setup and Tooling
-
-Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup please refer to each project's respective documentation. These example Karma configurations for [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) and [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) can help you get started.
+> [Vue CLI](https://cli.vuejs.org/) has built-in options for unit testing with [Jest](https://github.com/facebook/jest) or [Mocha](https://mochajs.org/) that works out of the box. We also have the official [Vue Test Utils](https://vue-test-utils.vuejs.org/) which provides more detailed guidance for custom setups.
 
 ## Simple Assertions
 
@@ -31,7 +29,7 @@ You don't have to do anything special in your components to make them testable. 
 </script>
 ```
 
-Then import the component options along with Vue, and you can make many common assertions:
+Then import the component options along with Vue, and you can make many common assertions (here we are using Jasmine/Jest style `expect` assertions just as an example):
 
 ``` js
 // Import Vue and the component being tested
@@ -71,7 +69,7 @@ describe('MyComponent', () => {
 
 ## Writing Testable Components
 
-A component's render output is primarily determined by the props they receive. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
+A component's render output is primarily determined by the props it receives. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
 
 ``` html
 <template>
@@ -129,6 +127,4 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-We are planning to work on a collection of common test helpers to make it easier to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.
-
-For more in-depth information on unit testing in Vue, check out [vue-test-utils](https://vue-test-utils.vuejs.org/) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
+For more in-depth information on unit testing in Vue, check out [Vue Test Utils](https://vue-test-utils.vuejs.org/) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).

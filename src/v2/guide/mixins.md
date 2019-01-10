@@ -35,7 +35,7 @@ var component = new Component() // => "hello from mixin!"
 
 When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies.
 
-For example, data objects undergo a shallow merge (one property deep), with the component's data taking priority in cases of conflicts.
+For example, data objects undergo a recursive merge, with the component's data taking priority in cases of conflicts.
 
 ``` js
 var mixin = {

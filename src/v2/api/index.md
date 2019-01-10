@@ -362,6 +362,8 @@ type: api
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
+  This method has to be called before calling `new Vue()`
+
   When this method is called on the same plugin multiple times, the plugin will be installed only once.
 
 - **See also:** [Plugins](../guide/plugins.html)
@@ -643,8 +645,12 @@ type: api
         immediate: true
       },
       e: [
-        function handle1 (val, oldVal) { /* ... */ },
-        function handle2 (val, oldVal) { /* ... */ }
+        'handle1',
+        function handle2 (val, oldVal) { /* ... */ },
+        {
+          handler: function handle3 (val, oldVal) { /* ... */ },
+          /* ... */
+        }
       ],
       // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
@@ -1428,6 +1434,8 @@ type: api
 
 ### vm.$attrs
 
+> New in 2.4.0+
+
 - **Type:** `{ [key: string]: string }`
 
 - **Read only**
@@ -1437,6 +1445,8 @@ type: api
   Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
+
+> New in 2.4.0+
 
 - **Type:** `{ [key: string]: Function | Array<Function> }`
 
@@ -2140,7 +2150,7 @@ type: api
 
 - **Modifiers:**
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast input string to numbers
+  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
 - **Usage:**
@@ -2431,11 +2441,11 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **Usage:**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
 
   Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2450,8 +2460,9 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components matched by this will be cached.
-  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
+  - `include` - string or RegExp or Array. Only components with matching names will be cached.
+  - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
+  - `max` - number. The maximum number of component instances to cache.
 
 - **Usage:**
 
@@ -2461,7 +2472,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  Primarily used to preserve component state or avoid re-rendering.
 
   ```html
   <!-- basic -->
@@ -2510,7 +2521,19 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+- **`max`**
+
+  > New in 2.5.0+
+
+  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+<p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 

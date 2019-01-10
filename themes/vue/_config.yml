@@ -1,71 +1,117 @@
-site_description: "Vue.js - The Progressive JavaScript Framework"
+site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.5.13
-
+vue_version: 2.5.16
+platinum_sponsors_china:
+  - url: >-
+      https://studio.qcloud.coding.net/campaign/favorite-plugins/?utm_source=vue.js&utm_content=cs-logo
+    img: cloudstudio.png
+  - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
+    img: dcloud.gif
 special_sponsors:
-  - url: https://stdlib.com
+  - url: 'https://stdlib.com/'
     img: stdlib.png
-  - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
-    img: bit.png
-    wide_img: bit-wide.png
-    big_width: 120px
-    big_height: 120px
-
+    description: 'Build APIs you need in minutes instead of days, for free.'
 platinum_sponsors:
-  - url: http://tooltwist.com/
+  - url: >-
+      https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+    img: bit.png
+    name: Bit
+  - url: 'http://tooltwist.com/'
     img: tooltwist.png
-  - url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
+    name: Tooltwist
+  - url: >-
+      https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
-  - url: https://vehikl.com/
+    name: VueSchool
+  - url: 'https://vehikl.com/'
     img: vehikl.png
-
+    name: Vehikl
+  - url: >-
+      https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
+    img: nativescript.png
+    name: NativeScript
 gold_sponsors:
-  - url: https://laravel.com
+  - url: 'https://www.vuemastery.com/'
+    img: vuemastery.png
+    name: VueMastery
+  - url: 'https://laravel.com'
     img: laravel.png
-  - url: https://htmlburger.com
-    img: htmlburger.png
-  - url: https://chaitin.cn/en/
+    name: Laravel
+  - url: 'https://chaitin.cn/en/'
     img: chaitin.png
-  - url: https://anymod.com
-    img: anymod.png
-  - url: https://www.frontenddeveloperlove.com/
-    img: frontend-love.png
-  - url: https://onsen.io/vue/
-    img: onsen-ui.png
-  - url: https://vuetifyjs.com
+    name: Chaitin
+  - url: 'https://htmlburger.com'
+    img: html_burger.png
+    name: HTML Burger
+  - url: 'https://www.frontenddeveloperlove.com/'
+    img: frontend_love.png
+    name: Frontend Love
+  - url: 'https://onsen.io/vue/'
+    img: onsen_ui.png
+    name: Onsen UI
+  - url: 'https://vuetifyjs.com'
     img: vuetify.png
-  - url: https://neds.com.au/
+    name: Vuetify
+  - url: 'https://neds.com.au/'
     img: neds.png
-  - url: https://hackr.io/tutorials/learn-vue-js
-    img: hackr-io.png
-  - url: https://icons8.com/
-    img: icons8.png
-  - url: https://vuejobs.com/?ref=vuejs
+    name: Neds
+  - url: 'https://icons8.com/'
+    img: icons_8.png
+    name: Icons 8
+  - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
-  - url: https://leanpub.com/vuejs2
-    img: tmvuejs2.png
-  - url: https://codepilot.ai
-    img: codepilot.png
-  - url: https://teamextension.io/
-    img: teamextension.png
-  - url: https://jsguru.io/
-    img: jsguru.png
-  - url: http://aaha.co/
-    img: aaha.png
-  - url: https://www.valuecoders.com
+    name: VueJobs
+  - url: 'https://www.valuecoders.com'
     img: valuecoders.png
-  - url: https://www.nsoft.com/careers/
-    img: nsoft.png
-  - url: https://www.pubnub.com/vue-js/
-    img: pubnub.png
-
+    name: ValueCoders
+  - url: 'https://tidelift.com/subscription/npm/vue'
+    img: tidelift.png
+    name: Tidelift
+  - url: 'https://webdock.io/en'
+    img: webdock.png
+    name: Webdock
+  - url: 'https://syncfusion.com/products/vue'
+    img: syncfusion.png
+    name: SyncFusion
+  - url: 'https://opteo.com/vue'
+    img: opteo.png
+    name: Opteo
+  - url: 'https://devsquad.com/'
+    img: devsquad.png
+    name: DevSquad
+  - url: 'https://www.inkoop.in/'
+    img: inkoop.png
+    name: Inkoop
+  - url: 'https://www.firesticktricks.com/'
+    img: firestick_tricks.png
+    name: Firestick Tricks
+  - url: 'https://github.com/marcus-hiles'
+    img: marcus_hiles.png
+    name: Marcus Hiles
+  - url: 'https://isleofcode.com/'
+    img: isle_of_code.png
+    name: Isle of Code
+silver_sponsors:
+  - url: 'https://dopamine.bg/'
+    img: dopamine.png
+    name: Dopamine
+  - url: 'https://gridsome.org/'
+    img: gridsome.png
+    name: Gridsome
 bronze_sponsors:
-  - url: http://tighten.co/
-    img: http://i.imgur.com/T7fQYLT.png
-  - url: https://alligator.io
-    img: https://alligator.io/images/alligator-logo.svg
-  - url: https://www.accelebrate.com/
-    img: https://www.accelebrate.com/assets/images/accelebrate_logo@2x.png
-  - url: https://pullstring.com
-    img: https://i.imgur.com/hQHW6TB.png
+  - url: 'http://tighten.co/'
+    img: tighten_co.png
+    name: Tighten.co
+  - url: 'https://alligator.io'
+    img: alligator_io.svg
+    name: Alligator.io
+  - url: 'https://www.accelebrate.com/'
+    img: accelebrate.png
+    name: Accelebrate
+  - url: 'https://polyglotengineer.com/derek.pollard'
+    img: derek_pollard.png
+    name: Derek Pollard
+  - url: 'https://www.earthlink.ro'
+    img: earthlink.png
+    name: Earthlink

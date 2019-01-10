@@ -66,6 +66,8 @@ A directive definition object can provide several hook functions (all optional):
 
 - `update`: called after the containing component's VNode has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
 
+<p class="tip">We'll cover VNodes in more detail [later](./render-function.html#The-Virtual-DOM), when we discuss [render functions](./render-function.html).</p>
+
 - `componentUpdated`: called after the containing component's VNode __and the VNodes of its children__ have updated.
 
 - `unbind`: called only once, when the directive is unbound from the element.
