@@ -1980,7 +1980,7 @@ type: api
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Expects:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **Usage:**
 
@@ -2007,6 +2007,8 @@ type: api
     {{ item.text }}
   </div>
   ```
+
+  Since 2.6, `v-for` can also work on values that implements the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However it should be noted that Vue 2.x currently does not support reactivity detection on `Map` and `Set` values.
 
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
