@@ -402,6 +402,33 @@ type: api
 
 - **See also:** [Render Functions](../guide/render-function.html)
 
+### Vue.observable( value )
+
+> New in 2.6.0+
+
+- **Arguments:**
+  - `{object} value`
+
+- **Usage:**
+
+  Explicitly creates a reactive object. This is what Vue performs internally on objects returned from a component's `data()` function.
+
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can be used as a minimal cross-component state store for simple scenarios.
+
+  ``` js
+  const obj = Vue.observable({ count: 0 })
+
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { obj.count++ }}
+      }, `count is: ${obj.count}`)
+    }
+  }
+  ```
+
+- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+
 ### Vue.version
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
