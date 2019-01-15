@@ -66,7 +66,7 @@ Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directiv
 <div v-bind:id="dynamicId"></div>
 ```
 
-In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example: 
+In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example:
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -150,6 +150,18 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 
 <!-- shorthand -->
 <a :href="url"> ... </a>
+```
+
+> New in 2.6
+
+In 2.6 a separate shorthand for explicit DOM property bindings (with the `.prop` modifier) have been introduced:
+
+``` html
+<!-- full syntax -->
+<video v-bind:muted.prop="isMuted"> ... </video>
+
+<!-- shorthand -->
+<video .muted="isMuted"> ... </video>
 ```
 
 ### `v-on` Shorthand

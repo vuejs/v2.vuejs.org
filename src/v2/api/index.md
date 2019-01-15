@@ -2142,6 +2142,9 @@ type: api
   <!-- DOM attribute binding with prop modifier -->
   <div v-bind:text-content.prop="text"></div>
 
+  <!-- shorthand for prop modifier (2.6+) -->
+  <div .text-content="text"></div>
+
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
 
