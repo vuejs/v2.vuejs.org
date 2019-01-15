@@ -1418,7 +1418,7 @@ type: api
 
 > New in 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Type:** `{ [name: string]: props => Array<VNode> | undefined }`
 
 - **Read only**
 
@@ -1427,6 +1427,12 @@ type: api
   Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
 
   Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+
+  **Note:** since 2.6.0+, there are two notable changes to this property:
+
+  1. Scoped slot functions now are guaranteed to return Array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+
+  2. All normal slots on `vm.$slots` are now also exposed on `vm.$scopeSlots` as functions. If you work with render functions, it is now recommended to always access all slots via `vm.$scopedSlots` for consistency.
 
 - **See also:**
   - [`<slot>` Component](#slot-1)
