@@ -82,8 +82,8 @@ Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly sca
 
 In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
-| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers)
-| --- | --- | --- | --- |
+| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
+| --- | --- | --- | --- | --- |
 | **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
 | **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
 | **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
