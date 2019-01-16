@@ -536,7 +536,7 @@ Everything the component needs is passed through `context`, which is an object c
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
 - `slots`: A function returning a slots object
-- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots
+- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
 - `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
 - `parent`: A reference to the parent component
 - `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
