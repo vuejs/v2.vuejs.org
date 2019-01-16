@@ -1,16 +1,16 @@
 ---
-title: Routing
+title: Enrutamiento
 type: guide
 order: 501
 ---
 
-## Official Router
+## Router Oficial
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+Para la mayorias de las SPAs, es recomendado utilizar la librería con soporte oficial [vue-router](https://github.com/vuejs/vue-router). Por más detalles, ver la [documentación](https://router.vuejs.org/) de vue-router.
 
-## Simple Routing From Scratch
+## Routeo simple desde cero
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+Si usted solo necesitar un enrutamiento muy simple y no deseas utilizar una librería de enrutamiento con todas las funcionalidades, usted puede hacerlo de renderizando dinamicamente un componente de nivel página como este:
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
@@ -36,8 +36,8 @@ new Vue({
 })
 ```
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+Combinado con la API HTML5 History, usted puede construir un muy básico pero totalmente funcional enrutador del lado del cliente. Para ver esto en practica, visita [esta app de ejemplo](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
 
-## Integrating 3rd-Party Routers
+## Integrando Enrutadores de terceros
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+Si hay algun enrutador de terceros que usted prefier utilizar, como [Page.js](https://github.com/visionmedia/page.js) o [Director](https://github.com/flatiron/director), la integracion es [igualmente fácil](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Aquí hay un [ejemplo completo](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) utilizando Page.js.

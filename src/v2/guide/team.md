@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Conocer al equipo
 type: guide
 order: 803
 ---
@@ -8,14 +8,8 @@ order: 803
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
-      <img v-if="profile.imageUrl"
-        :src="profile.imageUrl"
-        :alt="profile.name" width=80 height=80>
-      <img v-else-if="profile.github"
+      <img v-if="profile.github"
         :src="'https://github.com/' + profile.github + '.png'"
-        :alt="profile.name" width=80 height=80>
-      <img v-else-if="profile.twitter"
-        :src="'https://avatars.io/twitter/' + profile.twitter"
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
@@ -25,7 +19,7 @@ order: 803
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>principal enfoque</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -35,7 +29,7 @@ order: 803
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Ecosistema</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -57,14 +51,14 @@ order: 803
             <span class="sr-only">Distance</span>
           </dt>
           <dd>
-            About
+            Cerca de
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' is close enough to commute to your location.'"
               class="user-match"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }} desde</span>
+            <template v-else>{{ textDistance }} desde</template>
+               {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
@@ -109,10 +103,6 @@ order: 803
             <i class="fa fa-codepen"></i>
             <span class="sr-only">CodePen</span>
           </a>
-          <a class=linkedin v-if="profile.linkedin" :href="'https://www.linkedin.com/in/' + profile.linkedin">
-            <i class="fa fa-linkedin"></i>
-            <span class="sr-only">LinkedIn</span>
-          </a>
         </footer>
       </dl>
     </div>
@@ -123,7 +113,7 @@ order: 803
   <div class="team">
 
     <h2 id="the-core-team">
-      The Core Team
+      El equipo central
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -136,26 +126,26 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>Buscar cerca de mi</span>
         </template>
       </button>
     </h2>
 
-    <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+    <p v-if="errorGettingLocation" class="tip">      
+      Fallo al obtener su ubicacion.
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      El desarrollo de Vue y su ecosistema está guiado por un equipo internacional, algunos de los cuales han elegido ser presentados a continuación.      
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      El equipo centrar ha sido ordenado por su distancia de ti.      
     </p>
 
     <vuer-profile
       v-for="profile in sortedTeam"
-      :key="profile.name"
+      :key="profile.github"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -163,7 +153,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      Socios de la comunidad      
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -176,26 +166,26 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>cerca de mi</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Fallo al obtner su ubicacion.      
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Algunos miembros de la comunidad Vue lo han enriquecido tanto que merecen una mención especial. Hemos desarrollado una relación más íntima con estos socios clave, que a menudo se coordinan con ellos en las próximas funciones y noticias.      
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      Socios de la comunidad ha sido ordenados por su distancia de ti.      
     </p>
 
     <vuer-profile
       v-for="profile in sortedPartners"
-      :key="profile.name"
+      :key="profile.github"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -205,64 +195,58 @@ order: 803
 <script>
 (function () {
   var cityCoordsFor = {
-    'Annecy, France': [45.899247, 6.129384],
-    'Alicante, Spain' : [38.346543, -0.483838],
-    'Amsterdam, Netherlands': [4.895168, 52.370216],
+    'Annecy, Francia': [45.899247, 6.129384],
+    'Alicante, España' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
-    'Bordeaux, France': [44.837789, -0.579180],
-    'Bucharest, Romania': [44.426767, 26.102538],
+    'Bordeaux, Francia': [44.837789, -0.579180],
+    'Bucharest, Rumania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
     'Denver, CO, USA': [39.739236, -104.990251],
-    'Dubna, Russia': [56.732020, 37.166897],
+    'Dubna, Rusia': [56.732020, 37.166897],
     'East Lansing, MI, USA': [42.736979, -84.483865],
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
-    'Krasnodar, Russia': [45.039267, 38.987221],
+    'Krasnodar, Rusia': [45.039267, 38.987221],
     'Lansing, MI, USA': [42.732535, -84.555535],
-    'London, UK': [51.507351, -0.127758],
-    'Lyon, France': [45.764043, 4.835659],
-    'Mannheim, Germany': [49.487459, 8.466039],
-    'Moscow, Russia': [55.755826, 37.617300],
-    'Munich, Germany': [48.137154, 11.576124],
+    'Londres, UK': [51.507351, -0.127758],
+    'Lyon, Francia': [45.764043, 4.835659],
+    'Mannheim, Alemania': [49.487459, 8.466039],
+    'Mosco, Rusia': [55.755826, 37.617300],
+    'Munich, Alemania': [48.137154, 11.576124],
     'Orlando, FL, USA': [28.538335, -81.379236],
-    'Paris, France': [48.856614, 2.352222],
-    'Poznań, Poland': [52.4006553, 16.761583],
-    'Seoul, South Korea': [37.566535, 126.977969],
+    'Paris, Francia': [48.856614, 2.352222],
+    'Poznań, Polonia': [52.4006553, 16.761583],
+    'Seoul, Korea de Sur': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
-    'Singapore': [1.352083, 103.819839],
-    'Sydney, Australia': [-33.868820, 151.209290],
-    'Taquaritinga, Brazil': [-21.430094, -48.515285],
+    'Taquaritinga, Brasil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
-    'Thessaloniki, Greece': [40.640063, 22.944419],
-    'Tokyo, Japan': [35.689487, 139.691706],
+    'Thessaloniki, Grecie': [40.640063, 22.944419],
+    'Tokyo, Japon': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538],
+    'Wrocław, Polonia': [51.107885, 17.038538],
     'Boston, MA, USA': [42.360081, -71.058884],
-    'Kyiv, Ukraine': [50.450100, 30.523399],
-    'Washington, DC, USA': [38.8935755,-77.0846156,12],
-    'Kraków, Poland': [50.064650, 19.936579]
+    'Kyiv, Ucrania': [50.450100, 30.523399]
   }
   var languageNameFor = {
-    en: 'English',
-    nl: 'Nederlands',
-    zh: '中文',
-    vi: 'Tiếng Việt',
-    pl: 'Polski',
+    en: 'Ingles',
+    zh: 'Chino',
+    vi: 'Vitnamita',
+    pl: 'Polaco',
     pt: 'Português',
-    ru: 'Русский',
-    jp: '日本語',
-    fr: 'Français',
-    de: 'Deutsch',
-    el: 'Ελληνικά',
+    ru: 'Ruso',
+    jp: 'Japones',
+    fr: 'Frances',
+    de: 'Aleman',
+    el: 'Griego',
     es: 'Español',
-    hi: 'हिंदी',
-    fa: 'فارسی',
-    ko: '한국어',
-    ro: 'Română',
-    uk: 'Українська'
+    hi: 'Hindu',
+    fa: 'Irani',
+    ko: 'Koreano',
+    ro: 'Rumano',
+    uk: 'Ucraniano'
   }
 
   var team = [{
@@ -293,7 +277,7 @@ order: 803
       github: 'chrisvfritz',
       twitter: 'chrisvfritz',
       work: {
-        role: 'Educator & Consultant'
+        role: 'Educator & Consultor'
       },
       reposOfficial: [
         'vuejs.org', 'vue-migration-helper'
@@ -308,7 +292,7 @@ order: 803
     {
       name: 'Eduardo',
       title: 'Real-Time Rerouter',
-      city: 'Paris, France',
+      city: 'Paris, Francia',
       languages: ['es', 'fr', 'en'],
       github: 'posva',
       twitter: 'posva',
@@ -362,20 +346,16 @@ order: 803
     {
       name: 'Katashin',
       title: 'One of a Type State Manager',
-      city: 'Singapore',
+      city: 'Tokyo, Japan',
       languages: ['jp', 'en'],
       work: {
-        role: 'Software Engineer',
-        org: 'ClassDo',
-        orgUrl: 'https://classdo.com'
+        org: 'oRo Co., Ltd.',
+        orgUrl: 'https://www.oro.com'
       },
       github: 'ktsn',
       twitter: 'ktsn',
       reposOfficial: [
         'vuex', 'vue-class-component'
-      ],
-      reposPersonal: [
-        'vue-designer'
       ]
     },
     {
@@ -491,7 +471,7 @@ order: 803
     {
       name: 'Denis Karabaza',
       title: 'Director of Directives (Emoji-Human Hybrid)',
-      city: 'Dubna, Russia',
+      city: 'Dubna, Rusia',
       languages: ['ru', 'en'],
       github: 'simplesmiler',
       twitter: 'simplesmiler',
@@ -510,7 +490,7 @@ order: 803
     {
       name: 'Guillaume Chau',
       title: 'Client-Server Astronaut',
-      city: 'Lyon, France',
+      city: 'Lyon, Francia',
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
@@ -619,19 +599,18 @@ order: 803
     {
       name: 'Damian Dulisz',
       title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
+      city: 'Wrocław, Polonia',
       languages: ['pl', 'en'],
       github: 'shentao',
       twitter: 'DamianDulisz',
       work: {
-        role: 'Consultant'
+        role: 'Consultor'
       },
       reposOfficial: [
         'news.vuejs.org'
       ],
       reposPersonal: [
-        'shentao/vue-multiselect',
-        'shentao/vue-global-events'
+        'shentao/vue-multiselect'
       ]
     },
     {
@@ -657,7 +636,7 @@ order: 803
       github: 'hootlex',
       twitter: 'hootlex',
       work: {
-        role: 'Consultant / Author'
+        role: 'Consultor / Author'
       },
       reposPersonal: [
         'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
@@ -668,7 +647,7 @@ order: 803
     },
     {
       name: 'Michał Sajnóg',
-      city: 'Poznań, Poland',
+      city: 'Poznań, Polonia',
       languages: ['pl', 'en'],
       github: 'michalsnik',
       twitter: 'michalsnik',
@@ -717,91 +696,10 @@ order: 803
       reposOfficial: [
         'vuepress'
       ]
-    },
-    {
-      name: 'Darek Gusto Wędrychowski',
-      title: 'Google Search Virtuoso',
-      city: 'Kraków, Poland',
-      languages: ['pl', 'en'],
-      github: 'gustojs',
-      twitter: 'gustojs'
     }
   ]))
 
   var partners = [
-    {
-      name: 'Pratik Patel',
-      title: 'Organizer of VueConf US',
-      city: 'Atlanta, GA, USA',
-      languages: ['en'],
-      work: {
-        role: 'Organizer',
-        org: 'VueConf US'
-      },
-      twitter: 'prpatel',
-      links: [
-        'https://us.vuejs.org/'
-      ]
-    },
-    {
-      name: 'Vincent Mayers',
-      title: 'Organizer of VueConf US',
-      city: 'Atlanta, GA, USA',
-      languages: ['en'],
-      work: {
-        role: 'Organizer',
-        org: 'VueConf US'
-      },
-      twitter: 'vincentmayers',
-      links: [
-        'https://us.vuejs.org/'
-      ]
-    },
-    {
-      name: 'Luke Thomas',
-      title: 'Creator of Vue.js Amsterdam',
-      city: 'Amsterdam, Netherlands',
-      languages: ['nl', 'en', 'de'],
-      work: {
-        role: 'Creator',
-        org: 'Vue.js Amsterdam'
-      },
-      twitter: 'lukevscostas',
-      linkedin: 'luke-kenneth-thomas-578b3916a',
-      links: [
-        'https://vuejs.amsterdam'
-      ]
-    },
-    {
-      name: 'Jos Gerards',
-      title: 'Organizer and Host of Vue.js Amsterdam & Frontend Love',
-      city: 'Amsterdam, Netherlands',
-      languages: ['nl', 'en', 'de'],
-      work: {
-        role: 'Event Manager',
-        org: 'Vue.js Amsterdam'
-      },
-      twitter: 'josgerards88',
-      linkedin: 'josgerards',
-      links: [
-        'https://vuejs.amsterdam'
-      ]
-    },
-    {
-      name: 'James McGlasson',
-      title: 'Head of Marketing Communications',
-      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1550707200&v=beta&t=6kPVnuYMxbxR_oAz3rdAeuDB-S8Om8e5W3zwbcH0dQI',
-      city: 'Amsterdam, Netherlands',
-      languages: ['en', 'nl', 'de'],
-      work: {
-        role: 'Head Of Marketing Communications',
-        org: 'Vue.js Amsterdam'
-      },
-      linkedin: 'jdog',
-      links: [
-        'https://vuejs.amsterdam'
-      ]
-    },
     {
       name: 'Jen Looper',
       title: 'Queen Fox',
@@ -839,7 +737,7 @@ order: 803
       city: 'Alicante, Spain',
       languages: ['es', 'en'],
       work: {
-        role: 'Web, PWA and Performance Consultant',
+        role: 'Web, PWA and Performance Consultor',
         org: 'Freelance'
       },
       github: 'alexjoverm',
@@ -854,7 +752,7 @@ order: 803
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Paris, France',
+      city: 'Paris, Francia',
       languages: ['fr', 'en'],
       github: 'Atinux',
       twitter: 'Atinux',
@@ -869,7 +767,7 @@ order: 803
     {
       name: 'Alexandre Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Bordeaux, France',
+      city: 'Bordeaux, Francia',
       languages: ['fr', 'en'],
       github: 'alexchopin',
       twitter: '_achopin',
@@ -926,7 +824,7 @@ order: 803
     {
       name: 'Bruno Lesieur',
       title: 'French Community Director',
-      city: 'Annecy, France',
+      city: 'Annecy, Francia',
       languages: ['fr', 'en'],
       github: 'Haeresis',
       twitter: 'ZetesEthique',
@@ -945,7 +843,7 @@ order: 803
     {
       name: 'ChangJoo Park',
       title: 'Vuenthusiastic Korean Community Organizer',
-      city: 'Seoul, South Korea',
+      city: 'Seoul, Korea del Sur',
       languages: ['ko', 'en'],
       github: 'changjoo-park',
       twitter: 'pcjpcj2',
@@ -960,7 +858,7 @@ order: 803
     {
       name: 'Erick Petrucelli',
       title: 'Perfectionist Chief Translator for Portuguese',
-      city: 'Taquaritinga, Brazil',
+      city: 'Taquaritinga, Brasil',
       languages: ['pt', 'en'],
       github: 'ErickPetru',
       twitter: 'erickpetru',
@@ -1039,7 +937,7 @@ order: 803
     {
       name: 'Grigoriy Beziuk',
       title: 'Translation Gang Leader',
-      city: 'Moscow, Russia',
+      city: 'Moscow, Rusia',
       languages: ['ru', 'de', 'en'],
       github: 'gbezyuk',
       work: {
@@ -1053,46 +951,14 @@ order: 803
     },
     {
       name: 'Alexander Sokolov',
-      title: 'Russian Translation Sharp Eye',
-      city: 'Krasnodar, Russia',
+      title: 'Rusian Translation Sharp Eye',
+      city: 'Krasnodar, Rusia',
       languages: ['ru', 'en'],
       github: 'Alex-Sokolov',
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    },
-    {
-      name: 'Anthony Gore',
-      title: '',
-      city: 'Sydney, Australia',
-      languages: ['en'],
-      github: 'anthonygore',
-      twitter: 'anthonygore',
-      work: {
-        role: 'Author',
-        org: 'Vue.js Developers',
-        orgUrl: 'https://vuejsdevelopers.com/'
-      },
-      links: [
-        'https://vuejsdevelopers.com'
-      ]
-    },
-    {
-      name: 'Ben Hong',
-      title: '',
-      city: 'Washington, DC, USA',
-      languages: ['en', 'zh'],
-      work: {
-        role: 'Full Stack Engineer',
-        org: 'GitLab (Meltano)',
-      },
-      github: 'bencodezen',
-      twitter: 'bencodezen',
-      links: [
-        'https://www.vuemeetups.org',
-        'https://bencodezen.io/'
-      ]
-    },
+    }
   ]
 
   Vue.component('vuer-profile', {
@@ -1106,7 +972,7 @@ order: 803
         var work = this.profile.work
         var html = ''
         if (work.orgUrl) {
-          html += '<a href="' + work.orgUrl + '" target="_blank" rel="noopener noreferrer">'
+          html += '<a href="' + work.orgUrl + '" target="_blank">'
           if (work.org) {
             html += work.org
           } else {
@@ -1171,7 +1037,7 @@ order: 803
         )
       },
       hasSocialLinks: function () {
-        return this.profile.github || this.profile.twitter || this.profile.codepen || this.profile.linkedin
+        return this.profile.github || this.profile.twitter || this.profile.codepen
       }
     },
     methods: {

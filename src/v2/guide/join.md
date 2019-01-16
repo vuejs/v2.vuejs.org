@@ -1,66 +1,62 @@
 ---
-title: Join the Vue.js Community!
+title: Únete a la comunidad Vue.js!
 type: guide
 order: 802
 ---
 
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+La comunidad de Vue está creciendo increíblemente rápido y si está leyendo esto, es muy probable que esté listo para unirse a ella. ¡Pues bienvenido!
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+Ahora responderemos lo que la comunidad puede hacer por usted y lo que usted puede hacer por la comunidad.
 
-## Resources
+## Recursos que disfrutará
 
-### Code of Conduct
+### Obtener Apoyo
 
-Our [Code of Conduct](/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+- [Foro](https://forum.vuejs.org/): El mejor lugar para hacer preguntas y obtener respuestas sobre Vue y su ecosistema.
+- [Chat](https://chat.vuejs.org/): Un lugar para que los desarrolladores de Vue se encuentren y conversen en tiempo real.
+- [Meetups](https://www.vuemeetups.org): ¿Quiere encontrar entusiastas locales de Vue.js como usted? ¿Está interesado en convertirse en un líder de la comunidad? ¡Tenemos la ayuda y el apoyo que necesita justo aquí!
+- [GitHub](https://github.com/vuejs): Si tiene un error para informar o una función para solicitar, para eso son los _issues_ de GitHub. Los _pull requests_ también son bienvenidos!
 
-### Get Support
+### Explore el Ecosistema
 
-- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
-- [Meetups](https://www.vuemeetups.org): Want to find local Vue.js enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
-- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
+- [La Página Awesome Vue](https://github.com/vuejs/awesome-vue): Vea qué otros recursos impresionantes han sido publicados por otras personas increíbles.
+- [El Subforo "Show and Tell"](https://forum.vuejs.org/c/show-and-tell): Otro gran lugar para ver lo que otros han construido con y para el creciente ecosistema Vue.
 
-### Explore the Ecosystem
+## Si tiene alguna pregunta sobre cómo puede involucrarse más con su comunidad local de Vue, comuníquese con
 
-- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [The "Show and Tell" Subforum](https://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+### Contribuir con Código
 
-## What You Can Do
+Como en cualquier proyecto, hay reglas para contribuir. Para asegurarnos de que podemos ayudarlo o aceptar su _pull request_ lo más rápido posible, lea [la guía de contribución](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
-### Contribute Code
+Después de eso, estará listo para contribuir a los repositorios principales de Vue:
 
-As with any project, there are rules to contributing. To ensure that we can help you or accept your pull request as quickly as possible, please read [the contributing guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+- [vue](https://github.com/vuejs/vue): la librería central
+- [vuex](https://github.com/vuejs/vuex): gestión centralizada de estado, inspirado en Flux
+- [vue-router](https://github.com/vuejs/vue-router): un sistema de enrutamiento para SPAs.
 
-After that, you'll be ready to contribute to Vue's core repositories:
+...así como muchas [librerías oficiales](https://github.com/vuejs) más pequeñas.
 
-- [vue](https://github.com/vuejs/vue): the core library
-- [vuex](https://github.com/vuejs/vuex): Flux-inspired state management
-- [vue-router](https://github.com/vuejs/vue-router): a routing system for SPAs
+### Comparta (y Construya) su Experiencia
 
-...as well as many smaller official [companion libraries](https://github.com/vuejs).
+Además de responder preguntas y compartir recursos en el foro y el chat, hay algunas otras formas menos obvias de compartir y expandir lo que usted sabe:
 
-### Share (and Build) Your Experience
+- **Desarrollar Materiales de Aprendizaje.** A menudo se dice que la mejor manera de aprender es enseñar. Si hay algo interesante que esté haciendo con Vue, refuerze su experiencia escribiendo en un blog, desarrollando un taller o incluso publicando una idea que comparta en las redes sociales.
+- **Observando un repo que le interese.** Esto le enviará notificaciones cada vez que haya actividad en ese repositorio, lo que le proporcionará información privilegiada sobre las discusiones en curso y las próximas funciones. Es una forma fantástica de adquirir experiencia que eventualmente le permitirá ayudar a resolver _issues_ y _pull request_.
 
-Apart from answering questions and sharing resources in the forum and chat, there are a few other less obvious ways to share and expand what you know:
+### Traducir Documentos
 
-- **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even publishing a gist that you share on social media.
-- **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
+Vue ya se ha extendido por todo el mundo, incluso con el equipo central en al menos media docena de zonas horarias. [El Foro](https://forum.vuejs.org/) incluye 7 idiomas y contando y muchos de nuestros documentos tienen [traducciones mantenidas activamente](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Estamos muy orgullosos del alcance internacional de Vue, pero podemos hacerlo aún mejor.
 
-### Translate Docs
+Esperamos que ahora mismo, esté leyendo esta oración en su idioma preferido. Si no, ¿le gustaría ayudarnos a llegar allí?
 
-Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](https://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
+Si así es, siéntase libre de hacer _fork_ del repositorio de [estos documentos](https://github.com/vuejs/vuejs.org/) o de cualquier otra documentación oficial, luego comience a traducir. Una vez que haya progresado, abra un _issue_ o haga _pull request_ en el repositorio principal y haremos un llamado para que más colaboradores lo ayuden.
 
-I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
+### Conviértase en un Líder Comunitario
 
-If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/vuejs.org/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
+Hay mucho que puede hacer para ayudar a Vue a crecer en su comunidad:
 
-### Become a Community Leader
+- **Preséntese en su meetup local.** Ya sea dando una charla o dirigiendo un taller, puede aportar mucho valor a su comunidad al ayudar a los desarrolladores nuevos y experimentados de Vue a seguir creciendo.
+- **Comience su propio meetup.** Si aún no hay una meetup de Vue en su zona, ¡puede comenzar su propia meetup! Utilice los [recursos en vuemeetups.org](https://www.vuemeetups.org/resources/#introduction) para ayudarlo a tener éxito.
+- **Ayude a los organizadores de meetup.** Nunca puede haber demasiada ayuda cuando se trata de organizar un evento, así que ofrezca una mano para ayudar a los organizadores locales para que cada evento sea un éxito.
 
-There's a lot you can do to help Vue grow in your community:
-
-- **Present at your local meetup.** Whether it's giving a talk or running a workshop, you can bring a lot of value to your community by helping both new and experienced Vue developers continue to grow.
-- **Start your own meetup.** If there's not already a Vue meetup in your area, you can start your own! Use the [resources at vuemeetups.org](https://www.vuemeetups.org/resources/#introduction) to help you succeed!
-- **Help meetup organizers.** There can never be too much help when it comes to running an event, so offer a hand to help out local organizers to help make every event a success.
-
-If you have any questions on how you can get more involved with your local Vue community, reach out at [hello@vuemeetups.org](mailto:hello@vuemeetups.org) or [@VueMeetups](https://www.twitter.com/vuemeetups)!
+Si tiene alguna pregunta sobre cómo puede involucrarse más con su comunidad local de Vue, comuníquese con [hello@vuemeetups.org](mailto:hello@vuemeetups.org) o [@VueMeetups](https://www.twitter.com/vuemeetups)!

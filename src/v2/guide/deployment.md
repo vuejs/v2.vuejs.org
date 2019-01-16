@@ -1,26 +1,24 @@
 ---
-title: Production Deployment
+title: Publicación en Producción
 type: guide
-order: 404
+order: 401
 ---
 
-> Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org). This section is only relevant if you are using a custom build setup.
+## Activar el modo de Producción
 
-## Turn on Production Mode
+Durante el desarrollo, Vue proporciona una gran cantidad de advertencias para ayudarle con errores y problemas comunes. Sin embargo, estas advertencia se vuelven inútiles en producción y aumentan el tamaño de la carga de su aplicación. Además, algunas de estas verificaciones tienen costos de tiempo de ejecución pequeños que pueden evitarse en el modo de producción.
 
-During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
+### Sin Herramientas de Compilación
 
-### Without Build Tools
+Si está utilizando la compilación completa, es decir, que incluye directamente Vue a través de una etiqueta de _script_ sin una herramienta de compilación, asegúrese de usar la versión minificada (`vue.min.js`) para producción. Ambas versiones se pueden encontrar en la [Guía de instalación](installation.html#Direct-lt-script-gt-Include).
 
-If you are using the full build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production. Both versions can be found in the [Installation guide](installation.html#Direct-lt-script-gt-Include).
+### Con Herramientas de Compilación
 
-### With Build Tools
-
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
+Al usar una herramienta de compilación como Webpack o Browserify, el modo de producción estará determinado por `process.env.NODE_ENV` dentro del código fuente de Vue, y estará en modo de desarrollo de forma predeterminada. Ambas herramientas de compilación proporcionan formas de sobrescribir esta variable para habilitar el modo de producción de Vue, y las advertencias serán eliminadas por los minificadores durante la compilación. Todos los _templates_ de proyecto de `vue-cli` tienen esto preconfigurado para usted, pero sería beneficioso saber cómo se hace:
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+En Webpack 4+, puede usar la opación `mode`:
 
 ``` js
 module.exports = {
@@ -28,7 +26,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Pero en Webpack 3 y anteriores, es necesario usar [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -43,47 +41,46 @@ module.exports = {
   ]
 }
 ```
-
 #### Browserify
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+- Ejecutar su comando de bundling con la variable `NODE_ENV` definida para `"production"`. Esto avisará a `vueify` para evitar incluir _hot-reload_ y código de desarrollo.
 
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- Aplique una transformación [envify](https://github.com/hughsk/envify) global en su paquete. Esto permite al minificador quitar todas las advertencias incorporadas al código fuente de Vue. Por ejemplo:
 
   ``` bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Gulp:
+- O, usando [envify](https://github.com/hughsk/envify) con Gulp:
 
   ``` js
-  // Use the envify custom module to specify environment variables
+  // Utilice el módulo personalizado envify para especificar variables de entorno
   var envify = require('envify/custom')
 
   browserify(browserifyOptions)
     .transform(vueify)
     .transform(
-      // Required in order to process node_modules files
+      // Requerido para procesar archivos node_modules
       { global: true },
       envify({ NODE_ENV: 'production' })
     )
     .bundle()
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
+- O, usando [envify](https://github.com/hughsk/envify) con Grunt y [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
 
   ``` js
-  // Use the envify custom module to specify environment variables
+  // Utilice el módulo personalizado envify para especificar variables de entorno
   var envify = require('envify/custom')
 
   browserify: {
     dist: {
       options: {
-        // Function to deviate from grunt-browserify's default order
+        // Función para desviarse del orden predeterminado de grunt-browserify
         configure: b => b
           .transform('vueify')
           .transform(
-            // Required in order to process node_modules files
+            // Requerido para procesar archivos node_modules
             { global: true },
             envify({ NODE_ENV: 'production' })
           )
@@ -95,7 +92,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Utilizar [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -110,24 +107,24 @@ rollup({
 }).then(...)
 ```
 
-## Pre-Compiling Templates
+## Templates de Precompilación
 
-When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive.
+Cuando está utilizando _templates_ in-DOM o _template strings_ in-JavaScript, la transformación de las funciones de render se produce en tiempo real. Esto es generalmente bastante rápido en la mayoría de los casos, pero es mejor evitarlo si su aplicación es muy sensible a las variaciones de rendimiento.
 
-The easiest way to pre-compile templates is using [Single-File Components](single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
+La forma más fácil de compilar previamente los _templates_ es usando [Componentes Single-File](single-file-components.html): los procesos de compilación asociados realizan la pre-compilación automáticamente, de esta forma el código final ya contiene las funciones de render en lugar de _template strings_ puras.
 
-If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+Si está utilizando Webpack y prefiere separar JavaScript de los archivos de templates, puede utilizar [vue-template-loader] (https://github.com/ktsn/vue-template-loader), que también transforma los archivos de _template_ independientes en funciones render de JavaScript durante el proceso de compilación.
 
-## Extracting Component CSS
+## Extrayendo CSS de Componentes
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
+Cuando se utilizan componentes Single-File, los componentes internos de CSS se inyectan dinámicamente como etiquetas `<style>` a través de JavaScript. Esto tiene un costo de tiempo de ejecución pequeño, y si está utilizando la renderización del lado del servidor causará un "flash de contenido sin estilo". Extraer el CSS de todos los componentes e incluirlos en un mismo archivo puede evitar estos problemas, además de resultar en una mejor minificación de CSS y mejor caché.
 
-Refer to the respective build tool documentations to see how it's done:
+Acceda a la documentación de la respectiva herramienta de compilación para ver cómo se realiza:
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (el _template_ webpack del `vue-cli` ya tiene esto preconfigurado)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 
-## Tracking Runtime Errors
+## Seguimiento de Errores en Tiempo de Ejecución
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+Si se produce un error en tiempo de ejecución durante el procesamiento de un componente, se pasará a la función de configuración global `Vue.config.errorHandler` si así fue configurado. Podría ser una buena idea aprovechar este _hook_ junto con un servicio de seguimiento de errores como [Sentry](https://sentry.io), que proporciona [una integración oficial](https://sentry.io/for/vue/) para Vue.

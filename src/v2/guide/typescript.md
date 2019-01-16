@@ -1,140 +1,141 @@
 ---
-title: TypeScript Support
+title: Soporte TypeScript
 type: guide
-order: 403
+order: 404
 ---
 
-> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support. In our next major version of Vue (3.x), we are also planning to considerably improve our TypeScript support with built-in class based components API and TSX support.
 
-## Official Declaration in NPM Packages
+> En Vue 2.5.0+, hemos mejorado enormemente nuestras declaraciones de tipo para trabajar con la API predeterminada basada en objetos. Al mismo tiempo, introduce algunos cambios que requieren acciones de actualización. Lea [esta publicación del blog](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08) para más detalles.
 
-A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also for [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) and [vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
+## Delaracion Oficial en Packetes NPM 
 
-Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
+Un sistema de tipo estático puede ayudar a prevenir muchos errores potenciales en el tiempo de ejecución, especialmente a medida que las aplicaciones crecen. Es por eso que Vue se envía con [declaraciones oficiales de tipo](https://github.com/vuejs/vue/tree/dev/types) para [TypeScript](https://www.typescriptlang.org/) - no solo en Vue Core, sino también para [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) y [vuex](https://github.com/vuejs/vuex/tree/dev/types).
 
-## Recommended Configuration
+Ya que estos se [publican en NPM](https://cdn.jsdelivr.net/npm/vue/types/), y el último TypeScript sabe cómo resolver las declaraciones de tipo en los paquetes de NPM, esto significa que cuando se instala a través de NPM, no necesita herramientas adicionales para usar TypeScript con Vue.
+
+## Configuracon recomendada
 
 ``` js
 // tsconfig.json
 {
-  "compilerOptions": {
-    // this aligns with Vue's browser support
+  "compilerOptions": {    
+    // esto se alinea con el soporte del navegador de Vue    
     "target": "es5",
-    // this enables stricter inference for data properties on `this`
+    // esto permite una inferencia más estricta para las propiedades de datos en `this`    
     "strict": true,
-    // if using webpack 2+ or rollup, to leverage tree shaking:
+    // si usa webpack 2+ o rollup, para aprovechar la agitación del árbol:
     "module": "es2015",
     "moduleResolution": "node"
   }
 }
 ```
 
-Note that you have to include `strict: true` (or at least `noImplicitThis: true` which is a part of `strict` flag) to leverage type checking of `this` in component methods otherwise it is always treated as `any` type.
+Tenga en cuenta que debe incluir `strict: true` (o, al menos, no `ImplicitThis: true`, que es parte de la marca `strict`) para aprovechar la verificación de tipos de `this` en los métodos de los componentes, de lo contrario, siempre se tratará como `cualquier` tipo.
 
-See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
+Ver [documentos de opciones del compilador de TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) para más detalles.
 
-## Development Tooling
+## Herramientas de desarrollo
 
-### Project Creation
+### Creacion de Proyecto
 
-[Vue CLI 3](https://github.com/vuejs/vue-cli) can generate new projects that use TypeScript. To get started:
+[Vue CLI 3](https://github.com/vuejs/vue-cli) puede generar nuevos proyectos que utilizan TypeScript. Para empezar:
 
 ```bash
-# 1. Install Vue CLI, if it's not already installed
+# 1. Instale Vue CLI, si aún no está instalado
 npm install --global @vue/cli
 
-# 2. Create a new project, then choose the "Manually select features" option
+# 2. Cree un nuevo proyecto, luego elija la opción "Seleccionar características manualmente"
 vue create my-project-name
 ```
 
-### Editor Support
+### Soporte para Editor
 
-For developing Vue applications with TypeScript, we strongly recommend using [Visual Studio Code](https://code.visualstudio.com/), which provides great out-of-the-box support for TypeScript. If you are using [single-file components](./single-file-components.html) (SFCs), get the awesome [Vetur extension](https://github.com/vuejs/vetur), which provides TypeScript inference inside SFCs and many other great features.
+Para desarrollar aplicaciones de Vue con TypeScript, recomendamos encarecidamente el uso de [Visual Studio Code](https://code.visualstudio.com/), que proporciona una gran compatibilidad inmediata con TypeScript. Si está utilizando [components de un archivos](./single-file-components.html) (SFC) obtgenga las impresionantes [extension Vetur](https://github.com/vuejs/vetur) que proporciona inferencia de TypeScript dentro de SFC y muchas otras características excelentes.
 
-[WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue.
+[WebStorm](https://www.jetbrains.com/webstorm/) también ofrece compatibilidad inmediata con TypeScript y Vue.
 
-## Basic Usage
+## Uso Basico
 
-To let TypeScript properly infer types inside Vue component options, you need to define components with `Vue.component` or `Vue.extend`:
+Para permitir que TypeScript infiera correctamente los tipos dentro de las opciones de componentes de Vue, debe definir los componentes con `Vue.component` o `Vue.extend`:
 
 ``` ts
 import Vue from 'vue'
 
 const Component = Vue.extend({
-  // type inference enabled
+  // tipo inferencia habilitada  
 })
 
 const Component = {
-  // this will NOT have type inference,
-  // because TypeScript can't tell this is options for a Vue component.
+  // esto NO tendrá inferencia de tipo,  
+  // porque TypeScript no puede decir que esto es opcion para un componente de Vue.  
 }
 ```
 
-## Class-Style Vue Components
+## Componentes Vue Class-Style
 
-If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
+Si prefiere una API basada en clase al declarar componentes, puede usar el decorador de [componente de clase vue](https://github.com/vuejs/vue-class-component) mantenido oficialmente:
 
 ``` ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-// The @Component decorator indicates the class is a Vue component
+// El decorador @Component indica que la clase es un componente Vue
 @Component({
-  // All component options are allowed in here
+  // Todas las opciones de componentes están permitidas aquí
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // Initial data can be declared as instance properties
-  message: string = 'Hello!'
+  // Los datos iniciales pueden ser declarados como propiedades de instancia  
+  message: string = 'Hola!'
 
-  // Component methods can be declared as instance methods
+  // Los métodos de componente se pueden declarar como métodos de instancia
   onClick (): void {
     window.alert(this.message)
   }
 }
 ```
 
-## Augmenting Types for Use with Plugins
+## Augmentando los Tipos para Usar con  Plugins
 
-Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Los Plugins pueden agregarse a las propiedades de instancia/global de Vue y las opciones de componentes En estos casos, se necesitan declaraciones de tipo para hacer que los complementos se compilen en TypeScript. Afortunadamente, hay una característica de TypeScript para aumentar los tipos existentes llamados [aumento de módulo](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-For example, to declare an instance property `$myProperty` with type `string`:
+Por ejemplo, para declarar una propiedad de instancia `$myProperty` de tipo `string`:
 
 ``` ts
-// 1. Make sure to import 'vue' before declaring augmented types
+// 1. Asegúrese de importar 'vue' antes de declarar los tipos aumentados
 import Vue from 'vue'
 
-// 2. Specify a file with the types you want to augment
-//    Vue has the constructor type in types/vue.d.ts
+// 2. Especifique un archivo con los tipos que desea aumentar
+//    Vue tiene el tipo de constructor en types / vue.d.ts
 declare module 'vue/types/vue' {
-  // 3. Declare augmentation for Vue
+// 3. Declare augmentacion para Vue
   interface Vue {
     $myProperty: string
   }
 }
 ```
 
-After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+Después de incluir el código anterior como un archivo de declaración (como `my-property.d.ts`) en su proyecto,puede usar `$myProperty` en una instancia de Vue.
 
 ```ts
 var vm = new Vue()
 console.log(vm.$myProperty) // This should compile successfully
 ```
 
-You can also declare additional global properties and component options:
+También puede declarar propiedades globales adicionales y opciones de componentes:
 
 ```ts
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
-  // Global properties can be declared
-  // on the `VueConstructor` interface
+  // Las propiedades globales pueden ser declaradas
+  // en la interfaz `VueConstructor`
   interface VueConstructor {
     $myGlobal: string
   }
 }
 
-// ComponentOptions is declared in types/options.d.ts
+// ComponentOptions se declara en types / options.d.ts
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     myOption?: string
@@ -142,21 +143,21 @@ declare module 'vue/types/options' {
 }
 ```
 
-The above declarations allow the following code to be compiled:
+Las declaraciones anteriores permiten compilar el siguiente código:
 
 ```ts
-// Global property
+// Propiedad Global 
 console.log(Vue.$myGlobal)
 
-// Additional component option
+// Opción componente adicional
 var vm = new Vue({
   myOption: 'Hello'
 })
 ```
 
-## Annotating Return Types
+## Anotando tipos de devoluciones
 
-Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods. For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+Debido a la naturaleza circular de los archivos de declaración de Vue, TypeScript puede tener dificultades para inferir los tipos de ciertos métodos. Por este motivo, es posible que tenga que anotar el tipo de retorno en métodos como `render` y aquellos en `computed`.
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -168,7 +169,7 @@ const Component = Vue.extend({
     }
   },
   methods: {
-    // need annotation due to `this` in return type
+    // necesita anotación debido a `this` en el tipo de retorno    
     greet (): string {
       return this.msg + ' world'
     }
@@ -179,11 +180,11 @@ const Component = Vue.extend({
       return this.greet() + '!'
     }
   },
-  // `createElement` is inferred, but `render` needs return type
+  // `createElement` se deduce, pero `render` necesita un tipo de retorno  
   render (createElement): VNode {
     return createElement('div', this.greeting)
   }
 })
 ```
 
-If you find type inference or member completion isn't working, annotating certain methods may help address these problems. Using the `--noImplicitAny` option will help find many of these unannotated methods.
+Si encuentra que la inferencia de tipos o la finalización de miembros no funciona, la anotación de ciertos métodos puede ayudar a resolver estos problemas. El uso de la opción `--noImplicitAny` ayudará a encontrar muchos de estos métodos sin anotar.

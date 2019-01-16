@@ -1,40 +1,40 @@
 ---
-title: Migration from Vue 1.x
+title: Migración desde Vue 1.x
 type: guide
 order: 701
 ---
 
-## FAQ
+## Preguntas frecuentes
 
-> Woah - this is a super long page! Does that mean 2.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
+> Woah - ¡esta página es súper larga! ¿Eso significa que la versión 2.0 es completamente diferente y tendré que aprender los conceptos básicos una y otra vez y la migración será prácticamente imposible?
 
-I'm glad you asked! The answer is no. About 90% of the API is the same and the core concepts haven't changed. It's long because we like to offer very detailed explanations and include a lot of examples. Rest assured, __this is not something you have to read from top to bottom!__
+¡Me alegra que lo pregunte! La respuesta es no. Alrededor del 90% de la API es la misma y los conceptos básicos no han cambiado. Es largo porque nos gusta ofrecer explicaciones muy detalladas e incluir muchos ejemplos. Quédese tranquilo, __¡esto no es algo que tenga que leer de arriba abajo!__
 
-> Where should I start in a migration?
+> ¿Por dónde debería comenzar una migración?
 
-1. Start by running the [migration helper](https://github.com/vuejs/vue-migration-helper) on a current project. We've carefully minified and compressed a senior Vue dev into a simple command line interface. Whenever they recognize an obsolete feature, they'll let you know, offer suggestions, and provide links to more info.
+1. Comience ejecutando el [asistente de migración](https://github.com/vuejs/vue-migration-helper) en un proyecto actual. Hemos minimizado y comprimido cuidadosamente un desarrollo de Vue superior en una interfaz de línea de comando simple. Así, cada vez que se reconoce una característica obsoleta, le informa, ofrece sugerencias y proporciona enlaces a más información.
 
-2. After that, browse through the table of contents for this page in the sidebar. If you see a topic you may be affected by, but the migration helper didn't catch, check it out.
+2. Después de eso, navegue por la tabla de contenido de esta página en la barra lateral. Si ve un tema que puede afectarle, pero que el asistente de migración no captó, compruébelo.
 
-3. If you have any tests, run them and see what still fails. If you don't have tests, just open the app in your browser and keep an eye out for warnings or errors as you navigate around.
+3. Si usted tiene algunos tests, ejecútelos y vea lo que aún falla. Sino tiene test, solo abra la aplicación en su navegador y esté atento a las advertencias o errores mientras navega.
 
-4. By now, your app should be fully migrated. If you're still hungry for more though, you can read the rest of this page - or dive in to the new and improved guide from [the beginning](index.html). Many parts will be skimmable, since you're already familiar with the core concepts.
+4. En este punto, su aplicación debería estar migrada por completo. Si aún tiene ganas de más, puede leer el resto de esta página [desde el principio](index.html). Muchas partes serán demasiado fáciles, ya que ya está familiarizado con los conceptos básicos.
 
-> How long will it take to migrate a Vue 1.x app to 2.0?
+> ¿Cuánto tiempo me llevará migrar una aplicación de Vue 1.x a 2.0?
 
-It depends on a few factors:
+Depende de algunos factores:
 
-- The size of your app (small to medium-sized apps will probably be less than a day)
+- El tamaño de su aplicación (en las aplicaciones pequeñas y medianas probablemente será menos de un día)
 
-- How many times you get distracted and start playing with a cool new feature. 😉 &nbsp;Not judging, it also happened to us while building 2.0!
+- Cuantas veces se distrae y comienza a jugar con una nueva función genial.😉 &nbsp;No le juzgamos, ¡a nosotros también nos pasó mientras construíamos 2.0!
 
-- Which obsolete features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
+- Las funciones obsoletas que esté usando. La mayoría se pueden actualizar con Buscar y Reemplazar, pero otras pueden tardar unos minutos. Si actualmente no está siguiendo las mejores prácticas, Vue 2.0 también intentará forzarle más a hacerlo. Esto es algo bueno a largo plazo, pero también podría significar una actualización (aunque posiblemente le retrase) significativa.
 
-> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue Router?
+> Si actualizo a Vue 2, ¿también tendré que actualizar Vuex y Vue Router?
 
-Only Vue Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
+Solo Vue Router 2 es compatible con Vue 2, así que sí, también tendrá que seguir la [ruta de migración de Vue Router](migration-vue-router.html). Afortunadamente, la mayoría de aplicaciones no tienen mucho código de rutas, por lo que probablemente no le tome más de una hora.
 
-As for Vuex, even version 0.8 is compatible with Vue 2, so you're not forced to upgrade. The only reason you may want to upgrade immediately is to take advantage of the new features in Vuex 2, such as modules and reduced boilerplate.
+En cuanto a Vuex, incluso la versión 0.8 es compatible con Vue 2, por lo que no está obligado a actualizar. La única razón por la que es posible que desee actualizar de inmediato es aprovechar las nuevas funciones de Vuex 2, como los módulos y el _boilerplate_ reducido.
 
 ## Templates
 
@@ -364,7 +364,7 @@ computed: {
 Or with component methods:
 
 ``` js
-template: '<p>message: {{ getTimeMessage() }}</p>',
+template: '<p>message: {{ getTimeMessage }}</p>',
 methods: {
   getTimeMessage: function () {
     return Date.now() + this.message
@@ -644,7 +644,7 @@ Since `v-ref` is no longer a directive, but a special attribute, it can also be 
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by giving each item the same `ref`:
+Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
@@ -786,7 +786,7 @@ Vue.config.keyCodes.f1 = 112
 
 `$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
 One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
@@ -796,9 +796,9 @@ For example, let's say we have a todo app structured like this:
 
 ```
 Todos
-├─ NewTodoInput
-└─ Todo
-   └─ DeleteTodoButton
+|-- NewTodoInput
+|-- Todo
+    |-- DeleteTodoButton
 ```
 
 We could manage communication between components with this single event hub:

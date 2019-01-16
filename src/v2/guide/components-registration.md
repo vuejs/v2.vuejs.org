@@ -1,48 +1,48 @@
 ---
-title: Component Registration
+title: Registro de Componente
 type: guide
 order: 101
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Esta pagina asume que usted ya ha leído [Componentes: Lo básico](components.html). Léalo primero si usted es nuevo con componentes.
 
-## Component Names
+## Nombre del Componente
 
-When registering a component, it will always be given a name. For example, in the global registration we've seen so far:
-
-```js
-Vue.component('my-component-name', { /* ... */ })
-```
-
-The component's name is the first argument of `Vue.component`.
-
-The name you give a component may depend on where you intend to use it. When using a component directly in the DOM (as opposed to in a string template or [single-file component](single-file-components.html)), we strongly recommend following the [W3C rules](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) for custom tag names (all-lowercase, must contain a hyphen). This helps you avoid conflicts with current and future HTML elements.
-
-You can see other recommendations for component names in the [Style Guide](../style-guide/#Base-component-names-strongly-recommended).
-
-### Name Casing
-
-You have two options when defining component names:
-
-#### With kebab-case
+Cuando registramos un componente, siempre se le asignará un nombre. Por ejemplo, en el registro global hemos visto hasta ahora:
 
 ```js
 Vue.component('my-component-name', { /* ... */ })
 ```
 
-When defining a component with kebab-case, you must also use kebab-case when referencing its custom element, such as in `<my-component-name>`.
+El nombre del componentes es el primer argumento de `Vue.component`.
 
-#### With PascalCase
+El nombre que le dé a un componente puede depender de dónde pretenda utilizarlo. Cuando use un componente directamente en el DOM (a diferencia de en una string template o [componente de un solo archivo](single-file-components.html)), recomendamos encarecidamente seguir las [reglas de W3C](https://www.w3.org/TR/custom-elements/#concepts) para nombres de tags personalizados (todo en minúsculas, debe contener un guión). Esto le ayuda a evitar conflictos con los elementos HTML actuales y futuros.
+
+Usted puede ver otras recomenaciones para nombres de componentes en la [Guía de Estilo](../style-guide/#Base-component-names-strongly-recommended).
+
+### Nomenclatura
+
+Tiene dos opciones cuando define el nombre de un componente:
+
+#### Con kebab-case
+
+```js
+Vue.component('my-component-name', { /* ... */ })
+```
+
+Al definir un componente con kebab-case, también debe usar kebab-case al hacer referencia a su elemento personalizado, como en `<my-component-name>`.
+
+#### Con PascalCase
 
 ```js
 Vue.component('MyComponentName', { /* ... */ })
 ```
 
-When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `<my-component-name>` and `<MyComponentName>` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
+Cuando define un componente con PascalCase, puede usar cualquiera de los dos casos al hacer referencia a su elemento personalizado. Eso significa que tanto `<my-component-name>` como `<MyComponentName>` son aceptables. Sin embargo, tenga en cuenta que solo los nombres de casos de kebab son válidos directamente en el DOM (es decir, en las plantillas que no son string-template).
 
-## Global Registration
+## Registro Global
 
-So far, we've only created components using `Vue.component`:
+Hasta ahora, solo hemos creado componentes usando `Vue.component`:
 
 ```js
 Vue.component('my-component-name', {
@@ -50,7 +50,7 @@ Vue.component('my-component-name', {
 })
 ```
 
-These components are **globally registered**. That means they can be used in the template of any root Vue instance (`new Vue`) created after registration. For example:
+Estos componentes son **registrados globalmente**. Lo que significa que ellos pueden ser usado en la plantilla de cual instancia raíz de Vue(`new Vue`) creada después del registro. Por ejemplo:
 
 ```js
 Vue.component('component-a', { /* ... */ })

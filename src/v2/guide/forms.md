@@ -1,28 +1,28 @@
 ---
-title: Form Input Bindings
+title: Binding en Formularios
 type: guide
 order: 10
 ---
 
-## Basic Usage
+## Uso básico
 
-You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+Puede usar la directiva `v-model` para crear *bindings* de datos bidireccionales (*two-way binding*) en elementos *input*, *textarea* y *select* de un formulario. La directiva busca automáticamente la manera correcta de actualizar el elemento según el tipo de entrada. Aunque un poco mágico, `v-model` es esencialmente *syntax sugar* para actualización de datos a través de eventos de entradas del usuario, además de mostrar un cuidado especial para algunos casos de borde.
 
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+<p class="tip">`v-model` ignorará el `value` inicial, los atributos `checked` o `selected` que se encuentran en cualquier elemento de formulario. Siempre tratará los datos de la instancia de Vue como la fuente confiable. Debe declarar el valor inicial del lado de JavaScript, dentro de la opción `data` de su componente.</p>
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">Para los idiomas que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (chino, japonés, coreano, etc.), notará que el `v-model` no se actualiza durante la composición del IME. Si también desea atender estas actualizaciones, use un evento `input` en su lugar.</p>
 
-### Text
+### Input
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="edíteme">
+<p>El mensaje es: {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="message" placeholder="edíteme">
+  <p>El mensaje es: {{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -34,21 +34,21 @@ new Vue({
 </script>
 {% endraw %}
 
-### Multiline text
+### Textarea
 
 ``` html
-<span>Multiline message is:</span>
+<span>El mensaje multilínea es:</span>
 <p style="white-space: pre-line;">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="agregar múltiples líneas"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+  <span>El mensaje multilínea es:</span>
   <p style="white-space: pre-line;">{{ message }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="agregar múltiples líneas"></textarea>
 </div>
 <script>
 new Vue({
@@ -61,12 +61,12 @@ new Vue({
 {% endraw %}
 
 {% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
+<p class="tip">La interpolación en textareas no funciona (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>). En su lugar use <code>v-model</code>.</p>
 {% endraw %}
 
 ### Checkbox
 
-Single checkbox, boolean value:
+*Checkbox* simples con valor booleano:
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -87,7 +87,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple checkboxes, bound to the same Array:
+Múltiples checkboxes vinculados al mismo Array:
 
 ``` html
 <div id='example-3'>
@@ -120,7 +120,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nombres Checked: {{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -135,23 +135,23 @@ new Vue({
 ### Radio
 
 ``` html
-<input type="radio" id="one" value="One" v-model="picked">
-<label for="one">One</label>
+<input type="radio" id="uno" value="Uno" v-model="picked">
+<label for="uno">Uno</label>
 <br>
-<input type="radio" id="two" value="Two" v-model="picked">
-<label for="two">Two</label>
+<input type="radio" id="Dos" value="Dos" v-model="picked">
+<label for="Dos">Dos</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>Eligió: {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
-  <input type="radio" id="one" value="One" v-model="picked">
-  <label for="one">One</label>
+  <input type="radio" id="uno" value="uno" v-model="picked">
+  <label for="uno">Uno</label>
   <br>
-  <input type="radio" id="two" value="Two" v-model="picked">
-  <label for="two">Two</label>
+  <input type="radio" id="Dos" value="Dos" v-model="picked">
+  <label for="Dos">Dos</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>Eligió: {{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -165,16 +165,16 @@ new Vue({
 
 ### Select
 
-Single select:
+Selección de un solo elemento:
 
 ``` html
 <select v-model="selected">
-  <option disabled value="">Please select one</option>
+  <option disabled value="">Seleccione un elemento</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Seleccionado: {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -187,12 +187,12 @@ new Vue({
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
+    <option disabled value="">Seleccione un elemento</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Seleccionado: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -204,9 +204,10 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">Si el valor inicial de su expresión `v-model` no coincide con ninguna de las opciones, el elemento `<select>` se representará en un estado "unselected". En iOS, esto hará que el usuario no pueda seleccionar el primer elemento porque iOS no dispara un evento de cambio en este caso. Por lo tanto, se recomienda proporcionar una opción deshabilitada con un valor vacío, como se muestra en el ejemplo anterior.
+</p>
 
-Multiple select (bound to Array):
+Selección de múltiples elementos (vinculando a un Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -215,7 +216,7 @@ Multiple select (bound to Array):
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>Seleccionados: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -225,7 +226,7 @@ Multiple select (bound to Array):
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>Seleccionados: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -237,7 +238,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+Opciones dinámicas renderizadas con `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -245,7 +246,7 @@ Dynamic options rendered with `v-for`:
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Seleccionado: {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -253,9 +254,9 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Uno', value: 'A' },
+      { text: 'Dos', value: 'B' },
+      { text: 'Tres', value: 'C' }
     ]
   }
 })
@@ -267,7 +268,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Seleccionado: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -275,33 +276,33 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Uno', value: 'A' },
+      { text: 'Dos', value: 'B' },
+      { text: 'Tres', value: 'C' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-## Value Bindings
+## Vinculando a Valores
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+Para *radio*, *checkbox* y *option* de *select*, los valores de vinculación del `v-model` suelen ser cadenas estáticas (o booleanos para *checkbox*):
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- `picked` es una cadena "a" cuando está chequeado -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` es verdadero o falso -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when the first option is selected -->
+<!-- `selected` es una cadena "abc" cuando se selecciona la primera opción -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+Pero a veces es posible que queramos vincular el valor a una propiedad dinámica en la instancia de Vue. Podemos usar `v-bind` para lograr eso. Además, el uso de `v-bind` nos permite vincular el valor de entrada a valores no cadena.
 
 ### Checkbox
 
@@ -315,13 +316,14 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 ```
 
 ``` js
-// when checked:
+// cuando está marcado:
 vm.toggle === 'yes'
-// when unchecked:
+// cuando está desmarcado:
 vm.toggle === 'no'
 ```
 
-<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
+<p class="tip">Los atributos de `true-value` y de `false-value` no afectan la entrada del atributo `value`, ya que los navegadores no incluyen casillas sin marcar en los envíos de formularios. Para garantizar que uno de los dos valores se envie en un formulario (por ejemplo, "yes" o "no"), use entradas de radio en su lugar.
+</p>
 
 ### Radio
 
@@ -330,56 +332,56 @@ vm.toggle === 'no'
 ```
 
 ``` js
-// when checked:
+// cuando está marcado:
 vm.pick === vm.a
 ```
 
-### Select Options
+### Select
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
+  <!--  objeto literal en linea --> -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// when selected:
+// cuando está seleccionado:
 typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
 
-## Modifiers
+## Modificadores
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
+De forma predeterminada, `v-model` sincroniza el `input` con los datos después de cada evento de tipo `input` (con la excepción de la composición IME [descrito anteriormente](#vmodel-ime-tip)). En lugar de esto, puede agregar el modificador `lazy` para realizar la sincronización después del evento `change`:
 
 ``` html
-<!-- synced after "change" instead of "input" -->
+<!-- sincronizado después de "change" en lugar de "input" -->
 <input v-model.lazy="msg" >
 ```
 
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+Si desea que las entradas del usuario se escriban automáticamente como un número, puede agregar el modificador `number` al `v-model` del elemento:
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string. If the value cannot be parsed with `parseFloat()`, then the original value is returned.
+Esto suele ser útil, porque incluso con `type="number"`, el valor retornado por el elemento HTML siempre es una cadena de texto. Si el valor no se puede analizar con `parseFloat()`, se retorna el valor original.
 
 ### `.trim`
 
-If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
+Si desea que las entradas del usuario se recorten automáticamente, puede agregar el modificador `trim` al `v-model` de su elemento:
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## `v-model` with Components
+## `v-model` con Componentes
 
-> If you're not yet familiar with Vue's components, you can skip this for now.
+> Si aún no está familiarizado con los componentes de Vue, puede omitir esto por ahora.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.
+Los tipos de *input* nativos de HTML no siempre satisfarán sus necesidades. Afortunadamente, los componentes de Vue le permiten crear *input* reutilizables con un comportamiento completamente personalizado. Estos componentes también funcionan con `v-model`! Para aprender más, lea acerca de [inputs personalizados](components.html#Using-v-model-on-Components) en la guía de componentes.
