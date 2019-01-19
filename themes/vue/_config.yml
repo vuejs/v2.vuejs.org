@@ -92,6 +92,9 @@ gold_sponsors:
   - url: 'https://isleofcode.com/'
     img: isle_of_code.png
     name: Isle of Code
+  - url: 'https://yakaz.com/'
+    img: yakaz.png
+    name: Yakaz
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
