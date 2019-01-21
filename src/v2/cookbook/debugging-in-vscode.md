@@ -57,7 +57,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///./src/*": "${webRoot}/*"
       }
     },
     {
