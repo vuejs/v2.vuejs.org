@@ -1475,50 +1475,50 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ### 컴포넌트/인스턴스 옵션 순서 <sup data-p="c">추천함</sup>
 
-**Component/instance options should be ordered consistently.**
+**컴포넌트/인스턴스 옵션의 순서는 언제나 일정한 순서로 정렬되어야 합니다.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+아래는 권장하는 컴포넌트 옵션 순서입니다. 유형별로 나누어 놓았으므로, 플러그인으로 추가되는 새로운 옵션들 역시 이에 맞추어 정렬하면 됩니다.
 
-1. **Side Effects** (triggers effects outside the component)
+1. **사이드 이펙트(Side Effects)** (컴포넌트 외부에 효과가 미치는 옵션)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **전역 인지(Global Awareness)** (컴포넌트 바깥의 지식을 필요로 하는 옵션)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **컴포넌트 유형(Component Type)** (컴포넌트의 유형을 바꾸는 옵션)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **템플릿 변경자(Template Modifiers)** (템플릿이 컴파일되는 방식을 바꾸는 옵션)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **템플릿 의존성(Template Dependencies)** (템플릿에 이용되는 요소들을 지정하는 옵션)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **컴포지션(Composition)** (다른 컴포넌트의 속성을 가져와 합치는 옵션)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **인터페이스(Interface)** (컴포넌트의 인터페이스를 지정하는 옵션)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-8. **Local State** (local reactive properties)
+8. **지역 상태(Local State)** (반응적인 지역 속성들을 설정하는 옵션)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **이벤트(Events)** (반응적인 이벤트에 의해 실행되는 콜백을 지정하는 옵션)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - 라이프사이클 이벤트 (호출 순서대로 정렬)
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **비반응적 속성(Non-Reactive Properties)** (시스템의 반응성과 관계 없는 인스턴스 속성을 지정하는 옵션)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
+11. **렌더링(Rendering)** (컴포넌트 출력을 선언적으로 지정하는 옵션)
   - `template`/`render`
   - `renderError`
 
@@ -1526,44 +1526,44 @@ This is the default order we recommend for component options. They're split into
 
 ### 엘리먼트 속성 순서 <sup data-p="c">추천함</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**엘리먼트 및 컴포넌트의 속성은 언제나 일정한 순서로 정렬되어야 합니다.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+아래는 권장하는 엘리먼트 속성 순서입니다. 유형별로 나누어 놓았으므로, 커스텀 속성이나 directive 역시 이에 맞추어 정렬하면 됩니다.
 
-1. **Definition** (provides the component options)
+1. **정의(Definition)** (컴포넌트 옵션을 제공하는 속성)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **리스트 렌더링(List Rendering)** (같은 엘리먼트의 변형을 여러 개 생성하는 속성)
   - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
+3. **조건부(Conditionals)** (엘리먼트가 렌더링되는지 혹은 보여지는지 여부를 결정하는 속성)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
+4. **렌더 변경자(Render Modifiers)** (엘리먼트의 렌더링 방식을 변경하는 속성)
   - `v-pre`
   - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
+5. **전역 인지(Global Awareness)** (컴포넌트 바깥의 지식을 요구하는 속성)
   - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
+6. **유일한 속성(Unique Attributes)** (유일한 값을 가질 것을 요구하는 속성)
   - `ref`
   - `key`
   - `slot`
 
-7. **Two-Way Binding** (combining binding and events)
+7. **양방향 바인딩(Two-Way Binding)** (바인딩과 이벤트를 결합하는 속성)
   - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **기타 속성** (따로 언급하지 않은 속성들)
 
-9. **Events** (component event listeners)
+9. **이벤트(Events)** (컴포넌트 이벤트 리스너를 지정하는 속성)
   - `v-on`
 
-10. **Content** (overrides the content of the element)
+10. **내용(Content)** (엘리먼트의 내용을 덮어쓰는 속성)
   - `v-html`
   - `v-text`
 
@@ -1890,9 +1890,9 @@ Vue.component('TodoItem', {
 
 ### 전역 상태 관리 <sup data-p="d">주의요함</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**전역 상태 관리에는 `this.$root` 나 글로벌 이벤트 버스(global event bus)보다는 [Vuex](https://github.com/vuejs/vuex)를 이용하는 것이 좋습니다.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+전역 상태 관리에 `this.$root`나 [글로벌 이벤트 버스](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced)를 이용하는 것은 아주 단순한 경우에는 편리할 수 있지만 대부분의 Application에는 부적절합니다. Vuex는 상태를 관리하는 중앙 저장소를 제공하는 것만이 아니라 상태 변화를 체계화하고, 추적하며, 디버깅을 용이하게 하는 도구들을 제공합니다.
 
 {% raw %}</details>{% endraw %}
 
