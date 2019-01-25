@@ -195,9 +195,9 @@ const requireComponent = require.context(
   // The relative path of the components folder
   './components',
   // Whether or not to look in subfolders
-  true,
+  false,
   // The regular expression used to match base component filenames
-  /[A-Z]\w+\.(vue|js)$/
+  /Base[A-Z]\w+\.(vue|js)$/
 )
 
 requireComponent.keys().forEach(fileName => {
@@ -205,12 +205,16 @@ requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName)
 
   // Get PascalCase name of component
-  camelCase(
-    fileName
-      .split('/')
-      .pop()
-      .replace(/\.\w+$/, '')
+  const componentName = upperFirst(
+    camelCase(
+      // Gets the file name regardless of folder depth
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
+    )
   )
+
 
   // Register component globally
   Vue.component(
