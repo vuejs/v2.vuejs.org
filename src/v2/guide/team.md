@@ -122,8 +122,8 @@ order: 803
 <div id="team-members">
   <div class="team">
 
-    <h2 id="the-core-team">
-      The Core Team
+    <h2 id="active-core-team-members">
+      Active Core Team Members
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -155,6 +155,23 @@ order: 803
 
     <vuer-profile
       v-for="profile in sortedTeam"
+      :key="profile.name"
+      :profile="profile"
+      :title-visible="titleVisible"
+    ></vuer-profile>
+  </div>
+
+  <div class="team">
+    <h2 id="core-team-emeriti">
+      Core Team Emeriti
+    </h2>
+
+    <p>
+      Here we honor some no-longer-active core team members who have made valuable contributions in the past.
+    </p>
+
+    <vuer-profile
+      v-for="profile in teamEmeriti"
       :key="profile.name"
       :profile="profile"
       :title-visible="titleVisible"
@@ -329,7 +346,6 @@ order: 803
     },
     {
       name: 'Sodatea',
-      title: 'Command Line Commander',
       city: 'Hangzhou, China',
       languages: ['zh', 'en'],
       github: 'sodatea',
@@ -340,7 +356,6 @@ order: 803
     },
     {
       name: 'Pine Wu',
-      title: 'VSCode',
       languages: ['zh', 'en', 'jp'],
       github: 'octref',
       twitter: 'octref',
@@ -368,20 +383,6 @@ order: 803
       ],
       reposPersonal: [
         'apache/incubator-weex'
-      ]
-    },
-    {
-      name: 'EGOIST',
-      title: 'Build Tool Simplificator',
-      city: 'Chengdu, China',
-      languages: ['zh', 'en'],
-      github: 'egoist',
-      twitter: '_egoistlily',
-      reposOfficial: [
-        'vue-cli'
-      ],
-      reposPersonal: [
-        'poi', 'ream', 'vue-play'
       ]
     },
     {
@@ -446,57 +447,6 @@ order: 803
       ]
     },
     {
-      name: 'Alan Song',
-      title: 'Regent of Routing',
-      city: 'Hangzhou, China',
-      languages: ['zh', 'en'],
-      work: {
-        role: 'Cofounder',
-        org: 'Futurenda',
-        orgUrl: 'https://www.futurenda.com/'
-      },
-      github: 'fnlctrl',
-      reposOfficial: [
-        'vue-router'
-      ]
-    },
-    {
-      name: 'Blake Newman',
-      title: 'Performance Specializer & Code Deleter',
-      city: 'London, UK',
-      languages: ['en'],
-      work: {
-        role: 'Software Engineer',
-        org: 'Attest',
-        orgUrl: 'https://www.askattest.com/'
-      },
-      github: 'blake-newman',
-      twitter: 'blakenewman',
-      reposOfficial: [
-        'vuex', 'vue-router', 'vue-loader'
-      ]
-    },
-    {
-      name: 'Phan An',
-      title: 'Backend Designer & Process Poet',
-      city: 'Munich, Germany',
-      languages: ['vi', 'en'],
-      github: 'phanan',
-      twitter: 'notphanan',
-      reposOfficial: [
-        'vuejs.org', {
-          name: 'vi.vuejs.org',
-          url: 'https://github.com/vuejs-vn/vuejs.org'
-        }
-      ],
-      reposPersonal: [
-        'vuequery', 'vue-google-signin-button'
-      ],
-      links: [
-        'https://phanan.net/'
-      ]
-    },
-    {
       name: 'Linusborg',
       title: 'Hive-Mind Community Wrangler (Probably a Bot)',
       city: 'Mannheim, Germany',
@@ -511,25 +461,6 @@ order: 803
       ],
       links: [
         'https://forum.vuejs.org/'
-      ]
-    },
-    {
-      name: 'Denis Karabaza',
-      title: 'Director of Directives (Emoji-Human Hybrid)',
-      city: 'Dubna, Russia',
-      languages: ['ru', 'en'],
-      github: 'simplesmiler',
-      twitter: 'simplesmiler',
-      work: {
-        role: 'Software Engineer',
-        org: 'Neolant',
-        orgUrl: 'http://neolant.ru/'
-      },
-      reposPersonal: [
-        'vue-focus', 'vue-clickaway'
-      ],
-      links: [
-        'mailto:denis.karabaza@gmail.com'
       ]
     },
     {
@@ -577,55 +508,6 @@ order: 803
       ]
     },
     {
-      name: 'defcc',
-      title: 'Details Deity & Bug Surgeon',
-      city: 'Chongqing, China',
-      languages: ['zh', 'en'],
-      github: 'defcc',
-      work: {
-        org: 'zbj.com',
-        orgUrl: 'http://www.zbj.com/'
-      },
-      reposOfficial: [
-        'vue', 'vuejs.org', 'cn.vuejs.org'
-      ],
-      reposPersonal: [
-        'weexteam/weex-vue-framework', 'into-vue'
-      ]
-    },
-    {
-      name: 'gebilaoxiong',
-      title: 'Issue Annihilator',
-      city: 'Chongqing, China',
-      languages: ['zh', 'en'],
-      github: 'gebilaoxiong',
-      work: {
-        org: 'zbj.com',
-        orgUrl: 'http://www.zbj.com/'
-      },
-      reposOfficial: [
-        'vue'
-      ]
-    },
-    {
-      name: 'Andrew Tomaka',
-      title: 'The Server Server',
-      city: 'East Lansing, MI, USA',
-      languages: ['en'],
-      github: 'atomaka',
-      twitter: 'atomaka',
-      reposOfficial: [
-        'vuejs/*'
-      ],
-      work: {
-        org: 'Michigan State University',
-        orgUrl: 'https://msu.edu/'
-      },
-      links: [
-        'https://atomaka.com/'
-      ]
-    },
-    {
       name: 'Sarah Drasner',
       city: 'Denver, CO, USA',
       languages: ['en'],
@@ -657,38 +539,6 @@ order: 803
       reposPersonal: [
         'shentao/vue-multiselect',
         'shentao/vue-global-events'
-      ]
-    },
-    {
-      name: 'kingwl',
-      title: 'New Bee',
-      city: 'Beijing, China',
-      languages: ['zh'],
-      work: {
-        role: 'Software Development Engineer',
-        org: 'Chaitin',
-        orgUrl: 'https://chaitin.cn/'
-      },
-      github: 'kingwl',
-      reposOfficial: [
-        'vue'
-      ]
-    },
-    {
-      name: 'Alex Kyriakidis',
-      title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
-      languages: ['el', 'en'],
-      github: 'hootlex',
-      twitter: 'hootlex',
-      work: {
-        role: 'Consultant / Author'
-      },
-      reposPersonal: [
-        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
-      ],
-      links: [
-        'https://vuejsfeed.com/', 'https://vueschool.io/'
       ]
     },
     {
@@ -752,6 +602,98 @@ order: 803
       twitter: 'gustojs'
     }
   ]))
+
+  var emeriti = shuffle([
+    {
+      name: 'Blake Newman',
+      title: 'Performance Specializer & Code Deleter',
+      city: 'London, UK',
+      languages: ['en'],
+      work: {
+        role: 'Software Engineer',
+        org: 'Attest',
+        orgUrl: 'https://www.askattest.com/'
+      },
+      github: 'blake-newman',
+      twitter: 'blakenewman'
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijing, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
+      ]
+    },
+    {
+      name: 'Alan Song',
+      title: 'Regent of Routing',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Cofounder',
+        org: 'Futurenda',
+        orgUrl: 'https://www.futurenda.com/'
+      },
+      github: 'fnlctrl',
+      reposOfficial: [
+        'vue-router'
+      ]
+    },
+    {
+      name: 'Phan An',
+      title: 'Backend Designer & Process Poet',
+      city: 'Munich, Germany',
+      languages: ['vi', 'en'],
+      github: 'phanan',
+      twitter: 'notphanan',
+      links: [
+        'https://phanan.net/'
+      ]
+    },
+    {
+      name: 'defcc',
+      title: 'Details Deity & Bug Surgeon',
+      city: 'Chongqing, China',
+      languages: ['zh', 'en'],
+      github: 'defcc',
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      }
+    },
+    {
+      name: 'gebilaoxiong',
+      title: 'Issue Annihilator',
+      city: 'Chongqing, China',
+      languages: ['zh', 'en'],
+      github: 'gebilaoxiong',
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      }
+    },
+    {
+      name: 'Denis Karabaza',
+      title: 'Director of Directives (Emoji-Human Hybrid)',
+      city: 'Dubna, Russia',
+      languages: ['ru', 'en'],
+      github: 'simplesmiler',
+      twitter: 'simplesmiler',
+      work: {
+        role: 'Software Engineer',
+        org: 'Neolant',
+        orgUrl: 'http://neolant.ru/'
+      }
+    },
+  ])
 
   var partners = [
     {
@@ -1129,6 +1071,83 @@ order: 803
         'https://bencodezen.io/'
       ]
     },
+    {
+      name: 'EGOIST',
+      title: 'Build Tool Simplificator',
+      city: 'Chengdu, China',
+      languages: ['zh', 'en'],
+      github: 'egoist',
+      twitter: '_egoistlily',
+      reposPersonal: [
+        'poi', 'ream', 'vue-play'
+      ]
+    },
+    {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      city: 'Thessaloniki, Greece',
+      languages: ['el', 'en'],
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
+    },
+    {
+      name: 'Andrew Tomaka',
+      title: 'The Server Server',
+      city: 'East Lansing, MI, USA',
+      languages: ['en'],
+      github: 'atomaka',
+      twitter: 'atomaka',
+      reposOfficial: [
+        'vuejs/*'
+      ],
+      work: {
+        org: 'Michigan State University',
+        orgUrl: 'https://msu.edu/'
+      },
+      links: [
+        'https://atomaka.com/'
+      ]
+    },
+    {
+      name: 'Blake Newman',
+      title: 'Performance Specializer & Code Deleter',
+      city: 'London, UK',
+      languages: ['en'],
+      work: {
+        role: 'Software Engineer',
+        org: 'Attest',
+        orgUrl: 'https://www.askattest.com/'
+      },
+      github: 'blake-newman',
+      twitter: 'blakenewman',
+      links: [
+        'https://vuejs.london'
+      ]
+    },
+    {
+      name: 'Phan An',
+      title: 'Backend Designer & Process Poet',
+      city: 'Munich, Germany',
+      languages: ['vi', 'en'],
+      github: 'phanan',
+      twitter: 'notphanan',
+      reposPersonal: [
+        'vuequery', 'vue-google-signin-button'
+      ],
+      links: [
+        'https://vi.vuejs.org',
+        'https://phanan.net/'
+      ]
+    },
   ]
 
   Vue.component('vuer-profile', {
@@ -1241,6 +1260,7 @@ order: 803
     el: '#team-members',
     data: {
       team: team,
+      teamEmeriti: emeriti,
       partners: shuffle(partners),
       geolocationSupported: false,
       isSorting: false,
