@@ -328,6 +328,17 @@ order: 803
       ]
     },
     {
+      name: 'Sodatea',
+      title: 'Command Line Commander',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      github: 'sodatea',
+      twitter: 'haoqunjiang',
+      reposOfficial: [
+        'vue-cli', 'vue-loader'
+      ]
+    },
+    {
       name: 'Jinjiang',
       title: 'Mobile Extrapolator',
       city: 'Hangzhou, China',
