@@ -339,6 +339,20 @@ order: 803
       ]
     },
     {
+      name: 'Pine Wu',
+      title: 'VSCode',
+      languages: ['zh', 'en', 'jp'],
+      github: 'octref',
+      twitter: 'octref',
+      work: {
+        role: 'Engineer on VSCode',
+        org: 'Microsoft'
+      },
+      reposOfficial: [
+        'vetur'
+      ]
+    },
+    {
       name: 'Jinjiang',
       title: 'Mobile Extrapolator',
       city: 'Hangzhou, China',
