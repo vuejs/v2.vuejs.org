@@ -132,7 +132,7 @@ There can still be one unnamed slot, which is the **default slot** that serves a
 </div>
 ```
 
-## Default Slot Content
+## Default Content for Slots
 
 There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, but also allow users to override with "Save", "Upload", or anything else.
 
