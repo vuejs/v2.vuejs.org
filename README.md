@@ -72,7 +72,7 @@ Russian translation is maintained by Translation Gang.
 
 ### Spanish
 
-Spanish translation is maintained by [1950Labs](https://1950labs.com) & Vue.js Montevideo ([Leonel More](https://twitter.com/leonelmore), [Sebastian Camacho](https://twitter.com/sxcamacho),  & [Diana Rodriguez](https://vue.beingadev.rocks)
+Spanish translation is maintained by [1950Labs](https://1950labs.com) and Vue.js Montevideo ([Leonel More](https://twitter.com/leonelmore), [Sebastian Camacho](https://twitter.com/sxcamacho), and [Diana Rodriguez](https://vue.beingadev.rocks).
 
 * Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
 
