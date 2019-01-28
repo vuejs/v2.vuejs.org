@@ -2055,11 +2055,17 @@ type: api
   <!-- method handler -->
   <button v-on:click="doThis"></button>
 
+  <!-- dynamic event (2.6.0+) -->
+  <button v-on:[event]="doThis"></button>
+
   <!-- inline statement -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- shorthand -->
   <button @click="doThis"></button>
+
+  <!-- shorthand dynamic event (2.6.0+) -->
+  <button @[event]="doThis"></button>
 
   <!-- stop propagation -->
   <button @click.stop="doThis"></button>
@@ -2131,8 +2137,14 @@ type: api
   <!-- bind an attribute -->
   <img v-bind:src="imageSrc">
 
+  <!-- dynamic attribute name (2.6.0+) -->
+  <button v-bind:[key]="value"></button>
+
   <!-- shorthand -->
   <img :src="imageSrc">
+
+  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <button :[key]="value"></button>
 
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
@@ -2152,7 +2164,7 @@ type: api
   <!-- DOM attribute binding with prop modifier -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- shorthand for prop modifier (2.6+) -->
+  <!-- shorthand for prop modifier (2.6.0+) -->
   <div .text-content="text"></div>
 
   <!-- prop binding. "prop" must be declared in my-component. -->

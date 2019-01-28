@@ -182,9 +182,12 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 
 <!-- shorthand -->
 <a :href="url"> ... </a>
+
+<!-- shorthand with dynamic argument (2.6.0+) -->
+<a :[key]="url"> ... </a>
 ```
 
-> New in 2.6
+> DOM Property Shorthand
 
 In 2.6 a separate shorthand for explicit DOM property bindings (with the `.prop` modifier) have been introduced:
 
@@ -204,6 +207,9 @@ In 2.6 a separate shorthand for explicit DOM property bindings (with the `.prop`
 
 <!-- shorthand -->
 <a @click="doSomething"> ... </a>
+
+<!-- shorthand with dynamic argument (2.6.0+) -->
+<a @[event]="doSomething"> ... </a>
 ```
 
 They may look a bit different from normal HTML, but `:` and `@` are valid chars for attribute names and all Vue.js supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
