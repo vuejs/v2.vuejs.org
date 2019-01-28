@@ -211,7 +211,7 @@ Now when we use the `<todo-list>` component, we can optionally define an alterna
 </todo-list>
 ```
 
-> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
+> Before 2.5.0, `slot-scope` was named `scope` and was limited to the `<template>` element. Since 2.5.0, `slot-scope` doesn't have this limitation and can instead be used on any element or component in the slot.
 
 ### Destructuring `slot-scope`
 
