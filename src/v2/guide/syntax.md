@@ -128,6 +128,38 @@ Another example is the `v-on` directive, which listens to DOM events:
 
 Here the argument is the event name to listen to. We will talk about event handling in more detail too.
 
+### Dynamic Arguments
+
+> New in 2.6
+
+Starting in 2.6, it is also possible to use JavaScript expressions in an directive argument by wrapping it with square brackets:
+
+``` html
+<a v-bind:[key]="url"> ... </a>
+```
+
+Here `key` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property `key` whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+
+Similarly, you can use dynamic arguments to bind a handler to a dynamic event:
+
+``` html
+<a v-on:[event]="doSomething"> ... </a>
+```
+
+#### Dynamic Argument Value Constraints
+
+Dynamic argument values are expected to be strings, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+
+#### Dynamic Argument Expression Constraints
+
+When using dynamic arguments, it is important to remember that HTML attribute names cannot contain spaces or quotes. For example, the following is invalid:
+
+``` html
+<a v-bind:['foo' + bar]="value"> ... </a>
+```
+
+The Vue template compiler will warn against such usage. The workaround is to either use expressions without spaces or quotes, or use a computed property instead.
+
 ### Modifiers
 
 Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
