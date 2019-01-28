@@ -2167,11 +2167,11 @@ if (version === 2) {
 
 ### scope <sup>replaced</sup>
 
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+범위를 가지는 슬롯으로서 `<template>` 요소를 표시하는데 사용됩니다. 2.5.0+ 이후에는 [`slot-scope`] 로 교체되었습니다.
 
-- **Usage:**
+- **사용법:**
 
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+  [`slot-scope`](#slot-scope) 와 동일합니다. 다만, `scope` 는 `<template>` 표시 시에만 사용됩니다.
 
 ### is
 
