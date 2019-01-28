@@ -152,7 +152,9 @@ Dynamic argument values are expected to be strings, with the exception of `null`
 
 #### Dynamic Argument Expression Constraints
 
-When using dynamic arguments, it is important to remember that HTML attribute names cannot contain spaces or quotes. For example, the following is invalid:
+<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, in particular spaces and quotes.</p>
+
+For example, the following is invalid:
 
 ``` html
 <a v-bind:['foo' + bar]="value"> ... </a>
