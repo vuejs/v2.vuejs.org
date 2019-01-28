@@ -45,7 +45,7 @@ type: api
 
   병합 전략은 부모 및 자식 인스턴스에 정의된 해당 옵션의 값을 첫번째와 두번째 인자로 전달 받습니다. 컨텍스트 Vue 객체는 세번째 인자로 전달 받습니다.
 
-- **참고:** [사용자 정의 병합 전략](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **참고:** [사용자 정의 병합 전략](../guide/mixins.html#사용자-정의-옵션-병합-전략)
 
 ### devtools
 
@@ -241,7 +241,7 @@ type: api
 
   > 2.1.0에 새로 생겼습니다: 콜백이 없고, Promise를 지원하는 환경에서 Promise를 반환합니다. Vue는 Promise 폴리필을 제공하지 않습니다. 그러므로 Promise를 지원하지 않는 (IE 등) 브라우저에서 사용하려면 폴리필을 직접 해야합니다.
 
-- **참고:** [비동기 갱신 큐](../guide/reactivity.html#Async-Update-Queue)
+- **참고:** [비동기 갱신 큐](../guide/reactivity.html#비동기-갱신-큐)
 
 ### Vue.set( target, key, value )
 
@@ -376,7 +376,7 @@ type: api
 
   전역으로 mixin을 적용합니다. 생성된 모든 Vue 인스턴스에 영향을 줍니다. 플러그인 작성자가 컴포넌트에 사용자 정의 동작을 주입하는데 플러그인을 사용할 수 있습니다. **애플리케이션 코드**에서는 추천하지 않습니다.
 
-- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **See also:** [전역 Mixin](../guide/mixins.html#전역-Mixin)
 
 ### Vue.compile( template )
 
@@ -674,7 +674,7 @@ if (version === 2) {
   <p class="tip">`render`함수 또는 `template` 옵션 둘 다 없으면, 마운트할 DOM 요소의 내부 DOM이 템플릿으로 추출 될 것입니다. 이 경우, Vue의 런타임 + 컴파일러 빌드를 사용해야합니다.</p>
 
 - **참고:**
-  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+  - [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
@@ -692,8 +692,8 @@ if (version === 2) {
   <p class="tip">Vue 옵션에 렌더 함수가 있으면 템플릿 속성은 무시됩니다</p>
 
   - **참고:**
-    - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
-    - [Slot을 이용한 컨텐츠 배포](../guide/components.html#Content-Distribution-with-Slots)
+    - [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
+    - [슬롯을 사용한 컨텐츠 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)
 
 ### render
 
@@ -703,14 +703,14 @@ if (version === 2) {
 
     문자열 템플릿 대신 자바스크립트의 완전한 프로그래밍 기능을 활용할 수 있습니다. render 함수는 `VNode`를 생성하는데 사용되는 첫번째 인자인 `createElement` 메소드를 받습니다.
 
-    함수형 컴포넌트의 경우 렌더링 함수는 컴포넌트에 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공하는 추가적인 `context`를 전달합니다
+    함수형 컴포넌트의 경우 렌더링 함수는 컴포넌트에 인스턴스가 없기 때문둥에 컨텍스트에 대한 액세스를 제공하는 추가적인 `context`를 전달합니다
 
     <p class="tip">
     `render` 함수는 `template` 옵션 또는 `el` 옵션으로 지정된 마운트된 엘리먼트의 템플릿에서 컴파일된 렌더링 함수보다 높은 우선 순위를 가집니다.
     </p>
 
   - **참고:**
-    - [렌더 함수](../guide/render-function)
+    - [렌더 함수](../guide/render-function.html)
 
 ### renderError
 
@@ -738,7 +738,7 @@ if (version === 2) {
     ```
 
   - **참고:**
-    - [Render Functions](../guide/render-function)
+    - [렌더 함수](../guide/render-function.html)
 
 ## 옵션 / 라이프사이클 훅
 
@@ -752,7 +752,7 @@ if (version === 2) {
 
   인스턴스가 방금 초기화 된 후 데이터 관찰 및 이벤트 / 감시자 설정 전에 동기적으로 호출 됩니다.
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### created
 
@@ -762,7 +762,7 @@ if (version === 2) {
 
   인스턴스가 작성된 후 동기적으로 호출됩니다. 이 단계에서 인스턴스는 데이터 처리, 계산된 속성, 메서드, 감시/이벤트 콜백 등과 같은 옵션 처리를 완료합니다. 그러나 마운트가 시작되지 않았으므로 `$el` 속성을 아직 사용할 수 없습니다.
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### beforeMount
 
@@ -774,7 +774,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### mounted
 
@@ -795,7 +795,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### beforeUpdate
 
@@ -808,7 +808,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### updated
 
@@ -833,7 +833,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### activated
 
@@ -873,7 +873,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### destroyed
 
@@ -885,7 +885,7 @@ if (version === 2) {
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ### errorCaptured
 
@@ -1169,7 +1169,7 @@ if (version === 2) {
 
   컴포넌트에 상태를 저장하지 않는(`data`가 없음) 및 인스턴스가 없도록 (`this` 컨텍스트가 없음) 만듭니다. 단순히 가상 노드를 반환하는 `render` 함수로 렌더링을 훨씬 더 가볍게 만듭니다.
 
-- **참고:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **참고:** [Functional Components](../guide/render-function.html#함수형-컴포넌트)
 
 ### model
 
@@ -1335,7 +1335,7 @@ if (version === 2) {
 
 - **상세:**
 
-  프로그래밍으로 접근 가능한 컨텐트 [슬롯 별 배포](../guide/components.html#Content-Distribution-with-Slots)에 사용합니다. 각 [명명된 슬롯](../guide/components.html#Named-Slots)은 고유한 속성을 가지고 있습니다. (예: `slot=foo` 는 `vm.$slots.foo`에서 찾을 수 있습니다.) `default` 속성은 명명된 슬롯에 포함되지 않은 노드를 포함합니다.
+  프로그래밍으로 접근 가능한 [슬롯을 사용한 컨텐츠 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)에 사용합니다. 각 [명명된 슬롯](../guide/components.html#이름을-가지는-슬롯)은 고유한 속성을 가지고 있습니다. (예: `slot=foo` 는 `vm.$slots.foo`에서 찾을 수 있습니다.) `default` 속성은 명명된 슬롯에 포함되지 않은 노드를 포함합니다.
 
   `vm.$slots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
 
@@ -1374,7 +1374,7 @@ if (version === 2) {
 
 - **참고:**
   - [`<slot>` 컴포넌트](#slot-1)
-  - [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
+  - [슬롯을 사용한 컨텐츠 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)
   - [렌더 함수: Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
@@ -1387,13 +1387,13 @@ if (version === 2) {
 
 - **상세:**
 
-  [범위가 지정된 슬롯](../guide/components.html#Scoped-Slots)에 프로그래밍으로 액세스하는데 사용됩니다. `default`를 포함하여 각 슬롯에 대해 객체는 VNode를 반환하는 해당 함수를 포함합니다.
+  [범위가 지정된 슬롯](../guide/components.html#범위를-가지는-슬롯)에 프로그래밍으로 액세스하는데 사용됩니다. `default`를 포함하여 각 슬롯에 대해 객체는 VNode를 반환하는 해당 함수를 포함합니다.
 
   `vm.$scopedSlots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
 
 - **참고:**
   - [`<slot>` 컴포넌트](#slot-1)
-  - [범위가 지정된 슬롯](../guide/components.html#Scoped-Slots)
+  - [범위가 지정된 슬롯](../guide/components.html#범위를-가지는-슬롯)
   - [렌더 함수: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
@@ -1407,7 +1407,7 @@ if (version === 2) {
   `ref`가 등록된 자식 컴포넌트를 보관하는 객체입니다.
 
 - **참고:**
-  - [자식 컴포넌트 참조](../guide/components.html#Child-Component-Refs)
+  - [자식 컴포넌트 참조](../guide/components.html#자식-컴포넌트-참조)
   - [ref](#ref)
 
 ### vm.$isServer
@@ -1630,7 +1630,7 @@ if (version === 2) {
   ```
 
 - **참고:**
-  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+  - [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
   - [서버측 렌더링](../guide/ssr.html)
 
 ### vm.$forceUpdate()
@@ -1673,7 +1673,7 @@ if (version === 2) {
 
 - **참고:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [비동기 업데이트 큐](../guide/reactivity.html#Async-Update-Queue)
+  - [비동기 업데이트 큐](../guide/reactivity.html#비동기-갱신-큐)
 
 ### vm.$destroy()
 
@@ -1685,7 +1685,7 @@ if (version === 2) {
 
   <p class="tip">일반적인 사용에서는 이 메소드를 직접 호출하면 안됩니다. `v-if`와 `v-for`를 사용하여 데이터 기반 방식으로 하위 컴포넌트의 라이프사이클을 제어하는 것이 좋습니다.</p>
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#라이프사이클-다이어그램)
 
 ## 디렉티브
 
@@ -1704,7 +1704,7 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
-- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#Text)
+- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#문자열)
 
 ### v-html
 
@@ -1723,7 +1723,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
-- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#Raw-HTML)
+- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#원시-HTML)
 
 ### v-show
 
@@ -1997,7 +1997,7 @@ if (version === 2) {
 - **참고:**
   - [클래스 및 스타일 바인딩](../guide/class-and-style.html)
   - [컴포넌트 - 컴포넌트 속성](../guide/components.html#Props)
-  - [컴포넌트 - `.sync` 수식어](../guide/components.html#sync-Modifier)
+  - [컴포넌트 - `.sync` 수식어](../guide/components.html#sync-수식어)
 
 ### v-model
 
@@ -2020,7 +2020,7 @@ if (version === 2) {
 
 - **참고:**
   - [폼 인풋 바인딩](../guide/forms.html)
-  - [컴포넌트 - 사용자 정의 이벤트를 이용하는 폼 인풋 컴포넌트](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [컴포넌트 - 사용자 정의 이벤트를 사용하여 폼 입력 컴포넌트 만들기](../guide/components.html#사용자-정의-이벤트를-사용하여-폼-입력-컴포넌트-만들기)
 
 ### v-pre
 
@@ -2085,8 +2085,8 @@ if (version === 2) {
   ```
 
 - **참고:**
-  - [데이터 바인딩 문법 - 보간](../guide/syntax.html#Text)
-  - [컴포넌트 - v-once를 이용한 가벼운 정적 컴포넌트](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [데이터 바인딩 문법 - 보간](../guide/syntax.html#문자열)
+  - [컴포넌트 - v-once를 이용한 가벼운 정적 컴포넌트](../guide/components.html#v-once를-이용한-비용이-적게드는-정적-컴포넌트)
 
 ## 특별한 속성들
 
@@ -2139,7 +2139,7 @@ if (version === 2) {
 
   참조 등록 타이밍에 대한 중요한 참고 사항: 참조 자체는 렌더링 함수의 결과로 생성되기 때문에 초기 렌더링에서 참조 자체를 액세스 할 수 없습니다. 아직 존재하지 않습니다! `$refs`는 또한 반응이 없으므로 데이터 바인딩을 위해 템플릿에서 사용해서는 안됩니다.
 
-- **참고:** [자식 컴포넌트 참조](../guide/components.html#Child-Component-Refs)
+- **참고:** [자식 컴포넌트 참조](../guide/components.html#자식-컴포넌트-참조)
 
 ### slot
 
@@ -2149,7 +2149,7 @@ if (version === 2) {
 
   자세한 사용법은 아래 링크 된 가이드 섹션을 참조하십시오.
 
-- **참고:** [명명된 슬롯](../guide/components.html#Named-Slots)
+- **참고:** [명명된 슬롯](../guide/components.html#이름을-가지는-슬롯)
 
 ### slot-scope
 
@@ -2163,7 +2163,7 @@ if (version === 2) {
 
   이 속성은 동적 바인딩을 지원하지 않습니다.
 
-- **함께 보기:** [범위를 가지는 슬롯](../guide/components.html#Scoped-Slots)
+- **함께 보기:** [범위를 가지는 슬롯](../guide/components.html#범위를-가지는-슬롯)
 
 ### scope <sup>replaced</sup>
 
@@ -2177,7 +2177,7 @@ if (version === 2) {
 
 - **예상됨:** `string`
 
-  [동적 컴포넌트](../guide/components.html#Dynamic-Components) 및 [DOM 내부 템플릿의 한계](../guide/components.html#DOM-Template-Parsing-Caveats)를 해결하는데 사용합니다.
+  [동적 컴포넌트](../guide/components.html#동적-컴포넌트) 및 [DOM 내부 템플릿의 한계](../guide/components.html#DOM-템플릿-구문-분석-경고)를 해결하는데 사용합니다.
 
   예제:
 
@@ -2195,8 +2195,8 @@ if (version === 2) {
   자세한 사용 방법은 위에 적힌 설명의 링크에 있습니다.
 
 - **참고:**
-  - [동적 컴포넌트](../guide/components.html#Dynamic-Components)
-  - [DOM 템플릿 파싱 주의사항](../guide/components.html#DOM-Template-Parsing-Caveats)
+  - [동적 컴포넌트](../guide/components.html#동적-컴포넌트)
+  - [DOM 템플릿 파싱 주의사항](../guide/components.html#DOM-템플릿-구문-분석-경고)
 
 
 
@@ -2222,7 +2222,7 @@ if (version === 2) {
   <component :is="$options.components.child"></component>
   ```
 
-- **참고:** [동적 컴포넌트](../guide/components.html#Dynamic-Components)
+- **참고:** [동적 컴포넌트](../guide/components.html#동적-컴포넌트)
 
 ### transition
 
@@ -2399,7 +2399,7 @@ if (version === 2) {
 
   자세한 사용법은 아래 링크된 가이드 섹션을 참조하십시오.
 
-- **참고:** [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
+- **참고:** [Slot을 이용한 컨텐트 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)
 
 ## VNode 인터페이스
 
