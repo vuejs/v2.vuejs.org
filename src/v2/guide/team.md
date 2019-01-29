@@ -608,6 +608,9 @@ order: 803
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
+      reposOfficial: [
+        'vuejs.org'
+      ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
       ],
@@ -1135,21 +1138,6 @@ order: 803
       twitter: 'blakenewman',
       links: [
         'https://vuejs.london'
-      ]
-    },
-    {
-      name: 'Phan An',
-      title: 'Backend Designer & Process Poet',
-      city: 'Munich, Germany',
-      languages: ['vi', 'en'],
-      github: 'phanan',
-      twitter: 'notphanan',
-      reposPersonal: [
-        'vuequery', 'vue-google-signin-button'
-      ],
-      links: [
-        'https://vi.vuejs.org',
-        'https://phanan.net/'
       ]
     },
     {
