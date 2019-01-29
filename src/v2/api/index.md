@@ -2213,6 +2213,26 @@ type: api
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
+### v-slot
+
+- **Shorthand:** `#`
+
+- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+
+- **Argument:** `slot name (optional)`
+
+- **Limited to:**
+  - `<template>`
+  - components (when denoting default slot with props)
+
+- **Usage:**
+
+  Denote named slots or slots that expect to receive props. For detailed usage, see the links below.
+
+- **See also:**
+  - [Components - Slots](../guide/components-slots.html)
+  - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
+
 ### v-pre
 
 - **Does not expect expression**
@@ -2332,38 +2352,6 @@ type: api
 
 - **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
-### slot
-
-- **Expects:** `string`
-
-  Used on content inserted into child components to indicate which named slot the content belongs to.
-
-  For detailed usage, see the guide section linked below.
-
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
-
-### slot-scope
-
-> New in 2.5.0+
-
-- **Expects:** `function argument expression`
-
-- **Usage:**
-
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
-
-  This attribute does not support dynamic binding.
-
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
-
-### scope <sup>replaced</sup>
-
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
-
-- **Usage:**
-
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
-
 ### is
 
 - **Expects:** `string | Object (component’s options object)`
@@ -2388,6 +2376,40 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **See also:**
   - [Dynamic Components](../guide/components.html#Dynamic-Components)
   - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
+### slot <sup>replaced</sup>
+
+**Replaced by [v-slot](#v-slot) since 2.6.0.**
+
+- **Expects:** `string`
+
+  Used on content inserted into child components to indicate which named slot the content belongs to.
+
+- **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
+
+### slot-scope <sup>replaced</sup>
+
+**Replaced by [v-slot](#v-slot) since 2.6.0.**
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
+
+### scope <sup>replaced</sup>
+
+**Replaced by [slot-scope](#slot-scope) since 2.5.0.**
+
+Used to denote a `<template>` element as a scoped slot.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ## Built-In Components
 
