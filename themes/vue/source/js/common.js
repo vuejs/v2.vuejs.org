@@ -46,9 +46,9 @@
       'Replacing-Merging-with-Existing-Attributes':
         '/v2/guide/components-props.html#Replacing-Merging-with-Existing-Attributes',
       'Custom-Events':
-        '/v2/guide/components.html#Sending-Messages-to-Parents-with-Events',
+        '/v2/guide/components.html#Listening-to-Child-Components-Events',
       'Using-v-on-with-Custom-Events':
-        '/v2/guide/components.html#Sending-Messages-to-Parents-with-Events',
+        '/v2/guide/components.html#Listening-to-Child-Components-Events',
       'Binding-Native-Events-to-Components':
         '/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components',
       'sync-Modifier':
