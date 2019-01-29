@@ -1,7 +1,9 @@
-.gutter pre
-  color: #999
+pre
+  border-radius: $radius
+  position: relative
 
 pre code
+  overflow-x: auto
   color: #525252
   white-space: pre
   padding: 1.2em 1.4em
@@ -83,3 +85,26 @@ pre code
     &-xml &-css,
     &-xml &-cdata
       opacity: 0.5
+
+  &.hljs
+    &.html, &.js, &.bash, &.css
+      &::before
+        font-family: $body-font
+        position: absolute
+        top: 0
+        right: 0
+        color: #ccc
+        text-align: right
+        font-size: .9em
+        padding: 5px 10px 0
+        line-height: 15px
+        height: 15px
+        font-weight: 600
+    &.html::before
+      content: "HTML"
+    &.js::before
+      content: "JS"
+    &.bash::before
+      content: "Shell"
+    &.css::before
+      content: "CSS"
