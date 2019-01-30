@@ -226,13 +226,17 @@ The `.passive` modifier is especially useful for improving performance on mobile
 When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
-<!-- only call `vm.submit()` when the `key` is PageDown -->
-<input @keyup.page-down="onPageDown">
+<!-- only call `vm.submit()` when the `key` is `Enter` -->
+<input v-on:keyup.enter="submit">
+```
+
+You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case.
+
+``` html
+<input v-on:keyup.page-down="onPageDown">
 ```
 
 In the above example, the handler will only be called if `$event.key` is equal to `'PageDown'`.
-
-You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case.
 
 ### Key Codes
 
