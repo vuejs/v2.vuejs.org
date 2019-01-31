@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-The directive `v-if` is used to conditionally render a block. The block will be rendered if the directive's expression returns a truthy value and vice versa.
+The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
 
 ``` html
 <h1 v-if="awesome">Vue is awesome!</h1>
