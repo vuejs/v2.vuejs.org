@@ -10,6 +10,8 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 
 <p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
 
+<p class="tip">`v-model` internally uses different properties and emits different events for different input elements. For text and textarea elements it's `value` property and `input` event; for checkboxes and radiobuttons it's `checked` property and `change` event; and for select fields  `v-model` uses `value` as a prop and `change` as an event.</p>
+
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
 ### Text
