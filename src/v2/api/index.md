@@ -2439,7 +2439,7 @@ type: api
 
 - **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
 
-### scope <sup style="color:#c92222">deprecated</sup>
+### scope <sup style="color:#c92222">removed</sup>
 
 **Replaced by [slot-scope](#slot-scope) in 2.5.0+. Prefer [v-slot](#v-slot) in 2.6.0+.**
 
