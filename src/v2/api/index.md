@@ -2230,7 +2230,42 @@ type: api
 
 - **Usage:**
 
-  Denote named slots or slots that expect to receive props. For detailed usage, see the links below.
+  Denote named slots or slots that expect to receive props.
+
+- **Example:**
+
+  ```html
+  <!-- named slots -->
+  <base-layout>
+    <template v-slot:header>
+      Header content
+    </template>
+
+    <template v-slot:default>
+      Default slot content
+    </template>
+
+    <template v-slot:footer>
+      Footer content
+    </template>
+  </base-layout>
+
+  <!-- named slot that receive props -->
+  <infinite-scroll>
+    <template v-slot:item="slotProps">
+      <div class="item">
+        {{ slotProps.item.text }}
+      </div>
+    </template>
+  </infinite-scroll>
+
+  <!-- default slot that receive props, with props destructuring -->
+  <mouse-position v-slot="{ x, y }">
+    Mouse position: {{ x }}, {{ y }}
+  </mouse-position>
+  ```
+
+  For more details, see the links below.
 
 - **See also:**
   - [Components - Slots](../guide/components-slots.html)
@@ -2380,9 +2415,9 @@ type: api
   - [Dynamic Components](../guide/components.html#Dynamic-Components)
   - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-### slot <sup>replaced</sup>
+### slot <sup style="color:#c92222">Deprecated</sup>
 
-**Replaced by [v-slot](#v-slot) since 2.6.0.**
+**Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
 
 - **Expects:** `string`
 
@@ -2390,9 +2425,9 @@ type: api
 
 - **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
 
-### slot-scope <sup>replaced</sup>
+### slot-scope <sup style="color:#c92222">Deprecated</sup>
 
-**Replaced by [v-slot](#v-slot) since 2.6.0.**
+**Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
 
 - **Expects:** `function argument expression`
 
@@ -2404,9 +2439,9 @@ type: api
 
 - **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
 
-### scope <sup>replaced</sup>
+### scope <sup style="color:#c92222">Deprecated</sup>
 
-**Replaced by [slot-scope](#slot-scope) since 2.5.0.**
+**Replaced by [slot-scope](#slot-scope) since 2.5.0. Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
 
 Used to denote a `<template>` element as a scoped slot.
 
