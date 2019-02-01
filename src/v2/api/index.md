@@ -82,9 +82,9 @@ type: api
 
   > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+, this hook also captures errors thrown inside Vue custom event handlers.
 
-  > In 2.6.0+ this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
+  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
   > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
@@ -404,30 +404,32 @@ type: api
 
 - **See also:** [Render Functions](../guide/render-function.html)
 
-### Vue.observable( value )
+### Vue.observable( object )
 
 > New in 2.6.0+
 
 - **Arguments:**
-  - `{Object} value`
+  - `{Object} object`
 
 - **Usage:**
 
-  Explicitly creates a reactive object. This is what Vue performs internally on objects returned from a component's `data()` function.
+  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
 
-  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can be used as a minimal cross-component state store for simple scenarios.
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
 
   ``` js
-  const obj = Vue.observable({ count: 0 })
+  const state = Vue.observable({ count: 0 })
 
   const Demo = {
     render(h) {
       return h('button', {
-        on: { click: () => { obj.count++ }}
-      }, `count is: ${obj.count}`)
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
     }
   }
   ```
+
+  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
