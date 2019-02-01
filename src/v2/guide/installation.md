@@ -46,7 +46,7 @@ For production, we recommend linking to a specific version number and build to a
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-If you are using ES Modules, there is also an ES Modules compatible build:
+If you are using native ES Modules, there is also an ES Modules compatible build:
 
 ``` html
 <script type="module">
