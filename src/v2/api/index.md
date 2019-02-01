@@ -2013,7 +2013,7 @@ type: api
   </div>
   ```
 
-  Since 2.6, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However it should be noted that Vue 2.x currently does not support reactivity detection on `Map` and `Set` values.
+  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
 
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
@@ -2169,7 +2169,7 @@ type: api
   <!-- DOM attribute binding with prop modifier -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- shorthand for prop modifier (2.6.0+) -->
+  <!-- shorthand for DOM prop modifier (2.6.0+) -->
   <div .text-content="text"></div>
 
   <!-- prop binding. "prop" must be declared in my-component. -->
