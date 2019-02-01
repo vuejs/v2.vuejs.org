@@ -1434,9 +1434,9 @@ type: api
 
   **Note:** since 2.6.0+, there are two notable changes to this property:
 
-  1. Scoped slot functions now are guaranteed to return Array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
 
-  2. All normal slots on `vm.$slots` are now also exposed on `vm.$scopeSlots` as functions. If you work with render functions, it is now recommended to always access all slots via `vm.$scopedSlots` for consistency.
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **See also:**
   - [`<slot>` Component](#slot-1)
