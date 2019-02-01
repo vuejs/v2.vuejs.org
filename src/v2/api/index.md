@@ -2224,11 +2224,11 @@ type: api
 
 - **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
 
-- **Argument:** `slot name (optional)`
+- **Argument:** slot name (optional, defaults to `default`)
 
 - **Limited to:**
   - `<template>`
-  - components (when denoting default slot with props)
+  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
 
 - **Usage:**
 
@@ -2237,22 +2237,20 @@ type: api
 - **Example:**
 
   ```html
-  <!-- named slots -->
+  <!-- Named slots -->
   <base-layout>
     <template v-slot:header>
       Header content
     </template>
 
-    <template v-slot:default>
-      Default slot content
-    </template>
+    Default slot content
 
     <template v-slot:footer>
       Footer content
     </template>
   </base-layout>
 
-  <!-- named slot that receive props -->
+  <!-- Named slot that receives props -->
   <infinite-scroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -2261,7 +2259,7 @@ type: api
     </template>
   </infinite-scroll>
 
-  <!-- default slot that receive props, with props destructuring -->
+  <!-- Default slot that receive props, with destructuring -->
   <mouse-position v-slot="{ x, y }">
     Mouse position: {{ x }}, {{ y }}
   </mouse-position>
@@ -2417,9 +2415,9 @@ type: api
   - [Dynamic Components](../guide/components.html#Dynamic-Components)
   - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-### slot <sup style="color:#c92222">Deprecated</sup>
+### slot <sup style="color:#c92222">deprecated</sup>
 
-**Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
 
 - **Expects:** `string`
 
@@ -2427,9 +2425,9 @@ type: api
 
 - **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
 
-### slot-scope <sup style="color:#c92222">Deprecated</sup>
+### slot-scope <sup style="color:#c92222">deprecated</sup>
 
-**Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
 
 - **Expects:** `function argument expression`
 
@@ -2441,9 +2439,9 @@ type: api
 
 - **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
 
-### scope <sup style="color:#c92222">Deprecated</sup>
+### scope <sup style="color:#c92222">deprecated</sup>
 
-**Replaced by [slot-scope](#slot-scope) since 2.5.0. Prefer [v-slot](#v-slot) if you are using 2.6.0+.**
+**Replaced by [slot-scope](#slot-scope) in 2.5.0+. Prefer [v-slot](#v-slot) in 2.6.0+.**
 
 Used to denote a `<template>` element as a scoped slot.
 
