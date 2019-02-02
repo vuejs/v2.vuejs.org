@@ -285,6 +285,32 @@ This can be shortened even further. Just as non-specified content is assumed to 
 </current-user>
 ```
 
+Note that the abbreviated syntax for default slot **cannot** be mixed with named slots, as it would lead to scope ambiguity:
+
+``` html
+<!-- INVALID, will result in warning -->
+<current-user v-slot="slotProps">
+  {{ slotProps.user.firstName }}
+  <template v-slot:other="otherSlotProps">
+    slotProps is NOT available here
+  </template>
+</current-user>
+```
+
+Whenever there are multiple slots, use the full `<template>` based syntax for _all_ slots:
+
+``` html
+<current-user>
+  <template v-slot:default="slotProps">
+    {{ slotProps.user.firstName }}
+  </template>
+
+  <template v-slot:other="otherSlotProps">
+    ...
+  </template>
+</current-user>
+```
+
 ### Destructuring Slot Props
 
 Internally, scoped slots work by wrapping your slot content in a function passed a single argument:
