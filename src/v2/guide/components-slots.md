@@ -164,7 +164,7 @@ That slot has access to the same instance properties (i.e. the same "scope") as 
 
 > New in 2.1.0+
 
-Sometimes you'll want to provide a component with a reusable slot that can access data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
+Sometimes you'll want to provide a component with a reusable slot, where the child component can access the data bound to the slot by the parent component. For example, a simple `<todo-list>` component may contain the following in its template:
 
 ```html
 <ul>
@@ -177,9 +177,9 @@ Sometimes you'll want to provide a component with a reusable slot that can acces
 </ul>
 ```
 
-But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`. This is where scoped slots come in.
+But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`, but still based on the todo data. This is where scoped slots come in. Here, by "scope" we mean the data that is available in the context of the parent, where the slot is defined.
 
-To make the feature possible, all we have to do is wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
+To use this feature, we provide a `<slot>` element, then pass that slot any data that might be relevant to users of the component that want to put content based on that data into the slot: in this case, the `todo` object:
 
 ```html
 <ul>
@@ -197,7 +197,7 @@ To make the feature possible, all we have to do is wrap the todo item content in
 </ul>
 ```
 
-Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child via the `slot-scope` attribute:
+Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, and that template can access the data (even though it is within the child) by using the `slot-scope` attribute. This attribute says "within this template, the data bound to the slot by the parent, will be called slotProps":
 
 ```html
 <todo-list v-bind:todos="todos">
