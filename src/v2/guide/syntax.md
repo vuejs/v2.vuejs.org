@@ -192,18 +192,6 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 <a :[key]="url"> ... </a>
 ```
 
-#### DOM Property Shorthand
-
-In 2.6.0+, a separate shorthand for explicit DOM property bindings (with the `.prop` modifier) have been introduced:
-
-``` html
-<!-- full syntax -->
-<video v-bind:muted.prop="isMuted"> ... </video>
-
-<!-- shorthand -->
-<video .muted="isMuted"> ... </video>
-```
-
 ### `v-on` Shorthand
 
 ``` html
