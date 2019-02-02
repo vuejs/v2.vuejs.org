@@ -97,6 +97,9 @@ gold_sponsors:
   - url: 'https://yakaz.com/'
     img: yakaz.png
     name: Yakaz
+  - url: 'https://www.bacancytechnology.com'
+    img: bacancy_technology.png
+    name: Bacancy Technology
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
