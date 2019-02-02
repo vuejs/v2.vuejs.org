@@ -202,8 +202,15 @@ Vue.component('my-component', {
       type: Number,
       default: 100
     },
-    // Object with a default value
+    // Array with a default value
     propE: {
+      type: Array,
+      default: function () {
+        return []
+      },
+    },
+    // Object with a default value
+    propF: {
       type: Object,
       // Object or array defaults must be returned from
       // a factory function
