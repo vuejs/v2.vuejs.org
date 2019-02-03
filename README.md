@@ -1,4 +1,4 @@
-# vuejs.org
+﻿# vuejs.org
 
 This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
 
@@ -19,10 +19,18 @@ If you are the maintainer of a community translation fork and would like to depl
 
 Translation for this documentation project are currently maintained in separate repositories forked from this original one.
 
+### Arabic
+
+Arabic translation is maintained by [Interstellar Club](https://github.com/InterstellarClub)
+
+* Translation Repo - [/interstellarClub/ar.vuejs.org](https://github.com/interstellarClub/ar.vuejs.org)
+* Primary Maintainers :
+    * [Ilyes Chouia](https://github.com/celyes)
+    * [Ahmed Aissaoui](https://github.com/Aissaoui-Ahmed)
+
 ### French
 
 French translation is maintained by Vuejs-FR.
-
 * Translation Repo - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
 
 ### Italian
