@@ -212,8 +212,6 @@ Vue.component('my-component', {
     // Object with a default value
     propF: {
       type: Object,
-      // Object or array defaults must be returned from
-      // a factory function
       default: function () {
         return { message: 'hello' }
       }
@@ -232,6 +230,8 @@ Vue.component('my-component', {
 When prop validation fails, Vue will produce a console warning (if using the development build).
 
 <p class="tip">Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.</p>
+
+<p class="tip">Note that Object or Array defaults must be returned from a factory function.</p>
 
 ### Type Checks
 
