@@ -82,7 +82,9 @@ type: api
 
   > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+, this hook also captures errors thrown inside Vue custom event handlers.
+
+  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
   > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
@@ -401,6 +403,35 @@ type: api
   ```
 
 - **See also:** [Render Functions](../guide/render-function.html)
+
+### Vue.observable( object )
+
+> New in 2.6.0+
+
+- **Arguments:**
+  - `{Object} object`
+
+- **Usage:**
+
+  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+
+  ``` js
+  const state = Vue.observable({ count: 0 })
+
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
+    }
+  }
+  ```
+
+  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+
+- **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.version
 
@@ -1391,7 +1422,7 @@ type: api
 
 > New in 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Type:** `{ [name: string]: props => Array<VNode> | undefined }`
 
 - **Read only**
 
@@ -1400,6 +1431,12 @@ type: api
   Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
 
   Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+
+  **Note:** since 2.6.0+, there are two notable changes to this property:
+
+  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **See also:**
   - [`<slot>` Component](#slot-1)
@@ -1948,7 +1985,7 @@ type: api
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Expects:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **Usage:**
 
@@ -1975,6 +2012,8 @@ type: api
     {{ item.text }}
   </div>
   ```
+
+  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
 
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
@@ -2021,11 +2060,17 @@ type: api
   <!-- method handler -->
   <button v-on:click="doThis"></button>
 
+  <!-- dynamic event (2.6.0+) -->
+  <button v-on:[event]="doThis"></button>
+
   <!-- inline statement -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- shorthand -->
   <button @click="doThis"></button>
+
+  <!-- shorthand dynamic event (2.6.0+) -->
+  <button @[event]="doThis"></button>
 
   <!-- stop propagation -->
   <button @click.stop="doThis"></button>
@@ -2097,8 +2142,14 @@ type: api
   <!-- bind an attribute -->
   <img v-bind:src="imageSrc">
 
+  <!-- dynamic attribute name (2.6.0+) -->
+  <button v-bind:[key]="value"></button>
+
   <!-- shorthand -->
   <img :src="imageSrc">
+
+  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <button :[key]="value"></button>
 
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
@@ -2163,6 +2214,59 @@ type: api
 - **See also:**
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+
+### v-slot
+
+- **Shorthand:** `#`
+
+- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+
+- **Argument:** slot name (optional, defaults to `default`)
+
+- **Limited to:**
+  - `<template>`
+  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+
+- **Usage:**
+
+  Denote named slots or slots that expect to receive props.
+
+- **Example:**
+
+  ```html
+  <!-- Named slots -->
+  <base-layout>
+    <template v-slot:header>
+      Header content
+    </template>
+
+    Default slot content
+
+    <template v-slot:footer>
+      Footer content
+    </template>
+  </base-layout>
+
+  <!-- Named slot that receives props -->
+  <infinite-scroll>
+    <template v-slot:item="slotProps">
+      <div class="item">
+        {{ slotProps.item.text }}
+      </div>
+    </template>
+  </infinite-scroll>
+
+  <!-- Default slot that receive props, with destructuring -->
+  <mouse-position v-slot="{ x, y }">
+    Mouse position: {{ x }}, {{ y }}
+  </mouse-position>
+  ```
+
+  For more details, see the links below.
+
+- **See also:**
+  - [Components - Slots](../guide/components-slots.html)
+  - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
@@ -2283,38 +2387,6 @@ type: api
 
 - **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
-### slot
-
-- **Expects:** `string`
-
-  Used on content inserted into child components to indicate which named slot the content belongs to.
-
-  For detailed usage, see the guide section linked below.
-
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
-
-### slot-scope
-
-> New in 2.5.0+
-
-- **Expects:** `function argument expression`
-
-- **Usage:**
-
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
-
-  This attribute does not support dynamic binding.
-
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
-
-### scope <sup>replaced</sup>
-
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
-
-- **Usage:**
-
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
-
 ### is
 
 - **Expects:** `string | Object (component’s options object)`
@@ -2339,6 +2411,40 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **See also:**
   - [Dynamic Components](../guide/components.html#Dynamic-Components)
   - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
+### slot <sup style="color:#c92222">deprecated</sup>
+
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+- **Expects:** `string`
+
+  Used on content inserted into child components to indicate which named slot the content belongs to.
+
+- **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
+
+### slot-scope <sup style="color:#c92222">deprecated</sup>
+
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
+
+### scope <sup style="color:#c92222">removed</sup>
+
+**Replaced by [slot-scope](#slot-scope) in 2.5.0+. Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+Used to denote a `<template>` element as a scoped slot.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ## Built-In Components
 
