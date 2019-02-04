@@ -307,7 +307,7 @@ Cela est particulièrement utile avec l'utilisation combinée de la propriété 
 ```js
 {
   class: 'username-input',
-  placeholder: 'Entrez votre nom d'utilisateur'
+  placeholder: 'Entrez votre nom d\'utilisateur'
 }
 ```
 
