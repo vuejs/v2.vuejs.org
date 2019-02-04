@@ -349,7 +349,7 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 
 > New in 2.6.0+
 
-[Dynamic directive arguments](http://localhost:4000/v2/guide/syntax.html#Dynamic-Arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
+[Dynamic directive arguments](syntax.html#Dynamic-Arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
 
 ``` html
 <base-layout>
