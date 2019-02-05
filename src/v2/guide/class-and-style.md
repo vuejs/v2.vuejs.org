@@ -21,9 +21,10 @@ La syntaxe ci-dessus signifie que la classe `active` sera présente si la propri
 Vous pouvez permuter plusieurs classes en ayant plus de champs dans l'objet. De plus, la directive `v-bind:class` peut aussi coexister avec l'attribut `class`. Donc, avec le template suivant :
 
 ``` html
-<div class="static"
-     v-bind:class="{ active: isActive, 'text-danger': hasError }">
-</div>
+<div
+  class="static"
+  v-bind:class="{ active: isActive, 'text-danger': hasError }"
+></div>
 ```
 
 Et les données suivantes :

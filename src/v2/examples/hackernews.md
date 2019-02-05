@@ -14,7 +14,7 @@ order: 12
 </div>
 {% endraw %}
 
-> [Démo en ligne](https://vue-hn.now.sh/)
+> [Démo en ligne](https://vue-hn.herokuapp.com/)
 > Note : la démo peut avoir besoin de temps pour se lancer si personne n'y a accédé depuis un certain temps.
 >
 > [[Source](https://github.com/vuejs/vue-hackernews-2.0)]

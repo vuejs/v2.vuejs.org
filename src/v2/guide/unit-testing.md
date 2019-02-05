@@ -1,12 +1,10 @@
 ---
 title: Tests unitaires
 type: guide
-order: 403
+order: 402
 ---
 
-## Outils et mise en place
-
-Tout ce qui est compatible avec un système de build basé sur des modules fonctionnera. Mais si vous cherchez une recommandation particulière, essayez le lanceur de tests [Karma](http://karma-runner.github.io). Il y a beaucoup de plugins communautaires, incluant le support de [webpack](https://github.com/webpack/karma-webpack) et [Browserify](https://github.com/Nikku/karma-browserify). Pour une mise en place détaillée, référez-vous à la documentation respective de chaque projet. Ces exemples de configuration de Karma pour [webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) et [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) pourront vous aider à démarrer.
+> [Vue CLI](https://cli.vuejs.org/) possède des options intégrées pour les tests unitaires avec [Jest](https://github.com/facebook/jest) ou [Mocha](https://mochajs.org/) qui fonctionne dès démarrage. Nous avons également le [Vue Test Utils](https://vue-test-utils.vuejs.org/) officiel qui fournit un guide plus détaillé pour des configurations personnalisées.
 
 ## Des assertions simples
 
@@ -31,7 +29,7 @@ En termes de structure de code pour les tests, vous n'avez rien de spécial à f
 </script>
 ```
 
-Quand vous testez ce composant, tout ce que vous avez à faire est d'importer l'objet d'options aux côtés de Vue pour faire une série d'assertions communes :
+Puis importez les options de composant aux côtés de Vue et vous pourrez faire une série d'assertions communes (ici nous utilisons le style Jasmine/Jest avec l'assertions `expect` en tant qu'exemple) :
 
 ``` js
 // Importer Vue et le composant à tester
@@ -131,4 +129,4 @@ it('met à jour le message rendu quand `vm.message` est mis à jour', done => {
 
 Nous prévoyons de travailler sur une collection de fonctions utilitaires de tests communs pour rendre encore plus simple le rendu de composants avec différentes contraintes (par ex. des rendus peu profonds ignorant les composants enfants) et faire des assertions sur le code en sortie.
 
-Pour des informations plus pointues sur les tests unitaires avec Vue, jeter un œil à [vue-test-utils](https://vue-test-utils.vuejs.org/fr/) et notre entrée des tutoriels à propos des [tests unitaires de composants Vue](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
+Pour des informations plus pointues sur les tests unitaires avec Vue, jeter un œil à [Vue Test Utils](https://vue-test-utils.vuejs.org/) et notre entrée des tutoriels à propos des [tests unitaires de composants Vue](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).

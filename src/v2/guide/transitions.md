@@ -1479,7 +1479,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-Et les composants fonctionnels sont particulièrement adaptés à cette tâche :
+Et les [composants fonctionnels](render-function.html#Composants-fonctionnels) sont particulièrement adaptés à cette tâche :
 
 ``` js
 Vue.component('my-special-transition', {

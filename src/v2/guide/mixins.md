@@ -8,6 +8,8 @@ order: 301
 
 Les mixins offrent une manière flexible de créer des fonctionnalités réutilisables pour les composants de Vue. Un objet mixin peut contenir toute option valide pour un composant. Quand un composant utilise un mixin, toutes les options du mixin seront "fusionnées" avec les options du composant.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/next-level-vue/mixins" target="_blank" rel="noopener" title="Mixins Tutorial">Regardez une vidéo de cours gratuite sur Vue Mastery (EN)</a></div>
+
 Exemple:
 
 ``` js

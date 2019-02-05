@@ -1,10 +1,10 @@
 ---
 title: Support de TypeScript
 type: guide
-order: 404
+order: 403
 ---
 
-> Dans Vue 2.5.0+ nous avons grandement amélioré nos déclarations de types pour fonctionner avec l'API par défaut basée sur les objets. Cela a également introduit quelques changements qui requièrent une intervention manuelle. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
+> [Vue CLI](https://cli.vuejs.org) fournit des outils de support à TypeScript. Dans notre prochaine version majeur de Vue (3.x), nous avons également planifié d'améliorer grandement le support de TypeScript avec des classes basées sur les composants et un support de TSX.
 
 ## Déclaration officielle dans les packages npm
 

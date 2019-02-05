@@ -62,7 +62,9 @@ Vous avez également vu qu'il était possible d'affecter des props dynamiquement
 <blog-post v-bind:title="post.title"></blog-post>
 
 <!-- Affecter dynamiquement la valeur d'une expression complexe -->
-<blog-post v-bind:title="post.title + ' par ' + post.author.name"></blog-post>
+<blog-post
+  v-bind:title="post.title + ' par ' + post.author.name"
+></blog-post>
 ```
 
 Dans les deux exemples précédents, nous passons en fait une valeur sous forme de chaine de caractère mais _tous_ les types de valeur peuvent en fait être passées à la prop.
@@ -108,7 +110,12 @@ Dans les deux exemples précédents, nous passons en fait une valeur sous forme 
 ```html
 <!-- Même si un objet est statique, nous avons besoin de `v-bind` pour dire à Vue -->
 <!-- que c'est une expression JavaScript et non pas une chaine de caractères. -->
-<blog-post v-bind:author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blog-post>
+<blog-post
+  v-bind:author="{
+    name: 'Veronica',
+    company: 'Veridian Dynamics'
+  }"
+></blog-post>
 
 <!-- Affecter dynamiquement la valeur d'une variable. -->
 <blog-post v-bind:author="post.author"></blog-post>
@@ -306,7 +313,7 @@ Cela est particulièrement utile avec l'utilisation combinée de la propriété 
 
 ```js
 {
-  class: 'username-input',
+  required: true,
   placeholder: 'Entrez votre nom d\'utilisateur'
 }
 ```
@@ -330,12 +337,14 @@ Vue.component('base-input', {
 })
 ```
 
+<p class="tip">Notez que l'option `inheritAttrs: false` n'affecte **pas** les liaisons `style` et `class`.</p>
+
 Ce modèle vous permet d'utiliser des composants de base comme des éléments HTML standard sans avoir à vous soucier de quel élément est actuellement à sa racine :
 
 ```html
 <base-input
   v-model="username"
-  class="username-input"
-  placeholder="Entrez votre nom d'utilisateur"
+  required
+  placeholder="Entrez votre nom d\'utilisateur"
 ></base-input>
 ```

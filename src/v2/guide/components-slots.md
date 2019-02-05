@@ -211,7 +211,7 @@ Lorsqu'on utilise le composant `<todo-list>`, il devient alors possible de fourn
 </todo-list>
 ```
 
-> Dans 2.5.0+, `slot-scope` n'est plus limité aux éléments  `<template>` et peut être utilisé sur n'importe quel élément ou composant (`<div>`, `<my-component>`, ...)
+> Avant la 2.5.0, `slot-scope` était nommé `scope` et était limité aux éléments `<template>`. Depuis là 2.5.0, `slot-scope` n'a plus cette limitation et peut être utilisé à la place de n'importe quel élément ou composant dans le slot.
 
 ### Affectation par décomposition du `slot-scope`
 

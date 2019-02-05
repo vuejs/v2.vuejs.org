@@ -45,8 +45,9 @@ export default {
 
 ```js
 import { shallowMount } from '@vue/test-utils'
+import Hello from './Hello.vue'
 
-test("Foo", () => {
+test('Hello', () => {
   // render the component
   const wrapper = shallowMount(Hello)
 
@@ -144,6 +145,7 @@ Et enfin la version naïve de nos tests utilisant jest:
 
 ```js
 import { shallowMount } from '@vue/test-utils'
+import Foo from './Foo.vue'
 
 describe('Foo', () => {
   it('restitue un message et répond correctement à la saisie de l\'utilisateur', () => {

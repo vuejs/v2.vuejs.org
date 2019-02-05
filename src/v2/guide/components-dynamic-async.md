@@ -235,7 +235,7 @@ Vue.component(
 )
 ```
 
-Quand vous utilisez [l'inscription locale](components.html#Local-Registration) de composant, vous pouvez aussi fournir directement une fonction qui retourne une `Promise` :
+Quand vous utilisez [l'inscription locale](components-registration.html#Local-Registration) de composant, vous pouvez aussi fournir directement une fonction qui retourne une `Promise` :
 
 ``` js
 new Vue({

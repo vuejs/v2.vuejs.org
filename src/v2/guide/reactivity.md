@@ -6,6 +6,8 @@ order: 601
 
 C'est maintenant l'heure du grand plongeon ! L'une des fonctionnalités les plus emblématiques de Vue est le système de réactivité non obstrusif. Les modèles sont simplement des objets JavaScript. Lorsque vous les modifiez, la vue se met à jour. Cela rend la gestion d'état très simple et intuitive, mais il est également important de comprendre comment cela fonctionne pour éviter quelques erreurs classiques. Dans cette section, nous allons nous pencher sur certains détails de bas niveau du système de réactivité de Vue.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="noopener" title="Vue Reactivity">Regardez une vidéo de cours gratuite sur Vue Mastery (EN)</a></div>
+
 ## Comment les modifications sont tracées ?
 
 Lorsque vous passez un simple objet JavaScript à une instance de Vue via son option `data`, Vue parcourra toutes ses propriétés et les convertira en accesseurs / mutateurs (« [getters/setters](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Utiliser_les_objets#Defining_getters_and_setters) ») en utilisant [Object.defineProperty](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty). Il s'agit d'une fonctionnalité ES5 uniquement et qui ne peut pas être émulée, c'est pourquoi Vue ne prend pas en charge IE8 et les versions antérieures.
@@ -123,8 +125,8 @@ Depuis que `$nextTick()` retourne une promesse, vous pouvez parvenir au même r�
 
 ``` js
   methods: {
-    async updateMessage: function () {
-      this.message = 'mis à jour'
+    updateMessage: async function () {
+      this.message = 'mise à jour'
       console.log(this.$el.textContent) // => 'pas mis à jour'
       await this.$nextTick()
       console.log(this.$el.textContent) // => 'mis à jour'

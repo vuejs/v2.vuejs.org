@@ -323,15 +323,7 @@ Le problème est que le bouton ne fait rien du tout :
 </button>
 ```
 
-Quand nous cliquons sur le bouton, nous avons besoin de communiquer au parent qu'il devrait élargir le texte de tous les billets. Heureusement, l'instance de Vue fournit un système d'évènements personnalisables pour résoudre ce problème. Pour émettre un évènement au parent, nous devons appeler la [méthode préconçue **`$emit`**](../api/#Methodes-et-Evenements-d’Instance), en lui passant le nom de l'évènement :
-
-```html
-<button v-on:click="$emit('enlarge-text')">
-  Élargir le texte
-</button>
-```
-
-Quand nous sommes sur notre billet de blog, nous pouvons écouter cet évènement avec `v-on`, exactement comme nous le ferions avec un évènement natif du DOM :
+Quand nous cliquons sur le bouton, nous avons besoin de communiquer au parent qu'il devrait élargir le texte de tous les billets. Heureusement, l'instance de Vue fournit un système d'évènements personnalisables pour résoudre ce problème. Le parent peut choisir d'écouter n'importe quel évènement de l'instance du composant enfant avec `v-on`, juste comme il le ferrait avec un évènement natif du DOM :
 
 ```html
 <blog-post
@@ -339,6 +331,16 @@ Quand nous sommes sur notre billet de blog, nous pouvons écouter cet évènemen
   v-on:enlarge-text="postFontSize += 0.1"
 ></blog-post>
 ```
+
+Puis le composant enfant peut émettre un évènement lui-même en appelant la [méthode préconçue **`$emit`**](../api/#vm-emit), en lui passant le nom de l'évènement :
+
+```html
+<button v-on:click="$emit('enlarge-text')">
+  Élargir le texte
+</button>
+```
+
+Grace a l'écouteur `v-on:enlarge-text="postFontSize += 0.1"`, le parent va recevoir l'évènement et mettre à jour la valeur de `postFontSize`.
 
 {% raw %}
 <div id="blog-posts-events-demo" class="demo">

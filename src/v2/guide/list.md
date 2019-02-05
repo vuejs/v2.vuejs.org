@@ -233,6 +233,8 @@ Il est recommandé de fournir une `key` avec `v-for` chaque fois que possible, �
 
 Comme c'est un mécanisme générique pour Vue permettant d’identifier les nœuds, la `key` a également d'autres usages et ne se limite pas seulement à son utilisation avec `v-for`, comme nous le verrons plus tard dans le guide.
 
+<p class="tip">N'utilisez pas des valeurs non primitive comme des objets ou des tableaux comme clés pour `v-for`. Utilisez des chaines de caractères ou des nombres à la place.</p>
+
 ## Détection de changement dans un tableau
 
 ### Méthodes de mutation

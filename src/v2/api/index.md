@@ -645,8 +645,12 @@ type: api
         immediate: true
       },
       e: [
-        function handle1 (val, oldVal) { /* ... */ },
-        function handle2 (val, oldVal) { /* ... */ }
+        'handle1',
+        function handle2 (val, oldVal) { /* ... */ },
+        {
+          handler: function handle3 (val, oldVal) { /* ... */ },
+          /* ... */
+        }
       ],
       // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
@@ -1430,6 +1434,8 @@ type: api
 
 ### vm.$attrs
 
+> Nouveau dans la 2.4.0+
+
 - **Type :** `{ [key: string]: string }`
 
 - **Accessible uniquement en lecture**
@@ -1439,6 +1445,8 @@ type: api
   Contient les attributs liés de portée parente (à l'exception de `class` et `style`) qui ne sont pas reconnus (et extrait) en tant que props. Quand un composant n'a aucune props de déclarée, il contient essentiellement toutes les liaisons de portée parente (à l'exception de `class` et `style`), et peut être passé à l'intérieur d'un composant enfant via `v-bind="$attrs"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
 ### vm.$listeners
+
+> Nouveau dans la 2.4.0+
 
 - **Type :** `{ [key: string]: Function | Array<Function> }`
 
@@ -1478,6 +1486,9 @@ type: api
   // fonction
   vm.$watch(
     function () {
+      // everytime the expression `this.a + this.b` yields a different result,
+      // the handler will be called. It's as if we were watching a computed
+      // property without defining the computed property itself
       return this.a + this.b
     },
     function (nouvelleValeur, ancienneValeur) {

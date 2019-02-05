@@ -34,7 +34,7 @@ Ce code de conduite s'applique aussi bien dans les espaces de projet que dans le
 
 ## Application
 
-Des cas de comportement abusif, de harcèlement ou autrement inacceptables peuvent être signalés en contactant l'équipe du projet à vuejscommunity@gmail.com. Toutes les plaintes seront examinées et donneront lieu à une réponse qui est jugée nécessaire et appropriée aux circonstances. L'équipe du projet est obligée de maintenir la confidentialité à l'égard du déclarant d'un incident. Des détails supplémentaires sur les politiques d'application spécifiques peuvent être affichés séparément.
+Des cas de comportement abusif, de harcèlement ou autrement inacceptables peuvent être signalés en contactant l'équipe du projet à community@vuejs.org. Toutes les plaintes seront examinées et donneront lieu à une réponse qui est jugée nécessaire et appropriée aux circonstances. L'équipe du projet est obligée de maintenir la confidentialité à l'égard du déclarant d'un incident. Des détails supplémentaires sur les politiques d'application spécifiques peuvent être affichés séparément.
 
 Les responsables de projet qui ne respectent pas le code de conduite ou ne le font pas respecter de bonne foi peuvent faire face à des répercussions temporaires ou permanentes, déterminées par les autres membres de la direction du projet.
 

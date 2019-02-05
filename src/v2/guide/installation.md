@@ -61,6 +61,8 @@ Vue.js offre une [CLI officielle](https://github.com/vuejs/vue-cli) (« interfac
 
 <p class="tip">Utiliser la CLI nécessite des connaissances préalables en Node.js et les outils de build associés. Si vous êtes nouveau sur Vue ou les outils de build front-end, nous vous recommandons fortement de parcourir <a href="./">le guide</a> sans aucun outil de build avant d'utiliser l'interface CLI.</p>
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Regardez une vidéo de cours gratuite sur Vue Mastery (EN)</a></div>
+
 ## Explication des différents builds
 
 Dans le [dossier `dist/` du package npm](https://cdn.jsdelivr.net/npm/vue/dist/) vous trouverrez plusieurs builds différents de Vue.js. Voici un aperçu des différences entre chacun d'eux :
@@ -130,7 +132,7 @@ rollup({
   // ...
   plugins: [
     alias({
-      'vue': 'vue/dist/vue.esm.js'
+      'vue': require.resolve('vue/dist/vue.esm.js')
     })
   ]
 })

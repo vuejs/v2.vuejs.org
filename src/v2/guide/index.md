@@ -12,6 +12,8 @@ Si vous souhaitez en savoir plus à propos de Vue avant d'entrer dans le détail
 
 Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques / frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Regardez une vidéo de cours gratuite sur Vue Mastery (EN)</a></div>
+
 ## Pour commencer
 
 <p class="tip">Ce guide officiel présuppose que vous ayez un niveau intermédiaire de connaissance en HTML, CSS et JavaScript. Si vous êtes complètement nouveau dans le développement *frontend*, ce n'est peut-être pas la solution la plus judicieuse de vous lancer dans un framework pour vos premiers pas — aussi complétez vos bases avant de revenir ! Bien qu'une première expérience avec d'autres frameworks puisse être utile, cela n'est pas obligatoire.</p>
@@ -323,8 +325,8 @@ Maintenant nous pouvons passer la liste dans chaque composant répété en utili
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
-      v-bind:key="item.id">
-    </todo-item>
+      v-bind:key="item.id"
+    ></todo-item>
   </ol>
 </div>
 ```
@@ -395,4 +397,4 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js. Le reste de ce guide va les traiter ainsi que d'autres fonctionnalités avancées plus en détail. Assurez-vous donc de le lire jusqu'au bout !
 
-<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script></div>
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>

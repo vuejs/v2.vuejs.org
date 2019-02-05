@@ -226,21 +226,29 @@ Le modificateur `.passive` est particulièrement pratique pour améliorer les pe
 Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de nous assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
 
 ``` html
-<!-- faire appel à +vm.submit()+ uniquement quand le code de la touche est `13` -->
+<!-- faire appel à `vm.submit()` uniquement quand le code de la touche est `Enter` -->
+<input v-on:keyup.enter="submit">
+```
+
+Vous pouvez également utiliser n'importe quel nom de touche clavier valide fourni par [`KeyboardEvent.key`](https://developer.mozilla.org/fr-FR/docs/Web/API/KeyboardEvent/key/Key_Values) en tant que modificateur en les écrivant au format kebab-case :
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+Dans l'exemple ci-dessus, le gestionnaire va uniquement être appelé si `$event.key` est égale à 'PageDown'`.
+
+### Code des touches
+
+<p class="tip">L'utilisation des évènements `keyCode` [est déprécié](https://developer.mozilla.org/fr-FR/docs/Web/API/KeyboardEvent/keyCode) et pourrait ne plus être supportée dans de futurs navigateurs.</p>
+
+Utilisez des attributs `keyCode` est également possible :
+
+``` html
 <input v-on:keyup.13="submit">
 ```
 
-Se rappeler tous les codes des touches est compliqué, c'est pourquoi Vue propose des alias pour les touches les plus couramment employées :
-
-``` html
-<!-- même exemple que le précédent -->
-<input v-on:keyup.enter="submit">
-
-<!-- fonctionne également pour les raccourcis -->
-<input @keyup.enter="submit">
-```
-
-Voici la liste complète des raccourcis de modificateurs pour les touches :
+Vue fournit des alias pour la plupard des clés communes utilisés quand necessaire pour le support des anciens navigateurs :
 
 - `.enter`
 - `.tab`
@@ -252,26 +260,14 @@ Voici la liste complète des raccourcis de modificateurs pour les touches :
 - `.left`
 - `.right`
 
+<p class="tip">Quelques raccourcis (`.esc` et les touches fléchées) ont des `key` différentes pour IE9. Vous devriez plutôt utiliser leurs alias fournis par la bibliothèque si vous souhaitez supporter IE9.</p>
+
 Vous pouvez également [définir des raccourcis personnalisés pour vos modificateurs](../api/#keyCodes) grâce à l'objet global `config.keyCodes` :
 
 ``` js
 // active `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
-
-## Modificateurs automatiques de touche clavier
-
-> Nouveau dans la 2.5.0+
-
-Vous pouvez également utiliser n'importe quel nom de touche clavier valide fourni par [`KeyboardEvent.key`](https://developer.mozilla.org/fr-FR/docs/Web/API/KeyboardEvent/key/Key_Values) en tant que modificateur en les écrivant au format kebab-case :
-
-``` html
-<input @keyup.page-down="onPageDown">
-```
-
-Dans l'exemple ci-dessus, le gestionnaire va uniquement être appelé si `$event.key === 'PageDown'`.
-
-<p class="tip">Quelques raccourcis (`.esc` et les touches fléchées) ont des `key` différentes pour IE9. Vous devriez plutôt utiliser leurs alias fournis par la bibliothèque si vous souhaitez supporter IE9.</p>
 
 ## Modificateurs de touches système
 

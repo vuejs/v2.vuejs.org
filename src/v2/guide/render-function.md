@@ -480,7 +480,7 @@ Et d'autant plus quand la version template est vraiment simple en comparaison :
 </anchored-heading>
 ```
 
-C'est pourquoi il y a un [plugin Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) pour utiliser JSX avec Vue, nous permettant l'utilisation d'une syntaxe plus proche de celle des templates :
+C'est pourquoi il y a un [plugin Babel](https://github.com/vuejs/jsx) pour utiliser JSX avec Vue, nous permettant l'utilisation d'une syntaxe plus proche de celle des templates :
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -497,9 +497,9 @@ new Vue({
 })
 ```
 
-<p class="tip">Utiliser `h` comme alias de `createElement` est une convention courante que vous verrez dans l'écosystème Vue et qui est en faite requise pour JSX. Si `h` n'est pas disponible dans votre portée courante, votre application va lever une erreur.</p>
+<p class="tip">Utiliser `h` comme alias de `createElement` est une convention courante que vous verrez dans l'écosystème Vue et qui est en faite requise pour JSX. À partir de la [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) du plugin Babel pour Vue, nous injections automatiquement `const h = this.$createElement` dans n'importe quelle méthode ou accesseur (pas dans les fonctions ou fonctions fléchées), déclaré avec la syntaxe ES2015 qui a du JSX, vous pouvez ainsi oublier le paramètre `(h)`. Avec les versions précédentes du plugin, si `h` n'est pas disponible dans votre portée courante, votre application va lever une erreur.</p>
 
-Pour plus d'informations sur comment utiliser JSX dans du JavaScript, référez-vous à la [documentation d'utilisation](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Pour plus d'informations sur comment utiliser JSX dans du JavaScript, référez-vous à la [documentation d'utilisation](https://github.com/vuejs/jsx#installation).
 
 ## Composants fonctionnels
 

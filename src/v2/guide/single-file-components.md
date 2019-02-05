@@ -1,7 +1,7 @@
 ---
 title: Composants monofichiers
 type: guide
-order: 402
+order: 401
 ---
 
 ## Introduction
@@ -62,10 +62,10 @@ Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des appli
 
 - **JavaScript moderne avec ES2015/16**: lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 
-Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack](https://vuejs-templates.github.io/webpack). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
-
-Pour en apprendre plus sur webpack, consultez [la documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts). Dans webpack, chaque module peut être transformé par un « loader » avant d'être inclus dans le paquetage, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichiers `.vue`.
+Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer [Vue CLI 3](https://cli.vuejs.org/). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
 
 ### Pour les utilisateurs avancés
 
-Que vous préfériez webpack ou Browserify, nous avons des templates documentés à la fois pour les projets simples et les projets plus complexes. Nous vous recommandons d'explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), de choisir un template qui vous convient et de suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
+La CLI prend soin de la configuration de la plupard des outils pour vous, mais vous permet tout de même une optimisation granulaire avec vos propres [options de configuration](https://cli.vuejs.org/config/).
+
+Dans le cas ou vous preferiez créer votre installation depuis le dépard, vous pourrez configurer manuellement webpack avec [vue-loader](https://vue-loader.vuejs.org). Pour en apprendre plus à propos de webpack en lui même, consultez la [documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts).
