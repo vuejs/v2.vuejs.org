@@ -8,7 +8,7 @@ platinum_sponsors_china:
 special_sponsors:
   - url: 'https://stdlib.com/'
     img: stdlib.png
-    description: 'Créer les APIs dont vous avez besoin en quelques minutes plutôt qu'en quelques jours, gratuitement.'
+    description: "Créer les APIs dont vous avez besoin en quelques minutes plutôt qu'en quelques jours, gratuitement."
 platinum_sponsors:
   - url: >-
       https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
