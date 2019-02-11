@@ -82,7 +82,7 @@ As a rule, remember that:
 
 ## Fallback Content
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be be rendered only when no content is provided. For example, in a `<submit-button>` component:
+There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be rendered only when no content is provided. For example, in a `<submit-button>` component:
 
 ```html
 <button type="submit">
