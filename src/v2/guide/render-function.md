@@ -520,7 +520,7 @@ Vue.component('my-component', {
 </template>
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+`context`를 통해 컴포넌트에서 필요한 모든 것이 전달 됩니다. 이 객체는 다음을 포함합니다.
 
 - `props`: 전달받은 props에 대한 객체
 - `children`: VNode 자식의 배열
