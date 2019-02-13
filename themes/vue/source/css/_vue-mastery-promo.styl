@@ -2,13 +2,30 @@
   background #4fc08d
   background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
   overflow hidden
+  position relative
+
+  &:before
+    content ''
+    background #35495E
+    background-image linear-gradient(to right, #4fc08d, #4fc08d 80%, #35495E 100%)
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    width 0
+    transition width .15s ease-out .1s
 
   &:hover
-    background-image linear-gradient(to left, #35495E, #35495E 50%, #4fc08d 50%)
-    .vue-mastery-wrapper
-      background #35495E
+    &:before
+      transition width .15s ease-in
+      width 50%
     p
+      transition-delay 0
       color #fff
+
+    .vue-mastery-wrapper::before
+      width 100vw
+      transition width .15s ease-in .10s
 
   &.hide
     height: 0
@@ -25,6 +42,19 @@
     background #4fc08d
     margin-left -50px
     padding-left 50px
+    position relative
+
+    &:before
+      content ''
+      pointer-events none
+      background #35495E
+      background-image linear-gradient(to right, #35495E, #35495E 80%, #4fc08d 100%)
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      width 0
+      transition width .15s ease-out
 
     &:hover
       + .close
@@ -37,12 +67,15 @@
     margin-top: -1px
     margin-left 125px
     position relative
+    z-index 2
 
   p
     margin -3px 50px 0 20px
     font-size 1.17rem
     font-weight 600
     color #2c3e50
+    position relative
+    transition-delay .15s
 
   span
     font-size 1rem
@@ -76,10 +109,8 @@
       transform rotate(45deg)
 
     &:hover
-      background closeBgHoverColor
       &:before,
       &:after
-        background-color closeBarBgHoverColor
         transform rotate(180deg)
 
 .vuemastery-weekend-promo
