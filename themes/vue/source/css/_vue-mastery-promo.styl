@@ -2,8 +2,6 @@
   background #4fc08d
   background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
   overflow hidden
-  height 80px
-  transition height .3s ease-in
 
   &:hover
     background-image linear-gradient(to left, #35495E, #35495E 50%, #4fc08d 50%)
@@ -13,7 +11,6 @@
       color #fff
 
   &.hide
-    transition height .3s ease-out
     height: 0
 
   a
@@ -85,23 +82,48 @@
         background-color closeBarBgHoverColor
         transform rotate(180deg)
 
-@media screen and (max-width: 900px)
-  .vue-mastery-promo + #mobile-bar.top
+.vuemastery-weekend-promo
+  #mobile-bar,
+  #mobile-bar.top
     position relative
     background-color #fff
+  
+  &.docs:not(.fixed)
+    padding-top 0
+    #header
+      position relative
+      width auto
+    #nav
+      position absolute
 
-  .vue-mastery-promo.fixed 
-    margin-bottom 40px
-    + #mobile-bar
+  &.fixed
+    #mobile-bar
       position fixed
 
+@media screen and (min-width: 901px)
+  .vuemastery-weekend-promo
+    &.docs:not(.fixed)
+      #main.fix-sidebar .sidebar
+        top 141px
+        position absolute
+    
+    &.fixed.docs
+      .vue-mastery-promo
+        margin-bottom 0
+
+@media screen and (max-width: 900px)
   .vue-mastery-promo
     .vue-mastery-logo
       margin-left 0
 
+  .vuemastery-weekend-promo
+    &.fixed
+      .vue-mastery-promo
+        margin-bottom 40px
+
+
 @media screen and (max-width: 700px)
   .vue-mastery-promo
-    height 40px
     a
       height 40px
       overflow hidden
