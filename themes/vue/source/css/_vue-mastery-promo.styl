@@ -1,0 +1,142 @@
+.vue-mastery-promo
+  background #4fc08d
+  background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
+  overflow hidden
+  height 80px
+  transition height .3s ease-in
+
+  &:hover
+    background-image linear-gradient(to left, #35495E, #35495E 50%, #4fc08d 50%)
+    .vue-mastery-wrapper
+      background #35495E
+    p
+      color #fff
+
+  &.hide
+    transition height .3s ease-out
+    height: 0
+
+  a
+    display flex
+    height 80px
+    justify-content center
+  
+  .vue-mastery-wrapper
+    display flex
+    height 100%
+    align-items center
+    background #4fc08d
+    margin-left -50px
+    padding-left 50px
+
+    &:hover
+      + .close
+        &:before,
+        &:after
+          transform-origin 100%
+
+  .vue-mastery-logo
+    height 102%
+    margin-top: -1px
+    margin-left 125px
+    position relative
+
+  p
+    margin -3px 50px 0 20px
+    font-size 1.17rem
+    font-weight 600
+    color #2c3e50
+
+  span
+    font-size 1rem
+    display block
+    color #fff
+  
+  .close
+    position absolute
+    top 20px
+    right 25px
+    height 40px
+    width 40px
+    -webkit-tap-highlight-color transparent
+    border-radius 50%
+    cursor pointer
+
+    &:before,
+    &:after
+      content ''
+      position absolute
+      top 19px
+      left 14px
+      width 25px
+      height 2px
+      background-color #fff
+      transform-origin 50%
+      transform rotate(-45deg)
+      transition all .2s ease-out
+
+    &:after
+      transform rotate(45deg)
+
+    &:hover
+      background closeBgHoverColor
+      &:before,
+      &:after
+        background-color closeBarBgHoverColor
+        transform rotate(180deg)
+
+@media screen and (max-width: 900px)
+  .vue-mastery-promo + #mobile-bar.top
+    position relative
+    background-color #fff
+
+  .vue-mastery-promo.fixed 
+    margin-bottom 40px
+    + #mobile-bar
+      position fixed
+
+  .vue-mastery-promo
+    .vue-mastery-logo
+      margin-left 0
+
+@media screen and (max-width: 700px)
+  .vue-mastery-promo
+    height 40px
+    a
+      height 40px
+      overflow hidden
+
+    .vue-mastery-logo
+      margin-left 0
+      justify-content flex-start
+
+    p, span
+      font-size .8rem
+      color #fff
+
+    .close
+      top 0px
+      right 0px
+
+      &:before,
+      &:after
+        top 19px
+        left 14px
+        width 15px
+        height 2px
+
+@media screen and (max-width: 425px)
+  .vue-mastery-promo
+    p
+      max-width 185px
+    span
+      display none
+
+@media screen and (max-width 286px)
+  .vue-mastery-promo p
+    font-size 0.6rem
+    margin -3px 28px 0 0px
+
+@media print
+  .vue-mastery-promo
+    display none

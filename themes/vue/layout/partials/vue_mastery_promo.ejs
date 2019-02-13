@@ -1,0 +1,71 @@
+<script>
+  (function () {
+    var mobileBar, vuemasteryPromo, menuTop, close;
+
+    // This allow the mobile menu to scroll once the banner is not visible
+    var fixMenuAfterBanner = function() {
+      if (window.pageYOffset > menuTop) {
+        // The menu will be fixed
+        vuemasteryPromo.classList.add('fixed');
+      } else {
+        // The menu stay under the banner
+        vuemasteryPromo.classList.remove('fixed');
+      }
+    }
+
+    // Get position of the menu when the windows is resized
+    var getMenuPosition = function() {
+      menuTop = vuemasteryPromo.clientHeight;
+    }
+
+    var initBanner = function () {
+      // Get elements
+      mobileBar = document.getElementById('mobile-bar');
+      vuemasteryPromo = document.getElementById('vue-mastery-promo');
+      close = document.getElementById('close-vue-mastery-promo');
+
+      // Initialize the banner
+      vuemasteryPromo.classList.remove('hide');
+      // Init close button action
+      close.onclick = closeBanner
+
+      // Wait for the end of animation before getting position
+      setTimeout(function () {
+        // Get position of the menu bar
+        menuTop = mobileBar.offsetTop;
+      }, 500)
+    }
+
+    // Remove the banner once the user click on the cross
+    var closeBanner = function(e) {
+      // Prevent redirection to vuemastery if click on the close button
+      e.preventDefault();
+      // Save action in the local storage
+      localStorage.setItem('hideVuemasteryBanner', true);
+      // Hide the banner
+      vuemasteryPromo.classList.add('hide');
+      // Remove events
+      window.removeEventListener('resize', getMenuPosition)
+      window.removeEventListener('scroll', fixMenuAfterBanner)
+    }
+    
+    // Check if user already removed the banner
+    if(!localStorage.getItem('hideVuemasteryBanner')) {
+      // Add event listeners
+      window.addEventListener('resize', getMenuPosition)
+      window.addEventListener('scroll', fixMenuAfterBanner)
+      // Wait for the DOM to be ready
+      document.addEventListener("DOMContentLoaded", initBanner);
+    }
+  })()
+</script>
+
+<div id="vue-mastery-promo" class="vue-mastery-promo hide" role="banner">
+  <a href="https://www.vuemastery.com/free-weekend" target="_blank">
+    <img class="vue-mastery-logo" src="/images/logo-vuemastery.svg" alt="vue-mastery" />
+    <div class="vue-mastery-wrapper">
+      <p>Free Vue Courses on Vue Mastery Feb 22 - Feb 24.<span>Sign up today to get access.</span></p>
+    </div>
+    <div id="close-vue-mastery-promo" class="close"></div>
+  </a>
+</div>
