@@ -698,7 +698,7 @@ type: api
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Type:** `string | Element`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -1311,7 +1311,7 @@ type: api
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Type:** `Element`
 
 - **Read only**
 
