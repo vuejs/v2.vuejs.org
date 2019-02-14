@@ -10,47 +10,47 @@
 
 <script>
   (function () {
-    var mobileBar, vuemasteryPromo, menuTop, close, wrapper, isMenuFixed;
+    var elBody, elMenu, elBanner, elClose, posMenu, isMenuFixed;
 
     // This allow the mobile menu to scroll once the banner is not visible
     var fixMenuAfterBanner = function() {
-      if (window.pageYOffset > menuTop) {
+      if (window.pageYOffset > posMenu) {
         if (!isMenuFixed) {
           // The menu will be fixed
-          wrapper.classList.add('fixed');
+          elBody.classList.add('fixed');
           isMenuFixed = true;
         }
       } else if(isMenuFixed) {
         // The menu stay under the banner
-        wrapper.classList.remove('fixed');
+        elBody.classList.remove('fixed');
         isMenuFixed = false;
       }
     }
 
     // Get position of the menu when the windows is resized
     var getMenuPosition = function() {
-      menuTop = vuemasteryPromo.clientHeight;
+      posMenu = elBanner.clientHeight;
     }
 
     var initBanner = function () {
       // Get elements
-      mobileBar = document.getElementById('mobile-bar');
-      vuemasteryPromo = document.getElementById('vue-mastery-promo');
-      close = document.getElementById('close-vue-mastery-promo');
-      wrapper = document.getElementsByTagName("body")[0];
+      elMenu = document.getElementById('mobile-bar');
+      elBanner = document.getElementById('vue-mastery-promo');
+      elClose = document.getElementById('close-vue-mastery-promo');
+      elBody = document.getElementsByTagName("body")[0];
 
-      // Add class to wrapper
-      wrapper.classList.add('vuemastery-weekend-promo');
+      // Add class to the body
+      elBody.classList.add('vuemastery-weekend-promo');
       // Initialize the banner
-      vuemasteryPromo.classList.remove('hide');
+      elBanner.classList.remove('hide');
       // Init close button action
-      close.onclick = closeBanner
+      elClose.onclick = closeBanner
       
       // Get position of the menu bar
-      menuTop = vuemasteryPromo.clientHeight;
+      posMenu = elBanner.clientHeight;
       // Check initial position
-      isMenuFixed = window.pageYOffset > menuTop
-      if (isMenuFixed) wrapper.classList.add('fixed');
+      isMenuFixed = window.pageYOffset > posMenu
+      if (isMenuFixed) elBody.classList.add('fixed');
     }
 
     // Remove the banner once the user click on the cross
@@ -60,12 +60,12 @@
       // Save action in the local storage
       localStorage.setItem('hideVuemasteryBanner', true);
       // Hide the banner
-      vuemasteryPromo.classList.add('hide');
+      elBanner.classList.add('hide');
       // Remove events
       window.removeEventListener('resize', getMenuPosition)
       window.removeEventListener('scroll', fixMenuAfterBanner)
       // Remove css
-      wrapper.classList.remove('vuemastery-weekend-promo');
+      elBody.classList.remove('vuemastery-weekend-promo');
     }
     
     // Check if user already removed the banner
