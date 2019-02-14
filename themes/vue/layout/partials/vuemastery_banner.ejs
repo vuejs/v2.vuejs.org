@@ -10,30 +10,39 @@
 
 <script>
   (function () {
-    var elBody, elBanner, elClose, elMenu, posMenu, isMenuFixed;
+    var elBody = document.getElementsByTagName('body')[0];
+    var elBanner = document.getElementById('vm-banner');
+    var elClose = document.getElementById('vm-close');
+    var elMenu = document.getElementById('mobile-bar');
     var nameWrapper = 'vuemastery-weekend-promo';
     var nameFixMenu = 'vuemastery-menu-fixed';
     var nameStorage = 'vuemastery-banner';
+    var posMenu = elBanner.clientHeight;
+    var isMenuFixed = window.pageYOffset > posMenu;
 
+    // Initialise banner after checking user preference
     var initBanner = function () {
-      // Get elements
-      elBody = document.getElementsByTagName('body')[0];
-      elBanner = document.getElementById('vm-banner');
-      elClose = document.getElementById('vm-close');
-      elMenu = document.getElementById('mobile-bar');
-
       // Add class to the body
       elBody.classList.add(nameWrapper);
       // Initialize the banner
       elBanner.style.display = 'block';
       // Init close button action
       elClose.onclick = closeBanner;
-      
-      // Get position of the menu bar
-      posMenu = elBanner.clientHeight;
-      // Check initial position
-      isMenuFixed = window.pageYOffset > posMenu;
       if (isMenuFixed) elBody.classList.add('fixed');
+    }
+
+    // Remove the banner once the user click on the cross
+    var closeBanner = function(e) {
+      // Prevent redirection to vuemastery if click on the close button
+      e.preventDefault();
+      // Save action in the local storage
+      localStorage.setItem(nameStorage, true);
+      // Hide the banner
+      elBanner.style.display = 'none';
+      // Remove events
+      toggleBannerEvents(false);
+      // Remove css
+      elBody.classList.remove(nameWrapper);
     }
 
     // Get position of the menu when the windows is resized
@@ -56,24 +65,11 @@
       }
     }
 
+    // Add or remove event listerners attached to the DOM
     var toggleBannerEvents = function (on) {
       var method = on ? 'addEventListener' : 'removeEventListener';
       window[method]('resize', getMenuPosition);
       window[method]('scroll', fixMenuAfterBanner);
-    }
-
-    // Remove the banner once the user click on the cross
-    var closeBanner = function(e) {
-      // Prevent redirection to vuemastery if click on the close button
-      e.preventDefault();
-      // Save action in the local storage
-      localStorage.setItem(nameStorage, true);
-      // Hide the banner
-      elBanner.style.display = 'none';
-      // Remove events
-      toggleBannerEvents(false);
-      // Remove css
-      elBody.classList.remove(nameWrapper);
     }
 
     // Check if user already removed the banner
