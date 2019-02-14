@@ -1,4 +1,5 @@
 .vuemastery-banner
+  display none
   background #4fc08d
   background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
   overflow hidden
@@ -26,9 +27,6 @@
     .vuemastery-banner--wrapper::before
       width 100vw
       transition width .15s ease-in .10s
-
-  &.hide
-    height: 0
 
   a
     display flex
@@ -119,7 +117,7 @@
     position relative
     background-color #fff
   
-  &.docs:not(.fixed)
+  &.docs:not(.vuemastery-menu-fixed)
     padding-top 0
     #header
       position relative
@@ -127,13 +125,13 @@
     #nav
       position absolute
 
-  &.fixed
+  &.vuemastery-menu-fixed
     #mobile-bar
       position fixed
 
 @media screen and (min-width: 901px)
   .vuemastery-weekend-promo
-    &.docs:not(.fixed)
+    &.docs:not(.vuemastery-menu-fixed)
       #main.fix-sidebar .sidebar
         position absolute
         top 141px
@@ -142,7 +140,7 @@
         position absolute
         top: 170px;
     
-    &.fixed.docs
+    &.vuemastery-menu-fixed.docs
       .vuemastery-banner
         margin-bottom 0
 
@@ -152,7 +150,7 @@
       margin-left 0
 
   .vuemastery-weekend-promo
-    &.fixed
+    &.vuemastery-menu-fixed
       .vuemastery-banner
         margin-bottom 40px
 
