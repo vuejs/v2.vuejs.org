@@ -10,16 +10,20 @@
 
 <script>
   (function () {
-    var mobileBar, vuemasteryPromo, menuTop, close, wrapper;
+    var mobileBar, vuemasteryPromo, menuTop, close, wrapper, isMenuFixed;
 
     // This allow the mobile menu to scroll once the banner is not visible
     var fixMenuAfterBanner = function() {
       if (window.pageYOffset > menuTop) {
-        // The menu will be fixed
-        wrapper.classList.add('fixed');
-      } else {
+        if (!isMenuFixed) {
+          // The menu will be fixed
+          wrapper.classList.add('fixed');
+          isMenuFixed = true;
+        }
+      } else if(isMenuFixed) {
         // The menu stay under the banner
         wrapper.classList.remove('fixed');
+        isMenuFixed = false;
       }
     }
 
@@ -41,9 +45,12 @@
       vuemasteryPromo.classList.remove('hide');
       // Init close button action
       close.onclick = closeBanner
-
+      
       // Get position of the menu bar
       menuTop = vuemasteryPromo.clientHeight;
+      // Check initial position
+      isMenuFixed = window.pageYOffset > menuTop
+      if (isMenuFixed) wrapper.classList.add('fixed');
     }
 
     // Remove the banner once the user click on the cross
