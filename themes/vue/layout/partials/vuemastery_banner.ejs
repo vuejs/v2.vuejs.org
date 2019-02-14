@@ -12,8 +12,8 @@
   (function () {
     var elBody, elBanner, elClose, elMenu, posMenu, isMenuFixed;
     var nameWrapper = 'vuemastery-weekend-promo';
-    var nameFixMenu = 'vuemastery-menu-fixed'
-    var nameStorage = 'vuemastery-banner'
+    var nameFixMenu = 'vuemastery-menu-fixed';
+    var nameStorage = 'vuemastery-banner';
 
     var initBanner = function () {
       // Get elements
@@ -49,7 +49,7 @@
           elBody.classList.add(nameFixMenu);
           isMenuFixed = true;
         }
-      } else if(isMenuFixed) {
+      } else if (isMenuFixed) {
         // The menu stay under the banner
         elBody.classList.remove(nameFixMenu);
         isMenuFixed = false;
@@ -57,7 +57,7 @@
     }
 
     var toggleBannerEvents = function (on) {
-      var method = on ? 'addEventListener' : 'removeEventListener'
+      var method = on ? 'addEventListener' : 'removeEventListener';
       window[method]('resize', getMenuPosition);
       window[method]('scroll', fixMenuAfterBanner);
     }
@@ -76,12 +76,11 @@
       elBody.classList.remove(nameWrapper);
     }
 
-    // LOAD COMPONENT
     // Check if user already removed the banner
     if(!localStorage.getItem(nameStorage)) {
       // Add event listeners
       toggleBannerEvents(true);
-      // Wait for the DOM to be ready
+      // Load component
       initBanner();
     }
   })()
