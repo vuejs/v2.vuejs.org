@@ -21,42 +21,45 @@
 
     // Initialise banner after checking user preference
     var initBanner = function () {
-      // Add class to the body
+      // Add class to the body to push fixed elements
       elBody.classList.add(nameWrapper);
-      // Initialize the banner
+      // Display the banner
       elBanner.style.display = 'block';
-      // Get menu position
-      posMenu = elBanner.clientHeight;
-      // Init close button action
-      elClose.onclick = closeBanner;
-      // Check current page scroll position
-      isMenuFixed = window.pageYOffset > posMenu;
-      // And fixc menu accordingly
+      // Get the menu position
+      getMenuPosition();
+      // Check current page offset position
+      isMenuFixed = isUnderBanner();
+      // And position menu accordingly
       if (isMenuFixed) elBody.classList.add('fixed');
     }
 
-    // Remove the banner once the user click on the cross
+    // Remove the banner once the user decide to close
     var closeBanner = function(e) {
-      // Prevent redirection to vuemastery if click on the close button
+      // Prevent bubbling event that redirect to vuemastery.com
       e.preventDefault();
-      // Save action in the local storage
-      localStorage.setItem(nameStorage, true);
-      // Hide the banner
-      elBanner.style.display = 'none';
       // Remove events
       toggleBannerEvents(false);
-      // Remove css
+      // Hide the banner
+      elBanner.style.display = 'none';
+      // Remove class to the body that push fixed elements
       elBody.classList.remove(nameWrapper);
+      // Save action in the local storage
+      localStorage.setItem(nameStorage, true);
     }
 
-    // Get position of the menu when the windows is resized
+    // Get position of the menu
     var getMenuPosition = function() {
       posMenu = elBanner.clientHeight;
     }
 
+    // Check if menu should be fixed
+    var isUnderBanner = function() {
+      return window.pageYOffset > posMenu;
+    }
+
     // This allow the mobile menu to scroll once the banner is not visible
     var fixMenuAfterBanner = function() {
-      if (window.pageYOffset > posMenu) {
+      if (isUnderBanner()) {
         if (!isMenuFixed) {
           // The menu will be fixed
           elBody.classList.add(nameFixMenu);
