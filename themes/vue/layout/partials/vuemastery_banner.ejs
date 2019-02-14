@@ -17,8 +17,7 @@
     var nameWrapper = 'vuemastery-weekend-promo';
     var nameFixMenu = 'vuemastery-menu-fixed';
     var nameStorage = 'vuemastery-banner';
-    var isMenuFixed = window.pageYOffset > posMenu;
-    var posMenu;
+    var isMenuFixed, posMenu;
 
     // Initialise banner after checking user preference
     var initBanner = function () {
@@ -30,6 +29,9 @@
       posMenu = elBanner.clientHeight;
       // Init close button action
       elClose.onclick = closeBanner;
+      // Check current page scroll position
+      isMenuFixed = window.pageYOffset > posMenu;
+      // And fixc menu accordingly
       if (isMenuFixed) elBody.classList.add('fixed');
     }
 
