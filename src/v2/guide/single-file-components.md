@@ -66,6 +66,6 @@ Une fois que vous aurez pris une journée pour vous plonger dans ces ressources,
 
 ### Pour les utilisateurs avancés
 
-La CLI prend soin de la configuration de la plupard des outils pour vous, mais vous permet tout de même une optimisation granulaire avec vos propres [options de configuration](https://cli.vuejs.org/config/).
+La CLI prend soin de la configuration de la plupart des outils pour vous, mais vous permet tout de même une optimisation granulaire avec vos propres [options de configuration](https://cli.vuejs.org/config/).
 
-Dans le cas ou vous preferiez créer votre installation depuis le dépard, vous pourrez configurer manuellement webpack avec [vue-loader](https://vue-loader.vuejs.org). Pour en apprendre plus à propos de webpack en lui même, consultez la [documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts).
+Dans le cas ou vous preferiez créer votre installation depuis le départ, vous pourrez configurer manuellement webpack avec [vue-loader](https://vue-loader.vuejs.org). Pour en apprendre plus à propos de webpack en lui même, consultez la [documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts).
