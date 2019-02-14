@@ -1,4 +1,4 @@
-.vue-mastery-promo
+.vuemastery-banner
   background #4fc08d
   background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
   overflow hidden
@@ -23,7 +23,7 @@
       transition-delay 0
       color #fff
 
-    .vue-mastery-wrapper::before
+    .vuemastery-banner--wrapper::before
       width 100vw
       transition width .15s ease-in .10s
 
@@ -35,40 +35,33 @@
     height 80px
     justify-content center
   
-  .vue-mastery-wrapper
-    display flex
-    height 100%
-    align-items center
-    background #4fc08d
-    margin-left -50px
-    padding-left 50px
-    position relative
+.vuemastery-banner--wrapper
+  display flex
+  height 100%
+  align-items center
+  background #4fc08d
+  margin-left -50px
+  padding-left 50px
+  position relative
 
-    &:before
-      content ''
-      pointer-events none
-      background #35495E
-      background-image linear-gradient(to right, #35495E, #35495E 80%, #4fc08d 100%)
-      position absolute
-      top 0
-      bottom 0
-      left 0
-      width 0
-      transition width .15s ease-out
+  &:before
+    content ''
+    pointer-events none
+    background #35495E
+    background-image linear-gradient(to right, #35495E, #35495E 80%, #4fc08d 100%)
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    width 0
+    transition width .15s ease-out
 
-    &:hover
-      + .close
-        &:before,
-        &:after
-          transform-origin 100%
-
-  .vue-mastery-logo
-    height 102%
-    margin-top: -1px
-    margin-left 125px
-    position relative
-    z-index 2
-
+  &:hover
+    + .vuemastery-banner--close
+      &:before,
+      &:after
+        transform-origin 100%
+  
   p
     margin -3px 50px 0 20px
     font-size 1.17rem
@@ -81,37 +74,44 @@
     font-size 1rem
     display block
     color #fff
-  
-  .close
-    position absolute
-    top 20px
-    right 25px
-    height 40px
-    width 40px
-    -webkit-tap-highlight-color transparent
-    border-radius 50%
-    cursor pointer
 
+.vuemastery-banner--logo
+  height 102%
+  margin-top: -1px
+  margin-left 125px
+  position relative
+  z-index 2
+  
+.vuemastery-banner--close
+  position absolute
+  top 20px
+  right 25px
+  height 40px
+  width 40px
+  -webkit-tap-highlight-color transparent
+  border-radius 50%
+  cursor pointer
+
+  &:before,
+  &:after
+    content ''
+    position absolute
+    top 19px
+    left 14px
+    width 25px
+    height 2px
+    background-color #fff
+    transform-origin 50%
+    transform rotate(-45deg)
+    transition all .2s ease-out
+
+  &:after
+    transform rotate(45deg)
+
+  &:hover
     &:before,
     &:after
-      content ''
-      position absolute
-      top 19px
-      left 14px
-      width 25px
-      height 2px
-      background-color #fff
-      transform-origin 50%
-      transform rotate(-45deg)
-      transition all .2s ease-out
-
-    &:after
-      transform rotate(45deg)
-
-    &:hover
-      &:before,
-      &:after
-        transform rotate(180deg)
+      transform rotate(180deg)
 
 .vuemastery-weekend-promo
   #mobile-bar,
@@ -143,27 +143,27 @@
         top: 170px;
     
     &.fixed.docs
-      .vue-mastery-promo
+      .vuemastery-banner
         margin-bottom 0
 
 @media screen and (max-width: 900px)
-  .vue-mastery-promo
-    .vue-mastery-logo
+  .vuemastery-banner
+    .vuemastery-banner--logo
       margin-left 0
 
   .vuemastery-weekend-promo
     &.fixed
-      .vue-mastery-promo
+      .vuemastery-banner
         margin-bottom 40px
 
 
 @media screen and (max-width: 700px)
-  .vue-mastery-promo
+  .vuemastery-banner
     a
       height 40px
       overflow hidden
 
-    .vue-mastery-logo
+    .vuemastery-banner--logo
       margin-left 0
       justify-content flex-start
 
@@ -171,7 +171,7 @@
       font-size .8rem
       color #fff
 
-    .close
+    .vuemastery-banner--close
       top 0px
       right 0px
 
@@ -183,17 +183,17 @@
         height 2px
 
 @media screen and (max-width: 425px)
-  .vue-mastery-promo
+  .vuemastery-banner
     p
       max-width 185px
     span
       display none
 
 @media screen and (max-width 286px)
-  .vue-mastery-promo p
+  .vuemastery-banner p
     font-size 0.6rem
     margin -3px 28px 0 0px
 
 @media print
-  .vue-mastery-promo
+  .vuemastery-banner
     display none

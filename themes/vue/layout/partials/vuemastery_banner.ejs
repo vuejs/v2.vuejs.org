@@ -1,16 +1,42 @@
-<div id="vue-mastery-promo" class="vue-mastery-promo hide" role="banner">
+<div id="vm-banner" class="vuemastery-banner hide" role="banner">
   <a href="https://www.vuemastery.com/free-weekend" target="_blank">
-    <img class="vue-mastery-logo" src="/images/logo-vuemastery.svg" alt="vue-mastery" />
-    <div class="vue-mastery-wrapper">
+    <img class="vuemastery-banner--logo" src="/images/logo-vuemastery.svg" alt="vuemastery" />
+    <div class="vuemastery-banner--wrapper">
       <p>Free Vue Courses on Vue Mastery Feb 22 - Feb 24.<span>Sign up today to get access.</span></p>
     </div>
-    <div id="close-vue-mastery-promo" class="close"></div>
+    <div id="vm-close" class="vuemastery-banner--close"></div>
   </a>
 </div>
 
 <script>
   (function () {
-    var elBody, elMenu, elBanner, elClose, posMenu, isMenuFixed;
+    var elBody, elBanner, elClose, elMenu, posMenu, isMenuFixed;
+
+    var initBanner = function () {
+      // Get elements
+      elBody = document.getElementsByTagName("body")[0];
+      elBanner = document.getElementById('vm-banner');
+      elClose = document.getElementById('vm-close');
+      elMenu = document.getElementById('mobile-bar');
+
+      // Add class to the body
+      elBody.classList.add('vuemastery-weekend-promo');
+      // Initialize the banner
+      elBanner.classList.remove('hide');
+      // Init close button action
+      elClose.onclick = closeBanner
+      
+      // Get position of the menu bar
+      posMenu = elBanner.clientHeight;
+      // Check initial position
+      isMenuFixed = window.pageYOffset > posMenu
+      if (isMenuFixed) elBody.classList.add('fixed');
+    }
+
+    // Get position of the menu when the windows is resized
+    var getMenuPosition = function() {
+      posMenu = elBanner.clientHeight;
+    }
 
     // This allow the mobile menu to scroll once the banner is not visible
     var fixMenuAfterBanner = function() {
@@ -27,32 +53,6 @@
       }
     }
 
-    // Get position of the menu when the windows is resized
-    var getMenuPosition = function() {
-      posMenu = elBanner.clientHeight;
-    }
-
-    var initBanner = function () {
-      // Get elements
-      elMenu = document.getElementById('mobile-bar');
-      elBanner = document.getElementById('vue-mastery-promo');
-      elClose = document.getElementById('close-vue-mastery-promo');
-      elBody = document.getElementsByTagName("body")[0];
-
-      // Add class to the body
-      elBody.classList.add('vuemastery-weekend-promo');
-      // Initialize the banner
-      elBanner.classList.remove('hide');
-      // Init close button action
-      elClose.onclick = closeBanner
-      
-      // Get position of the menu bar
-      posMenu = elBanner.clientHeight;
-      // Check initial position
-      isMenuFixed = window.pageYOffset > posMenu
-      if (isMenuFixed) elBody.classList.add('fixed');
-    }
-
     // Remove the banner once the user click on the cross
     var closeBanner = function(e) {
       // Prevent redirection to vuemastery if click on the close button
@@ -67,7 +67,8 @@
       // Remove css
       elBody.classList.remove('vuemastery-weekend-promo');
     }
-    
+
+    // LOAD COMPONENT
     // Check if user already removed the banner
     if(!localStorage.getItem('hideVuemasteryBanner')) {
       // Add event listeners
