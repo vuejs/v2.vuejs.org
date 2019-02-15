@@ -955,7 +955,8 @@ So far, we've managed transitions for:
 So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
 
 - Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
-- Elements inside are **always required** to have a unique `key` attribute
+- [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
+- Elements inside are **always required** to have a unique `key` attribute.
 
 ### List Entering/Leaving Transitions
 
@@ -1478,7 +1479,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And functional components are especially well-suited to this task:
+And [functional components](render-function.html#Functional-Components) are especially well-suited to this task:
 
 ``` js
 Vue.component('my-special-transition', {

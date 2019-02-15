@@ -8,6 +8,8 @@ order: 301
 
 Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/next-level-vue/mixins" target="_blank" rel="noopener" title="Mixins Tutorial">Watch a video explanation on Vue Mastery</a></div>
+
 Example:
 
 ``` js
@@ -35,7 +37,7 @@ var component = new Component() // => "hello from mixin!"
 
 When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies.
 
-For example, data objects undergo a shallow merge (one property deep), with the component's data taking priority in cases of conflicts.
+For example, data objects undergo a recursive merge, with the component's data taking priority in cases of conflicts.
 
 ``` js
 var mixin = {

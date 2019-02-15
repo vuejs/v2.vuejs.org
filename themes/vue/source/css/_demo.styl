@@ -14,6 +14,11 @@
   h1
     margin: 0 0 .5em
     font-size: 1.8em
+  h2
+    padding: 0
+    border: none
+  h2, h3, h4, h5, h6
+    margin: 1em 0
   ul, ol
     padding-left: 1.5em
     padding-bottom: .2em !important
@@ -34,13 +39,13 @@
   p
     margin: 0 !important
     padding: 0 !important
-    &:first-child
-      margin-top: 0
-    &:last-child
-      margin-bottom: 0
   textarea
     width: 100%
     resize: vertical
+  > :first-child
+    margin-top: 0
+  > :last-child
+    margin-bottom: 0
 
 
 
@@ -61,3 +66,10 @@ ul#demo, ul.demo
 
   th, td
     padding: 3px 7px
+
+@media print
+  #demo, .demo, .content .demo
+    page-break-inside: avoid
+    padding: 1em
+    margin-bottom: 1em
+    border-width: 2px

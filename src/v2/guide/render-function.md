@@ -138,8 +138,8 @@ The next thing you'll have to become familiar with is how to use template featur
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // An HTML tag name, component options, or async
+  // function resolving to one of these. Required.
   'div',
 
   // {Object}
@@ -170,12 +170,14 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Same API as `v-bind:class`, accepting either
+  // a string, object, or array of strings and objects.
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Same API as `v-bind:style`, accepting either
+  // a string, object, or array of objects.
   style: {
     color: 'red',
     fontSize: '14px'
@@ -229,7 +231,11 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   slot: 'name-of-slot',
   // Other special top-level properties
   key: 'myKey',
-  ref: 'myRef'
+  ref: 'myRef',
+  // If you are applying the same ref name to multiple
+  // elements in the render function. This will make `$refs.myRef` become an
+  // array
+  refInFor: true
 }
 ```
 
@@ -248,11 +254,11 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebabCase id
+    // create kebab-case id
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+      .replace(/(^-|-$)/g, '')
 
     return createElement(
       'h' + this.level,
@@ -319,6 +325,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -335,6 +342,7 @@ render: function (createElement) {
 There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -343,7 +351,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -419,11 +426,12 @@ render: function (createElement) {
 And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -432,7 +440,7 @@ render: function (createElement) {
 To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // pass `scopedSlots` in the data object
@@ -472,14 +480,14 @@ Especially when the template version is so simple in comparison:
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+That's why there's a [Babel plugin](https://github.com/vuejs/jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
@@ -489,26 +497,26 @@ new Vue({
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. Starting with [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) of the Babel plugin for Vue, we automatically inject `const h = this.$createElement` in any method and getter (not functions or arrow functions), declared in ES2015 syntax that has JSX, so you can drop the `(h)` parameter. With prior versions of the plugin, your app would throw an error if `h` was not available in the scope.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx#installation).
 
 ## Functional Components
 
 The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Props are optional
+  props: {
+    // ...
+  },
   // To compensate for the lack of an instance,
   // we are now provided a 2nd context argument.
   render: function (createElement, context) {
-    // ...
-  },
-  // Props are optional
-  props: {
     // ...
   }
 })
@@ -518,7 +526,7 @@ Vue.component('my-component', {
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 
-``` js
+``` html
 <template functional>
 </template>
 ```
@@ -528,7 +536,8 @@ Everything the component needs is passed through `context`, which is an object c
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
 - `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
+- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
+- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
 - `parent`: A reference to the parent component
 - `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
 - `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
@@ -552,6 +561,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -568,20 +584,13 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
 ```
 
 ### Passing Attributes and Events to Child Elements/Components
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name. 
+On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
 
 Functional components, however, require you to explicitly define this behavior:
 
@@ -596,6 +605,20 @@ Vue.component('my-functional-button', {
 ```
 
 By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+
+If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
+```
 
 ### `slots()` vs `children`
 

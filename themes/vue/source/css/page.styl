@@ -5,12 +5,15 @@
 @import "_demo"
 @import "_sponsors-page"
 @import "_sponsors-sidebar"
+@import "_search-page"
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
 @import "_team"
 @import "_style-guide"
 @import "_modal"
+@import "_scrimba"
+@import "_vue-mastery"
 
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
@@ -70,14 +73,17 @@
     border-bottom: 1px solid $border
   h3
     margin: $h3-margin-top 0 1.2em
+    line-height: 1.2
     position: relative
-    &:after
+    > a:before
       content: "#"
       color: $green
       position: absolute
       left: -0.7em
-      bottom: -2px
+      margin-top: -0.05em
+      padding-right: 0.5em
       font-size: 1.2em
+      line-height: 1
       font-weight: bold
   figure
     margin: 1.2em 0
@@ -94,6 +100,10 @@
     padding-left: 1.5em
     // FIX: Some link click targets are covered without this
     position: inherit
+    // FIX: For nested lists, the top margins on ul/ol
+    // creates extra space at the top. (Issue: 1308)
+    ul, ol
+      margin: 0;
   a
     color: $green
     font-weight: 600
@@ -244,3 +254,11 @@
 @media print
   .footer
     display: none
+  .content
+    padding-left: 0px
+  .content p
+    line-height: 1.35em
+    &.tip
+      background-color: rgb(255,255,255)
+      border: 2px solid #e8e8e8
+      border-left: 4px solid $red

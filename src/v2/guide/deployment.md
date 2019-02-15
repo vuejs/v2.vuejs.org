@@ -1,8 +1,10 @@
 ---
 title: Production Deployment
 type: guide
-order: 401
+order: 404
 ---
+
+> Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org). This section is only relevant if you are using a custom build setup.
 
 ## Turn on Production Mode
 
@@ -18,7 +20,15 @@ When using a build tool like Webpack or Browserify, the production mode will be 
 
 #### Webpack
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+In Webpack 4+, you can use the `mode` option:
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -28,9 +38,7 @@ module.exports = {
   plugins: [
     // ...
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 }
@@ -61,13 +69,13 @@ module.exports = {
     )
     .bundle()
   ```
-  
+
 - Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
 
   ``` js
   // Use the envify custom module to specify environment variables
   var envify = require('envify/custom')
-  
+
   browserify: {
     dist: {
       options: {

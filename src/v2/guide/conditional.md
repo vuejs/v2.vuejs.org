@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+In string templates, for example [Handlebars](https://handlebarsjs.com/), we would write a conditional block like this:
 
 ``` html
 <!-- Handlebars template -->
@@ -195,5 +195,7 @@ In comparison, `v-show` is much simpler - the element is always rendered regardl
 Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
 
 ## `v-if` with `v-for`
+
+<p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
 
 When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
