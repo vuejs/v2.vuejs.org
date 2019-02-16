@@ -1,52 +1,53 @@
 ---
-title: Installation
+title: Pemasangan
 type: guide
 order: 1
 vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### Catatan Kompatibilitas
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+Vue **tidak** mendukung IE8 kebawah, karena Vue menggunakan fitur ECMAScript 5 yang tidak bisa digunakan di IE8. Vue mendukung semua browser yang mendukung [ECMAScript 5](https://caniuse.com/#feat=es5).
 
-### Release Notes
+### Catatan Rilis
 
-Latest stable version: {{vue_version}}
+Versi Stabl Terakhir: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Catatan rilis yang mendetail untuk tiap versi tersedia di [GitHub](https://github.com/vuejs/vue/releases). 
 
 ## Vue Devtools
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Ketika menggunakan Vue, kami sarankan kalian menggunakan [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools). Vue Devtools adalah alat pendukung pengembangan yang bisa dipasang di browser yang akan membantu kalian memeriksa dan mendebug aplikasi Vue kalian dengan antar muka yang lebih mudah digunakan.
 
-## Direct `<script>` Include
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+## Menggunakan Vue Langsung Melalui `<script>`
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+Vue bisa digunakan langsung dengan memanggilnya melalui tag script. `Vue` akan didaftarkan sebagai variable global. Cukup unduh Vue dan panggil menggunakan tag script.
+
+<p class="tip">Jangan gunakan versi Vue yang sudah dikecilkan untuk tahap pengembangan, kalian akan melewatkan peringatan-peringatan penting yang bisa membantu kalian menghindari kesalahan yang umum dihadapi saat menggunakan Vue!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Versi Pengembangan</a><span class="light info"> Lengkap dengan peringatan dan mode debug.</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
-</div>
+  <a class="button" href="/js/vue.min.js" download>Versi Produksi</a><span class="light info"> Tanpa peringatan, ukuran {{gz_size}}KB min+gzip</span>
+</div>s
 
 ### CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Untuk kebutuhan pembuatan purwarupa dan pembelajaran, kalian bisa menggunakan:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Untuk produksi, kita sarankan untuk menggunakan versi tertentu untuk menghindari kesalahan yang tidak bisa diprediksi dari versi baru.
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-If you are using native ES Modules, there is also an ES Modules compatible build:
+Jika kalian menggunakan _ES modules_ alami, ada juga versi yang cocok dengan _ES modules_:
 
 ``` html
 <script type="module">
@@ -54,70 +55,70 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Kalian bisa melihat sumber dari paket NPM di [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue juga tersedia melalui [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) dan [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs butuh waktu untuk memproses versi terbaru, sehingga bisa terjadi keterbelakangan versi cdnjs dengan versi lainnya).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+Pastikan untuk membaca tentang [berbagai jenis edisi Vue](#Berbagai-Jenis-Edisi-Vue) dan gunakan **versi produksi** di situs kalian, ganti `vue.js` dengan `vue.min.js`. Edisi ini lebih kecil dan dioptimalkan untuk kecepatan dibandingkan edisi development.
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+NPM adalah cara pemasangan yang direkomendasikan ketika membuat aplikasi skala besar menggunakan Vue. Cocok digunakan dengan penggabung modul seperti [Webpack](https://webpack.js.org/) atau [Browserify](http://browserify.org/). Vue juga memberikan alat untuk membuat [Komponen Satu Berkas](single-file-components.html).
 
 ``` bash
-# latest stable
+# versi stabil terakhir
 $ npm install vue
 ```
 
 ## CLI
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Vue menyediakan alat [konsol resmi Vue CLI](https://github.com/vuejs/vue-cli) yang bisa digunakan untuk membuat aplikasi satu halaman dengan praktis. Vue CLI berisi konfigurasi yang sesuai dengan alur kerja modern. Dalam beberapa menit, kalian sudah bisa memiliki fitur _hot-reload_, _lint-on-save_, dan edisi yang siap digunakan untuk produksi. Lihat [dokumentasi Vue CLI](https://cli.vuejs.org) untuk informasi lebih lanjut.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">VueCLI berasumsi bahwa kalian paham dengan dasar-dasar Node.js dan _build tools_ yang terkait. Jika kalian masih baru menggunakan Vue atau baru dengan _build tools_ _front-end_, kami sarankan kalian untuk mengikuti <a href="./">panduan</a> tanpa menggunakan _build tools_ sebelum menggunakan Vue CLI.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Lihat Video Penjelasan di Vue Mastery</a></div>
 
-## Explanation of Different Builds
+## Berbagai Jenis Edisi Vue
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+Di direktori [`dist/` paket NPM](https://cdn.jsdelivr.net/npm/vue/dist/) kalian akan menemukan berbagai
+edisi _build_ dari Vue.js. Berikut sedikit penjelasan tentang perbedaannya:
 
-| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
+| | UMD | CommonJS | ES Module (untuk penggabung) | ES Module (untuk browser) |
 | --- | --- | --- | --- | --- |
 | **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
+| **Hanya Runtime** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
+| **Full (produksi)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **Hanya Runtime(produksi)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### Penjelasan
 
-- **Full**: builds that contain both the compiler and the runtime.
+- **Full**: Edisi yang berisi _compiler_ dan _runtime_.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Compiler**: Kode yang berfungsi untuk merubah templat string menjadi fungsi pelukis di JavaScript.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Runtime**: Kode yang berfungsi untuk membuat instan Vue, melukis dan menambal _virtual DOM_, dsb. Intinya apapun selain dari _compiler_.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: Edisi UMD bisa digunakan langsun di browser menggunakan tag `<script>`. Berkas dasar dari jsDelivr CDN di [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) adalah edisi _Runtime_ + _Compiler_ (`vue.js`).
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: Edisi CommonJS ditujukan untuk digunakan bersamaan dengan penggabung generasi lama seperti [browserify](http://browserify.org/) atau [webpack 1](https://webpack.github.io). Berkas dasar dari penggabung tersebut (`pkg.main`) adalah versi _Runtime_ saja (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Mulai dari versi 2.6, Vue menyediakan dua edisi _ES Modules_ (ESM):
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - ESM untuk penggabug: ditujukan untuk digunakan dengan penggabung generasi baru seperti [webpack 2](https://webpack.js.org) atau [Rollup](https://rollupjs.org/). Format ESM didesain untuk bisa dianalisa secara statis sehingga pembungkus bisa melakukan _"tree-shaking"_ untuk menghilangkan kode yang tidak terpakai di hasil akhir _build_. Berkas dasar dari penggabung tersebut (`pkg.module`) adalah versi _Runtime_ saja(`vue.runtime.esm.js`).
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - ESM untuk browsers (hanya 2.6 keatas): ditujukan untuk _import_ langsung dari browser modern menggunakan `<script type="module">`.
 
-### Runtime + Compiler vs. Runtime-only
+### Runtime + Compiler atau Runtime saja?
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+Jika kalian butuh melakukan kompilasi tempplat di browser (contoh. menggunakan opsi `template`, atau memasang ke elemen menggunakan DOM HTML di dalamnya sebagai templat), kalian akan membutuhkan _compiler_.
 
 ``` js
-// this requires the compiler
+// yang seperti ini butuh compiler
 new Vue({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// yang ini tidak
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -125,9 +126,9 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+Ketika menggunakan `vue-loader` atau `vueify`, template di dalam berkas `*.vue` akan dirubah ke dalam bentuk JavaScript terlebih dahulu. Sehingga kalian tidak butuh menggunakan edisi yang ada _compiler_-nya, cukup edisi _runtime_ saja.
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+Karena edisi runtime 30% lebih ringan dibandingkan edisi yang ada _compiler_-nya, disarankan untuk selalu menggunakannya sebisa mungkin. Jika kalian masih tetap ingin menggunakan edisi _full_, kalian harus melakukan konfigurasi alias di penggabung kalian.
 
 #### Webpack
 
@@ -136,7 +137,7 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' untuk webpack 1
     }
   }
 }
@@ -159,7 +160,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+Tambahkan ke `package.json` proyek kalian:
 
 ``` js
 {
@@ -172,7 +173,7 @@ Add to your project's `package.json`:
 
 #### Parcel
 
-Add to your project's `package.json`:
+Tambahkan ke `package.json` proyek kalian:
 
 ``` js
 {
@@ -183,17 +184,17 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### Mode Pengembangan atau Mode Produksi
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+Mode pengembangan/produksi sudah di _hard-code_ untuk edisi UMD: versi sebelum dikecilkan untuk pengembangan, dan versi yang dikecilkan untuk produksi.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+Edisi CommonJS dan ESM ditujukan untuk bundler, sehingga kami tidak menyediakan versi kecilnya. Kalian yang bertanggung jawab untuk mengecilkan hasil penggabungannya sendiri.
 
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+Edisi CommonJS dan ESM juga mempertahankan pengecekan mentah untuk `process.env.NODE_ENV` untuk menentukan dalam mode apa mereka harus berjalan. Kalian harus menggunakan konfigurasi penggabung yang sesuai untuk mengganti variable lingkungan tersebut untuk mengatur dalam mode apa Vue harus berjalan. Mengganti `process.env.NODE_ENV` dengan string juga akan membuat pengecil seperti UglifyJS untuk menghilangkan bagian kode untuk pengembangan, sehingga ukuran hasil akhirnya bisa lebih kecil
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+Di Webpack 4+, kalian bisa menggunakan opsi `mode`:
 
 ``` js
 module.exports = {
@@ -201,7 +202,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Tapi di versi Webpack 3 dan sebelumnya, kalian harus menggunakan [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -221,7 +222,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Gunakan [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -238,23 +239,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+Terapkan global [envify](https://github.com/hughsk/envify) transform ke penggabungan kalian.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+Lihat juga [Tips Untuk Peluncuran Produksi](deployment.html).
 
-### CSP environments
+### Lingkungan CSP
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
+Untuk beberapa environment, seperti Google Chrome Apps, menerapkan Content Security Policy (CSP), yang melarang penggunaan `New Function()` for mengevaluasi ekspresi. Edisi full bergantung dengan fitur ini untuk melakukan kompilasi templat, jadi tidak bisa digunakan di lingkungan ini.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+Di sisi lain, edisi _runtime_ sepenuhnya kompatible dengan CSP. Dengan menggunakan edisi _runtime_ saja dengan [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) atau [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), templat kalian akan dikompilasi menjadi fungsi `render` yang akan bekerja dengan baik dengan CSP.
 
 ## Dev Build
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Penting**: Berkas yang dihasilkan di direktori `/dist` di GitHub hanya diperbarui ketika rilis. Untuk menggunakan Vue dari sumber kode yang ada di GitHub, kalian harus mem-`build`-nya sendiri.
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -265,13 +266,13 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+Hanya edisi UMD yang tersedia di Bower.
 
 ``` bash
-# latest stable
+# versi stabil terakhir
 $ bower install vue
 ```
 
-## AMD Module Loaders
+## Pemuat Modul AMD Module
 
-All UMD builds can be used directly as an AMD module.
+Semua edisi UMD bisa digunakan langsung dengan modul AMD

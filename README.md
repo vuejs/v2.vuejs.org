@@ -1,8 +1,9 @@
 # vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+Situs ini dibuat menggunakan [hexo](http://hexo.io/). Isi situs ini ditulis dalam format Markdown dan ada di direktori `src`. 
+_Pull Request_ sangat diterima!
 
-## Developing
+## Mengembangkan
 
 ``` bash
 $ npm install
@@ -11,82 +12,93 @@ $ npm start # dev server at http://localhost:4000
 
 ## Deploying
 
-The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
+Situs ini secara otomatis diluncurkan ketika ada perubahan di cabang `master`, melalui [Netlify](https://www.netlify.com).
 
-If you are the maintainer of a community translation fork and would like to deploy via Netlify instead of GitHub pages, please ping @yyx990803 in an issue to request a Netlify team membership and DNS update.
+Jika kalian adalah pengembang dari terjemahan komunitas dan ingin meluncurkan melalui Netlify dibandingkan melalui GitHub pages, tolong hubungi @yyx990803 melalui fitur _issue_ GitHub untuk meminta keanggotaan tim Netlify dan perubahan DNS.
 
-## On Translations
+## Seputar Terjemahan
 
-Translation for this documentation project are currently maintained in separate repositories forked from this original one.
+Terjemahan untuk dokumentasi ini dikembangkan dan dirawat di repository yang berbeda 
+(salah satunya terjemahan Bahasa Indonesia ini) yang disalin dari repository orisinil.
 
-### French
+### Bahasa Indonesia
 
-French translation is maintained by Vuejs-FR.
+Terjamahan Bahasa Indonesia dirawat oleh adityapurwa.
 
-* Translation Repo - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+* Repo Terjemahan - [/adityapurwa/id.vuejs.org](https://github.com/adityapurwa/id.vuejs.org)
 
-### Italian
+### Bahasa Perancis
 
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
+Terjemahan Bahasa Perancis dirawat oleh Vuejs-FR.
 
-### Japanese
+* Repo Terjemahan - [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
 
-Japanese translation is maintained by [Vue.js japan user group](https://github.com/vuejs-jp)
+### Bahasa Italia
 
-* Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
-* Primary maintainer - [kazupon](https://github.com/kazupon)
-* Secondary Maintainers:
+* Repo Terjemahan - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
+
+### Bahasa Jepang
+
+Terjemahan Bahasa Jepang dirawat oleh [Vue.js japan user group](https://github.com/vuejs-jp)
+
+* Repo Terjemahan - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Perawat Utama - [kazupon](https://github.com/kazupon)
+* Perawat Lainnya:
     * [re-fort](https://github.com/re-fort)
     * [potato4d](https://github.com/potato4d)
 
-### Korean
+### Bahasa Korea
 
-Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
+Terjemahan Bahasa Korea dirawat oleh [Vue.js Korean User group](https://github.com/vuejs-kr).
 
-* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
+* Repo Terjemahana - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Perawat utama - [ChangJoo Park](https://github.com/ChangJoo-Park)
 
-### Mandarin
+### Bahasa Mandarin
 
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
+* Repo Terjemahan - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
-### Persian (Farsi)
+### Bahasa Persia
 
-Persian translation is maintained by VueJS-fa.
+Terjemahan Bahasa Persia dirawat oleh VueJS-fa.
 
-* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
-* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
+* Repo Terjemahan - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Perawat Utama - [Pooya Parsa](https://github.com/pi0)
 
-### Português-Br
+### Bahasa Portugis-Brazil
 
-Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-br).
+Terjemahan Bahasa Portugis-Brazil dirawat oleh [Vuejs-Br](https://github.com/vuejs-br).
 
-* Translation Repo - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
+* Repo Terjemahan - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
 
 ### Russian
 
-Russian translation is maintained by Translation Gang.
+Terjemahan Bahasa Russia dirawat oleh Translation Gang.
 
-* Translation Repo - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
+* Repo Terjemahan - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
+* Perawat Utama - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
-### Spanish
+### Spanyol
 
-Spanish translation is maintained by [1950Labs](https://1950labs.com) and Vue.js Montevideo ([Leonel More](https://twitter.com/leonelmore), [Sebastian Camacho](https://twitter.com/sxcamacho), and [Diana Rodriguez](https://vue.beingadev.rocks).
+Terjemahan Bahasa Spanyol dirawat oleh [1950Labs](https://1950labs.com) dan Vue.js Montevideo
+([Leonel More](https://twitter.com/leonelmore), [Sebastian Camacho](https://twitter.com/sxcamacho), dan [Diana Rodriguez](https://vue.beingadev.rocks).
 
-* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
+* Repo Terjemahan - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
 
-### Vietnamese
+### Vietnam
 
-Vietnamese translation is maintained by [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
+Terjemahan Bahasa Vietnam dirawat oleh [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
 
-* Translation Repo: [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
-* Primary maintainer - [phanan](https://github.com/phanan)
+* Repo Terjemahan: [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
+* Perawat Utaa - [phanan](https://github.com/phanan)
 
-### Want to help with the translation?
+### Ingin membantu proses penerjemahan?
 
-If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
+Jika kalian merasa sanggup untuk menerjemahkan sendirian, salin repo ini dan buat issue "work-in-progress" untuk
+memberitahu yang lainnya kalau kalan sedang membuat terjemahan.
 
-If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
+Jika kalian lebih suka bekerja secara tim, Translation Gang mungkin cocok bagi kalian. Beri tahu kami kalau kalian
+siap bergabung dengan komunitas penerjemah sumber terbuka internasional.
+Hubungi [Grigoriy Beziuk](https://gbezyuk.github.io) atau siapapun dari [tim](https://github.com/orgs/translation-gang/people.
 
-And thank you in advance ;)
+Terima kasih sebelumnya sudah tertarik untuk membantu proses penerjemahan ;)

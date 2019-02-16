@@ -1,13 +1,14 @@
-<h1>Sponsor Vue.js Development</h1>
+<h1>Sponsori Pengembangan Vue.js</h1>
 
 <p>
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+  Vue.js adalah proyek sumber terbuka (<i>open source</i>) dengan lisensi MIT dan 100% gratis untuk digunakan.
+  Tetapi, usaha yang dibutuhkan untuk menjaga dan mengembangkan fitur baru untuk proyek ini tidak akan bisa bertahan lama tanpa bantuan dana yang cukup.
+  Kalian bisa mendukung Vue.js dengan cara di bawah ini:
 </p>
 
-<h2 id="One-time-Donations">One-time Donations</h2>
+<h2 id="One-time-Donations">Donasi</h2>
 
-<p>We accept donations through these channels:</p>
+<p>Kalian bisa memberikan donasi melalui:</p>
 
 <div id="one-time-donations">
   <a href="https://www.paypal.me/evanyou" target="_blank">
@@ -21,7 +22,7 @@ However, the amount of effort needed to maintain and develop new features for th
 </div>
 
 <div id="coin-details" v-if="type && coins[type]">
-  <p>{{ coins[type].name }} Address:<br>{{ coins[type].address }}</p>
+  <p>Alamat {{ coins[type].name }}:<br>{{ coins[type].address }}</p>
   <img :src="'/images/coin-' + type + '.png'">
 </div>
 <script>
@@ -54,24 +55,24 @@ window.addEventListener('hashchange', function () {
 })
 </script>
 
-<h2 id="Recurring-Pledges">Recurring Pledges</h2>
+<h2 id="Recurring-Pledges">Donasi Rutin</h2>
 
 <p>
-Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.
+  Dengan secara rutin memberikan donasi, nama kalian akan ditampilkan di repository GitHub Vue; atau logo perusahaan kalian akan ditampilkan di situs ini.
 </p>
 
 <ul>
   <li>
-    <a href="https://www.patreon.com/evanyou" target="_blank">Become a backer or sponsor via Patreon</a> (goes directly to support Evan You's full-time work on Vue)
+    <a href="https://www.patreon.com/evanyou" target="_blank">Jadi Donatur Rutin Melalui Patreon</a> (secara langsung diberikan ke Evan You yang mengerjakan Vue purna waktu)
   </li>
   <li>
-    <a href="https://opencollective.com/vuejs">Become a backer or sponsor via OpenCollective</a> (goes into a fund with transparent expense models supporting community efforts and events)
+    <a href="https://opencollective.com/vuejs">Jadi Donatur Rutin Melalui OpenCollective</a> (digunakan untuk membantu komunitas dan acara komunitas yang penggunaannya akan dipaparkan secara transparan)
   </li>
 </ul>
 
-<h2>Current Premium Sponsors:</h2>
+<h2>Sponsor Premium Yang Sedang Aktif:</h2>
 
-<h3>Special Sponsors</h3>
+<h3>Sponsor Spesial</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.special_sponsors) {_%>
@@ -101,7 +102,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Special Sponsors (China)</h3>
+<h3>Sponsor Spesial dari China</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
@@ -152,9 +153,11 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 </p>
 
 <p>
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: <b>it ensures the project that your product relies on stays healthy and actively maintained.</b> It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+  Jika kalian memiliki sebuah bisnis yang menggunakan Vue dan mendapatkan uang dari produk kalian, sangat dianjurkan untuk mensponsori pengembangan Vue:
+  <b>dukungan kalian memastikan bahwa Vue yang kalian gunakan di produk kalian selalu dirawat dan dikembangkan.</b>
+  Dukugan kalian juga membantu mempromosikan bisnis kalian ke komunitas Vue dan menarik perhatian pengembang Vue.
 </p>
 
 <p>
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+  Jika kalian adalah pengguna pribadi dan menikmati produktifitas yang diberikan saat menggunakan Vue, anggap saja donasi kalian sebagai bentuk terima kasih - Seperti memberikan secangkir kopi :)
 </p>
