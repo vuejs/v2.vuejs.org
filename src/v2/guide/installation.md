@@ -31,7 +31,7 @@ Vue bisa digunakan dengan langsung memanggilnya melalui tag script. `Vue` akan d
   <a class="button" href="/js/vue.js" download>Versi Pengembangan</a><span class="light info"> Lengkap dengan peringatan dan mode debug.</span>
 
   <a class="button" href="/js/vue.min.js" download>Versi Produksi</a><span class="light info"> Tanpa peringatan, ukuran {{gz_size}}KB min+gzip</span>
-</div>s
+</div>
 
 ### CDN
 
