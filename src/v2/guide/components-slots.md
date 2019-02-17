@@ -225,7 +225,7 @@ Note that **`v-slot` can only be added to a `<template>`** (with [one exception]
 
 ## Scoped Slots
 
-> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-props` attribute.
+> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-scope` attribute.
 
 Sometimes, it's useful for slot content to have access to data only available in the child component. For example, imagine a `<current-user>` component with the following template:
 
