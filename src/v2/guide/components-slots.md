@@ -363,7 +363,7 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 
 > New in 2.6.0+
 
-Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` and be rewritten as `#header`:
+Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` can be rewritten as `#header`:
 
 ```html
 <base-layout>
