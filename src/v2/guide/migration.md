@@ -210,15 +210,15 @@ The implicitly assigned `$index` and `$key` variables have been removed in favor
 
 `track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
-```
+{% endcodeblock %}
 
 You would now write:
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -400,9 +400,9 @@ For enumerated attributes, in addition to the falsy values above, the string `"f
 
 When used on a component, `v-on` now only listens to custom events `$emit`ted by that component. To listen for a native DOM event on the root element, you can use the `.native` modifier. For example:
 
-``` html
+{% codeblock lang:html %}
 <my-component v-on:click.native="doSomething"></my-component>
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -602,9 +602,9 @@ As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `st
 
 Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
 
-``` html
+{% codeblock lang:html %}
 <input v-for="obj in objects" v-model="obj.str">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -709,7 +709,7 @@ The `.literal` modifier has been removed, as the same can be easily achieved by 
 
 For example, you can update:
 
-``` js
+``` html
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
@@ -990,9 +990,9 @@ computed: {
 
 You can even order by multiple columns:
 
-``` js
+{% codeblock lang:js %}
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1070,9 +1070,9 @@ function pluralizeKnife (count) {
 
 For a very naive implementation, you could do something like this:
 
-``` js
+{% codeblock lang:js %}
 '$' + price.toFixed(2)
-```
+{% endcodeblock %}
 
 In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
 
@@ -1365,9 +1365,9 @@ Instead, retrieve reactive data directly.
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1380,9 +1380,9 @@ myElement.appendChild(vm.$el)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1395,15 +1395,15 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
-```
+{% endcodeblock %}
 
 Or if `myElement` is the last child:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1416,9 +1416,9 @@ myElement.parentNode.appendChild(vm.$el)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 vm.$el.remove()
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
