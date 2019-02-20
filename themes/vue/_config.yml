@@ -102,6 +102,9 @@ gold_sponsors:
   - url: 'https://www.bacancytechnology.com'
     img: bacancy_technology.png
     name: Bacancy Technology
+  - url: 'https://passionatepeople.io/'
+    img: passionate_people.png
+    name: Passionate People
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
