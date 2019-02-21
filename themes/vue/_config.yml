@@ -11,6 +11,10 @@ special_sponsors:
     description: 'Build APIs you need in minutes instead of days, for free.'
 platinum_sponsors:
   - url: >-
+      https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip
+    img: modus.png
+    name: Modus
+  - url: >-
       https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
     name: Bit
@@ -98,6 +102,9 @@ gold_sponsors:
   - url: 'https://www.bacancytechnology.com'
     img: bacancy_technology.png
     name: Bacancy Technology
+  - url: 'https://passionatepeople.io/'
+    img: passionate_people.png
+    name: Passionate People
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
