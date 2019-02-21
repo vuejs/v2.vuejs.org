@@ -30,6 +30,8 @@ body.docs
     display: inline-block
     position: relative
     margin: 0 .6em
+    @media screen and (max-width: 1200px)
+      margin: 0 .3em
 
   .nav-dropdown
     .nav-link
@@ -144,14 +146,26 @@ body.docs
   #header
     display: none
 
+@media screen and (min-width: 901px)
+  .nav-button
+      position: relative
+      display: inline-block
+      padding: 0 1.2em
+      margin-left: 0.5em
+      border-radius: 2em
+      color: $light
+      background-color: #f6f6f6
+      transition: all .15s ease
+      box-sizing: border-box
+      border: 1px solid #f6f6f6
+      text-indent: 1.4em
+      > svg
+        position: absolute
+        left: 0.4em
+        top: 0.4em
+        width: 1.8em
+
 @media screen and (max-width: 900px)
-  a.nav-button
-    &.button
-      margin-left: 0
-      padding: 0
-      text-indent: 0
-      background-color: none
-      border: none
-      color: inherit
+  .nav-button
       > svg
         display: none
