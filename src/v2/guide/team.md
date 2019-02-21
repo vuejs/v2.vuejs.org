@@ -5,6 +5,7 @@ order: 803
 ---
 
 {% raw %}
+
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -159,6 +160,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -176,6 +178,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -216,6 +219,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 </div>
 
@@ -764,7 +768,7 @@ order: 803
     {
       name: 'James McGlasson',
       title: 'Head of Marketing Communications',
-      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1550707200&v=beta&t=6kPVnuYMxbxR_oAz3rdAeuDB-S8Om8e5W3zwbcH0dQI',
+      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1556150400&v=beta&t=KADJ_7nuWuYFPQaKtK7QuI96iC0gPKc198GZ-_dXr_0',
       city: 'Amsterdam, Netherlands',
       languages: ['en', 'nl', 'de'],
       work: {
@@ -797,6 +801,9 @@ order: 803
       title: 'Fox Tech Guru',
       city: 'Kyiv, Ukraine',
       languages: ['uk', 'ru', 'en'],
+      reposOfficial: [
+        'vuejs.org'
+      ],
       work: {
         role: 'CTO',
         org: 'Vue Vixens',
@@ -1451,4 +1458,5 @@ order: 803
   }
 })()
 </script>
+
 {% endraw %}
