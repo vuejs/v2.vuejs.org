@@ -1068,13 +1068,15 @@ order: 803
       city: 'Washington, DC, USA',
       languages: ['en', 'zh'],
       work: {
-        role: 'Full Stack Engineer',
+        role: 'Senior Frontend Engineer',
         org: 'GitLab (Meltano)',
       },
+      reposOfficial: [
+        'vuejs/events'
+      ],
       github: 'bencodezen',
       twitter: 'bencodezen',
       links: [
-        'https://www.vuemeetups.org',
         'https://bencodezen.io/'
       ]
     },
