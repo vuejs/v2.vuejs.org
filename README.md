@@ -83,6 +83,20 @@ Vietnamese translation is maintained by [Vue.js Vietnam User group](https://gith
 * Translation Repo: [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
 * Primary maintainer - [phanan](https://github.com/phanan)
 
+### Contributing
+
+1. A fork of the repo (for any contributions)
+1. `cd vuejs.org`
+1. `git checkout master`
+1. `git pull origin master` to ensure you have the latest main code
+1. `git checkout -b the-name-of-my-branch`
+
+### Push it
+
+1. `git add -A && git commit -m "The message"`
+1. `git push my-fork-name the-name-of-my-branch`
+1. Go to the [vuejs.org repo](https://github.com/vuejs/vuejs.org) and you should see recently pushed branches.
+
 ### Want to help with the translation?
 
 If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
