@@ -135,18 +135,18 @@ Here the argument is the event name to listen to. We will talk about event handl
 Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
 
 ``` html
-<a v-bind:[attributeName]="url"> ... </a>
+<a v-bind:[attribute_name]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+Here `attribute_name` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attribute_name`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
 
 Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-on:[event_name]="doSomething"> ... </a>
 ```
 
-Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+Similarly, when `event_name`'s value is `"focus"`, for example, `v-on:[event_name]` will be equivalent to `v-on:focus`.
 
 #### Dynamic Argument Value Constraints
 
@@ -164,6 +164,20 @@ For example, the following is invalid:
 ```
 
 The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+
+In addition to the syntax constraints above, camelCase and kebab-case are also not supported inside HTML attribute names.
+
+For example, the following is also invalid:
+
+``` html
+<!-- This will trigger a compiler warning. -->
+<a v-bind:[attributeName]="value"> ... </a>
+
+<!-- This will also trigger a compiler warning. -->
+<a v-bind:[attribute-name]="value"> ... </a>
+```
+
+As a work around snake_case can be used.
 
 ### Modifiers
 
