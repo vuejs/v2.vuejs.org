@@ -42,7 +42,8 @@ props: {
   isPublished: Boolean,
   commentIds: Array,
   author: Object,
-  callback: Function
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
 }
 ```
 
