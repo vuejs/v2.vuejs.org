@@ -805,8 +805,9 @@ order: 803
         'vuejs.org'
       ],
       work: {
-        role: 'CTO',
-        org: 'Vue Vixens',
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab',
+        orgUrl: 'https://gitlab.com/'
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
