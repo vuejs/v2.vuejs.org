@@ -5,7 +5,6 @@ order: 803
 ---
 
 {% raw %}
-
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -162,7 +161,6 @@ order: 803
     ></vuer-profile>
 
   </div>
-
   <div class="team">
     <h2 id="core-team-emeriti">
       Core Team Emeriti
@@ -180,7 +178,6 @@ order: 803
     ></vuer-profile>
 
   </div>
-
   <div class="team">
     <h2 id="community-partners">
       Community Partners
@@ -222,7 +219,6 @@ order: 803
 
   </div>
 </div>
-
 <script>
 (function () {
   var cityCoordsFor = {
@@ -1459,5 +1455,4 @@ order: 803
   }
 })()
 </script>
-
 {% endraw %}
