@@ -41,7 +41,8 @@ props: {
   likes: Number,
   isPublished: Boolean,
   commentIds: Array,
-  author: Object
+  author: Object,
+  callback: Function
 }
 ```
 
