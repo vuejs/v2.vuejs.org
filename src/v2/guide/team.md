@@ -159,8 +159,8 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
-
   </div>
+
   <div class="team">
     <h2 id="core-team-emeriti">
       Core Team Emeriti
@@ -176,8 +176,8 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
-
   </div>
+
   <div class="team">
     <h2 id="community-partners">
       Community Partners
@@ -216,9 +216,9 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
-
   </div>
 </div>
+
 <script>
 (function () {
   var cityCoordsFor = {
