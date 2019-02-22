@@ -764,7 +764,7 @@ order: 803
     {
       name: 'James McGlasson',
       title: 'Head of Marketing Communications',
-      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1550707200&v=beta&t=6kPVnuYMxbxR_oAz3rdAeuDB-S8Om8e5W3zwbcH0dQI',
+      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1556150400&v=beta&t=KADJ_7nuWuYFPQaKtK7QuI96iC0gPKc198GZ-_dXr_0',
       city: 'Amsterdam, Netherlands',
       languages: ['en', 'nl', 'de'],
       work: {
@@ -797,9 +797,13 @@ order: 803
       title: 'Fox Tech Guru',
       city: 'Kyiv, Ukraine',
       languages: ['uk', 'ru', 'en'],
+      reposOfficial: [
+        'vuejs.org'
+      ],
       work: {
-        role: 'CTO',
-        org: 'Vue Vixens',
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab',
+        orgUrl: 'https://gitlab.com/'
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
