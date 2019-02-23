@@ -516,7 +516,7 @@ type: api
     - **required:** `Boolean`
     Defines if prop is required. When set to `true`, will produce a console warning if prop is not passed.
     - **validator:** `Function`
-    Custom validator function that takes the prop value and returns a boolean. When returns `false` (i.e. when prop fails validation), throws a console warning. You can read more about props validation [here](../guide/components-props.html#Prop-Validation).
+    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
 
 - **Example:**
 
