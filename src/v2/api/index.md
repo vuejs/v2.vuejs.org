@@ -512,7 +512,7 @@ type: api
   With Object-based syntax, you can use following options:
     - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
     - **default:** `any`
-    Specifies a default value for the prop. If prop is not passed, the `default` value will be used instead. Object or array defaults must be returned from a factory function.
+    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
     - **required:** `Boolean`
     Defines if prop is required. When set to `true`, will produce a console warning if prop is not passed.
     - **validator:** `Function`
