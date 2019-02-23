@@ -514,7 +514,7 @@ type: api
     - **default:** `any`
     Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
     - **required:** `Boolean`
-    Defines if prop is required. When set to `true`, will produce a console warning if prop is not passed.
+    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
     - **validator:** `Function`
     Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
 
