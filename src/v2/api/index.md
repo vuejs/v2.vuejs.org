@@ -510,15 +510,13 @@ type: api
   A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
   With Object-based syntax, you can use following options:
-    - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol` or any custom constructor function. Will check if a prop has a given type, and will throw a warning if it doesn't.
+    - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
     - **default:** `any`
     Specifies a default value for the prop. If prop is not passed, the `default` value will be used instead. Object or array defaults must be returned from a factory function.
     - **required:** `Boolean`
     Defines if prop is required. When set to `true`, will produce a console warning if prop is not passed.
     - **validator:** `Function`
-    Custom validator function that takes the prop value and returns a boolean. When returns `false` (i.e. when prop fails validation), throws a console warning.
-
-  You can read more about props validation [here](../guide/components-props.html#Prop-Validation).
+    Custom validator function that takes the prop value and returns a boolean. When returns `false` (i.e. when prop fails validation), throws a console warning. You can read more about props validation [here](../guide/components-props.html#Prop-Validation).
 
 - **Example:**
 
