@@ -9,7 +9,7 @@ order: 13
 {% raw %}
 <div id="themes-example" class="themes-grid">
    <div v-for="product in products" :key="product.name" class="item-preview">
-     <a class="item-preview-img" v-bind:href="`https://www.creative-tim.com/product/${product.name}?affiliate_id=${affiliateId}`" rel="nofollow">
+     <a class="item-preview-img" :href="`https://www.creative-tim.com/product/${product.name}?affiliate_id=${affiliateId}`" rel="nofollow">
      <img :src="`https://raw.githubusercontent.com/creativetimofficial/public-assets/master/${product.name}/${product.name}.jpg`" :alt="`${product.title} - ${product.description}`"></a>
      <div class="item-preview-title-container">
       <h3 class="item-preview-title" :class="{'free': product.free}">{{product.title}}</h3>
