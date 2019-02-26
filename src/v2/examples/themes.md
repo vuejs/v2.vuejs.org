@@ -12,7 +12,7 @@ order: 13
      <a class="item-preview-img" :href="`https://www.creative-tim.com/product/${product.name}?affiliate_id=${affiliateId}`" rel="nofollow">
      <img :src="`https://raw.githubusercontent.com/creativetimofficial/public-assets/master/${product.name}/${product.name}.jpg`" :alt="`${product.title} - ${product.description}`"></a>
      <div class="item-preview-title-container">
-      <h3 class="item-preview-title" :class="{'free': product.free}">{{product.title}}</h3>
+      <h3 :id="product.name" data-type="theme-product-title" class="item-preview-title" :class="{'free': product.free}">{{product.title}}</h3>
       <b v-if="product.price" class="item-preview-price">{{product.price}}$</b>
      </div>
      <div class="item-preview-description">{{product.description}}</div>

@@ -226,7 +226,6 @@
       var classes = link.classList
       var linkKey = `visisted-${link.textContent}`
       if (localStorage.getItem(linkKey) || classes.contains('current')) {
-        classes.remove('current')
         classes.remove('updated-link')
         localStorage.setItem(linkKey, 'true')
       } else {
@@ -375,7 +374,6 @@
       } else {
         headers = content.querySelectorAll('h3')
         each.call(headers, function (h) {
-          console.log(h)
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
@@ -410,9 +408,15 @@
         })
         .forEach(makeHeaderClickable)
 
-      smoothScroll.init({
+      new SmoothScroll('a[href*="#"]', {
         speed: 400,
-        offset: 0
+        offset: function (anchor, toggle) {
+          let dataTypeAttr = anchor.attributes['data-type']
+          if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
+            return 300
+          }
+          return 0
+        }
       })
     }
 
