@@ -2,6 +2,7 @@
   initHashLevelRedirects()
   initMobileMenu()
   initVideoModal()
+  initNewNavLinks()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -190,6 +191,50 @@
   }
 
   /**
+   * Initializes a list of links to mark as "updated" by adding a red dot next to them
+   */
+
+  function initNewNavLinks() {
+    var linkExpirePeriod = 60 * 24 * 3600 * 1000 // 2 months
+    var links = [
+      {
+        title: 'Learn',
+        updatedOn: new Date("Fri Mar 1 2019")
+      },
+      {
+        title: 'Examples',
+        updatedOn: new Date("Fri Mar 1 2019")
+      }
+    ]
+    var today = new Date().getTime()
+    var updatedLinks = links
+      .filter(function (link) {
+        return link.updatedOn.getTime() + linkExpirePeriod > today
+      })
+      .map(function (link) {
+        return link.title
+      })
+
+    var navLinks = document.querySelectorAll('#nav a.nav-link')
+    var newLinks = []
+    navLinks.forEach(function (link) {
+      if (updatedLinks.indexOf(link.textContent) !== -1) {
+        newLinks.push(link)
+      }
+    })
+    newLinks.forEach(function (link) {
+      var classes = link.classList
+      var linkKey = `visisted-${link.textContent}`
+      if (localStorage.getItem(linkKey) || classes.contains('current')) {
+        classes.remove('updated-link')
+        localStorage.setItem(linkKey, 'true')
+      } else {
+        classes.add('new')
+      }
+    })
+  }
+
+  /**
    * Mobile burger menu button and gesture for toggling sidebar
    */
 
@@ -329,7 +374,6 @@
       } else {
         headers = content.querySelectorAll('h3')
         each.call(headers, function (h) {
-          console.log(h)
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
@@ -364,9 +408,15 @@
         })
         .forEach(makeHeaderClickable)
 
-      smoothScroll.init({
+      new SmoothScroll('a[href*="#"]', {
         speed: 400,
-        offset: 0
+        offset: function (anchor, toggle) {
+          let dataTypeAttr = anchor.attributes['data-type']
+          if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
+            return 300
+          }
+          return 0
+        }
       })
     }
 
