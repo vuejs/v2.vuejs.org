@@ -55,6 +55,8 @@ Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--librarie
 A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
 
 ``` js
+//construct plugin first
+var MyPlugin = {};
 MyPlugin.install = function (Vue, options) {
   // 1. add global method or property
   Vue.myGlobalMethod = function () {
