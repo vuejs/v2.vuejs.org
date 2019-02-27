@@ -441,6 +441,8 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 
 ## `v-for` with `v-if`
 
+<p class="tip">Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
+
 When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
 
 ``` html

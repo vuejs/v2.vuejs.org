@@ -154,7 +154,7 @@ Dynamic arguments are expected to evaluate to a string, with the exception of `n
 
 #### Dynamic Argument Expression Constraints
 
-<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes.</p>
+<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes. You also need to avoid uppercase keys when using in-DOM templates.</p>
 
 For example, the following is invalid:
 
@@ -164,6 +164,13 @@ For example, the following is invalid:
 ```
 
 The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+
+In addition, if you are using in-DOM templates (templates directly written in an HTML file), you have to be aware that browsers will coerce attribute names into lowercase:
+
+``` html
+<!-- This will be converted to v-bind:[someattr] in in-DOM templates. -->
+<a v-bind:[someAttr]="value"> ... </a>
+```
 
 ### Modifiers
 
