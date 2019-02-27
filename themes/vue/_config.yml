@@ -72,7 +72,8 @@ gold_sponsors:
   - url: 'https://webdock.io/en'
     img: webdock.png
     name: Webdock
-  - url: 'https://syncfusion.com/products/vue'
+  - url: >-
+      http://www.syncfusion.com/?utm_source=vuejs&utm_medium=list&utm_campaign=vuejsjslistcy19
     img: syncfusion.png
     name: SyncFusion
   - url: 'https://opteo.com/vue'
