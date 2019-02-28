@@ -393,6 +393,8 @@ You may have noticed that Vue components are very similar to **Custom Elements**
 
 2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
 
+According to <https://custom-elements-everywhere.com/#vue>, Vue has a great interoperability with **Custom Elements**.
+
 ## Ready for More?
 
 We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
