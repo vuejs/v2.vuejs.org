@@ -4,13 +4,13 @@ type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Vue.js nedir?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (/viyuv/ şeklinde telaffuz edilir, İngilizcedeki **view** kelimesi gibi) kullanıcı arayüzleri oluşturmayı sağlayan **kademeli bir framework**'tür. Yazılım geliştirme ortamının her alanına nüfus eden diğer framework'lerin aksine Vue, basit bir temel üzerinde inşa edildiğinden kademeli olarak kademeli olarak kullanmaya başlayabilirsiniz. Ana kütüphane yalnızca görüntüleme katmanına odaklanmaktadır. Öğrenmesi kolay olup diğer kütüphanelere veya ileri aşamalardaki projelere entegre edilebilir. Diğer taraftan, Vue [modern dosya yönetimi](single-file-components.html) ve [destekleyici kütüphaneler](https://github.com/vuejs/awesome-vue#components--libraries) eşliğinde sofistike Tek Sayfa Uygulamalar yaratmak için son derece elverişlidir.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Eğer Vue öğrenmeye başlamadan önce daha fazla bilgi edinmek isterseniz, bu teknolojinin temel prensiplerinin dile getirildiği ve örnek bir projenin sunulduğu <a id="modal-player"  href="#">bir video hazırladık</a>.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Eğer kullanıcı arayüzü programcılığı alanında deneyimli iseniz ve Vue'nin diğer kütüphaneler/framework'lere göre bir karşılaştırmasını görmek istiyorsanız [Diğer Framework'ler ile Karşılaştırma](comparison.html) sayfasına bakınız.
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
 
