@@ -393,10 +393,7 @@ You may have noticed that Vue components are very similar to **Custom Elements**
 
 2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
 
-Although Vue doesn't use custom elements internally, it has great interoperability when it comes to
-consuming or distributing as custom elements. According to <https://custom-elements-everywhere.com/#vue>,
-Vue has a great interoperability with **Custom Elements**. Vue CLI also supports building Vue components
-that register themselves as native custom elements.
+Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
 
 ## Ready for More?
 
