@@ -1,4 +1,4 @@
-# Halaman Progress Menerjemahkan Dokumentasi Vue.js
+# Halaman Progres Menerjemahkan Dokumentasi Vue.js
 
 ## Panduan Berkontribusi
 
@@ -6,7 +6,7 @@ Silahkan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
 
 ##  Work Status
 
-(🏃 Work in Progress; 👀 In Review;)
+(🏃 Work in Progress; 👀 In Review; 🙌 Done;)
 
 ## Halaman Tersedia
 

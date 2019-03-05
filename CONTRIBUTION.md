@@ -11,7 +11,7 @@ Beberapa paduan yang harus diikuti bila ingin ikut berkontribusi pada proses pen
 ## Kontribusi Menerjemahkan
 
 + Silahkan fork dari repository ini, bila belum mengerti cara `fork` silahkan baca artikel https://help.github.com/articles/fork-a-repo/
-+ Sebelum memulai proses, pastikan anda melihat halaman **[PROGRESS](PROGRESS.md)** untuk mengecek apakah sudah ada yang mengerjakan halaman tersebut atau belum.
++ Sebelum memulai proses, pastikan anda melihat halaman **[PROGRES](PROGRESS.md)** untuk mengecek apakah sudah ada yang mengerjakan halaman tersebut atau belum.
 + Bila halaman yang ingin Anda terjemahkan memang belum ada yang mengerjakan, silahkan kontak para [pengurus](#Pengurus-Utama) lewat Telegram pada kontak diatas untuk memesan halaman tersebut agar tidak dikerjakan oleh orang lain.
 + Branch yang menjadi panduan adalah branch `master`, tapi mungkin akan terjadi ketertinggalan dari branch master yang ada di repository [vuejs/vuejs.org](https://github.com/vuejs/vuejs.org) karenanya kami lebih menyarankan untuk mengambil base dari branch `english-version`.
 + Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silahkan baca artikel https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/
