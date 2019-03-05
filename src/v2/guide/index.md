@@ -288,15 +288,21 @@ In Vue, a component is essentially a Vue instance with pre-defined options. Regi
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
+
+var app = new Vue({
+  el: '#app'
+})
 ```
 
 Now you can compose it in another component's template:
 
 ``` html
-<ol>
-  <!-- Create an instance of the todo-item component -->
-  <todo-item></todo-item>
-</ol>
+<div id="app">
+  <ol>
+    <!-- Create an instance of the todo-item component -->
+    <todo-item></todo-item>
+  </ol>
+</div>
 ```
 
 But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
