@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Tim Inti Vuejs
 type: guide
 order: 803
 ---
@@ -123,7 +123,7 @@ order: 803
   <div class="team">
 
     <h2 id="active-core-team-members">
-      Active Core Team Members
+      Anggota Tim Inti yang Aktif
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -146,7 +146,7 @@ order: 803
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Pengembangan Vue dan ekosistemnya dipandu oleh tim Internasional, beberapa diantaranya telah dipilih untuk ditampilkan di bawah ini.
     </p>
 
     <p v-if="userPosition" class="success">
@@ -163,11 +163,11 @@ order: 803
 
   <div class="team">
     <h2 id="core-team-emeriti">
-      Core Team Emeriti
+      Tim Inti Emeritus
     </h2>
 
     <p>
-      Here we honor some no-longer-active core team members who have made valuable contributions in the past.
+      Berikut ini adalah beberapa anggota tim inti yang sudah tidak aktif lagi. Anggota terhormat dibawah ini telah memberikan kontribusi yang berharga di masa lalu.
     </p>
 
     <vuer-profile
@@ -180,7 +180,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      Rekan Komunitas
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -203,11 +203,12 @@ order: 803
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Beberapa anggota komunitas Vuejs yang telah memperkeren framework ini, sehingga mereka patut mendapatkan perhatian husus. Kami telah meningkatkan hubungan yang lebih intim dengan mitra - mitra utama ini, sering berkoordinasi dengan mereka tentang fitur dan berita yang akan datang.
     </p>
 
     <p v-if="userPosition" class="success">
       The community partners have been sorted by their distance from you.
+      Rekan komunitas telah di sortir berdasarkan kedekatan lokasi dari anda.
     </p>
 
     <vuer-profile
