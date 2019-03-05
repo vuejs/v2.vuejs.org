@@ -1,6 +1,6 @@
 # Halaman Panduan Berkontribusi
 
-Beberapa paduan yang harus diikuti bila ingin ikut berkontribusi pada proses penerjemahan dokumentasi Vue.js ke dalam Bahasa Indonesia
+Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses penerjemahan dokumentasi Vue.js ke dalam Bahasa Indonesia
 
 ## Pengurus Utama
 
