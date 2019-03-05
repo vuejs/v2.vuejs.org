@@ -10,12 +10,13 @@ Beberapa paduan yang harus diikuti bila ingin ikut berkontribusi pada proses pen
 
 ## Kontribusi Menerjemahkan
 
-+ Silahkan fork dari repository ini, bila belum mengerti cara `fork` silahkan baca artikel https://help.github.com/articles/fork-a-repo/
-+ Sebelum memulai proses, pastikan anda melihat halaman **[PROGRES](PROGRESS.md)** untuk mengecek apakah sudah ada yang mengerjakan halaman tersebut atau belum.
-+ Bila halaman yang ingin Anda terjemahkan memang belum ada yang mengerjakan, silahkan kontak para [pengurus](#Pengurus-Utama) lewat Telegram pada kontak diatas untuk memesan halaman tersebut agar tidak dikerjakan oleh orang lain.
-+ Branch yang menjadi panduan adalah branch `master`, tapi mungkin akan terjadi ketertinggalan dari branch master yang ada di repository [vuejs/vuejs.org](https://github.com/vuejs/vuejs.org) karenanya kami lebih menyarankan untuk mengambil base dari branch `english-version`.
++ Silahkan fork dari repositori ini, bila belum mengerti cara `fork` silahkan baca artikel https://help.github.com/articles/fork-a-repo/
++ Sebelum memulai proses, pastikan anda melihat halaman **[issues](https://github.com/vuejs-id/docs/issues)** untuk mengecek apakah sudah ada yang mengerjakan halaman tersebut atau belum.
++ Setiap halaman akan memiliki *issue* tersendiri, jika *issue* tersebut belum di *assign* ke seseorang berarti belum ada yang mengerjakan halaman tersebut.
++ Silahkan tambahkan komentar pada *issue* dari halaman yang ingin Anda kerjakan. Pastikan mention salah satu pengurus. Mas @mul14, @nusendra atau @mazipan untuk *assign* *issue* tersebut.
++ Branch yang menjadi panduan adalah branch `master`, tapi mungkin akan terjadi ketertinggalan dari branch `master` yang ada di repositori [vuejs/vuejs.org](https://github.com/vuejs/vuejs.org) karenanya kami lebih menyarankan untuk mengambil base dari branch `english-version`.
 + Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silahkan baca artikel https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/
-+ Setelah selesai menerjemahkan, silahkan buat Pull Request ke branch `master` pada repository ini.
++ Setelah selesai menerjemahkan, silahkan buat Pull Request ke branch `master` pada repositori ini.
 + Para pengurus dan teman-teman lain akan membantu melakukan review pada Pull Request kalian, bila semuanya sudah bagus maka dengan segera bisa di `merge` ke branch `master`.
 
 ## Kontribusi Lain

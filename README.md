@@ -19,7 +19,7 @@ Silahkan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
 
 ## Progres
 
-Silahkan lihat di halaman [Progres](PROGRESS.md)
+Silahkan lihat di halaman [Milestone](https://github.com/vuejs-id/docs/milestones) dan [Issues](https://github.com/vuejs-id/docs/issues).
 
 ----
 
