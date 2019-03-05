@@ -163,7 +163,7 @@ order: 803
 
   <div class="team">
     <h2 id="core-team-emeriti">
-      Tim Inti <a href="https://en.wikipedia.org/wiki/Emeritus" title="Emeritus" target="_blank" rel="noopener noreferrer">Emeritus</a>
+      Tim Inti Emeritus
     </h2>
 
     <p>
