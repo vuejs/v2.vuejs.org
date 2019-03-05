@@ -25,7 +25,7 @@ order: 803
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>Fokus inti</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -35,7 +35,7 @@ order: 803
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Ekosistem</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -47,30 +47,30 @@ order: 803
         <template v-if="profile.work">
           <dt>
             <i class="fa fa-briefcase"></i>
-            <span class="sr-only">Work</span>
+            <span class="sr-only">Pekerjaan</span>
           </dt>
           <dd v-html="workHtml"></dd>
         </template>
         <span v-if="profile.distanceInKm" class="distance">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">Distance</span>
+            <span class="sr-only">Jarak</span>
           </dt>
           <dd>
             About
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="profile.name + ' is close enough to commute to your location.'"
+              :title="profile.name + ' cukup dekat untuk menuju ke lokasi Anda.'"
               class="user-match"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }} jauhnya</span>
+            <template v-else>{{ textDistance }} jauhnya</template>
+            di {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Kota</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -79,14 +79,14 @@ order: 803
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Bahasa</span>
           </dt>
           <dd v-html="languageListHtml" class="language-list"></dd>
         </template>
         <template v-if="profile.links">
           <dt>
             <i class="fa fa-link"></i>
-            <span class="sr-only">Links</span>
+            <span class="sr-only">Tautan</span>
           </dt>
           <dd>
             <ul>
@@ -136,13 +136,13 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>cari di sekitar</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Gagal membaca lokasi Anda.
     </p>
 
     <p>
@@ -150,7 +150,7 @@ order: 803
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      Tim inti sudah diurutkan berdasarkan jarak lokasi dari Anda.
     </p>
 
     <vuer-profile
@@ -163,7 +163,7 @@ order: 803
 
   <div class="team">
     <h2 id="core-team-emeriti">
-      Tim Inti Emeritus
+      Tim Inti <a href="https://en.wikipedia.org/wiki/Emeritus" title="Emeritus" target="_blank" rel="noopener noreferrer">Emeritus</a>
     </h2>
 
     <p>
@@ -193,13 +193,13 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>cari di sekitar</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Gagal membaca lokasi Anda.
     </p>
 
     <p>
@@ -1267,7 +1267,7 @@ order: 803
                   'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' can give technical talks in your preferred language.' +
+                    ' bisa memberi pembicaraan teknis dalam bahasa Anda.' +
                   '"' +
                 '\>' + language + '</span>'
               )
