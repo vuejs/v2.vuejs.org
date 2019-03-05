@@ -63,15 +63,9 @@ gold_sponsors:
   - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
     name: VueJobs
-  - url: 'https://www.valuecoders.com'
-    img: valuecoders.png
-    name: ValueCoders
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
-  - url: 'https://webdock.io/en'
-    img: webdock.png
-    name: Webdock
   - url: >-
       http://www.syncfusion.com/?utm_source=vuejs&utm_medium=list&utm_campaign=vuejsjslistcy19
     img: syncfusion.png
@@ -100,9 +94,6 @@ gold_sponsors:
   - url: 'https://yakaz.com/'
     img: yakaz.png
     name: Yakaz
-  - url: 'https://www.bacancytechnology.com'
-    img: bacancy_technology.png
-    name: Bacancy Technology
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
@@ -117,9 +108,6 @@ bronze_sponsors:
   - url: 'http://tighten.co/'
     img: tighten_co.png
     name: Tighten.co
-  - url: 'https://alligator.io'
-    img: alligator_io.svg
-    name: Alligator.io
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
     name: Accelebrate
