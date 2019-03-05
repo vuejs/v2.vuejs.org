@@ -30,7 +30,7 @@ Silahkan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
 - Handling Edge Cases
 - Enter and Leave Transitions
 - State's Transitions
-- Mixins
+- Mixins 🏃 Work in Progress [@nusendra](https://github.com/nusendra)
 - Custom Directives
 - Render Functions and JSX
 - Plugins
