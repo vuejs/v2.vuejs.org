@@ -1,5 +1,5 @@
 ---
-title: Temui Tim
+title: Tim Inti Vuejs
 type: guide
 order: 803
 ---
@@ -8,8 +8,14 @@ order: 803
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
-      <img v-if="profile.github"
+      <img v-if="profile.imageUrl"
+        :src="profile.imageUrl"
+        :alt="profile.name" width=80 height=80>
+      <img v-else-if="profile.github"
         :src="'https://github.com/' + profile.github + '.png'"
+        :alt="profile.name" width=80 height=80>
+      <img v-else-if="profile.twitter"
+        :src="'https://avatars.io/twitter/' + profile.twitter"
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
@@ -19,7 +25,7 @@ order: 803
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Fokus utama</dt>
+          <dt>Fokus inti</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -54,10 +60,10 @@ order: 803
             Kurang lebih
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="profile.name + ' cukup dekat untuk datang ke lokasi Anda.'"
+              :title="profile.name + ' cukup dekat untuk menuju ke lokasi Anda.'"
               class="user-match"
-            >{{ textDistance }}</span>
-            <template v-else>{{ textDistance }}</template>
+            >{{ textDistance }} jauhnya</span>
+            <template v-else>{{ textDistance }} jauhnya</template>
             di {{ profile.city }}
           </dd>
         </span>
@@ -103,6 +109,10 @@ order: 803
             <i class="fa fa-codepen"></i>
             <span class="sr-only">CodePen</span>
           </a>
+          <a class=linkedin v-if="profile.linkedin" :href="'https://www.linkedin.com/in/' + profile.linkedin">
+            <i class="fa fa-linkedin"></i>
+            <span class="sr-only">LinkedIn</span>
+          </a>
         </footer>
       </dl>
     </div>
@@ -112,8 +122,8 @@ order: 803
 <div id="team-members">
   <div class="team">
 
-    <h2 id="the-core-team">
-      Tim Inti
+    <h2 id="active-core-team-members">
+      Anggota Tim Inti yang Aktif
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -126,7 +136,7 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>cari disekitarku</span>
+          <span>cari di sekitar</span>
         </template>
       </button>
     </h2>
@@ -136,16 +146,33 @@ order: 803
     </p>
 
     <p>
-      Pengembangan Vue dan ekosistemnya dipandu oleh tim internasional, beberapa diantaranya terpilih dan ditampilkan di bawah.
+      Pengembangan Vue dan ekosistemnya dipandu oleh tim Internasional, beberapa diantaranya telah dipilih untuk ditampilkan di bawah ini.
     </p>
 
     <p v-if="userPosition" class="success">
-      Tim inti telah disortir berdasarkan jarak anda.
+      Tim inti sudah diurutkan berdasarkan jarak lokasi Anda.
     </p>
 
     <vuer-profile
       v-for="profile in sortedTeam"
-      :key="profile.github"
+      :key="profile.name"
+      :profile="profile"
+      :title-visible="titleVisible"
+    ></vuer-profile>
+  </div>
+
+  <div class="team">
+    <h2 id="core-team-emeriti">
+      Tim Inti Emeritus
+    </h2>
+
+    <p>
+      Berikut ini adalah beberapa anggota tim inti yang sudah tidak aktif lagi. Anggota terhormat dibawah ini telah memberikan kontribusi yang berharga di masa lalu.
+    </p>
+
+    <vuer-profile
+      v-for="profile in teamEmeriti"
+      :key="profile.name"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -153,7 +180,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Mitra Komunitas
+      Rekan Komunitas
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -166,7 +193,7 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>cari disekitarku</span>
+          <span>cari di sekitar</span>
         </template>
       </button>
     </h2>
@@ -176,16 +203,16 @@ order: 803
     </p>
 
     <p>
-      Beberapa anggota dari komunitas Vue telah sangat memperkaya, maka dari itu mereka layak mendapat perhatian khusus. Kami telah mengembangkan hubungan lebih intim dengan mitra penting ini, sering berkoordinasi dengan mereka dalam fitur-fitur mendatang dan berita.
+      Beberapa anggota komunitas Vuejs yang telah memperkeren framework ini, sehingga mereka patut mendapatkan perhatian husus. Kami telah meningkatkan hubungan yang lebih intim dengan mitra - mitra utama ini, sering berkoordinasi dengan mereka tentang fitur dan berita yang akan datang.
     </p>
 
     <p v-if="userPosition" class="success">
-      Mitra komunitas telah disortir berdasarkan jarak dari anda.
+      Rekan komunitas telah di sortir berdasarkan kedekatan lokasi dari anda.
     </p>
 
     <vuer-profile
       v-for="profile in sortedPartners"
-      :key="profile.github"
+      :key="profile.name"
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
@@ -197,6 +224,7 @@ order: 803
   var cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
+    'Amsterdam, Netherlands': [4.895168, 52.370216],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
@@ -221,15 +249,22 @@ order: 803
     'Poznań, Poland': [52.4006553, 16.761583],
     'Seoul, South Korea': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
+    'Singapore': [1.352083, 103.819839],
+    'Sydney, Australia': [-33.868820, 151.209290],
     'Taquaritinga, Brazil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
     'Thessaloniki, Greece': [40.640063, 22.944419],
     'Tokyo, Japan': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538]
+    'Wrocław, Poland': [51.107885, 17.038538],
+    'Boston, MA, USA': [42.360081, -71.058884],
+    'Kyiv, Ukraine': [50.450100, 30.523399],
+    'Washington, DC, USA': [38.8935755,-77.0846156,12],
+    'Kraków, Poland': [50.064650, 19.936579]
   }
   var languageNameFor = {
     en: 'English',
+    nl: 'Nederlands',
     zh: '中文',
     vi: 'Tiếng Việt',
     pl: 'Polski',
@@ -243,7 +278,8 @@ order: 803
     hi: 'हिंदी',
     fa: 'فارسی',
     ko: '한국어',
-    ro: 'Română'
+    ro: 'Română',
+    uk: 'Українська'
   }
 
   var team = [{
@@ -309,6 +345,29 @@ order: 803
       ]
     },
     {
+      name: 'Sodatea',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      github: 'sodatea',
+      twitter: 'haoqunjiang',
+      reposOfficial: [
+        'vue-cli', 'vue-loader'
+      ]
+    },
+    {
+      name: 'Pine Wu',
+      languages: ['zh', 'en', 'jp'],
+      github: 'octref',
+      twitter: 'octref',
+      work: {
+        role: 'Engineer on VSCode',
+        org: 'Microsoft'
+      },
+      reposOfficial: [
+        'vetur'
+      ]
+    },
+    {
       name: 'Jinjiang',
       title: 'Mobile Extrapolator',
       city: 'Hangzhou, China',
@@ -327,32 +386,22 @@ order: 803
       ]
     },
     {
-      name: 'EGOIST',
-      title: 'Build Tool Simplificator',
-      city: 'Chengdu, China',
-      languages: ['zh', 'en'],
-      github: 'egoist',
-      twitter: '_egoistlily',
-      reposOfficial: [
-        'vue-cli'
-      ],
-      reposPersonal: [
-        'poi', 'ream', 'vue-play'
-      ]
-    },
-    {
       name: 'Katashin',
       title: 'One of a Type State Manager',
-      city: 'Tokyo, Japan',
+      city: 'Singapore',
       languages: ['jp', 'en'],
       work: {
-        org: 'oRo Co., Ltd.',
-        orgUrl: 'https://www.oro.com'
+        role: 'Software Engineer',
+        org: 'ClassDo',
+        orgUrl: 'https://classdo.com'
       },
       github: 'ktsn',
       twitter: 'ktsn',
       reposOfficial: [
         'vuex', 'vue-class-component'
+      ],
+      reposPersonal: [
+        'vue-designer'
       ]
     },
     {
@@ -398,57 +447,6 @@ order: 803
       ]
     },
     {
-      name: 'Alan Song',
-      title: 'Regent of Routing',
-      city: 'Hangzhou, China',
-      languages: ['zh', 'en'],
-      work: {
-        role: 'Cofounder',
-        org: 'Futurenda',
-        orgUrl: 'https://www.futurenda.com/'
-      },
-      github: 'fnlctrl',
-      reposOfficial: [
-        'vue-router'
-      ]
-    },
-    {
-      name: 'Blake Newman',
-      title: 'Performance Specializer & Code Deleter',
-      city: 'London, UK',
-      languages: ['en'],
-      work: {
-        role: 'Software Engineer',
-        org: 'Attest',
-        orgUrl: 'https://www.askattest.com/'
-      },
-      github: 'blake-newman',
-      twitter: 'blakenewman',
-      reposOfficial: [
-        'vuex', 'vue-router', 'vue-loader'
-      ]
-    },
-    {
-      name: 'Phan An',
-      title: 'Backend Designer & Process Poet',
-      city: 'Munich, Germany',
-      languages: ['vi', 'en'],
-      github: 'phanan',
-      twitter: 'notphanan',
-      reposOfficial: [
-        'vuejs.org', {
-          name: 'vi.vuejs.org',
-          url: 'https://github.com/vuejs-vn/vuejs.org'
-        }
-      ],
-      reposPersonal: [
-        'vuequery', 'vue-google-signin-button'
-      ],
-      links: [
-        'https://phanan.net/'
-      ]
-    },
-    {
       name: 'Linusborg',
       title: 'Hive-Mind Community Wrangler (Probably a Bot)',
       city: 'Mannheim, Germany',
@@ -456,32 +454,13 @@ order: 803
       github: 'LinusBorg',
       twitter: 'Linus_Borg',
       reposOfficial: [
-        'vuejs/*', 'vuejs-templates/*', 'vue-touch'
+        'vuejs/*'
       ],
       reposPersonal: [
         'portal-vue'
       ],
       links: [
         'https://forum.vuejs.org/'
-      ]
-    },
-    {
-      name: 'Denis Karabaza',
-      title: 'Director of Directives (Emoji-Human Hybrid)',
-      city: 'Dubna, Russia',
-      languages: ['ru', 'en'],
-      github: 'simplesmiler',
-      twitter: 'simplesmiler',
-      work: {
-        role: 'Software Engineer',
-        org: 'Neolant',
-        orgUrl: 'http://neolant.ru/'
-      },
-      reposPersonal: [
-        'vue-focus', 'vue-clickaway'
-      ],
-      links: [
-        'mailto:denis.karabaza@gmail.com'
       ]
     },
     {
@@ -529,55 +508,6 @@ order: 803
       ]
     },
     {
-      name: 'defcc',
-      title: 'Details Deity & Bug Surgeon',
-      city: 'Chongqing, China',
-      languages: ['zh', 'en'],
-      github: 'defcc',
-      work: {
-        org: 'zbj.com',
-        orgUrl: 'http://www.zbj.com/'
-      },
-      reposOfficial: [
-        'vue', 'vuejs.org', 'cn.vuejs.org'
-      ],
-      reposPersonal: [
-        'weexteam/weex-vue-framework', 'into-vue'
-      ]
-    },
-    {
-      name: 'gebilaoxiong',
-      title: 'Issue Annihilator',
-      city: 'Chongqing, China',
-      languages: ['zh', 'en'],
-      github: 'gebilaoxiong',
-      work: {
-        org: 'zbj.com',
-        orgUrl: 'http://www.zbj.com/'
-      },
-      reposOfficial: [
-        'vue'
-      ]
-    },
-    {
-      name: 'Andrew Tomaka',
-      title: 'The Server Server',
-      city: 'East Lansing, MI, USA',
-      languages: ['en'],
-      github: 'atomaka',
-      twitter: 'atomaka',
-      reposOfficial: [
-        'vuejs/*'
-      ],
-      work: {
-        org: 'Michigan State University',
-        orgUrl: 'https://msu.edu/'
-      },
-      links: [
-        'https://atomaka.com/'
-      ]
-    },
-    {
       name: 'Sarah Drasner',
       city: 'Denver, CO, USA',
       languages: ['en'],
@@ -607,39 +537,8 @@ order: 803
         'news.vuejs.org'
       ],
       reposPersonal: [
-        'shentao/vue-multiselect'
-      ]
-    },
-    {
-      name: 'kingwl',
-      title: 'New Bee',
-      city: 'Beijing, China',
-      languages: ['zh'],
-      work: {
-        role: 'Software Development Engineer',
-        org: 'Chaitin',
-        orgUrl: 'https://chaitin.cn/'
-      },
-      github: 'kingwl',
-      reposOfficial: [
-        'vue'
-      ]
-    },
-    {
-      name: 'Alex Kyriakidis',
-      title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
-      languages: ['el', 'en'],
-      github: 'hootlex',
-      twitter: 'hootlex',
-      work: {
-        role: 'Consultant / Author'
-      },
-      reposPersonal: [
-        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
-      ],
-      links: [
-        'https://vuejsfeed.com/', 'https://vueschool.io/'
+        'shentao/vue-multiselect',
+        'shentao/vue-global-events'
       ]
     },
     {
@@ -693,10 +592,225 @@ order: 803
       reposOfficial: [
         'vuepress'
       ]
-    }
+    },
+    {
+      name: 'Darek Gusto Wędrychowski',
+      title: 'Google Search Virtuoso',
+      city: 'Kraków, Poland',
+      languages: ['pl', 'en'],
+      github: 'gustojs',
+      twitter: 'gustojs'
+    },
+    {
+      name: 'Phan An',
+      title: 'Backend Designer & Process Poet',
+      city: 'Munich, Germany',
+      languages: ['vi', 'en'],
+      github: 'phanan',
+      twitter: 'notphanan',
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      reposPersonal: [
+        'vuequery', 'vue-google-signin-button'
+      ],
+      links: [
+        'https://vi.vuejs.org',
+        'https://phanan.net/'
+      ]
+    },
   ]))
 
+  var emeriti = shuffle([
+    {
+      name: 'Blake Newman',
+      title: 'Performance Specializer & Code Deleter',
+      city: 'London, UK',
+      languages: ['en'],
+      work: {
+        role: 'Software Engineer',
+        org: 'Attest',
+        orgUrl: 'https://www.askattest.com/'
+      },
+      github: 'blake-newman',
+      twitter: 'blakenewman'
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijing, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
+      ]
+    },
+    {
+      name: 'Alan Song',
+      title: 'Regent of Routing',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Cofounder',
+        org: 'Futurenda',
+        orgUrl: 'https://www.futurenda.com/'
+      },
+      github: 'fnlctrl',
+      reposOfficial: [
+        'vue-router'
+      ]
+    },
+    {
+      name: 'defcc',
+      title: 'Details Deity & Bug Surgeon',
+      city: 'Chongqing, China',
+      languages: ['zh', 'en'],
+      github: 'defcc',
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      }
+    },
+    {
+      name: 'gebilaoxiong',
+      title: 'Issue Annihilator',
+      city: 'Chongqing, China',
+      languages: ['zh', 'en'],
+      github: 'gebilaoxiong',
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      }
+    },
+    {
+      name: 'Denis Karabaza',
+      title: 'Director of Directives (Emoji-Human Hybrid)',
+      city: 'Dubna, Russia',
+      languages: ['ru', 'en'],
+      github: 'simplesmiler',
+      twitter: 'simplesmiler',
+      work: {
+        role: 'Software Engineer',
+        org: 'Neolant',
+        orgUrl: 'http://neolant.ru/'
+      }
+    },
+  ])
+
   var partners = [
+    {
+      name: 'Pratik Patel',
+      title: 'Organizer of VueConf US',
+      city: 'Atlanta, GA, USA',
+      languages: ['en'],
+      work: {
+        role: 'Organizer',
+        org: 'VueConf US'
+      },
+      twitter: 'prpatel',
+      links: [
+        'https://us.vuejs.org/'
+      ]
+    },
+    {
+      name: 'Vincent Mayers',
+      title: 'Organizer of VueConf US',
+      city: 'Atlanta, GA, USA',
+      languages: ['en'],
+      work: {
+        role: 'Organizer',
+        org: 'VueConf US'
+      },
+      twitter: 'vincentmayers',
+      links: [
+        'https://us.vuejs.org/'
+      ]
+    },
+    {
+      name: 'Luke Thomas',
+      title: 'Creator of Vue.js Amsterdam',
+      city: 'Amsterdam, Netherlands',
+      languages: ['nl', 'en', 'de'],
+      work: {
+        role: 'Creator',
+        org: 'Vue.js Amsterdam'
+      },
+      twitter: 'lukevscostas',
+      linkedin: 'luke-kenneth-thomas-578b3916a',
+      links: [
+        'https://vuejs.amsterdam'
+      ]
+    },
+    {
+      name: 'Jos Gerards',
+      title: 'Organizer and Host of Vue.js Amsterdam & Frontend Love',
+      city: 'Amsterdam, Netherlands',
+      languages: ['nl', 'en', 'de'],
+      work: {
+        role: 'Event Manager',
+        org: 'Vue.js Amsterdam'
+      },
+      twitter: 'josgerards88',
+      linkedin: 'josgerards',
+      links: [
+        'https://vuejs.amsterdam'
+      ]
+    },
+    {
+      name: 'James McGlasson',
+      title: 'Head of Marketing Communications',
+      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1556150400&v=beta&t=KADJ_7nuWuYFPQaKtK7QuI96iC0gPKc198GZ-_dXr_0',
+      city: 'Amsterdam, Netherlands',
+      languages: ['en', 'nl', 'de'],
+      work: {
+        role: 'Head Of Marketing Communications',
+        org: 'Vue.js Amsterdam'
+      },
+      linkedin: 'jdog',
+      links: [
+        'https://vuejs.amsterdam'
+      ]
+    },
+    {
+      name: 'Jen Looper',
+      title: 'Queen Fox',
+      city: 'Boston, MA, USA',
+      languages: ['en', 'fr'],
+      work: {
+        role: 'CEO',
+        org: 'Vue Vixens'
+      },
+      github: 'jlooper',
+      twitter: 'jenlooper',
+      links: [
+        'https://vuevixens.org/',
+        'https://nativescript-vue.org/'
+      ]
+    },
+    {
+      name: 'Natalia Tepluhina',
+      title: 'Fox Tech Guru',
+      city: 'Kyiv, Ukraine',
+      languages: ['uk', 'ru', 'en'],
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      work: {
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab',
+        orgUrl: 'https://gitlab.com/'
+      },
+      github: 'NataliaTepluhina',
+      twitter: 'N_Tepluhina',
+      links: [
+        'https://vuevixens.org/'
+      ]
+    },
     {
       name: 'Alex Jover',
       title: 'Vue Components Squeezer',
@@ -770,7 +884,18 @@ order: 803
         orgUrl: 'https://fandogh.org'
       },
       reposPersonal: [
-        'nuxt/nuxt.js', 'nuxt-community/modules', 'bootstrap-vue/bootstrap-vue'
+        'nuxt/*', 'nuxt-community/*', 'bootstrap-vue/*'
+      ]
+    },
+    {
+      name: 'Xin Du',
+      title: 'Nuxpert',
+      city: 'Dublin, Ireland',
+      languages: ['zh', 'en'],
+      github: 'clarkdo',
+      twitter: 'ClarkDu_',
+      reposPersonal: [
+        'nuxt/*', 'nuxt-community/*'
       ]
     },
     {
@@ -887,14 +1012,14 @@ order: 803
     {
       name: 'John Leider',
       title: 'Vuetiful Framework Sculptor',
-      city: 'Orlando, FL, USA',
+      city: 'Fort Worth, TX, USA',
       languages: ['en'],
       github: 'vuetifyjs',
       twitter: 'vuetifyjs',
       work: {
-        role: 'Developer',
-        org: 'Fast Forward Academy',
-        orgUrl: 'https://fastforwardacademy.com'
+        role: 'CEO',
+        org: 'Vuetify LLC',
+        orgUrl: 'https://vuetifyjs.com'
       },
       reposPersonal: [
         'vuetifyjs/vuetify'
@@ -924,6 +1049,155 @@ order: 803
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
+    },
+    {
+      name: 'Anthony Gore',
+      title: '',
+      city: 'Sydney, Australia',
+      languages: ['en'],
+      github: 'anthonygore',
+      twitter: 'anthonygore',
+      work: {
+        role: 'Author',
+        org: 'Vue.js Developers',
+        orgUrl: 'https://vuejsdevelopers.com/'
+      },
+      links: [
+        'https://vuejsdevelopers.com'
+      ]
+    },
+    {
+      name: 'Ben Hong',
+      title: '',
+      city: 'Washington, DC, USA',
+      languages: ['en', 'zh'],
+      work: {
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab (Meltano)',
+      },
+      reposOfficial: [
+        'vuejs/events'
+      ],
+      github: 'bencodezen',
+      twitter: 'bencodezen',
+      links: [
+        'https://bencodezen.io/'
+      ]
+    },
+    {
+      name: 'EGOIST',
+      title: 'Build Tool Simplificator',
+      city: 'Chengdu, China',
+      languages: ['zh', 'en'],
+      github: 'egoist',
+      twitter: '_egoistlily',
+      reposPersonal: [
+        'poi', 'ream', 'vue-play'
+      ]
+    },
+    {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      city: 'Thessaloniki, Greece',
+      languages: ['el', 'en'],
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
+    },
+    {
+      name: 'Andrew Tomaka',
+      title: 'The Server Server',
+      city: 'East Lansing, MI, USA',
+      languages: ['en'],
+      github: 'atomaka',
+      twitter: 'atomaka',
+      reposOfficial: [
+        'vuejs/*'
+      ],
+      work: {
+        org: 'Michigan State University',
+        orgUrl: 'https://msu.edu/'
+      },
+      links: [
+        'https://atomaka.com/'
+      ]
+    },
+    {
+      name: 'Blake Newman',
+      title: 'Performance Specializer & Code Deleter',
+      city: 'London, UK',
+      languages: ['en'],
+      work: {
+        role: 'Software Engineer',
+        org: 'Attest',
+        orgUrl: 'https://www.askattest.com/'
+      },
+      github: 'blake-newman',
+      twitter: 'blakenewman',
+      links: [
+        'https://vuejs.london'
+      ]
+    },
+    {
+      name: 'Filip Rakowski',
+      title: 'eCommerce & PWA mastah',
+      city: 'Wrocław, Poland',
+      languages: ['pl', 'en'],
+      github: 'filrak',
+      twitter: 'filrakowski',
+      work: {
+        role: 'FED & Vue Storefront Co-founder',
+        org: 'Divante',
+        orgUrl: 'https://divante.co/'
+      },
+      reposPersonal: [
+        'DivanteLtd/vue-storefront', 'filrak/vue-offline'
+      ],
+      links: [
+        'https://vuestorefront.io'
+      ]
+    },
+    {
+      name: 'Gregg Pollack',
+      title: '',
+      city: 'Orlando, FL',
+      languages: ['en'],
+      github: 'gregg',
+      twitter: 'greggpollack',
+      work: {
+        role: 'Vue Instructor',
+        org: 'Vue Mastery',
+        orgUrl: 'https://www.vuemastery.com/'
+      },
+      links: [
+        'https://www.vuemastery.com',
+        'https://news.vuejs.org/'
+      ]
+    },
+    {
+      name: 'Adam Jahr',
+      title: '',
+      city: 'Orlando, FL',
+      languages: ['en'],
+      github: 'atomjar',
+      twitter: 'adamjahr',
+      work: {
+        role: 'Vue Instructor',
+        org: 'Vue Mastery',
+        orgUrl: 'https://www.vuemastery.com/'
+      },
+      links: [
+        'https://www.vuemastery.com',
+        'https://news.vuejs.org/'
+      ]
     }
   ]
 
@@ -938,7 +1212,7 @@ order: 803
         var work = this.profile.work
         var html = ''
         if (work.orgUrl) {
-          html += '<a href="' + work.orgUrl + '" target="_blank">'
+          html += '<a href="' + work.orgUrl + '" target="_blank" rel="noopener noreferrer">'
           if (work.org) {
             html += work.org
           } else {
@@ -992,7 +1266,7 @@ order: 803
                   'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' can give technical talks in your preferred language.' +
+                    ' bisa memberi pembicaraan teknis dalam bahasa Anda.' +
                   '"' +
                 '\>' + language + '</span>'
               )
@@ -1003,7 +1277,7 @@ order: 803
         )
       },
       hasSocialLinks: function () {
-        return this.profile.github || this.profile.twitter || this.profile.codepen
+        return this.profile.github || this.profile.twitter || this.profile.codepen || this.profile.linkedin
       }
     },
     methods: {
@@ -1037,6 +1311,7 @@ order: 803
     el: '#team-members',
     data: {
       team: team,
+      teamEmeriti: emeriti,
       partners: shuffle(partners),
       geolocationSupported: false,
       isSorting: false,

@@ -223,24 +223,32 @@ The `.passive` modifier is especially useful for improving performance on mobile
 
 ## Key Modifiers
 
-When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
+When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
-<!-- only call `vm.submit()` when the `keyCode` is 13 -->
+<!-- only call `vm.submit()` when the `key` is `Enter` -->
+<input v-on:keyup.enter="submit">
+```
+
+You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case.
+
+``` html
+<input v-on:keyup.page-down="onPageDown">
+```
+
+In the above example, the handler will only be called if `$event.key` is equal to `'PageDown'`.
+
+### Key Codes
+
+<p class="tip">The use of `keyCode` events [is deprecated](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) and may not be supported in new browsers.</p>
+
+Using `keyCode` attributes is also permitted:
+
+``` html
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the `keyCode`s is a hassle, so Vue provides aliases for the most commonly used keys:
-
-``` html
-<!-- same as above -->
-<input v-on:keyup.enter="submit">
-
-<!-- also works for shorthand -->
-<input @keyup.enter="submit">
-```
-
-Here's the full list of key modifier aliases:
+Vue provides aliases for the most commonly used key codes when necessary for legacy browser support:
 
 - `.enter`
 - `.tab`
@@ -252,26 +260,14 @@ Here's the full list of key modifier aliases:
 - `.left`
 - `.right`
 
+<p class="tip">A few keys (`.esc` and all arrow keys) have inconsistent `key` values in IE9, so these built-in aliases should be preferred if you need to support IE9.</p>
+
 You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
 // enable `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
-
-### Automatic Key Modifiers
-
-> New in 2.5.0+
-
-You can also directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case:
-
-``` html
-<input @keyup.page-down="onPageDown">
-```
-
-In the above example, the handler will only be called if `$event.key === 'PageDown'`.
-
-<p class="tip">A few keys (`.esc` and all arrow keys) have inconsistent `key` values in IE9, their built-in aliases should be preferred if you need to support IE9.</p>
 
 ## System Modifier Keys
 

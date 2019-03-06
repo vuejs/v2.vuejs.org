@@ -10,9 +10,9 @@ order: 105
 
 Earlier, we used the `is` attribute to switch between components in a tabbed interface:
 
-```html
+{% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
-```
+{% endcodeblock %}
 
 When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
 
@@ -235,7 +235,7 @@ Vue.component(
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+When using [local registration](components-registration.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
 
 ``` js
 new Vue({

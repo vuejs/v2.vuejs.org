@@ -17,6 +17,7 @@ this.$emit('myEvent')
 Listening to the kebab-cased version will have no effect:
 
 ```html
+<!-- Won't work -->
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
@@ -156,6 +157,8 @@ For convenience, we offer a shorthand for this pattern with the `.sync` modifier
 ```html
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
+
+<p class="tip">Note that <code>v-bind</code> with the <code>.sync</code> modifier does <strong>not</strong> work with expressions (e.g. <code>v-bind:title.sync="doc.title + '!'"</code> is invalid). Instead, you must only provide the name of the property you want to bind, similar to <code>v-model</code>.</p>
 
 The `.sync` modifier can also be used with `v-bind` when using an object to set multiple props at once:
 

@@ -3,6 +3,7 @@
 @import "_sidebar"
 @import "_sponsors-index"
 @import "_modal"
+@import "_themes-example"
 
 $width = 900px
 $space = 40px
@@ -26,7 +27,8 @@ body
     .logo
       display: none
 
-#hero
+#hero,
+#news
   padding: $space 40px 30px
   background-color: #fff
   .inner
@@ -70,6 +72,37 @@ body
       display: inline-block
       vertical-align: middle
       margin-right: 15px
+
+#news
+  padding: $space 20px 70px
+  text-align: center
+  p
+    margin-top: 10px
+  a
+    color: $green
+  .newsletter-form
+    position: relative
+    max-width: 550px
+    margin: 0 auto
+    box-sizing: border-box
+  .newsletter-input
+    width: 100%
+    box-sizing: border-box
+    padding: 10px 80px 10px 20px
+    height: 50px
+    border-radius: 50px
+    border: 1px solid #ccc
+    font-size: 16px
+    &:focus
+      outline: none
+      border-color: #42b983
+  .newsletter-button.button
+    position: absolute
+    padding: 4px 20px
+    margin: 0
+    height: calc(100% - 8px)
+    right: 4px
+    top: 4px
 
 #special-sponsor
   background-color: #fff

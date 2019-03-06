@@ -10,6 +10,11 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 
 <p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
 
+`v-model` internally uses different properties and emits different events for different input elements:
+- text and textarea elements use `value` property and `input` event;
+- checkboxes and radiobuttons use `checked` property and `change` event;
+- select fields use `value` as a prop and `change` as an event.
+
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
 ### Text
@@ -372,7 +377,7 @@ This is often useful, because even with `type="number"`, the value of HTML input
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
 
 ```html
 <input v-model.trim="msg">

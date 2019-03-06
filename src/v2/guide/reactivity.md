@@ -6,6 +6,8 @@ order: 601
 
 Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="noopener" title="Vue Reactivity">Watch a video explanation on Vue Mastery</a></div>
+
 ## How Changes Are Tracked
 
 When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to [getter/setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters) using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
@@ -117,4 +119,17 @@ Vue.component('example', {
     }
   }
 })
+```
+
+Since `$nextTick()` returns a promise, you can achieve the same as the above using the new [ES2016 async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax:
+
+``` js
+  methods: {
+    updateMessage: async function () {
+      this.message = 'updated'
+      console.log(this.$el.textContent) // => 'not updated'
+      await this.$nextTick()
+      console.log(this.$el.textContent) // => 'updated'
+    }
+  }
 ```

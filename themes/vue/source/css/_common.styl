@@ -48,7 +48,8 @@ em
 p
   word-spacing: 0.05em
 
-a.button
+a.button,
+input.button
   padding: 0.75em 2em
   border-radius: 2em
   display: inline-block
@@ -72,49 +73,6 @@ a.button
     background-color: #f6f6f6
     color: $light
     border-color: #f6f6f6
-
-.highlight
-  overflow-x: auto
-  background-color: $codebg
-  padding: .4em 0 0
-  line-height: 1.1em
-  border-radius: $radius
-  position: relative
-  table, tr, td
-    width: 100%
-    border-collapse: collapse
-    padding: 0
-    margin: 0
-  .gutter
-    width: 1.5em
-  .code
-    $code-line-height = 1.5em
-    pre
-      padding: 1.2em 1.4em
-      line-height: $code-line-height
-      margin: 0
-    .line
-      min-height: $code-line-height
-  &.html, &.js, &.bash, &.css
-    .code:before
-      position: absolute
-      top: 0
-      right: 0
-      color: #ccc
-      text-align: right
-      font-size: .75em
-      padding: 5px 10px 0
-      line-height: 15px
-      height: 15px
-      font-weight: 600
-  &.html .code:before
-    content: "HTML"
-  &.js .code:before
-    content: "JS"
-  &.bash .code:before
-    content: "Shell"
-  &.css .code:before
-    content: "CSS"
 
 #main
   position: relative
@@ -216,4 +174,3 @@ sup.beta.beta
   h2+p
     page-break-before: avoid
   a:link:after, a:visited:after { content:" [" attr(href) "] "; }
-  
