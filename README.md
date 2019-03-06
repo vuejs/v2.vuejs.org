@@ -13,10 +13,6 @@ Jika anda menggunakan NPM
 # npm
 $ npm install
 $ npm start # dev server di http://localhost:4000
-
-# yarn
-$ yarn
-$ yarn start # dev server di http:://localhost:4000
 ```
 
 Jika anda menggunakan Yarn
