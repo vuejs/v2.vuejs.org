@@ -18,6 +18,7 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 + Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silakan baca artikel [https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)
 + Setelah selesai menerjemahkan, silakan buat Pull Request ke branch `master` pada repositori ini.
 + Para pengurus dan teman-teman lain akan membantu melakukan review pada Pull Request kalian, bila semuanya sudah bagus maka dengan segera bisa di `merge` ke branch `master`.
++ Kami tidak memperkenankan kalian mengerjakan lebih dari satu halaman pada satu waktu untuk tetap menjaga fokus, pastikan selesaikan terlebih dahulu halaman yang sudah kalian ambil sebelumnya. Pastikan halaman tersebut selesai dan telah di merge, setelahnya baru kalian boleh mengambil issue lain.
 
 ## Kontribusi Lain
 
