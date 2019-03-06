@@ -8,9 +8,16 @@ Dokumentasi bisa diakses di halaman website [http://docs.vuejs.id](http://docs.v
 
 ## Proses Development
 
+Jika anda menggunakan NPM
 ``` bash
 $ npm install
 $ npm start # dev server at http://localhost:4000
+```
+
+Jika anda menggunakan Yarn
+``` bash
+$ yarn
+$ yarn start # dev server at http://localhost:4000
 ```
 
 ## Kontribusi
