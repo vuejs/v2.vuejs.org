@@ -15,7 +15,7 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 + Setiap halaman akan memiliki *issue* tersendiri, jika *issue* tersebut belum di *assign* ke seseorang berarti belum ada yang mengerjakan halaman tersebut.
 + Silakan tambahkan komentar pada *issue* dari halaman yang ingin Anda kerjakan. Pastikan mention salah satu pengurus. Mas [@mul14](https://github.com/mul14), [@nusendra](https://github.com/nusendra) atau [@mazipan](https://github.com/mazipan) untuk *assign* *issue* tersebut.
 + Branch yang menjadi panduan adalah branch `master`, tapi mungkin akan terjadi ketertinggalan dari branch `master` yang ada di repositori [vuejs/vuejs.org](https://github.com/vuejs/vuejs.org) karenanya kami lebih menyarankan untuk mengambil base dari branch `english-version`.
-+ Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silakan baca artikel https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/
++ Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silakan baca artikel [https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)
 + Setelah selesai menerjemahkan, silakan buat Pull Request ke branch `master` pada repositori ini.
 + Para pengurus dan teman-teman lain akan membantu melakukan review pada Pull Request kalian, bila semuanya sudah bagus maka dengan segera bisa di `merge` ke branch `master`.
 

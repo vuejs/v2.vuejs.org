@@ -57,7 +57,7 @@ order: 803
             <span class="sr-only">Jarak</span>
           </dt>
           <dd>
-            About
+            Sekitar
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' cukup dekat untuk menuju ke lokasi Anda.'"
@@ -142,7 +142,7 @@ order: 803
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Gagal membaca lokasi Anda.
+      Gagal mendapatkan lokasi anda
     </p>
 
     <p>
@@ -150,7 +150,7 @@ order: 803
     </p>
 
     <p v-if="userPosition" class="success">
-      Tim inti sudah diurutkan berdasarkan jarak lokasi dari Anda.
+      Tim inti sudah diurutkan berdasarkan jarak lokasi Anda.
     </p>
 
     <vuer-profile
@@ -199,7 +199,7 @@ order: 803
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Gagal membaca lokasi Anda.
+      Gagal mendapatkan lokasi anda.
     </p>
 
     <p>
@@ -207,7 +207,6 @@ order: 803
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
       Rekan komunitas telah di sortir berdasarkan kedekatan lokasi dari anda.
     </p>
 

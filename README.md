@@ -1,17 +1,22 @@
 # 🇮🇩 Dokumentasi resmi Vue.js dalam Bahasa Indonesia
 
-Halaman ini dibuat menggunakan [hexo](http://hexo.io/). Konten ditulis menggunakan Markdown dan diletakkan pada direktori `src`. *Pull requests* Anda sangat kami tunggu!
+Halaman ini dibuat menggunakan [hexo](http://hexo.io/). Konten ditulis menggunakan _Markdown_ dan diletakkan pada direktori `src`. _*Pull requests*_ Anda sangat kami tunggu!
 
 ## Website
 
-Dokumentasi bisa diakses di halaman website [http://docs.vuejs.id](http://docs.vuejs.id)
+Dokumentasi bisa diakses di halaman web situs [http://docs.vuejs.id](http://docs.vuejs.id)
 
 ## Proses Development
 
 Jika anda menggunakan NPM
 ``` bash
+# npm
 $ npm install
-$ npm start # dev server at http://localhost:4000
+$ npm start # dev server di http://localhost:4000
+
+# yarn
+$ yarn
+$ yarn start # dev server di http:://localhost:4000
 ```
 
 Jika anda menggunakan Yarn
@@ -22,11 +27,11 @@ $ yarn start # dev server at http://localhost:4000
 
 ## Kontribusi
 
-Silahkan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
+Silakan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
 
 ## Progres
 
-Silahkan lihat di halaman [Milestone](https://github.com/vuejs-id/docs/milestones) dan [Issues](https://github.com/vuejs-id/docs/issues).
+Silakan lihat di halaman [Milestone](https://github.com/vuejs-id/docs/milestones) dan [Issues](https://github.com/vuejs-id/docs/issues).
 
 ----
 
