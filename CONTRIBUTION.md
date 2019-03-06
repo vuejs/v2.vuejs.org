@@ -4,8 +4,8 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 
 ## Pengurus Utama
 
-+ [@mul14](https://github.com/mul14), Telegram: [@nusendra](https://t.me/@mul14)
-+ [@mazipan](https://github.com/mazipan), Telegram: [@nusendra](https://t.me/@mazipan)
++ [@mul14](https://github.com/mul14), Telegram: [@mul14](https://t.me/@mul14)
++ [@mazipan](https://github.com/mazipan), Telegram: [@mazipan](https://t.me/@mazipan)
 + [@nusendra](https://github.com/nusendra), Telegram: [@nusendra](https://t.me/@nusendra)
 
 ## Kontribusi Menerjemahkan
