@@ -11,6 +11,7 @@ base fork: subjs/vuejs.org branch: lang_id
 head fork: isatrio/vuejs.org branch: master
 ```
 
+
 ## Pengembangan
 
 ``` bash
