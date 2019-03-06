@@ -71,15 +71,15 @@ $ npm install vue
 
 ## CLI
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Vue menyediakan sebuah [CLI ofisial](https://github.com/vuejs/vue-cli) untuk perancah cepat Aplikasi Laman Tunggal. Ini menyediakan termasuk baterai membangun persiapan untuk alur kerja _frontend_ modern. Ini hanya memakan beberapa waktu untuk bangun dan berjalan dengan _hot-reload_, _lint-on-save_, dan _production-ready_ _builds_. Lihat [dokument Vue CLI](https://cli.vuejs.org) untuk lebih detil.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">CLI mengasumsikan pengetahuan sebelumnya tentang Node.js dan alat pembangun yang terkait. Jika Anda baru dalam Vue atau perangkat pembangun _front-end_, kami sangat menyarankan pergi ke <a href="./">petunjuk</a> tanpa perangkat pembangun apapun sebelum menggunakan CLI.</p>
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
 
 ## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+Di dalam [direktori `dist/` dari paket NPM](https://cdn.jsdelivr.net/npm/vue/dist/) Anda akan menemukan banyak perbedaan pembangun Vue.js. Ini gambaran umum dari perbedaan antara mereka:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
@@ -88,13 +88,13 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 | **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
 | **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### Istilah
 
-- **Full**: builds that contain both the compiler and the runtime.
+- **Full**: pembangun yang berisi semua _compiler_ dan _runtime_.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Compiler**: kode yang bertanggung jawab untuk mengkompilasi string templat menjadi fungsi render _Javascript_.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Runtime**: kode yang bertanggung jawab untuk membuat instan Vue, _rendering_, dan _patching_ DOM virtual, dll. Pada dasarnya semua kecuali _compiler_.
 
 - **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
