@@ -42,7 +42,7 @@ new Vue({
 ### Teks Multiline
 
 ``` html
-<span>Pesan dengan baris lebih dari satu :</span>
+<span>Pesan dari Multiline adalah:</span>
 <p style="white-space: pre-line;">{{ pesan }}</p>
 <br>
 <textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
@@ -50,7 +50,7 @@ new Vue({
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Pesan dengan baris lebih dari satu :</span>
+  <span>Pesan dari Multiline adalah:</span>
   <p style="white-space: pre-line;">{{ pesan }}</p>
   <br>
   <textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
@@ -209,7 +209,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Jika nilai awal ekspresi `v-model` Anda tidak cocok dengan salah satu opsi, Elemen `<select>` akan merender dalam keadaan "tidak dipilih". Di iOS ini akan menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak memecat perubahan aksi dalam kasus ini. Oleh karena itu disarankan menyediakan opsi yang dinonaktifkan dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
+<p class="tip">Jika nilai awal pada `v-model` Anda tidak cocok dengan opsi manapun, maka elemen `<select>` akan dirender ke dalam *state* "unselected". Di iOS, hal ini bisa menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak melakukan perubahan *event*. Oleh karena itu, lebih disarankan untuk menyediakan *disabled option* dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
 
 Select lebih dari satu (terikat ke *Array*):
 
@@ -291,7 +291,7 @@ new Vue({
 
 ## Binding Nilai
 
-Untuk radio, *checkbox* and *select options*, Nilai binding `v-model` biasanya berupa *string* statis ( atau *booleans* untuk *checkbox* ):
+Untuk *radio*, *checkbox* dan *select options*, Nilai binding `v-model` biasanya berupa *string* statis ( atau *booleans* untuk *checkbox* ):
 
 ``` html
 <!-- `picked` adalah sebuah string "a" ketika dicentang -->
@@ -306,7 +306,7 @@ Untuk radio, *checkbox* and *select options*, Nilai binding `v-model` biasanya b
 </select>
 ```
 
-Namun terkadang kita mungkin ingin mengikat nilai ke properti dinamis pada Vue instance. Kita dapat menggunakan `v-bind` untuk mencapai itu. Selain itu, menggunakan `v-bind` memungkinkan kita untuk mengikat nilai *input* ke nilai *non-string*.
+Namun terkadang kita mungkin ingin *binding* nilai ke properti dinamis pada Vue instance. Kita bisa menggunakan `v-bind` untuk melakukan hal itu. Selain itu, menggunakan `v-bind` memungkinkan kita untuk *binding* nilai *input* ke nilai *non-string*.
 
 ### Checkbox
 
@@ -326,7 +326,7 @@ vm.toggle === 'yes'
 vm.toggle === 'no'
 ```
 
-<p class="tip">Atribut `true-value` dan `false-value` tidak memengaruhi atribut *input* `value`, Karena browser tidak menyertakan kotak yang tidak dicentang dalam pengiriman formulir. Untuk menjamin bahwa salah satu dari dua nilai dikirimkan dalam bentuk (misalnya "Ya" or "Tidak"), Gunakan radio sebagai gantinya.</p>
+<p class="tip">Atribut `true-value` dan `false-value` tidak memengaruhi atribut *input* `value`, Karena *browser* tidak menampilkan kotak yang tidak dicentang (kotak centangan yang kosong) ketika pengisian formulir. Untuk menjamin dan memastikan bahwa salah satu dari dua nilai dikirimkan dalam bentuk (misalnya "Ya" atau "Tidak"), Gunakan *radio* sebagai gantinya.</p>
 
 ### Radio
 
@@ -357,7 +357,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-Secara default, `v-model` menyinkronkan *input* dengan data setelah setiap aksi `input` (dengan pengecualian komposisi IME seperti [dinyatakan di atas](#vmodel-ime-tip)). Anda dapat menambahkan `lazy` *modifier* sebagai gantinya disinkronkan setelah aksi `change`:
+Secara *default*, `v-model` menyinkronkan *input* dengan data setelah setiap aksi `input` (dengan pengecualian komposisi IME seperti [dinyatakan di atas](#vmodel-ime-tip)). Anda dapat menambahkan `lazy` *modifier* sebagai gantinya disinkronkan setelah aksi `change`:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
