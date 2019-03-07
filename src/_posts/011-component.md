@@ -4,23 +4,23 @@ date: 2014-12-08 15:02:14
 tags:
 ---
 
-<p class="tip">Note: this post contains information for the outdated 0.11 version. Please refer to the [0.12 release notes](https://github.com/yyx990803/vue/releases) for the changes in the API.</p>
+<p class="tip">Note: post ini berisi informasi untuk versi lama 0.11. Silahkan lihat [0.12 release notes](https://github.com/yyx990803/vue/releases) untuk melihat perubahan pada API.</p>
 
-The release of 0.11 introduced [many changes](https://github.com/yyx990803/vue/blob/master/changes.md), but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.
+Perilisan dari 0.11 memperkenalkan [banyak perubahan](https://github.com/yyx990803/vue/blob/master/changes.md), tapi yang paling penting adalah bagaimana cara ruang lingkup komponen baru bekerja. Sebelumnya di 0.10.x, komponen mempunyai ruang linkup yang diwariskan sebagai settingan awal. Itu berarti di sebuah template child komponen kalian bisa menghubungkan properti ruang lingkup parent. Ini biasanya berakhir pada komponen dengan hubungan erat, dimana child komponen mengira-ngira pengetahuan dari properti apa yang ada di ruang lingkup parent. Ada juga kemungkinan untuk properti ruang lingkup parent tidak sengaja merujuk di komponen child.
 
-<!-- more -->
+<!-- lebih banyak -->
 
-### Isolated Scope and Data Passing
+### Isolasi Ruang Lingkup dan Pengiriman Data
 
-Starting in 0.11, all child components have isolated scope by default, and the recommended way to control component data access is via [Explicit Data Passing](/guide/components.html#Explicit_Data_Passing) using [`v-with`](/api/directives.html#v-with) or [`paramAttributes`](/api/options.html#paramAttributes).
+Dimulai di 0.11, semua komponen child punya ruang lingkup terisolasi sebagai settingan awal, dan cara yang disarankan untuk mengendalikan kompenen akses data adalah lewat [Pengiriman Data Jelas](/guide/components.html#Explicit_Data_Passing) menggunakan [`v-with`](/api/directives.html#v-with) atau [`paramAttributes`](/api/options.html#paramAttributes).
 
-`paramAttributes` enables us to write Web Component style templates:
+`paramAttributes` memperbolehkan kita untuk menulis template komponen tampilan web:
 
 ``` js
 Vue.component('my-component', {
   paramAttributes: ['params'],
   compiled: function () {
-    console.log(this.params) // passed from parent
+    console.log(this.params) // diwariskan dari parent
   }
 })
 ```
@@ -29,33 +29,33 @@ Vue.component('my-component', {
 <my-component params="{{params}}"></my-component>
 ```
 
-### Where Does It Belong?
+### Darimana Asalnya?
 
-Previously in 0.10, all directives on a component's container element are compiled in the child component's scope. Because it inherited parent scope, this worked in most situations. Starting in 0.11.1, we want to provide a cleaner separation between component scopes. The rule of thumbs is: if something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope. For example:
+Sebelumnya di 0.10, semua arahan pada elemen wadah komponen dikompilasi di komponen ruang lingkup child. Karena mewariskan ruang lingkup parent, hal ini sering bekerja di beberapa situasi. Dimulai di 0.11.1, kita ingin menyediakan pemisahan yang lebih rapi antara komponen ruang lingkup. Peraturan thumbs adalah: jika sesuatu muncul di template parent, itu akan dikompilasi di ruang lingkup parent; jika itu muncul di template child, itu akan dikompilasi di ruang lingkup child. Sebagai contoh:
 
 ``` html
-<!-- parent template -->
+<!-- template parent -->
 <div v-component="child" v-on="click:onParentClick">
-  <p>{{parentMessage}}</p>
+  <p>{{Pesanparent}}</p>
 </div>
 ```
 
 ``` html
-<!-- child template, with replace: true -->
+<!-- template child, dengan pergantian: true -->
 <div v-on="click:onChildClick">
-  <h1>{{childMessage}}</h1>
+  <h1>{{Pesanchild}}</h1>
   <content></content>
 </div>
 ```
 
-Everything in the parent template will be compiled in the parent's scope, including the content that's going to be inserted into the child component.
+Segala hal yang ada di template parent akan dikompilasi di ruang lingkup parent, termasuk konten yang akan dimasukkan ke dalam komponen child.
 
-The only exception to the rule is `v-with` (and `paramAttributes` which compiles down to `v-with`), which works in both places - so you don't need to worry about it too much.
+Satu-satunya pengecualian pada peraturannya adalah `v-with` (dan `paramAttributes` yang dikompilasi menjadi `v-with`), dimana bekerja di kedua tempat - jadi kalian tidak perlu terlalu mencemaskannya.
 
-### Cleaner Event Communication
+### Komunikasi Event yang Lebih Rapi
 
-Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It's also possible to trigger undesired listeners further up the chain if we do not cancel the event.
+Sebelumnya cara standar untuk sebuah komponen child untuk berkomunikasi dengan parent adalah lewat event pelepasan. Namun, dengan cara ini, pendengar event di komponen parent tidak terjamin untuk hanya mendengarkan komponen child yang diinginkan. Dan juga berkemungkinan untuk memicu pendengar yang tidak diinginkan masuk lebih dalam jika kita tidak membatalkan the event.
 
-The most common use case is for a parent to react to the events from a specific, direct child component. So in 0.11.4, [a new directive `v-events`](/api/directives.html#v-events) has been introduced to enable exactly this behavior.
+Kasus penggunaan yang paling umum adalah untuk parent bereaksi ke events dari sebuah spesifik, komponen child langsung. Jadi di 0.11.4, [arahan baru `v-events`](/api/directives.html#v-events) telah diperkenalkan untuk mengaktifkan perilaku ini.
 
-0.11.4 has already been released, go try it out!
+0.11.4 sudah rilis, cobalah!
