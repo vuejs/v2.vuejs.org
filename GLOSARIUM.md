@@ -46,8 +46,7 @@
 
 ## F
 
-File: Berkas
-
+- File: Berkas
 - Framework: Kerangka kerja
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -86,7 +85,7 @@ File: Berkas
 
 - Library: Pustaka
 - Lifecycle: Siklus Hidup
-- Listener: Pemantau (pada beberapa konteks mungkin tidak cocok, bisa dipertimbangkan untuk tetap menggunakan kata asli)
+- Listener: Pemantau (pada beberapa konteks mungkin tidak cocok, bisa dipertimbangkan menggunakan *listener*)
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -143,7 +142,7 @@ File: Berkas
 
 ## T
 
-- Template: templat
+- Template: Templat
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
