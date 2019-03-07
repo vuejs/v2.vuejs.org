@@ -136,6 +136,7 @@
 
 - Style Guide: Panduan Gaya
 - Single Page Application:	Aplikasi *Single-Page*
+- Statement: Statemen
 - Syntax: Sintaksis
 
 
