@@ -10,7 +10,7 @@ Kami telah membuat panduan khusus untuk membangun aplikasi Vue yang bisa dirende
 
 ## Nuxt.js
 
-Mengkonfigurasi dengan benar semua aspek yang dibahas dari aplikasi yang disediakan oleh server dapat menjadi tugas yang menakutkan. Untungnya, ada proyek komunitas luar biasa yang bertujuan untuk mempermudah semua ini: [Nuxt.js](https://nuxtjs.org/). Nuxt.js adalah kerangka kerja tingkat tinggi yang dibangun di atas ekosistem Vue yang memberikan pengalaman pengembangan yang sangat efisien untuk menulis aplikasi Vue secara universal. Lebih baik lagi, Anda bahkan dapat menggunakannya sebagai generator situs statis (dengan halaman yang ditulis sebagai satu file komponen Vue)! Kami sangat merekomendasikan untuk mencobanya.
+Mengkonfigurasi aplikasi *server-rendered* di tingkat produksi yang mencakup keseluruhan aspek bisa menjadi tugas yang sangat menakutkan. Untungnya, ada proyek dari komunitas yang luar biasa dengan tujuan untuk mempermudah semua tugas ini: [Nuxt.js](https://nuxtjs.org/). Nuxt.js adalah *framework* tingkat tinggi yang dibangun di atas ekosistem Vue mampu memberikan pengalaman pengembangan yang sangat efisien untuk membangun aplikasi Vue secara universal. bahkan bisa lebih baik lagi, Anda bisa menggunakannya sebagai *generator* situs statis (dengan halaman yang ditulis menggunakan satu file komponen Vue saja)! Kami sangat merekomendasikan Anda untuk mencobanya.
 
 ## Kerangka Kerja Quasar di Sisi Server (SSR) + Applikasi nan Progresif (PWA)
 
