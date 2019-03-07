@@ -134,17 +134,20 @@ File: Berkas
 
 - Style Guide: Panduan Gaya
 - Single Page Application:	Aplikasi *Single-Page*
+- Syntax: Sintaksis
 
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## T
 
+- Template: templat
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## U
 
+- Update:	Pembaruan
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
