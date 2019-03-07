@@ -82,4 +82,4 @@ Filter adalah fungsi JavaScript, oleh karena itu mereka dapat mengambil argumen:
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Di sini `filterA` didefinisikan sebagai fungsi yang mengambil tiga argumen. Nilai `message` yang akan dilanjutkan ke argumen pertama. String `'arg1'` yang akan di lanjutkan ke `filterA` sebagian argumen kedua, dan nilai dari ekspresi `arg2` akan dievaluasi dan diteruskan sebagai argumen ketiga.
+Di sini `filterA` didefinisikan sebagai fungsi yang mengambil tiga argumen. Nilai `message` yang akan dilanjutkan ke argumen pertama. String `'arg1'` yang akan di lanjutkan ke `filterA` sebagian argumen kedua, dan nilai dari ekspresi `arg2` yang akan dievaluasi dan diteruskan sebagai argumen ketiga.
