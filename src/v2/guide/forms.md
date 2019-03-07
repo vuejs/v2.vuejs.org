@@ -6,16 +6,16 @@ order: 10
 
 ## Penggunaan Dasar
 
-Anda bisa menggunakan `v-model` untuk membuat binding data dua arah di *form input*, *textarea*, dan *select elements*. Hal tersebut secara otomatis akan memilih cara yang tepat untuk memperbarui elemen berdasarkan tipe *input*. Meskipun agak ajaib, `v-model` pada dasarnya adalah *syntax sugar* untuk memperbarui data setiap ada aksi *input* oleh pengguna, Ditambah perawatan khsusus untuk beberapa *edge cases*.
+Anda bisa menggunakan `v-model` untuk membuat *data binding* dua arah di *form input*, *textarea*, dan *select elements*. Hal tersebut secara otomatis akan memilih cara yang tepat untuk memperbarui elemen berdasarkan tipe *input*. Meskipun agak ajaib, `v-model` pada dasarnya adalah *syntax sugar* untuk memperbarui data setiap ada aksi *input* oleh pengguna, Ditambah perawatan khsusus untuk beberapa *edge cases*.
 
-<p class="tip">`v-model` akan mengabaikan atribut `value`, `checked` atau `selected` awal yang ditemukan pada elemen *form* apapun. Itu akan selalu memperlakukan data *Vue Istance* sebagai sumber kebenaran. Anda harus mendeklarasikan nilai awal pada sisi *Javascript*, Di dalam opsi `data` dari komponen anda.</p>
+<p class="tip">`v-model` akan mengabaikan atribut `value`, `checked` atau `selected` awal yang ditemukan pada elemen *form* manapun. Hal tersebut akan selalu memperlakukan data *Vue Istance* sebagai *source of truth*. Anda harus mendeklarasikan nilai awal pada sisi *Javascript*, Di dalam opsi `data` dari komponen Anda.</p>
 
-`v-model` secara internal menggunakan properti yang berbeda dan memancarkan kejadian yang berbeda untuk elemen *input* yang berbeda:
+`v-model` secara internal menggunakan properti yang berbeda dan melakukan *emits* pada suatu *event* yang berbeda untuk elemen *input* yang berbeda:
 - Elemen *text* dan *textarea* menggunakan properti `value` dan aksi `input`;
 - *checkboxes* dan *radiobuttons* menggunakan properti `checked` dan aksi `change`;
-- *select fields* menggunakan `value` sebagai penyangga dan `change` sebagai sebuah aksi.
+- *select fields* menggunakan `value` sebagai *prop* dan `change` sebagai sebuah aksi.
 
-<p class="tip" id="vmodel-ime-tip">Untuk bahasa yang memerlukan [IME](https://en.wikipedia.org/wiki/Input_method) (Cina,Jepang,Korea dll), Anda akan melihat bahwa `v-model` tidak diperbarui selama komposisi IME. Jika anda ingin melayani pembaruan ini juga, Gunakan aksi `input` sebagai gantinya.</p>
+<p class="tip" id="vmodel-ime-tip">Jika Anda memakai bahasa [IME](https://en.wikipedia.org/wiki/Input_method) (Cina,Jepang,Korea dll), Anda akan melihat bahwa `v-model` tidak diperbarui selama komposisi IME. Jika Anda ingin melayani pembaruan ini juga, Gunakan aksi `input` sebagai gantinya.</p>
 
 ### Teks
 
@@ -209,7 +209,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Jika nilai awal ekspresi `v-model` anda tidak cocok dengan salah satu opsi, Elemen `<select>` akan merender dalam keadaan "tidak dipilih". Di iOS ini akan menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak memecat perubahan aksi dalam kasus ini. Oleh karena itu disarankan menyediakan opsi yang dinonaktifkan dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
+<p class="tip">Jika nilai awal ekspresi `v-model` Anda tidak cocok dengan salah satu opsi, Elemen `<select>` akan merender dalam keadaan "tidak dipilih". Di iOS ini akan menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak memecat perubahan aksi dalam kasus ini. Oleh karena itu disarankan menyediakan opsi yang dinonaktifkan dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
 
 Select ganda (terikat ke *Array*):
 
@@ -367,17 +367,17 @@ Secara default, `v-model` menyinkronkan *input* dengan data setelah setiap aksi 
 
 ### `.number`
 
-Jika anda ingin *input* pengguna diketik secara otomatis sebagai angka, Anda dapat menambahkan `number` *modifier* ke *input* yang dieklola `v-model` anda:
+Jika Anda ingin *input* pengguna diketik secara otomatis sebagai angka, Anda dapat menambahkan `number` *modifier* ke *input* yang dieklola oleh `v-model` Anda:
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-Ini sering berguna, Karena bahkan dengan `type="number"`, Nilai elemen *input* HTML selalu mengembalikan sebuah *string*. Jika nilai tidak dapat diuraikan dengan `parseFloat()`, Maka nilai asli dikembalikan.
+Hal ini seringkali berguna, Karena, bahkan hanya dengan `type="number"`, nilai elemen *input* HTML selalu dikembalikan dalam bentuk *string*. Jika nilai tidak dapat diuraikan dengan `parseFloat()`, maka nilai asli yang akan dikembalikan.
 
 ### `.trim`
 
-Jika anda ingin spasi kosong dari *input*-an pengguna di pangkas secara otomatis, Anda dapat menambahkan `trim` *modifier* ke *input* yang dikelola `v-model` anda:
+Jika Anda ingin menyisipkan spasi kosong dari *input*-an pengguna yang bisa di pangkas secara otomatis, Anda bisa menambahkan `trim` *modifier* ke *input* yang dikelola oleh `v-model` Anda:
 
 ```html
 <input v-model.trim="msg">
@@ -385,6 +385,6 @@ Jika anda ingin spasi kosong dari *input*-an pengguna di pangkas secara otomatis
 
 ## `v-model` dengan Komponen
 
-> Jika anda belum terbiasa dengan komponen Vue, Anda dapat melewati ini untuk saat ini.
+> Jika Anda belum terbiasa dengan komponen Vue, Anda boleh melewati bagian ini.
 
-Jenis *input* bawaan HTML tidak akan selalu memenuhi kebutuhan anda. Untungnya, Komponen Vue memungkinkan anda membangun *input* yang dapat digunakan kembali dengan perilaku yang sepenuhnya disesuaikan. Input ini bahkan bekerja dengan `v-model`! Untuk mempelajari lebih lanjut, baca tentang [input khsusus](components.html#Using-v-model-on-Components) di panduan komponen.
+Jenis *input* bawaan HTML tidak akan selalu memenuhi kebutuhan Anda. Untungnya, Komponen Vue memungkinkan Anda untuk membuat *input* yang bisa digunakan kembali dengan perilaku yang sepenuhnya bisa disesuaikan. Input ini bahkan bisa bekerja dengan `v-model`! Untuk mempelajari lebih lanjut, baca tentang [input khsusus](components.html#Using-v-model-on-Components) di panduan komponen.
