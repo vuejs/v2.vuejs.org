@@ -20,6 +20,8 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 + Para pengurus dan teman-teman lain akan membantu melakukan review pada Pull Request kalian, bila semuanya sudah bagus maka dengan segera bisa di `merge` ke branch `master`.
 + Kami tidak memperkenankan kalian mengerjakan lebih dari satu halaman pada satu waktu untuk tetap menjaga fokus, pastikan selesaikan terlebih dahulu halaman yang sudah kalian ambil sebelumnya. Pastikan halaman tersebut selesai dan telah di merge, setelahnya baru kalian boleh mengambil issue lain.
 
+> Note : Usahakan ketika menerjemahkan menggunakan kalimat Indonesia yang natural (Mudah dibaca, tidak seperti terjemahan mentah yang kaku ala Google translate)
+
 ## Kontribusi Lain
 
 Bila kalian tidak terbiasa dengan proses menerjemahkan dengan Git, mungkin akan mengalami kesulitan dalam mengikuti `git flow` yang kita tentukan. Jangan khawatir, kalian masih bisa berkontribusi tanpa harus ikut menerjemahkan sebuah halaman. Berikut beberepa kontribusi yang bisa kalian berikan pada kami:
