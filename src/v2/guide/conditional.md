@@ -71,7 +71,7 @@ Sama seperti `v-else`, sebuah elemen `v-else-if` harus berada sesudah `v-if` ata
 
 ### Mengendalikan Elemen Reusable dengan `key`
 
-Vue mencoba me-*render* elemen se-efisien mungkin, lebih sering memakainya kembali dibandingkan melakukan *rendering* dari awal. Itulah mengapa Vue sangat cepat, dimana hal ini memiliki banyak manfaat. Sebagai contoh, jika Anda mengizinkan pengguna untuk beralih antar jenis *login*:
+Vue mencoba me-*render* elemen seefisien mungkin, lebih sering memakainya kembali dibandingkan melakukan *rendering* dari awal. Itulah mengapa Vue sangat cepat, dimana hal ini memiliki banyak manfaat. Sebagai contoh, jika Anda mengizinkan pengguna untuk beralih antar jenis *login*:
 
 ``` html
 <template v-if="loginType === 'username'">
