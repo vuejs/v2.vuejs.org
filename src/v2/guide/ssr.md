@@ -4,7 +4,7 @@ type: guide
 order: 503
 ---
 
-## Panduan Rendering di Sisi Server (SSR)
+## Panduan Lengkap Rendering di Sisi Server (SSR)
 
 Kami telah membuat panduan untuk membuat aplikasi Vue yang dibuat di server. Ini adalah panduan yang sangat mendalam bagi mereka yang akrab dengan pengembangan Vue di sisi klien, pengembangan Node.js di sisi server dan webpack. Lihat di [ssr.vuejs.org](https://ssr.vuejs.org/).
 
