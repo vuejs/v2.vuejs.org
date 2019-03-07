@@ -64,6 +64,7 @@
 
 ## I
 
+- Import: Impor
 - Index: Indeks
 - Instance: *Instance*
 - Interpolation: Interpolasi
