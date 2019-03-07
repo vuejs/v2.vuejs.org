@@ -77,6 +77,8 @@ File: Berkas
 
 ## K
 
+- Key: Key (font miring)
+
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## L
