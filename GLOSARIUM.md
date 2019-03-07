@@ -122,7 +122,9 @@ File: Berkas
 ## R
 
 - Render: Render (font miring)
+- Return: Mengembalikan
 - Router: Router (font miring)
+
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
