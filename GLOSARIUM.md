@@ -64,6 +64,7 @@ File: Berkas
 
 ## I
 
+- Index: Indeks
 - Instance: Instance (font miring)
 - Interpolation: Interpolasi
 
