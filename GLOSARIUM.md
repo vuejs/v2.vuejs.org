@@ -65,7 +65,7 @@ File: Berkas
 ## I
 
 - Index: Indeks
-- Instance: Instance (font miring)
+- Instance: *Instance*
 - Interpolation: Interpolasi
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -77,7 +77,7 @@ File: Berkas
 
 ## K
 
-- Key: Key (font miring)
+- Key: *Key*
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -103,6 +103,7 @@ File: Berkas
 
 ## O
 
+- Object: Objek
 - Option: Opsi (beberapa konteks harus diartikan "Pilihan")
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -122,9 +123,9 @@ File: Berkas
 
 ## R
 
-- Render: Render (font miring)
+- Render: *Render*
 - Return: Mengembalikan
-- Router: Router (font miring)
+- Router: *Router*
 
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -132,6 +133,7 @@ File: Berkas
 ## S
 
 - Style Guide: Panduan Gaya
+- Single Page Application:	Aplikasi *Single-Page*
 
 
 [⬆️](#navigasi-berdasarkan-abjad)
