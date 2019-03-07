@@ -12,6 +12,7 @@
 
 ## A
 
+- Argument: Argumen
 - Attribute: Atribut
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -24,6 +25,7 @@
 
 ## C
 
+- Child: Anak
 - Component: Komponen
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -92,6 +94,7 @@ File: Berkas
 
 ## N
 
+- Nested: Bersarang
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -102,6 +105,8 @@ File: Berkas
 
 ## P
 
+- Parent: Induk
+- Property: Properti
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
