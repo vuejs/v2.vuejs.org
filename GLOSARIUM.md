@@ -40,6 +40,7 @@
 
 - Element: Elemen
 - Expression: Ekspresi
+- Event: *Event*
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -92,6 +93,7 @@ File: Berkas
 ## M
 
 - Modifier: Pengubah
+- Mount: Pasang
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
