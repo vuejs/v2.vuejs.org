@@ -20,20 +20,20 @@ Anda bisa menggunakan `v-model` untuk membuat *data binding* dua arah di *form i
 ### Teks
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="pesan" placeholder="edit saya">
+<p>Pesan nya adalah : {{ pesan }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="pesan" placeholder="edit saya">
+  <p>Pesannya adalah: {{ pesan }}</p>
 </div>
 <script>
 new Vue({
   el: '#example-1',
   data: {
-    message: ''
+    pesan: ''
   }
 })
 </script>
@@ -42,24 +42,24 @@ new Vue({
 ### Teks Multiline
 
 ``` html
-<span>Multiline message is:</span>
-<p style="white-space: pre-line;">{{ message }}</p>
+<span>Pesan dengan baris lebih dari satu :</span>
+<p style="white-space: pre-line;">{{ pesan }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
-  <p style="white-space: pre-line;">{{ message }}</p>
+  <span>Pesan dengan baris lebih dari satu :</span>
+  <p style="white-space: pre-line;">{{ pesan }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
 </div>
 <script>
 new Vue({
   el: '#example-textarea',
   data: {
-    message: ''
+    pesan: ''
   }
 })
 </script>
@@ -96,14 +96,14 @@ new Vue({
 
 ``` html
 <div id='example-3'>
-  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <input type="checkbox" id="jack" value="Jack" v-model="checked">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <input type="checkbox" id="john" value="John" v-model="checked">
   <label for="john">John</label>
-  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <input type="checkbox" id="mike" value="Mike" v-model="checked">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nama yang di centang : {{ checked }}</span>
 </div>
 ```
 
@@ -111,21 +111,21 @@ new Vue({
 new Vue({
   el: '#example-3',
   data: {
-    checkedNames: []
+    checked: []
   }
 })
 ```
 
 {% raw %}
 <div id="example-3" class="demo">
-  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <input type="checkbox" id="jack" value="Jack" v-model="checked">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <input type="checkbox" id="john" value="John" v-model="checked">
   <label for="john">John</label>
-  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <input type="checkbox" id="mike" value="Mike" v-model="checked">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nama yang di centang : {{ checked }}</span>
 </div>
 <script>
 new Vue({
@@ -146,7 +146,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>Yang dipilih: {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -156,7 +156,7 @@ new Vue({
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>Yang dipilih : {{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -179,7 +179,7 @@ new Vue({
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih : {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -197,7 +197,7 @@ new Vue({
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -220,7 +220,7 @@ Select lebih dari satu (terikat ke *Array*):
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -230,7 +230,7 @@ Select lebih dari satu (terikat ke *Array*):
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -250,7 +250,7 @@ Opsi dinamis dengan `v-for`:
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih : {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -272,7 +272,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -343,7 +343,6 @@ vm.pick === vm.a
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
