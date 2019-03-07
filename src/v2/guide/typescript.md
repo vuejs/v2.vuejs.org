@@ -50,7 +50,7 @@ vue create my-project-name
 
 ### Dukungan Editor
 
-Untuk mengembangkan aplikasi Vue dengan TypeScript, kami sangat menyarankan Anda menggunakan [Visual Studio Code](https://code.visualstudio.com/), yang menyediakan dukungan luar biasa untuk TypeScript. Jika Anda menggunakan [komponen file tunggal](./single-file-components.html) (SFC), gunakan [ekstensi Vetur](https://github.com/vuejs/vetur) yang mengagumkan, yang menyediakan penyaranan TypeScript di dalam SFC and banyak fitur luar biasa lainnya.
+Untuk mengembangkan aplikasi Vue dengan TypeScript, kami sangat menyarankan Anda menggunakan [Visual Studio Code](https://code.visualstudio.com/), yang menyediakan dukungan luar biasa untuk TypeScript. Jika Anda menggunakan [komponen file tunggal](./single-file-components.html) (SFC), gunakan [ekstensi Vetur](https://github.com/vuejs/vetur) yang mengagumkan, yang menyediakan penyaranan TypeScript di dalam SFC dan banyak fitur luar biasa lainnya.
 
 [WebStorm](https://www.jetbrains.com/webstorm/) juga menyediakan dukungan yang tak kalah menakjubkan untuk TypeScript maupun Vue.
 
