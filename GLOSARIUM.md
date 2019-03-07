@@ -100,6 +100,7 @@ File: Berkas
 
 ## O
 
+- Option: Opsi (beberapa konteks harus diartikan "Pilihan")
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
