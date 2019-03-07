@@ -25,9 +25,9 @@ $ yarn start # dev server at http://localhost:4000
 
 Silakan lihat di halaman [Panduan Berkontribusi](CONTRIBUTION.md)
 
-## Kamus Perbendaraan Istilah
+## Kamus Perbendaharaan Istilah
 
-Silakan lihat di halaman [Kamus Perbendaraan Istilah](GLOSARIUM.md)
+Silakan lihat di halaman [Kamus Perbendaharaan Istilah](GLOSARIUM.md)
 
 ## Progres
 
