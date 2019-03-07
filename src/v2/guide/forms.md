@@ -92,7 +92,7 @@ new Vue({
 </script>
 {% endraw %}
 
-*Checkboxes* ganda, Terikat ke *Array* yang sama:
+*Checkboxes* lebih dari satu, Terikat ke *Array* yang sama:
 
 ``` html
 <div id='example-3'>
@@ -211,7 +211,7 @@ new Vue({
 
 <p class="tip">Jika nilai awal ekspresi `v-model` Anda tidak cocok dengan salah satu opsi, Elemen `<select>` akan merender dalam keadaan "tidak dipilih". Di iOS ini akan menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak memecat perubahan aksi dalam kasus ini. Oleh karena itu disarankan menyediakan opsi yang dinonaktifkan dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
 
-Select ganda (terikat ke *Array*):
+Select lebih dari satu (terikat ke *Array*):
 
 ``` html
 <select v-model="selected" multiple>
