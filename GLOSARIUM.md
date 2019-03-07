@@ -80,11 +80,13 @@ File: Berkas
 
 - Library: Pustaka
 - Lifecycle: Siklus Hidup
+- Listener: Pemantau (pada beberapa konteks mungkin tidak cocok, bisa dipertimbangkan untuk tetap menggunakan kata asli)
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## M
 
+- Modifier: Pengubah
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
