@@ -19,12 +19,14 @@
 
 ## B
 
+- Bind: *Bind*
 - Browser: Peramban
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## C
 
+- Chain: Rantai (atau bisa dengan tetap *Chain*)
 - Child: Anak
 - Component: Komponen
 - Console: Konsol
@@ -33,6 +35,7 @@
 
 ## D
 
+- Define: Mendefinisikan
 - Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
 - Directive: Direktif
 
@@ -51,6 +54,7 @@
 
 - File: Berkas
 - Framework: Kerangka kerja
+- Function: *Function*
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -161,7 +165,9 @@
 
 ## V
 
+- Value: Nilai
 - Virtual DOM: DOM Virtual
+- 
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
