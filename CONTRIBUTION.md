@@ -7,6 +7,7 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 + [@mul14](https://github.com/mul14), Telegram: [@mul14](https://t.me/@mul14)
 + [@mazipan](https://github.com/mazipan), Telegram: [@mazipan](https://t.me/@mazipan)
 + [@nusendra](https://github.com/nusendra), Telegram: [@nusendra](https://t.me/@nusendra)
++ [@isatrio](https://github.com/isatrio), Telegram: [@isatrio](https://t.me/@isatrio)
 
 ## Kontribusi Menerjemahkan
 
@@ -18,6 +19,7 @@ Beberapa panduan yang harus diikuti bila ingin ikut berkontribusi pada proses pe
 + Buat branch dari base branch dengan nama halaman yang kalian terjemahkan, misalkan `introduction`. Bila belum mengerti bagaimana membuat branch silakan baca artikel [https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)
 + Pastikan kalian sudah membaca [kamus berbagai istilah asing](GLOSARIUM.md) yang kami kumpulkan. Kemungkinan besar kalian akan bertemu dengan berbagai kata tersebut, ada baiknya kalau kalian mengenalnya terlebih dahulu.
 + Setelah selesai menerjemahkan, silakan buat Pull Request ke branch `master` pada repositori ini.
++ Jangan lupa untuk menyertakan komentar nomor Pull Request yang dibuat lewat komentar di dalam issue agar saling terkait antara Issue dan Pull Request.
 + Para pengurus dan teman-teman lain akan membantu melakukan review pada Pull Request kalian, bila semuanya sudah bagus maka dengan segera bisa di `merge` ke branch `master`.
 + Kami tidak memperkenankan kalian mengerjakan lebih dari satu halaman pada satu waktu untuk tetap menjaga fokus, pastikan selesaikan terlebih dahulu halaman yang sudah kalian ambil sebelumnya. Pastikan halaman tersebut selesai dan telah di merge, setelahnya baru kalian boleh mengambil issue lain.
 
