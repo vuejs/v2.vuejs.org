@@ -26,6 +26,7 @@
 
 ## C
 
+- Case: Aturan Huruf
 - Chain: Rantai (atau bisa dengan tetap *Chain*)
 - Child: Anak
 - Component: Komponen
