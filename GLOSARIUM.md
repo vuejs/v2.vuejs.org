@@ -120,6 +120,7 @@
 
 ## P
 
+- Passing: Melempar
 - Parent: Induk
 - Project: Proyek
 - Property: Properti
