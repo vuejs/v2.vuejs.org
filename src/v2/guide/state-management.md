@@ -4,7 +4,7 @@ type: guide
 order: 502
 ---
 
-## Implementasi Seperti Flux Resmi
+## Implementasi Flux-Like (Sejenis Flux) Resmi
 
 Aplikasi besar bisa tumbuh menjadi sangat kompleks, dikarnakan banyak sekali bagian dari state yang tersebar ke components dan berinteraksi dengan mereka. Untuk mengatasi masalah ini, Vue menawarkan [vuex](https://github.com/vuejs/vuex): Library pengelolaan state milik kami sendiri. Ia bahkan terintegrasi ke [vue-devtools](https://github.com/vuejs/vue-devtools), dan juga tidak perlu mempersiapkan apa-apa untuk mengakses [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif).
 
