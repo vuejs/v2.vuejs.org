@@ -6,15 +6,15 @@ vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### Нийцтэй байдалын тэмдэглэл
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+Vue IE8 аас доош хувилбартай хөтөчүүдийг **дэмжихгүй**, учир нь IE8 хөтөч нь ECMAScript 5-ийн боломжуудыг ашиглах боломжгүй. Гэсэн хэдий ч [ECMAScript 5-тай зохицдог](https://caniuse.com/#feat=es5) бүх хөтөч дээр ажиллах боломжтой.
 
-### Release Notes
+### Хувилбарын тайлбар
 
-Latest stable version: {{vue_version}}
+Хамгийн сүүлийн тогтвортой хувилбар: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Хувилбар бүрийн дэлгэрэнгүй тайлбартай дараах холбоосоор танилцана уу[GitHub](https://github.com/vuejs/vue/releases).
 
 ## Vue Devtools
 
