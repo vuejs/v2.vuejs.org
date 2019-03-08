@@ -4,7 +4,7 @@ type: guide
 order: 101
 ---
 
-> Halaman ini berasumsi Anda telah membaca [Komponen Dasar](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
+> Halaman ini berasumsi Anda telah membaca [dasar-dasar komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
 
 ## Nama Komponen
 
