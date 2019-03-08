@@ -102,6 +102,7 @@
 
 - Modifier: Pengubah
 - Mount: Pasang
+- Mutate: Memutasi
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
