@@ -1,5 +1,5 @@
 ---
-title: Single File Components
+title: Нэг файл компонентууд
 type: guide
 order: 401
 ---

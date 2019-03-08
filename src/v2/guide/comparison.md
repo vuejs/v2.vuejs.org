@@ -1,5 +1,5 @@
 ---
-title: Comparison with Other Frameworks
+title: Бусад фрэймворктой харьцуулбал
 type: guide
 order: 801
 ---

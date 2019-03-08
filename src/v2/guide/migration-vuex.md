@@ -1,5 +1,5 @@
 ---
-title: Migration from Vuex 0.6.x to 1.0
+title: Vuex 0.6.x аас 1.0 руу шилжих
 type: guide
 order: 703
 ---

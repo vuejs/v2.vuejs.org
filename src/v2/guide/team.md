@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Багийнхантай танилцна уу
 type: guide
 order: 803
 ---

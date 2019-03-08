@@ -1,5 +1,5 @@
 ---
-title: Slots
+title: Slots гэж юу вэ
 type: guide
 order: 104
 ---

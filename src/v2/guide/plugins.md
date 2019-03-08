@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: Нэмэлтүүд
 type: guide
 order: 304
 ---

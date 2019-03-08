@@ -1,5 +1,5 @@
 ---
-title: List Rendering
+title: Жагсаалт рэндэрлэх
 type: guide
 order: 8
 ---

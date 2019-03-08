@@ -1,5 +1,5 @@
 ---
-title: Server-Side Rendering
+title: Сэрвэр талд рэндэрлэх
 type: guide
 order: 503
 ---

@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Суулгах
 type: guide
 order: 1
 vue_version: 2.5.16
