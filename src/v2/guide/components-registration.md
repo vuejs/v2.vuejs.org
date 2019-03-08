@@ -20,7 +20,7 @@ Nama yang Anda berikan ke komponen mungkin tergantung pada dimana Anda akan meng
 
 Anda bisa melihat rekomendasi lainya untuk nama nama komponen di [Panduan Gaya](../style-guide/#Base-component-names-strongly-recommended).
 
-### Bingkai Nama (Name Casing)
+### Aturan Huruf Nama (Name Casing)
 
 Anda mempunyai dua pilihan ketika mendefinisikan nama komponen:
 
