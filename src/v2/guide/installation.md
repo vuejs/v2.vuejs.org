@@ -1,5 +1,5 @@
 ---
-title: Суулгах
+title: Суулгах заавар
 type: guide
 order: 1
 vue_version: 2.5.16
@@ -8,33 +8,33 @@ gz_size: "30.90"
 
 ### Нийцтэй байдалын тэмдэглэл
 
-Vue IE8 аас доош хувилбартай хөтөчүүдийг **дэмжихгүй**, учир нь IE8 хөтөч нь ECMAScript 5-ийн боломжуудыг ашиглах боломжгүй. Гэсэн хэдий ч [ECMAScript 5-тай зохицдог](https://caniuse.com/#feat=es5) бүх хөтөч дээр ажиллах боломжтой.
+Vue нь IE8 аас доош хувилбартай хөтөчүүдийг **дэмжихгүй**, учир нь IE8 хөтөч нь ECMAScript 5-ийн боломжуудыг ашиглах боломжгүй. Гэсэн хэдий ч [ECMAScript 5-тай зохицдог](https://caniuse.com/#feat=es5) бүх хөтөч дээр ажиллах боломжтой.
 
-### Хувилбарын тайлбар
+### Хувилбарын мэдээлэл
 
 Хамгийн сүүлийн тогтвортой хувилбар: {{vue_version}}
 
-Хувилбар бүрийн дэлгэрэнгүй тайлбартай дараах холбоосоор танилцана уу[GitHub](https://github.com/vuejs/vue/releases).
+Хувилбар бүрийн дэлгэрэнгүй мэдээлэлтэй дараах холбоосоор танилцана уу [GitHub](https://github.com/vuejs/vue/releases).
 
 ## Vue Devtools
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Vue ашиглах үед, өөрийн хөтөч дээрээ [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) суулгахыг таньд санал болгож байна, энэхүү багаж нь таны хөгжүүлж буй Vue аппликэйнийн хялбар интэрфэйс дээр inspect болон debug хийх боломжийг олгоно.
 
-## Direct `<script>` Include
+## Шууд `<script>` tag-аар нэмэх
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Хамгийн энгийн татаж суулгах арга нь script tag-аар. `Vue` нь global хувьсагчаар бүртгэгдэх болно.
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip">Хөгжүүлэлтийн явцад minified хувилбаруудыг бүү ашигла. Түгээмэл алдаануудын анхааруулгуудыг харах боломжгүй болох болно.</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Хөгжүүлэлтийн хувилбар</a><span class="light info">Бүх анхааруулгууд болон debug хийх горим</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Production хувилбар</a><span class="light info">Анхааруулгууд хасагдсан, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Та prototype болон сургалтын зорилгоор хамгийн сүүлийн хувилбарыг ашиглаж болно:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
