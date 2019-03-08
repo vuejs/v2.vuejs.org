@@ -75,6 +75,7 @@
 
 - Import: Impor
 - Index: Indeks
+- Inheritance: Pewarisan
 - Instance: *Instance*
 - Interpolation: Interpolasi
 
