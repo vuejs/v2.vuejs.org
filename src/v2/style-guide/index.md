@@ -310,7 +310,7 @@ De notre expérience, il est toujours mieux de _toujours_ ajouter une clé uniqu
 
 Il y a deux utilisations courantes qui seraient tentantes :
 
-- Pour filtrer des éléments dans une liste (par ex. `v-for="user in users" v-if="user.isActive"`). Dans ce cas, remplacez `users` par ure nouvelle propriété calculée qui retourne votre liste filtrée (par ex. `activeUsers`).
+- Pour filtrer des éléments dans une liste (par ex. `v-for="user in users" v-if="user.isActive"`). Dans ce cas, remplacez `users` par une nouvelle propriété calculée qui retourne votre liste filtrée (par ex. `activeUsers`).
 
 - Pour ne pas faire le rendu d'une liste si elle ne doit pas être affichée (par ex. `v-for="user in users" v-if="shouldShowUsers"`). Dans ce cas, déplacez `v-if` dans un élément englobant (par ex. `ul` ou `ol`).
 
