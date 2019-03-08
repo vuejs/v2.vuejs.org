@@ -27,17 +27,20 @@
 
 - Child: Anak
 - Component: Komponen
+- Console: Konsol
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## D
 
+- Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
 - Directive: Direktif
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## E
 
+- Export: Ekspor
 - Element: Elemen
 - Expression: Ekspresi
 - Event: *Event*
@@ -113,6 +116,7 @@
 ## P
 
 - Parent: Induk
+- Project: Proyek
 - Property: Properti
 - Props: Props
 
@@ -134,6 +138,7 @@
 
 ## S
 
+- Style: Gaya
 - Style Guide: Panduan Gaya
 - Single Page Application:	Aplikasi *Single-Page*
 - Statement: Statemen
