@@ -31,6 +31,7 @@
 - Child: Anak
 - Component: Komponen
 - Console: Konsol
+- Constructor: Konstruktor
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
