@@ -85,6 +85,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 - **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag.
   
   |                  | **Full**        | **Runtime-only**   |
+  | ---------------- | --------------- | ------------------ |
   | **Development**  | vue.js          | vue.runtime.js     |
   | **Production**   | vue.min.js      | vue.runtime.min.js |
   
@@ -93,6 +94,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html) for browsers** (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
   
   |                  | **Full**               | **Runtime-only** |
+  | ---------------- | ---------------------- | ---------------- |
   | **Development**  | vue.esm.browser.js     | -                |
   | **Production**   | vue.esm.browser.min.js | -                |
   
