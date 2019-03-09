@@ -8,13 +8,13 @@ order: 105
 
 ## `keep-alive` dengan Komponen yang Dinamis
 
-Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen dalam antarmuka tab:
+Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen didalam antarmuka tab:
 
 {% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
 {% endcodeblock %}
 
-Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari rendering ulang karena alasan kinerja. Misalnya, saat kami memperluas antarmuka tab di bawah ini:
+Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari *render* ulang karena alasan kinerja. Misalnya, saat kami memperluas antarmuka didalam tab:
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -151,10 +151,10 @@ new Vue({
 
 Jika Anda memilih salah satu postingan di tab _Posts_, kemudian pindah ke tab _Archive_, kemudian pindah lagi ke tab _Posts_, Anda akan melihat bahwa tab _Posts_ tidak lagi menampilkan postingan yang Anda pilih sebelumnya. Itu karena setiap kali Anda berpindah ke tab baru, Vue akan membuat *Instance* baru dari `currentTabComponent`.
 
-Membuat kembali komponen yang dinamis merupakan perilaku yang bermanfaat, tapi dalam kasus ini, kami ingin sekali *Instance* komponen tab di-*cache* setelah dibuat pertama kali. Untuk mengatasi masalah ini, kita bisa membungkus komponen dinamis kami dengan elemen `<keep-alive>`:
+Membuat kembali komponen yang dinamis merupakan perilaku yang bermanfaat, tapi dalam kasus ini, kami ingin sekali *Instance* komponen tab di-*cache* setelah dibuat pertama kali. Untuk mengatasi masalah ini, Kami akan membungkus komponen dinamis kami dengan elemen `<keep-alive>`:
 
 ``` html
-<!-- Komponen yang tidak aktif akan di-cache! -->
+<!-- Komponen yang tidak aktif akan di-*cache*! -->
 <keep-alive>
   <component v-bind:is="currentTabComponent"></component>
 </keep-alive>
@@ -195,18 +195,18 @@ new Vue({
 
 Sekarang tab _Posts_ bisa mempertahankan *state*nya (postingan yang telah dipilih) bahkan saat tidak di-*render*. Lihat di [fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) untuk kode lengkapnya.
 
-<p class="tip">Perhatikan bahwa `<keep-alive>` membutuhkan nama untuk semua komponen yang akan dipindahkan, baik menggunakan opsi `name` pada komponen atau melalui nama dari komponen yang telah didaftarkan secara lokal/global.</p>
+<p class="tip">Perhatikan bahwa `<keep-alive>` membutuhkan nama untuk semua komponen yang akan dipindahkan, baik menggunakan opsi `name` pada komponen, atau menggunakan nama dari komponen yang telah didaftarkan secara lokal/global.</p>
 
 Lihat detail selengkapnya tentang `<keep-alive>` di [API reference](../api/#keep-alive).
 
-## Async Components
+## Komponen Async
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
+Di sebuah aplikasi yang besar, mungkin kami perlu membagi aplikasi kami menjadi beberapa bagian kecil, dan hanya memuat komponen dari server saat kami membutuhkannya. Untuk membuatnya lebih mudah, Vue memungkinkan Anda untuk mendefinisikan komponen Anda sebagai *factory function* yang secara asinkron menyelesaikan pendefinisian komponen Anda. Vue hanya akan memicu *factory function* saat komponen perlu di-*render* dan akan di-*cache* hasilnya untuk di-*render* kembali di masa mendatang. Misalnya:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // Lewati pendefinisian komponen ke *resolve callback*
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -214,28 +214,28 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-As you can see, the factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+Seperti yang Anda lihat, *factory function* akan menerima `resolve` *callback*, yang harus dipanggil saat Anda telah mengambil definisi komponen Anda dari server. Anda juga bisa memanggil `reject(reason)` untuk menunjukkan bahwa pemuatan komponen Anda telah gagal. `setTimeout` disini hanya untuk demonstrasi; bagaimana cara mengambil komponen, itu terserah Anda. Salah satu opsi yang kami sarankan adalah menggunakan komponen *async* dengan [Fitur *code-splitting* Webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // Sintaks khusus ini akan memberikan instruksi ke webpack untuk
+  // membagi kode *built* Anda menjadi *bundles* secara otomatis
+  // yang akan di muat oleh *Ajax requests*.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can do:
+Anda juga bisa mengembalikan `Promise` di *factory function*, jadi dengan sintaks Webpack 2 dan ES2015 yang bisa Anda lakukan adalah:
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  // The `import` function returns a Promise.
+  // *function* `import` akan mengembalikan *Promise*.
   () => import('./my-async-component')
 )
 ```
 
-When using [local registration](components-registration.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+Saat menggunakan [pendaftaran lokal](components-registration.html#Local-Registration), Anda juga bisa langsung menyediakan *funtion* yang akan mengembalikan `Promise`:
 
 ``` js
 new Vue({
@@ -246,28 +246,28 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+<p class="tip">Jika Anda pengguna <strong>Browserify</strong> yang ingin menggunakan komponen *async*, sayangnya pembuat Browserify [telah menjelaskan](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) secara resmi bahwa memuat *async* di Browserify itu tidak didukung. Komunitas Browserify telah menemukan [beberapa solusi](https://github.com/vuejs/vuejs.org/issues/620) yang mungkin bermanfaat untuk aplikasi yang sudah ada dan kompleks. Untuk semua skenario lainnya, kami sarankan untuk menggunakan webpack untuk sistem *build* yang mendukung *async*.</p>
 
-### Handling Loading State
+### Menangani Pemuatan State
 
-> New in 2.3.0+
+> Baru di 2.3.0+
 
-The async component factory can also return an object of the following format:
+Pabrik komponent *async* juga bisa mengembalikan objek dengan menggunakan format berikut:
 
 ``` js
 const AsyncComponent = () => ({
-  // The component to load (should be a Promise)
+  // Komponen yang dimuat (harus *Promise*)
   component: import('./MyComponent.vue'),
-  // A component to use while the async component is loading
+  // Komponen yang akan di gunakan saat komponent *async* sedang dimuat
   loading: LoadingComponent,
-  // A component to use if the load fails
+  // Komponen yang digunakan jika memuat gagal
   error: ErrorComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // Jeda sebelum menampikan komponen yang sedang dimuat. Default: 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // Komponent *error* akan ditampilkan jika batas waktu
+  // disediakan dan dilampaui. Default: Infinity.
   timeout: 3000
 })
 ```
 
-> Note that you must use [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ if you wish to use the above syntax for route components.
+> Perhatikan bahwa Anda harus menggunakan [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ jika Anda ingin menggunakan sintaks di atas untuk rute komponen.
