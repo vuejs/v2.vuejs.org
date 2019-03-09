@@ -1,12 +1,13 @@
 ---
-title: Computed Properties and Watchers
+title: Properti Penghitung (Computed) dan Pengamat (Watchers)
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## Properti Penghitung 
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
+Pernyataan *In-template* sangatlah mudah, tapi hal tersebut dibuat untuk operasi yang sederhana. Memberikan terlalu banyak logika di *template* anda dapat menyebabkan menjadi berat dan susah untuk dipelihara. Sebagai Contoh :
+
 
 ``` html
 <div id="example">
@@ -14,16 +15,16 @@ In-template expressions are very convenient, but they are meant for simple opera
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+Pada poin ini, *template* tidak lagi sederhana dan deklaratif. Anda harus melihat itu untuk beberapa saat sebelum menyadari bahwa itu menampilkan *`message`* secara terbalik. Masalahnya diperburuk ketika anda ingin memasukan pesan terbalik itu kedalam *template* anda lebih dari sekali.
 
-That's why for any complex logic, you should use a **computed property**.
+Itulah mengapa untuk logika yang kompleks, Anda harus menggunakan **properti penghitung**.
 
-### Basic Example
+### Contoh Sederhana
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Pesan Asli: "{{ message }}"</p>
+  <p>Pesan terbalik yang dihitung: "{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -31,30 +32,30 @@ That's why for any complex logic, you should use a **computed property**.
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: 'Hai'
   },
   computed: {
     // a computed getter
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` mengarah ke instance vm
       return this.message.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+Hasil:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Pesan Asli: "{{ message }}"</p>
+  <p>Pesan terbalik yang dihitung: "{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: 'Hai'
   },
   computed: {
     reversedMessage: function () {
@@ -65,28 +66,28 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+Disini kita telah mendeklarasi properti penghitung `reversedMessage`. Fungsi yang kita sediakan akan digunakan sebagai fungsi *getter* untuk properti `vm.reversedMessage`:
 
 ``` js
-console.log(vm.reversedMessage) // => 'olleH'
-vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // => 'eybdooG'
+console.log(vm.reversedMessage) // => 'iaH'
+vm.message = 'Dah'
+console.log(vm.reversedMessage) // => 'haD'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+Anda dapat membuka konsol *(console)* dan bermain dengan contoh vm sendirian. Nilai dari `vm.reversedMessage` selalu tergantung dengan nilai `vm.message`.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+Anda bisa melakukan *data-bind* ke properti penghitung di *template* seperti properti normal. Vue sadar bahwa `vm.reversedMessage` tergantung dengan `vm.message`, jadi itu akan merubah semua yang terkait dengan `vm.reversedMessage` ketika `vm.message` berubah. Dan bagian terbaiknya adalah kita telah membuat hubungan *dependency* secara deklaratif : penghitung fungsi *getter* tidak mempunyai efek samping, yang membuat itu menjadi lebih mudah untuk dicoba dan dipahami.
 
-### Computed Caching vs Methods
+### Penyimpanan Penghitung (Computed Cache) vs Metode
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Anda mungkin telah mengerti kita dapat membuat hasil yang sama dengan cara menjalankan metode ini dalam *expression*:
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>Pesan terbalik: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
-// in component
+// dalam komponen
 methods: {
   reverseMessage: function () {
     return this.message.split('').reverse().join('')
@@ -94,9 +95,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+Selain properti penghitung, kita dapat menetapkan fungsi yang sama sebagai metode. Untuk hasil akhirnya, dua pendekatan memang sama persis. Tetapi, perbedaanya adalah **properti penghitung** di simpan berdasarkan *dependencies* mereka.** Sebuah properti penghitung hanya akan mengevaluasi ulang ketika salah satu *dependencies* mereka telah berubah. Ini berarti selama `message` belum berubah, semua akses ke `reversedMessage` properti penghitung akan langsung kembali ke hasil penghitungan sebelumnya tanpa harus menjalankan ulang fungsi tersebut
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Ini juga berarti properti penghitung dibawah tidak akan pernah berubah, karena `Date.now()` bukan *dependency* reaktif:
 
 ``` js
 computed: {
@@ -106,13 +107,13 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Sebagai perbandingan, sebuah pemanggilan metode akan **selalu** menjalankan fungsi kapanpun ketika sebuah render ulang terjadi.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+Kenapa kita membutuhkan penyimpanan *(caching)* ? Bayangkan kita mempunyai sebuah *expensive computed property* bernama **A**, yang membutuhkan pengulangan melewati *Array* yang besar dan mengerjakan banyak perhitungan. Lalu kita mungkin mempunyai properti penghitung lainya yang tergantung dari **A**. Tanpa penyimpanan *(caching)*, kita mungkin akan menjalankan *getter* milik **A** lebih dari yang dibutuhkan! Ketika anda tidak butuh penyimpanan *(caching)*, gunakan metode sebagi gantinya.
 
-### Computed vs Watched Property
+### Properti Penghitung vs Properti Pengawas
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue juga menyediakan banyak cara umum untuk mengamati dan beraksi kepada perubahan data pada sebuah *instance* Vue: **Properti Pengawas *(Watch Properties)***. Ketika anda mempunyai beberapa data yang perlu dirubah berdasarkan data lainya, dan sudah terlalu banyak menggunakan `watch` - khususunya jika anda datang dari latar belakang AngularJS. Namun, terkadang ide yang lebih baik adalah untuk menggunakan  properti penghitung daripada sebuah perintah *callback* `watch`. Pertimbangkan contoh ini:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -137,7 +138,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+Kode diatas sangat berulang ulang. Bandingkan itu dengan versi properti penghitung:
 
 ``` js
 var vm = new Vue({
@@ -154,11 +155,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+Lebih baik, bukan ?
 
 ### Computed Setter
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+Properti penghitung pada dasarnya adalah hanya-*getter*, tapi anda juga bisa menyediakan sebuah *setter* ketika anda membutuhkanya:
 
 ``` js
 // ...
@@ -179,18 +180,19 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Sekarang ketika anda menjalankan `vm.fullName = 'John Doe'`, Sebuah *setter* akan dijalankan dan `vm.firstName` dan `vm.lastName` akan di ubah secara teratur.
 
-## Watchers
+## Pengawas (Watcher)
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Ketika properti pengihitung sangat teratur dalam beberapa kasus, ada kalanya sebuah *watcher* kustom dibutuhkan. Itulah kenapa Vue memberikan cara yang lebih umum untuk bereaksi pada saat data berubah melalui pilihan `watch`. Ini sangat berguna ketika anda ingin melakukan operasi *asynchronous* atau operasi *expensive* sebagai balasan perubahan data.
 
-For example:
+
+Sebagai Contoh:
 
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    Tanyakan pertanyaan iya/tidak:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -198,10 +200,10 @@ For example:
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to use what you're familiar with. -->
+<!-- Sejak adanya ekosistem yang kaya dari library ajax -->
+<!-- dan koleksi dari metode pembantu untuk tujuan umum, Inti dari Vue -->
+<!-- masih dapat untuk tetap kecil dengan tidak memasukan mereka kembali. Ini juga -->
+<!-- memberikan anda kebabasan untuk memakai apa yang sudah biasa anda gunakan. -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -209,7 +211,7 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Saya tidak dapat memberikan jawaban sampai anda bertanya kepada saya!'
   },
   watch: {
     // whenever question changes, this function will run
@@ -219,29 +221,29 @@ var watchExampleVM = new Vue({
     }
   },
   created: function () {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+    // _.debounce adalah fungsi yang disediakan oleh lodash untuk membatasi caranya
+    // sering kali operasi expensive bisa dijalankan.
+    // Dalam hal ini, kami ingin membatasi seberapa sering kami mengakses
+    // yesno.wtf/api, menunggu hingga pengguna sepenuhnya
+    // selesai mengetik sebelum membuat permintaan ajax. Untuk mempelajari
+    // lebih lanjut tentang fungsi _.debounce (dan sepupunya
+    // _.rottle), kunjungi: https://lodash.com/docs#debounce
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
     getAnswer:  function () {
       if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+        this.answer = 'Pertanyaan biasanya berisi tanda tanya. ;-)'
         return
       }
-      this.answer = 'Thinking...'
+      this.answer = 'Berfikir...'
       var vm = this
       axios.get('https://yesno.wtf/api')
         .then(function (response) {
           vm.answer = _.capitalize(response.data.answer)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.answer = 'Error! Tidak dapat meraih API. ' + error
         })
     }
   }
@@ -249,12 +251,12 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Hasil:
 
 {% raw %}
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
+    Tanyakan pertanyaan iya/tidak:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -266,11 +268,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Saya tidak dapat memberikan jawaban sampai anda bertanya kepada saya!'
   },
   watch: {
     question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Menunggu anda untuk berhenti mengetik...'
       this.debouncedGetAnswer()
     }
   },
@@ -280,7 +282,7 @@ var watchExampleVM = new Vue({
   methods: {
     getAnswer:  function () {
       if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+        this.answer = 'Pertanyaan biasanya berisi tanda tanya. ;-)'
         return
       }
       this.answer = 'Thinking...'
@@ -290,7 +292,7 @@ var watchExampleVM = new Vue({
           vm.answer = _.capitalize(response.data.answer)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.answer = 'Error! Tidak dapat meraih API. ' + error
         })
     }
   }
@@ -298,6 +300,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+Pada kasus ini, menggunakan pilihan `watch` memungkinkan kita untuk melakukan operasi *asynchronous* (Mengakses API), batasi seberapa sering kita melakukan operasi itu, dan atur status sementara hingga kita mendapatkan jawaban akhir. Semua itu tidak mungkin dilakukan dengan properti yang dihitung.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
+Sebagai tambahan untuk pilihan `watch`, anda juga bisa menggunakan *imperative* [vm.$watch API](../api/#vm-watch).

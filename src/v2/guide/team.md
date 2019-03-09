@@ -57,7 +57,7 @@ order: 803
             <span class="sr-only">Jarak</span>
           </dt>
           <dd>
-            Kurang lebih
+            Sekitar
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' cukup dekat untuk menuju ke lokasi Anda.'"

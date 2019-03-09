@@ -4,74 +4,74 @@ type: guide
 order: 10
 ---
 
-## Basic Usage
+## Penggunaan Dasar
 
-You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+Anda bisa menggunakan `v-model` untuk membuat *data binding* dua arah di *form input*, *textarea*, dan *select elements*. Hal tersebut secara otomatis akan memilih cara yang tepat untuk memperbarui elemen berdasarkan tipe *input*. Meskipun agak ajaib, `v-model` pada dasarnya adalah *syntax sugar* untuk memperbarui data setiap ada aksi *input* oleh pengguna, Ditambah perawatan khsusus untuk beberapa *edge cases*.
 
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+<p class="tip">`v-model` akan mengabaikan atribut `value`, `checked` atau `selected` awal yang ditemukan pada elemen *form* manapun. Hal tersebut akan selalu memperlakukan data *Vue Istance* sebagai *source of truth*. Anda harus mendeklarasikan nilai awal pada sisi *Javascript*, Di dalam opsi `data` dari komponen Anda.</p>
 
-`v-model` internally uses different properties and emits different events for different input elements:
-- text and textarea elements use `value` property and `input` event;
-- checkboxes and radiobuttons use `checked` property and `change` event;
-- select fields use `value` as a prop and `change` as an event.
+`v-model` secara internal menggunakan properti yang berbeda dan melakukan *emits* pada suatu *event* yang berbeda untuk elemen *input* yang berbeda:
+- Elemen *text* dan *textarea* menggunakan properti `value` dan aksi `input`;
+- *checkboxes* dan *radiobuttons* menggunakan properti `checked` dan aksi `change`;
+- *select fields* menggunakan `value` sebagai *prop* dan `change` sebagai sebuah aksi.
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">Jika Anda memakai bahasa [IME](https://en.wikipedia.org/wiki/Input_method) (Cina,Jepang,Korea dll), Anda akan melihat bahwa `v-model` tidak diperbarui selama komposisi IME. Jika Anda ingin melayani pembaruan ini juga, Gunakan aksi `input` sebagai gantinya.</p>
 
-### Text
+### Teks
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="pesan" placeholder="edit saya">
+<p>Pesan nya adalah : {{ pesan }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="pesan" placeholder="edit saya">
+  <p>Pesannya adalah: {{ pesan }}</p>
 </div>
 <script>
 new Vue({
   el: '#example-1',
   data: {
-    message: ''
+    pesan: ''
   }
 })
 </script>
 {% endraw %}
 
-### Multiline text
+### Teks Multiline
 
 ``` html
-<span>Multiline message is:</span>
-<p style="white-space: pre-line;">{{ message }}</p>
+<span>Pesan dari Multiline adalah:</span>
+<p style="white-space: pre-line;">{{ pesan }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
-  <p style="white-space: pre-line;">{{ message }}</p>
+  <span>Pesan dari Multiline adalah:</span>
+  <p style="white-space: pre-line;">{{ pesan }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="pesan" placeholder="Tambahkan pesan"></textarea>
 </div>
 <script>
 new Vue({
   el: '#example-textarea',
   data: {
-    message: ''
+    pesan: ''
   }
 })
 </script>
 {% endraw %}
 
 {% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
+<p class="tip">Interpolasi pada *textareas* (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) tidak akan berfungsi. Sebagai gantinya gunakan <code>v-model</code> .</p>
 {% endraw %}
 
 ### Checkbox
 
-Single checkbox, boolean value:
+*Checkbox* tunggal, Nilai boolean:
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -92,18 +92,18 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple checkboxes, bound to the same Array:
+*Checkboxes* lebih dari satu, Terikat ke *Array* yang sama:
 
 ``` html
 <div id='example-3'>
-  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <input type="checkbox" id="jack" value="Jack" v-model="checked">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <input type="checkbox" id="john" value="John" v-model="checked">
   <label for="john">John</label>
-  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <input type="checkbox" id="mike" value="Mike" v-model="checked">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nama yang di centang : {{ checked }}</span>
 </div>
 ```
 
@@ -111,21 +111,21 @@ Multiple checkboxes, bound to the same Array:
 new Vue({
   el: '#example-3',
   data: {
-    checkedNames: []
+    checked: []
   }
 })
 ```
 
 {% raw %}
 <div id="example-3" class="demo">
-  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <input type="checkbox" id="jack" value="Jack" v-model="checked">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <input type="checkbox" id="john" value="John" v-model="checked">
   <label for="john">John</label>
-  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <input type="checkbox" id="mike" value="Mike" v-model="checked">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nama yang di centang : {{ checked }}</span>
 </div>
 <script>
 new Vue({
@@ -146,7 +146,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>Yang dipilih: {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -156,7 +156,7 @@ new Vue({
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>Yang dipilih : {{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -170,7 +170,7 @@ new Vue({
 
 ### Select
 
-Single select:
+*Select* tunggal:
 
 ``` html
 <select v-model="selected">
@@ -179,7 +179,7 @@ Single select:
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih : {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -197,7 +197,7 @@ new Vue({
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -209,9 +209,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">Jika nilai awal pada `v-model` Anda tidak cocok dengan opsi manapun, maka elemen `<select>` akan dirender ke dalam *state* "unselected". Di iOS, hal ini bisa menyebabkan pengguna tidak dapat memilih item pertama karena iOS tidak melakukan perubahan *event*. Oleh karena itu, lebih disarankan untuk menyediakan *disabled option* dengan nilai kosong, Seperti yang ditunjukkan pada contoh diatas.</p>
 
-Multiple select (bound to Array):
+Select lebih dari satu (terikat ke *Array*):
 
 ``` html
 <select v-model="selected" multiple>
@@ -220,7 +220,7 @@ Multiple select (bound to Array):
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -230,7 +230,7 @@ Multiple select (bound to Array):
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -242,7 +242,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+Opsi dinamis dengan `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -250,7 +250,7 @@ Dynamic options rendered with `v-for`:
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Yang dipilih : {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -272,7 +272,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Yang dipilih : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -289,24 +289,24 @@ new Vue({
 </script>
 {% endraw %}
 
-## Value Bindings
+## Binding Nilai
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+Untuk *radio*, *checkbox* dan *select options*, Nilai binding `v-model` biasanya berupa *string* statis ( atau *booleans* untuk *checkbox* ):
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- `picked` adalah sebuah string "a" ketika dicentang -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` adalah antara true or false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when the first option is selected -->
+<!-- `selected` adalah sebuah string "abc" ketika opsi pertama dipilih -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+Namun terkadang kita mungkin ingin *binding* nilai ke properti dinamis pada Vue instance. Kita bisa menggunakan `v-bind` untuk melakukan hal itu. Selain itu, menggunakan `v-bind` memungkinkan kita untuk *binding* nilai *input* ke nilai *non-string*.
 
 ### Checkbox
 
@@ -320,13 +320,13 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 ```
 
 ``` js
-// when checked:
+// ketika dicentang:
 vm.toggle === 'yes'
-// when unchecked:
+// ketika tidak dicentang:
 vm.toggle === 'no'
 ```
 
-<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
+<p class="tip">Atribut `true-value` dan `false-value` tidak memengaruhi atribut *input* `value`, Karena *browser* tidak menampilkan kotak yang tidak dicentang (kotak centangan yang kosong) ketika pengisian formulir. Untuk menjamin dan memastikan bahwa salah satu dari dua nilai dikirimkan dalam bentuk (misalnya "Ya" atau "Tidak"), Gunakan *radio* sebagai gantinya.</p>
 
 ### Radio
 
@@ -335,30 +335,29 @@ vm.toggle === 'no'
 ```
 
 ``` js
-// when checked:
+// ketika dicentang:
 vm.pick === vm.a
 ```
 
-### Select Options
+### Opsi Select
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// when selected:
+// ketika dipilih:
 typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
 
-## Modifiers
+## Modifier
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
+Secara *default*, `v-model` menyinkronkan *input* dengan data setelah setiap aksi `input` (dengan pengecualian komposisi IME seperti [dinyatakan di atas](#vmodel-ime-tip)). Anda dapat menambahkan `lazy` *modifier* sebagai gantinya disinkronkan setelah aksi `change`:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
@@ -367,24 +366,24 @@ By default, `v-model` syncs the input with the data after each `input` event (wi
 
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+Jika Anda ingin *input* pengguna diketik secara otomatis sebagai angka, Anda dapat menambahkan `number` *modifier* ke *input* yang dieklola oleh `v-model` Anda:
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string. If the value cannot be parsed with `parseFloat()`, then the original value is returned.
+Hal ini seringkali berguna, Karena, bahkan hanya dengan `type="number"`, nilai elemen *input* HTML selalu dikembalikan dalam bentuk *string*. Jika nilai tidak dapat diuraikan dengan `parseFloat()`, maka nilai asli yang akan dikembalikan.
 
 ### `.trim`
 
-If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
+Jika Anda ingin menyisipkan spasi kosong dari *input*-an pengguna yang bisa di pangkas secara otomatis, Anda bisa menambahkan `trim` *modifier* ke *input* yang dikelola oleh `v-model` Anda:
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## `v-model` with Components
+## `v-model` dengan Komponen
 
-> If you're not yet familiar with Vue's components, you can skip this for now.
+> Jika Anda belum terbiasa dengan komponen Vue, Anda boleh melewati bagian ini.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.
+Jenis *input* bawaan HTML tidak akan selalu memenuhi kebutuhan Anda. Untungnya, Komponen Vue memungkinkan Anda untuk membuat *input* yang bisa digunakan kembali dengan perilaku yang sepenuhnya bisa disesuaikan. Input ini bahkan bisa bekerja dengan `v-model`! Untuk mempelajari lebih lanjut, baca tentang [input khsusus](components.html#Using-v-model-on-Components) di panduan komponen.
