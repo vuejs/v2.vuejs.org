@@ -116,13 +116,11 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
   
   The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
-### Runtime + Compiler vs. Runtime-only
+### Full (Runtime + Compiler) vs. Runtime-only
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+**Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
-
-- **Full**: builds that contain both the compiler and the runtime.
+**Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
 
 If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
 
