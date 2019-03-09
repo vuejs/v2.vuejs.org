@@ -91,7 +91,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
   
   The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
   
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html) for browsers** (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)** for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
   
   |                  | **Full**               | **Runtime-only** |
   | ---------------- | ---------------------- | ---------------- |
@@ -107,7 +107,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
   
   The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
   
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html) for bundlers**: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle.
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)** for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle.
   
   |                  | **Development**    | **Production**     |
   | ---------------- | ------------------ | ------------------ |
