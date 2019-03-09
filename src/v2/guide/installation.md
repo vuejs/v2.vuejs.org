@@ -40,13 +40,13 @@ Vue ашиглах үед, өөрийн хөтөч дээрээ [Vue Devtools](h
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Production хөгжүүлэлтийн хувьд, тусгай хувилбарын дугаарыг ашиглахыг бид зөвлөж байна. Учир нь шинэ хувилбарууд дээр ямар нэг гэнэтийн алдаа гарахаас зайлхийж байгаа юм:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-If you are using native ES Modules, there is also an ES Modules compatible build:
+Хэрвээ native ES Module-ууд ашиглаж байгаа бол, ES Modules-д тохиромжтой хувилбар бас байдаг:
 
 ``` html
 <script type="module">
