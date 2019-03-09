@@ -1,20 +1,20 @@
 ---
-title: Dynamic & Async Components
+title: Komponen yang Dinamis & Async
 type: guide
 order: 105
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Halaman ini berasumsi Anda telah membaca [Dasar-Dasar Komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
 
-## `keep-alive` with Dynamic Components
+## `keep-alive` dengan Komponen yang Dinamis
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen dalam antarmuka tab:
 
 {% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
 {% endcodeblock %}
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari rendering ulang karena alasan kinerja. Misalnya, saat kami memperluas antarmuka tab di bawah ini:
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -149,18 +149,18 @@ new Vue({
 </style>
 {% endraw %}
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+Jika Anda memilih salah satu postingan di tab _Posts_, kemudian pindah ke tab _Archive_, kemudian pindah lagi ke tab _Posts_, Anda akan melihat bahwa tab _Posts_ tidak lagi menampilkan postingan yang Anda pilih sebelumnya. Itu karena setiap kali Anda berpindah ke tab baru, Vue akan membuat *Instance* baru dari `currentTabComponent`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+Membuat kembali komponen yang dinamis merupakan perilaku yang bermanfaat, tapi dalam kasus ini, kami ingin sekali *Instance* komponen tab di-*cache* setelah dibuat pertama kali. Untuk mengatasi masalah ini, kita bisa membungkus komponen dinamis kami dengan elemen `<keep-alive>`:
 
 ``` html
-<!-- Inactive components will be cached! -->
+<!-- Komponen yang tidak aktif akan di-cache! -->
 <keep-alive>
   <component v-bind:is="currentTabComponent"></component>
 </keep-alive>
 ```
 
-Check out the result below:
+Lihat hasilnya di bawah ini:
 
 {% raw %}
 <div id="dynamic-component-keep-alive-demo" class="demo">
@@ -193,11 +193,11 @@ new Vue({
 </script>
 {% endraw %}
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered. See [this fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) for the complete code.
+Sekarang tab _Posts_ bisa mempertahankan *state*nya (postingan yang telah dipilih) bahkan saat tidak di-*render*. Lihat di [fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) untuk kode lengkapnya.
 
-<p class="tip">Note that `<keep-alive>` requires the components being switched between to all have names, either using the `name` option on a component, or through local/global registration.</p>
+<p class="tip">Perhatikan bahwa `<keep-alive>` membutuhkan nama untuk semua komponen yang akan dipindahkan, baik menggunakan opsi `name` pada komponen atau melalui nama dari komponen yang telah didaftarkan secara lokal/global.</p>
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+Lihat detail selengkapnya tentang `<keep-alive>` di [API reference](../api/#keep-alive).
 
 ## Async Components
 
