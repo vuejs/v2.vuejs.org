@@ -29,8 +29,7 @@ new Vue({
 })
 ```
 
-You can optionally pass in some options:
-Anda dapat secara opsional mengoper beberapa opsi:
+Secara Opsional, Anda bisa mengoper beberapa opsi:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
@@ -38,14 +37,14 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` secara otomatis mencegah Anda dari menggunakan plugin yang sama lebih dari satu kali, jadi memanggil plugin yang sama beberapa kali hanya akan menginstal plugin satu kali.
 
-Beberapa plugin disediakan oleh plugin Vue.js resmi seperti `vue-router` secara otomatis memanggil `Vue.use()` jika `Vue` tersedia sebagai variabel global. Bagaimanapun dalam linkungan modul seperti CommonJS, Anda selalu butuh memanggil `Vue.use()` secara explisit:
+Beberapa plugin disediakan oleh plugin Vue.js resmi seperti `vue-router` secara otomatis memanggil `Vue.use()` jika `Vue` tersedia sebagai variabel global. Bagaimanapun dalam linkungan modul seperti CommonJS, Anda selalu butuh memanggil `Vue.use()` secara eksplisit:
 
 ``` js
 // Ketika menggunakan CommonJS via Browserify atau Webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
-// Jangan lupa untuk memanggil ini
+// Jangan lupa untuk memanggil fungsi ini
 Vue.use(VueRouter)
 ```
 
