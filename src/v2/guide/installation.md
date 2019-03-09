@@ -109,10 +109,10 @@ The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS bu
 
 **[ES Module](http://exploringjs.com/es6/ch_modules.html)** for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle.
 
-|                  | **Development**    | **Production**     |
-| ---------------- | ------------------ | ------------------ |
-| **Full**         | vue.esm.js         | -                  |
-| **Runtime-only** | vue.runtime.esm.js | -                  |
+|                  | **Development**    | **Production** |
+| ---------------- | ------------------ | -------------- |
+| **Full**         | vue.esm.js         | -              |
+| **Runtime-only** | vue.runtime.esm.js | -              |
 
 The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
