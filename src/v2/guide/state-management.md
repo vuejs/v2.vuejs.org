@@ -6,9 +6,9 @@ order: 502
 
 ## Implementasi Flux-Like (Sejenis Flux) Resmi
 
-Aplikasi besar bisa tumbuh menjadi sangat kompleks, dikarnakan banyak sekali bagian dari state yang tersebar ke berbagai komponen dan berinteraksi dengan mereka. Untuk mengatasi masalah ini, Vue menawarkan [vuex](https://github.com/vuejs/vuex): Pustaka pengelolaan state milik mereka. Ia bahkan terintegrasi ke [vue-devtools](https://github.com/vuejs/vue-devtools), dan juga tidak perlu mempersiapkan apa-apa untuk mengakses [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif).
+Aplikasi besar bisa tumbuh menjadi sangat kompleks, dikarenakan banyak sekali bagian dari state yang tersebar ke seluruh komponen dan berinteraksi dengan mereka. Untuk mengatasi masalah ini, Vue menawarkan [vuex](https://github.com/vuejs/vuex): Sebuah pustaka yang berfungsi untuk mengelola state buatan kami sendiri. Ia bahkan mampu terintegrasi dengan [vue-devtools](https://github.com/vuejs/vue-devtools), dan juga kita tidak perlu mempersiapkan apa-apa (tidak perlu melakukan konfigurasi khusus) untuk bisa mengakses [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="noopener" title="Vuex Tutorial">Tonton video penjelasan di Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="noopener" title="Vuex Tutorial">Tonton video penjelasannya di Vue Mastery</a></div>
 
 ### Informasi untuk Developer React
 
@@ -16,7 +16,7 @@ Jika anda pernah menggunakan React, anda mungkin ingin tahu perbandingan vuex da
 
 ## Pengelolaan State Sederhana dari Awal
 
-Sering diabaikan bahwa sourceOfTruth di aplikasi Vue adalah `data` objek yang mentah - sebuah instance Vue hanya wakil untuk mengakasesnya. Karna itu, jika anda memiliki bagian state yang ingin di bagikan pada beberapa instance, anda bisa membaginya dengan memberi identitas:
+Hal ini seringkali diabaikan bahwa sumber kebenaran di aplikasi Vue adalah objek `data` yang mentah - hanya **instance** Vue yang boleh mengakasesnya. Oleh karena itu, jika Anda memiliki beberapa state yang ingin di bagikan ke beberapa **instance**, Anda bisa membaginya dengan identitas:
 
 ``` js
 const sourceOfTruth = {}
@@ -30,7 +30,7 @@ const vmB = new Vue({
 })
 ```
 
-Sekarang saat `sourceOfTruth` dirubah, kedua `vmA` dan `vmB` akan mengubah tampilan mereka secara otomatis. Subkomponen dalam beberapa instance ini juga perlu mengaksesnya dengan cara menggunakan perintah `this.$root.$data`. Sekarang kita punya satu sourceOfTruth, namun melakukan debugging akan sangat sulit sekali. Setiap data bisa dirubah oleh setiap bagian dari aplikasi kita setiap waktunya, tanpa meninggalkan jejak.
+Sekarang saat `sourceOfTruth` dirubah, kedua `vmA` dan `vmB` akan mengubah tampilan mereka secara otomatis. Sub komponen dalam beberapa *instance* ini juga perlu mengaksesnya dengan cara menggunakan perintah `this.$root.$data`. Sekarang kita punya satu sourceOfTruth, namun melakukan debugging akan sangat sulit sekali. Setiap data bisa dirubah oleh setiap bagian dari aplikasi kita setiap waktunya, tanpa meninggalkan jejak.
 
 Untuk memecahkan masalah ini, kita bisa menggunakan **pola penyimpanan**:
 
@@ -51,9 +51,9 @@ var store = {
 }
 ```
 
-Perhatikan semua action yang mengubah state dari store diletakkan didalam store itu sendiri. Tipe pengelolaan state yang terpusat ini membuatnya semakin mudah untuk dimengerti bahwa tipe perubahan apa saja yang bisa terjadi dan bagaimana mereka dijalankan. Sekarang saat terjadi kesalahan, kita juga memiliki sebuah catatan kenapa bisa terjadi bug.
+Perhatikan semua *action* yang mengubah *state* dari store diletakkan didalam store itu sendiri. Tipe pengelolaan state yang terpusat ini membuatnya semakin mudah untuk dimengerti bahwa tipe perubahan apa saja yang bisa terjadi dan bagaimana mereka dijalankan. Sekarang saat terjadi kesalahan, kita juga memiliki sebuah catatan kenapa bisa terjadi bug.
 
-Sebagai tambahan, setiap instance/komponen tetap bisa memiliki dan mengelola state milik mereka sendiri:
+Sebagai tambahan, setiap *instance*/komponen tetap bisa memiliki dan mengelola state milik mereka sendiri:
 
 ``` js
 var vmA = new Vue({
@@ -73,8 +73,8 @@ var vmB = new Vue({
 
 ![Pengelolaan State](/images/state.png)
 
-<p class="tip">Sangat penting untuk diketahui bahwa anda jangan pernah menggantikan state sebenarnya pada action mu - komponen dan store harus berbagi acuan objek yang sama supaya perubahan bisa diamati.</p>
+<p class="tip">Sebagai catatan penting, Anda jangan pernah menggantikan state asli pada *action* yang Anda buat - komponen dan *store* perlu untuk berbagi data referensi kedalam objek yang sama supaya perubahan bisa diamati.</p>
 
-Saat kita melanjutkan pengembangan, ada ketentuan dimana komponen tidak boleh mengubah state yang dimiliki oleh store secara langsung, tapi sebagai gantinya kita harus mengirim event untuk memberitahu store untuk menjalankan action, akhirnya kami bertemu dengan [Flux](https://facebook.github.io/flux/) arsiktektur. Keuntungan menggunakan ketentuan ini adalah kita bisa merekam semua perubahan state yang terjadi pada store dan sudah terpasang alat debug seperti catatan perubahan, snapshot/potretan, dan bisa melakukan pengulangan sejarah/perjalanan waktu
+Saat kita melanjutkan pengembangan, ketentuannya adalah komponen tidak boleh merubah *state* yang ada di dalam store secara langsung, tetapi kita harus mengirim sebuah *event* untuk memberitahu store bahwa dia harus menjalankan sebuah *action*, yang pada akhirnya kita akan merasakan proses seperti ini sama dengan dengan arsitektur milik [Flux](https://facebook.github.io/flux/). Keuntungan menggunakan aturan ini adalah kita bisa merekam semua perubahan *state* yang terjadi pada *store* dan bisa mengimplementasikan proses *debugging helpers* seperti catatan perubahan, *snapshot*, dan bisa melihat perubahan data secara historis/*time travel*.
 
-Ini membawa kita kembali ke [vuex](https://github.com/vuejs/vuex), jadi jika anda telah membacanya sejauh ini mungkin saatnya mencobanya!
+Mari kembali lagi ke [vuex](https://github.com/vuejs/vuex), jadi jika Anda telah membaca panduan pengelolaan *state* sampai sejauh ini, mungkin sekarang saatnya mencoba!
