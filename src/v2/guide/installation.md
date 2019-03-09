@@ -84,53 +84,33 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 
 **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
-|                 | Full       | Runtime-only       |
-| --------------- | ---------- | ------------------ |
-| **Development** | vue.js     | vue.runtime.js     |
-| **Production**  | vue.min.js | vue.runtime.min.js |
-
-| UMD                      | Development           | Production             |
-| ------------------------ | --------------------- | ---------------------- |
-| **Full**                 | vue.js                | vue.min.js             |
-| **Runtime-only**         | vue.runtime.js        | vue.runtime.min.js     |
+|                 | Full       | Runtime-only       |   |                  | Development    | Production         |
+| --------------- | ---------- | ------------------ |---| ---------------- | -------------- | ------------------ |
+| **Development** | vue.js     | vue.runtime.js     |   | **Full**         | vue.js         | vue.min.js         |
+| **Production**  | vue.min.js | vue.runtime.min.js |   | **Runtime-only** | vue.runtime.js | vue.runtime.min.js |
 
 **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
 
-|                 | Full          | Runtime-only          |
-| --------------- | ------------- | --------------------- |
-| **Development** | vue.common.js | vue.runtime.common.js |
-| **Production**  | -             | -                     |
-
-| CommonJS                 | Development           | Production             |
-| ------------------------ | --------------------- | ---------------------- |
-| **Full**                 | vue.common.js         | -                      |
-| **Runtime-only**         | vue.runtime.common.js | -                      |
+|                 | Full          | Runtime-only          |   |                  | Development           | Production |
+| --------------- | ------------- | --------------------- |---| ---------------- | --------------------- | ---------- |
+| **Development** | vue.common.js | vue.runtime.common.js |   | **Full**         | vue.common.js         | -          |
+| **Production**  | -             | -                     |   | **Runtime-only** | vue.runtime.common.js | -          |
 
 **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
 
 - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
-| ES Module (for bundlers) | Full                   | Runtime-only       |
-| ------------------------ | ---------------------- | ------------------ |
-| **Development**          | vue.esm.js             | vue.runtime.esm.js |
-| **Production**           | -                      | -                  |
-
-| ES Module (for bundlers) | Development           | Production             |
-| ------------------------ | --------------------- | ---------------------- |
-| **Full**                 | vue.esm.js            | -                      |
-| **Runtime-only**         | vue.runtime.esm.js    | -                      |
+|                 | Full       | Runtime-only       |   |                  | Development        | Production |
+| --------------- | ---------- | ------------------ |---| ---------------- | ------------------ | ---------- |
+| **Development** | vue.esm.js | vue.runtime.esm.js |   | **Full**         | vue.esm.js         | -          |
+| **Production**  | -          | -                  |   | **Runtime-only** | vue.runtime.esm.js | -          |
 
 - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 
-| ES Module (for browsers) | Full                   | Runtime-only       |
-| ------------------------ | ---------------------- | ------------------ |
-| **Development**          | vue.esm.browser.js     | -                  |
-| **Production**           | vue.esm.browser.min.js | -                  |
-
-| ES Module (for browsers) | Development           | Production             |
-| ------------------------ | --------------------- | ---------------------- |
-| **Full**                 | vue.esm.browser.js    | vue.esm.browser.min.js |
-| **Runtime-only**         | -                     | -                      |
+|                 | Full                   | Runtime-only |   |                  | Development           | Production             |
+| --------------- | ---------------------- | ------------ |---| ---------------- | --------------------- | ---------------------- |
+| **Development** | vue.esm.browser.js     | -            |   | **Full**         | vue.esm.browser.js    | vue.esm.browser.min.js |
+| **Production**  | vue.esm.browser.min.js | -            |   | **Runtime-only** | -                     | -                      |
 
 ### Terms
 
