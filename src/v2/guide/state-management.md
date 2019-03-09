@@ -1,22 +1,22 @@
 ---
-title: State Management
+title: Pengelolaan State
 type: guide
 order: 502
 ---
 
-## Official Flux-Like Implementation
+## Implementasi Flux-Like (Sejenis Flux) Resmi
 
-Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif).
+Aplikasi besar bisa tumbuh menjadi sangat kompleks, dikarenakan banyak sekali bagian dari state yang tersebar ke seluruh komponen dan berinteraksi dengan mereka. Untuk mengatasi masalah ini, Vue menawarkan [vuex](https://github.com/vuejs/vuex): Sebuah pustaka yang berfungsi untuk mengelola state buatan kami sendiri. Ia bahkan mampu terintegrasi dengan [vue-devtools](https://github.com/vuejs/vue-devtools), dan juga kita tidak perlu mempersiapkan apa-apa (tidak perlu melakukan konfigurasi khusus) untuk bisa mengakses [time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="noopener" title="Vuex Tutorial">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="noopener" title="Vuex Tutorial">Tonton video penjelasannya di Vue Mastery</a></div>
 
-### Information for React Developers
+### Informasi untuk Developer React
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+Jika Anda pernah menggunakan React, Anda mungkin ingin tahu perbandingan antara vuex dengan [redux](https://github.com/reactjs/redux), sebuah pustaka untuk implementasi Flux yang paling populer. Redux sebenarnya tidak tergantung pada suatu lapisan tampilan, jadi bisa digunakan bersama - sama dengan Vue secara mudah melalui [simple bindings](https://yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex berbeda karena ia langsung terhubung dengan aplikasi Vue. Oleh karena itu, Vuex lebih cocok jika di integrasikan dengan Vue, dan juga Vuex menawarkan API yang lebih intuitif dan mampu meningkatkan pengalaman para pengembang.
 
-## Simple State Management from Scratch
+## Pengelolaan State Sederhana dari Awal
 
-It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
+Hal ini seringkali diabaikan bahwa sumber kebenaran di aplikasi Vue adalah objek `data` yang mentah - hanya *instance* Vue yang boleh mengaksesnya. Oleh karena itu, jika Anda memiliki beberapa state yang ingin di bagikan ke beberapa *instance*, Anda bisa membaginya dengan identitas:
 
 ``` js
 const sourceOfTruth = {}
@@ -30,9 +30,9 @@ const vmB = new Vue({
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Subcomponents within each of these instances would also have access via `this.$root.$data`. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+Sekarang saat `sourceOfTruth` dirubah, kedua `vmA` dan `vmB` akan mengubah tampilan mereka secara otomatis. Sub komponen dalam beberapa *instance* ini juga perlu mengaksesnya dengan cara menggunakan perintah `this.$root.$data`. Sekarang kita punya satu sourceOfTruth, namun melakukan debugging akan sangat sulit sekali. Setiap data bisa dirubah oleh setiap bagian dari aplikasi kita setiap waktunya, tanpa meninggalkan jejak.
 
-To help solve this problem, we can adopt a **store pattern**:
+Untuk memecahkan masalah ini, kita bisa menggunakan **pola penyimpanan**:
 
 ``` js
 var store = {
@@ -51,9 +51,9 @@ var store = {
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how they are triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
+Perhatikan semua *action* yang mengubah *state* dari *store* diletakkan didalam *store* itu sendiri. Tipe pengelolaan state yang terpusat ini membuatnya semakin mudah untuk dimengerti bahwa tipe perubahan apa saja yang bisa terjadi dan bagaimana mereka dijalankan. Sekarang saat terjadi kesalahan, kita juga memiliki sebuah catatan kenapa bisa terjadi bug.
 
-In addition, each instance/component can still own and manage its own private state:
+Sebagai tambahan, setiap *instance*/komponen tetap bisa memiliki dan mengelola state milik mereka sendiri:
 
 ``` js
 var vmA = new Vue({
@@ -71,10 +71,10 @@ var vmB = new Vue({
 })
 ```
 
-![State Management](/images/state.png)
+![Pengelolaan State](/images/state.png)
 
-<p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
+<p class="tip">Sebagai catatan penting, Anda jangan pernah menggantikan state asli pada *action* yang Anda buat - komponen dan *store* perlu untuk berbagi data referensi kedalam objek yang sama supaya perubahan bisa diamati.</p>
 
-As we continue developing the convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
+Saat kita melanjutkan pengembangan, ketentuannya adalah komponen tidak boleh merubah *state* yang ada di dalam *store* secara langsung, tetapi kita harus mengirim sebuah *event* untuk memberitahu *store* bahwa dia harus menjalankan sebuah *action*, yang pada akhirnya kita akan merasakan proses seperti ini sama dengan dengan arsitektur milik [Flux](https://facebook.github.io/flux/). Keuntungan menggunakan aturan ini adalah kita bisa merekam semua perubahan *state* yang terjadi pada *store* dan bisa mengimplementasikan proses *debugging helpers* seperti catatan perubahan, *snapshot*, dan bisa melihat perubahan data secara historis/*time travel*.
 
-This brings us full circle back to [vuex](https://github.com/vuejs/vuex), so if you've read this far it's probably time to try it out!
+Mari kembali lagi ke [vuex](https://github.com/vuejs/vuex), jadi jika Anda telah membaca panduan pengelolaan *state* sampai sejauh ini, mungkin sekarang saatnya mencoba!

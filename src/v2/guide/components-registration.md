@@ -4,7 +4,7 @@ type: guide
 order: 101
 ---
 
-> Halaman ini berasumsi Anda telah membaca [Komponen Dasar](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
+> Halaman ini berasumsi Anda telah membaca [dasar-dasar komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
 
 ## Nama Komponen
 
@@ -20,7 +20,7 @@ Nama yang Anda berikan ke komponen mungkin tergantung pada dimana Anda akan meng
 
 Anda bisa melihat rekomendasi lainya untuk nama nama komponen di [Panduan Gaya](../style-guide/#Base-component-names-strongly-recommended).
 
-### Bingkai Nama (Name Casing)
+### Aturan Huruf Nama (Name Casing)
 
 Anda mempunyai dua pilihan ketika mendefinisikan nama komponen:
 

@@ -4,32 +4,34 @@ type: guide
 order: 103
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Halaman ini berasumsi Anda telah membaca [dasar-dasar komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
 
-## Event Names
+## Nama *Event*
 
-Unlike components and props, event names don't provide any automatic case transformation. Instead, the name of an emitted event must exactly match the name used to listen to that event. For example, if emitting a camelCased event name:
+Tidak seperti komponen dan props, nama *event* tidak menyediakan transofrmasi kata secara otomatis.
+Sebaliknya, nama event yang di *emit* harus sama dengan nama *event* yang didengarkan. Sebagai contoh jika melakukan *emit* pada *event* dengan *camelCase*:
+ 
 
 ```js
 this.$emit('myEvent')
 ```
 
-Listening to the kebab-cased version will have no effect:
+Mendengarkan menggunakan *kebab-cased* tidak akan memberikan efek
 
 ```html
 <!-- Won't work -->
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
-Unlike components and props, event names will never be used as variable or property names in JavaScript, so there's no reason to use camelCase or PascalCase. Additionally, `v-on` event listeners inside DOM templates will be automatically transformed to lowercase (due to HTML's case-insensitivity), so `v-on:myEvent` would become `v-on:myevent` -- making `myEvent` impossible to listen to.
+Tidak seperti komponen dan props, nama *event* tidak akan pernah digunakan sebagai nama variabel atau properti di dalam JavaScript, jadi tidak ada alasan untuk menggunakan kata dengan *camelCase* atau *PascalCase*. Selain itu, *listener* *event* `v-on` di dalam *template* DOM akan secara otomatis diubah menjadi huruf kecil (karena HTML tidak peka terhadap besar kecil huruf), jadi `v-on:myEvent` akan menjadi `v-on:myevent` -- membuat `myEvent` tidak mungkin untuk didengarkan
 
-For these reasons, we recommend you **always use kebab-case for event names**.
+Karena alasan tersebut, kami merekomendasikan kamu  **selalu gunakan *kebab-case* untuk nama *event***
 
-## Customizing Component `v-model`
+## Menyesuaikan Komponen `v-model`
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
-By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` attribute for a [different purpose](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value). Using the `model` option can avoid a conflict in such cases:
+Secara standar, `v-model` pada sebuah komponen menggunakan `value` sebagai prop dan `input` sebagai *event*, tetapi beberapa tipe *input* seperti *checkbox* dan *radio button* mungkin menggunakan atribut `value` untuk sebuah [different purpose] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value). Menggunakan opsi `model` dapat menghindari konflik dalam kasus-kasus seperti:
 
 ```js
 Vue.component('base-checkbox', {
@@ -50,25 +52,25 @@ Vue.component('base-checkbox', {
 })
 ```
 
-Now when using `v-model` on this component:
+Sekarang ketika menggunakan `v-model` pada komponen ini
 
 ```html
 <base-checkbox v-model="lovingVue"></base-checkbox>
 ```
 
-the value of `lovingVue` will be passed to the `checked` prop. The `lovingVue` property will then be updated when `<base-checkbox>` emits a `change` event with a new value.
+nilai dari `lovingVue` akan dioper ke prop `checked`. Properti `lovingVue` kemudian akan diperbarui ketika `<base-checkbox>` melakukan *emit* pada sebuah *event* bernama `change` dengan nilai yang baru.
 
-<p class="tip">Note that you still have to declare the <code>checked</code> prop in component's <code>props</code> option.</p>
+<p class="tip">Catatan bahwa anda masih harus mendeklarasikan<code>checked</code> prop di dalam opsi <code>props</code> komponen.</p>
 
-## Binding Native Events to Components
+## *Binding Native Events* ke Komponen
 
-There may be times when you want to listen directly to a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`:
+Mungkin ada saat-saat anda ingin mendengarkan secara langsung ke *native event* pada sebuah elemen utama dari sebuah komponen. Dalam kasus ini, anda dapat menggunakan `.native` *modifier* untuk `v-on`
 
 ```html
 <base-input v-on:focus.native="onFocus"></base-input>
 ```
 
-This can be useful sometimes, but it's not a good idea when you're trying to listen on a very specific element, like an `<input>`. For example, the `<base-input>` component above might refactor so that the root element is actually a `<label>` element:
+Terkadang ini berguna, tetapi ini bukan ide yang bagus ketika kamu mencoba untuk mendengarkan sebuah elemen khusus, seperti `<input>`. Sebagai contoh, komponen `<base-input>` diatas mungkin harus diperbaiki agar elemen akar yang sebenarnya adalah elemen `<label>` 
 
 ```html
 <label>
@@ -81,9 +83,9 @@ This can be useful sometimes, but it's not a good idea when you're trying to lis
 </label>
 ```
 
-In that case, the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when we expected it to.
+Dalam kasus ini, *listener* `.native` dalam induk komponen akan diam-diam berhenti. Tidak akan terjadi kesalahan, tetapi *handler* `onFocus` tidak akan dipanggil ketika kita mengharapkannya.
 
-To solve this problem, Vue provides a `$listeners` property containing an object of listeners being used on the component. For example:
+Untuk mengatasi masalah ini, Vue menyediakan properti `$listeners` yang berisi objek *listener* yang digunakan pada komponen. Sebagai contoh :
 
 ```js
 {
@@ -92,7 +94,7 @@ To solve this problem, Vue provides a `$listeners` property containing an object
 }
 ```
 
-Using the `$listeners` property, you can forward all event listeners on the component to a specific child element with `v-on="$listeners"`. For elements like `<input>`, that you also want to work with `v-model`, it's often useful to create a new computed property for listeners, like `inputListeners` below:
+Menggunakan properti `$listeners`, kamu dapat meneruskan semua *listener* *event* pada komponen ke elemen anak khusus dengan `v-on="$listeners"`. Sebagai contoh seperti `<input>`, bahwa kamu juga ingin bekerja dengan `v-model`, ini akan sering berguna untuk membuat sebuah *computed* properti baru untuk *listener*, seperti `inputListener` dibawah ini :
 
 ```js
 Vue.component('base-input', {
@@ -101,14 +103,14 @@ Vue.component('base-input', {
   computed: {
     inputListeners: function () {
       var vm = this
-      // `Object.assign` merges objects together to form a new object
+      // `Object.assign` menggabungkan objek bersama untuk membentuk objek baru
       return Object.assign({},
-        // We add all the listeners from the parent
+        // Kita menambahkan semua pendengar dari induk
         this.$listeners,
-        // Then we can add custom listeners or override the
-        // behavior of some listeners.
+        // Kemudian kita bisa menambahkan *listener* modifikasi atau mengesampingkan kebiasaan
+        // dari beberapa *listener*
         {
-          // This ensures that the component works with v-model
+          // Ini memastikan komponen bekerja dengan v-model
           input: function (event) {
             vm.$emit('input', event.target.value)
           }
@@ -129,21 +131,21 @@ Vue.component('base-input', {
 })
 ```
 
-Now the `<base-input>` component is a **fully transparent wrapper**, meaning it can be used exactly like a normal `<input>` element: all the same attributes and listeners will work, without the `.native` modifier.
+Sekarang komponen `<base-input>` adalah sebuah **pembungkus yang sepenuhnya transparan**, artinya dapat digunakan persis seperti elemen `<input>` normal: semua atribut dan *listener* akan bekerja, tanpa *modifier* `.native`
 
-## `.sync` Modifier
+## *Modifier* `.sync`
 
-> New in 2.3.0+
+> Baru di 2.3.0+
 
-In some cases, we may need "two-way binding" for a prop. Unfortunately, true two-way binding can create maintenance issues, because child components can mutate the parent without the source of that mutation being obvious in both the parent and the child.
+Dalam beberapa kasus, kita mungkin memerlukan *binding* dua arah untuk sebuah prop. sayangnya *binding* dua arah yang benar dapat menciptakan pemeliharaan masalah, karena komponent anak dapat mengubah induk tanpa sumber perubahan itu menjadi jelas di induk dan di anak
 
-That's why instead, we recommend emitting events in the pattern of `update:myPropName`. For example, in a hypothetical component with a `title` prop, we could communicate the intent of assigning a new value with:
+Karena itu, kami merekomendasikan dalam melakukan *emit* pada sebuah *event* dalam pola `update:myPropName`. Sebagai contoh, dalam sebuah komponen hipotesis dengan sebuah `title` prop, kita tidak dapat menyampaikan maksud pemberian nilai baru dengan :
 
 ```js
 this.$emit('update:title', newTitle)
 ```
 
-Then the parent can listen to that event and update a local data property, if it wants to. For example:
+Kemudian induk akan mendengarkan ke *event* tersebut dan memperbarui properti data lokal, jika diinginkan. Sebagai contoh :
 
 ```html
 <text-document
@@ -152,20 +154,21 @@ Then the parent can listen to that event and update a local data property, if it
 ></text-document>
 ```
 
-For convenience, we offer a shorthand for this pattern with the `.sync` modifier:
+Untuk kenyamanan, kami menawarkan singkatan untuk pola ini dengan `.sync` *modifier*
 
 ```html
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
 
-<p class="tip">Note that <code>v-bind</code> with the <code>.sync</code> modifier does <strong>not</strong> work with expressions (e.g. <code>v-bind:title.sync="doc.title + '!'"</code> is invalid). Instead, you must only provide the name of the property you want to bind, similar to <code>v-model</code>.</p>
+<p class="tip">Catatan <code>v-bind</code> dengan *modifier* <code>.sync</code> <strong>tidak</strong> bekerja dengan ekspresi (e.g. <code>v-bind:title.sync="doc.title + '!'"</code> adalah tidak valid). Sebaliknya, Anda hanya harus memberikan nama dari properti yang anda ingin *bind*, mirip dengan <code>v-model</code>.</p>
 
-The `.sync` modifier can also be used with `v-bind` when using an object to set multiple props at once:
+Pengubah `.sync` dapat juga digunakan dengan `v-bind` ketika menggunakan sebuah objek untuk mengatur beberapa props sekaligus
 
 ```html
 <text-document v-bind.sync="doc"></text-document>
 ```
 
-This passes each property in the `doc` object (e.g. `title`) as an individual prop, then adds `v-on` update listeners for each one.
+Ini meneruskan setiap properti di objek `doc` (Contoh. `title`) sebagai sebuah prop individu, 
+kemudian tambahkan `v-on` perbarui untuk masing-masing
 
-<p class="tip">Using <code>v-bind.sync</code> with a literal object, such as in <code>v-bind.sync="{ title: doc.title }"</code>, will not work, because there are too many edge cases to consider in parsing a complex expression like this.</p>
+<p class="tip">Menggunakan <code>v-bind.sync</code> dengan objek literal, seperti di <code>v-bind.sync="{ title: doc.title }"</code>, tidak akan berfungsi, karena ada terlalu banyak kasus baru untuk dipertimbangkan dalam menguraikan ekspresi kompleks seperti ini</p>

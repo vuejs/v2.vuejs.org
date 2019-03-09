@@ -26,10 +26,12 @@
 
 ## C
 
+- Case: Aturan Huruf
 - Chain: Rantai (atau bisa dengan tetap *Chain*)
 - Child: Anak
 - Component: Komponen
 - Console: Konsol
+- Constructor: Konstruktor
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -73,6 +75,7 @@
 
 - Import: Impor
 - Index: Indeks
+- Inheritance: Pewarisan
 - Instance: *Instance*
 - Interpolation: Interpolasi
 
@@ -101,6 +104,7 @@
 
 - Modifier: Pengubah
 - Mount: Pasang
+- Mutate: Memutasi
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -119,6 +123,7 @@
 
 ## P
 
+- Passing: Mengoper
 - Parent: Induk
 - Project: Proyek
 - Property: Properti
