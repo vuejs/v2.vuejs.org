@@ -80,7 +80,9 @@ Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly sca
 
 ## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them.
+
+### Directly Use
 
 **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag.
 
@@ -91,12 +93,16 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 
 The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
-**[ES Module](http://exploringjs.com/es6/ch_modules.html)** for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+**[ES Module](http://exploringjs.com/es6/ch_modules.html)** for browsers (starting from Vue 2.6): intended for direct imports in modern browsers via `<script type="module">`.
 
 |                  | **Full**               | **Runtime-only** |
 | ---------------- | ---------------------- | ---------------- |
 | **Development**  | vue.esm.browser.js     | -                |
 | **Production**   | vue.esm.browser.min.js | -                |
+
+### For Bundlers
+
+These builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
 
 **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io).
 
@@ -199,8 +205,6 @@ Add to your project's `package.json`:
 ### Development vs. Production Mode
 
 Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
-
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
 
 CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
 
