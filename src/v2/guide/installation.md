@@ -84,7 +84,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 
 **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
-| | |
+| | | |
 | ---------------- | --------------- | ------------------ |
 |                  | **Development** | **Production**     |
 | **Full**         | vue.js          | vue.min.js         |
@@ -95,7 +95,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 
 **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
 
-| | |
+| | | |
 | ---------------- | --------------------- | --------------------- |
 |                  | **Development**       | **Production**        |
 | **Full**         | vue.common.js         | -                     |
@@ -108,7 +108,7 @@ starting in 2.6 Vue provides two ES Modules (ESM) builds:
 
 **[ES Module](http://exploringjs.com/es6/ch_modules.html) for bundlers**: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
-| | |
+| | | |
 | ---------------- | ------------------ | ------------------ |
 |                  | **Development**    | **Production**     |
 | **Full**         | vue.esm.js         | -                  |
@@ -119,7 +119,7 @@ starting in 2.6 Vue provides two ES Modules (ESM) builds:
 
 **[ES Module](http://exploringjs.com/es6/ch_modules.html) for browsers** (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 
-| | |
+| | | |
 | ---------------- | ---------------------- | ---------------------- |
 |                  | **Development**        | **Production**         |
 | **Full**         | vue.esm.browser.js     | vue.esm.browser.min.js |
