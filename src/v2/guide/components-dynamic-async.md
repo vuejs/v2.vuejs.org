@@ -151,7 +151,7 @@ new Vue({
 
 Jika Anda memilih salah satu postingan di tab _Posts_, kemudian pindah ke tab _Archive_, kemudian pindah lagi ke tab _Posts_, Anda akan melihat bahwa tab _Posts_ tidak lagi menampilkan postingan yang Anda pilih sebelumnya. Itu karena setiap kali Anda berpindah ke tab baru, Vue akan membuat *Instance* baru dari `currentTabComponent`.
 
-Membuat kembali komponen yang dinamis merupakan perilaku yang bermanfaat, tapi dalam kasus ini, kami ingin sekali *Instance* komponen tab di-*cache* setelah dibuat pertama kali. Untuk mengatasi masalah ini, Kami akan membungkus komponen dinamis kami dengan elemen `<keep-alive>`:
+Membuat kembali komponen yang dinamis merupakan tindakan yang bermanfaat, tapi dalam kasus ini, kami ingin sekali *Instance* komponen tab di-*cache* setelah dibuat pertama kali. Untuk mengatasi masalah ini, Kami akan membungkus komponen dinamis kami dengan elemen `<keep-alive>`:
 
 ``` html
 <!-- Komponen yang tidak aktif akan di-*cache*! -->
