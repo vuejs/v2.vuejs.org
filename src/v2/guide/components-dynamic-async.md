@@ -264,8 +264,8 @@ const AsyncComponent = () => ({
   error: ErrorComponent,
   // Jeda sebelum menampikan komponen yang sedang dimuat. Default: 200ms.
   delay: 200,
-  // Komponen *error* akan ditampilkan jika batas waktu
-  // disediakan dan dilampaui. Default: Infinity.
+  // Komponent *error* akan ditampilkan jika batas waktu
+  // yang disediakan telah dilampaui. Default: Infinity.
   timeout: 3000
 })
 ```
