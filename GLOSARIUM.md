@@ -45,10 +45,11 @@
 
 ## E
 
-- Export: Ekspor
+- E.g. (exempli gratia / for example): Sebagai Contoh
 - Element: Elemen
-- Expression: Ekspresi
 - Event: *Event*
+- Export: Ekspor
+- Expression: Ekspresi
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -73,6 +74,7 @@
 
 ## I
 
+- I.e. (id est / in other words): Dengan kata lain
 - Import: Impor
 - Index: Indeks
 - Inheritance: Pewarisan
