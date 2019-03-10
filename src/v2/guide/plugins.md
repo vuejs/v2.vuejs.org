@@ -1,85 +1,85 @@
 ---
-title: Plugins
+title: Plugin
 type: guide
 order: 304
 ---
 
-Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins:
+Biasanya plugin menambahkan kefungsionalan level-global ke dalam Vue. Tidak ada ruang lingkup yang didefinisikan secara ketat untuk sebuah plugin - Ada beberapa tipe plugin:
 
-1. Add some global methods or properties. e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
+1. Menambahkan beberapa metode global atau properti. Sebagai contoh [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
-2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
+2. Menambahkan satu atau lebih aset global: direktif/filter/transisi dan lain-lain. Sebagai contoh [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some component options by global mixin. e.g. [vue-router](https://github.com/vuejs/vue-router)
+3. Menambahkan beberapa opsi komponen oleh *mixin* global. Sebagai contoh [vue-router](https://github.com/vuejs/vue-router)
 
-4. Add some Vue instance methods by attaching them to Vue.prototype.
+4. Menambahkan beberapa metode *instance* Vue dengan melampirkannya ke dalam Vue.prototype.
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. [vue-router](https://github.com/vuejs/vue-router)
+5. Pustaka yang menyediakan API dari dirinya sendiri, dalam waktu yang sama menginjeksi beberapa kombinasi di atas. Sebagai contoh [vue-router](https://github.com/vuejs/vue-router)
 
-## Using a Plugin
+## Menggunakan Plugin
 
-Use plugins by calling the `Vue.use()` global method. This has to be done before you start your app by calling `new Vue()`:
+Menggunakan plugin dengan memanggil metode global `Vue.use()`. Ini harus dilakukan sebelum Anda memulai aplikasi Anda dengan memanggil `new Vue()`:
 
 ``` js
-// calls `MyPlugin.install(Vue)`
+// memanggil `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 
 new Vue({
-  //... options
+  //... pilihan
 })
 ```
 
-You can optionally pass in some options:
+Secara Opsional, Anda bisa mengoper beberapa opsi:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-`Vue.use` automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+`Vue.use` secara otomatis mencegah Anda dari menggunakan plugin yang sama lebih dari satu kali, jadi memanggil plugin yang sama beberapa kali hanya akan menginstal plugin satu kali.
 
-Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
+Beberapa plugin disediakan oleh plugin Vue.js resmi seperti `vue-router` secara otomatis memanggil `Vue.use()` jika `Vue` tersedia sebagai variabel global. Bagaimanapun dalam linkungan modul seperti CommonJS, Anda selalu butuh memanggil `Vue.use()` secara eksplisit:
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// Ketika menggunakan CommonJS via Browserify atau Webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
-// Don't forget to call this
+// Jangan lupa untuk memanggil fungsi ini
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+Cek [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) untuk koleksi yang banyak dari kontribusi plugin dan pustaka komunitas.
 
-## Writing a Plugin
+## Menulis Plugin
 
-A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
+Plugin Vue.js harus membuka metode `install`. Metode akan dipanggil dengan konstruktor `Vue` sebagai argumen pertama, bersama dengan opsi yang memungkinkan:
 
 ``` js
 MyPlugin.install = function (Vue, options) {
-  // 1. add global method or property
+  // 1. tambahkan metode global atau properti
   Vue.myGlobalMethod = function () {
-    // some logic ...
+    // logika ...
   }
 
-  // 2. add a global asset
+  // 2. tambahkan aset global
   Vue.directive('my-directive', {
     bind (el, binding, vnode, oldVnode) {
-      // some logic ...
+      // logika ...
     }
     ...
   })
 
-  // 3. inject some component options
+  // 3. injeksi beberapa opsi komponen
   Vue.mixin({
     created: function () {
-      // some logic ...
+      // logika ...
     }
     ...
   })
 
-  // 4. add an instance method
+  // 4. tambahkan metode instance
   Vue.prototype.$myMethod = function (methodOptions) {
-    // some logic ...
+    // logika ...
   }
 }
 ```
