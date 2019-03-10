@@ -14,7 +14,7 @@ Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen didalam
 <component v-bind:is="currentTabComponent"></component>
 {% endcodeblock %}
 
-Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari *render* ulang karena alasan kinerja. Misalnya, saat kami memperluas antarmuka didalam tab:
+Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari *render* ulang dengan alasan kinerja lebih yang lebih baik (performa). Sebagai contoh, saat kami memperluas antarmuka yang ada di dalam tab:
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
