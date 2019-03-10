@@ -14,7 +14,7 @@ Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen didalam
 <component v-bind:is="currentTabComponent"></component>
 {% endcodeblock %}
 
-Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari *render* ulang dengan alasan kinerja lebih yang lebih baik (performa). Sebagai contoh, saat kami memperluas antarmuka yang ada di dalam tab:
+Saat berpindah antar komponen, terkadang Anda ingin mempertahankan *state*nya atau menghindari *render* ulang dengan alasan kinerja yang lebih baik (performa). Sebagai contoh, saat kami memperluas antarmuka yang ada di dalam tab:
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -235,7 +235,7 @@ Vue.component(
 )
 ```
 
-Saat menggunakan [pendaftaran lokal](components-registration.html#Local-Registration), Anda juga bisa langsung menyediakan *funtion* yang akan mengembalikan `Promise`:
+Saat menggunakan [pendaftaran lokal](components-registration.html#Local-Registration), Anda juga bisa langsung menyediakan *function* yang akan mengembalikan `Promise`:
 
 ``` js
 new Vue({
@@ -252,22 +252,22 @@ new Vue({
 
 > Baru di 2.3.0+
 
-Pabrik komponent *async* juga bisa mengembalikan objek dengan menggunakan format berikut:
+*Async component factory* juga bisa mengembalikan objek dengan menggunakan format berikut:
 
 ``` js
 const AsyncComponent = () => ({
   // Komponen yang dimuat (harus *Promise*)
   component: import('./MyComponent.vue'),
-  // Komponen yang akan di gunakan saat komponent *async* sedang dimuat
+  // Komponen yang akan di gunakan saat komponen *async* sedang dimuat
   loading: LoadingComponent,
   // Komponen yang digunakan jika memuat gagal
   error: ErrorComponent,
   // Jeda sebelum menampikan komponen yang sedang dimuat. Default: 200ms.
   delay: 200,
-  // Komponent *error* akan ditampilkan jika batas waktu
+  // Komponen *error* akan ditampilkan jika batas waktu
   // disediakan dan dilampaui. Default: Infinity.
   timeout: 3000
 })
 ```
 
-> Perhatikan bahwa Anda harus menggunakan [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ jika Anda ingin menggunakan sintaks di atas untuk rute komponen.
+> Perhatikan bahwa Anda harus menggunakan [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ jika Anda ingin menggunakan sintaks di atas untuk *route* komponen.
