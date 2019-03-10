@@ -4,7 +4,7 @@ type: guide
 order: 105
 ---
 
-> Halaman ini berasumsi Anda telah membaca [Dasar-Dasar Komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti komponen.
+> Sebelum lanjut membaca halaman ini, kami berasumsi bahwa Anda telah membaca [Dasar-Dasar Komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti tentang komponen.
 
 ## `keep-alive` dengan Komponen yang Dinamis
 
