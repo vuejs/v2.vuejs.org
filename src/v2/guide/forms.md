@@ -10,7 +10,12 @@ Vous pouvez utiliser la directive `v-model` pour créer une liaison de données 
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initiale des attributs `value`, `checked` ou `selected` fournis par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité. Vous devez déclarer la valeur initiale dans votre JavaScript, dans l'option `data` de votre composant.</p>
 
-<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen, etc.), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
+$todo `v-model` internally uses different properties and emits different events for different input elements:
+- text and textarea elements use `value` property and `input` event;
+- checkboxes and radiobuttons use `checked` property and `change` event;
+- select fields use `value` as a prop and `change` as an event.
+
+<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen, etc.), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie. $todo If you want to cater for these updates as well, use `input` event instead.</p>
 
 ### Texte
 

@@ -393,6 +393,8 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par évènements personnalisés et l'intégration avec les outils de *build*.
 
+$todo Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+
 ## Prêt pour la suite ?
 
 Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js. Le reste de ce guide va les traiter ainsi que d'autres fonctionnalités avancées plus en détail. Assurez-vous donc de le lire jusqu'au bout !

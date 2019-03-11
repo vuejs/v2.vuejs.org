@@ -10,9 +10,9 @@ order: 105
 
 Précédemment, nous avons utilisé l'attribut `is` pour basculer entre des composants dans une interface avec des onglets :
 
-```html
-<component v-bind:is="composantOngletActuel"></component>
-```
+{% codeblock lang:html %}
+<component v-bind:is="currentTabComponent"></component>
+{% endcodeblock %}
 
 Toutefois, lors de la bascule d'un composant à l'autre, vous voudrez parfois maintenir leur état ou éviter de refaire leur rendu pour des raisons de performance. Par exemple, en détaillant un peu plus notre interface avec onglets :
 

@@ -536,6 +536,7 @@ Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un
 - `props` : un objet avec les props fournies,
 - `children` : un tableau de VNode enfants,
 - `slots` : une fonction retournant un objet de slots,
+- `scopedSlots`: $todo (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions,
 - `data` : l'[objet de données](#The-Data-Object-In-Depth) (`data`) complet passé au composant en tant que second argument de `createElement`,
 - `parent` : une référence au composant parent,
 - `listeners` : (2.3.0+) un objet contenant les écouteurs d'évènement enregistrés dans le parent. C'est un simple alias de `data.on`,

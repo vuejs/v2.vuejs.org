@@ -297,7 +297,7 @@ created() {
 
 ## Pattern alternatif
 
-Une alternative à considérer, surtout si vous préférez écrire seulement en Markdown, est d'utiliser par exemple [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components). Nuxtent vous permet d'utiliser un composant Vue à l'intérieur de fichiers Markdown. Cette approche pourrait être apparentée à celle utilisée par les sites statiques (c'est-à-dire Jekyll) dans laquelle vous écrivez les articles dans des fichiers Markdown. Nuxtent permet une bonne intégration entre Vue.js et Markdown vous permettant de vivre dans un monde à 100% Vue.js.
+Une alternative à considérer, surtout si vous préférez écrire seulement en Markdown, est d'utiliser par exemple [Nuxtent](https://nuxtent-module.netlify.com/guide/writing/#async-components). Nuxtent vous permet d'utiliser un `Vue Component` à l'intérieur de fichiers Markdown. Cette approche pourrait être apparentée à celle utilisée par les sites statiques (c'est-à-dire Jekyll) dans laquelle vous écrivez les articles dans des fichiers Markdown. Nuxtent permet une bonne intégration entre Vue.js et Markdown vous permettant de vivre dans un monde à 100% Vue.js.
 
 ## Conclusion
 

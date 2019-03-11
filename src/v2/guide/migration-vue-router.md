@@ -211,9 +211,9 @@ par une définition comme ci-dessous dans votre configuration de `routes` :
 
 Si vous avez besoin de plusieurs alias, vous pouvez aussi utiliser la syntaxe de tableau :
 
-``` js
+{% codeblock lang:js %}
 alias: ['/manage', '/administer', '/administrate']
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">

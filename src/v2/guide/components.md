@@ -28,9 +28,9 @@ Les composants sont des instances de Vue réutilisables avec un nom : dans notre
 </div>
 ```
 
-```js
+{% codeblock lang:js %}
 new Vue({ el: '#components-demo' })
-```
+{% endcodeblock %}
 
 {% raw %}
 <div id="components-demo" class="demo">

@@ -331,6 +331,8 @@ Quand l'attribut spécial `inline-template` est présent sur un composant enfant
 </my-component>
 ```
 
+$todo Your inline template needs to be defined inside the DOM element to which Vue is attached.
+
 <p class="tip">Cependant, <code>inline-template</code> rend la portée de vos templates plus difficile à appréhender. Une bonne pratique est de préférer la définition de templates à l'intérieur du composant en utilisant l'option <code>template</code> ou dans un élément <code>&lt;template&gt;</code> dans un fichier <code>.vue</code>.</p>
 
 ### X-Templates
@@ -349,6 +351,8 @@ Vue.component('hello-world', {
 })
 ```
 
+$todo Your x-template needs to be defined outside the DOM element to which Vue is attached.
+
 <p class="tip">Ce type de templates peut être utile pour des démos avec de gros templates ou dans des applications extrêmements petites, mais sinon il doit être évité, car ils séparent les templates du reste de la définition du composant.</p>
 
 ## Contrôler les mises à jour
@@ -366,7 +370,7 @@ Cependant, si vous avez exclu toutes les options précédentes et que vous vous 
 ### Composants statiques économes avec `v-once`
 
 Faire le rendu d'éléments HTML statiques est très rapide dans Vue, mais parfois vous pouvez avoir un composant qui contient **une grande quantité** de contenu statique. Dans ces cas, vous pouvez vous assurer qu'il ne sera évalué qu'une seule fois puis mis en cache en ajoutant la directive `v-once` à l'élément racine, comme ceci :
- 
+
 ``` js
 Vue.component('conditions-d-utilisation', {
   template: `

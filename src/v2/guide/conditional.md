@@ -6,26 +6,17 @@ order: 7
 
 ## `v-if`
 
-Dans les templates en chaine de caractères, par exemple [Handlebars](https://handlebarsjs.com/), nous pourrions écrire une structure conditionnelle comme ceci :
+La directive `v-if` est utilisée pour conditionnellement faire le rendu d'un bloc. Le rendu du bloc sera effectué uniquement si l'expression de la directive retourne une valeur évaluée à vrai.
 
 ``` html
-<!-- Template de Handlebars -->
-{{#if ok}}
-  <h1>Oui</h1>
-{{/if}}
-```
-
-Dans Vue, nous utilisons la directive `v-if` pour obtenir la même chose :
-
-``` html
-<h1 v-if="ok">Oui</h1>
+<h1 v-if="awesome">Vue est extraordinaire !</h1>
 ```
 
 Il est également possible d’ajouter une structure « sinon » avec `v-else` :
 
 ``` html
-<h1 v-if="ok">Oui</h1>
-<h1 v-else>Non</h1>
+<h1 v-if="awesome">Vue est extraordinaire !</h1>
+<h1 v-else>Oh non 😢</h1>
 ```
 
 ### Groupes conditionnels avec `v-if` dans un `<template>`

@@ -17,7 +17,8 @@ this.$emit('monEvenement')
 Alors écouter la version kebab-case n'aura pas d'effet :
 
 ```html
-<my-component v-on:mon-evenement="doSomething"></my-component>
+<!-- Ne fonctionne pas -->
+<my-component v-on:my-event="doSomething"></my-component>
 ```
 
 Contrairement aux composants et aux props, les noms d'événements ne seront jamais utilisés comme noms de variables ou de propriétés en JavaScript, donc il n'y a pas de raison d'utiliser camelCase ou PascalCase. De plus, les écouteurs d'événements  `v-on` à l'intérieur de templates DOM seront automatiquement transformées en minuscules (à cause de l'insensibilité à la casse de HTML), donc `v-on:monEvenement` deviendra `v-on:monevenement` -- rendant `monEvenement` impossible à écouter.

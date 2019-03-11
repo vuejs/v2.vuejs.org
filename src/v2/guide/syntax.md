@@ -46,9 +46,9 @@ Les doubles moustaches interprètent la donnée en tant que texte brut, pas en t
 new Vue({
   el: '#example1',
   data: function () {
-  	return {
-  	  rawHtml: '<span style="color: red">Ceci devrait être rouge.</span>'
-  	}
+    return {
+      rawHtml: '<span style="color: red">Ceci devrait être rouge.</span>'
+    }
   }
 })
 </script>
@@ -128,6 +128,50 @@ Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
 Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi plus en détail de la gestion des évènements.
 
+### $todo Dynamic Arguments
+
+> New in 2.6.0+
+
+Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+
+``` html
+<a v-bind:[attributeName]="url"> ... </a>
+```
+
+Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+
+Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+
+``` html
+<a v-on:[eventName]="doSomething"> ... </a>
+```
+
+Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+
+#### Dynamic Argument Value Constraints
+
+Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+
+#### Dynamic Argument Expression Constraints
+
+<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes. You also need to avoid uppercase keys when using in-DOM templates.</p>
+
+For example, the following is invalid:
+
+``` html
+<!-- This will trigger a compiler warning. -->
+<a v-bind:['foo' + bar]="value"> ... </a>
+```
+
+The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+
+In addition, if you are using in-DOM templates (templates directly written in an HTML file), you have to be aware that browsers will coerce attribute names into lowercase:
+
+``` html
+<!-- This will be converted to v-bind:[someattr] in in-DOM templates. -->
+<a v-bind:[someAttr]="value"> ... </a>
+```
+
 ### Modificateurs
 
 Les modificateurs sont des suffixes spéciaux indiqués par un point, qui indique qu'une directive devrait être liée d'une manière spécifique. Par exemple, le modificateur `.prevent` dit à la directive `v-on` d'appeler `event.preventDefault()` lorsque l'évènement survient.
@@ -150,6 +194,9 @@ Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifi
 
 <!-- abréviation -->
 <a :href="url"> ... </a>
+
+<!-- abréviation avec argument dynamique (2.6.0+) -->
+<a :[key]="url"> ... </a>
 ```
 
 ### Abréviation pour `v-on`
@@ -160,6 +207,9 @@ Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifi
 
 <!-- abréviation -->
 <a @click="doSomething"> ... </a>
+
+<!-- abréviation avec argument dynamique (2.6.0+) -->
+<a @[event]="doSomething"> ... </a>
 ```
 
 Cela peut paraitre un peu différent du HTML classique, mais `:` et `@` sont des caractères valides pour des noms d'attributs et tous les navigateurs supportés par Vue.js peuvent l'interpréter correctement. De plus, ils n'apparaissent pas dans le balisage final. La syntaxe abrégée est totalement optionnelle, mais vous allez probablement l'apprécier quand vous en apprendrez plus sur son utilisation plus loin.

@@ -41,7 +41,9 @@ props: {
   likes: Number,
   isPublished: Boolean,
   commentIds: Array,
-  author: Object
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // ou n'importe quel autre constructeur
 }
 ```
 
@@ -188,7 +190,7 @@ Pour spécifier des validations de prop, vous pouvez fournir un objet avec les c
 ``` js
 Vue.component('my-component', {
   props: {
-    // Vérification de type basique (`null` valide n'importe quel type)
+    // Vérification de type basique (`null` et `undefined` valide n'importe quel type)
     propA: Number,
     // Multiple types possibles
     propB: [String, Number],

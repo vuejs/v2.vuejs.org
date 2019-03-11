@@ -441,7 +441,9 @@ De la même manière qu'avec `v-if`, vous pouvez également utiliser la balise `
 
 ## `v-for` avec `v-if`
 
-Quand ils existent sur le même nœud, `v-for` a une priorité plus élevée que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment à chaque itération de boucle. C'est très utile quand vous voulez faire le rendu de seulement certains noeuds, comme ci-dessous :
+<p class="tip">$todo Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
+
+Quand ils existent sur le même nœud, `v-for` a une priorité plus élevée que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment à chaque itération de boucle. C'est très utile quand vous voulez faire le rendu de seulement _certains_ noeuds, comme ci-dessous :
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
