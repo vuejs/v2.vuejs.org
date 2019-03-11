@@ -40,13 +40,13 @@ Pour du prototypage ou de l'apprentissage, vous pouvez utiliser la dernière ver
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-$todo For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Pour la production, nous vous recommandons de vous figer a une version et un build défini pour éviter les changements non compatibles des nouvelles versions :
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-$todo If you are using native ES Modules, there is also an ES Modules compatible build:
+Si vous utiliser des Modules ES natif, il y a également un build compatible avec les Modules ES :
 
 ``` html
 <script type="module">
@@ -100,11 +100,11 @@ Dans le [dossier `dist/` du package npm](https://cdn.jsdelivr.net/npm/vue/dist/)
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: Les builds CommonJS sont prévus pour une utilisation avec les vieux outils de paquetage (« bundle ») comme [browserify](http://browserify.org/) ou [webpack 1](https://webpack.github.io). Le fichier par défaut pour ces outils (`pkg.main`) est le build CommonJS Runtime (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: $todo starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: apparut avec la 2.6, Vue fournit deux builds pour Modules ES (ESM) :
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - ESM pour empaqueteur : destiné à être utiliser avec des empaqueteurs modernes comme [webpack 2](https://webpack.js.org) ou [Rollup](https://rollupjs.org/). Le format ESM est conçu pour être statiquement analysable ainsi les empaqueteurs peuvent avantageusement faire du retrait de fonctionnalité inutile et éliminer ce code de votre paquetage final. Le fichier par défaut pour ces paquetages (`pkg.module`) est le Runtime seulement pour build Module ES (`vue.runtime.esm.js`).
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - ESM pour navigateur (2.6+ seulement): destiné à l'import directe des modules dans les navigateurs modernes via `<script type="module">`.
 
 ### Runtime + Compiler vs. Runtime seul
 

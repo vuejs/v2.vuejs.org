@@ -128,47 +128,47 @@ Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
 Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi plus en détail de la gestion des évènements.
 
-### $todo Dynamic Arguments
+### Arguments dynamiques
 
-> New in 2.6.0+
+> Nouveau dans la 2.6.0+
 
-Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+Introduit dans la version 2.6.0, il est aussi possible d'utiliser des expressions JavaScript dans un argument de directive inclu entre parenthèses droites :
 
 ``` html
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+Ici `attributeName` va dynamiquement être évalué comme une expression JavaScript et cette valeur d'évaluation va être utilisée comme valeur finale pour l'argument. Par exemple, si votre instance de Vue a une propriété de donnée, `attributeName`, et que cette valeur est `"href"`, alors la liaison sera équivalente à `v-bind:href`.
 
-Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+De manière similaire, vous pouvez utiliser les arguments dynamiques pour lier un gestionnaire d'évènement à un nom d'évènement dynamique :
 
 ``` html
 <a v-on:[eventName]="doSomething"> ... </a>
 ```
 
-Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+De manière similaire, donc, quand la valeur `eventName` est `"focus"`, par exemple, `v-on:[eventName]` sera équivaleun à `v-on:focus`.
 
-#### Dynamic Argument Value Constraints
+#### Contrainte des valeurs d'argument dynamique
 
-Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+Les arguments dynamiques sont destinés à être évalué comme des chaines de caractères à l'exception de `null`. La valeur spéciale `null` peut être utiliser pour explicitement retirer la liaison. N'importe qu'elle autre valeur n'étant pas une chaine de caractères lèvera un avertissement.
 
-#### Dynamic Argument Expression Constraints
+#### Contraintes des expressions d'argument dynamique
 
-<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes. You also need to avoid uppercase keys when using in-DOM templates.</p>
+<p class="tip">Les expressions d'argument dynamique on quelques contraintes de syntaxe car certain caractères sont invalides à l'intérieur d'un nom d'attribut HTML comme les espaces et les guillements. Vous devez également éviter les majuscules quand vous utiliser des templates dans le DOM.</p>
 
-For example, the following is invalid:
+Par exemple, ce qui suit est invalide :
 
 ``` html
-<!-- This will trigger a compiler warning. -->
+<!-- Ceci va lever un avertissement de compilation. -->
 <a v-bind:['foo' + bar]="value"> ... </a>
 ```
 
-The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+La solution consiste à utiliser des expressions sans espaces ni guillemets, ou à remplacer l'expression complexe par une propriété calculée.
 
-In addition, if you are using in-DOM templates (templates directly written in an HTML file), you have to be aware that browsers will coerce attribute names into lowercase:
+De plus, si vous utiliser des templates dans le DOM (templates directement écrit dans un fichier HTML), vous devrez être attentif au navigateur qui convertit les noms d'attribut en lettre minuscule :
 
 ``` html
-<!-- This will be converted to v-bind:[someattr] in in-DOM templates. -->
+<!-- Ceci va être converti en v-bind:[someattr] dans un templates dans le DOM. -->
 <a v-bind:[someAttr]="value"> ... </a>
 ```
 

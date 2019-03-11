@@ -331,7 +331,7 @@ Quand l'attribut spécial `inline-template` est présent sur un composant enfant
 </my-component>
 ```
 
-$todo Your inline template needs to be defined inside the DOM element to which Vue is attached.
+Votre template inline a besoin d'être défini à l'intérieur de l'élément du DOM pour être attaché à Vue.
 
 <p class="tip">Cependant, <code>inline-template</code> rend la portée de vos templates plus difficile à appréhender. Une bonne pratique est de préférer la définition de templates à l'intérieur du composant en utilisant l'option <code>template</code> ou dans un élément <code>&lt;template&gt;</code> dans un fichier <code>.vue</code>.</p>
 
@@ -351,7 +351,7 @@ Vue.component('hello-world', {
 })
 ```
 
-$todo Your x-template needs to be defined outside the DOM element to which Vue is attached.
+Votre x-template a besoin d'être défini à l'extérieur de l'élément du DOM pour être attaché à Vue.
 
 <p class="tip">Ce type de templates peut être utile pour des démos avec de gros templates ou dans des applications extrêmements petites, mais sinon il doit être évité, car ils séparent les templates du reste de la définition du composant.</p>
 

@@ -10,12 +10,12 @@ Vous pouvez utiliser la directive `v-model` pour créer une liaison de données 
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initiale des attributs `value`, `checked` ou `selected` fournis par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité. Vous devez déclarer la valeur initiale dans votre JavaScript, dans l'option `data` de votre composant.</p>
 
-$todo `v-model` internally uses different properties and emits different events for different input elements:
-- text and textarea elements use `value` property and `input` event;
-- checkboxes and radiobuttons use `checked` property and `change` event;
-- select fields use `value` as a prop and `change` as an event.
+`v-model` utilise en interne différentes propriétés et émetteurs d'évènement pour différents éléments de saisi :
+- Les éléments `text` et `textarea` utilise la propriété `value` et évènement `input`;
+- Les éléments `checkboxes` et `radiobuttons` utilise la propriété `checked` et l'évènement `change`;
+- Les éléments `select` utilise `value` comme une prop et `change` comme un évènement.
 
-<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen, etc.), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie. $todo If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen, etc.), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie. Si vous souhaitez également prendre en compte ces mises à jour, utilisez plutôt l'événement `input`.</p>
 
 ### Texte
 
