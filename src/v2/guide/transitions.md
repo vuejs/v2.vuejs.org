@@ -9,9 +9,9 @@ order: 201
 Vue menyediakan berbagai cara untuk menerapkan efek transisi ketika ada item yang dimasukan, diubah, atau dikeluarkan dari DOM. Hal ini termasuk alat untuk:
 
 - secara otomatis menerapkan kelas untuk transisi dan animasi CSS
-- Mengintegrasikan pustaka (_library_) CSS untuk animasi yang berasal dari pihak-ketiga, seperti Animate.css
-- menggunakan JavaScript untuk secara langsung memanipulasi DOM pada waktu _hook_ transisi
-- Mengintegrasikan pustaka (_library_) JavaScript untuk animasi yang berasal dari pihak-ketiga, seperti Velocity.js
+- Mengintegrasikan pustaka (*library*) CSS untuk animasi yang berasal dari pihak-ketiga, seperti Animate.css
+- menggunakan JavaScript untuk secara langsung memanipulasi DOM pada waktu *hook* transisi
+- Mengintegrasikan pustaka (*library*) JavaScript untuk animasi yang berasal dari pihak-ketiga, seperti Velocity.js
 
 Pada halaman ini, kita hanya akan membahas tentang transisi masuk, keluar, dan daftar, tetapi Anda dapat melihat bahian berikutnya untuk [mengatur transisi state](transitioning-state.html).
 
@@ -88,13 +88,13 @@ Ketika sebuah elemen yang dibungkus di dalam komponen transisi dimasukkan atau d
 
 2. Jika komponen transisi menyediakan [hook JavaScript](#JavaScript-Hooks), hook ini akan dipanggil pada waktu yang telah seuaikan.
 
-3. Jika tidak ada transisi/animasi CSS yang terdeteksi dan tidak ada hook JavaScript yang tersedia, operasi DOM untuk memasukan dan/atau mengeluarkan akan dieksekusi secepatnya pada _frame_ berikutnya. (Catat: ini adalah frame animasi dari browser, berbeda dengan konsep `nextTick` pada Vue).
+3. Jika tidak ada transisi/animasi CSS yang terdeteksi dan tidak ada hook JavaScript yang tersedia, operasi DOM untuk memasukan dan/atau mengeluarkan akan dieksekusi secepatnya pada *frame* berikutnya. (Catat: ini adalah frame animasi dari browser, berbeda dengan konsep `nextTick` pada Vue).
 
 ### Kelas-kelas Transisi
 
 Ada enam kelas yang diterapkan untuk transisi masuk/pergi.
 
-1. `v-enter`: _State_ (keadaan) awal untuk proses masuk. Ditambahkan sebelum elemen dimasukkan, dilepaskan satu frame setelah elemen dimasukkan.
+1. `v-enter`: *State* (keadaan) awal untuk proses masuk. Ditambahkan sebelum elemen dimasukkan, dilepaskan satu frame setelah elemen dimasukkan.
 
 2. `v-enter-active`: state aktif untuk proses masuk. Diaplikasikan selama seluruh fase proses memasukkan. Ditambahkan sebelum elemen dimasukkan, dilepaskan ketika transisi/animasi selesai. Kelas ini dapat digunakan untuk menentukan durasi, penundaan (delay) dan kurva pelonggaran (easing curve) untuk transisi masuk.
 
@@ -283,7 +283,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Kelas Transisi _Custom_
+### Kelas Transisi *Custom*
 
 Anda juga dapat menentukan kelas transisi custom dengan menyediakan atribut-atribut berikut:
 
@@ -352,7 +352,7 @@ new Vue({
 
 Vue perlu melampirkan pendengar event (event listener) agar dapat mengetahui ketika sebuah event telah selesai. Hal ini dapat berupa salah satu antara `transitionend` atau `animationend`, tergantung dari tipe aturan css yang diterapkan. Jika Anda hanya menggunakan salah satu atau yang lain, Vue dapat secara otomatis mendeteksi tipe yang tepat.
 
-Namun, pada beberapa kasus Anda mungkin ingin menggunakan keduanya dalam elemen yang sama, sebagai contoh memiliki sebuah animasi CSS yang dipicu oleh Vue, bersamaan dengan efek transisi CSS saat event _hover_. Pada kasus ini, Anda harus secara eksplisit mendeklarasikan tipe yang Anda ingin dipedulikan oleh Vue pada attribut `type`, dengan nilai antara `animation` atau `transition`.
+Namun, pada beberapa kasus Anda mungkin ingin menggunakan keduanya dalam elemen yang sama, sebagai contoh memiliki sebuah animasi CSS yang dipicu oleh Vue, bersamaan dengan efek transisi CSS saat event *hover*. Pada kasus ini, Anda harus secara eksplisit mendeklarasikan tipe yang Anda ingin dipedulikan oleh Vue pada attribut `type`, dengan nilai antara `animation` atau `transition`.
 
 ### Durasi Transisi yang Eksplisit
 
@@ -1240,9 +1240,9 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">Satu catatatn penting adalah bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, Anda dapat menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks _flex_.</p>
+<p class="tip">Satu catatatn penting adalah bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, Anda dapat menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks *flex*.</p>
 
-Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. These FLIP animations are also not limited to a single axis. Item-item dalam _grid_ multidimensi dapat[ditransisikan juga](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. These FLIP animations are also not limited to a single axis. Item-item dalam *grid* multidimensi dapat[ditransisikan juga](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1517,7 +1517,7 @@ Ya, bahkan transisi pada Vue digerakkan oleh data (data-driven)! Contoh paling d
 
 Hal ini dapat berguna ketika Anda telah mendefinisikan transisi/animasi CSS menggunakan konvensi kelas transisi Vue dan ingin bertukar antara mereka.
 
-Sunggu, setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karen hook event adalah _method_, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada state komponen Anda, transisi Javascript Anda dapat berperilaku berbeda.
+Sunggu, setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karen hook event adalah *method*, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada state komponen Anda, transisi Javascript Anda dapat berperilaku berbeda.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1661,5 +1661,5 @@ new Vue({
 </script>
 {% endraw %}
 
-Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima _props_ untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi sungguh satu-satunya batas adalah imajinasi Anda.
+Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima *props* untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi sungguh satu-satunya batas adalah imajinasi Anda.
 
