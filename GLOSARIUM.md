@@ -2,6 +2,12 @@
 
 📚 Kamus perbendaharaan kata asing yang akan sering ditemukan ketikan menerjemahkan dokumentasi resmi Vue.js.
 
+## Sumber yang akan membantu Anda menerjemahkan
+
+- [KBBI Kemdigbud](https://kbbi.kemdikbud.go.id/)
+- [Kateglo.com](http://kateglo.com/)
+- [Hukum Diterangkan Menerangkan](https://id.wikipedia.org/wiki/Hukum_D-M)
+
 ## Navigasi Berdasarkan Abjad
 
 + [A](#a), [B](#b), [C](#c), [D](#d), [E](#e), [F](#f),
