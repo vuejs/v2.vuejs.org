@@ -20,7 +20,7 @@ Vue.component('button-counter', {
 })
 ```
 
-Komponen adalah Vue _instance_ yang dapat digunakan kembali dengan nama: pada kasus ini, `<button-counter>`. Kita bisa menggunakan komponen ini sebagai kustom elemen di dalam _instance_ root Vue yang dibuat dengan `new Vue`:
+Komponen adalah Vue _instance_ yang dapat digunakan kembali dengan nama: pada kasus ini, `<button-counter>`. Kita bisa menggunakan komponen ini sebagai elemen kustom di dalam _instance_ root Vue yang dibuat dengan `new Vue`:
 
 ```html
 <div id="components-demo">
@@ -126,7 +126,7 @@ Biasanya aplikasi diorganisasikan ke dalam kumpulan komponen bersarang:
 
 Sebagai contoh, Anda mungkin memiliki komponen _header_, bilah samping (_sidebar_), dan area konten, masing-masing biasanya berisi komponen lain untuk tautan navigasi, posting blog, dan sebagainya.
 
-Untuk menggunakan komponen ini dalam templat, mereka harus didaftarkan jadi Vue tahu tentang mereka. Ada dua tipe untuk mendaftarkan: **global** dan **local**. Sejauh ini, Kita hanya mendaftarkan komponen secara global, menggunakan `Vue.component`:
+Untuk menggunakan komponen ini dalam templat, mereka harus didaftarkan agar Vue tahu tentang mereka. Ada dua tipe untuk mendaftarkan: **global** dan **local**. Sejauh ini, Kita hanya mendaftarkan komponen secara global, menggunakan `Vue.component`:
 
 ```js
 Vue.component('my-component-name', {
@@ -509,7 +509,7 @@ new Vue({ el: '#slots-demo' })
 </style>
 {% endraw %}
 
-Untungnya, tugas ini dibuat sangat sederhana oleh Vue kustom elemen `<slot>`:
+Untungnya, tugas ini dibuat sangat sederhana oleh Vue elemen kustom `<slot>`:
 
 ```js
 Vue.component('alert-box', {
