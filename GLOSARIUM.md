@@ -7,7 +7,7 @@
 - [PUEBI](https://puebi.readthedocs.io/en/latest/)
 - [KBBI Kemdigbud](https://kbbi.kemdikbud.go.id/)
 - [Kateglo.com](http://kateglo.com/)
-- [Hukum Diterangkan Menerangkan](https://id.wikipedia.org/wiki/Hukum_D-M)
+- [Hukum Diterangkan Menerangkan](https://rubrikbahasa.wordpress.com/2003/09/01/hukum-dm-dalam-bahasa-indonesia/)
 
 ## Navigasi Berdasarkan Abjad
 
