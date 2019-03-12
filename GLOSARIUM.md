@@ -4,6 +4,7 @@
 
 ## Sumber yang akan membantu Anda menerjemahkan
 
+- [PUEBI](https://puebi.readthedocs.io/en/latest/)
 - [KBBI Kemdigbud](https://kbbi.kemdikbud.go.id/)
 - [Kateglo.com](http://kateglo.com/)
 - [Hukum Diterangkan Menerangkan](https://id.wikipedia.org/wiki/Hukum_D-M)
