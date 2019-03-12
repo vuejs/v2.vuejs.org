@@ -1,5 +1,5 @@
 ---
-title: Transisi Masuk/Pergi & Daftar
+title: Transisi Masuk/Keluar & Daftar Transisi
 type: guide
 order: 201
 ---
@@ -13,11 +13,11 @@ Vue menyediakan berbagai cara untuk menerapkan efek transisi ketika ada item yan
 - menggunakan JavaScript untuk secara langsung memanipulasi DOM pada waktu _hook_ transisi
 - Mengintegrasikan pustaka (_library_) JavaScript untuk animasi yang berasal dari pihak-ketiga, seperti Velocity.js
 
-Pada halaman ini, kita hanya akan membahas tentang transisi masuk, keluar, dan daftar, tetapi anda dapat melihat bahian berikutnya untuk [mengatur transisi state](transitioning-state.html).
+Pada halaman ini, kita hanya akan membahas tentang transisi masuk, keluar, dan daftar, tetapi Anda dapat melihat bahian berikutnya untuk [mengatur transisi state](transitioning-state.html).
 
 ## Transisi Elemen/Komponen Tunggal
 
-Vue menyediakan komponen pembungkus transisi (`transition` wrapper component), yang memperbolehkan anda untuk menambahkan transisi masuk/keluar untuk setiap elemen atau komponen dalam konteks berikut:
+Vue menyediakan komponen pembungkus transisi (`transition` wrapper component), yang memperbolehkan Anda untuk menambahkan transisi masuk/keluar untuk setiap elemen atau komponen dalam konteks berikut:
 
 - Me-render sesuai kondisi (menggunakan `v-if`)
 - Menampilkan sesuai kondisi (menggunakan `v-show`)
@@ -108,9 +108,9 @@ Ada enam kelas yang diterapkan untuk transisi masuk/pergi.
 
 ![Transition Diagram](/images/transition.png)
 
-Setiap kelas ini akan diawali dengan nama transisi. Di sini awalan `v-` adalah default jika anda menggunakan elemen `<transition>` tanpa nama. Sebagai contoh jika anda menggunakan `<transition name="my-transition">`, maka sebagi gantinya kelas `v-enter` akan menjadi `my-transition-enter`.
+Setiap kelas ini akan diawali dengan nama transisi. Di sini awalan `v-` adalah default jika Anda menggunakan elemen `<transition>` tanpa nama. Sebagai contoh jika Anda menggunakan `<transition name="my-transition">`, maka sebagi gantinya kelas `v-enter` akan menjadi `my-transition-enter`.
 
-`v-enter-active` dan `v-leave-active` memberikan anda kemampuan untuk menentukan kurva pelonggaran yang berbeda untuk transisi masuk/pergi, yang mana akan dapat anda lihat contohnya pada bagian berikutnya.
+`v-enter-active` dan `v-leave-active` memberikan Anda kemampuan untuk menentukan kurva pelonggaran yang berbeda untuk transisi masuk/pergi, yang mana akan dapat Anda lihat contohnya pada bagian berikutnya.
 
 ### Transisi CSS
 
@@ -294,7 +294,7 @@ Anda juga dapat menentukan kelas transisi custom dengan menyediakan atribut-atri
 - `leave-active-class`
 - `leave-to-class` (2.1.8+)
 
-Atribut - atribut ini akan mengabaikan nama kelas konvensional. Ini terutama berguna ketika anda ingin mengkombinasikan sistem transisi Vue dengan sebuah pustaka animasi CSS yang sudah ada, seperti [Animate.css](https://daneden.github.io/animate.css/).
+Atribut - atribut ini akan mengabaikan nama kelas konvensional. Ini terutama berguna ketika Anda ingin mengkombinasikan sistem transisi Vue dengan sebuah pustaka animasi CSS yang sudah ada, seperti [Animate.css](https://daneden.github.io/animate.css/).
 
 Berikut contohnya:
 
@@ -350,9 +350,9 @@ new Vue({
 
 ### Menggunakan Transisi dan Animasi Bersama
 
-Vue perlu melampirkan pendengar event (event listener) agar dapat mengetahui ketika sebuah event telah selesai. Hal ini dapat berupa salah satu antara `transitionend` atau `animationend`, tergantung dari tipe aturan css yang diterapkan. Jika anda hanya menggunakan salah satu atau yang lain, Vue dapat secara otomatis mendeteksi tipe yang tepat.
+Vue perlu melampirkan pendengar event (event listener) agar dapat mengetahui ketika sebuah event telah selesai. Hal ini dapat berupa salah satu antara `transitionend` atau `animationend`, tergantung dari tipe aturan css yang diterapkan. Jika Anda hanya menggunakan salah satu atau yang lain, Vue dapat secara otomatis mendeteksi tipe yang tepat.
 
-Namun, pada beberapa kasus anda mungkin ingin menggunakan keduanya dalam elemen yang sama, sebagai contoh memiliki sebuah animasi CSS yang dipicu oleh Vue, bersamaan dengan efek transisi CSS saat event _hover_. Pada kasus ini, anda harus secara eksplisit mendeklarasikan tipe yang anda ingin dipedulikan oleh Vue pada attribut `type`, dengan nilai antara `animation` atau `transition`.
+Namun, pada beberapa kasus Anda mungkin ingin menggunakan keduanya dalam elemen yang sama, sebagai contoh memiliki sebuah animasi CSS yang dipicu oleh Vue, bersamaan dengan efek transisi CSS saat event _hover_. Pada kasus ini, Anda harus secara eksplisit mendeklarasikan tipe yang Anda ingin dipedulikan oleh Vue pada attribut `type`, dengan nilai antara `animation` atau `transition`.
 
 ### Durasi Transisi yang Eksplisit
 
@@ -360,7 +360,7 @@ Namun, pada beberapa kasus anda mungkin ingin menggunakan keduanya dalam elemen 
 
 Pada banyak kasus, Vue dapat secara otomatis mengetahui ketika transisi telah selesai. Secara default, Vue menunggu event `transitionend` atau `animationend` yang pertama pada elemen transisi root. Namun, ini mungkin tidak selalu diharapkan - sebagai contoh, kita mungkin memiliki urutan koreografi transisi dimana beberapa elemen dalam bersarang memiliki transisi yang tertunda atau durasi transisi yang lebih lama dibanding elemen transisi root.
 
-Pada kasus seperti itu anda dapat menentukan durasi transisi yang eksplisit (dalam milliseconds) menggunakan prop `duration` pada komponen `<transition>`:
+Pada kasus seperti itu Anda dapat menentukan durasi transisi yang eksplisit (dalam milliseconds) menggunakan prop `duration` pada komponen `<transition>`:
 
 ``` html
 <transition :duration="1000">...</transition>
@@ -546,7 +546,7 @@ new Vue({
 
 ## Transisi pada Render Awal
 
-Jika anda juga ingin menerapkan transisi pada render awal sebuah node, anda dapat menambahkan atribut `appear`:
+Jika Anda juga ingin menerapkan transisi pada render awal sebuah node, Anda dapat menambahkan atribut `appear`:
 
 ``` html
 <transition appear>
@@ -554,7 +554,7 @@ Jika anda juga ingin menerapkan transisi pada render awal sebuah node, anda dapa
 </transition>
 ```
 
-Secara default, ini akan menggunakan transisi yang ditentukan untuk masuk dan pergi. Namun jika anda mau, anda juga dapat menentukan kelas CSS custom:
+Secara default, ini akan menggunakan transisi yang ditentukan untuk masuk dan pergi. Namun jika Anda mau, Anda juga dapat menentukan kelas CSS custom:
 
 ``` html
 <transition
@@ -583,7 +583,7 @@ dan hook JavaScript custom:
 
 ## Transisi Antar Elemen
 
-Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti, tetapi anda juga dapat melakukan transisi antar elemen mentah menggunakan `v-if`/`v-else`. Satu dari banyak transisi antara dua-elemen yang umum adalah antara penampung daftar (list container) dan pesan yang menjelaskan daftar kosong:
+Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti, tetapi Anda juga dapat melakukan transisi antar elemen mentah menggunakan `v-if`/`v-else`. Satu dari banyak transisi antara dua-elemen yang umum adalah antara penampung daftar (list container) dan pesan yang menjelaskan daftar kosong:
 
 ``` html
 <transition>
@@ -596,7 +596,7 @@ Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti
 
 Ini bekerja dengan baik, tetapi ada satu peringatan yang harus kita sadari:
 
-<p class="tip">Ketika berpindah antar elemen yang memiliki **tag nama yang sama**, anda harus memberi tahu Vue bahwa mereka adalah elemen yang berbeda dengan memberikan mereka atribut `key` yang unik. Jika tidak, kompiler Vue hanya mengganti isi dari elemen untuk efisiensi. Meskipun secara teknis tidak perlu, **dianggap sebagai praktek yang baik untuk selalu memberikan kunci (key) pada banyak item di dalam komponen `<transition>`.**</p>
+<p class="tip">Ketika berpindah antar elemen yang memiliki **tag nama yang sama**, Anda harus memberi tahu Vue bahwa mereka adalah elemen yang berbeda dengan memberikan mereka atribut `key` yang unik. Jika tidak, kompiler Vue hanya mengganti isi dari elemen untuk efisiensi. Meskipun secara teknis tidak perlu, **dianggap sebagai praktek yang baik untuk selalu memberikan kunci (key) pada banyak item di dalam komponen `<transition>`.**</p>
 
 Sebagai contoh:
 
@@ -611,7 +611,7 @@ Sebagai contoh:
 </transition>
 ```
 
-Dalam Kasus ini, anda juga dapat menggunakan atribut `key` untuk bertransisi antara state yang berbeda pada elemen yang sama. Daripada menggunakan `v-if` dan `v-else`, contoh di atas dapat ditulis ulang menjadi:
+Dalam Kasus ini, Anda juga dapat menggunakan atribut `key` untuk bertransisi antara state yang berbeda pada elemen yang sama. Daripada menggunakan `v-if` dan `v-else`, contoh di atas dapat ditulis ulang menjadi:
 
 ``` html
 <transition>
@@ -1055,13 +1055,13 @@ new Vue({
 </style>
 {% endraw %}
 
-Ada satu masalah dengan contoh ini. Ketika anda menambahkan atau menghapus item, item disekitarnya malah secara instan bergerak langsung ke tempatnya yang baru dan tidak bertransisi secara mulus. Kita akan memperbaikinya nanti.
+Ada satu masalah dengan contoh ini. Ketika Anda menambahkan atau menghapus item, item disekitarnya malah secara instan bergerak langsung ke tempatnya yang baru dan tidak bertransisi secara mulus. Kita akan memperbaikinya nanti.
 
 ### Transisi Daftar Bergerak
 
-Komponen `<transition-group>` memiliki trik lain diatas lengannya. Ia tidak hanya menganimasi masuk dan pergi, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari attribut `name` yang disediakan dan anda juga dapat secara manual menentukan kelas dengan atribut `move-class`.
+Komponen `<transition-group>` memiliki trik lain diatas lengannya. Ia tidak hanya menganimasi masuk dan pergi, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu Anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari attribut `name` yang disediakan dan Anda juga dapat secara manual menentukan kelas dengan atribut `move-class`.
 
-Kelas ini berguna terutama untuk memnentukan pengaturan waktu transisi dan kurva pelonggaran, seperti yang akan anda lihat di bawah:
+Kelas ini berguna terutama untuk memnentukan pengaturan waktu transisi dan kurva pelonggaran, seperti yang akan Anda lihat di bawah:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1240,14 +1240,14 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">Satu catatatn penting adalah bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, anda dapat menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks _flex_.</p>
+<p class="tip">Satu catatatn penting adalah bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, Anda dapat menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks _flex_.</p>
 
 Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. These FLIP animations are also not limited to a single axis. Item-item dalam _grid_ multidimensi dapat[ditransisikan juga](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
   <strong>Lazy Sudoku</strong>
-  <p>Terus tekan tombol Shuffle sampai anda menang.</p>
+  <p>Terus tekan tombol Shuffle sampai Anda menang.</p>
   <button @click="shuffle">
     Shuffle
   </button>
@@ -1453,7 +1453,7 @@ new Vue({
 
 ## Transisi yang Dapat Digunakan Kembali (Reusable)
 
-Transisi dapat digunakan kembali melalui sistem komponen Vue. Untuk membuat transisi yang dapat digunakan kembali, semua yang perlu anda lakukan adalah menempatkan komponen `<transition>` atau `<transition-group>` pada root, lalu mengirimkan anak manapun ke dalam komponen transisi.
+Transisi dapat digunakan kembali melalui sistem komponen Vue. Untuk membuat transisi yang dapat digunakan kembali, semua yang perlu Anda lakukan adalah menempatkan komponen `<transition>` atau `<transition-group>` pada root, lalu mengirimkan anak manapun ke dalam komponen transisi.
 
 Berikut sebuah contoh menggunakan komponen templat:
 
@@ -1515,9 +1515,9 @@ Ya, bahkan transisi pada Vue digerakkan oleh data (data-driven)! Contoh paling d
 </transition>
 ```
 
-Hal ini dapat berguna ketika anda telah mendefinisikan transisi/animasi CSS menggunakan konvensi kelas transisi Vue dan ingin bertukar antara mereka.
+Hal ini dapat berguna ketika Anda telah mendefinisikan transisi/animasi CSS menggunakan konvensi kelas transisi Vue dan ingin bertukar antara mereka.
 
-Sunggu, setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karen hook event adalah _method_, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada state komponen anda, transisi Javascript anda dapat berperilaku berbeda.
+Sunggu, setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karen hook event adalah _method_, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada state komponen Anda, transisi Javascript Anda dapat berperilaku berbeda.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1661,5 +1661,5 @@ new Vue({
 </script>
 {% endraw %}
 
-Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima _props_ untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi sungguh satu-satunya batas adalah imajinasi anda.
+Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima _props_ untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi sungguh satu-satunya batas adalah imajinasi Anda.
 
