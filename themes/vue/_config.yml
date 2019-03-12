@@ -100,6 +100,9 @@ gold_sponsors:
   - url: 'https://www.bestvpn.co/'
     img: bestvpn_co.png
     name: BestVPN.co
+  - url: 'http://en.shopware.com/'
+    img: shopware_ag.svg
+    name: shopware AG
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
