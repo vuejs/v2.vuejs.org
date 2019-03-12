@@ -693,7 +693,7 @@ new Vue({
 </style>
 {% endraw %}
 
-Selama proses transisi antara tombol "on" dan tombol "off", kedua tombol di-render - satu bertransisi keluar sementara yang lain bertransisi ke dalam. ini merupakan perilaku default dari `<transition>` - masuk dan pergi terjadi secara bersamaan.
+Selama proses transisi antara tombol "on" dan tombol "off", kedua tombol di-render - satu bertransisi keluar sementara yang lain bertransisi ke dalam. ini merupakan perilaku default dari `<transition>` - masuk dan keluar terjadi secara bersamaan.
 
 Kadang ini bekerja dengan baik, Seperti ketika item yang bertransisi benar-benar diposisikan satu di atas yang lain:
 
