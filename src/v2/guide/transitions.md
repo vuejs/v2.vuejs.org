@@ -583,7 +583,7 @@ dan hook JavaScript kustom:
 
 ## Transisi Antar Elemen
 
-Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti, tetapi anda juga bisa melakukan transisi antar elemen mentah menggunakan `v-if`/`v-else`. Satu dari banyak transisi antara dua-elemen yang umum adalah antara penampung daftar (*list container*) dan pesan yang menjelaskan daftar kosong:
+Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti, tetapi Anda juga bisa melakukan transisi antar elemen mentah menggunakan `v-if`/`v-else`. Satu dari banyak transisi antara dua-elemen yang umum adalah antara penampung daftar (*list container*) dan pesan yang menjelaskan daftar kosong:
 
 ``` html
 <transition>
