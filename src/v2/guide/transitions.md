@@ -1061,7 +1061,7 @@ Ada satu masalah dengan contoh ini. Ketika anda menambahkan atau menghapus item,
 
 Komponen `<transition-group>` memiliki trik lain diatas lengannya. Ia tidak hanya menganimasi masuk dan pergi, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari attribut `name` yang disediakan dan anda juga dapat secara manual menentukan kelas dengan atribut `move-class`.
 
-This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
+Kelas ini berguna terutama untuk memnentukan pengaturan waktu transisi dan kurva pelonggaran, seperti yang akan anda lihat di bawah:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1126,9 +1126,9 @@ new Vue({
 </style>
 {% endraw %}
 
-This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+Ini mungkin terlihat seperti sihir, tetapi di bawah tudungnya, Vue menggunakan teknik animasi yang disebut [FLIP](https://aerotwist.com/blog/flip-your-animations/) agar secara halus melakukan transisi elemen dari posisi lama ke posisi baru menggunakan perubahan bentuk.
 
-We can combine this technique with our previous implementation to animate every possible change to our list!
+Kita dapat mengkombinasikan teknik ini dengan implementasi kita sebelumnya untuk menganimasikan setiap perubahan yang mungkin pada daftar kita!
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1240,14 +1240,14 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
+<p class="tip">Satu catatatn penting adalah bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, anda dapat menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks _flex_.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. These FLIP animations are also not limited to a single axis. Item-item dalam _grid_ multidimensi dapat[ditransisikan juga](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
   <strong>Lazy Sudoku</strong>
-  <p>Keep hitting the shuffle button until you win.</p>
+  <p>Terus tekan tombol Shuffle sampai anda menang.</p>
   <button @click="shuffle">
     Shuffle
   </button>
@@ -1305,9 +1305,9 @@ new Vue({
 </style>
 {% endraw %}
 
-### Staggering List Transitions
+### Menggoyangkan Transisi Daftar
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
+Dengan berkomunikasi dengan transisi JavaScript, melalui atribut-atribut data, memungkinkan juga untuk menggoyang transisi dalam sebuah daftar:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1451,11 +1451,11 @@ new Vue({
 </script>
 {% endraw %}
 
-## Reusable Transitions
+## Transisi yang Dapat Digunakan Kembali (Reusable)
 
-Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+Transisi dapat digunakan kembali melalui sistem komponen Vue. Untuk membuat transisi yang dapat digunakan kembali, semua yang perlu anda lakukan adalah menempatkan komponen `<transition>` atau `<transition-group>` pada root, lalu mengirimkan anak manapun ke dalam komponen transisi.
 
-Here's an example using a template component:
+Berikut sebuah contoh menggunakan komponen templat:
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1480,7 +1480,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And [functional components](render-function.html#Functional-Components) are especially well-suited to this task:
+Dan [komponen fungsional](render-function.html#Functional-Components) adalah yang paling cocok untuk tugas ini:
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1505,9 +1505,9 @@ Vue.component('my-special-transition', {
 })
 ```
 
-## Dynamic Transitions
+## Transisi Dinamis
 
-Yes, even transitions in Vue are data-driven! The most basic example of a dynamic transition binds the `name` attribute to a dynamic property.
+Ya, bahkan transisi pada Vue digerakkan oleh data (data-driven)! Contoh paling dasar dari sebuah transisi dinamis adalah menautkan atribut `name` pada suatu properti dinamis.
 
 ```html
 <transition v-bind:name="transitionName">
@@ -1515,9 +1515,9 @@ Yes, even transitions in Vue are data-driven! The most basic example of a dynami
 </transition>
 ```
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and want to switch between them.
+Hal ini dapat berguna ketika anda telah mendefinisikan transisi/animasi CSS menggunakan konvensi kelas transisi Vue dan ingin bertukar antara mereka.
 
-Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+Sunggu, setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karen hook event adalah _method_, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada state komponen anda, transisi Javascript anda dapat berperilaku berbeda.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1661,5 +1661,5 @@ new Vue({
 </script>
 {% endraw %}
 
-Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
+Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima _props_ untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi sungguh satu-satunya batas adalah imajinasi anda.
 
