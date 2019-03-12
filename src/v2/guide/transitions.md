@@ -1059,7 +1059,7 @@ Ada satu masalah dengan contoh ini. Ketika Anda menambahkan atau menghapus item,
 
 ### Transisi Daftar Bergerak
 
-Komponen `<transition-group>` memiliki trik lainnya. Ia tidak hanya menganimasi masuk dan keluar, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari atribut `name` yang disediakan dan anda juga bisa secara manual menentukan kelas dengan atribut `move-class`.
+Komponen `<transition-group>` memiliki trik lainnya. Ia tidak hanya menganimasi masuk dan keluar, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu Anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari atribut `name` yang disediakan dan Anda juga bisa secara manual menentukan kelas dengan atribut `move-class`.
 
 Kelas ini berguna terutama untuk memnentukan pengaturan waktu transisi dan kurva pelonggaran, seperti yang akan Anda lihat di bawah:
 
@@ -1247,7 +1247,7 @@ Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. Item-item dalam *grid* 
 {% raw %}
 <div id="sudoku-demo" class="demo">
   <strong>Lazy Sudoku</strong>
-  <p>Terus tekan tombol shuffle sampai anda menang.</p>
+  <p>Terus tekan tombol shuffle sampai Anda menang.</p>
   <button @click="shuffle">
     Shuffle
   </button>
