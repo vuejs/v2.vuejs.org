@@ -125,8 +125,9 @@
 
 ## P
 
-- Passing: Mengoper
 - Parent: Induk
+- Passing: Mengoper
+- Path: Jalur
 - Project: Proyek
 - Property: Properti
 - Props: Props
@@ -167,7 +168,7 @@
 
 ## U
 
-- Update:	Pembaruan
+- Update:	Pembaruan - Updated: Diperbarui
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
