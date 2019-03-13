@@ -1,24 +1,24 @@
 ---
-title: Class and Style Bindings
+title: Kelas and Binding Gaya
 type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+Kebutuhan umum untuk data *binding* adalah untuk memanipulasi daftar kelas dan gaya *inline* milik elemen. Karena keduanya adalah atribut, kita bisa menggunakan `v-bind` untuk menanganinya: kita hanya perlu memperhitungkan *string* terakhir dengan ekspresi kita. Namun, bermain dengan rangkaian *string* itu menjengkelkan dan rawan kesalahan. Untuk alasan ini, Vue menyediakan perangkat khusus saat `v-bind` digunakan untuk `class` dan `style`. Selain *string*, ekspresi juga dapat mengevaluasi objek atau array.
 
-## Binding HTML Classes
+## Binding Kelas HTML
 
-### Object Syntax
+### Sintaksis Objek
 
-We can pass an object to `v-bind:class` to dynamically toggle classes:
+Kita dapat mengoper sebuah objek ke `v-bind:class` untuk mengubah `class` secara dinamis
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
+Sintaksis di atas berarti kehadiran `active` akan ditentukan oleh nilai [kebenaran](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) dari properti data `isActive`.
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `v-bind:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+Anda dapat memiliki beberapa kelas yang akan saling menggantikan dengan menambahkan lebih banyak *field* dalam objek. Selain itu, direktif `v-bind:class` dapat berdampingan dengan atribut `class` biasa. Seperti pada templat berikut:
 
 ``` html
 <div
@@ -27,7 +27,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 ></div>
 ```
 
-And the following data:
+Dan data berikut:
 
 ``` js
 data: {
@@ -36,15 +36,15 @@ data: {
 }
 ```
 
-It will render:
+Akan menghasilkan:
 
 ``` html
 <div class="static active"></div>
 ```
 
-When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+Saat `isActive` atau `hasError` berubah, daftar kelas akan diperbarui. Sebagai contoh, jika `hasError` menjadi `true`, daftar kelas akan menjadi `"static active text-danger "`.
 
-The bound object doesn't have to be inline:
+Objek terikat tidak harus sebaris:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -58,7 +58,7 @@ data: {
 }
 ```
 
-This will render the same result. We can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
+Ini akan membuat hasil yang sama. Kita juga bisa *bind* [computed property](computed.html) yang mengembalikan objek. Ini adalah pola umum yang bagus:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -78,9 +78,9 @@ computed: {
 }
 ```
 
-### Array Syntax
+### Sintaksis Array
 
-We can pass an array to `v-bind:class` to apply a list of classes:
+Kita dapat mengoper sebuah array ke `v-bind:class` untuk menerapkan daftar kelas:
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]"></div>
@@ -92,33 +92,33 @@ data: {
 }
 ```
 
-Which will render:
+Yang akan menghasilkan:
 
 ``` html
 <div class="active text-danger"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+Jika Anda juga ingin mengganti kelas dalam daftar secara kondisional, Anda dapat melakukannya dengan ekspresi *ternary*:
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
+Ini akan selalu menerapkan `errorClass`, dan hanya akan menerapkan `activeClass` ketika `isActive` bernilai benar.
 
-However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
+Namun, ini bisa menjadi sedikit bertele-tele jika Anda memiliki beberapa kelas kondisional. Itu sebabnya juga boleh untuk menggunakan sintaksis objek di dalam sintaksis *array*:
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
-### With Components
+### Dengan Komponen
 
-> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
+> Bagian ini mengasumsikan pengetahuan tentang [Vue Components](components.html). Silakan lewati dan kembali lagi nanti.
 
-When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
+Ketika Anda menggunakan atribut `class` pada komponen kustom, kelas-kelas itu akan ditambahkan ke elemen root komponen. Kelas yang ada pada elemen ini tidak akan ditimpa.
 
-For example, if you declare this component:
+Misalnya, jika Anda mendeklarasikan komponen ini:
 
 ``` js
 Vue.component('my-component', {
@@ -126,35 +126,35 @@ Vue.component('my-component', {
 })
 ```
 
-Then add some classes when using it:
+Kemudian tambahkan beberapa kelas saat menggunakannya:
 
 ``` html
 <my-component class="baz boo"></my-component>
 ```
 
-The rendered HTML will be:
+HTML yang ditampilkan akan menjadi:
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-The same is true for class bindings:
+Hal yang sama berlaku untuk binding kelas:
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-When `isActive` is truthy, the rendered HTML will be:
+Ketika `isActive` benar, HTML yang ditampilkan akan menjadi:
 
 ``` html
 <p class="foo bar active">Hi</p>
 ```
 
-## Binding Inline Styles
+## Binding Gaya Sebaris
 
-### Object Syntax
+### Sintaksis Objek
 
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+Sintaksis objek untuk `v-bind:style` cukup mudah - terlihat hampir seperti CSS, tetapi itu adalah objek JavaScript. Anda dapat menggunakan *camelCase* atau *kebab-case* (gunakan tanda kutip dengan kebab-case) untuk nama properti CSS:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -166,7 +166,7 @@ data: {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+Seringkali adalah ide yang baik untuk *bind* gaya objek secara langsung sehingga templatnya lebih bersih:
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -180,28 +180,28 @@ data: {
 }
 ```
 
-Again, the object syntax is often used in conjunction with computed properties that return objects.
+Sekali lagi, sintaksis objek sering digunakan bersama dengan properti *computed*  yang mengembalikan objek.
 
-### Array Syntax
+### Sintaksis Array
 
-The array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+Sintaksis array untuk `v-bind:style` memungkinkan Anda menerapkan beberapa gaya objek ke elemen yang sama:
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
-### Auto-prefixing
+### Prefiks Otomatis (Auto-prefixing)
 
-When you use a CSS property that requires [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `v-bind:style`, for example `transform`, Vue will automatically detect and add appropriate prefixes to the applied styles.
+Ketika Anda menggunakan properti CSS yang membutuhkan [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) di `v-bind:style`, misalnya `transform`, Vue akan secara otomatis mendeteksi dan menambahkan prefiks yang sesuai dengan gaya yang diterapkan.
 
-### Multiple Values
+### Banyak Nilai
 
 > 2.3.0+
 
-Starting in 2.3.0+ you can provide an array of multiple (prefixed) values to a style property, for example:
+Mulai 2.3.0+ Anda dapat memberikan array nilai ganda (prefixed) ke properti gaya, misalnya:
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+Ini hanya akan membuat nilai terakhir dalam array yang didukung browser. Dalam contoh ini, ini akan membuat `display: flex` untuk browser yang mendukung versi *flexbox* yang tanpa pefiks.
