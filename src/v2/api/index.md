@@ -1387,7 +1387,7 @@ type: api
 
   Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `vm.$slots.foo`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
 
-  **Note:** `vm.$slots` also supports slots defined via [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
+  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
