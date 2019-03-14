@@ -219,7 +219,7 @@ One thing to note when using routes with params is that when the user navigates 
 
 <p class="tip">Be aware, that using the component this way will mean that the lifecycle hooks of the component will not be called. Visit the Vue Router's docs to learn more about [Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)</p>
 
-To fix this we need to watch the `$route` object and call `getPost()` when the route changes. Since we call the same method in our `created()` lifecycle hook, we can trigger the watcher `immediate`ly and that way remove the `created()` hook.
+To fix this we need to watch the `$route` object and call `getPost()` when the route changes.
 
 Updated `<script>` section in `components/BlogPost.vue`:
 
