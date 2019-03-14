@@ -8,6 +8,8 @@ order: 804
   <section v-for="partner in partners" :key="partner.name" class="partner-wrapper">
     <partner-component :partner="partner"></partner-component>
   </section>
+
+  <p>Want to feature your themes here? <a href="mailto:#?subject=Theme+affiliation">Contact us</a>!</p>
 </div>
 
 <script type="text/template" id="partnerTemplate">
