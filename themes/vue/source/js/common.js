@@ -207,12 +207,8 @@
     var linkExpirePeriod = 60 * 24 * 3600 * 1000 // 2 months
     var links = [
       {
-        title: 'Learn',
-        updatedOn: new Date("Fri Mar 1 2019")
-      },
-      {
-        title: 'Examples',
-        updatedOn: new Date("Fri Mar 1 2019")
+        title: 'Themes',
+        updatedOn: new Date("Fri Mar 15 2019")
       }
     ]
     var today = new Date().getTime()
@@ -233,7 +229,7 @@
     })
     newLinks.forEach(function (link) {
       var classes = link.classList
-      var linkKey = `visisted-${link.textContent}`
+      var linkKey = `visited-${link.textContent}`
       if (localStorage.getItem(linkKey) || classes.contains('current')) {
         classes.remove('updated-link')
         localStorage.setItem(linkKey, 'true')
