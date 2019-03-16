@@ -626,7 +626,7 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 
 ``` html
 <my-functional-component>
-  <p slot="foo">
+  <p v-slot:foo>
     first
   </p>
   <p>second</p>
