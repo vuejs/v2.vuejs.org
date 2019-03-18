@@ -1,0 +1,23 @@
+{
+  "projectName": "docs",
+  "projectOwner": "vuejs-id",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mul14",
+      "name": "Mulia Nasution",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/113989?v=4",
+      "profile": "http://nasution.id",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
