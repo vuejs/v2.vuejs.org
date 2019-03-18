@@ -1,78 +1,79 @@
 ---
-title: Comparison with Other Frameworks
+title: Perbandingan dengan Kerangka Kerja yang Lain
 type: guide
 order: 801
 ---
 
-This is definitely the most difficult page in the guide to write, but we do feel it's important. Odds are, you've had problems you tried to solve and you've used another library to solve them. You're here because you want to know if Vue can solve your specific problems better. That's what we hope to answer for you.
+Ini pastinya halaman yang paling sulit untuk ditulis di dokumentasi ini, tetapi kita rasa hal ini sangatlah penting untuk dibahas. Kemungkinan yang ada adalah, Anda mencoba untuk menyelesaikan suatu masalah menggunakan pustaka yang lain. Anda berada di halaman ini karena Anda ingin tahu lebih jauh apakah dengan Vue bisa menyelesaikan masalah yang lebih spesifik dengan baik. Itulah yang kita harapkan untuk menjawab pertanyaan Anda.
 
-We also try very hard to avoid bias. As the core team, we obviously like Vue a lot. There are some problems we think it solves better than anything else out there. If we didn't believe that, we wouldn't be working on it. We do want to be fair and accurate though. Where other libraries offer significant advantages, such as React's vast ecosystem of alternative renderers or Knockout's browser support back to IE6, we try to list these as well.
+Kita juga berusaha dengan keras untuk menghindari bias. Sebagai tim inti, sudah jelas kita sangat mencintai Vue. Ada beberapa permasalahan yang bisa diselesaikan oleh Vue, daripada menggunakan pustaka lain di luar sana. Jika kita tidak percaya dengan hal tersebut, maka kita tidak akan bekerja untuk membangun Vue. Kita ingin berlaku adil dan seakurat mungkin. Dimana pada kerangka kerja yang lain menawarkan kelebihan/keuntungan yang lebih, contohnya seperti React yang memiliki ekosistem yang sangat luas sebagai alternatif pe-*render* antarmuka atau mengembalikan dukungan peramban untuk IE6, kita akan mencoba untuk menaruh hal-hal seperti ini kedalam daftar dengan sebaik mungkin.
 
-We'd also like **your** help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn't seem quite right, please let us know by [opening an issue](https://github.com/vuejs/vuejs.org/issues/new?title=Inaccuracy+in+comparisons+guide).
+Kita juga menerima dengan terbuka bantuan dari Anda untuk membuat dokumen ini selalu *up-to-date* dikarenakan dunia JavaScript bergerak sangat cepat! Jika Anda menyadari/menemukan beberapa hal yang kurang tepat atau ada sesuatu yang salah, mohon untuk menginformasikan kepada kami dengan cara [membuat *issue*](https://github.com/vuejs/vuejs.org/issues/new?title=Inaccuracy+in+comparisons+guide).
 
 ## React
 
-React and Vue share many similarities. They both:
+React dan Vue mempunyai banyak kesamaan, mereka berdua sama-sama:
 
-- utilize a virtual DOM
-- provide reactive and composable view components
-- maintain focus in the core library, with concerns such as routing and global state management handled by companion libraries
+- Menggunakan dan memanfaatkan DOM virtual.
+- Reaktif dan tampilan yang mudah disusun melalui komponen.
+- Lebih fokus kepada inti dari pustaka, seperti lebih memperhatikan sistem *routing* dan pengelolaan *state* secara global yang ditangani oleh beberapa pustaka dari rekan kami sendiri.
 
-Being so similar in scope, we've put more time into fine-tuning this comparison than any other. We want to ensure not only technical accuracy, but also balance. We point out where React outshines Vue, for example in the richness of their ecosystem and abundance of their custom renderers.
+Menjadi sesuatu yang sama didalam bidang yang sama pula, kita telah menggunakan banyak waktu untuk membuat perbandingan ini dengan sangat baik dibandingkan dengan yang lainnya. Kita ingin memastikan bahwa tidak hanya ketelitian di bidang teknikal, tetapi juga keseimbangan. Kita menemukan suatu sisi dimana React mampu mengalahkan Vue, sebagai contoh di kekayaan ekosistem dan *renderer* kustom yang melimpah milik mereka.
 
-With that said, it's inevitable that the comparison would appear biased towards Vue to some React users, as many of the subjects explored are to some extent subjective. We acknowledge the existence of varying technical taste, and this comparison primarily aims to outline the reasons why Vue could potentially be a better fit if your preferences happen to coincide with ours.
+Dengan demikian, terjadi perbandingan berat sebelah yang tak bisa terhindarkan lagi bagi Vue untuk beberapa pengguna React, dikarenakan banyak subyek yang telah dieksplor tidak bersifat subyektif. Kami mengakui dan menyadari hal ini terjadi karena banyaknya variasi dari sisi teknikal, dan perbandingan ini dibuat dengan tujuan untuk membuat garis besar alasan mengapa Vue lebih berpotensi lebih baik dalam membangun aplikasi berdasarkan dengan preferensi kita.
 
 Some of the sections below may also be slightly outdated due to recent updates in React 16+, and we are planning to work with the React community to revamp this section in the near future.
+Beberapa bagian dibawah ini mungkin ada sedikit yang tidak sesuai karena pembaharuan terbaru di React 16+, dan kita berencana untuk berkolaborasi dengan komunitas React untuk merubah bagian ini kedepannya.
 
-### Runtime Performance
+### Kinerja/Performa
 
-Both React and Vue are exceptionally and similarly fast, so speed is unlikely to be a deciding factor in choosing between them. For specific metrics though, check out this [3rd party benchmark](https://stefankrause.net/js-frameworks-benchmark8/table.html), which focuses on raw render/update performance with very simple component trees.
+Perfoma React dan Vue sama-sama luar biasa cepat, jadi kecepatan adalah salah satu faktor penting mengapa kita harus pilih satu diantara keduanya. Untuk metrik yang lebih spesifik, silakan cek berikut ini [*Benchmark* pihak ketika](https://stefankrause.net/js-frameworks-benchmark8/table.html), yang mana lebih berfokus pada kinerja/performa *render*/*update* dengan menggunakan *component trees* yang sederhana.
 
-#### Optimization Efforts
+#### Upaya dalam Mengoptimalkan
 
-In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. To avoid unnecessary re-renders of child components, you need to either use `PureComponent` or implement `shouldComponentUpdate` whenever you can. You may also need to use immutable data structures to make your state changes more optimization-friendly. However, in certain cases you may not be able to rely on such optimizations because `PureComponent/shouldComponentUpdate` assumes the entire sub tree's render output is determined by the props of the current component. If that is not the case, then such optimizations may lead to inconsistent DOM state.
+Di React, ketika *state* pada komponen berubah, dia memicu untuk me-*render* semua *sub-tree* pada komponen, dimulai dari komponen itu sendiri sebagai awalannya. Untuk menghindari perenderan ulang yang tidak penting pada komponen anak, Anda wajib untuk menggunakan `PureComponent` atau menggunakan `shouldComponentUpdate` dikondisi apapun. Anda mungkin juga perlu untuk menggunakan struktur *immutable data* untuk membuat *state* Anda lebih mudah untuk dioptimalkan. Bagaimanapun, di dalam kasus-kasus tertentu Anda mungkin tidak bisa mengandalkan beberapa optimasi dikarenakan `PureComponent/shoudComponentUpdate` berasumsi bahwa di semua hasil pe-*render*-an pada *sub-tree* ditentukan oleh *props* yang ada di komponen saat ini. Jika permasalahan yang terjadi bukan karena itu, maka beberapa optimasi mungkin malah akan menuntun kita pada *state* DOM yang tidak konsisten.
 
-In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render when state changes. Each component can be considered to have `shouldComponentUpdate` automatically implemented for you, without the nested component caveats.
+Di Vue, ketergantungan sebuah komponen secara otomatis sudah terekam ketika proses *render* berlangsung, jadi sistem pada Vue secara tepat bisa mengetahui komponen mana yang benar-benar perlu untuk di *render* ulang ketika *state* berubah. Masing-masing komponen bisa dipertimbangkan untuk bisa mempunyai *method* `shouldComponenUpdate` yang secara otomatis sudah diimplementasikan, tanpa peringatan pada komponen yang bersarang.
 
-Overall this removes the need for a whole class of performance optimizations from the developer's plate, and allows them to focus more on building the app itself as it scales.
+Secara keseluruhan, hal ini menghilangkan kebutuhan pengoptimalan kinerja di seluruh kelas dari sudut pandang sang pengembang, dan karenanya para pengembang tinggal fokus untuk membangun aplikasi itu sendiri.
 
 ### HTML & CSS
 
-In React, everything is just JavaScript. Not only are HTML structures expressed via JSX, the recent trends also tend to put CSS management inside JavaScript as well. This approach has its own benefits, but also comes with various trade-offs that may not seem worthwhile for every developer.
+Di React, segalanya berbentuk JavaScript. Tidak hanya struktur HTML saja yang berbentuk JSX, kecenderungan untuk melalukan manajemen CSS juga dilakukan didalam JavaScript. Hal ini punya keuntungan tersendiri, tetapi hal ini juga menimbulkan ketidaknyamanan yang bervariasi bagi beberapa pengembang.
 
-Vue embraces classic web technologies and builds on top of them. To show you what that means, we'll dive into some examples.
+Vue merangkul teknologi web yang klasik dan dibangun diatasnya. Untuk menunjukkan bagaimana maksudnya, kita akan berikan beberapa contohnya.
 
 #### JSX vs Templates
 
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript.
+Di React, semua komponen mengekspresikan fungsi pe-*render*-an UI nya menggunakan JSX. JSX merupakan sintaks deklaratif yang menyerupai XML di JavaScript.
 
-Render functions with JSX have a few advantages:
+Fungsi *render* di JSX mempunyai beberapa kelebihan:
 
-- You can leverage the power of a full programming language (JavaScript) to build your view. This includes temporary variables, flow controls, and directly referencing JavaScript values in scope.
+- Anda bisa menggunakan kemampuan bahasa JavaScript sepenuhnya untuk membangun antarmuka web Anda. Termasuk juga variable sementara, dan menggunakan referensi yang ada pada JavaScript.
 
-- The tooling support (e.g. linting, type checking, editor autocompletion) for JSX is in some ways more advanced than what's currently available for Vue templates.
+- Alat pendukung (contohnya *linting*, pemeriksaan tipe data, dan *autocompletion* pada editor) di beberapa pustaka yang tersedia untuk JSX lebih bagus daripada untuk templat Vue.
 
-In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes you do need that power. However, as the default experience we offer templates as a simpler alternative. Any valid HTML is also a valid Vue template, and this leads to a few advantages of its own:
+Di Vue, kita juga mempunyai [fungsi *render*](render-function.html) dan bahkan juga [mendukung JSX](render-function.html#JSX), karena terkadang Anda memerlukan fitur tersebut. Bagaimanapun, kita tetap menawarkan fungsi pe-*render*-an dalam bentuk templat sebagai alternatif yang lebih mudah.
 
-- For many developers who have been working with HTML, templates feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
+- Bagi mayoritas pengembang yang telah bekerja menggunakan HTML, templat akan terasa lebih natural untuk dibaca dan ditulis. Preferensi itu sendiri bisa jadi bersifat subyektif, tetapi jika hal tersebut bisa membuat para pengembang menjadi lebih produktif, maka keuntungan tersebut bersifat obyektif.
 
--  HTML-based templates make it much easier to progressively migrate existing applications to take advantage of Vue's reactivity features.
+- Templat yang berbasis HTML membuat kita mudah untuk migrasi secara progresif dari aplikasi yang sudah ada untuk mendapatkan kelebihan dari fitur reaktifitasnya Vue.
 
-- It also makes it much easier for designers and less experienced developers to parse and contribute to the codebase.
+- Hal tersebut juga sangat mempermudah para desainer dan pengembang pemula untuk berkontribusi kedalam *codebase*.
 
-- You can even use pre-processors such as Pug (formerly known as Jade) to author your Vue templates.
+- Anda bahkan bisa menggunakan *pre-processors* seperti Pug (dulunya ini disebut dengan nama Jade) untuk membangun templat Vue Anda.
 
-Some argue that you'd need to learn an extra DSL (Domain-Specific Language) to be able to write templates - we believe this difference is superficial at best. First, JSX doesn't mean the user doesn't need to learn anything - it's additional syntax on top of plain JavaScript, so it can be easy for someone familiar with JavaScript to learn, but saying it's essentially free is misleading. Similarly, a template is just additional syntax on top of plain HTML and thus has very low learning cost for those who are already familiar with HTML. With the DSL we are also able to help the user get more done with less code (e.g. `v-on` modifiers). The same task can involve a lot more code when using plain JSX or render functions.
+Beberapa ada juga yang berkata bahwa Anda harus belajar DSL (*Domain-Specific Language*) secara ekstra agar bisa membuat templat - kita percaya bahwa ini argumen yang tidak beralasan. Pertama, menggunakan JSX bukan berarti pengembang tidak butuh untuk belajar hal lain - JSX hanyalah sintaks tambahan yang digunakan pada JavaScript, jadi hal tersebut bisa sangat mudah untuk dipelajari bagi seseorang yang sudah mengenal/familiar menggunakan JavaScript. Selain itu, templat hanyalah sintaks tambahan yang dibangun diatas HTML, oleh karena itu membuat templat jauh lebih mudah untuk dipelajari bagi orang yang sudah familiar dengan HTML. Dengan adanya DSL, kita juga bisa membantu para pengembang untuk menyelesaikan tugas dengan kode yang lebih sedikit (contohnya menggunakan `v-on` *modifiers*). Dengan tugas yang sama, dengan menggunakan JSX atau fungsi *render* malah bisa membutuhkan lebih banyak kode.
 
-On a higher level, we can divide components into two categories: presentational ones and logical ones. We recommend using templates for presentational components and render function / JSX for logical ones. The percentage of these components depends on the type of app you are building, but in general we find presentational ones to be much more common.
+Di tingkat yang lebih tinggi lagi, kita bisa membagi komponen dalam dua kategori: bentuk *presentational* dan *logical*. Kami menyarankan untuk menggunakan templat untuk komponen yang berbentuk *presentational* dan fungsi pe-*render*-an / JSX untuk komponen yang berbentuk *logical*. Persentase pemilihan bentuk komponen ini tergantung dengan tipe aplikasi yang sedang Anda bangun, tetapi pada umumnya kita menjumpai komponen yang berbentuk *presentational* lebih banyak dipakai.
 
 #### Component-Scoped CSS
 
-Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React is often done via CSS-in-JS solutions (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), and [emotion](https://github.com/emotion-js/emotion)). This introduces a new component-oriented styling paradigm that is different from the normal CSS authoring process. Additionally, although there is support for extracting CSS into a single stylesheet at build time, it is still common that a runtime will need to be included in the bundle for styling to work properly. While you gain access to the dynamism of JavaScript while constructing your styles, the tradeoff is often increased bundle size and runtime cost.
+Jika Anda memecah-mecah komponen menjadi beberapa berkas (sebagai contoh nya menggunakan [Modul CSS](https://github.com/gajus/react-css-modules)), menyematkan CSS di React bisa dilakukan melalui `CSS-in-JS` (contohnya [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), dan [emotion](https://github.com/emotion-js/emotion)). Beberapa dokumentasi tersebut memperkenalkan kita tentang paradigma *styling* yang berbasis komponen yang berbeda dengan gaya pemrosesan CSS pada umumnya. Selain itu, meskipun sudah mendukung untuk peng-ekstraksi-an CSS menjadi satu berkas CSS ketika proses *build*, ia tetap harus dimasukkan ke dalam *bundle* agar *styling* bisa bekerja dengan baik. Ketika Anda mempunyai hak untuk mendinamiskan JavaScript ketika membangun *style* Anda, sebagai gantinya adalah meningkatnya ukuran *bundle* dan biaya *runtime*.
 
-If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support Vue (e.g. [styled-components-vue](https://github.com/styled-components/vue-styled-components) and [vue-emotion](https://github.com/egoist/vue-emotion)). The main difference between React and Vue here is that the default method of styling in Vue is through more familiar `style` tags in [single-file components](single-file-components.html).
+Jika Anda adalah penggemar dari `CSS-in-JS`, sudah banyak pustaka `CSS-in-JS` populer yang mendukung Vue (contohnya [styled-components-vue](https://github.com/styled-components/vue-styled-components) dan [vue-emotion](https://github.com/egoist/vue-emotion)). Perbedaan utama antara React dan Vue disini adalah metode dasar pada proses *styling* di Vue lebih familiar dengan `style` tag di [single-file components](single-file-components.html).
 
-[Single-file components](single-file-components.html) give you full access to CSS in the same file as the rest of your component code.
+[Single-file components](single-file-components.html) memberikan Anda akses penuh ke CSS didalam berkas yang sama di komponen Anda.
 
 ``` html
 <style scoped>
@@ -84,145 +85,148 @@ If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support V
 </style>
 ```
 
-The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-21e5b78`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-21e5b78]:hover`.
+Atribut `scoped` yang bersifat opsional secara otomatis menggabungkan CSS kedalam komponen Anda (hanya di komponen ini saja) dengan cara menambahkan atribut yang unik (seperti `data-v-21e5b78`) dan di-*compile* dari `.list-container:hover` menjadi seperti `.list-container[data-v-21e5b78]:hover`.
 
-Lastly, the styling in Vue's single-file component's is very flexible. Through [vue-loader](https://github.com/vuejs/vue-loader), you can use any preprocessor, post-processor, and even deep integration with [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html) -- all within the `<style>` element.
+Yang terakhir, *styling* pada *single-file component* milik Vue sangat fleksibel. Melalui [vue-loader](https://github.com/vuejs/vue-loader), Anda bisa menggunakan berbagai *pre-processor*, *post-processor*, dan bahkan bisa terintegrasi dengan [Modul CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) -- semua nya hanya ada di dalam elemen `<style>`.
 
-### Scale
+### Skala
 
-#### Scaling Up
+#### Meningkatkan Skala Aplikasi
 
-For large applications, both Vue and React offer robust routing solutions. The React community has also been very innovative in terms of state management solutions (e.g. Flux/Redux). These state management patterns and [even Redux itself](https://yarnpkg.com/en/packages?q=redux%20vue&p=1) can be easily integrated into Vue applications. In fact, Vue has even taken this model a step further with [Vuex](https://github.com/vuejs/vuex), an Elm-inspired state management solution that integrates deeply into Vue that we think offers a superior development experience.
+Untuk aplikasi yang besar, Vue dan React menawarkan solusi *routing* yang kuat. Komunitas React juga sangat inovatif dalam menentukan solusi untuk pengelolaan *state* (contohnya Flux/Redux). Pola dari Pengelolaan *state* ini dan [bahkan Redux itu sendiri](https://yarnpkg.com/en/packages?q=redux%20vue&p=1) bisa dengan mudah di integrasikan kedalam aplikasi Vue. Faktanya, Vue sudah menerapkan model ini selangkah lebih maju dengan menggunakan [Vuex](https://github.com/vuejs/vuex), solusi pengelolaan *state* yang terinspirasi dari Elm, yang kami harap bisa meningkatkan pengalaman disisi pengembang.
 
-Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating a more fragmented ecosystem. Being more popular though, React's ecosystem is considerably richer than Vue's.
+Informasi penting lainnya selain penawaran ini adalah pustaka Vue untuk pengelolaan *state* dan *routing* ([info lainnya](https://github.com/vuejs)) semuanya didukung secara resmi dan selalu terjaga pembaharuannya dengan inti pustaka. Sebaliknya, React lebih memilih untuk menyerahkan urusan ini kepada komunitas, dengan cara lebih banyak membangun kepingan ekosistem . Dampaknya, React menjadi lebih populer yang mengakibatkan ekosistem React menjadi sangat kaya daripada ekosistem milik Vue.
 
-Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes it trivially easy to start a new project using your choice of build system, including [webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
+Yang terakhir, Vue menawarkan [*Generator* proyek CLI](https://github.com/vuejs/vue-cli) yang mampu membuat proyek awal dengan mudah menggunakan *build system* sesuai dengan pilihan Anda, beserta [webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), atau bahkan [tanpa *build system*](https://github.com/vuejs-templates/simple). React juga berhasil membuat hal yang sama dengan menggunakan [create-react-app](https://github.com/facebookincubator/create-react-app), tetapi saat ini masih memiliki keterbatasan sebagai berikut:
 
-- It does not allow any configuration during project generation, while Vue's project templates allow [Yeoman](http://yeoman.io/)-like customization.
-- It only offers a single template that assumes you're building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.
-- It cannot generate projects from user-built templates, which can be especially useful for enterprise environments with pre-established conventions.
+- Dia tidak memperbolehkan konfigurasi apapun ketika proses *generate*, sedangkan proyek templat pada Vue memperbolehkannya, seperti kustomisasi milik [Yeoman](http://yeoman.io/)
+- Hanya menawarkan templat tunggal, karena *create-react-app* hanya berasumsi bahwa Anda ingin membuat SPA. Sedangkan Vue menawarkan variasi templat yang lebih luas lagi untuk membangun berbagai macam aplikasi dan kondisi.
+- *Create-react-app* tidak bisa men-*generate* proyek yang berasal dari templat buatan si pengembang, yang mana hal ini justru sangat berguna bagi lingkungan perusahaan yang menggunakan konvensi *pre-established*.
 
-It's important to note that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long as your project's needs are very simple and you never need to "eject" to customize your build process, you'll be able to update it as a dependency. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy).
+Sebagai catatan penting, banyaknya keterbatasan ini memang pilihan yang dibuat oleh tim *create-react-app* dan mereka juga membuat apa yang menjadi kelebihannya. Sebagai contoh, selama kebutuhan proyek anda masih sangat sederhana (sedikit) dan Anda tidak membutuhkan untuk kustomisasi proses *build* Anda, maka Anda boleh untuk memperbaharuinya menjadi sebuah *dependency*. Anda bisa baca selengkapnya tentang [Perbedaaan Filosofi disini](https://github.com/facebookincubator/create-react-app#philosophy).
 
-#### Scaling Down
+#### Menurunkan Skala Aplikasi
 
-React is renowned for its steep learning curve. Before you can really get started, you need to know about JSX and probably ES2015+, since many examples use React's class syntax. You also have to learn about build systems, because although you could technically use Babel Standalone to live-compile your code in the browser, it's absolutely not suitable for production.
+React terkenal dengan pustaka yang susah untuk dipelajari. Sebelum Anda benar - benar ingin mulai memakainya, Anda dituntut untuk paham tentang JSX dan mungkin juga dituntut untuk memahami ES2015+, sejak banyak nya contoh-contoh yang menggunakan sintaks kelas pada React. Anda juga harus mempelajari tentang sistem *build*, karena meski Anda secara teknikal sudah menggunakan Babel untuk mengkompilasi kode ada di peramban, hal tersebut belum tentu cocok untuk digunakan ke tingkat produksi.
 
-While Vue scales up just as well as React, it also scales down just as well as jQuery. That's right - to get started, all you have to do is drop a single script tag into the page:
+Sedangkan Vue mampu menaikkan besaran skala aplikasi dengan kemampuan yang sama dengan React, dia juga bisa menurunkan besaran skala aplikasi sama seperti jQuery. Untuk mulai menggunakan Vue, yang perlu Anda lakukan hanya menyematkan skrip dibawah ini kedalam halaman web Anda.
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-Then you can start writing Vue code and even ship the minified version to production without feeling guilty or having to worry about performance problems.
+Setelah itu Anda bisa langsung menulis kode Vue, dan bahkan Vue tersebut sudah berbentuk versi *minified* yang siap untuk dibawa ke tingkat produksi tanpa khawatir dengan adanya masalah performa.
 
 Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](./) to learn enough to build non-trivial applications.
+Anda tidak perlu memahami apapun tentang JSX, ES2015, atau sistem *build* untuk mulai menggunakan Vue, bahkan biasanya para pengembang hanya perlu membaca [panduan](./) dalam waktu kurang dari sehari untuk mempelajari bagaimana membangun aplikasi yang berskala besar.
 
-### Native Rendering
+### Me-render Secara Native
 
-React Native enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://weex.apache.org/), a cross-platform UI framework created by Alibaba Group and being incubated by the Apache Software Foundation (ASF). Weex allows you to use the same Vue component syntax to author components that can not only be rendered in the browser, but also natively on iOS and Android!
+React Native bisa Anda gunakan untuk membuat aplikasi *native* yang bisa berjalan di iOS dan Android dengan hanya menggunakan model komponen yang sama seperti React. Hal ini sangat positif untuk para pengembang, Anda bisa memanfaatkan pengetahuan yang Anda miliki tentang kerangka kerja untuk membuat aplikasi lintas *platform*. Vue juga secara resmi telah berkolaborasi dengan [Weex](https://weex.apache.org/), sebuah kerangka kerja untuk antarmuka lintas *platform* yang dibuat oleh *Alibaba Group* dan sekarang ini telah diinkubasi oleh Apache Software Foundation (ASF). Anda bisa menggunakan sintaks komponen pada Vue kedalam Weex yang tidak hanya bisa berjalan diatas peramban, melainkan juga bisa berjalan di iOS dan Android secara *native*!
 
-At this moment, Weex is still in active development and is not as mature and battle-tested as React Native, but its development is driven by the production needs of the largest e-commerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
+Pada kesempatan ini, Weex masih berada di masa pengembangan dan Weex juga masih belum siap jika dibandingkan dengan React Native, tetapi proses pengembangannya didorong oleh kebutuhan produksi dari bisnis *e-commerce* terbesar di dunia (Alibaba Group), dan tim Vue akan secara aktif berkolaborasi dengan tim Weex untuk memastikan para pengembang Vue memperoleh pengalaman pengembangan yang baik.
 
-Another option is [NativeScript-Vue](https://nativescript-vue.org/), a [NativeScript](https://www.nativescript.org/) plugin for building truly native applications using Vue.js.
+Pilihan yang lain adalah menggunakan [NativeScript-Vue](https://nativescript-vue.org/), [NativeScript](https://www.nativescript.org/) adalah sebuah *plugin* untuk membangun aplikasi yang benar-benar *native* dengan menggunakan Vue.js.
 
-### With MobX
+### Integrasi dengan MobX
 
-MobX has become quite popular in the React community and it actually uses a nearly identical reactivity system to Vue. To a limited extent, the React + MobX workflow can be thought of as a more verbose Vue, so if you're using that combination and are enjoying it, jumping into Vue is probably the next logical step.
+MobX cukup populer dikalangan komunitas React dan MobX ini hampir identik/sama dengan sistem reaktifitasnya Vue. Pada tingkat tertentu, cara kerja React + MobX sama seperti menggunakan Vue tetapi dengan cara yang lebih rumit, jadi jika Anda nyaman menggunakan kombinasi tersebut, melangkah langsung untuk menggunakan Vue mungkin adalah suatu langkah yang logis kedepannya.
 
-### Preact and Other React-Like Libraries
+### Preact dan Pustaka Mirip React Lainnya
 
-React-like libraries usually try to share as much of their API and ecosystem with React as is feasible. For that reason, the vast majority of comparisons above will also apply to them. The main difference will typically be a reduced ecosystem, often significantly, compared to React. Since these libraries cannot be 100% compatible with everything in the React ecosystem, some tooling and companion libraries may not be usable. Or, even if they appear to work, they could break at any time unless your specific React-like library is officially supported on par with React.
+Pustaka yang mirip React biasanya mencoba berbagi API sebanyak mungkin dengan dukungan dari komunitas React yang layak. Dengan alasan tersebut, sebagian besar perbandingan yang kita bahas diatas juga berlaku untuk pustaka ini. Perbedaan yang utama biasanya adalah berkurangnya/kecilnya ekosistem mereka, jarak perbedaannya terbilang sangat signifikan jika dibandingkan dengan ekosistem milik React. Karena pustaka ini tidak sepenuhnya 100% kompatibel dengan apapun yang ada di ekosistem React, beberapa alat pustaka dan pustaka pendamping mungkin tidak bisa digunakan. Atau, bahkan jika pustaka ini berfungsi dengan baik, ia bisa saja mengalami kerusakan (*break*), kecuali pustaka yang spesifik didukung oleh React secara resmi.
 
 ## AngularJS (Angular 1)
 
-Some of Vue's syntax will look very similar to AngularJS (e.g. `v-if` vs `ng-if`). This is because there were a lot of things that AngularJS got right and these were an inspiration for Vue very early in its development. There are also many pains that come with AngularJS however, where Vue has attempted to offer a significant improvement.
+Beberapa sintaks pada Vue akan terlihat sangat mirip seperti yang ada pada AngularJS (contohnya `v-if` vs `ng-if`). Hal ini dikarenakan banyak kelebihan yang dilakukan oleh Angular sehingga menjadi inspirasi bagi Vue sejak pertama kali dikembangkan. Ada juga beberapa hal buruk yang terjadi/tertanam di AngularJS, dimana Vue berusaha untuk menawarkan peningkatan/perbaikan hal buruk tersebut secara signifikan.
 
-### Complexity
+### Kompleksitas
 
-Vue is much simpler than AngularJS, both in terms of API and design. Learning enough to build non-trivial applications typically takes less than a day, which is not true for AngularJS.
+Vue jauh lebih sederhana jika dibandingkan dengan AngularJS, baik dari segi API dan desain. Untuk belajar membangun aplikasi yang besar pun tidak membutuhkan waktu kurang dari sehari, yang mana hal ini tidak berlaku di AngularJS.
 
-### Flexibility and Modularity
+### Fleksibilitas dan Modularitas
 
-AngularJS has strong opinions about how your applications should be structured, while Vue is a more flexible, modular solution. While this makes Vue more adaptable to a wide variety of projects, we also recognize that sometimes it's useful to have some decisions made for you, so that you can just start coding.
+AngularJS mempunyai pendapat yang kuat tentang bagaimana struktur yang baik untuk aplikasi Anda, sementara Vue adalah solusi modular yang lebih fleksible. Yang mana hal ini membuat Vue lebih bisa dibuat untuk beradaptasi pada berbagai jenis proyek yang bervariasi, Kami juga menyadari bahwa terkadang Anda juga perlu untuk mengambil beberapa keputusan, hingga Anda benar-benar siap untuk mulai menulis kode.
 
-That's why we offer a [webpack template](https://github.com/vuejs-templates/webpack) that can set you up within minutes, while also granting you access to advanced features such as hot module reloading, linting, CSS extraction, and much more.
+Itulah kenapa kami menawarkan sebuah [templat webpack](https://github.com/vuejs-templates/webpack) sehingga memudahkan mempersiapkan proyek Anda dalam beberapa menit saja, sementara itu templat ini juga memberikan fitur-fitur canggih kepada Anda, seperti *Hot Module Reload*, *linting*, ekstraksi CSS, dan masih banyak lagi.
 
 ### Data binding
 
-AngularJS uses two-way binding between scopes, while Vue enforces a one-way data flow between components. This makes the flow of data easier to reason about in non-trivial applications.
+AngularJS menggunakan data *binding* secara dua arah, sementara pada Vue menggunakan aliran satu arah antar komponen. Hal ini membuat aliran data lebih mudah untuk dikelola di aplikasi berskala besar.
 
-### Directives vs Components
+### Direktif vs Komponen
 
-Vue has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while components are self-contained units that have their own view and data logic. In AngularJS, directives do everything and components are just a specific kind of directive.
+Vue memiliki pemisahan yang lebih jelas antara direktif dengan komponen. Direktif dimaksudkan untuk mengengkapsulasi pemanipulasian DOM saja, sedangkan komponen adalah unit mandiri yang mempunyai tampilan templat dan logika data tersendiri. Di AngularJS, direktif bertugas untuk melakukan apapun dan komponen hanyalah sebuah direktif yang lebih spesifik.
 
-### Runtime Performance
+### Kinerja Runtime / Performa
 
-Vue has better performance and is much, much easier to optimize because it doesn't use dirty checking. AngularJS becomes slow when there are a lot of watchers, because every time anything in the scope changes, all these watchers need to be re-evaluated again. Also, the digest cycle may have to run multiple times to "stabilize" if some watcher triggers another update. AngularJS users often have to resort to esoteric techniques to get around the digest cycle, and in some situations, there's no way to optimize a scope with many watchers.
+Vue memiliki kinerja yang lebih baik dan lebih mudah untuk dioptimalkan karena Vue tidak menggunakan *dirty checking*. AngularJS bisa menjadi lambat ketika terdapat banyak *watchers*, karena setiap kali terjadi perubahan pada komponen nya, semua *watchers* juga perlu untuk menjalankan proses nya lagi. Selain itu, siklus AngularJS yang lebih dalam mungkin juga akan menjalankan "proses stabilitas" berulang kali jika beberapa *watchers* dipicu oleh perubahan yang lain. Pengguna AngularJS kadang juga harus menggunakan teknik esoterik untuk menyiasati siklus tersebut, dan dalam beberapa kondisi, tidak ada cara untuk mengoptimalkan hal tersebut dengan banyaknya *watchers* yang dipasang.
 
-Vue doesn't suffer from this at all because it uses a transparent dependency-tracking observation system with async queueing - all changes trigger independently unless they have explicit dependency relationships.
+Vue sangat aman dalam hal ini karena dia mengunakan sistem pengamatan *dependency-tracking* yang transparan dengan *async queueing* - semua perubahan akan memicu secara independen, kecuali jika mereka memiliki ketergantungan yang eksplisit.
 
-Interestingly, there are quite a few similarities in how Angular and Vue are addressing these AngularJS issues.
+Yang menarik adalah, ada beberapa kesamaan bagaimana cara Angular dan Vue mengatasi masalah yang ada pada AngularJS ini.
 
-## Angular (Formerly known as Angular 2)
+## Angular (Sebelumnya dikenal dengan nama Angular 2)
 
-We have a separate section for the new Angular because it really is a completely different framework from AngularJS. For example, it features a first-class component system, many implementation details have been completely rewritten, and the API has also changed quite drastically.
+Kami akan membagi artikel dibawah ini menjadi beberapa bagian untuk Angular versi baru, karena dia benar-benar kerangka kerja yang berbeda dengan AngularJS. Sebagai contoh, adanya fitur sistem komponen *first-class*, sudah banyak detail implementasi yang ditulis ulang, dan API nya juga telah berubah cukup drastis.
 
 ### TypeScript
 
-Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers with backgrounds in Java and C#.
+Angular pada dasarnya membutuhkan TypeScript, mengingat hampir semua dokumentasi dan sumber belajarnya berbasis TypeScript. TypeScript mempunyai kelebihan tersendiri - pengecekan tipe data statis bisa sangat berguna untuk aplikasi berskala besar, dan bisa meningkatkan produktifitas bagi para pengembang dengan latar belakang Java dan C#.
 
-However, not everyone wants to use TypeScript. In many smaller-scale use cases, introducing a type system may result in more overhead than productivity gain. In those cases you'd be better off going with Vue instead, since using Angular without TypeScript can be challenging.
+Namun, tidak semua orang mau menggunakan TypeScript. Di banyak kasus yang lebih kecil, memperkenalkan *type system* ke pengembang malah akan membuat pusing daripada peningkatan produktifitas. Dalam kasus tersebut, Anda mungkin lebih baik langsung menggunakan Vue, karena menggunakan Angular tanpa TypeScript bisa menantang/susah.
 
-Finally, although not as deeply integrated with TypeScript as Angular is, Vue also offers [official typings](https://github.com/vuejs/vue/tree/dev/types) and [official decorator](https://github.com/vuejs/vue-class-component) for those who wish to use TypeScript with Vue. We are also actively collaborating with the TypeScript and VSCode teams at Microsoft to improve the TS/IDE experience for Vue + TS users.
+Yang terakhir, meskipun tidak begitu terintegrasi secara mendalam dengan TypeScript sama seperti Angular, Vue juga menawarkan [*typing* resmi](https://github.com/vuejs/vue/tree/dev/types) dan [dekorator resmi](https://github.com/vuejs/vue-class-component) yang siap digunakan untuk para pengembang yang ingin memakai Typescript dengan Vue. Kita juga secara aktif berkolaborasi dengan TypeScript dan tim VSCode di Microsoft untuk meningkatkan pengalaman TS/IDE untuk para pengguna Vue + TS.
 
-### Runtime Performance
+### Kinerja Runtime
 
 Both frameworks are exceptionally fast, with very similar metrics on benchmarks. You can [browse specific metrics](https://stefankrause.net/js-frameworks-benchmark8/table.html) for a more granular comparison, but speed is unlikely to be a deciding factor.
+Kedua kerangka kerja ini sangatlah memiliki performa yang kencang, dengan metrik yang sangat mirip ketika di uji coba *benchmark*. Anda bisa [menelusuri metrik tertentu](https://stefankrause.net/js-frameworks-benchmark8/table.html) untuk perbandingan yang lebih terperinci, akan tetapi kecepatan bukanlah faktor utamanya.
 
-### Size
+### Ukuran
 
 Recent versions of Angular, with [AOT compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) and [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking), have been able to get its size down considerably. However, a full-featured Vue 2 project with Vuex + Vue Router included (~30KB gzipped) is still significantly lighter than an out-of-the-box, AOT-compiled application generated by `angular-cli` (~65KB gzipped).
+Versi terakhir dari Angular, dengan [kompilasi AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) dan [*tree-shaking*](https://en.wikipedia.org/wiki/Tree_shaking), telah mampu menurunkan ukurannya secara signifikan. Namun, proyek Vue 2 yang sudah disematkan fitur Vuex + Vue Router (~ 30KB *gzipped*) masih jauh lebih ringan daripada kompilasi AOT yang dihasilkan oleh `angular-cli` (~65KB *gzipped*).
 
-### Flexibility
+### Fleksibilitas
 
-Vue is much less opinionated than Angular, offering official support for a variety of build systems, with no restrictions on how you structure your application. Many developers enjoy this freedom, while some prefer having only one Right Way to build any application.
+Vue jauh lebih dogmatis dibandingkan dengan Angular, Vue menawarkan dukungan resmi untuk berbagai sistem *build* yang bervariasi, dengan tanpa adanya batasan tentang cara bagaimana menyusun aplikasi milik Anda. Banyak pengembang yang menyukai kebebasan ini, sementara beberapa pengembang hanya suka dengan  satu cara membangun sebuah aplikasi.
 
-### Learning Curve
+### Tingkat Belajar
 
-To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](./).
+Untuk bisa mulai menggunakan Vue, semua yang Anda butuhkan hanyalah paham/mengenal HTML dan ES5 JavaScript (misalnya seperti JavaScript murni). Dengan keterampilan dasar ini, Anda bisa mulai membangun aplikasi besar dalam waktu kurang dari satu hari untuk mempelajari [panduan ini](./).
 
-Angular's learning curve is much steeper. The API surface of the framework is huge and as a user you will need to familiarize yourself with a lot more concepts before getting productive. The complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
+Tingkatan belajar pada Angular sedikit lebih susah. lapisan luar API di kerangka kerja ini tergolong besar dan sebagai pengguna Anda harus membiasakan diri dengan banyak konsep sebelum mulai produktif menggunakannya. Kompleksitas Angular sebagian besar didesain untuk aplikasi berskala besar dan aplikasi yang kompleks - tetapi hal itu yang membuat kerangka kerja ini jauh lebih sulit untuk dipakai para pengembang yang kurang berpengalaman.
 
 ## Ember
 
-Ember is a full-featured framework that is designed to be highly opinionated. It provides a lot of established conventions and once you are familiar enough with them, it can make you very productive. However, it also means the learning curve is high and flexibility suffers. It's a trade-off when you try to pick between an opinionated framework and a library with a loosely coupled set of tools that work together. The latter gives you more freedom but also requires you to make more architectural decisions.
+Ember adalah kerangka kerja yang kaya akan fitur dan didesain untuk menjadi kerangka kerja yang *opinionated*. Ember memberikan banyak konvensi yang telah tersedia dan ketika Anda sudah cukup familiar dengan konvensi tersebut, hal tersebut akan membuat Anda menjadi sangat produktif. Namun, hal tersebut juga berarti membutuhkan tingkatan belajar yang tinggi. Ini memang merupakan sebuah resiko ketika Anda mencoba untuk menggunakan salah satu kerangka kerja yang *opinionated* dan sebuah pustaka dengan seperangkat alat yang saling terkait dan saling bekerja sama. Pada akhirnya, hal tersebut memberi Anda lebih banyak kebebasan tetapi juga mengharuskan Anda untuk membuat lebih banyak keputusan arsitektur.
 
-That said, it would probably make a better comparison between Vue core and Ember's [templating](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) and [object model](https://guides.emberjs.com/v2.10.0/object-model/) layers:
+Oleh karenanya, hal itu mungkin akan menjadi sebuah perbandingan antara inti Vue dengan lapisan [templat Ember](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) dan [model obyek](https://guides.emberjs.com/v2.10.0/object-model/):
 
-- Vue provides unobtrusive reactivity on plain JavaScript objects and fully automatic computed properties. In Ember, you need to wrap everything in Ember Objects and manually declare dependencies for computed properties.
+- Vue mampu memberikan reaktifitas yang tidak mencolok di obyek JavaScript murni dan *computed properties* yang sepenuhnya otomatis (reaktifitas).
 
-- Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
+- Sintaks templat pada Vue memanfaatkan kekuatan penuh yang ada pada JavaScript, sedangkan *Handlebars* dan sintaks *helper* sangat terbatas jika dibandingkan dengan Vue.
 
-- Performance-wise, Vue outperforms Ember [by a fair margin](https://stefankrause.net/js-frameworks-benchmark8/table.html), even after the latest Glimmer engine update in Ember 3.x. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
+- Dari segi kinera, Vue mampu mengungguli Ember dengan [margin yang adil](https://stefankrause.net/js-frameworks-benchmark8/table.html), bahkan setelah pembaharuan *Glimmer engine* di Ember 3.x. Vue secara otomatis menumpuk pembaharuan, sementara di Ember Anda perlu mengelola *loop* yang dijalankan secara manual dalam situasi kinerja yang kritis.
 
 ## Knockout
 
-Knockout was a pioneer in the MVVM and dependency tracking spaces and its reactivity system is very similar to Vue's. Its [browser support](http://knockoutjs.com/documentation/browser-support.html) is also very impressive considering everything it does, with support back to IE6! Vue on the other hand only supports IE9+.
+Knockout adalah pelopor dalam MVVM dan pelacakan *dependency*. Dan bahkan reaktifitas pada sistem nya sangat mirip dengan yang ada pada Vue. [Dukungan pada peramban](http://knockoutjs.com/documentation/browser-support.html) juga sangat mengesankan, bahkan mendukung di peramban IE6! Sedangkan Vue hanya mendukung IE9+.
 
-Over time though, Knockout development has slowed and it's begun to show its age a little. For example, its component system lacks a full set of lifecycle hooks and although it's a very common use case, the interface for passing children to a component feels a little clunky compared to [Vue's](components.html#Content-Distribution-with-Slots).
+Namun dengan seiring berjalannya waktu, pengembangan Knockout mulai melambat dan kelihatan berumur (menua). Sebagai contoh, sistem komponennya tidak memiliki satu set yang lengkap mengenai siklus hidup *hook*nya dan meskipun hal tersebut adalah sesuatu yang sudah umum. Antarmuka untuk mengoper data antar komponen juga terasa sedikit aneh jika dibandingkan dengan Vue.
 
-There also seem to be philosophical differences in the API design which if you're curious, can be demonstrated by how each handles the creation of a [simple todo list](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89). It's definitely somewhat subjective, but many consider Vue's API to be less complex and better structured.
+Nampaknya juga ada perbedaan filosofis di dalam desain API nya, yang jika Anda penasaran bisa dilihat di demonstrasi tentang bagaimana membuat [*todo list* sederhana](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89). Memang ini agak subyektif, tetapi banyak yang mengatakan bahwa API pada Vue tidaklah rumit dan terstruktur dengan baik.
 
 ## Polymer
 
-Polymer is another Google-sponsored project and in fact was a source of inspiration for Vue as well. Vue's components can be loosely compared to Polymer's custom elements and both provide a very similar development style. The biggest difference is that Polymer is built upon the latest Web Components features and requires non-trivial polyfills to work (with degraded performance) in browsers that don't support those features natively. In contrast, Vue works without any dependencies or polyfills down to IE9.
+Polymer adalah proyek lain yang di sponsori oleh Google dan faktanya adalah Polymer adalah sumber inspirasi bagi Vue. Komponen Vue dapat dibandingkan dengan kustom elemen pada Polymer dan kedua nya memberikan gaya pengembangan yang sangat mirip. Perbedaan terbesarnya adalah Polymer dibangun di atas *Web Components* yang terbaru dan memerlukan *polyfill* untuk bekerja (dengan kinerja yang tergradasi) di peramban yang tidak mendukung fitur-fitur tersebut secara *native*. Sebaliknya, Vue bekerja tanpa adanya ketergantungan atau *polyfill* ke IE9.
 
-In Polymer, the team has also made its data-binding system very limited in order to compensate for the performance. For example, the only expressions supported in Polymer templates are boolean negation and single method calls. Its computed property implementation is also not very flexible.
+Di Polymer, tim juga telah membuat sistem pengikatan data (*data binding*) yang terbatas untuk mengimbangi kinerja Polymer. Misalnya, satu-satunya ekspresi yang di dukung oleh templat Polymer adalah negasi *boolean* dan pemanggilan metode tunggal. Ini seperti halnya pada *computed properties* nya Vue, tetapi tidak terlalu fleksibel.
 
 ## Riot
 
-Riot 3.0 provides a similar component-based development model (which is called a "tag" in Riot), with a minimal and beautifully designed API. Riot and Vue probably share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:
+Riot 3.0 menyediakan model pengembangan yang berbasis komponen (yang mana ini disebut dengan "tag" di Riot), dengan API yang dirancang secara indah dan minimalis. Riot dan Vue mungkin saling berbagi dalam hal filosofi desain. Namun, meskipun sedikit lebih berat daripada Riot, Vue memang mampu menawarkan beberapa keuntungan secara signifikan:
 
-- Better performance. Riot [traverses a DOM tree](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) rather than using a virtual DOM, so suffers from the same performance issues as AngularJS.
-- More mature tooling support. Vue provides official support for [webpack](https://github.com/vuejs/vue-loader) and [Browserify](https://github.com/vuejs/vueify), while Riot relies on community support for build system integration.
+- Kinerja yang lebih baik. Riot lebih memilih untuk [menelusuri pohon DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) daripada menggunakan DOM virtual, sehingga menyebabkan kinerja yang lambat, sama seperti isu yang terdapat di AngularJS.
+- Dukungan alat yang lebih matang. Vue memberikan dukungan resmi untuk [webpack](https://github.com/vuejs/vue-loader) dan [Browserify](https://github.com/vuejs/vueify), sedangkan Riot lebih mengandalkan dukungan dari komunitas untuk membangun integrasi sistem.
