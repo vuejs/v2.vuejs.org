@@ -1,26 +1,26 @@
 ---
-title: Components Basics
+title: Komponen Dasar
 type: guide
 order: 11
 ---
 
-## Base Example
+## Contoh Dasar
 
-Here's an example of a Vue component:
+Berikut ini adalah contoh Vue komponen:
 
 ``` js
-// Define a new component called button-counter
+// Mendefinisikan komponen baru dengan nama button-counter
 Vue.component('button-counter', {
   data: function () {
     return {
       count: 0
     }
   },
-  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  template: '<button v-on:click="count++">Anda mengklik saya {{ count }} kali.</button>'
 })
 ```
 
-Components are reusable Vue instances with a name: in this case, `<button-counter>`. We can use this component as a custom element inside a root Vue instance created with `new Vue`:
+Komponen adalah Vue _instance_ yang dapat digunakan kembali dengan nama: pada kasus ini, `<button-counter>`. Kita bisa menggunakan komponen ini sebagai kustom elemen di dalam _instance_ root Vue yang dibuat dengan `new Vue`:
 
 ```html
 <div id="components-demo">
@@ -49,11 +49,11 @@ new Vue({ el: '#components-demo' })
 </script>
 {% endraw %}
 
-Since components are reusable Vue instances, they accept the same options as `new Vue`, such as `data`, `computed`, `watch`, `methods`, and lifecycle hooks. The only exceptions are a few root-specific options like `el`.
+Karena komponen adalah Vue _instance_ yang bisa digunakan kembali, mereka menerima opsi yang sama dengan `new Vue`, seperti `data`, `computed`, `watch`, `methods`, dan kait siklus hidup (_lifecycle hooks_). Satu-satunya pengecualian adalah beberapa opsi khusus seperti `el`.
 
-## Reusing Components
+## Menggunakan Kembali Komponen
 
-Components can be reused as many times as you want:
+Komponen dapat digunakan kembali sebanyak yang Anda inginkan:
 
 ```html
 <div id="components-demo">
@@ -74,11 +74,11 @@ new Vue({ el: '#components-demo2' })
 </script>
 {% endraw %}
 
-Notice that when clicking on the buttons, each one maintains its own, separate `count`. That's because each time you use a component, a new **instance** of it is created.
+Perhatikan ketika mengklik tombol, masing-masing mempertahankan `count` itu sendiri secara terpisah. Itu karena setiap kali Anda menggunakan komponen, **_instance_** baru akan dibuat.
 
-### `data` Must Be a Function
+### `data` Harus Berupa Fungsi
 
-When we defined the `<button-counter>` component, you may have noticed that `data` wasn't directly provided an object, like this:
+Ketika kita mendefinisikan komponen `<button-counter>`, Anda mungkin memperhatikan bahwa `data` secara tidak langsung berupa sebuah objek, seperti ini:
 
 ```js
 data: {
@@ -86,7 +86,7 @@ data: {
 }
 ```
 
-Instead, **a component's `data` option must be a function**, so that each instance can maintain an independent copy of the returned data object:
+Sebagai gantinya, **opsi `data` pada komponen harus berupa fungsi**, sehingga setiap _instance_ dapat mempertahankan salinan independen dari objek data yang dikembalikan:
 
 ```js
 data: function () {
@@ -96,7 +96,7 @@ data: function () {
 }
 ```
 
-If Vue didn't have this rule, clicking on one button would affect the data of _all other instances_, like below:
+Jika Vue tidak memiliki aturan ini, maka ketika mengklik satu tombol akan mempengaruhi semua data, seperti di bawah ini:
 
 {% raw %}
 <div id="components-demo3" class="demo">
@@ -112,37 +112,37 @@ Vue.component('button-counter2', {
   data: function () {
     return buttonCounter2Data
   },
-  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  template: '<button v-on:click="count++">Anda mengklik saya {{ count }} kali.</button>'
 })
 new Vue({ el: '#components-demo3' })
 </script>
 {% endraw %}
 
-## Organizing Components
+## Pengorganisasian Komponen
 
-It's common for an app to be organized into a tree of nested components:
+Biasanya aplikasi diorganisasikan ke dalam kumpulan komponen bersarang:
 
-![Component Tree](/images/components.png)
+![Komponen Bersarang](/images/components.png)
 
-For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
+Sebagai contoh, Anda mungkin memiliki komponen _header_, bilah samping (_sidebar_), dan area konten, masing-masing biasanya berisi komponen lain untuk tautan navigasi, posting blog, dan sebagainya.
 
-To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
+Untuk menggunakan komponen ini dalam templat, mereka harus didaftarkan agar Vue tahu tentang mereka. Ada dua tipe untuk mendaftarkan: **global** dan **local**. Sejauh ini, Kita hanya mendaftarkan komponen secara global, menggunakan `Vue.component`:
 
 ```js
 Vue.component('my-component-name', {
-  // ... options ...
+  // ... opsi ...
 })
 ```
 
-Globally registered components can be used in the template of any root Vue instance (`new Vue`) created afterwards -- and even inside all subcomponents of that Vue instance's component tree.
+Komponen yang terdaftar secara global dapat digunakan dalam templat dari _instance_ Vue Root (`new Vue`) yang dibuat setelahnya -- dan bahkan di dalam semua sub komponen dari pohon komponen Vue _instance_.
 
-That's all you need to know about registration for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Component Registration](components-registration.html).
+Itu saja yang perlu Anda ketahui tentang pendaftaran untuk saat ini, tetapi setelah selesai membaca halaman ini dan merasa nyaman dengan isinya, kami sarankan untuk kembali lagi nanti untuk membaca panduan lengkap tentang [Mendaftarkan Komponen](components-registration.html).
 
-## Passing Data to Child Components with Props
+## Mengoper Data ke Anak Komponen dengan Props
 
-Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
+Sebelumnya, kita membuat contoh komponen untuk posting blog. Masalahnya adalah, komponen itu tidak akan berguna kecuali Anda dapat mengoper data ke dalamnya, seperti judul dan konten dari pos tertentu yang ingin kita tampilkan. Di situlah kegunaan _props_.
 
-Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+_Props_ adalah kustom atribut yang dapat Anda daftarkan pada suatu komponen. Ketika nilai diopen ke atibut prop, itu menjadi properti pada _instance_ komponen itu. Untuk mengoper judul ke komponen posting blog, kita dapat memasukannya dalam daftar properti yang diterima komponen ini, menggunakan opsi `props`:
 
 ```js
 Vue.component('blog-post', {
@@ -151,21 +151,21 @@ Vue.component('blog-post', {
 })
 ```
 
-A component can have as many props as you'd like and by default, any value can be passed to any prop. In the template above, you'll see that we can access this value on the component instance, just like with `data`.
+Sebuah komponen dapat memiliki dapat memiliki banyak props seperti yang Anda inginkan dan secara default, nilai apa pun dapat diteruskan ke prop apa pun. Dalam templat di atas, Anda akan melihat bahwa kami dapat mengakses nilai ini pada _instance_ komponen, sama seperti dengan `data`.
 
-Once a prop is registered, you can pass data to it as a custom attribute, like this:
+Setelah prop terdaftar, Anda dapat mengoper data sebagai atribut khusus, seperti ini:
 
 ```html
-<blog-post title="My journey with Vue"></blog-post>
-<blog-post title="Blogging with Vue"></blog-post>
-<blog-post title="Why Vue is so fun"></blog-post>
+<blog-post title="Perjalanan saya dengan Vue"></blog-post>
+<blog-post title="Blogging dengan Vue"></blog-post>
+<blog-post title="Kenapa Vue sangat menyenangkan"></blog-post>
 ```
 
 {% raw %}
 <div id="blog-post-demo" class="demo">
-  <blog-post1 title="My journey with Vue"></blog-post1>
-  <blog-post1 title="Blogging with Vue"></blog-post1>
-  <blog-post1 title="Why Vue is so fun"></blog-post1>
+  <blog-post1 title="Perjalanan saya dengan Vue"></blog-post1>
+  <blog-post1 title="Blogging dengan Vue"></blog-post1>
+  <blog-post1 title="Mengapa Vue sangat menyenangkan"></blog-post1>
 </div>
 <script>
 Vue.component('blog-post1', {
@@ -176,22 +176,22 @@ new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-In a typical app, however, you'll likely have an array of posts in `data`:
+Namun, dalam aplikasi yang khas, Anda kemungkinan akan memiliki serangkaian pos dalam `data`:
 
 ```js
 new Vue({
   el: '#blog-post-demo',
   data: {
     posts: [
-      { id: 1, title: 'My journey with Vue' },
-      { id: 2, title: 'Blogging with Vue' },
-      { id: 3, title: 'Why Vue is so fun' }
+      { id: 1, title: 'Perjalanan saya dengan Vue' },
+      { id: 2, title: 'Blogging dengan Vue' },
+      { id: 3, title: 'Mengapa Vue sangat menyenangkan' }
     ]
   }
 })
 ```
 
-Then want to render a component for each one:
+Lalu ingin me-rendernya untuk setiap komponen:
 
 ```html
 <blog-post
@@ -201,26 +201,26 @@ Then want to render a component for each one:
 ></blog-post>
 ```
 
-Above, you'll see that we can use `v-bind` to dynamically pass props. This is especially useful when you don't know the exact content you're going to render ahead of time, like when [fetching posts from an API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
+Di atas, Anda akan melihat bahwa kita dapat menggunakan `v-bind` secara dinamis menggunakan prop. Ini sangat berguna ketika Anda tidak tahu konten pasti yang akan Anda render sebelumnya, seperti saat [mengambil posting dari API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
 
-That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](components-props.html).
+Itu saja yang perlu Anda ketahui tentang _props_ untuk saat ini, tetapi setelah selesai membaca halaman ini dan merasa nyaman dengan isinya, kami sarankan untuk kembali lagi nanti untuk membaca panduan lengkap tentang [_Props_](components-props.html).
 
-## A Single Root Element
+## Elemen Root Tunggal
 
-When building out a `<blog-post>` component, your template will eventually contain more than just the title:
+Saat membuat komponen `<blog-post>`, templat Anda pada akhirnya akan berisi lebih dari sekedar judul:
 
 ```html
 <h3>{{ title }}</h3>
 ```
 
-At the very least, you'll want to include the post's content:
+Setidaknya, Anda ingin memasukan posting konten:
 
 ```html
 <h3>{{ title }}</h3>
 <div v-html="content"></div>
 ```
 
-If you try this in your template however, Vue will show an error, explaining that **every component must have a single root element**. You can fix this error by wrapping the template in a parent element, such as:
+Jika Anda mencoba ini di templat Anda, Vue akan memunculkan kesalahan, menjelaskan bahwa **setiap komponen harus memiliki elemen root tunggal**. Anda bisa memperbaiki kesalahan ini dengan membungkus templat dalam elemen induk, seperti:
 
 ```html
 <div class="blog-post">
@@ -229,7 +229,7 @@ If you try this in your template however, Vue will show an error, explaining tha
 </div>
 ```
 
-As our component grows, it's likely we'll not only need the title and content of a post, but also the published date, comments, and more. Defining a prop for each related piece of information could become very annoying:
+Seiring komponen tumbuh, kemungkinan kita tidak hanya membutuhkan judul dan konten dari sebuah posting, tetapi juga tanggal diterbitkan, komentar, dan lainnya. Mendefinisikan _prop_ untuk setiap informasi terkait bisa menjadi sangat menjengkelkan:
 
 ```html
 <blog-post
@@ -242,7 +242,7 @@ As our component grows, it's likely we'll not only need the title and content of
 ></blog-post>
 ```
 
-So this might be a good time to refactor the `<blog-post>` component to accept a single `post` prop instead:
+Jadi ini mungkin saat yang tepat untuk memperbaiki komponen `<blog-post>` untuk menerima _prop_ `post` tunggal sebagai gantinya:
 
 ```html
 <blog-post
@@ -264,15 +264,15 @@ Vue.component('blog-post', {
 })
 ```
 
-<p class="tip">The above example and some future ones use JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make multi-line templates more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
+<p class="tip">Contoh di atas dan beberapa yang akan datang menggunakan [templat _literal_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) JavaScript untuk membuat templat beberapa baris sehingga lebih mudah dibaca. Ini tidak didukung oleh Internet Explorer (IE), jadi jika Anda harus mendukung IE dan tidak mentranspeksi (contohnya Babel atau TypeScript), gunakan [lolos baris baru](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) sebagai gantinya.</p>
 
-Now, whenever a new property is added to `post` objects, it will automatically be available inside `<blog-post>`.
+Sekarang, properti baru apapun akan di tambahkan ke objek `post`, itu akan otomatis ada didalam `<blog-post>`.
 
-## Listening to Child Components Events
+## Memantau _Events_ untuk Anak Komponen 
 
-As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
+Saat kita mengembangkan komponen `<blog-post>`, beberapa fitur mungkin membutuhkan komunikasi kembali ke induk. Sebagai contoh, kita mungkin memutuskan untuk memasukan  fitur aksesibilitas untuk memperbesar text posting blog, sambil membiarkan sisa halaman ukuran defaultnya:
 
-In the parent, we can support this feature by adding a `postFontSize` data property:
+Didalam induk, kita akan mendukung fitur ini dengan menambahkan properti data `postFontSize`:
 
 ```js
 new Vue({
@@ -284,7 +284,7 @@ new Vue({
 })
 ```
 
-Which can be used in the template to control the font size of all blog posts:
+Yang dapat digunakan dalam templat untuk mengontrol ukuran font semua posting blog:
 
 ```html
 <div id="blog-posts-events-demo">
@@ -298,7 +298,7 @@ Which can be used in the template to control the font size of all blog posts:
 </div>
 ```
 
-Now let's add a button to enlarge the text right before the content of every post:
+Sekarang mari kita tambahkan tombol untuk memperbesar teks tepat sebelum konten posting:
 
 ```js
 Vue.component('blog-post', {
@@ -307,7 +307,7 @@ Vue.component('blog-post', {
     <div class="blog-post">
       <h3>{{ post.title }}</h3>
       <button>
-        Enlarge text
+        Memperbesar teks
       </button>
       <div v-html="post.content"></div>
     </div>
@@ -315,15 +315,15 @@ Vue.component('blog-post', {
 })
 ```
 
-The problem is, this button doesn't do anything:
+Masalahnya adalah, tombol ini tidak mendapatkan apa-apa:
 
 ```html
 <button>
-  Enlarge text
+  Memperbesar teks
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. The parent can choose to listen to any event on the child component instance with `v-on`, just as we would with a native DOM event:
+Ketika kita mengklik tombol, kita perlu untuk berkomunikasi dengan induk bahwa itu harus memperbesar tulisan teks pada semua posting. Untung, Vue _instances_ menyediakan sistem kustom _events_ untuk menyelesaikan masalah ini. Induk dapat memilih untuk memantau _event_ apa pun dengan _instance_ anak komponen dengan `v-on`, sama seperti yang kita lakukan pada _event_ DOM asli:
 
 ```html
 <blog-post
@@ -332,7 +332,7 @@ When we click on the button, we need to communicate to the parent that it should
 ></blog-post>
 ```
 
-Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](../api/#vm-emit), passing the name of the event:
+Kemudian anak komponen dapat _emit_ (mengeluarkan output) suatu _event_ pada dirinya sendiri dengan memanggil [metode **`$emit`**](../api/#vm-emit) bawaan, mengoper nama dari _event_:
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
@@ -340,7 +340,7 @@ Then the child component can emit an event on itself by calling the built-in [**
 </button>
 ```
 
-Thanks to the `v-on:enlarge-text="postFontSize += 0.1"` listener, the parent will receive the event and update `postFontSize` value.
+Terima kasih kepada _listener_ `v-on:enlarge-text="postFontSize += 0.1"`, induk akan menerima _event_ dan perbaruan isi `postFontSize`.
 
 {% raw %}
 <div id="blog-posts-events-demo" class="demo">
@@ -370,9 +370,9 @@ new Vue({
   el: '#blog-posts-events-demo',
   data: {
     posts: [
-      { id: 1, title: 'My journey with Vue', content: '...content...' },
-      { id: 2, title: 'Blogging with Vue', content: '...content...' },
-      { id: 3, title: 'Why Vue is so fun', content: '...content...' }
+      { id: 1, title: 'Perjalanan saya dengan Vue', content: '...content...' },
+      { id: 2, title: 'Blogging dengan Vue', content: '...content...' },
+      { id: 3, title: 'Mengapa Vue sangat menyenangkan', content: '...content...' }
     ],
     postFontSize: 1
   }
@@ -380,17 +380,17 @@ new Vue({
 </script>
 {% endraw %}
 
-### Emitting a Value With an Event
+### Meng-_Emit_ Nilai dengan _Event_
 
-It's sometimes useful to emit a specific value with an event. For example, we may want the `<blog-post>` component to be in charge of how much to enlarge the text by. In those cases, we can use `$emit`'s 2nd parameter to provide this value:
+Ini terkadang berguna untuk meng-_emit_ nilai spesifik dengan _event_. Sebagai contohnya, kita mungkin menginginkan komponen `<blog-post>` bertanggung jawab atas seberapa banyak teks akan diperbesar. Dalam hal itu, kita akan menggunakan parameter ke-2 `$emit` untuk meng-_emit_ nilai ini:
 
 ```html
 <button v-on:click="$emit('enlarge-text', 0.1)">
-  Enlarge text
+  Memperbesar teks
 </button>
 ```
 
-Then when we listen to the event in the parent, we can access the emitted event's value with `$event`:
+Kemudian ketika kita memantau _event_ di induk, kita dapat mengakses nilai _event_ yang di berikan dengan `$event`:
 
 ```html
 <blog-post
@@ -399,7 +399,7 @@ Then when we listen to the event in the parent, we can access the emitted event'
 ></blog-post>
 ```
 
-Or, if the event handler is a method:
+Atau, jika _event handler_ adalah metode:
 
 ```html
 <blog-post
@@ -408,7 +408,7 @@ Or, if the event handler is a method:
 ></blog-post>
 ```
 
-Then the value will be passed as the first parameter of that method:
+Kemudian nilai akan dikirimkan sebagai parameter pertama dari metode itu:
 
 ```js
 methods: {
@@ -418,15 +418,15 @@ methods: {
 }
 ```
 
-### Using `v-model` on Components
+### Menggunakan `v-model` pada Komponent
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember that:
+Kustom _events_ juga dapat digunakan untuk membuat kustom _input_ yang berkerja dengan `v-model`. Ingat bahwa:
 
 ```html
 <input v-model="searchText">
 ```
 
-does the same thing as:
+hal yang sama dengan:
 
 ```html
 <input
@@ -435,7 +435,7 @@ does the same thing as:
 >
 ```
 
-When used on a component, `v-model` instead does this:
+Saat digunakan pada komponen, sebagai ganti `v-model` gunakan seperti ini:
 
 ``` html
 <custom-input
@@ -444,12 +444,12 @@ When used on a component, `v-model` instead does this:
 ></custom-input>
 ```
 
-For this to actually work though, the `<input>` inside the component must:
+Agar ini benar-benar berfungsi, `<input>` di dalam komponen harus:
 
-- Bind the `value` attribute to a `value` prop
-- On `input`, emit its own custom `input` event with the new value
+- Mengikat atribut `value` ke `nilai` _prop_
+- Pada `input`, _emit event_ kustom `input` dengan nilai baru
 
-Here's that in action:
+Di sinilah beraksi:
 
 ```js
 Vue.component('custom-input', {
@@ -463,37 +463,37 @@ Vue.component('custom-input', {
 })
 ```
 
-Now `v-model` should work perfectly with this component:
+Sekarang `v-model` seharusnya bekerja dengan sempurna dengan komponen ini:
 
 ```html
 <custom-input v-model="searchText"></custom-input>
 ```
 
-That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](components-custom-events.html).
+Itu saja yang perlu Anda ketahui tentang kustom _events_ komponen untuk saat ini, tetapi setelah selesai membaca halaman ini dan merasa nyaman dengan isinya, kami sarankan untuk kembali lagi nanti untuk membaca panduan lengkap tentang [Custom Events](components-custom-events.html).
 
-## Content Distribution with Slots
+## Distribusi Konten dengan Slots
 
-Just like with HTML elements, it's often useful to be able to pass content to a component, like this:
+Sama seperti dengan elemen HTML, seringkali berguna untuk dapat mengoper konten ke komponen, seperti ini:
 
 ``` html
 <alert-box>
-  Something bad happened.
+  Sesuatu yang buruk telah terjadi.
 </alert-box>
 ```
 
-Which might render something like:
+Yang mungkin me-render sesuatu seperti:
 
 {% raw %}
 <div id="slots-demo" class="demo">
   <alert-box>
-    Something bad happened.
+    Sesuatu yang buruk telah terjadi.
   </alert-box>
 </div>
 <script>
 Vue.component('alert-box', {
   template: '\
     <div class="demo-alert-box">\
-      <strong>Error!</strong>\
+      <strong>Kesalahan!</strong>\
       <slot></slot>\
     </div>\
   '
@@ -509,26 +509,26 @@ new Vue({ el: '#slots-demo' })
 </style>
 {% endraw %}
 
-Fortunately, this task is made very simple by Vue's custom `<slot>` element:
+Untungnya, tugas ini dibuat sangat sederhana oleh Vue kustom elemen `<slot>`:
 
 ```js
 Vue.component('alert-box', {
   template: `
     <div class="demo-alert-box">
-      <strong>Error!</strong>
+      <strong>Kesalahan!</strong>
       <slot></slot>
     </div>
   `
 })
 ```
 
-As you'll see above, we just add the slot where we want it to go -- and that's it. We're done!
+Sama seperti yang Anda lihat di atas, kita hanya menambahkan _slot_ ke tempat yang kita inginkan -- dan hanya itu. Dilakukan!
 
-That's all you need to know about slots for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Slots](components-slots.html).
+Itu saja yang perlu Anda ketahui tentang _slots_ untuk saat ini, tetapi setelah selesai membaca halaman ini dan merasa nyaman dengan isinya, kami sarankan untuk kembali lagi nanti untuk membaca panduan lengkap tentang [Slots](components-slots.html).
 
-## Dynamic Components
+## Komponen Dinamis
 
-Sometimes, it's useful to dynamically switch between components, like in a tabbed interface:
+Terkadang, berguna untuk secara dinamis beralih antar komponen, seperti di antarmuka tab. 
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -547,14 +547,14 @@ Sometimes, it's useful to dynamically switch between components, like in a tabbe
   ></component>
 </div>
 <script>
-Vue.component('tab-home', { template: '<div>Home component</div>' })
-Vue.component('tab-posts', { template: '<div>Posts component</div>' })
-Vue.component('tab-archive', { template: '<div>Archive component</div>' })
+Vue.component('tab-rumah', { template: '<div>Komponen rumah</div>' })
+Vue.component('tab-posting', { template: '<div>Komponen posting</div>' })
+Vue.component('tab-arsip', { template: '<div>Komponen arsip</div>' })
 new Vue({
   el: '#dynamic-component-demo',
   data: {
-    currentTab: 'Home',
-    tabs: ['Home', 'Posts', 'Archive']
+    currentTab: 'Rumah',
+    tabs: ['Rumah', 'Posting', 'Arsip']
   },
   computed: {
     currentTabComponent: function () {
@@ -587,27 +587,27 @@ new Vue({
 </style>
 {% endraw %}
 
-The above is made possible by Vue's `<component>` element with the `is` special attribute:
+Hal di atas dimungkinkan oleh elemen `<component>` Vue dengan spesial atribut `is`:
 
 ```html
-<!-- Component changes when currentTabComponent changes -->
+<!-- Komponen berubah ketika currentTabComponent berubah -->
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-In the example above, `currentTabComponent` can contain either:
+Dalam contoh di atas, `currentTabComponent` dapat berisi:
 
-- the name of a registered component, or
-- a component's options object
+- nama komponen yang terdaftar, atau
+- opsi objek komponen
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
+Lihat [_fiddle_ ini](https://jsfiddle.net/chrisvfritz/o3nycadu/) untuk bereksperimen dengan kode lengkap, atau [versi ini](https://jsfiddle.net/chrisvfritz/b2qj69o1/) untuk contoh yang mengikat ke opsi objek komponen, bukan nama yang terdaftar.
 
-That's all you need to know about dynamic components for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-dynamic-async.html).
+Itu saja yang perlu Anda ketahui tentang komponen dinamis untuk saat ini, tetapi setelah selesai membaca halaman ini dan merasa nyaman dengan isinya, kami sarankan untuk kembali lagi nanti untuk membaca panduan lengkap tentang [Dinamis & Async Komponen](components-dynamic-async.html).
 
-## DOM Template Parsing Caveats
+## Peringatan Parsing Templat DOM
 
-Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
+Beberapa elemen HTML, seperti `<ul>`, `<ol>`, `<table>` dan `<select>` memiliki batasan pada elemen apa yang dapat muncul di dalamnya, dan beberapa elemen seperti `<li>`, `<tr>`, dan `<option>` hanya dapat muncul di dalam elemen lain tertentu.
 
-This will lead to issues when using components with elements that have such restrictions. For example:
+ini akan menyebabkan masalah ketika menggunakan komponen dengan elemen yang memiliki batasan seperti itu. Sebagai contoh:
 
 ``` html
 <table>
@@ -615,7 +615,7 @@ This will lead to issues when using components with elements that have such rest
 </table>
 ```
 
-The custom component `<blog-post-row>` will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the `is` special attribute offers a workaround:
+Komponen khusus `<blog-post-row>` akan diangkat sebagai konten tidak valid, menyebabkan kesalahan pada hasil akhir yang diberikan. Untungnya, atribut spesial `is` menawarkan solusi:
 
 ``` html
 <table>
@@ -623,12 +623,12 @@ The custom component `<blog-post-row>` will be hoisted out as invalid content, c
 </table>
 ```
 
-It should be noted that **this limitation does _not_ apply if you are using string templates from one of the following sources**:
+Perlu dicatat bahwa **keterbatasan ini tidak berlaku jika Anda menggunakan templat string dari salah satu sumber berikut**:
 
-- String templates (e.g. `template: '...'`)
-- [Single-file (`.vue`) components](single-file-components.html)
+- String templat (contohnya `template: '...'`)
+- [Komponen file tunggal (`.vue`)](single-file-components.html)
 - [`<script type="text/x-template">`](components-edge-cases.html#X-Templates)
 
-That's all you need to know about DOM template parsing caveats for now -- and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself and build something fun.
+Itu saja yang perlu Anda ketahui tentang peringatan parsing DOM templat untuk saat ini -- dan sebenarnya, akhir dari hal-hal penting Vue. Selamat! Masih banyak yang harus dipelajari, tetapi pertama-tama, kami sarankan untuk beristirahat sejenak untuk bermain dengan Vue sendiri dan membuat sesuatu yang menyenangkan.
 
-Once you feel comfortable with the knowledge you've just digested, we recommend coming back to read the full guide on [Dynamic & Async Components](components-dynamic-async.html), as well as the other pages in the Components In-Depth section of the sidebar.
+Setelah Anda merasa nyaman dengan pengetahuan yang baru saja Anda cerna, kami sarankan kembali untuk membaca panduan lengkap tentang [Dinamis & Async Komponen](components-dynamic-async.html), serta halaman lain di bagian _in-Depth_ Komponen di bilah samping.
