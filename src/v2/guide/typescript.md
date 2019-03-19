@@ -205,12 +205,12 @@ const Component = Vue.extend({
     name: String,
     success: { type: String },
     callback: { 
-      type: Function as PropType<()=>void>
+      type: Function as any as PropType<() => void>
     },
     message: {
       type: Object as PropType<ComplexMessage>,
       required: true,
-      validation(message: ComplexMessage){
+      validator (message: ComplexMessage) {
         return !!message.title;
       }
     },
