@@ -1,16 +1,16 @@
 ---
-title: Migration from Vue Router 0.7.x
-type: guide
-order: 702
+judul: Migrasi dari Vue Router 0.7.x
+tipe: panduan
+urutan: 702
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](https://router.vuejs.org/en/).
+> Hanya Vue Router 2 yang cocok dengan Vue 2, jadi jika Anda memperbarui Vue, Anda diharuskan memperbarui Vue Router juga. Itulah sebabnya kami menyertakan rincian tentang jalur migrasi disini di dokumen utama. Untuk panduan lengkap penggunaan Vue Router yang baru, silakan lihat [Dokumen Vue Router](https://router.vuejs.org/en/)
 
-## Router Initialization
+## Inisialisasi Router
 
-### `router.start` <sup>replaced</sup>
+### `router.start` <sup>diganti</sup>
 
-There is no longer a special API to initialize an app with Vue Router. That means instead of:
+Tidak ada lagi API spesial untuk menginisialisasi sebuah aplikasi dengan Vue Router. Itu berarti bukannya:
 
 ``` js
 router.start({
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You pass a router property to a Vue instance:
+Anda mengoper properti router ke sebuah *instance* Vue:
 
 ``` js
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
 })
 ```
 
-Or, if you're using the runtime-only build of Vue:
+Atau, jika Anda menggunakan *build* khusus *runtime* Vue:
 
 ``` js
 new Vue({
@@ -40,16 +40,16 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pemanggilan <code>router.start</code></p>
 </div>
 {% endraw %}
 
-## Route Definitions
+## Definisi Rute
 
-### `router.map` <sup>replaced</sup>
+### `router.map` <sup>diganti</sup>
 
-Routes are now defined as an array on a [`routes` option](https://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+Kini rute didefinisikan sebagai *array* pada [opsi `routes`](https://router.vuejs.org/en/essentials/getting-started.html#javascript) pada saat instansiasi router. Jadi rute berikut sebagai contoh:
 
 ``` js
 router.map({
@@ -62,7 +62,7 @@ router.map({
 })
 ```
 
-Will instead be defined with:
+Sebagai gantinya akan didefinisikan dengan:
 
 ``` js
 var router = new VueRouter({
@@ -73,26 +73,26 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+Sintaksis array memungkinkan pencocokan rute yang lebih mudah diprediksi, sejak mengulang-ulang sebuah objek tidak dijamin untuk menggunakan urutan *Key* yang sama di seluruh peramban.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pemanggilan <code>router.map</code></p>
 </div>
 {% endraw %}
 
-### `router.on` <sup>removed</sup>
+### `router.on` <sup>dihapus</sup>
 
-If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
+Jika Anda perlu membuat rute secara terprogram saat memulai aplikasi Anda, Anda bisa melakukan hal tersebut dengan cara mendorong definisi ke sebuah *routes array* secara dinamis. Sebagai contoh:
 
 ``` js
-// Normal base routes
+// Basis rute normal
 var routes = [
   // ...
 ]
 
-// Dynamically generated routes
+// Rute yang dibuat secara dinamis
 marketingPages.forEach(function (page) {
   routes.push({
     path: '/marketing/' + page.slug
@@ -110,7 +110,7 @@ var router = new Router({
 })
 ```
 
-If you need to add new routes after the router has been instantiated, you can replace the router's matcher with a new one that includes the route you'd like to add:
+Jika Anda hendak menambahkan rute baru setelah *router* diinstansiasi, Anda dapat mengganti pencocokan router dengan yang baru yang menyertakan rute yang ingin Anda tambahkan:
 
 ``` js
 router.match = createMatcher(
@@ -123,14 +123,14 @@ router.match = createMatcher(
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pemanggilan <code>router.on</code></p>
 </div>
 {% endraw %}
 
-### `router.beforeEach` <sup>changed</sup>
+### `router.beforeEach` <sup>berubah</sup>
 
-`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+`router.beforeEach` sekarang berfungsi secara tidak sinkron dan menggunakan fungsi `next` sebagai argumen ketiga.
 
 ``` js
 router.beforeEach(function (transition) {
@@ -152,20 +152,20 @@ router.beforeEach(function (to, from, next) {
 })
 ```
 
-### `subRoutes` <sup>renamed</sup>
+### `subRoutes` <sup>berubah nama</sup>
 
-[Renamed to `children`](https://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+[Berubah nama menjadi `children`](https://router.vuejs.org/en/essentials/nested-routes.html) untuk konsistensi dalam Vue dan dengan pustaka perutean lainnya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh pemanggilan <code>subRoutes</code></p>
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>replaced</sup>
+### `router.redirect` <sup>diganti</sup>
 
-This is now an [option on route definitions](https://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+Sekarang ini merupakan sebuah [opsi pada definisi rute](https://router.vuejs.org/en/essentials/redirect-and-alias.html). Jadi sebagai contoh, Anda akan memperbarui:
 
 ``` js
 router.redirect({
@@ -173,7 +173,7 @@ router.redirect({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+ke sebuah definisi seperti dibawah ini pada konfigurasi `routes` Anda:
 
 ``` js
 {
@@ -184,14 +184,14 @@ to a definition like below in your `routes` configuration:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh pemanggilan <code>router.redirect</code></p>
 </div>
 {% endraw %}
 
-### `router.alias` <sup>replaced</sup>
+### `router.alias` <sup>diganti</sup>
 
-This is now an [option on the definition for the route](https://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+Sekarang ini merupakan sebuah [opsi pada definisi untuk rute](https://router.vuejs.org/en/essentials/redirect-and-alias.html) yang ingin Anda berikan alias. Jadi sebagai contoh, Anda akan memperbarui:
 
 ``` js
 router.alias({
@@ -199,7 +199,7 @@ router.alias({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+ke sebuah definisi seperti dibawah ini pada konfigurasi `routes` Anda:
 
 ``` js
 {
@@ -209,22 +209,24 @@ to a definition like below in your `routes` configuration:
 }
 ```
 
-If you need multiple aliases, you can also use an array syntax:
+Jika Anda menginginkan lebih dari satu alias, Anda dapat juga menggunakan sintaksis array:
 
 {% codeblock lang:js %}
+``` js
 alias: ['/manage', '/administer', '/administrate']
+```
 {% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh pemanggilan <code>router.alias</code></p>
 </div>
 {% endraw %}
 
-### Arbitrary Route Properties <sup>replaced</sup>
+### Properti Rute Kewenangan <sup>diganti</sup>
 
-Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+Properti rute kewenangan sekarang harus dicakup dalam properti meta baru, untuk menghindari konflik dengan fitur yang akan datang. Jadi sebagai contoh, jika Anda mendefinisikan:
 
 ``` js
 '/admin': {
@@ -233,7 +235,7 @@ Arbitrary route properties must now be scoped under the new meta property, to av
 }
 ```
 
-Then you would now update it to:
+Maka sekarang Anda memperbaruinya menjadi:
 
 ``` js
 {
@@ -245,7 +247,7 @@ Then you would now update it to:
 }
 ```
 
-Then when later accessing this property on a route, you will still go through meta. For example:
+Lalu ketika nanti mengakses properti ini pada sebuah rute, Anda akan tetap melewati meta. Sebagai contoh:
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -255,14 +257,14 @@ if (route.meta.requiresAuth) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh properti rute kewenangan yang tidak tercakup pada meta.</p>
 </div>
 {% endraw %}
 
-### [] Syntax for Arrays in Queries <sup>removed</sup>
+### [] Sintaksis untuk Array pada *Query* <sup>dihapus</sup>
 
-When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+Ketika mengoper satu atau lebih *array* ke parameter *query*, sintaksis QueryString tidak lagi `/foo?users[]=Tom&users[]=Jerry`, tetapi sintaksis yang baru adalah `/foo?users=Tom&users=Jerry`. Secara internal, `$route.query.users` akan tetap menjadi sebuah Array, tapi jika hanya ada satu parameter pada query: `/foo?users=Tom`, lalu mengakses rute ini secara langsung, maka tidak ada cara untuk router mengetahui bahwa kita mengharapkan `users` menjadi sebuah Array. Dikarenakan hal ini, pertimbangkan untuk menambahkan properti terhitung dan mengganti setiap referensi dari `$route.query.users` dengan:
 
 ```javascript
 export default {
@@ -277,49 +279,49 @@ export default {
 }
 ```
 
-## Route Matching
+## Pencocokan Rute
 
-Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
+Pencocokan rute sekarang pada dasarnya menggunakan [path-to-regexp](https://github.com/pillarjs/path-to-regexp), membuat hal ini menjadi lebih fleksibel daripada sebelumnya.
 
-### One or More Named Parameters <sup>changed</sup>
+### Satu atau lebih parameter bernama <sup>berubah</sup>
 
-The syntax has changed slightly, so `/category/*tags` for example, should be updated to `/category/:tags+`.
+Sintaksis berubah sedikit, jadi sebagai contoh `/category/*tags`, perlu diperbarui menjadi `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh sintaksis rute yang sudah usang.</p>
 </div>
 {% endraw %}
 
-## Links
+## Tautan
 
-### `v-link` <sup>replaced</sup>
+### `v-link` <sup>diganti</sup>
 
-The `v-link` directive has been replaced with a new [`<router-link>` component](https://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
+Direktif `v-link` diganti dengan [komponen `<router-link>`](https://router.vuejs.org/en/api/router-link.html) yang baru, karena jenis pekerjaan ini sekarang hanya menjadi tanggung jawab dari komponen di Vue 2. Ini berarti kapanpun dan dimanapun Anda memiliki tautan seperti ini:
 
 ``` html
 <a v-link="'/about'">About</a>
 ```
 
-You'll need to update it like this:
+Anda harus memperbaruinya menjadi seperti ini:
 
 ``` html
 <router-link to="/about">About</router-link>
 ```
 
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+Perlu dicatat bahwa `target="_blank"` tidak didukung pada `<router-link>`, jadi jika Anda menginginkan untuk membuka tautan pada *tab* baru, Anda harus menggunakan `<a>` sebagai gantinya. 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari direktif <code>v-link</code>.</p>
 </div>
 {% endraw %}
 
-### `v-link-active` <sup>replaced</sup>
+### `v-link-active` <sup>diganti</sup>
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](https://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+Direktif `v-link-active` juga telah digantikan dengan atribut `tag` pada [komponen `<router-link>`](https://router.vuejs.org/en/api/router-link.html). Jadi sebagai contoh, Anda memperbarui ini:
 
 ``` html
 <li v-link-active>
@@ -327,7 +329,7 @@ The `v-link-active` directive has also been replaced by the `tag` attribute on [
 </li>
 ```
 
-to this:
+menjadi ini:
 
 ``` html
 <router-link tag="li" to="/about">
@@ -335,44 +337,44 @@ to this:
 </router-link>
 ```
 
-The `<a>` will be the actual link (and will get the correct href), but the active class will be applied to the outer `<li>`.
+`<a>` akan menjadi tautan yang sebenarnya (dan akan mendapat href yang tepat), tapi kelas yang aktif akan diaplikasikan ke `<li>` yang diluar.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari direktif <code>v-link-active</code>.</p>
 </div>
 {% endraw %}
 
-## Programmatic Navigation
+## Navigasi Terprogram
 
-### `router.go` <sup>changed</sup>
+### `router.go` <sup>diganti</sup>
 
-For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
+Untuk konsistensi dengan [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), sekarang `router.go` hanya digunakan untuk [navigasi back/forward](https://router.vuejs.org/en/essentials/navigation.html#routergon), sedangkan [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) digunakan untuk menavigasikan ke halaman tertentu.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari penggunaan <code>router.go</code> dimana <code>router.push</code> harus digunakan sebagai gantinya.</p>
 </div>
 {% endraw %}
 
-## Router Options: Modes
+## Opsi Router: Mode
 
-### `hashbang: false` <sup>removed</sup>
+### `hashbang: false` <sup>dihapus</sup>
 
-Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.
+Hashbangs tidak lagi dibutuhkan oleh Google untuk merayapi sebuah URL, jadi mereka tidak lagi menjadi bawaan (atau bahkan sebuah opsi) untuk strategi hash.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>hashbang: false</code>.</p>
 </div>
 {% endraw %}
 
-### `history: true` <sup>replaced</sup>
+### `history: true` <sup>diganti</sup>
 
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
+Semua opsi mode perutean telah diringkas menjadi [opsi `mode`](https://router.vuejs.org/en/api/options.html#mode) tunggal. Pembaruan:
 
 ``` js
 var router = new VueRouter({
@@ -380,7 +382,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+menjadi:
 
 ``` js
 var router = new VueRouter({
@@ -390,14 +392,14 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>history: true</code>.</p>
 </div>
 {% endraw %}
 
-### `abstract: true` <sup>replaced</sup>
+### `abstract: true` <sup>diganti</sup>
 
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
+Semua opsi mode perutean telah diringkas menjadi [opsi `mode`](https://router.vuejs.org/en/api/options.html#mode) tunggal. Pembaruan:
 
 ``` js
 var router = new VueRouter({
@@ -415,22 +417,22 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>abstract: true</code>.</p>
 </div>
 {% endraw %}
 
-## Route Options: Misc
+## Opsi Rute: Lain-ain
 
-### `saveScrollPosition` <sup>replaced</sup>
+### `saveScrollPosition` <sup>diganti</sup>
 
-This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to replicate the old behavior of:
+Hal ini telah digantikan dengan [opsi `scrollBehavior`](https://router.vuejs.org/en/advanced/scroll-behavior.html) yang menerima sebuah *function*, jadi perilaku gulir sepenuhnya dapat disesuaikan walaupun tiap rute. Ini membuka banyak kemungkinan baru, tapi untuk mengulang perilaku lama dari:
 
 ``` js
 saveScrollPosition: true
 ```
 
-You can replace it with:
+Anda dapat menggantikannya dengan:
 
 ``` js
 scrollBehavior: function (to, from, savedPosition) {
@@ -440,104 +442,104 @@ scrollBehavior: function (to, from, savedPosition) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>saveScrollPosition: true</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>saveScrollPosition: true</code>.</p>
 </div>
 {% endraw %}
 
-### `root` <sup>renamed</sup>
+### `root` <sup>berubah nama</sup>
 
-Renamed to `base` for consistency with [the HTML `<base>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
+Berubah nama menjadi `base` untuk konsistensi dengan [elemen HTML `<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>root</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>root</code>.</p>
 </div>
 {% endraw %}
 
-### `transitionOnLoad` <sup>removed</sup>
+### `transitionOnLoad` <sup>dihapus</sup>
 
 This option is no longer necessary now that Vue's transition system has explicit [`appear` transition control](transitions.html#Transitions-on-Initial-Render).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transitionOnLoad: true</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>transitionOnLoad: true</code>.</p>
 </div>
 {% endraw %}
 
-### `suppressTransitionError` <sup>removed</sup>
+### `suppressTransitionError` <sup>dihapus</sup>
 
-Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+Dihapus dikarenakan untuk penyederhanaan kait. Jika Anda benar-benar ingin menekan kesalahan transisi, Anda bisa menggunakan [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari opsi <code>suppressTransitionError: true</code>.</p>
 </div>
 {% endraw %}
 
-## Route Hooks
+## Pengait Rute
 
-### `activate` <sup>replaced</sup>
+### `activate` <sup>diganti</sup>
 
-Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Gunakan [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) di dalam komponen sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pengait <code>beforeRouteEnter</code>.</p>
 </div>
 {% endraw %}
 
-### `canActivate` <sup>replaced</sup>
+### `canActivate` <sup>diganti</sup>
 
-Use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
+Gunakan [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) di dalam rute sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canActivate</code> hook.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pengait <code>canActivate</code>.</p>
 </div>
 {% endraw %}
 
-### `deactivate` <sup>removed</sup>
+### `deactivate` <sup>dihapus</sup>
 
-Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](../api/#destroyed) hooks instead.
+Gunakan pengait komponen [`beforeDestroy`](../api/#beforeDestroy) atau [`destroyed`](../api/#destroyed) sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pengait <code>deactivate</code>.</p>
 </div>
 {% endraw %}
 
-### `canDeactivate` <sup>replaced</sup>
+### `canDeactivate` <sup>diganti</sup>
 
-Use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Gunakan [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) di dalam komponen sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canDeactivate</code> hook.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pengait <code>canDeactivate</code>.</p>
 </div>
 {% endraw %}
 
-### `canReuse: false` <sup>removed</sup>
+### `canReuse: false` <sup>dihapus</sup>
 
-There's no longer a use case for this in the new Vue Router.
+Tidak ada lagi kasus penggunaan seperti ini di dalam Vue Router yang baru.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh opsi <code>canReuse: false</code>.</p>
 </div>
 {% endraw %}
 
-### `data` <sup>replaced</sup>
+### `data` <sup>diganti</sup>
 
-The `$route` property is now reactive, so you can use a watcher to react to route changes, like this:
+Properti `$route` sekarang reaktif, jadi Anda dapat menggunakan sebuah *watcher* untuk memberi reaksi pada perubahan rute, seperti ini:
 
 ``` js
 watch: {
@@ -552,14 +554,14 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>data</code> hook.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari pengait <code>data</code>.</p>
 </div>
 {% endraw %}
 
-### `$loadingRouteData` <sup>removed</sup>
+### `$loadingRouteData` <sup>dihapus</sup>
 
-Define your own property (e.g. `isLoading`), then update the loading state in a watcher on the route. For example, if fetching data with [axios](https://github.com/mzabriskie/axios):
+Definisikan sendiri properti Anda (cth: `isLoading`), kemudian perbarui *state* pemuatan di dalam sebuah *watcher* pada rute. Sebagai contoh, jika sedang mengambil data dengan [axios](https://github.com/mzabriskie/axios):
 
 ``` js
 data: function () {
@@ -594,7 +596,7 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+  <h4>Jalur Peningkatan</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> pada basis kode Anda untuk mencari contoh dari properti meta <code>$loadingRouteData</code>.</p>
 </div>
 {% endraw %}
