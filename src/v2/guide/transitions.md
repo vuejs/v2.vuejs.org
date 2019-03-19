@@ -307,7 +307,7 @@ Here's an example:
   </button>
   <transition
     name="custom-classes-transition"
-    enter-active-class="animated tada"
+    enter-active-class="animated data"
     leave-active-class="animated bounceOutRight"
   >
     <p v-if="show">hello</p>
