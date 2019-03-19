@@ -215,13 +215,11 @@ const Component = Vue.extend({
       }
     },
     notificationMessage: {
-      type: Object as PropType<ComplexMessage>,
-      required: true,
-      // without argument type
-      validation: function(message){
+      type: Object,
+      validation: (message) => {
         return !!message.title;
-      } as (arg: ComplexMessage) => boolean
-    }
+      } 
+    } as PropValidator<ComplexMessage>
   }
 })
 ```
