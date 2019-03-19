@@ -187,3 +187,43 @@ const Component = Vue.extend({
 ```
 
 If you find type inference or member completion isn't working, annotating certain methods may help address these problems. Using the `--noImplicitAny` option will help find many of these unannotated methods.
+
+
+
+## Annotating Props
+
+```ts
+import Vue, { PropType } from 'vue'
+
+interface ComplexMessage { 
+  title: string,
+  okMessage: string,
+  cancelMessage: string
+}
+const Component = Vue.extend({
+  props: {
+    name: String,
+    success: { type: String },
+    callback: { 
+      type: Function as PropType<()=>void>
+    },
+    message: {
+      type: Object as PropType<ComplexMessage>,
+      required: true,
+      validation(message: ComplexMessage){
+        return !!message.title;
+      }
+    },
+    notificationMessage: {
+      type: Object as PropType<ComplexMessage>,
+      required: true,
+      // without argument type
+      validation: function(message){
+        return !!message.title;
+      } as (arg: ComplexMessage) => boolean
+    }
+  }
+})
+```
+If you find type inference or member completion isn’t working, annotating prop with `PropValidator<T>` may help address it.
+
