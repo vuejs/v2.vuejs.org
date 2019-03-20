@@ -217,4 +217,4 @@ const Component = Vue.extend({
   }
 })
 ```
-If you find validator not getting type inference or member completion isn't working, annotating the argument the the expected type may help address these problems;
+If you find validator not getting type inference or member completion isn't working, annotating the argument the expected type may help address these problems.
