@@ -213,15 +213,8 @@ const Component = Vue.extend({
       validator (message: ComplexMessage) {
         return !!message.title;
       }
-    },
-    notificationMessage: {
-      type: Object,
-      validation: (message) => {
-        return !!message.title;
-      } 
-    } as PropValidator<ComplexMessage>
+    }
   }
 })
 ```
-If you find type inference or member completion isn’t working, annotating prop with `PropValidator<T>` may help address it.
-
+If you find validator not getting type inference or member completion isn't working, annotating the argument the the expected type may help address these problems;
