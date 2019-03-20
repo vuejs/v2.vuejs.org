@@ -205,7 +205,7 @@ const Component = Vue.extend({
     name: String,
     success: { type: String },
     callback: { 
-      type: Function as any as PropType<() => void>
+      type: Function as PropType<() => void>
     },
     message: {
       type: Object as PropType<ComplexMessage>,
