@@ -17,8 +17,8 @@ Vue(/vjuː/ 로 발음, **view** 와 발음이 같습니다.)는 사용자 인�
 Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World 예제](https://jsfiddle.net/chrisvfritz/50wL7mdz/)를 사용하는 것입니다. 다른 탭에서 자유롭게 열어 본 후 몇 가지 기본 예제를 따라가십시오. 또는 단순히 <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html"><code>index.html</code> 파일</a>을 만들고 Vue를 다음과 같이 포함할 수 있습니다.
 
 ``` html
-<!-- 도움되는 콘솔 경고 를 포함한 개발 버전  -->
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 혹은:
