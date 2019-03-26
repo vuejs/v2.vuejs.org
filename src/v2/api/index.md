@@ -2488,6 +2488,7 @@ Used to denote a `<template>` element as a scoped slot.
   - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
   - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `duration` - number | { enter: number, leave: number } Specify the duration of transition. By default, Vue waits for the first transitionend or animationend event on the root transition element
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
