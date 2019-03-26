@@ -296,7 +296,7 @@ Namun, jika Anda melakukan *requiring/importing* komponen menggunakan __sistem m
 Failed to mount component: template or render function not defined.
 ```
 
-Untuk menjelaskan apa yang terjadi, sebut saja komponen kita A dan B. Sistem modul melihat bahwa ia membutuhkan A, tetapi pertama A membutuhkan B, tetapi B membutuhkan A, tetapi A membutuhkan B, den seterusnya. komponen tersebut terjebak dalam satu lingkaran, tidak tahu bagaimana menyelesaikan kedua komponen tanpa terlebih dahulu menyelesaikan yang lain. Untuk memperbaikinya, kita perlu memberikan sistem modul titik di mana ia dapat mengatakan, "_Pada akhirnya_ A membutuhkan B, tapi kita tidak perlu menyelesaikan B dulu."
+Untuk menjelaskan apa yang terjadi, sebut saja komponen kita A dan B. Sistem modul melihat bahwa ia membutuhkan A, tetapi pertama A membutuhkan B, tetapi B membutuhkan A, tetapi A membutuhkan B, dan seterusnya. komponen tersebut terjebak dalam satu lingkaran, tidak tahu bagaimana menyelesaikan kedua komponen tanpa terlebih dahulu menyelesaikan yang lain. Untuk memperbaikinya, kita perlu memberikan sistem modul titik di mana ia dapat mengatakan, "_Pada akhirnya_ A membutuhkan B, tapi kita tidak perlu menyelesaikan B dulu."
 
 Dalam kasus kita, mari kita buat titk itu menjadi komponen `tree-folder`. Kita tahu anak yang menciptakan paradoks adalah komponen `tree-folder-contents`, jadi kita akan menunggu sampai kait siklus hidup *(lifecycle hooks)* `beforeCreate` untuk mendaftarkannya:
 
