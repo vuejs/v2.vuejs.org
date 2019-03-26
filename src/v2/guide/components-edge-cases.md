@@ -54,7 +54,7 @@ this.$root.baz()
 
 Mirip dengan `$root`, properti `$parent` dapat digunakan untuk mengakses *instance* induk dari anak. Sebagai alternatif untuk yang malas mengoper data dengan props.
 
-<p class="tip">Dalam kebanyakan kasus, menjangkau induk membuat aplikasi Anda lebih sulit untuk di-<i>debug</i> dan dipahami, terlebih jika Anda mutasi data dalam induk. Saat melihat komponen itu nanti, akan sangat sulit untuk mencari tahu dari mana asal mutasi itu.</p>
+<p class="tip">Dalam kebanyakan kasus, menjangkau komponen induk membuat aplikasi Anda lebih sulit untuk di-<i>debug</i> dan dipahami, terlebih jika Anda mutasi data dalam induk. Saat melihat komponen itu nanti, akan sangat sulit untuk mencari tahu dari mana asal mutasi itu.</p>
 
 Namun ada beberapa kasus, khususnya pustaka komponen yang dibagikan, saat ini _mungkin_ tepat. Misalnya, dalam komponen abstrak yang berinteraksi dengan API JavaScript alih-alih merender HTML, seperti komponen Google Maps untuk hipotetis ini:
 
@@ -194,7 +194,7 @@ beforeDestroy: function () {
 
 Ini memiliki dua masalah potensial:
 
-- Membutuhkan penyimpanan `picker` ke instance komponen, bila memungkinkan, hanya kait siklus hidup yang memerlukan akses ke sana. Ini tidak buruk, tetapi bisa dianggap berantakan.
+- Membutuhkan penyimpanan `picker` ke instance komponen, bila memungkinkan, hanya kait siklus hidup [(lifecycle hooks)](https://docs.vuejs.id/v2/api/#Options-Lifecycle-Hooks) yang memerlukan akses ke sana. Ini tidak buruk, tetapi bisa dianggap berantakan.
 - Kode pengaturan kita disimpan terpisah dari kode pembersihan kita, membuatnya lebih sulit untuk secara terprogram membersihkan apa pun yang kita atur.
 
 Anda bisa menyelesaikan kedua masalah dengan *Event Listeners* Terprogram:
@@ -264,7 +264,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-Komponen seperti di atas akan menghasilkan kesalahan "ukuran *stack* maksimum terlampaui", jadi pastikan pemanggilan rekursif bersifat kondisional (yaitu menggunakan `v-if` yang akhirnya akan menjadi `false`).
+Komponen seperti di atas akan menghasilkan kesalahan ["max stack size exceeded"](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack), jadi pastikan pemanggilan rekursif bersifat kondisional (yaitu menggunakan `v-if` yang akhirnya akan menjadi `false`).
 
 ### *Circular References* Antara Komponen
 
