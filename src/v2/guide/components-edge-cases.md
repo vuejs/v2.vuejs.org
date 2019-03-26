@@ -76,7 +76,7 @@ Ingatlah, komponen yang dibangun dengan pola ini masih rapuh. Sebagai contoh, ba
 </google-map>
 ```
 
-Kemudian di dalam `<google-map-markers>` Anda mungkin menemukan diri Anda meraih hack seperti ini:
+Kemudian di dalam `<google-map-markers>` Anda mungkin akan melakukan hack seperti ini:
 
 ```js
 var map = this.$parent.map || this.$parent.$parent.map
@@ -122,7 +122,7 @@ this.$refs.usernameInput.focus()
 ```
 
 Ketika `ref` digunakan bersama dengan `v-for`, referensi yang Anda dapatkan akan berupa array yang mengandung komponen turunan yang mencerminkan sumber data.
-<p class="tip"><code>$refs</code> hanya diisi setelah komponen telah di-render, dan mereka tidak reaktif. Ini hanya dimaksudkan sebagai jalan keluar untuk manipulasi anak secara langsung - Anda harus menghindari mengakses <code>$refs</code> dari dalam templat dan properti computed.</p>
+<p class="tip"><code>$refs</code> hanya diisi setelah komponen telah di-render, dan mereka tidak reaktif. Ini hanya dimaksudkan sebagai jalan keluar untuk manipulasi komponen anak secara langsung - Anda harus menghindari mengakses <code>$refs</code> dari dalam templat dan properti computed.</p>
 
 ### Dependency Injection
 
@@ -239,9 +239,9 @@ Untuk mempelajari lebih lanjut tentang *Listeners* Terprogram, lihat API untuk [
 
 <p class="tip">Perhatikan bahwa sistem <i>event</i> Vue berbeda dari <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">API EventTarget browser</a>. Walaupun mereka bekerja dengan cara yang sama, <code>$emit</code>, <code>$on</code>, dan <code>$off</code> <strong>bukan</strong> alias untuk <code>dispatchEvent</code>, <code>addEventListener</code>, dan <code>removeEventListener</code>.</p>
 
-## *Circular References*
+## Komponen Sirkuler (Circular Component)
 
-### *Recursive Components*
+### Komponen Rekursif (Recursive Component)
 
 Komponen dapat secara rekursif memanggil dirinya sendiri dalam templatnya sendiri. Namun, mereka hanya dapat melakukannya dengan opsi `name`:
 
@@ -288,7 +288,7 @@ Kemudian komponen `tree-folder-content` dengan templat ini:
 </ul>
 ```
 
-Ketika Anda teliti, Anda akan melihat bahwa komponen ini sebenarnya akan menjadi keturunan _dan_ leluhur satu sama lain di pohon *render* - sebuah paradoks! Saat mendaftarkan komponen secara global dengan `Vue.component`, Paradoks ini diselesaikan untuk Anda secara otomatis. Jika itu Anda, Anda bisa berhenti membaca di sini.
+Ketika Anda teliti, Anda akan melihat bahwa komponen ini sebenarnya akan menjadi keturunan _dan_ leluhur satu sama lain di pohon *render* - sebuah paradoks! Saat mendaftarkan komponen secara global dengan `Vue.component`, Paradoks ini secara otomatis deselesaikan untuk anda. Jika itu Anda, maka Anda bisa berhenti membaca disini
 
 Namun, jika Anda melakukan *requiring/importing* komponen menggunakan __sistem modul__, misalnya melalui *Webpack* atau *Browserify*, Anda akan mendapatkan kesalahan:
 
@@ -298,7 +298,7 @@ Failed to mount component: template or render function not defined.
 
 Untuk menjelaskan apa yang terjadi, sebut saja komponen kita A dan B. Sistem modul melihat bahwa ia membutuhkan A, tetapi pertama A membutuhkan B, tetapi B membutuhkan A, tetapi A membutuhkan B, den seterusnya. komponen tersebut terjebak dalam satu lingkaran, tidak tahu bagaimana menyelesaikan kedua komponen tanpa terlebih dahulu menyelesaikan yang lain. Untuk memperbaikinya, kita perlu memberikan sistem modul titik di mana ia dapat mengatakan, "_Pada akhirnya_ A membutuhkan B, tapi kita tidak perlu menyelesaikan B dulu."
 
-Dalam kasus kita, mari kita buat titk itu menjadi komponen `tree-folder`. Kita tahu anak yang menciptakan paradoks adalah komponen `tree-folder-contents`, jadi kita akan menunggu sampai kait siklus hidup `beforeCreate` untuk mendaftarkannya:
+Dalam kasus kita, mari kita buat titk itu menjadi komponen `tree-folder`. Kita tahu anak yang menciptakan paradoks adalah komponen `tree-folder-contents`, jadi kita akan menunggu sampai kait siklus hidup *(lifecycle hooks)* `beforeCreate` untuk mendaftarkannya:
 
 ``` js
 beforeCreate: function () {
@@ -320,7 +320,7 @@ Masalah terpecahkan!
 
 ### Templat *Inline*
 
-Ketika atribut khusus `inline-template` hadir pada komponen turunan, komponen akan menggunakan konten dalamnya sebagai templatnya, dari pada memperlakukannya sebagai konten yang didistribusikan. Ini memungkinkan pembuatan template yang lebih fleksibel.
+Ketika atribut khusus `inline-template` ada pada komponen turunan, komponen akan menggunakan konten dalamnya sebagai templatnya, dari pada memperlakukannya sebagai konten yang didistribusikan. Ini memungkinkan pembuatan template yang lebih fleksibel.
 
 ``` html
 <my-component inline-template>
