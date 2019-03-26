@@ -4,6 +4,6 @@ type: examples
 order: 9
 ---
 
-> This example uses [deepstreamHub](https://deepstreamhub.com/) to synchronize realtime data, send events and make remote procedure calls between clients (you can try opening it in multiple browser windows).
+> Este ejemplo usa [deepstreamHub](https://deepstreamhub.com/) para sincronizar datos en tiempo real, enviar eventos y realizar procedimiento remoto de llamadas entre clientes (se puede intentar abrirlo en múltiples ventanas del navegador).
 
 <iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/ff0sp9hw/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
