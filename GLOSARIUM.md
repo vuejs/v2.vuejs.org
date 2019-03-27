@@ -46,6 +46,8 @@
 
 - Define: Mendefinisikan
 - Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
+- Deploy: Menggelar (Tetap diikuti dengan bahasa inggris asli italic dan dalam kurung)
+- Deployment: Penggelaran (Tetap diikuti dengan bahasa inggris asli italic dan dalam kurung)
 - Directive: Direktif
 
 [⬆️](#navigasi-berdasarkan-abjad)
