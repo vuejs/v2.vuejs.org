@@ -56,6 +56,7 @@
 
 - E.g. (exempli gratia / for example): Sebagai Contoh
 - Element: Elemen
+- Error: Galat
 - Event: *Event*
 - Export: Ekspor
 - Expression: Ekspresi
