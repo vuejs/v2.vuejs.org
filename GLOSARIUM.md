@@ -151,6 +151,7 @@
 
 ## R
 
+- Refactor: *Refactor*
 - Render: *Render*
 - Return: Mengembalikan
 - Router: *Router*
