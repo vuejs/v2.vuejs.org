@@ -1,53 +1,58 @@
 ---
-title: Migration from Vue 1.x
+title: Migrasi dari Vue 1.x
 type: guide
 order: 701
 ---
 
 ## FAQ
 
-> Woah - this is a super long page! Does that mean 2.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
+> Woah - halaman ini sangat panjang! Apakah ini berarti 2.0 benar-benar beda, Saya harus mempelajari semua dasarnya dari awal lagi, dan migrasi tidak mungkin dilakukan?
 
-I'm glad you asked! The answer is no. About 90% of the API is the same and the core concepts haven't changed. It's long because we like to offer very detailed explanations and include a lot of examples. Rest assured, __this is not something you have to read from top to bottom!__
+Saya senang Anda bertanya! Jawabannya adalah tidak. Sekitar 90% API masih sama dan konsep inti tidaklah berubah. Halaman ini panjang karena kami ingin memberikan penjelasan yang sangat mendetil dan berisikan banyak contoh-contoh. Tenanglah, __ini bukan sesuatu yang Anda harus baca dari atas kebawah!__
 
-> Where should I start in a migration?
+> Darimana saya harus memulai sebuah migrasi?
 
-1. Start by running the [migration helper](https://github.com/vuejs/vue-migration-helper) on a current project. We've carefully minified and compressed a senior Vue dev into a simple command line interface. Whenever they recognize an obsolete feature, they'll let you know, offer suggestions, and provide links to more info.
+1. Awali dengan menjalankan [pembantu migrasi](https://github.com/vuejs/vue-migration-helper) dalam project saat ini. Kami telah berhati-hati untuk mengecilkan dan memampatkan pengembangan Vue menjadi sebuah command line interface sederhana. Kapan pun mereka mendeteksi adanya fitur yang usang, mereka akan memberitahu Anda, memberikan nasihat, dan menyediakan *links* ke lebih banyak informasi.
 
-2. After that, browse through the table of contents for this page in the sidebar. If you see a topic you may be affected by, but the migration helper didn't catch, check it out.
 
-3. If you have any tests, run them and see what still fails. If you don't have tests, just open the app in your browser and keep an eye out for warnings or errors as you navigate around.
+2. Setelah itu, lihatlah daftar isi dari halaman ini yang ada di *sidebar*. Jika Anda melihat topik yang mungkin mempengaruhi migrasi Anda, namun tidak diberitahukan oleh "pembantu migrasi", coba lihatlah topik tersebut.
 
-4. By now, your app should be fully migrated. If you're still hungry for more though, you can read the rest of this page - or dive in to the new and improved guide from [the beginning](index.html). Many parts will be skimmable, since you're already familiar with the core concepts.
+3. Jika Anda mempunyai sebuah tes, jalankan mereka dan amati apa saja yang masih gagal. Jika Anda tidak punya tes, bukalah aplikasi Anda di peramban (*browser*) dan periksalah peringatan-peringatan dan galat-galat (*error*) selagi anda bernavigasi di aplikasi Anda.
 
-> How long will it take to migrate a Vue 1.x app to 2.0?
 
-It depends on a few factors:
+4. Pada tahap ini, aplikasi Anda seharusnya sudah sepenuhnya termigrasi. Jika Anda masih ingin tahu lebih banyak lagi, Anda dapat membaca sisa dari halaman ini - atau menyelam ke petunjuk [the begining](index.html) yang baru dan lebih baik. Banyak bagian yang bisa di *skim*, karena Anda sudah familiar dengan konsep-konsep inti.
 
-- The size of your app (small to medium-sized apps will probably be less than a day)
 
-- How many times you get distracted and start playing with a cool new feature. 😉 &nbsp;Not judging, it also happened to us while building 2.0!
+> Berapa lama waktu yang dibutuhkan untuk memigrasi aplikasi Vue 1.x ke 2.0?
 
-- Which obsolete features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
+Ini bergantung pada beberapa faktor:
 
-> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue Router?
+- Ukuran dari aplikasi anda (aplikasi kecil sampai menengan mungkin butuh kurang dari sehari)
 
-Only Vue Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
+- Berapa kali anda terganggu dan bermain dengan sebuah fitur baru yang lebih keren. 😉 &nbsp; Tidak menghakimi, ini juga terjadi kepada kami saat kami membangun 2.0.
 
-As for Vuex, even version 0.8 is compatible with Vue 2, so you're not forced to upgrade. The only reason you may want to upgrade immediately is to take advantage of the new features in Vuex 2, such as modules and reduced boilerplate.
+- Fitur-fitur usang apa saja yang Anda gunakan. Kebanyakan dapat ditingkatkan dan ditemukan penggantinya, tapi beberapa dapat menyita beberapa menit. Jika Anda tidak sedang mengikuti praktik terbaik (*best practice*), Vue 2.0 akan mencoba lebih keras untuk mengharuskan Anda mengikutinya. Hal ini merupakan hal yang baik untuk jangka panjang, tapi dapat juga berarti *refactor* yang signifikan (meski bisa jadi terlambat).
 
-## Templates
 
-### Fragment Instances <sup>removed</sup>
+> Jika Saya upgrade ke Vue 2, akankah Saya juga harus meng-upgrade Vuex dan Vue Router?
 
-Every component must have exactly one root element. Fragment instances are no longer allowed. If you have a template like this:
+Hanya Vue Router 2 yang cocok dengan Vue 2, jadi ya, anda juga harus mengikuti [jalur migrasi untuk Vue Router](migration-vue-router.html). Untungnya, kebanyakan aplikasi tidak memiliki banyak kode router, jadi melakukan hal ini sepertinya tidak akan memakan waktu lebih dari satu jam.
+
+Untuk Vuex, versi 0.8 saja sudah cocok dengan Vue 2, jadi anda tidak dipaksa untu melakukan *upgrade*. Satu-satunya alasan anda jika ingin melakukan upgrade secepatnya adalah untuk mendapatkan manfaat dari fitur-fitur baru di Vuex 2, seperti modules dan boilerplate yang dikurangi.
+
+## Templat
+
+### Fragment Instances <sup>dihapus</sup>
+
+
+Setiap komponen harus memiliki sebuah elemen root. *Fragment instance* tidak lagi diperbolehkan. Jika Anda memiliki templat seperti ini:
 
 ``` html
 <p>foo</p>
 <p>bar</p>
 ```
 
-It's recommended to wrap the entire contents in a new element, like this:
+Disarankan untuk membungkus seluruh konten dalam sebuah elemen baru, seperti ini:
 
 ``` html
 <div>
@@ -58,8 +63,8 @@ It's recommended to wrap the entire contents in a new element, like this:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about multiple root elements in a template.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan rangkaian tes atau aplikasi Anda setelah melakukan peningkatan dan carilah <strong> peringatan konsol</strong> mengenai beberapa elemen root dalam sebuah templat. </p>
 </div>
 {% endraw %}
 
