@@ -90,8 +90,6 @@ const app = new Vue({
         return true;
       }
 
-      this.errors = [];
-
       if (!this.name) {
         this.errors.push('Name required.');
       }
@@ -186,7 +184,6 @@ const app = new Vue({
   },
   methods: {
     checkForm: function (e) {
-      this.errors = [];
 
       if (!this.name) {
         this.errors.push("Name required.");
@@ -308,7 +305,6 @@ const app = new Vue({
   },
   methods:{
     checkForm: function (e) {
-      this.errors = [];
 
       if (this.total != 100) {
         this.errors.push('Total must be 100!');
@@ -398,8 +394,6 @@ const app = new Vue({
   methods:{
     checkForm: function (e) {
       e.preventDefault();
-
-      this.errors = [];
 
       if (this.name === '') {
         this.errors.push('Product name is required.');
