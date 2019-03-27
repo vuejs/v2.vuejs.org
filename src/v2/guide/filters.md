@@ -4,7 +4,7 @@ type: guide
 order: 305
 ---
 
-Vue.js memungkinkan Anda untuk menentukan filter yang dapat digunakan untuk memformat tulisan. Filter dapat digunakan di dua tempat: **interpolasi mustache dan ekspresi `v-bind`** (terakhir didukung di 2.1.0+). Filter harus ditambahkan di akhir ekspresi JavaScript dengan simbol "pipe" ( | ):
+Vue.js memungkinkan Anda untuk menentukan *filter* yang dapat digunakan untuk memformat tulisan. *Filter* dapat digunakan di dua tempat: **interpolasi mustache dan ekspresi `v-bind`** (terakhir didukung di versi 2.1.0+). *Filter* harus ditambahkan di akhir ekspresi JavaScript dengan simbol "pipe" ( | ):
 
 ``` html
 <!-- di mustaches -->
@@ -14,7 +14,7 @@ Vue.js memungkinkan Anda untuk menentukan filter yang dapat digunakan untuk memf
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-Anda dapat menentukan filter lokal dalam opsi komponen:
+Anda dapat menentukan *filter* lokal dalam opsi komponen:
 
 ``` js
 filters: {
@@ -26,7 +26,7 @@ filters: {
 }
 ```
 
-atau menentukan filter secara global sebelum membuat Vue instance:
+atau menentukan *filter* secara global sebelum membuat Vue instance:
 
 ``` js
 Vue.filter('capitalize', function (value) {
@@ -40,7 +40,7 @@ new Vue({
 })
 ```
 
-Di bawah ini adalah contoh dari filter `capitalize` yang kami gunakan:
+Di bawah ini adalah contoh dari *filter* `capitalize` yang kami gunakan:
 
 {% raw %}
 <div id="example_1" class="demo">
@@ -66,20 +66,20 @@ Di bawah ini adalah contoh dari filter `capitalize` yang kami gunakan:
 </script>
 {% endraw %}
 
-Filter selalu menerima nilai ekspresi (hasil dari rantai sebelumnya) sebagai argumen pertama. Dalam contoh di atas, filter `capitalize` akan menerima nilai `message` sebagai argumen.
+Filter selalu menerima nilai ekspresi (dari rantai sebelumnya) sebagai argumen pertama. Dalam contoh di atas, *filter* `capitalize` akan menerima nilai `message` sebagai argumen.
 
-Filter bisa berantai:
+*Filter* bisa berantai:
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Pasa kasus ini, `filterA`, didefinisikan dengan satu argumen, yang akan menerima nilai `message`, kemudian `filterB` akan dipanggil dengan hasil dari `filterA` yang akan dilanjutkan ke `filterB` sebagai satu argumen.
+Pasa kasus ini, `filterA`, didefinisikan dengan satu argumen, yang akan menerima nilai `message`, kemudian `filterB` akan dipanggil dengan hasil dari `filterA` yang akan dioper ke `filterB` sebagai satu argumen.
 
-Filter adalah fungsi JavaScript, oleh karena itu mereka dapat mengambil argumen:
+*Filter* adalah *function* JavaScript, oleh karena itu mereka dapat mengambil argumen:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Di sini `filterA` didefinisikan sebagai fungsi yang mengambil tiga argumen. Nilai `message` yang akan dilanjutkan ke argumen pertama. String `'arg1'` yang akan di lanjutkan ke `filterA` sebagian argumen kedua, dan nilai dari ekspresi `arg2` yang akan dievaluasi dan diteruskan sebagai argumen ketiga.
+Di sini `filterA` didefinisikan sebagai *function* yang mengambil tiga argumen. Nilai `message` yang akan dioper ke argumen pertama. String `'arg1'` yang akan dioper ke `filterA` sebagai argumen kedua, dan nilai dari ekspresi `arg2` yang akan dievaluasi dan dioper ke argumen ketiga.
