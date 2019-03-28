@@ -331,7 +331,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -366,7 +366,7 @@ computed: {
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -386,7 +386,7 @@ We get similar benefits from updating:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -399,7 +399,7 @@ to:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -418,7 +418,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -430,7 +430,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -445,7 +445,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -456,7 +456,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -1736,15 +1736,6 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
   v-else
   key="search-results"
 >
-  {{ results }}
-</div>
-```
-
-``` html
-<p v-if="error">
-  Error: {{ error }}
-</p>
-<div v-else>
   {{ results }}
 </div>
 ```

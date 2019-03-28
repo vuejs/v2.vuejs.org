@@ -97,6 +97,12 @@ gold_sponsors:
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
+  - url: 'https://www.bestvpn.co/'
+    img: bestvpn_co.png
+    name: BestVPN.co
+  - url: 'http://en.shopware.com/'
+    img: shopware_ag.svg
+    name: shopware AG
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
