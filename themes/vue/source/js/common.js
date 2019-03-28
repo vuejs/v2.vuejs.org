@@ -154,6 +154,12 @@
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
+      var edgeCases = {
+        'vue-set-target-key-value': 'vue-set'
+      }
+      if (edgeCases.hasOwnProperty(normalizedHash)) {
+        normalizedHash = edgeCases[normalizedHash];
+      }
       var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
         .map(function (el) { return el.id })
       possibleHashes.sort(function (hashA, hashB) {
