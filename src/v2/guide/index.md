@@ -34,7 +34,7 @@ of:
 
 De [Installatie](installation.html)-pagina bevat meer manieren om Vue te installeren. Let op: Het is **niet** aangeraden dat beginners starten met `vue-cli`, zeker wanneer er nog geen ervaring is met Node.js gebaseerde 'tooling' om applicaties te bouwen.
 
-## Declaratieve rendering
+## Declaratieve weergave
 
 De kern van Vue is een systeem dat het mogelijk maakt om declaratief data weer te geven naar het DOM met duidelijke 'template'-syntax:
 
@@ -65,7 +65,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-De eerste Vue-applicatie is gemaakt! Dit lijkt veel op het weergeven van een 'string template', maar Vue heeft veel werk gedaan dat niet zichtbaar is. De data en het DOM zijn gelinkt aan elkaar en alles is **reactief**. Hoe kun je dit testen? Open in deze browser de JavaScript-console (F12) en zet `app.message` naar een andere waarde. Het voorbeeld vanboven zal de verandering meteen doorvoeren.
+De eerste Vue-applicatie is gemaakt! Dit lijkt veel op het weergeven van een 'string template', maar Vue heeft veel werk gedaan dat niet zichtbaar is. De data en het DOM zijn gelinkt aan elkaar en alles is **reactief**. Hoe kun je dit testen? Open in deze browser de JavaScript-console (F12) en zet `app.message` naar een andere waarde. Het voorbeeld vanboven zal de wijziging meteen doorvoeren.
 
 
 Bovenop tekstinterpolatie (dit is het gebruik van de dubbele gekrulde haakjes '{' '}' om een variabele te koppelen aan de HTML), kunnen we ook attributen van elementen koppelen:

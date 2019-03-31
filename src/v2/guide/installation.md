@@ -93,9 +93,9 @@ In de [`dist/`-folder van het NPM-pakket](https://cdn.jsdelivr.net/npm/vue/dist/
 
 - **Full**: versies met zowel de compiler als de runtime.
 
-- **Compiler**: code verantwoordelijk voor het compileren van 'template strings' in JavaScript-renderfuncties.
+- **Compiler**: code verantwoordelijk voor het compileren van 'template strings' in JavaScript-weergavefuncties.
 
-- **Runtime**: code verantwoordelijk voor het maken van Vue-instanties, renderen en verversen van het 'virtual DOM' ... In principe alles, behalve de taken van de compiler.
+- **Runtime**: code verantwoordelijk voor het maken van Vue-instanties, weergeven en verversen van het 'virtual DOM' ... In principe alles, behalve de taken van de compiler.
 
 - **[UMD](https://github.com/umdjs/umd)**: UMD-versies kunnen rechtstreeks in de browser gebruikt worden via een `<script>`-tag. Het standaardbestand van de jsDelivr CDN [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is de runtime + compiler UMD-versie (`vue.js`).
 
@@ -250,7 +250,7 @@ Bekijk ook [tips voor productie](deployment.html).
 
 Sommige omgevingen, zoals Google Chrome Apps, forceren Content Security Policy (CSP). Dat verbiedt het gebruik van `new Function()` voor het evalueren van uitdrukkingen. De 'full'-versie hangt af van deze functionaliteit om de 'templates' te compileren en deze zijn dus onbruikbaar in CSP-omgevingen.
 
-De versie met alleen de runtime is volledig CSP-compatibel. Bij het gebruik van deze versie met [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) of [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), worden 'templates' vooraf gecompileerd in `render`-functies en deze werken perfect in CSP-compatibele omgevingen.
+De versie met alleen de runtime is volledig CSP-compatibel. Bij het gebruik van deze versie met [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) of [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), worden 'templates' vooraf gecompileerd in weergavefuncties en deze werken perfect in CSP-compatibele omgevingen.
 
 ## Dev-versie
 
