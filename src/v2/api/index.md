@@ -451,7 +451,7 @@ type: api
   }
   ```
 
-## Options / Data
+## Opties / data
 
 ### data
 
