@@ -51,7 +51,7 @@ Verileri basit bir şablon sentaksı kullarak DOM'a beyansal olarak yansıtmayı
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 ```
@@ -63,7 +63,7 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 </script>
