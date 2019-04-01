@@ -4,24 +4,24 @@ type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Bir Vue Örneği Oluşturmak
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Her Vue uygulaması `Vue` fonksiyonu kullanılarak yeni bir **Vue örneğinin** oluşturulması ile başlar:
 
 ```js
 var vm = new Vue({
-  // options
+  // seçenekler
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Her ne kadar [MVVM deseni](https://en.wikipedia.org/wiki/Model_View_ViewModel)'ni sıkı sıkıya takip etmese de Vue'nin tasarımı kısmen bu desenden ilham almıştır. Teknik jargon olarak Vue örneğine hitap etmek için genellikle `vm` (ViewModel'in kısaltması) değişkenini kullanılırız.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Bir Vue örneği oluşturduğunuzda bir **seçenekler nesnesi** parametre olarak girilir. Bu kılavuzun büyük bir çoğunluğu söz konusu bu seçenekleri arzu ettiğiniz davranışı elde etmek üzere nasıl kullanabileceğinizi tarif eder. Referans olarak kullanmak üzere seçeneklerin tam bir listesini [API referansı](../api/#Options-Data)nda bulabilirsiniz.
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Bir Vue uygulaması `new Vue` komutu ile yaratılan bir **ana Vue örneğinden** oluşur ve arzu edildiği takdirde birbiri içerisinde ve farklı projelerde kullanılabilen bileşenler halinde organize edilebilir. Örneğin bir yapılacaklar listesi uygulamasının bileşen ağacı şuna benzeyebilir:
 
 ```
-Root Instance
+Ana Örnek
 └─ TodoList
    ├─ TodoItem
    │  ├─ DeleteTodoButton
@@ -31,42 +31,42 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+[Bileşenler sistemine](components.html) ileride daha detaylı bir şekilde değineceğiz. Şimdilik her Vue bileşeninin aynı zamanda bir Vue örneği olduğunu ve dolayısıyla aynı seçenekler nesnesini (ana örneğe özgü birkaç seçenek dışında) kabul ettiğini aklınızda bulundurun.
 
-## Data and Methods
+## Veriler ve Metodlar
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Bir Vue örneği oluşturulduğunda `data` nesnesi içerisindeki tüm nitelikler Vue'nin **otomatik tepki sistemine** eklenir. Bu niteliklerin değeri değiştiğinde ekrana yansıtılan görüntü "tepki gösterecek" ve yeni değerleri yansıtmak üzere kendisini güncelleyecektir.  
 
 ```js
-// Our data object
+// Data nesnemiz
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// Nesneyi, Vue örneğine ekliyoruz 
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+// Örnek içerisindeki niteliği kullanmak 
+// aşağıdaki ifade orijinal data nesnesindeki veriyi gönderir
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Örnek içerisinde niteliği tayin etmek 
+// orijinal data nesnesini de etkiler 
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... bunun tam tersi de geçerlidir
 data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+Bu veri nesnesi ne zaman değişirse ekrana yansıtılan görüntü de güncellenecektir. `data` içerisindeki niteliklerin **otomatik tepki** gösterebilmesi için söz konusu örnek yaratıldığı sırada mevcut olmaları gerektiğini unutmayın. Mesela aşağıdaki şekilde yeni bir nitelik eklediğimizi farz edelim:
 
 ```js
-vm.b = 'hi'
+vm.b = 'selam'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+Bu durumda `b` üzerinde gerçekleştirilen değişiklikler herhangi bir görüntü güncellemesini tetiklemeyecektir. Eğer ileride bir niteliğe ihtiyaç duyacağınızı biliyorsanız fakat bu niteliğin başlangıçta boş olması veya mevcut olmaması gerekiyorsa bir başlangıç değeri belirlemeniz gerekecektir. Örneğin:
 
 ```js
 data: {
@@ -78,7 +78,7 @@ data: {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+Bunun tek istisnası `Object.freeze()` komutunun kullanılmasıdır. Bu durumda mevcut niteliklerdeki değişimler engellenir ve otomatik tepki sistemi değişiklikleri _takip edemez_.
 
 ```js
 var obj = {
@@ -96,12 +96,12 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
-  <button v-on:click="foo = 'baz'">Change it</button>
+  <!-- aşağıdaki işlem `foo`yu güncelleyemecektir! -->
+  <button v-on:click="foo = 'baz'">Değiştir</button>
 </div>
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+Veri niteliklerine ek olarak Vue örnekleri birçok farklı örnek niteliklerine ve metodlarını kullanıma sunar. Kullanıcı tarafından belirlenen niteliklerden ayırt edilmeleri amacıyla `$` ön eki ile kullanılırlar. Örneğin:
 
 ```js
 var data = { a: 1 }
@@ -113,19 +113,19 @@ var vm = new Vue({
 vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
-// $watch is an instance method
+// $watch bir örnek metodudur
 vm.$watch('a', function (newValue, oldValue) {
-  // This callback will be called when `vm.a` changes
+  // Bu callback metodu `vm.a` değiştiğinde çağrılacaktır
 })
 ```
 
-In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
+İhtiyaç duyduğunuzda [API referansı](../api/#Instance-Properties) sayfasında örnek niteliklerinin ve metodlarının tam bir listesini bulabilirsiniz.
 
-## Instance Lifecycle Hooks
+## Örnek Yaşam Döngüsü Kancaları  
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+Her Vue örneği yaratıldığı sırada bir dizi başlatma adımlarından geçer - Örneğin veri gözlem mekanizmasını kurar, şablon derlemesini gerçekleştirir, örneği DOM'a enjekte eder ve veri değiştiğinde DOM'u günceller. Bu sırada kullanıcıların belirli aşamalarda kendi kodlarını ekleyebilmesi için **yaşam döngüsü kancaları** adı verilen fonksiyonları yerine getirir.
 
-For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
+Örneğin [`created`](../api/#created) kancası belirli bir kodun bir örnek yaratıldıktan sonra işleme alınması için kullanılabilir:
 
 ```js
 new Vue({
@@ -133,19 +133,19 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
-    console.log('a is: ' + this.a)
+    // `this` ıfadesi mevcut vm örneğini temsil eder
+    console.log('a\'nın değeri: ' + this.a)
   }
 })
-// => "a is: 1"
+// => "a'nın değeri: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+Örneğin yaşam döngüsünün farklı aşamalarında çağrılan diğer birçok kanca mevcuttur. Örneğin [`mounted`](../api/#mounted), [`updated`](../api/#updated), ve [`destroyed`](../api/#destroyed). Bütün yaşam döngüsü kancaları ait oldukları Vue örneğini temsil eden `this` bağlamı ile çağrılır.
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
+<p class="tip">Seçenek nitelikleri ve callback metodları üzerinde `created: () => console.log(this.a)` veya `vm.$watch('a', newValue => this.myMethod())` gibi [ok fonksiyonları](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) kullanmayın. Ok fonksiyonları bir üst seviyedeki bağlama ait olduklarından `this` ifadesi umduğunuz gibi Vue örneğine karşılık gelmeyecektir ve sık sık `Uncaught TypeError: Cannot read property of undefined` ve `Uncaught TypeError: this.myMethod is not a function` gibi hatalara neden olacaktır.</p>
 
-## Lifecycle Diagram
+## Yaşam Döngüsü Şeması
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+Aşağıda örnek yaşam döngüsüne ait bir şema bulabilirsiniz. Burada olup biten her şeyi tam olarak anlamız gerekiyor. Fakat öğrenme sürecinizde ve projelerinizde yararlı bir referans olacaktır.
 
-![The Vue Instance Lifecycle](/images/lifecycle.png)
+![Vue Örneği Yaşam Döngüsü](/images/lifecycle.png)
