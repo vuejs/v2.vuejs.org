@@ -1,5 +1,5 @@
 ---
-title: Template Syntax
+title: Şablon Sentaksı
 type: guide
 order: 4
 ---
