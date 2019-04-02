@@ -1,16 +1,16 @@
 ---
-title: Using Axios to Consume APIs
+title: Usando Axios para consumir APIs
 type: cookbook
 order: 9
 ---
 
-## Base Example
+## Ejemplo Base
 
-There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
+En muchas ocasiones, al construir una aplicación web, se quiere consumir y mostrar datos de un API. Existen diversas formas de hacerlo, pero un enfoque muy popular es utilizar [axios](https://github.com/axios/axios), un client HTTP basado en promesas.
 
-In this exercise, we'll use the [CoinDesk API](https://www.coindesk.com/api/) to walk through displaying Bitcoin prices, updated every minute. First, we'd install axios with either npm/yarn or through a CDN link.
+En este ejercicio, se utilizara la [API CoinDesk](https://www.coindesk.com/api/) para mostrar los precios de Bitcoin, que se actualizan minuto a minuto. Primero, instalaremos axios mediante npm/yarn o a través de un enlace CDN.
 
-There are a number of ways we can request information from the API, but it's nice to first find out what the shape of the data looks like, in order to know what to display. In order to do so, we'll make a call to the API endpoint and output it so we can see it. We can see in the CoinDesk API documentation, that this call will be made to `https://api.coindesk.com/v1/bpi/currentprice.json`. So first, we'll create a data property that will eventually house our information, and we'll retrieve the data and assign it using the `mounted` lifecycle hook:
+Hay distintas formas de solicitar información del API, pero es conveniente conocer primero la forma de los datos en pos de entender que mostrar. Para ello, realizaremos una llamada al endpoint en la API y mostraremos la respuesta, con tal de analizarla. Podemos comprobar en la documentación del API de CoinDesk, que esta llamada se realizara a `https://api.coindesk.com/v1/bpi/currentprice.json`. Comenzamos creando una propiedad data que eventualmente almacenara la información deseada. A continuación, realizamos el pedido y asignamos la respuesta utilizando el lifecycle hook `mounted`:
 
 ```js
 new Vue({
@@ -34,18 +34,19 @@ new Vue({
 </div>
 ```
 
-And what we get is this:
+Obtenemos lo siguiente:
 
-<p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">First Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Primeros pasos Axios y Vue" class="codepen">See the pen <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">Primeros pasos Axios y Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Excellent! We've got some data. But it looks pretty messy right now so let's display it properly and add some error handling in case things aren't working as expected or it takes longer than we thought to get the information.
+Excelente! Tenemos algunos datos pero lucen bien desordenados, asi que mostremoslos apropiadamente. Además incluyamos manejo de errores en caso de que las cosas no funcionen o demoren en obtener la información más de lo esperado.
 
-## Real-World Example: Working with the Data
+## Ejemplo del mundo real: Trabajando con los datos
 
-### Displaying Data from an API
+### Mostrando datos de un API
 
-It's pretty typical that the information we'll need is within the response, and we'll have to traverse what we've just stored to access it properly. In our case, we can see that the price information we need lives in `response.data.bpi`. If we use this instead, our output is as follows:
+Es bastante común que la información que necesitamos se encuentre dentro de la respuesta y tengamos que recorrer el objeto que recién almacenamos, con tal de acceder a ella apropiadamente. En nuestro caso, notemos que la información de precios se encuentra en `response.data.bpi`. Si utilizamos esto, en su lugar, obtenemos lo siguiente:
+
 
 ```js
 axios
@@ -53,14 +54,14 @@ axios
   .then(response => (this.info = response.data.bpi))
 ```
 
-<p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Second Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Segundo paso con Axios y Vue" class="codepen">See the pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Segundo paso con Axios y Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This is a lot easier for us to display, so we can now update our HTML to display only the information we need from the data we've received, and we'll create a [filter](../api/#Vue-filter) to make sure that the decimal is in the appropriate place as well.
+Esto es mucho mas sencillo de utilizar, por tanto ahora podemos actualizar nuestro HTML para mostrar solo la información que necesitamos de los datos recibidos. Crearemos, además, un [filtro](../api/#Vue-filter) para asegurar que el decimal se encuentre en el lugar apropiado.
 
 ```html
 <div id="app">
-  <h1>Bitcoin Price Index</h1>
+  <h1>Listado de Precio de Bitcoin</h1>
   <div
     v-for="currency in info"
     class="currency"
@@ -81,18 +82,18 @@ filters: {
 },
 ```
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Third Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Tercer paso con Axios y Vue" class="codepen">See the pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Tercer paso con Axios y Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-### Dealing with Errors
+### Manejando errores
 
-There are times when we might not get the data we need from the API. There are several reasons that our axios call might fail, including but not limited to:
+Hay ocasiones en las que no obtendremos los datos que necesitamos del API. Existen múltiples razones por las cuales nuestra llamada axios puede fallar, incluyendo pero no limitadas a:
 
-* The API is down.
-* The request was made incorrectly.
-* The API isn't giving us the information in the format that we anticipated.
+* El API esta fuera de servicio.
+* La llamada se realizo incorrectamente.
+* El API no devuelve la información en el formato que anticipamos.
 
-When making this request, we should be checking for just such circumstances, and giving ourselves information in every case so we know how to handle the problem. In an axios call, we'll do so by using `catch`.
+Cuando realizamos esta llamada debemos, comprobar la ocurrencia de tales circunstancias y, proporcionar información en cada caso, de forma tal que sepamos como manejar el problema. En una llamada axios, ello se logra utilizando `catch`.
 
 ```js
 axios
@@ -101,7 +102,7 @@ axios
   .catch(error => console.log(error))
 ```
 
-This will let us know if something failed during the API request, but what if the data is mangled or the API is down? Right now the user will just see nothing. We might want to build a loader for this case, and then tell the user if we're not able to get the data at all.
+Esto nos permitirá saber si algo fallo durante la llamada a la API, pero que ocurre si los datos están estropeados o la API esta fuera de servicio? Por ahora, el usuario simplemente no vera nada. Por ello quisieramos incluir un cargador y notificar al usuario si no somos capaces de obtener datos en lo absoluto.
 
 ```js
 new Vue({
@@ -135,14 +136,14 @@ new Vue({
 
 ```html
 <div id="app">
-  <h1>Bitcoin Price Index</h1>
+  <h1>Listado de Precio de Bitcoin</h1>
 
   <section v-if="errored">
-    <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+    <p>Lo sentimos, no es posible obtener la información en este momento, por favor intente nuevamente mas tarde</p>
   </section>
 
   <section v-else>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading">Cargando...</div>
 
     <div
       v-else
@@ -159,21 +160,21 @@ new Vue({
 </div>
 ```
 
-You can hit the rerun button on this pen to see the loading status briefly while we gather data from the API:
+Puedes accionar el botón rerun en esta nota para ver el estado de cargando brevemente, mientras se solicitan los datos al API:
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Cuarto paso con Axiosy Vue" class="codepen">See the pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Cuarto paso con Axios y Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This can be even further improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
+Esto puede ser mejorado, utilizando componentes para las diferentes secciones y mas errores distintos, en dependencia del API utiliza y la complejidad de la aplicación.
 
-## Alternative Patterns
+## Patrones alternativos
 
-### Fetch API
+### API Fetch
 
-The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that one of the benefits of the Fetch API is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
+La [API Fetch](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) es una potente API nativa para este tipo de llamadas. Puede que hayas escuchado que uno de los beneficios del API Fetch es que no necesitas cargar un recurso externo para utilizarla, lo cual es cierto! Excepto que... no es totalmente soportada aun, por tanto todavía necesitas utilizar un polyfill. Existen además otros gotchas cuando trabajas con esta API, por lo cual muchos prefieres usar axios por ahora. Esto bien que podría cambiar en el futuro.
 
-If you're interested in using the Fetch API, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
+Si estas interesado en utilizar la API Fetch, hay algunos [muy buenos artículos](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) que explican como hacerlo.
 
-## Wrapping Up
+## Resumiendo
 
-There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
+Existen muchas formas de trabajar con Vue y Axios mas allá de consumir y mostrar datos de un API. También puedes comunicar con Serverless Functions, post/edit/delete en un API donde tengas permisos de escritura, y muchas otras. Debido a la sencilla integración entre estas dos librerías, se ha vuelto una elección muy común para desarrolladores que necesitan incluir clientes HTTP en su flujo de trabajo.
