@@ -103,6 +103,9 @@ gold_sponsors:
   - url: 'http://en.shopware.com/'
     img: shopware_ag.svg
     name: shopware AG
+  - url: 'http://x-team.com/join'
+    img: x_team.png
+    name: X-Team
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
