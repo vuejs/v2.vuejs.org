@@ -134,16 +134,6 @@ beneficio es la habilidad de depurar viajando en el tiempo para Vuex.
   para poder verlo.
 </p>
 
-### Vuetron
-
-[Vuetron](http://vuetron.io/) is a really nice project that extends some of the work that vue-devtools has done. In addition to the normal devtools workflow, you are able to:
-
-* Quickly view API Request/Response: if you're using the fetch API for requests, this event is displayed for any request sent. The expanded card displays the request data as well as the response data.
-* Subscribe to specific parts of your application’s state for faster debugging
-* Visualize component hierarchy, and an animation allows you to collapse or expand the tree for specific hierarchy views.
-
-![Vuetron Hierarchy](/images/vuetron-hierarchy.gif)
-
 ### Simple Sentencia Debugger
 
 El ejemplo anterior tiene un gran flujo de trabajo. Sin embargo, hay una
