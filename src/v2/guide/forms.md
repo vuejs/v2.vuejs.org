@@ -15,7 +15,7 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 - checkboxes and radiobuttons use `checked` property and `change` event;
 - select fields use `value` as a prop and `change` as an event.
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">When text input comes from an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc. or mobile keyboards like Swype or Gboard), you'll notice that `v-model` doesn't get updated during IME composition. In practice, v-model is updated after each word, as determined by the entry of a space, or when focus leaves the field. If you want to cater for updates during IME composition, use `input` event instead.</p>
 
 ### Text
 
