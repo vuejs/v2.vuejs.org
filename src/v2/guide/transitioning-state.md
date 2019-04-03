@@ -8,9 +8,9 @@ Terdapat banyak cara sederhana pada sistem transisi Vue untuk animasi masuk, kel
 - angka dan kalkulasi
 - warna yang ditampilkan
 - posisi node SVG
-- ukuran dan properti lain dari element
+- ukuran dan properti lain dari elemen
 
-Semuanya ini bisa saja sudah disimpan sebagai angka mentah (*raw number*) atau belum dikonversi menjadi angka. Ketika kita melakukan hal itu, kita dapat menganimasi perubahan state ini menggunakan pustaka (*library*) pihak ketiga menjadi *tween state*, dalam kombinasi dengan reaktivitas Vue dan sistem komponennya.
+Semuanya ini bisa saja sudah disimpan sebagai angka mentah (*raw number*) atau belum dikonversi menjadi angka. Ketika kita melakukan hal itu, kita dapat menganimasi perubahan state ini menggunakan pustaka pihak ketiga menjadi *tween state*, dalam kombinasi dengan reaktivitas Vue dan sistem komponennya.
 
 ## Menganimasi State Menggunakan Watcher
 
@@ -72,7 +72,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Ketika Anda mengubah angka, perubahannya dianimasi di bawah input. Ini demo yang baik, tetapi bagaimana dengan sesuatu yang tidak secara langsung disimpan sebagai angka, seperti warna CSS valid sebagai contoh? Berikut ini adalah bagaimana kita dapat menyelesaikannya menggunakan [Tween.js](https://github.com/tweenjs/tween.js) dan [Color.js](https://github.com/brehaut/color-js):
+Ketika Anda mengubah angka, perubahannya dianimasi di bawah input. Ini demo yang baik, tetapi bagaimana dengan sesuatu yang tidak secara langsung disimpan sebagai angka, seperti warna valid CSS sebagai contoh? Berikut ini adalah bagaimana kita dapat menyelesaikannya menggunakan [Tween.js](https://github.com/tweenjs/tween.js) dan [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -369,7 +369,7 @@ Lihat [*fiddle* ini](https://jsfiddle.net/chrisvfritz/65gLu2b6/) untuk kode sele
 
 ## Mengatur Transisi dalam Komponen
 
-Mengelola banyak transisi state dapat menambah kerumitan dari sebuah instance atau komponen Vue secara singkat. Beruntung, banyak animasi dapat dikeluarkan ke suatu anak komponen yang telah didedikasikan. Mari kita melakukannya dengan animasi integer dari contoh sebelumnya:
+Mengelola banyak transisi state dapat menambah kerumitan dari sebuah *instance* atau komponen Vue secara singkat. Beruntung, banyak animasi dapat dikeluarkan ke suatu anak komponen yang telah didedikasikan. Mari kita melakukannya dengan animasi integer dari contoh sebelumnya:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -433,7 +433,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// Semua kerumitan telah dihilangkan dari instance Vue utama!
+// Semua kerumitan telah dihilangkan dari instance utama Vue!
 new Vue({
   el: '#example-8',
   data: {
@@ -521,7 +521,7 @@ Dalam anak komponen, kita dapat menggunakan kombinasi strategi transisi apapun y
 
 ## Menghidupkan Desain
 
-Menganimasi, oleh satu definisi, berarti menghidupkan. Sayang sekali, ketika desainer membuat ikon, logo, dan maskot, mereka biasanya menyerahkannya dalam bentuk gambar atau SVG statis. Jadi meskipun *octocat* Github, burung Twitter, dan banyak logo lain menyerupai makhluk hidup, mereka tidak terkesan sungguh-sungguh hidup.
+Menganimasi dapat didefinisikan sebagai memberi kehidupan. Sayang sekali, ketika desainer membuat ikon, logo, dan maskot, mereka biasanya menyerahkannya dalam bentuk gambar atau SVG statis. Jadi meskipun *octocat* Github, burung Twitter, dan banyak logo lain menyerupai makhluk hidup, mereka tidak terkesan sungguh-sungguh hidup.
 
 Vue dapat membantu dalam hal ini. Karena SVG hanyalah data, kita cukup memerlukan contoh seperti apa makhluk-makhluk tersebut ketika gembira, berpikir, atau khawatir. Setelah itu, Vue dapat membantu transisi antar statenya, membuat halaman selamat datang, memuat indikator-indikator, dan notifikasi menjadi lebih menarik secara emosional.
 
