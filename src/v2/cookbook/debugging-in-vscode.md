@@ -5,47 +5,45 @@ order: 8
 ---
 
 Toda aplicación alcanza un punto donde es necesario entender los errores, desde
-los más chicos a los más grandes. En esta receta, exploraremos algunos flujos de
-trabajo para usuarios de VS Code a quienes les gustaría depurar su aplicación
-en el navegador.
+los más chicos a los más grandes. En esta receta, se exploran algunos flujos de
+trabajo para usuarios de VS Code a quienes les gustaría depurar su aplicación en
+el navegador.
 
-Esta receta muestra como depurar aplicaciones [Vue CLI](https://github.com/vuejs/vue-cli)
-en VS Code mientras ejecutan en el browser.
+Esta receta muestra como depurar aplicaciones [Vue CLI](https://github.com/vuejs/vue-cli) en VS Code mientras ejecutan en el navegador.
 
 <p class="tip">
-  Nota: Esta receta cubre Chrome and Firefox. Si tu sabes como
-  configurar la depuración en VS Code con otros navegadores, por favor
-  considera compartir tus percepciones (ver al final de la página).
+  Nota: Esta receta cubre Chrome y Firefox. Si ud sabe como configurar la
+  depuración en VS Code con otros navegadores, por favor considere compartir sus percepciones (vea al final de la página).
 </p>
 
 ## Prerequisitos
 
-Asegúrate de tener VS Code y el navegador de tu preferencia instalado,
+Asegúrese de tener VS Code y el navegador de su preferencia instalado,
 así como también la última versión de la extensión de depuración que corresponda instalada y habilitada:
 
 * [Depurador para Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
 * [Depurador para Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
 
-Instala y crea un proyecto con [vue-cli](https://github.com/vuejs/vue-cli), siguiendo las instrucciones en [Guía Vue CLI](https://cli.vuejs.org/).
-Muévete dentro del directorio de la aplicación recientemente creada y abre VS Code.
+Instale y cree un proyecto con [vue-cli](https://github.com/vuejs/vue-cli), siguiendo las instrucciones en [Guía Vue CLI](https://cli.vuejs.org/).
+Muévase dentro del directorio de la aplicación recientemente creada y abra VS Code.
 
 ### Mostrando código fuente en el Navegador
 
-Antes de que puedas depurar tus componentes Vue desde VS Code, necesitarás
+Antes de que pueda depurar sus componentes Vue desde VS Code, necesitará
 actualizar la configuración de Webpack generada para poder construir los
-sourcemaps. Hacemos esto para que nuestro depurador tenga una forma de
+sourcemaps. Haremos esto para que nuestro depurador tenga una forma de
 correlacionar el código del archivo comprimido con la posición en el archivo
-original. Esto asegura que puedas depurar una aplicación incluso luego de
-que tus assets hayan sido optimizados por Webpack.
+original. Esto asegura que pueda depurar una aplicación incluso luego de
+que sus assets hayan sido optimizados por Webpack.
 
-Si usas Vue CLI 2, configura o actualiza la propiedad `devtool` dentro de
+Si usa Vue CLI 2, configure o actualice la propiedad `devtool` dentro de
 `index.js`:
 
 ```json
 devtool: 'source-map',
 ```
 
-Si usas Vue CLI 3, configura o actualiza la propiedad `devtool` dentro de
+Si usa Vue CLI 3, configure o actualice la propiedad `devtool` dentro de
 `vue.config.js`:
 
 ```js
@@ -58,12 +56,12 @@ module.exports = {
 
 ### Lanzando la aplicación desde VS Code
 
-Haz clic en el icono Debugging en la Barra de Actividad para to cargar la vista
-de Depuración. Luego haz clic en el icono engranaje para configurar el archivo
-`launch.json`, seleccionando **Chrome/Firefox: Launch** como el entorno. Reemplaza
+Haga clic en el icono Depurar en la Barra de Actividad para cargar la vista de
+Depuración. Luego haga clic en el icono Engranaje para configurar el archivo
+`launch.json`, seleccione **Chrome/Firefox: Launch** como el entorno. Reemplace
 el contenido del archivo `launch.json` generado con la configuración correspondiente:
 
-![Agrega Configuración Chrome](/images/config_add.png)
+![Agregar Configuración Chrome](/images/config_add.png)
 
 ```json
 {
@@ -94,22 +92,21 @@ el contenido del archivo `launch.json` generado con la configuración correspond
 
 ## Poniendo un Breakpoint
 
-1. Pone un breakpoint en **src/components/HolaMundo.vue** en la `linea 90` donde
+1. Ponga un breakpoint en **src/components/HolaMundo.vue** en la `linea 90` donde
 la función `data` devuelve una cadena de texto.
 
   ![Renderizador de Breakpoint](/images/breakpoint_set.png)
 
-2. Abre tu terminal favorita en la carpeta raíz
-y corre tu aplicación usando Vue CLI:
+2. Abra su terminal favorita en la carpeta raíz y corra su aplicación usando Vue CLI:
 
   ```
   npm start
   ```
 
-3. Vé a la vista Debug, selecciona la configuración **'vuejs: chrome/firefox'**,
-luego presiona F5 o haz click en el botón verde de reproducir.
+3. Vaya a la vista de Depuración, seleccione la configuración **'vuejs: chrome/firefox'**,
+luego presione F5 o haga clic en el botón verde de reproducir.
 
-4. Tu breakpoint debería ser alcanzado una vez que la nueva instancia de tu navegador
+4. Su breakpoint debería ser alcanzado una vez que la nueva instancia de su navegador
 se abra: `http://localhost:8080`.
 
   ![Breakpoint Alcanzado](/images/breakpoint_hit.png)
@@ -120,26 +117,26 @@ se abra: `http://localhost:8080`.
 
 Hay otros modelos de depuración, variando en complejidad. El más simple y popular
 es usar el excelente Vue.js devtools [para Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) y [para Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/).
-Algunos de los beneficios de trabajar con las devtools es que te permite editar
+Algunos de los beneficios de trabajar con las devtools es que le permite editar
 las propiedades y ver los cambios reflejados en tiempo real. El otro gran
 beneficio es la habilidad de depurar viajando en el tiempo para Vuex.
 
 ![Devtools Depurador viajando en el tiempo](/images/devtools-timetravel.gif)
 
 <p class="tip">
-  Por favor ten presente que si la página usa una compilación minificada de producción
-  de Vue.js (como ser el link estándar del CDN), la inspección de devtools estará
-  deshabilitada por defecto lo cual no mostrará el panel de Vue. Si te cambias a
-  una versión no minificada, quizás sea necesario que recargues la página forzadamente
-  para poder verlo.
+  Por favor tenga presente que si la página usa una compilación minificada de
+  producción de Vue.js (como ser el link estándar del CDN), la inspección de
+  devtools estará deshabilitada por defecto lo cual no mostrará el panel de Vue.
+  Si se cambia a una versión no minificada, quizás sea necesario que recargue la
+  página forzadamente para poder verlo.
 </p>
 
 ### Simple Sentencia Debugger
 
 El ejemplo anterior tiene un gran flujo de trabajo. Sin embargo, hay una
-opción alternativa donde puedes usar la [sentencia nativa debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
-directamente en tu código. Si eliges trabajar de esta forma, es importante que
-recuerdes remover las sentencias una vez hayas terminado.
+opción alternativa donde puede usar la [sentencia nativa debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
+directamente en su código. Si elige trabajar de esta forma, es importante que
+recuerde remover las sentencias una vez haya terminado.
 
 ```js
 <script>
