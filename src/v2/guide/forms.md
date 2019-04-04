@@ -354,7 +354,7 @@ typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
 
-## Modifiers
+## Modificaties
 
 ### `.lazy`
 

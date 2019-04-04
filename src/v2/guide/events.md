@@ -160,7 +160,7 @@ methods: {
 }
 ```
 
-## Event Modifiers
+## 'Event'-modificaties
 
 It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
 

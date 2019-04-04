@@ -113,7 +113,7 @@ Het is makkelijk om de aanwezigheid van een element aan te passen:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Nu is het zichtbaar</span>
+  <span v-if="gezien">Nu is het zichtbaar</span>
 </div>
 ```
 
@@ -121,26 +121,26 @@ Het is makkelijk om de aanwezigheid van een element aan te passen:
 var app3 = new Vue({
   el: '#app-3',
   data: {
-    seen: true
+    gezien: true
   }
 })
 ```
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Nu is het zichtbaar</span>
+  <span v-if="gezien">Nu is het zichtbaar</span>
 </div>
 <script>
 var app3 = new Vue({
   el: '#app-3',
   data: {
-    seen: true
+    gezien: true
   }
 })
 </script>
 {% endraw %}
 
-Voer `app3.seen = false` in de console in. Het bericht zou nu moeten verdwijnen. `app3.seen = true` zal het bericht terug doen verschijnen.
+Voer `app3.gezien = false` in de console in. Het bericht zou nu moeten verdwijnen. `app3.gezien = true` zal het bericht terug doen verschijnen.
 
 Dit voorbeeld toont aan dat er niet alleen data gekoppeld kan worden aan tekst en attributen, maar ook aan de **structuur** van het DOM. Vue voorziet ook een krachtig systeem van overgangseffecten dat automatisch [overgangseffecten](transitions.html) kan toepassen wanneer elementen toegevoegd/bijgewerkt/verwijderd worden door Vue.
 
