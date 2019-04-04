@@ -1,5 +1,5 @@
 ---
-title: Component de envotura
+title: Componente de envoltura
 type: examples
 order: 8
 ---
