@@ -1,5 +1,5 @@
 ---
-title: Grid Component
+title: Componente de grilla
 type: examples
 order: 3
 ---

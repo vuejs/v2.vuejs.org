@@ -1,5 +1,5 @@
 ---
-title: Elastic Header
+title: Cabecera elástica
 type: examples
 order: 7
 ---

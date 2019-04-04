@@ -1,5 +1,5 @@
 ---
-title: Realtime with deepstreamHub
+title: Tiempo real con deepstreamHub
 type: examples
 order: 9
 ---
