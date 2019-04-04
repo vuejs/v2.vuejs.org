@@ -1,5 +1,5 @@
 ---
-title: HackerNews Clone
+title: Clon de HackerNews
 type: examples
 order: 12
 ---

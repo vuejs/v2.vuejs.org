@@ -1,5 +1,5 @@
 ---
-title: Wrapper Component
+title: Componente de envoltura
 type: examples
 order: 8
 ---

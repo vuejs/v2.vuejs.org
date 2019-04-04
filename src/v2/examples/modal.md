@@ -1,5 +1,5 @@
 ---
-title: Modal Component
+title: Componente modal
 type: examples
 order: 6
 ---

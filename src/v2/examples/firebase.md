@@ -1,5 +1,5 @@
 ---
-title: Firebase + Validation
+title: Firebase + Validación
 type: examples
 order: 10
 ---

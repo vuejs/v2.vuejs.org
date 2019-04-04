@@ -1,5 +1,5 @@
 ---
-title: SVG Graph
+title: Gráfico de SVG
 type: examples
 order: 5
 ---

@@ -1,5 +1,5 @@
 ---
-title: Markdown Editor
+title: Editor Markdown
 type: examples
 order: 0
 ---
