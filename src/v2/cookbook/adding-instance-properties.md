@@ -12,7 +12,7 @@ Podrían existir datos o funciones utilitarias las cuales nos gustaría utilizar
 Vue.prototype.$appName = 'Mi aplicación'
 ```
 
-Ahora `$appName` esta disponible en todas las instancias de Vue, incluso antes de su creación. Si ejecutamos:
+Ahora `$appName` está disponible en todas las instancias de Vue, incluso antes de su creación. Si ejecutamos:
 
 ```js
 new Vue({
@@ -127,7 +127,7 @@ new Vue({
 })
 ```
 
-Es importante destacar que el contexto del método no será el correcto, y por lo tanto no funcionara, si usted utiliza las funciones flecha de ES6/2015, dado que esta clase de funciones utilizan el contexto del objeto padre implícitamente.
+Es importante destacar que el contexto del método no será el correcto, y por lo tanto no funcionará, si usted utiliza las funciones flecha de ES6/2015, dado que esta clase de funciones utilizan el contexto del objeto padre implícitamente.
 
 ```js
 Vue.prototype.$reverseText = propertyName => {
@@ -146,11 +146,11 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 ## Cuando debemos evitar este patrón
 
-Mientras este atento a la propiedades presentes en el contexto del prototipo, este patrón debería ser razonablemente seguro y en general no debería ser fuente de muchos errores.
+Mientras esté atento a la propiedades presentes en el contexto del prototipo, este patrón debería ser razonablemente seguro y en general no debería ser fuente de muchos errores.
 
 Sin embargo, este patrón puede causar confusión entre desarrolladores. Estos podrían ver `this.$http` y pensar que se trata de una funcionalidad de Vue, cuando realmente no lo es, incluso podrían intentar usar `this.$http` y obtener valores inesperados como `undefined`, o simplemente hacer búsquedas en Google sobre como usar esa funcionalidad cuando en realidad deberían buscar como usar Axios porque por debajo están utilizando un alias.
 
-**En este caso la conveniencia y facilidad de uso se obtienen a costa del ser explicito.** Al mirar el código del componente es imposible saber de donde proviene `$http`. ¿Proviene de Vue? ¿De una librería? ¿De otro desarrollador?
+**En este caso la conveniencia y facilidad de uso se obtienen a costa del ser explícito.** Al mirar el código del componente es imposible saber de donde proviene `$http`. ¿Proviene de Vue? ¿De una librería? ¿De otro desarrollador?
 
 Entonces, ¿cuáles son las alternativas?
 
@@ -181,7 +181,7 @@ var App = Object.freeze({
 
 <p class="tip">Si usted noto el uso `Object.freeze` y le pareció raro, lo que este hace es prevenir que el objeto sea modificado. Así se puede asegurar que todas las propiedades son constantes, protegiéndonos así de potenciales futuros errores.</p>
 
-Ahora el origen este estas propiedades compartidas es mas obvio, provienen de algún objeto `App` definido en la aplicación! Para encontrar su definición solo basta con hacer una búsqueda global en el proyecto.
+Ahora el origen este estas propiedades compartidas es más obvio, provienen de algún objeto `App` definido en la aplicación! Para encontrar su definición solo basta con hacer una búsqueda global en el proyecto.
 
 La otra ventaja es que `App` se puede usar _en cualquier parte_ de su código, sin importar si es algo relacionado a Vue o no. Esto incluye agregar valores directamente a las opciones de las instancias en lugar de tener usar una función para acceder a la propiedades en `this`:
 
@@ -200,4 +200,4 @@ new Vue({
 
 Cuando contamos con un sistema de módulos se puede fácilmente organizar el código compartido en módulos y luego importarlos usando `require`/`import` cuando sea necesario. Esto provee un gran nivel de explicitud, ya que en cada archivo se puede contar con la lista completa de dependencias y se sabe exactamente de donde proviene cada una.
 
-A pesar de que es un enfoque muy explicito, es sin dudas más fácil de mantener en el futuro, especialmente cuando se trabaja en equipo construyendo un aplicación de gran tamaño.
+A pesar de que es un enfoque muy explícito, es sin dudas más fácil de mantener en el futuro, especialmente cuando se trabaja en equipo construyendo un aplicación de gran tamaño.
