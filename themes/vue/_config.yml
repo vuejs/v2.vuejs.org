@@ -76,24 +76,15 @@ gold_sponsors:
   - url: 'https://devsquad.com/'
     img: devsquad.png
     name: DevSquad
-  - url: 'https://www.inkoop.in/'
-    img: inkoop.png
-    name: Inkoop
   - url: 'https://www.firesticktricks.com/'
     img: firestick_tricks.png
     name: Firestick Tricks
-  - url: 'https://github.com/marcus-hiles'
-    img: marcus_hiles.png
-    name: Marcus Hiles
   - url: 'https://intygrate.com/'
     img: intygrate.png
     name: Intygrate
   - url: 'https://isleofcode.com/'
     img: isle_of_code.png
     name: Isle of Code
-  - url: 'https://yakaz.com/'
-    img: yakaz.png
-    name: Yakaz
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
@@ -110,9 +101,6 @@ silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
     name: Dopamine
-  - url: 'https://gridsome.org/'
-    img: gridsome.png
-    name: Gridsome
 bronze_sponsors:
   - url: 'http://tighten.co/'
     img: tighten_co.png
