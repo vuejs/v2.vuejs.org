@@ -127,7 +127,7 @@ Como fue mencionado anteriormente, Local Storage solamente funciona con valores 
 </div>
 ```
 
-Está "aplicación" consiste en una simple lista con un botón para eliminar gatos y un formulario para agregarlos en la parte inferior. Veamos el JavaScript.
+Esta "aplicación" consiste en una simple lista con un botón para eliminar gatos y un formulario para agregarlos en la parte inferior. Veamos el JavaScript.
 
 ``` js
 const app = new Vue({
