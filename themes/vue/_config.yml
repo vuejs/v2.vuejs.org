@@ -94,7 +94,8 @@ gold_sponsors:
   - url: 'http://en.shopware.com/'
     img: shopware_ag.svg
     name: shopware AG
-  - url: 'http://x-team.com/join'
+  - url: >-
+      https://x-team.com/join/?utm_source=vuejsorg&utm_medium=sponsor&utm_campaign=vuejsorg-patreon
     img: x_team.png
     name: X-Team
 silver_sponsors:
