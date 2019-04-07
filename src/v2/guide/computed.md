@@ -1,247 +1,246 @@
 ---
-title: Computed Properties and Watchers
+title: Berekende eigenschappen en 'watchers'
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## Berekende eigenschappen
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
+Expressies in de 'template' zijn handig, maar zijn bedoeld voor simpele bewerkingen. Te veel logica in een 'template' maakt het onoverzichtelijk en moeilijk te onderhouden. Bijvoorbeeld:
 
 ``` html
-<div id="example">
-  {{ message.split('').reverse().join('') }}
+<div id="voorbeeld">
+  {{ bericht.split('').reverse().join('') }}
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+Op dit moment is de 'template' niet langer eenvoudig en declaratief. Er is enige tijd nodig om de code te bekijken en te snappen dat het een `bericht` omgekeerd zal weergeven. Het probleem wordt erger wanneer het omgekeerde bericht meer dan eens wordt weergegeven in de 'template'. 
 
-That's why for any complex logic, you should use a **computed property**.
+Het is hierdoor dat er voor alle complexe logica gebruik gemaakt wordt van **berekende eigenschappen**.
 
-### Basic Example
+### Simpel voorbeeld
 
 ``` html
-<div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+<div id="voorbeeld">
+  <p>Origineel bericht: "{{ bericht }}"</p>
+  <p>Berekend omgekeerd bericht: "{{ omgekeerdBericht }}"</p>
 </div>
 ```
 
 ``` js
 var vm = new Vue({
-  el: '#example',
+  el: '#voorbeeld',
   data: {
-    message: 'Hello'
+    bericht: 'Hallo'
   },
   computed: {
-    // a computed getter
-    reversedMessage: function () {
-      // `this` points to the vm instance
-      return this.message.split('').reverse().join('')
+    // een berekende eigenschap
+    omgekeerdBericht: function () {
+      // `this` wijst naar de Vue-instantie
+      return this.bericht.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+Resultaat:
 
 {% raw %}
-<div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+<div id="voorbeeld" class="demo">
+  <p>Origineel bericht: "{{ bericht }}"</p>
+  <p>Berekend omgekeerd bericht: "{{ omgekeerdBericht }}"</p>
 </div>
 <script>
 var vm = new Vue({
-  el: '#example',
+  el: '#voorbeeld',
   data: {
-    message: 'Hello'
+    bericht: 'Hallo'
   },
   computed: {
-    reversedMessage: function () {
-      return this.message.split('').reverse().join('')
+    omgekeerdBericht: function () {
+      return this.bericht.split('').reverse().join('')
     }
   }
 })
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+Er is een berekende eigenschap `omgekeerdBericht` gedeclareerd. De functie zal gebruikt worden als 'getter'-functie (een functie die de waarde 'get', een waarde ophaalt) voor de eigenschap `vm.omgekeerdBericht`:
 
 ``` js
-console.log(vm.reversedMessage) // => 'olleH'
-vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // => 'eybdooG'
+console.log(vm.omgekeerdBericht) // => 'ollaH'
+vm.bericht = 'Vaarwel'
+console.log(vm.omgekeerdBericht) // => 'lewraaV'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+Door het openen van de console kan er gespeeld worden met het 'vm'-voorbeeld. De waarde van `vm.omgekeerdBericht` is altijd afhankelijk van de waarde van `vm.bericht`.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+De berekende eigenschappen kunnen gekoppeld worden aan de 'template', net zoals gewone eigenschappen gekoppeld kunnen worden. Vue weet dat `vm.omgekeerdBericht` afhankelijk is van `vm.bericht`, het zal `vm.omgekeerdBericht` bijwerken wanneer `vm.bericht` wijzigt. Het beste aan de berekende eigenschap is dat de afhankelijkheid declaratief aangemaakt is: de berekende 'getter'-functie heeft geen bijwerkingen, dit zorgt dat het makkelijker te begrijpen en te testen is.
 
-### Computed Caching vs Methods
+### Berekende caching vs methoden
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Het is mogelijk hetzelfde resultaat te bekomen door een methode aan te roepen in de expressie:
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>Omgekeerd bericht: "{{ berichtOmkeren() }}"</p>
 ```
 
 ``` js
 // in component
 methods: {
-  reverseMessage: function () {
-    return this.message.split('').reverse().join('')
+  berichtOmkeren: function () {
+    return this.bericht.split('').reverse().join('')
   }
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+In plaats van een berekende eigenschap, is het mogelijk dezelfde functionaliteit te definiëren als een methode. Het eindresultaat is hetzelfde. Het verschil is dat **berekende eigenschappen gecachet worden op basis van de reactieve afhankelijkheid**. Een berekende eigenschap wordt alleen maar opnieuw geëvalueerd wanneer een van de reactieve afhankelijkheden wijzigt. Dit betekent dat zolang `bericht` niet wijzigt en de waarde van de berekende eigenschap `omgekeerdBericht` wordt meerdere keren opgevraagd, dan zal onmiddellijk het vorige berekende resultaat teruggeven worden zonder dat de functie opnieuw uitgevoerd wordt.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Dit betekent ook dat onderstaande berekende eigenschap nooit zal wijzigen, aangezien `Date.now()` geen reactieve afhankelijkheid is:
 
 ``` js
 computed: {
-  now: function () {
+  nu: function () {
     return Date.now()
   }
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Ter vergelijking, het oproepen van een methode zal **altijd** de functie uitvoeren wanneer een wijziging uitgevoerd wordt.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+Waarom is caching nodig? Stel, er is een berekende eigenschap **A** waarin er veel handelingen gebeuren. Er wordt doorheen een grote 'array' gelopen waarin er veel berekeningen gedaan worden. Er zijn vervolgens meerdere berekende eigenschappen die gebruik maken van **A**. Zonder caching zal de 'getter' van **A** veel vaker uitgevoerd worden dan nodig is! Indien er effectief geen caching nodig is, dan kan een methode gebruikt worden.
 
-### Computed vs Watched Property
+### Berekende eigenschap vs 'watched' eigenschap
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue voorziet een meer generieke manier om wijzigingen in data te observeren en hierop te reageren: **'watch'-eigenschappen** (letterlijk vertaald: eigenschappen die 'bekeken' worden). Wanneer er data is die moet veranderen op basis van andere data, is het verleidelijk om `'watch'` te veel te gebruiken, zeker wanneer er voorkennis is van AngularJS. Vaak is het beter om een berekende eigenschap te gebruiken. Bijvoorbeeld: 
 
 ``` html
-<div id="demo">{{ fullName }}</div>
+<div id="demo">{{ volledigeNaam }}</div>
 ```
 
 ``` js
 var vm = new Vue({
   el: '#demo',
   data: {
-    firstName: 'Foo',
-    lastName: 'Bar',
-    fullName: 'Foo Bar'
+    voornaam: 'John',
+    achternaam: 'Duck',
+    volledigeNaam: 'John Duck'
   },
   watch: {
-    firstName: function (val) {
-      this.fullName = val + ' ' + this.lastName
+    voornaam: function (waarde) {
+      this.volledigeNaam = waarde + ' ' + this.achternaam
     },
-    lastName: function (val) {
-      this.fullName = this.firstName + ' ' + val
+    achternaam: function (waarde) {
+      this.volledigeNaam = this.voornaam + ' ' + waarde
     }
   }
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+Bovenstaande code zorgt ervoor dat bij elke verandering van de voornaam en bij elke verandering van de achternaam, de volledige naam gezet wordt. Vergelijk dit met de versie voor een berekende eigenschap waarbij het aanroepen van de berekende eigenschap `volledigeNaam` zorgt voor het teruggeven van de voornaam en achternaam:
 
 ``` js
 var vm = new Vue({
   el: '#demo',
   data: {
-    firstName: 'Foo',
-    lastName: 'Bar'
+    voornaam: 'John',
+    achternaam: 'Duck'
   },
   computed: {
-    fullName: function () {
-      return this.firstName + ' ' + this.lastName
+    volledigeNaam: function () {
+      return this.voornaam + ' ' + this.achternaam
     }
   }
 })
 ```
 
-Much better, isn't it?
+Beter, niet?
 
-### Computed Setter
+### Berekende 'setter'
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+Berekende eigenschappen zijn standaard 'getter-only' (een waarde kan alleen opgevraagd worden), maar het is ook mogelijk een 'setter' (een waarde toekennen) te voorzien indien nodig:
 
 ``` js
 // ...
 computed: {
-  fullName: {
+  volledigeNaam: {
     // getter
     get: function () {
-      return this.firstName + ' ' + this.lastName
+      return this.voornaam + ' ' + this.achternaam
     },
     // setter
-    set: function (newValue) {
-      var names = newValue.split(' ')
-      this.firstName = names[0]
-      this.lastName = names[names.length - 1]
+    set: function (nieuweWaarde) {
+      var namen = nieuweWaarde.split(' ')
+      this.voornaam = namen[0]
+      this.achternaam = namen[namen.length - 1]
     }
   }
 }
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Wanneer `vm.volledigeNaam = 'John Duck'` uitgevoerd wordt, dan zal de 'setter' aangeroepen worden en `vm.voornaam` en `vm.achternaam` zullen gewijzigd worden.
 
-## Watchers
+## 'Watchers'
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Ook al zijn berekende eigenschappen vaak de geschikte oplossing, er zijn momenten wanneer een 'watcher' nodig is. Daarom voorziet Vue een generieke manier om te reageren op wijzigingen in data via de `watch`-optie. Dit is vooral nuttig wanneer er asynchrone of ingewikkelde operaties uitgevoerd moeten worden als reactie op het wijzigen van data.
 
-For example:
+Bijvoorbeeld:
 
 ``` html
-<div id="watch-example">
+<div id="watch-voorbeeld">
   <p>
-    Ask a yes/no question:
-    <input v-model="question">
+    Stel een ja/nee-vraag:
+    <input v-model="vraag">
   </p>
-  <p>{{ answer }}</p>
+  <p>{{ antwoord }}</p>
 </div>
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to use what you're familiar with. -->
+<!-- Vue core kan klein blijven qua grootte door het wiel niet  -->
+<!-- opnieuw uit te vinden. Dit zorgt ervoor dat er gekozen kan -->
+<!-- worden wat gebruikt wordt.                                 -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
-var watchExampleVM = new Vue({
-  el: '#watch-example',
+var watchVoorbeeldVM = new Vue({
+  el: '#watch-voorbeeld',
   data: {
-    question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    vraag: '',
+    antwoord: 'Het is niet mogelijk om te antwoorden zonder vraag: stel een vraag!'
   },
   watch: {
-    // whenever question changes, this function will run
-    question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
-      this.debouncedGetAnswer()
+    // wanneer een vraag gesteld wordt, zal deze functie uitgevoerd worden
+    vraag: function (nieuweVraag, oudeVraag) {
+      this.antwoord = 'Wachten tot er niet meer getypt wordt ...'
+      this.debouncedAntwoord()
     }
   },
   created: function () {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
-    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+    // _.debounce is een functie voorzien door lodash (tweede script bovenaan)
+    // om te beperken hoe vaak een complexe operatie uitgevoerd kan worden.
+    // In dit geval wordt er een limiet geplaatst op het aantal keer dat
+    // yesno.wtf/api wordt aangeroepen door te wachten tot de gebruiker klaar
+    // is met typen voordat het asynchrone verzoek naar de API wordt ingediend.
+    // Om meer te leren over de functie _.debounce (en het broertje _.throttle),
+    // bezoek: https://lodash.com/docs#debounce
+    this.debouncedAntwoord = _.debounce(this.getAntwoord, 500)
   },
   methods: {
-    getAnswer:  function () {
-      if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+    getAntwoord: function () {
+      if (this.vraag.indexOf('?') === -1) {
+        this.antwoord = 'Vragen bevatten meestal een vraagteken. ;-)'
         return
       }
-      this.answer = 'Thinking...'
+      this.antwoord = 'Aan het nadenken ...'
       var vm = this
       axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
+        .then(function (reactie) {
+          vm.antwoord = _.capitalize(reactie.data.antwoord)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.antwoord = 'Error! Kan de API niet bereiken. ' + error
         })
     }
   }
@@ -249,48 +248,48 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Resultaat:
 
 {% raw %}
-<div id="watch-example" class="demo">
+<div id="watch-voorbeeld" class="demo">
   <p>
-    Ask a yes/no question:
-    <input v-model="question">
+    Stel een ja/nee-vraag:
+    <input v-model="vraag">
   </p>
-  <p>{{ answer }}</p>
+  <p>{{ antwoord }}</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
-var watchExampleVM = new Vue({
-  el: '#watch-example',
+var watchVoorbeeldVM = new Vue({
+  el: '#watch-voorbeeld',
   data: {
-    question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    vraag: '',
+    antwoord: 'Het is niet mogelijk om te antwoorden zonder vraag: stel een vraag!'
   },
   watch: {
-    question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
-      this.debouncedGetAnswer()
+    vraag: function (nieuweVraag, oudeVraag) {
+      this.antwoord = 'Wachten tot er niet meer getypt wordt ...'
+      this.debouncedAntwoord()
     }
   },
   created: function () {
-    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+    this.debouncedAntwoord = _.debounce(this.getAntwoord, 500)
   },
   methods: {
-    getAnswer:  function () {
-      if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+    getAntwoord: function () {
+      if (this.vraag.indexOf('?') === -1) {
+        this.antwoord = 'Vragen bevatten meestal een vraagteken. ;-)'
         return
       }
-      this.answer = 'Thinking...'
+      this.antwoord = 'Aan het nadenken ...'
       var vm = this
       axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
+        .then(function (reactie) {
+          vm.antwoord = _.capitalize(reactie.data.antwoord)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.antwoord = 'Error! Kan de API niet bereiken. ' + error
         })
     }
   }
@@ -298,6 +297,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+In dit geval maakt het gebruik van de `watch`-optie het mogelijk om een asynchrone operatie (praten met een API) uit te voeren. Het limiteert hoe vaak de operatie uitgevoerd kan worden. Het laat toe om tussentijdse resultaten te tonen tot het uiteindelijke antwoord van de API verkregen is. Dit zou niet mogelijk zijn met een berekende eigenschap.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
+Bovenop de `watch`-optie is het ook mogelijk om de [vm.$watch API](../api/#vm-watch) te gebruiken.
