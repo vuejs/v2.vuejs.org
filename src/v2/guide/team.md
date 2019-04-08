@@ -225,6 +225,7 @@ order: 803
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Amsterdam, Netherlands': [4.895168, 52.370216],
+    'Atlanta, GA, USA': [33.7676338, -84.5606888],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
@@ -232,8 +233,10 @@ order: 803
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
     'Denver, CO, USA': [39.739236, -104.990251],
+    'Dublin, Ireland': [53.3239919, -6.5258808],
     'Dubna, Russia': [56.732020, 37.166897],
     'East Lansing, MI, USA': [42.736979, -84.483865],
+    'Fort Worth, TX, USA': [32.800501, -97.5695075],
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
@@ -1173,7 +1176,7 @@ order: 803
     {
       name: 'Gregg Pollack',
       title: '',
-      city: 'Orlando, FL',
+      city: 'Orlando, FL, USA',
       languages: ['en'],
       github: 'gregg',
       twitter: 'greggpollack',
@@ -1190,7 +1193,7 @@ order: 803
     {
       name: 'Adam Jahr',
       title: '',
-      city: 'Orlando, FL',
+      city: 'Orlando, FL, USA',
       languages: ['en'],
       github: 'atomjar',
       twitter: 'adamjahr',
@@ -1379,19 +1382,25 @@ order: 803
         if (!vm.userPosition) return vuers
         var vuersWithDistances = vuers.map(function (vuer) {
           var cityCoords = cityCoordsFor[vuer.city]
+          if (cityCoords) {
+            return Object.assign({}, vuer, {
+              distanceInKm: getDistanceFromLatLonInKm(
+                vm.userPosition.coords.latitude,
+                vm.userPosition.coords.longitude,
+                cityCoords[0],
+                cityCoords[1]
+              )
+            })
+          }
           return Object.assign({}, vuer, {
-            distanceInKm: getDistanceFromLatLonInKm(
-              vm.userPosition.coords.latitude,
-              vm.userPosition.coords.longitude,
-              cityCoords[0],
-              cityCoords[1]
-            )
+            distanceInKm: null
           })
         })
         vuersWithDistances.sort(function (a, b) {
           return (
-            a.distanceInKm -
-            b.distanceInKm
+            a.distanceInKm === null) - (b.distanceInKm === null) ||
+            + (a.distanceInKm > b.distanceInKm) ||
+            - (a.distanceInKm < b.distanceInKm
           )
         })
         return vuersWithDistances
