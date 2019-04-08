@@ -89,8 +89,6 @@ Directive hooks are passed these arguments:
 - `vnode`: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
 - `oldVnode`: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
 
-<p class="tip">Directive arguments can be dynamic. For example, in `v-my-directive:[foo]`, the arg would be the value of the data property `foo` on your component instance. As directive hooks are invoked, the value of `arg` within the `binding` argument will dynamically change based on the value of `foo`.</p>
-
 <p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
 
 An example of a custom directive using some of these properties:
@@ -144,6 +142,37 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+Directive arguments can be dynamic. For example, in `v-mydirective:argument=[dataproperty]`, `argument` is the string value assigned to the *arg* property in your directive hook *binding* parameter and `dataproperty` is a reference to a data property on your component instance assigned to the *value* property in the same *binding* parameter. As directive hooks are invoked, the *value* property of the *binding* parameter will dynamically change based on the value of `dataproperty`.
+
+An example of a custom directive using a dynamic argument:
+
+```html
+<div id="app">
+  <p>Scroll down the page</p>
+  <p v-tack:left="[dynamicleft]">I’ll now be offset from the left instead of the top</p>
+</div>
+```
+
+```js
+Vue.directive('tack', {
+  bind(el, binding, vnode) {
+    el.style.position = 'fixed';
+    const s = (binding.arg == 'left' ? 'left' : 'top');
+    el.style[s] = binding.value + 'px';
+  }
+})
+
+// start app
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      dynamicleft: 500
+    }
+  }
+})
+```
 
 ## Function Shorthand
 
