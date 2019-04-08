@@ -143,6 +143,7 @@ new Vue({
 </script>
 {% endraw %}
 <br>
+
 Directive arguments can be dynamic. For example, in `v-mydirective:argument=[dataproperty]`, `argument` is the string value assigned to the *arg* property in your directive hook *binding* parameter and `dataproperty` is a reference to a data property on your component instance assigned to the *value* property in the same *binding* parameter. As directive hooks are invoked, the *value* property of the *binding* parameter will dynamically change based on the value of `dataproperty`.
 
 An example of a custom directive using a dynamic argument:
