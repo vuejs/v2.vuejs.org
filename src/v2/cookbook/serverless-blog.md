@@ -244,12 +244,12 @@ Updated `<script>` section in `components/BlogPost.vue`:
       }
     },
     watch: {
-      $route(to, from) {
-        this.getPost()
+      $route: {
+        immediate: true,
+        handler(to, from) {
+          this.getPost()
+        }
       }
-    },
-    created() {
-      this.getPost()
     }
   }
 </script>
