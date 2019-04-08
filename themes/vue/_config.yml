@@ -63,6 +63,9 @@ gold_sponsors:
   - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
     name: VueJobs
+  - url: 'https://www.valuecoders.com'
+    img: valuecoders.png
+    name: ValueCoders
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
