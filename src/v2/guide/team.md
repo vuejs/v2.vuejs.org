@@ -225,7 +225,7 @@ order: 803
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Amsterdam, Netherlands': [4.895168, 52.370216],
-    'Atlanta, GA, USA': [33.7676338, -84.5606888],
+    'Atlanta, GA, USA': [33.749051, -84.387858],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
     'Bordeaux, France': [44.837789, -0.579180],
