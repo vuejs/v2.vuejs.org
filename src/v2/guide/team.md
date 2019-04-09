@@ -233,7 +233,7 @@ order: 803
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
     'Denver, CO, USA': [39.739236, -104.990251],
-    'Dublin, Ireland': [53.3239919, -6.5258808],
+    'Dublin, Ireland': [53.349918, -6.260174],
     'Dubna, Russia': [56.732020, 37.166897],
     'East Lansing, MI, USA': [42.736979, -84.483865],
     'Fort Worth, TX, USA': [32.800501, -97.5695075],
