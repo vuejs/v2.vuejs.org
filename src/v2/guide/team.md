@@ -236,7 +236,7 @@ order: 803
     'Dublin, Ireland': [53.349918, -6.260174],
     'Dubna, Russia': [56.732020, 37.166897],
     'East Lansing, MI, USA': [42.736979, -84.483865],
-    'Fort Worth, TX, USA': [32.800501, -97.5695075],
+    'Fort Worth, TX, USA': [32.755331, -97.325735],
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
