@@ -1397,11 +1397,11 @@ order: 803
           })
         })
         vuersWithDistances.sort(function (a, b) {
-          return (
-            a.distanceInKm === null) - (b.distanceInKm === null) ||
-            + (a.distanceInKm > b.distanceInKm) ||
-            - (a.distanceInKm < b.distanceInKm
-          )
+          if (a.distanceInKm && b.distanceInKm) return a.distanceInKm - b.distanceInKm
+          if (a.distanceInKm && !b.distanceInKm) return -1
+          if (!a.distanceInKm && b.distanceInKm) return 1
+          if (a.name < b.name) return -1
+          if (a.name > b.name) return 1
         })
         return vuersWithDistances
       },
