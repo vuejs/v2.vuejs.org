@@ -10,11 +10,11 @@ Terdapat banyak cara sederhana pada sistem transisi Vue untuk animasi masuk, kel
 - posisi node SVG
 - ukuran dan properti lain dari elemen
 
-Semuanya ini bisa saja sudah disimpan sebagai angka mentah (*raw number*) atau belum dikonversi menjadi angka. Ketika kita melakukan hal itu, kita dapat menganimasi perubahan state ini menggunakan pustaka pihak ketiga menjadi *tween state*, dalam kombinasi dengan reaktivitas Vue dan sistem komponennya.
+Semuanya ini bisa saja sudah disimpan sebagai angka mentah (*raw number*) atau belum dikonversi menjadi angka. Ketika kita melakukan hal itu, kita dapat menganimasi perubahan *state* ini menggunakan pustaka pihak ketiga menjadi *tween state*, dalam kombinasi dengan reaktivitas Vue dan sistem komponennya.
 
-## Menganimasi State Menggunakan Watcher
+## Menganimasi *State* Menggunakan *Watcher*
 
-Dengan menggunakan watcher, kita dapat menganimasi perubahan dari properti numerik apapun menjadi properti lain. Hal tersebut terkesan rumit untuk dibayangkan, jadi mari kita pahami contoh berikut menggunakan [GreenSock](https://greensock.com/):
+Dengan menggunakan *watcher*, kita dapat menganimasi perubahan dari properti numerik apapun menjadi properti lain. Hal tersebut terkesan rumit untuk dibayangkan, jadi mari kita pahami contoh berikut menggunakan [GreenSock](https://greensock.com/):
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
@@ -230,9 +230,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## Transisi State Dinamis
+## Transisi *State* Dinamis
 
-Sebagaimana dengan transisi komponen Vue, data yang mendukung transisi state dapat diubah secara waktu nyata (*real time*), yang mana secara khusus berguna untuk membuat prototipe! Meskipun hanya menggunakan poligon SVG sederhana, Anda dapat memperoleh banyak efek yang sulit untuk dihasilkan sampai Anda sedikit bermain dengan variabel.
+Sebagaimana dengan transisi komponen Vue, data yang mendukung transisi *state* dapat diubah secara waktu nyata (*real time*), yang mana secara khusus berguna untuk membuat prototipe! Meskipun hanya menggunakan poligon SVG sederhana, Anda dapat memperoleh banyak efek yang sulit untuk dihasilkan sampai Anda sedikit bermain dengan variabel.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -369,7 +369,7 @@ Lihat [*fiddle* ini](https://jsfiddle.net/chrisvfritz/65gLu2b6/) untuk kode sele
 
 ## Mengatur Transisi dalam Komponen
 
-Mengelola banyak transisi state dapat menambah kerumitan dari sebuah *instance* atau komponen Vue secara singkat. Beruntung, banyak animasi dapat dikeluarkan ke suatu anak komponen yang telah didedikasikan. Mari kita melakukannya dengan animasi integer dari contoh sebelumnya:
+Mengelola banyak transisi *state* dapat menambah kerumitan dari sebuah *instance* atau komponen Vue secara singkat. Beruntung, banyak animasi dapat dikeluarkan ke suatu anak komponen yang telah didedikasikan. Mari kita melakukannya dengan animasi *integer* dari contoh sebelumnya:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -523,7 +523,7 @@ Dalam anak komponen, kita dapat menggunakan kombinasi strategi transisi apapun y
 
 Menganimasi dapat didefinisikan sebagai memberi kehidupan. Sayang sekali, ketika desainer membuat ikon, logo, dan maskot, mereka biasanya menyerahkannya dalam bentuk gambar atau SVG statis. Jadi meskipun *octocat* Github, burung Twitter, dan banyak logo lain menyerupai makhluk hidup, mereka tidak terkesan sungguh-sungguh hidup.
 
-Vue dapat membantu dalam hal ini. Karena SVG hanyalah data, kita cukup memerlukan contoh seperti apa makhluk-makhluk tersebut ketika gembira, berpikir, atau khawatir. Setelah itu, Vue dapat membantu transisi antar statenya, membuat halaman selamat datang, memuat indikator-indikator, dan notifikasi menjadi lebih menarik secara emosional.
+Vue dapat membantu dalam hal ini. Karena SVG hanyalah data, kita cukup memerlukan contoh seperti apa makhluk-makhluk tersebut ketika gembira, berpikir, atau khawatir. Setelah itu, Vue dapat membantu transisi antar *state*-nya, membuat halaman selamat datang, memuat indikator-indikator, dan notifikasi menjadi lebih menarik secara emosional.
 
 Sarah Drasner menunjukannya dalam demo di bawah ini, menggunakan sebuah kombinasi dari perubahan *timed* dan *interactivity-driven state*:
 
