@@ -132,7 +132,7 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
           <article class="media">
             <figure>
               <!-- Bind results using a `:` -->
-              <!-- Use a `v-if`/`else` if their is a `featured_image` -->
+              <!-- Use a `v-if`/`else` if there is a `featured_image` -->
               <img
                 v-if="post.featured_image"
                 :src="post.featured_image"
@@ -244,12 +244,12 @@ Updated `<script>` section in `components/BlogPost.vue`:
       }
     },
     watch: {
-      $route(to, from) {
-        this.getPost()
+      $route: {
+        immediate: true,
+        handler(to, from) {
+          this.getPost()
+        }
       }
-    },
-    created() {
-      this.getPost()
     }
   }
 </script>
