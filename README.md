@@ -17,7 +17,7 @@ If you are the maintainer of a community translation fork and would like to depl
 
 ## On Translations
 
-Translation for this documentation project are currently maintained in separate repositories forked from this original one.
+Translations for this documentation project are currently maintained in separate repositories forked from this original one.
 
 ### Arabic
 
@@ -93,7 +93,7 @@ Vietnamese translation is maintained by [Vue.js Vietnam User group](https://gith
 
 ### Want to help with the translation?
 
-If you feel okay with translating sorta alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/vuejs.org/issues/2015) issue page to inform others that you're doing the translation, and go for it.
+If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/vuejs.org/issues/2015) issue page to inform others that you're doing the translation and go for it.
 
 If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
 
