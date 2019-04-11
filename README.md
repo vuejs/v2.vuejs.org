@@ -17,7 +17,7 @@ If you are the maintainer of a community translation fork and would like to depl
 
 ## On Translations
 
-Translation for this documentation project is currently maintained in separate repositories forked from this original one.
+Translations for this documentation project are currently maintained in separate repositories forked from this original one.
 
 ### Arabic
 
