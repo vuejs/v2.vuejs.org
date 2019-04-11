@@ -46,6 +46,7 @@ Japanese translation is maintained by [Vue.js japan user group](https://github.c
 * Secondary Maintainers:
     * [re-fort](https://github.com/re-fort)
     * [potato4d](https://github.com/potato4d)
+    * [oohira](https://github.com/oohira)
 
 ### Korean
 
