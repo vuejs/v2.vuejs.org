@@ -1,21 +1,20 @@
 ---
-title: State Transitions
+title: Transisi State
 type: guide
 order: 202
 ---
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+Terdapat banyak cara sederhana pada sistem transisi Vue untuk animasi masuk, keluar dan daftar, tetapi bagaimana dengan menganimasi data Anda sendiri? Sebagai contoh:
+- angka dan kalkulasi
+- warna yang ditampilkan
+- posisi node SVG
+- ukuran dan properti lain dari elemen
 
-- numbers and calculations
-- colors displayed
-- the positions of SVG nodes
-- the sizes and other properties of elements
+Semuanya ini bisa saja sudah disimpan sebagai angka mentah (*raw number*) atau belum dikonversi menjadi angka. Ketika kita melakukan hal itu, kita dapat menganimasi perubahan *state* ini menggunakan pustaka pihak ketiga menjadi *tween state*, dalam kombinasi dengan reaktivitas Vue dan sistem komponennya.
 
-All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
+## Menganimasi *State* Menggunakan *Watcher*
 
-## Animating State with Watchers
-
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [GreenSock](https://greensock.com/):
+Dengan menggunakan *watcher*, kita dapat menganimasi perubahan dari properti numerik apapun menjadi properti lain. Hal tersebut terkesan rumit untuk dibayangkan, jadi mari kita pahami contoh berikut menggunakan [GreenSock](https://greensock.com/):
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
@@ -73,7 +72,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with [Tween.js](https://github.com/tweenjs/tween.js) and [Color.js](https://github.com/brehaut/color-js):
+Ketika Anda mengubah angka, perubahannya dianimasi di bawah input. Ini demo yang baik, tetapi bagaimana dengan sesuatu yang tidak secara langsung disimpan sebagai angka, seperti warna valid CSS sebagai contoh? Berikut ini adalah bagaimana kita dapat menyelesaikannya menggunakan [Tween.js](https://github.com/tweenjs/tween.js) dan [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -83,10 +82,10 @@ When you update the number, the change is animated below the input. This makes f
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Enter a color"
+    placeholder="Masukkan sebuah warna"
   >
-  <button v-on:click="updateColor">Update</button>
-  <p>Preview:</p>
+  <button v-on:click="updateColor">Ubah</button>
+  <p>Pratinjau:</p>
   <span
     v-bind:style="{ backgroundColor: tweenedCSSColor }"
     class="example-7-color-preview"
@@ -162,10 +161,10 @@ new Vue({
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Enter a color"
+    placeholder="Masukkan sebuah warna"
   >
-  <button v-on:click="updateColor">Update</button>
-  <p>Preview:</p>
+  <button v-on:click="updateColor">Ubah</button>
+  <p>Pratinjau:</p>
   <span
     v-bind:style="{ backgroundColor: tweenedCSSColor }"
     class="example-7-color-preview"
@@ -231,9 +230,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## Dynamic State Transitions
+## Transisi *State* Dinamis
 
-As with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+Sebagaimana dengan transisi komponen Vue, data yang mendukung transisi *state* dapat diubah secara waktu nyata (*real time*), yang mana secara khusus berguna untuk membuat prototipe! Meskipun hanya menggunakan poligon SVG sederhana, Anda dapat memperoleh banyak efek yang sulit untuk dihasilkan sampai Anda sedikit bermain dengan variabel.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -242,7 +241,7 @@ As with Vue's transition components, the data backing state transitions can be u
     <polygon :points="points" class="demo-polygon"></polygon>
     <circle cx="100" cy="100" r="90" class="demo-circle"></circle>
   </svg>
-  <label>Sides: {{ sides }}</label>
+  <label>Sisi: {{ sides }}</label>
   <input
     class="demo-range-input"
     type="range"
@@ -250,7 +249,7 @@ As with Vue's transition components, the data backing state transitions can be u
     max="500"
     v-model.number="sides"
   >
-  <label>Minimum Radius: {{ minRadius }}%</label>
+  <label>Radius Minimal: {{ minRadius }}%</label>
   <input
     class="demo-range-input"
     type="range"
@@ -258,7 +257,7 @@ As with Vue's transition components, the data backing state transitions can be u
     max="90"
     v-model.number="minRadius"
   >
-  <label>Update Interval: {{ updateInterval }} milliseconds</label>
+  <label>Interval Perubahan: {{ updateInterval }} milliseconds</label>
   <input
     class="demo-range-input"
     type="range"
@@ -366,11 +365,11 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+Lihat [*fiddle* ini](https://jsfiddle.net/chrisvfritz/65gLu2b6/) untuk kode selengkapnya dari demo di atas.
 
-## Organizing Transitions into Components
+## Mengatur Transisi dalam Komponen
 
-Managing many state transitions can quickly increase the complexity of a Vue instance or component. Fortunately, many animations can be extracted out into dedicated child components. Let's do this with the animated integer from our earlier example:
+Mengelola banyak transisi *state* dapat menambah kerumitan dari sebuah *instance* atau komponen Vue secara singkat. Beruntung, banyak animasi dapat dikeluarkan ke suatu anak komponen yang telah didedikasikan. Mari kita melakukannya dengan animasi *integer* dari contoh sebelumnya:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -388,11 +387,10 @@ Managing many state transitions can quickly increase the complexity of a Vue ins
 ```
 
 ``` js
-// This complex tweening logic can now be reused between
-// any integers we may wish to animate in our application.
-// Components also offer a clean interface for configuring
-// more dynamic transitions and complex transition
-// strategies.
+// Logika tweening yang rumit ini kini dapat digunakan kembali di antara
+// integer apapun yang kita inginkan untuk dianimasikan dalam aplikasi kita.
+// Komponen juga menawarkan sebuah antarmuka yang bersih untuk mengkonfigurasi
+// lebih banyak strategi transisi dinamis dan transisi rumit
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
   props: {
@@ -435,7 +433,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// All complexity has now been removed from the main Vue instance!
+// Semua kerumitan telah dihilangkan dari instance utama Vue!
 new Vue({
   el: '#example-8',
   data: {
@@ -519,15 +517,15 @@ new Vue({
 </script>
 {% endraw %}
 
-Within child components, we can use any combination of transition strategies that have been covered on this page, along with those offered by Vue's [built-in transition system](transitions.html). Together, there are very few limits to what can be accomplished.
+Dalam anak komponen, kita dapat menggunakan kombinasi strategi transisi apapun yang telah tercakup pada halaman ini, bersama dengan yang ditawarkan oleh [sistem transisi *built-in* Vue](transitions.html). Dengan demikian, batasan menjadi minim dari apa yang bisa diperoleh.
 
-## Bringing Designs to Life
+## Menghidupkan Desain
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+Menganimasi dapat didefinisikan sebagai memberi kehidupan. Sayang sekali, ketika desainer membuat ikon, logo, dan maskot, mereka biasanya menyerahkannya dalam bentuk gambar atau SVG statis. Jadi meskipun *octocat* Github, burung Twitter, dan banyak logo lain menyerupai makhluk hidup, mereka tidak terkesan sungguh-sungguh hidup.
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue dapat membantu dalam hal ini. Karena SVG hanyalah data, kita cukup memerlukan contoh seperti apa makhluk-makhluk tersebut ketika gembira, berpikir, atau khawatir. Setelah itu, Vue dapat membantu transisi antar *state*-nya, membuat halaman selamat datang, memuat indikator-indikator, dan notifikasi menjadi lebih menarik secara emosional.
 
-Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+Sarah Drasner menunjukannya dalam demo di bawah ini, menggunakan sebuah kombinasi dari perubahan *timed* dan *interactivity-driven state*:
 
 <p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
