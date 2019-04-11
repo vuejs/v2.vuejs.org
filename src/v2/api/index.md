@@ -902,7 +902,7 @@ type: api
 
 - **Details:**
 
-  Called when a kept-alive component is deactivated.
+  It is called when a kept-alive component is deactivated.
 
   **This hook is not called during server-side rendering.**
 
@@ -1008,7 +1008,7 @@ type: api
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Mixin hooks are called in the order they are provided and called before the component's own hooks.
 
 - **Example:**
 
@@ -1219,7 +1219,7 @@ type: api
 
 - **Details:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+  Causes a component to be stateless (no `data`) and contextless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
 
 - **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
 
@@ -1231,7 +1231,7 @@ type: api
 
 - **Details:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid conflict in such cases.
 
 - **Example:**
 
@@ -1278,7 +1278,7 @@ type: api
 
 - **Details:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  By default, parent scope attribute bindings that are not recognized as props will "fall through" and be applied to the root element of the child component as standard HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behaviour. By setting `inheritAttrs` to `false`, this default behaviour can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
 
   Note: this option does **not** affect `class` and `style` bindings.
 
@@ -1316,7 +1316,7 @@ type: api
 
 - **Details:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  An object is representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
 ### vm.$el
 
@@ -1336,7 +1336,7 @@ type: api
 
 - **Details:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  The instantiation options used for the current Vue instance. This option is useful when you want to include custom properties in the options:
 
   ``` js
   new Vue({
@@ -1447,7 +1447,7 @@ type: api
 
   1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
 
-  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactor to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **See also:**
   - [`<slot>` Component](#slot)
@@ -1643,7 +1643,7 @@ type: api
 
 - **Usage:**
 
-  Remove custom event listener(s).
+  Remove a custom event listener(s).
 
   - If no arguments are provided, remove all event listeners;
 
@@ -2564,7 +2564,7 @@ Used to denote a `<template>` element as a scoped slot.
 
   `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Note: Every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
 
   `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
