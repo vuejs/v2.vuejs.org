@@ -206,7 +206,7 @@ En aplicaciones grandes, es posible que tengamos que dividir la aplicación en p
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // Pasa la definición del componente a la función callback `resolve`
     resolve({
       template: '<div>¡Soy asíncrono!</div>'
     })
