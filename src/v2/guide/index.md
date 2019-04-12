@@ -22,14 +22,14 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
 
-```html
+``` html
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 or:
 
-```html
+``` html
 <!-- production version, optimized for size and speed -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
@@ -44,23 +44,20 @@ If you prefer something more interactive, you can also check out [this tutorial 
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
-```html
+``` html
 <div id="app">
   {{ message }}
 </div>
 ```
-
-```js
+``` js
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!',
-  },
-});
+    message: 'Hello Vue!'
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app" class="demo">
   {{ message }}
 </div>
@@ -78,26 +75,23 @@ We have already created our very first Vue app! This looks pretty similar to ren
 
 In addition to text interpolation, we can also bind element attributes like this:
 
-```html
+``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound
-    title!
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
   </span>
 </div>
 ```
-
-```js
+``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString(),
-  },
-});
+    message: 'You loaded this page on ' + new Date().toLocaleString()
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app-2" class="demo">
   <span v-bind:title="message">
     Hover your mouse over me for a few seconds to see my dynamically bound title!
@@ -123,23 +117,22 @@ If you open up your JavaScript console again and enter `app2.message = 'some new
 
 It's easy to toggle the presence of an element, too:
 
-```html
+``` html
 <div id="app-3">
   <span v-if="seen">Now you see me</span>
 </div>
 ```
 
-```js
+``` js
 var app3 = new Vue({
   el: '#app-3',
   data: {
-    seen: true,
-  },
-});
+    seen: true
+  }
+})
 ```
 
 {% raw %}
-
 <div id="app-3" class="demo">
   <span v-if="seen">Now you see me</span>
 </div>
@@ -159,7 +152,7 @@ This example demonstrates that we can bind data to not only text and attributes,
 
 There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
 
-```html
+``` html
 <div id="app-4">
   <ol>
     <li v-for="todo in todos">
@@ -168,22 +161,19 @@ There are quite a few other directives, each with its own special functionality.
   </ol>
 </div>
 ```
-
-```js
+``` js
 var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
       { text: 'Learn JavaScript' },
       { text: 'Learn Vue' },
-      { text: 'Build something awesome' },
-    ],
-  },
-});
+      { text: 'Build something awesome' }
+    ]
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app-4" class="demo">
   <ol>
     <li v-for="todo in todos">
@@ -213,32 +203,26 @@ In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a 
 
 To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
 
-```html
+``` html
 <div id="app-5">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 ```
-
-```js
+``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!',
+    message: 'Hello Vue.js!'
   },
   methods: {
-    reverseMessage: function() {
-      this.message = this.message
-        .split('')
-        .reverse()
-        .join('');
-    },
-  },
-});
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">Reverse Message</button>
@@ -262,24 +246,21 @@ Note that in this method we update the state of our app without touching the DOM
 
 Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
 
-```html
+``` html
 <div id="app-6">
   <p>{{ message }}</p>
-  <input v-model="message" />
+  <input v-model="message">
 </div>
 ```
-
-```js
+``` js
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!',
-  },
-});
+    message: 'Hello Vue!'
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app-6" class="demo">
   <p>{{ message }}</p>
   <input v-model="message">
@@ -304,16 +285,16 @@ The component system is another important concept in Vue, because it's an abstra
 
 In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
 
-```js
+``` js
 // Define a new component called todo-item
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>',
-});
+  template: '<li>This is a todo</li>'
+})
 ```
 
 Now you can compose it in another component's template:
 
-```html
+``` html
 <ol>
   <!-- Create an instance of the todo-item component -->
   <todo-item></todo-item>
@@ -322,19 +303,19 @@ Now you can compose it in another component's template:
 
 But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
 
-```js
+``` js
 Vue.component('todo-item', {
   // The todo-item component now accepts a
   // "prop", which is like a custom attribute.
   // This prop is called todo.
   props: ['todo'],
-  template: '<li>{{ todo.text }}</li>',
-});
+  template: '<li>{{ todo.text }}</li>'
+})
 ```
 
 Now we can pass the todo into each repeated component using `v-bind`:
 
-```html
+``` html
 <div id="app-7">
   <ol>
     <!--
@@ -351,12 +332,11 @@ Now we can pass the todo into each repeated component using `v-bind`:
   </ol>
 </div>
 ```
-
-```js
+``` js
 Vue.component('todo-item', {
   props: ['todo'],
-  template: '<li>{{ todo.text }}</li>',
-});
+  template: '<li>{{ todo.text }}</li>'
+})
 
 var app7 = new Vue({
   el: '#app-7',
@@ -364,14 +344,12 @@ var app7 = new Vue({
     groceryList: [
       { id: 0, text: 'Vegetables' },
       { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' },
-    ],
-  },
-});
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
 ```
-
 {% raw %}
-
 <div id="app-7" class="demo">
   <ol>
     <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
@@ -399,7 +377,7 @@ This is a contrived example, but we have managed to separate our app into two sm
 
 In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
 
-```html
+``` html
 <div id="app">
   <app-nav></app-nav>
   <app-view>
