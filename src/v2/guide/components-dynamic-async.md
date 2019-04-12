@@ -1,20 +1,20 @@
 ---
-title: Dynamic & Async Components
+title: Componentes Dinámicos & Asíncronos
 type: guide
 order: 105
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Léa eso primero si usted es nuevo con respecto a componentes.
 
-## `keep-alive` with Dynamic Components
+## `keep-alive` con Componentes Dinámicos
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+Anteriormente, usamos el atributo `is` para cambiar entre componentes en una interfaz con pestañas:
 
 ```html
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+Sin embargo, al cambiar entre estos componentes, a veces querrá mantener su estado o evitar la renderización múltiple por motivos de rendimiento. Por ejemplo, al expandir nuestra interfaz con pestañas:
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -30,24 +30,24 @@ When switching between these components though, you'll sometimes want to maintai
   ></component>
 </div>
 <script>
-Vue.component('tab-posts', {
+Vue.component('tab-publicaciones', {
   data: function () {
     return {
       posts: [
         {
           id: 1,
-          title: 'Cat Ipsum',
-          content: '<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>'
+          title: 'Gato Ipsum',
+          content: '<p>No espere a que pase la tormenta, bailen bajo la lluvia, patéen la basura, decidan no querer nada que ver con mi dueño. Hoy exijan que nos dejen salir de inmediato, y esperen que el dueño me espere mientras pienso en eso gato gato moo moo lick las orejas lamen las patas, así que hagan memes, hagan una cara bonita pero lamen los otros gatos. Kitty Poochy persigue errores imaginarios, pero se para frente a la pantalla de la computadora. Dulce bestia, perro, perro, odio, ratón, comer, cuerdas, barf, almohada, baños, odio, todo, mirar fijamente, cobayas. Falta la rosquilla de la izquierda, como la de mi derecha, la amó, la odió, la amó, la odió, se deslizó a tope sobre la alfombra, no el gatito.</p>'
         },
         {
           id: 2,
           title: 'Hipster Ipsum',
-          content: '<p>Bushwick blue bottle scenester helvetica ugh, meh four loko. Put a bird on it lumbersexual franzen shabby chic, street art knausgaard trust fund shaman scenester live-edge mixtape taxidermy viral yuccie succulents. Keytar poke bicycle rights, crucifix street art neutra air plant PBR&B hoodie plaid venmo. Tilde swag art party fanny pack vinyl letterpress venmo jean shorts offal mumblecore. Vice blog gentrify mlkshk tattooed occupy snackwave, hoodie craft beer next level migas 8-bit chartreuse. Trust fund food truck drinking vinegar gochujang.</p>'
+          content: '<p>Bushwick botella azul scenester helvetica ugh, meh cuatro loko. Ponga un pájaro en él lumbersexual franzen shabby chic, arte callejero fondo de fideicomiso chamán scenester live-edge mixtape taxidermy viral yuccie succulents. Keytar atraviesa los derechos de la bicicleta, crucifijo arte callejero neutra aire planta PBR y B sudadera con capucha a cuadros venmo. Tilde swag art party fanny pack vinilo tipografía venmo jean shorts mumblecore. Vice blog gentrify mlkshk tatuado ocupa snackwave, cerveza artesanal con capucha en el siguiente nivel migas chartreuse de 8 bits. Fideicomiso de alimentos de camiones de consumo de vinagre gochujang.</p>'
         },
         {
           id: 3,
-          title: 'Cupcake Ipsum',
-          content: '<p>Icing dessert soufflé lollipop chocolate bar sweet tart cake chupa chups. Soufflé marzipan jelly beans croissant toffee marzipan cupcake icing fruitcake. Muffin cake pudding soufflé wafer jelly bear claw sesame snaps marshmallow. Marzipan soufflé croissant lemon drops gingerbread sugar plum lemon drops apple pie gummies. Sweet roll donut oat cake toffee cake. Liquorice candy macaroon toffee cookie marzipan.</p>'
+          title: 'Magdalena Ipsum',
+          content: '<p>Glaseado de postre soufflé paleta de chocolate dulce tarta tarta chupa chups. Soufflé marzipan jelly beans croissant toffee mazapán magdalena glaseado de frutas. Pastel de muffin pudín soufflé oblea jalea oso garra sésamo encaje malvavisco. Mazapán soufflé croissant gotas de limón pan de jengibre azúcar ciruela gotas de limón pastel de manzana gomitas. Rollo dulce pastel de avena pastel toffee pastel. Regaliz caramelo macarrones toffee galleta de mazapán.</p>'
         }
       ],
       selectedPost: null
@@ -74,20 +74,20 @@ Vue.component('tab-posts', {
           <div v-html="selectedPost.content"></div>\
         </div>\
         <strong v-else>\
-          Click on a blog title to the left to view it.\
+          Haga clic en el título de una publicación a la izquierda para verlo.\
         </strong>\
       </div>\
     </div>\
   '
 })
-Vue.component('tab-archive', {
-  template: '<div>Archive component</div>'
+Vue.component('tab-archivo', {
+  template: '<div>Componente de archivo</div>'
 })
 new Vue({
   el: '#dynamic-component-demo',
   data: {
-    currentTab: 'Posts',
-    tabs: ['Posts', 'Archive']
+    currentTab: 'Publicaciones',
+    tabs: ['Publicaciones', 'Archivo']
   },
   computed: {
     currentTabComponent: function () {
@@ -149,9 +149,9 @@ new Vue({
 </style>
 {% endraw %}
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+Notará que si selecciona una publicación, cambie a la pestaña _Archivo_, luego vuelva a _Publicaciones_, ya no se muestra la publicación que seleccionó. Esto se debe a que cada vez que cambia a una nueva pestaña, Vue crea una nueva instancia de `currentTabComponent`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+La recreación de componentes dinámicos suele ser un comportamiento útil, pero en este caso, nos gustaría que esas instancias de componentes de pestañas se almacenen en caché una vez que se crean por primera vez. Para resolver este problema, podemos envolver nuestro componente dinámico con un elemento `<keep-alive>`:
 
 ``` html
 <!-- Inactive components will be cached! -->
@@ -160,7 +160,7 @@ Recreating dynamic components is normally useful behavior, but in this case, we'
 </keep-alive>
 ```
 
-Check out the result below:
+Eche un vistazo a los resultados a continuación:
 
 {% raw %}
 <div id="dynamic-component-keep-alive-demo" class="demo">
@@ -181,8 +181,8 @@ Check out the result below:
 new Vue({
   el: '#dynamic-component-keep-alive-demo',
   data: {
-    currentTab: 'Posts',
-    tabs: ['Posts', 'Archive']
+    currentTab: 'Publicaciones',
+    tabs: ['Publicaciones', 'Archivo']
   },
   computed: {
     currentTabComponent: function () {
@@ -193,49 +193,49 @@ new Vue({
 </script>
 {% endraw %}
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered. See [this fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) for the complete code.
+Ahora la pestaña _Publicaciones_ mantiene su estado (la publicación seleccionada) incluso cuando no está renderizada. Vea [este fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) para ver el código completo.
 
-<p class="tip">Note that `<keep-alive>` requires the components being switched between to all have names, either using the `name` option on a component, or through local/global registration.</p>
+<p class="tip">Tenga en cuenta que `<keep-alive>` requiere que los componentes se cambien para que todos tengan nombres, ya sea utilizando la opción de `nombre` en un componente o mediante el registro local/global.</p>
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+Por más detalles sobre `<keep-alive>` eche un vistazo a [Referencia en la API](../api/#keep-alive).
 
-## Async Components
+## Componentes asíncronos
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
+En aplicaciones grandes, es posible que tengamos que dividir la aplicación en partes más pequeñas y solo cargar un componente del servidor cuando sea necesario. Para facilitarlo, Vue le permite definir su componente como una función de fábrica que resuelve de forma asíncrona su definición de componente. Vue solo activará la función de fábrica cuando el componente necesita ser procesado y almacenará el resultado en caché para futuras repeticiones. Por ejemplo:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
     // Pass the component definition to the resolve callback
     resolve({
-      template: '<div>I am async!</div>'
+      template: '<div>¡Soy asíncrono!</div>'
     })
   }, 1000)
 })
 ```
 
-As you can see, the factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+Como puede ver, la función de fábrica recibe una función callback `resolve`, que debe llamarse cuando haya recuperado su definición de componente del servidor. También puede llamar a `reject(motivo)` para indicar que la carga ha fallado. El `setTimeout` aquí es para demostración; Cómo recuperar el componente depende de usted. Un enfoque recomendado es utilizar componentes asíncronos junto con [la funcionalidad de división de código de Webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // Esta sintaxis de requerimiento especial le indicará a Webpack que
+  // divida automáticamente su código construido en paquetes
+  // que se cargan a través de solicitudes Ajax.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can do:
+También puedes devolver una `Promesa` en la función de fábrica, así que con la sintaxis de Webpack 2 y ES2015 puede hacer:
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  // The `import` function returns a Promise.
+  // La función `import` devuelve una Promesa.
   () => import('./my-async-component')
 )
 ```
 
-When using [local registration](components-registration.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+Al usar [registro local](components-registration.html#Local-Registration), también es posible proporcionar directamente una función que devuelva una `Promesa`:
 
 ``` js
 new Vue({
@@ -246,28 +246,28 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+<p class="tip">Si usted es un usuario de <strong>Browserify</strong> que quiere usar componentes asíncronos, su creador desafortunadamente [dejó en claro](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) que la carga asíncrona "no es algo que Browserify nunca apoyará." oficialmente, al menos. La comunidad Browserify ha encontrado [algunas soluciones](https://github.com/vuejs/vuejs.org/issues/620), que pueden ser útiles para aplicaciones existentes y complejas. Para todos los demás escenarios, recomendamos el uso de Webpack para el soporte asíncrono integrado de primera clase.</p>
 
-### Handling Loading State
+### Manejo del estado de carga
 
-> New in 2.3.0+
+> Nuevo en 2.3.0+
 
-The async component factory can also return an object of the following format:
+La fábrica de componentes asíncronos también puede devolver un objeto con el siguiente formato:
 
 ``` js
 const AsyncComponent = () => ({
-  // The component to load (should be a Promise)
+  // El componente a cargar (debe ser una Promesa)
   component: import('./MyComponent.vue'),
-  // A component to use while the async component is loading
+  // Un componente para usar mientras se carga el componente asíncrono
   loading: LoadingComponent,
-  // A component to use if the load fails
+  // Un componente para usar si la carga falla.
   error: ErrorComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // Retraso antes de mostrar el componente de carga. Predeterminado: 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // El componente de error se mostrará si se proporciona un tiempo de espera
+  // excedido. Predeterminado: Infinito.
   timeout: 3000
 })
 ```
 
-> Note that you must use [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ if you wish to use the above syntax for route components.
+> Observe que debe usar [Vue Router](https://github.com/vuejs/vue-router) 2.4.0+ si desea usar la sintaxis previa para componentes de ruta.
