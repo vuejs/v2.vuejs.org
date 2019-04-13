@@ -304,7 +304,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+### Vermijd `v-if` met `v-for` <sup data-p="a">essentieel</sup>
 
 **Never use `v-if` on the same element as `v-for`.**
 
