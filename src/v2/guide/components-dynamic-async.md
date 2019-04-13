@@ -4,7 +4,7 @@ type: guide
 order: 105
 ---
 
-> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Léa eso primero si usted es nuevo con respecto a componentes.
+> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Lea eso primero si usted es nuevo con respecto a componentes.
 
 ## `keep-alive` con Componentes Dinámicos
 
