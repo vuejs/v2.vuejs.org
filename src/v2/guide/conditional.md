@@ -1,56 +1,56 @@
 ---
-title: Conditional Rendering
+title: Conditionele weergave
 type: guide
 order: 7
 ---
 
 ## `v-if`
 
-The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
+De 'directive' `v-if` wordt gebruikt om een blok van code conditioneel weer te geven. Het blok zal alleen weergegeven worden wanneer de expressie van de 'directive' 'truthy' is.
 
 ``` html
-<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-if="geweldig">Vue is geweldig!</h1>
 ```
 
-It is also possible to add an "else block" with `v-else`:
+Het is ook mogelijk om een 'else'-blok toe te voegen met `v-else`:
 
 ``` html
-<h1 v-if="awesome">Vue is awesome!</h1>
-<h1 v-else>Oh no 😢</h1>
+<h1 v-if="geweldig">Vue is geweldig!</h1>
+<h1 v-else>Oh nee!</h1>
 ```
 
-### Conditional Groups with `v-if` on `<template>`
+### Conditionele groepen met `v-if` en `<template>`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Omdat `v-if` een 'directive' is, moet het aan één element gekoppeld worden. Wat als er meerdere elementen wel of niet weergegeven moeten worden? Dan is het mogelijk om `v-if` te gebruiken op een `<template>`-element, dit dient als een onzichtbare verpakking rondom alle elementen. Het uiteindelijk weergegeven resultaat zal geen `<template>`-element bevatten.
 
 ``` html
 <template v-if="ok">
-  <h1>Title</h1>
-  <p>Paragraph 1</p>
-  <p>Paragraph 2</p>
+  <h1>Titel</h1>
+  <p>Paragraaf 1</p>
+  <p>Paragraaf 2</p>
 </template>
 ```
 
 ### `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Met de 'directive' `v-else` kan een 'else'-blok aangegeven worden voor `v-if`:
 
 ``` html
 <div v-if="Math.random() > 0.5">
-  Now you see me
+  Nu is het zichtbaar
 </div>
 <div v-else>
-  Now you don't
+  Nu is het niet zichtbaar
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+Een `v-else`-element moet direct geplaatst worden na een `v-if`- of een `v-else-if`-element, anders zal het niet herkend worden.
 
 ### `v-else-if`
 
-> New in 2.1.0+
+> Nieuw in 2.1.0+
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+De `v-else-if`, zoals de naam doet vermoeden, dient als een 'else if'-blok voor `v-if`. Het kan meerdere keren na elkaar gebruikt worden:
 
 ```html
 <div v-if="type === 'A'">
@@ -63,130 +63,130 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
   C
 </div>
 <div v-else>
-  Not A/B/C
+  Niet A/B/C
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+Net zoals `v-else` moet een `v-else-if`-element direct geplaatst worden na een `v-if`- of een `v-else-if`-element.
 
-### Controlling Reusable Elements with `key`
+### Beheren van herbruikbare elementen met `key`
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue probeert elementen zo efficiënt mogelijk weer te geven, vaak worden elementen hergebruikt in plaats van alles vanaf nul op te bouwen. Buiten dat het helpt om Vue zeer snel te maken, kan dit nuttige voordelen hebben. Bijvoorbeeld, als gebruikers de keuze hebben uit meerdere logintypes:
 
 ``` html
-<template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username">
+<template v-if="loginType === 'gebruikersnaam'">
+  <label>Gebruikersnaam</label>
+  <input placeholder="John Duck">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address">
+  <label>E-mail</label>
+  <input placeholder="vuejs@bartduisters.com">
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+Wanneer `loginType` gewisseld wordt, dan zal de ingevoerde waarde behouden blijven aangezien beide 'template'-elementen dezelfde elementen bevatten. Het `<input>`-element wordt niet vervangen, alleen de `placeholder`.
 
-Check it out for yourself by entering some text in the input, then pressing the toggle button:
+Bekijk het door tekst in te voeren en op de knop 'Logintype wisselen' te klikken:
 
 {% raw %}
-<div id="no-key-example" class="demo">
+<div id="geen-key-voorbeeld" class="demo">
   <div>
-    <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username">
+    <template v-if="loginType === 'gebruikersnaam'">
+      <label>Gebruikersnaam</label>
+      <input placeholder="John Duck">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address">
+      <label>E-mail</label>
+      <input placeholder="vuejs@bartduisters.com">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="wisselLoginType">Logintype wisselen</button>
 </div>
 <script>
 new Vue({
-  el: '#no-key-example',
+  el: '#geen-key-voorbeeld',
   data: {
-    loginType: 'username'
+    loginType: 'gebruikersnaam'
   },
   methods: {
-    toggleLoginType: function () {
-      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    wisselLoginType: function () {
+      return this.loginType = this.loginType === 'gebruikersnaam' ? 'e-mail' : 'gebruikersnaam'
     }
   }
 })
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Add a `key` attribute with unique values:
+Dit is niet altijd het gewenste resultaat. Vue voorziet een manier om aan te geven dat twee elementen volledig verschillend zijn (en hierdoor zullen de elementen niet hergebruikt worden). Dit kan door een `key`-attribuut met een unieke waarde toe te voegen:
 
 ``` html
-<template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+<template v-if="loginType === 'gebruikersnaam'">
+  <label>Gebruikersnaam</label>
+  <input placeholder="John Duck" key="gebruikersnaam-input">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <label>E-mail</label>
+  <input placeholder="vuejs@bartduisters.com" key="e-mail-input">
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+In dit voorbeeld zullen beide elementen altijd van nul af aan opgebouwd worden:
 
 {% raw %}
-<div id="key-example" class="demo">
+<div id="key-voorbeeld" class="demo">
   <div>
-    <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+    <template v-if="loginType === 'gebruikersnaam'">
+      <label>Gebruikersnaam</label>
+      <input placeholder="John Duck" key="gebruikersnaam-input">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <label>E-mail</label>
+      <input placeholder="vuejs@bartduisters.com" key="email-input">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="wisselLoginType">Logintype wisselen</button>
 </div>
 <script>
 new Vue({
-  el: '#key-example',
+  el: '#key-voorbeeld',
   data: {
-    loginType: 'username'
+    loginType: 'gebruikersnaam'
   },
   methods: {
-    toggleLoginType: function () {
-      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    wisselLoginType: function () {
+      return this.loginType = this.loginType === 'gebruikersnaam' ? 'e-mail' : 'gebruikersnaam'
     }
   }
 })
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+Merk op dat de `<label>`-elementen nog steeds efficiënt hergebruikt worden, aangezien de elementen geen `key`-attribuut hebben.
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Een andere optie om een element conditioneel weer te geven is de 'directive' `v-show`. Het gebruik is grotendeels hetzelfde:
 
 ``` html
-<h1 v-show="ok">Hello!</h1>
+<h1 v-show="ok">Hallo!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+Het verschil is dat `v-show` het element altijd zal weergeven en het element zal altijd in het DOM blijven. `v-show` wisselt alleen de `display`-eigenschap van het element.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` element, nor does it work with `v-else`.</p>
+<p class="tip">Merk op dat `v-show` geen ondersteuning heeft voor het `<template>`-element, het is ook niet compatibel met `v-else`.</p>
 
 ## `v-if` vs `v-show`
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` is een "echte" conditionele weergave, aangezien het zorgt dat 'event listeners' en 'child'-componenten in het conditionele blok effectief verwijdert worden en opnieuw opgebouwd worden bij het wisselen van de zichtbaarheid.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` is **'lazy'**: als de conditie 'false' is bij de initiële weergave, dan zal het niks doen. Het conditionele blok zal niet weergegeven worden tot de conditie 'true' wordt.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+Ter vergelijking, `v-show` is veel eenvoudiger. Het element wordt altijd weergegeven ongeacht van de initiële conditie.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+Over het algemeen, `v-if` heeft een hogere kost terwijl `v-show` een hogere initiële kost heeft. Verkies `v-show` als iets vaak gewisseld moet worden qua zichtbaarheid en verkies `v-if` wanneer het onwaarschijnlijk is dat de conditie gaat wisselen nadat de applicatie gestart is.
 
-## `v-if` with `v-for`
+## `v-if` met `v-for`
 
-<p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
+<p class="tip">Het gebruik van `v-if` en `v-for` tegelijkertijd is **niet aangeraden**. Bekijk de [stijlgids](/v2/style-guide/#Vermijd-v-if-met-v-for-essentieel) voor meer informatie.</p>
 
-When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+Wanneer `v-if` en `v-for` samen gebruikt worden, dan heeft `v-if` een hogere prioriteit. Bekijk de <a href="../guide/list.html#v-for-met-v-if">gids voor het weergeven van een lijst</a> voor meer informatie.
