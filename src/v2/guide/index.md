@@ -16,7 +16,7 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 ## Getting Started
 
-<a class="button" href="/v2/guide/installation.html">Installation</a>
+<a class="button" href="installation.html">Installation</a>
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
