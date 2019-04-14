@@ -44,11 +44,6 @@ var example1 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-1'))
-    }
   }
 })
 </script>
@@ -94,11 +89,6 @@ var example2 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-2'))
-    }
   }
 })
 </script>
