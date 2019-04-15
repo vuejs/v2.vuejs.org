@@ -791,13 +791,13 @@ order: 803
     {
       name: 'James McGlasson',
       title: 'Head of Marketing Communications',
-      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHxi_fy33l5Mg/profile-displayphoto-shrink_800_800/0?e=1556150400&v=beta&t=KADJ_7nuWuYFPQaKtK7QuI96iC0gPKc198GZ-_dXr_0',
       city: 'Amsterdam, Netherlands',
       languages: ['en', 'nl', 'de'],
       work: {
         role: 'Head Of Marketing Communications',
         org: 'Vue.js Amsterdam'
       },
+      twitter: 'jamesvuejs',
       linkedin: 'jdog',
       links: [
         'https://vuejs.amsterdam'
