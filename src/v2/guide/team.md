@@ -627,6 +627,25 @@ order: 803
         'https://phanan.net/'
       ]
     },
+    {
+      name: 'Natalia Tepluhina',
+      title: 'Fox Tech Guru',
+      city: 'Kyiv, Ukraine',
+      languages: ['uk', 'ru', 'en'],
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      work: {
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab',
+        orgUrl: 'https://gitlab.com/'
+      },
+      github: 'NataliaTepluhina',
+      twitter: 'N_Tepluhina',
+      links: [
+        'https://vuevixens.org/'
+      ]
+    }
   ]))
 
   var emeriti = shuffle([
@@ -798,25 +817,6 @@ order: 803
       links: [
         'https://vuevixens.org/',
         'https://nativescript-vue.org/'
-      ]
-    },
-    {
-      name: 'Natalia Tepluhina',
-      title: 'Fox Tech Guru',
-      city: 'Kyiv, Ukraine',
-      languages: ['uk', 'ru', 'en'],
-      reposOfficial: [
-        'vuejs.org'
-      ],
-      work: {
-        role: 'Senior Frontend Engineer',
-        org: 'GitLab',
-        orgUrl: 'https://gitlab.com/'
-      },
-      github: 'NataliaTepluhina',
-      twitter: 'N_Tepluhina',
-      links: [
-        'https://vuevixens.org/'
       ]
     },
     {
