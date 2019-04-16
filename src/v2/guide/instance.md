@@ -1,5 +1,5 @@
 ---
-title: The Vue Instance
+title: Vue Örneği
 type: guide
 order: 3
 ---

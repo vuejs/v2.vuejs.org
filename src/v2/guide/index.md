@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Giriş
 type: guide
 order: 2
 ---
