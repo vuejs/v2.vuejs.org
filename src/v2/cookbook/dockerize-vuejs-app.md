@@ -23,7 +23,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # install project dependencies
-RUN npm install
+RUN npm ci
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
@@ -66,7 +66,7 @@ Let's refactor our `Dockerfile` to use NGINX:
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 
