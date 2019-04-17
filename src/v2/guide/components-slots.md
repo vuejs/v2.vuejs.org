@@ -4,21 +4,21 @@ type: guide
 order: 104
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Lea eso primero si usted es nuevo con respecto a componentes.
 
-## Slot Content
+## Contenido del Slot
 
-Vue implements a content distribution API that's modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.
+Vue implementa una API de distribución de contenido que se modela después del [Borrador de especificaciones de componentes web](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) actual, usando el elemento `<slot>` para servir como puntos de distribución para el contenido.
 
-This allows you to compose components like this:
+Esto le permite componer componentes como este:
 
 ``` html
 <navigation-link url="/profile">
-  Your Profile
+  Su Perfil
 </navigation-link>
 ```
 
-Then in the template for `<navigation-link>`, you might have:
+Luego en la plantilla para `<navigation-link>`, es posible que usted tenga:
 
 ``` html
 <a
@@ -29,47 +29,47 @@ Then in the template for `<navigation-link>`, you might have:
 </a>
 ```
 
-When the component renders, the `<slot>` element will be replaced by "Your Profile". Slots can contain any template code, including HTML:
+Cuando el componente renderiza, el elemento `<slot>` será reemplazado por "Su Perfil". Los Slots pueden contener cualquier plantilla de código, incluyendo HTML:
 
 ``` html
 <navigation-link url="/profile">
-  <!-- Add a Font Awesome icon -->
+  <!-- Añadir un ícono de Font Awesome -->
   <span class="fa fa-user"></span>
-  Your Profile
+  Su Perfil
 </navigation-link>
 ```
 
-Or even other components:
+O incluso otros componentes:
 
 ``` html
 <navigation-link url="/profile">
-  <!-- Use a component to add an icon -->
+  <!-- Use un componente para agregar un ícono -->
   <font-awesome-icon name="user"></font-awesome-icon>
-  Your Profile
+  Su Perfil
 </navigation-link>
 ```
 
-If `<navigation-link>` did **not** contain a `<slot>` element, any content passed to it would simply be discarded.
+Si `<navigation-link>` **no** contiene un elemento `<slot>`, cualquier contenido que se le pase será simplemente descartado.
 
-## Named Slots
+## Slots Nombrados
 
-There are times when it's useful to have multiple slots. For example, in a hypothetical `base-layout` component with the following template:
+Hay ocasiones en que es útil tener múltiples slots. Por ejemplo, en un componente hipotético `base-layout` con la siguiente plantilla:
 
 ``` html
 <div class="container">
   <header>
-    <!-- We want header content here -->
+    <!-- Queremos contenido de la cabecera aquí. -->
   </header>
   <main>
-    <!-- We want main content here -->
+    <!-- Queremos contenido principal aquí. -->
   </main>
   <footer>
-    <!-- We want footer content here -->
+    <!-- Queremos contenido de pie de página aquí. -->
   </footer>
 </div>
 ```
 
-For these cases, the `<slot>` element has a special attribute, `name`, which can be used to define additional slots:
+Para estos casos, el elemento `<slot>` tiene un atributo especial, `name`, el cual puede ser usado para definir slots adicionales:
 
 ``` html
 <div class="container">
@@ -85,86 +85,86 @@ For these cases, the `<slot>` element has a special attribute, `name`, which can
 </div>
 ```
 
-To provide content to named slots, we can use the `slot` attribute on a `<template>` element in the parent:
+Para proporcionar contenido a los slots nombrados, se puede usar el atributo `slot` en un elemento `<template>` en el padre:
 
 ```html
 <base-layout>
   <template slot="header">
-    <h1>Here might be a page title</h1>
+    <h1>Aquí podría haber un título de página.</h1>
   </template>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>Un párrafo para el contenido principal.</p>
+  <p>Y otro más.</p>
 
   <template slot="footer">
-    <p>Here's some contact info</p>
+    <p>Aquí hay alguna información de contacto</p>
   </template>
 </base-layout>
 ```
 
-Or, the `slot` attribute can also be used directly on a normal element:
+O, el atributo `slot` también se puede usar directamente en un elemento normal:
 
 ``` html
 <base-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">Aquí podría haber un título de página.</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>Un párrafo para el contenido principal.</p>
+  <p>Y otro más.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">Aquí hay alguna información de contacto</p>
 </base-layout>
 ```
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. In both examples above, the  rendered HTML would be:
+Todavía puede haber un slot sin nombre, que es el **slot predeterminado** que sirve como una salida para todos los contenidos no coincidentes. En los dos ejemplos anteriores, el HTML representado sería:
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>Aquí podría haber un título de página.</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>Un párrafo para el contenido principal.</p>
+    <p>Y otro más.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>Aquí hay alguna información de contacto</p>
   </footer>
 </div>
 ```
 
-## Default Slot Content
+## Contenido del slot por defecto
 
-There are cases when it's useful to provide a slot with default content. For example, a `<submit-button>` component might want the content of the button to be "Submit" by default, but also allow users to override with "Save", "Upload", or anything else.
+Hay casos en los que es útil proporcionar un slot con contenido predeterminado. Por ejemplo, un componente `<submit-button>` puede querer que el contenido del botón sea "Enviar" de forma predeterminada, pero también permite a los usuarios anular el contenido con "Guardar", "Cargar" o cualquier otra cosa.
 
-To achieve this, specify the default content in between the `<slot>` tags in your component's template:
+Para lograr esto, especifique el contenido predeterminado entre las etiquetas `<slot>` en la plantilla de su componente:
 
 ```html
 <button type="submit">
-  <slot>Submit</slot>
+  <slot>Enviar</slot>
 </button>
 ```
 
-If the slot is provided content by the parent, it will replace the default content.
+Si el contenido del slot es proporcionada por el padre, reemplazará el contenido predeterminado.
 
-## Compilation Scope
+## Scope de compilación
 
-When you want to use data inside a slot, such as in:
+Cuando desee utilizar datos dentro de un slot, como en:
 
 ``` html
 <navigation-link url="/profile">
-  Logged in as {{ user.name }}
+  Conectado como {{ user.name }}
 </navigation-link>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work. As a rule, remember that:
+Ese slot tiene acceso a las mismas propiedades de instancia (es decir, el mismo "scope") que el resto de la plantilla. El slot **no** no tiene acceso al scope de `<navigation-link>` '. Por ejemplo, intentar acceder a `url` no funcionaría. Como regla general, recuerda que:
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> Todo en la plantilla padre se compila en el scope del padre; todo en la plantilla hija se compila en el scope del hijo.
 
-## Scoped Slots
+## Slots con Scope
 
-> New in 2.1.0+
+> Nuevo en 2.1.0+
 
-Sometimes you'll want to provide a component with a reusable slot that can access data from the child component. For example, a simple `<todo-list>` component may contain the following in its template:
+A veces querrá crear un componente con un slot reutilizable que pueda acceder a los datos del componente hijo. Por ejemplo, un simple componente `<todo-list>` puede contener lo siguiente en su plantilla:
 
 ```html
 <ul>
@@ -177,9 +177,9 @@ Sometimes you'll want to provide a component with a reusable slot that can acces
 </ul>
 ```
 
-But in some parts of our app, we want the individual todo items to render something different than just the `todo.text`. This is where scoped slots come in.
+Pero en algunas partes de nuestra aplicación, queremos que los elementos individuales de la lista de `todo` realicen algo diferente al `todo.text`. Aquí es donde los slots con scope entran en juego.
 
-To make the feature possible, all we have to do is wrap the todo item content in a `<slot>` element, then pass the slot any data relevant to its context: in this case, the `todo` object:
+Para hacer que la funcionalidad sea posible, todo lo que tenemos que hacer es envolver el contenido del elemento todo en un elemento `<slot>`, luego pasar al slot cualquier dato relevante a su contexto: en este caso, el objeto `todo`:
 
 ```html
 <ul>
@@ -187,35 +187,35 @@ To make the feature possible, all we have to do is wrap the todo item content in
     v-for="todo in todos"
     v-bind:key="todo.id"
   >
-    <!-- We have a slot for each todo, passing it the -->
-    <!-- `todo` object as a slot prop.                -->
+    <!-- Tenemos un slot para cada "todo", pasandolo al -->
+    <!-- objeto `todo` como una propiedad del slot -->
     <slot v-bind:todo="todo">
-      <!-- Fallback content -->
+      <!-- Contenido alternativo -->
       {{ todo.text }}
     </slot>
   </li>
 </ul>
 ```
 
-Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child via the `slot-scope` attribute:
+Ahora, cuando usamos el componente `<todo-list>`, opcionalmente podemos definir un `<template>` alternativo para todos los elementos, pero con acceso a los datos del hijo a través del atributo `slot-scope`:
 
 ```html
 <todo-list v-bind:todos="todos">
-  <!-- Define `slotProps` as the name of our slot scope -->
+  <!-- Defina `slotProps` como el nombre de nuestro slot con scope -->
   <template slot-scope="slotProps">
-    <!-- Define a custom template for todo items, using -->
-    <!-- `slotProps` to customize each todo.            -->
+    <!-- Defina una plantilla personalizada para elementos de la lista de todo, -->
+    <!-- utilizando `slotProps` para personalizar cada elemento. -->
     <span v-if="slotProps.todo.isComplete">✓</span>
     {{ slotProps.todo.text }}
   </template>
 </todo-list>
 ```
 
-> In 2.5.0+, `slot-scope` is no longer limited to the `<template>` element, but can instead be used on any element or component in the slot.
+> En 2.5.0+, `slot-scope` ya no está limitado al elemento` <template> `, sino que puede usarse en cualquier elemento o componente en el slot.
 
-### Destructuring `slot-scope`
+### Destructurando al `slot-scope`
 
-The value of `slot-scope` can actually accept any valid JavaScript expression that can appear in the argument position of a function definition. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
+El valor de `slot-scope` puede aceptar cualquier expresión válida de JavaScript que pueda aparecer en la posición del argumento de una definición de función. Esto significa en entornos compatibles ([componentes de un solo archivo](single-file-components.html) o [navegadores modernos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) usted también puede usar [destructuración ES2015](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) en la expresión, al igual que:
 
 ```html
 <todo-list v-bind:todos="todos">
@@ -226,4 +226,4 @@ The value of `slot-scope` can actually accept any valid JavaScript expression th
 </todo-list>
 ```
 
-This is a great way to make scoped slots a little cleaner.
+Esta es una gran manera de hacer que los slots con scope sean un poco más limpios.
