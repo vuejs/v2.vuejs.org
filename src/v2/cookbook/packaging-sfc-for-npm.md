@@ -1,14 +1,14 @@
 ---
-title: Packaging Vue Components for npm
+title: Paquete de Componentes de Vue para npm
 type: cookbook
 order: 12
 ---
 
 ## Base Example
 
-Vue components by nature are meant to be re-used. This is easy when the component is only used within a single application. But how can you write a component once and use it in multiple sites/applications? Perhaps the easiest solution is via npm.
+Los componentes de Vue están destinados a ser reusados. Es sencillo cuando el componente solo es usado dentro de una aplicación sencilla. ¿Pero como se escribe un componente solo una vez y es usado en múltiples sitios/aplicaciones? Quizá la solución más fácil es via npm.
 
-By packaging your component to be shared via npm, it can be imported/required into a build process for use in full-fledged web applications:
+Al empaquetar su componente para ser compartido vía npm, este se puede importar/requerir en un proceso de compilación para su uso en aplicaciones web completamente desarrolladas.
 
 ```js
 import MyComponent from 'my-component';
@@ -17,11 +17,11 @@ export default {
   components: {
     MyComponent,
   },
-  // rest of the component
+  // resto del componente
 }
 ```
 
-Or even used via `<script>` tag in the browser directly:
+O incluso usados via etiqueta `<script>` directamente en el navegador:
 
 ```html
   <script src="https://unpkg.com/vue"></script>
