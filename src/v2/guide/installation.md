@@ -54,33 +54,33 @@ Production хөгжүүлэлтийн хувьд, тусгай хувилбар�
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Та NPM багцын эх кодыг дараах холбоосоор үзэж болно [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue-ийг мөн дараах байдлаар ашиглах боломжтой [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) болон [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs дээр сүүлийн хувилбарууд sync хийгдээгүй байж болно).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+[Vue-ийн бусад builds](#Explanation-of-Different-Builds) -ийн тухай уншиж **production
+хувилбар** өөрийн published сайт дээр `vue.js` болон `vue.min.js` зэргээр сольж ашиглаарай . Энэ нь илүү жижиг хэмжээтэйгээс гадна хурдан ажиллах болно.
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+Том хэмжээний програмуудыг Vue-тэй хөгжүүлэхэд NPM ашиглан суулгахыг зөвлөж байна. Энэ нь [Webpack](https://webpack.js.org/) болон [Browserify](http://browserify.org/) гэх мэт module bundler-уудтай сайн зохицож ажилладаг. Vue нь мөн дагалдах багажуудыг зохиож ашиглах боломж олгодог [Single File Components](single-file-components.html).
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-## CLI
+## CLI  
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Vue нь [албан ёсны CLI](https://github.com/vuejs/vue-cli) байдаг ба энэ Single Page Application хөгжүүлэхэд маш том суурь чухал үүрэгтэй багаж болдог. Энэ нь таны frontend хөгжүүлэлтийн орчины суурь бүтцийг хялбар гаргах боломж олгодог. Та хэдхэн минут зарцуулаад hot-reload, lint-on-save, болон production болгоход бэлэн вэб програмын суурь бэлдэх боломжтой. [Vue CLI ийн заавар бичиг баримттай](https://cli.vuejs.org) дэлгэрэнгүй танилцах.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">Та CLI ашиглахын тулд Node.js болон түүнтэй холбоотой багаж хэрэгслүүдийн талаар мэдлэгтэй байх хэрэгтэй. Хэрэв та шинээр Vue болон front-end build tools зэргийн шинээр ашиглаж эхлэх гэж байгаа бол CLI ашиглахын өмнө эхлээд <a href="./">энэхүү зааварыг</a> ашиглахыг санал болгож байна.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Vue Mastery дээр тайлбар бичлэгийг үзээрэй</a></div>
 
-## Explanation of Different Builds
+## Өөр хувилбаруудын тайлбар
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+[NPM багцын `dist/` хавтас дотор](https://cdn.jsdelivr.net/npm/vue/dist/) Vue.js-ийн олон төрлийн хувилбар байгааг та харж болно. Тэд нарын хоорондын ялгааны тухай энд оруулав:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
@@ -89,23 +89,23 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 | **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
 | **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### Нэр томьёо
 
-- **Full**: builds that contain both the compiler and the runtime.
+- **Full**: compiler болон runtime аль алиныг нь агуулсан хувилбар.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Compiler**: Загвар template string-үүдийг хөрвүүлэх үүрэг бүхий JavaScript render функцуудыг агуулсан код.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Runtime**: Vue instance ууд үүсгэх үүрэг бүхий код, virtual DOM-ийг rendering болон patching хийх, гэх мэт. Үндсэндээ бүх compiler хэсгийг хассан.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: UMD нь browser дээр шууд `<script>` таг дээр дуудан ашиглах боломжтой. jsDelivr CDN буюу [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) дээрх үндсэн файл нь Runtime + Compiler UMD build (`vue.js`).
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS нь [browserify](http://browserify.org/) болон [webpack 1](https://webpack.github.io) гэх мэт хуучин bundlers дээр ашиглах зориулалттай юм. Эдгээр bundler-ийн үндсэн файл нь (`pkg.main`) зөвхөн Runtime CommonJS build (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Vue 2.6 хувилбар эхэлсэнээс хоёр ES Modules (ESM) гаргасан:
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - ESM bundlers нь: орчин үеийн [webpack 2](https://webpack.js.org) болон [Rollup](https://rollupjs.org/) гэх мэт дээр ашиглах зориулалттай. ESM формат нь статикаар шинжлэх боломжтой байхаар зохион бүтээгдсэн бөгөөд ингэснээр холбогч нь "tree-shaking" ажиллагааг гүйцэтгэхийн тулд ашигладаггүй буюу таны сүүлчийн багцаас ашиглагдаагүй кодыг устгах болно. Эдгээр bundlers-д зориулсан үндсэн файл нь (pkg.module) энэ нь зөвхөн ES модули (vue.runtime.esm.js)
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - ESM нь вэб хөтөчүүдэд (зөвхөн 2.6+ ): Орчин үеийн вэб хөтчүүд дээр `<script type="module">` шууд дуудаж ашиглаж болно.
 
 ### Runtime + Compiler vs. Runtime-only
 
