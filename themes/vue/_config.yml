@@ -1,5 +1,5 @@
 site_description: Vue.js - The Progressive JavaScript Framework
-google_analytics: UA-46852172-1
+google_analytics: UA-111622042-4
 root_domain: vuejs.org
 vue_version: 2.5.16
 platinum_sponsors_china:
@@ -104,6 +104,9 @@ gold_sponsors:
   - url: 'https://www.vpnranks.com/'
     img: vpnranks.png
     name: VPNRanks
+  - url: 'https://www.simplyswitch.com/'
+    img: energy_comparison.png
+    name: Energy Comparison
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
