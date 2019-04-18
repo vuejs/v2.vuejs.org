@@ -109,15 +109,14 @@ Vue нь [албан ёсны CLI](https://github.com/vuejs/vue-cli) байда�
 
 ### Runtime + Compiler vs. Runtime-only
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
-
+Хэрэв та клиент дээр template compile хийх шаардлагатай (жишээлбэл, `загвар` руу тэмдэгт дамжуулах эсвэл HTML загвар ашиглан DOM-ийн дотор элемент холбоход), та compiler болон full build хэрэгтэй болно:
 ``` js
-// this requires the compiler
+// энэ нь compiler буюу хөрвүүлэгч шаарддаг
 new Vue({
-  template: '<div>{{ hi }}</div>'
+  template: '<div>{{ сайн уу }}</div>'
 })
 
-// this does not
+// энэ бол хэрэггүй
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -275,3 +274,4 @@ $ bower install vue
 ## AMD Module Loaders
 
 All UMD builds can be used directly as an AMD module.
+  
