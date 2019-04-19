@@ -2141,6 +2141,10 @@ type: api
 
   Ketika digunakan untuk mengaitkan atribut `class` atau `style`, mendukung tipe atribut tambahan seperti Array atau Object. Lihat tautan bagian petunjuk di bawah untuk lebih banyak rincian.
 
+  Ketika digunakan untuk mengaitkan prop, prop harus dideklarasikan pada komponen anak dengan benar.
+
+  Ketika digunakan tanpa argumen, dapat digunakan untuk mengaitkan object yang berisi pasangan atribut nama-nilai. Catatan pada mode ini `class` dan `style` tidak mendukung Array atau Object.
+
 - **Contoh:**
 
   ```html
