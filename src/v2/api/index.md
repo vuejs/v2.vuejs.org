@@ -1973,7 +1973,7 @@ type: api
 
 - **Penggunaan:**
 
-  Menandai "blok else if" untu `v-if`. Dapat digunakan berantai.
+  Menandai "blok else if" untuk `v-if`. Dapat digunakan berantai.
 
   ```html
   <div v-if="type === 'A'">
