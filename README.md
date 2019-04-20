@@ -5,8 +5,9 @@ This site is built with [hexo](http://hexo.io/). Site content is written in Mark
 ## Developing
 
 ``` bash
-$ npm install
-$ npm start # dev server at http://localhost:4000
+# This should also work with npm instead of yarn
+$ yarn install
+$ yarn start # dev server at http://localhost:4000
 ```
 
 ## Deploying
