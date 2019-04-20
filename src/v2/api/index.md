@@ -1876,81 +1876,81 @@ type: api
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## Direktif
 
 ### v-text
 
-- **Expects:** `string`
+- **Yang diharapkan:** `string`
 
-- **Details:**
+- **Rincian:**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  Mengubah `textContent` dari elemen. Jika Anda perlu mengubah bagian `textContent`, Anda harus menggunakan interpolasi `{% raw %}{{ Mustache }}{% endraw %}`.
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- sama seperti -->
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Text)
+- **Lihat juga:** [Sintaksis Data Binding - Interpolasi](../guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **Yang diharapkan:** `string`
 
-- **Details:**
+- **Rincian:**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  Mengubah `innerHTML` dari elemen. **Catat bahwa konten disisipkan sebagai HTML biasa - mereka tidak akan dikompilasi sebagai templat Vue**. Jika anda mencoba membuat templat menggunakan `v-html`, sebaiknya anda memikirkian ulang solusinya dengan menggunakan komponen.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">Me-render sembarang HTML secara dinamis pada website anda bisa sangat berbahaya karena bisa dengan mudah mendapatkan [serangan XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Gunakan `v-html` hanya pada konten yang dapat dipercaya dan **jangan pernah** pada konten  yang disediakan pengguna.</p>
 
-  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
+  <p class="tip">Pada [Komponen Berkas Tungal](../guide/single-file-components.html), `scoped` styles tidak akan berlaku pada konten di dalam `v-html`, karena HTML tersebut tidak diproses oleh kompiler templat Vue. Jika anda ingin menggunakan *scoped CSS* pada konten `v-html`, sebaiknya anda menggunakan [module CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) atau tambahan, elemen `<style>` global dengan startegi *scoping* manual seperti BEM.</p>
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <div v-html="html"></div>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
+- **Lihat juga:** [Sintaksis Data Binding - Interpolasi](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
-- **Expects:** `any`
+- **Yang diharapkan:** `any`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
+  Mengalihkan properti CSS `display` dari elemen berdasarkan pada syarat yang dianggap benar dari nilai sebuah ekspresi.
 
-  This directive triggers transitions when its condition changes.
+  Direktif ini memicu transisi ketika syaratnya berubah.
 
-- **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Lihat juga:** [Rendering Bersyarat - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **Expects:** `any`
+- **Yang diharapkan:** `any`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Me-render elemen sesuai kondisi berdasarkan pada syarat yang dianggap benar dari nilai sebuah ekspresi. Elemen beserta direktif / komponen yang ada di dalamnya dihancurkan dan dibuat ulang saat peralihan. Jika elemen merupakan sebuah elemen `<template>`, Kontennya akan diekstrak sebagai blok bersyarat.
 
-  This directive triggers transitions when its condition changes.
+  Direktif ini memicu transisi ketika syaratnya berubah.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Saat digunakan bersamaan dengan v-if, v-for memiliki prioritas yang lebih tinggi dari v-if. Lihat <a href="../guide/list.html#v-for-with-v-if">petunjuk me-render daftar</a> untuk rinciannya.</p>
 
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Lihat juga:** [Rendering Bersyarat - v-if](../guide/conditional.html)
 
 ### v-else
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
+  Menandai "blok else" untuk `v-if` atau rantai `v-if`/`v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1961,19 +1961,19 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **Lihat juga:** [Rendering Bersyarat - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
-> New in 2.1.0+
+> Baru pada 2.1.0+
 
-- **Expects:** `any`
+- **Yang diharapkan:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  Menandai "blok else if" untuk `v-if`. Dapat digunakan berantai.
 
   ```html
   <div v-if="type === 'A'">
@@ -1990,15 +1990,15 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Lihat juga:** [Rendering Bersyarat - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string | Iterable (since 2.6)`
+- **Yang diharapkan:** `Array | Object | number | string | Iterable (since 2.6)`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  Me-render elemen atau blok templat berulang kali berdasarkan sumber data. Nilai direktif harus menggunakan sintaksis khusus `alias in expression` untuk menyediakan alias pada elemen yang sedang diiterasi:
 
   ``` html
   <div v-for="item in items">
@@ -2006,7 +2006,7 @@ type: api
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  Cara lainnya, anda juga dapat menentukan alias untuk *index* (atau *key* jika digunakan pada objek):
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -2014,7 +2014,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  Prilaku standar `v-for` akan mencoba mengubah/menambal elemen pada tempatnya tanpa menggerakkan mereka. Agar bisa memaksanya untuk mengurutkan elemennya kembali, Anda perlu menyediakan petunjuk pengurutan dengan atribut khusus `key`:
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -2022,228 +2022,228 @@ type: api
   </div>
   ```
 
-  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
+  Pada 2.6+, `v-for` bisa juga bekerja pada nilai yang mengimplementasi [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), termasuk `Map` dan `Set` *native*. Akan tetapi, perlu dicatat bahwa Vue 2.x saat ini tidak mendukung reactivity pada nilai `Map` dan `Set`, jadi tidak bisa secara otomatis mendeteksi perubahan.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Saat digunakan bersama v-if, v-for memiliki prioritas yang lebih tinggi dari v-if. Lihat <a href="../guide/list.html#v-for-with-v-if">petunjuk me-render daftar</a> untuk rinciannya.</p>
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  Rincian penggunaan `v-for` dijelaskan dalam bagian petunjuk pada tautan dibawah.
 
 - **See also:**
-  - [List Rendering](../guide/list.html)
+  - [Me-render Daftar](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Penulisan Singkat:** `@`
 
-- **Expects:** `Function | Inline Statement | Object`
+- **Yang diharapkan:** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **Argumen:** `event`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+- **Modifier:**
+  - `.stop` - memanggil `event.stopPropagation()`.
+  - `.prevent` - memanggil `event.preventDefault()`.
+  - `.capture` - menambahkan pendengar event (*event listener*) pada mode tangkap (*capture*).
+  - `.self` - hanya memicu *handler* jika event dikirimkan dari elemen ini.
+  - `.{keyCode | keyAlias}` - hanya memicu *handler* pada kunci tertentu.
+  - `.native` - mendengarkan event native elemen *root* dari komponen.
+  - `.once` - memicu *handler* paling banyak satu kali.
+  - `.left` - (2.2.0+) hanya memicu *handler* untuk event tombol kiri mouse.
+  - `.right` - (2.2.0+) hanya memicu *handler* untuk event tombol kanan mouse.
+  - `.middle` - (2.2.0+) hanya memicu *handler* untuk event tombol tengah mouse.
+  - `.passive` - (2.3.0+) meletakkan event DOM dengan `{ passive: true }`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+  meletakkan sebuah pendengar event pada elemen. Tipe event ditandai dengan argumen. Ekspresi dapat berupa nama method, suatu pernyataan sebaris, atau  dihilangkan jika terdapat modifier.
 
-  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
+  Saat digunakan pada elemen normal, Ia hanya akan mendengarkan [**even DOM native**](https://developer.mozilla.org/en-US/docs/Web/Events). Jika digunakan pada elemen komponen kustom, Ia akan mendengarkan **event kustom** yang dipancarkan pada komponen anak.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  Saat mendengarkan event DOM native, method menerima event native sebagai satu-satunya argumen. Jika menggunakan pernyataan sebaris, pernyataan tersebut memiliki akses pada properti khusus `$event`: `v-on:click="handle('ok', $event)"`.
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Mulai pada 2.4.0+, `v-on` juga mendukung *binding* pada pasangan objek event/listener tanpa argumen. Catatan ketika menggunakan sintaksis objek, tidak mendukung modifier apapun.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- method handler -->
+  <!-- handler method -->
   <button v-on:click="doThis"></button>
 
-  <!-- dynamic event (2.6.0+) -->
+  <!-- event dinamis (2.6.0+) -->
   <button v-on:[event]="doThis"></button>
 
-  <!-- inline statement -->
+  <!-- pernyataan sebaris -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- penulisan singkat -->
   <button @click="doThis"></button>
 
-  <!-- shorthand dynamic event (2.6.0+) -->
+  <!-- penulisan singkat event dinamis (2.6.0+) -->
   <button @[event]="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- stop perambatan -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- mencegah default -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- mencegah default tanpa ekspresi -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!-- modifier berantai -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- modifier key menggunakan keyAlias -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- modifier key menggunakan keyCode -->
   <input @keyup.13="onEnter">
 
-  <!-- the click event will be triggered at most once -->
+  <!-- event klik akan dipicu paling banyak satu kali -->
   <button v-on:click.once="doThis"></button>
 
-  <!-- object syntax (2.4.0+) -->
+  <!-- sintaksis objek (2.4.0+) -->
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  Mendengarkan event kustom pada komponen anak (handler dipanggil ketika "my-event" dipancarkan pada komponen anak):
 
   ```html
   <my-component @my-event="handleThis"></my-component>
 
-  <!-- inline statement -->
+  <!-- pernyataan sebaris -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
 
-  <!-- native event on component -->
+  <!-- event native pada komponen -->
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **See also:**
-  - [Event Handling](../guide/events.html)
-  - [Components - Custom Events](../guide/components.html#Custom-Events)
+- **Lihat juga:**
+  - [Penanganan Event](../guide/events.html)
+  - [Komponen - Event Kustom](../guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Penulisan Singkat:** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Yang diharapkan:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Argumen:** `attrOrProp (optional)`
 
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+- **Modifier:**
+  - `.prop` - Mengaitkan sebagai sebuah properti DOM debanding sebuah atribut ([apa bedanya??](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Jika tag adalah sebuah komponen maka `.prop` akan mengatur properti pada `$el` komponen.
+  - `.camel` - (2.1.0+) menguba nama atribut dengan penulisan kebab-case menjadi camelCase.
+  - `.sync` - (2.3.0+) sintaksis pemanis yang memperbolehkan *handler* `v-on` untuk mengubah nilai yang terkait.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Secara dinamis mengaitkan satu atau lebih atribut, atau sebuah prop komponen pada sebuah ekspresi.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  Ketika digunakan untuk mengaitkan atribut `class` atau `style`, mendukung tipe atribut tambahan seperti Array atau Object. Lihat tautan bagian petunjuk di bawah untuk lebih banyak rincian.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  Ketika digunakan untuk mengaitkan prop, prop harus dideklarasikan pada komponen anak dengan benar.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  Ketika digunakan tanpa argumen, dapat digunakan untuk mengaitkan object yang berisi pasangan atribut nama-nilai. Catatan pada mode ini `class` dan `style` tidak mendukung Array atau Object.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- mengaitkan sebuah atribut -->
   <img v-bind:src="imageSrc">
 
-  <!-- dynamic attribute name (2.6.0+) -->
+  <!-- nama atribut dinamis (2.6.0+) -->
   <button v-bind:[key]="value"></button>
 
-  <!-- shorthand -->
+  <!-- cara penulisan singkat -->
   <img :src="imageSrc">
 
-  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <!-- cara penulisan singkat dengan nama atribut dinamis (2.6.0+) -->
   <button :[key]="value"></button>
 
-  <!-- with inline string concatenation -->
+  <!-- dengan penggabungan string sebaris -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- class binding -->
+  <!-- mengaitkan dengan class -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- mengaitkan dengan style -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- mengaitkan dengan atribut objek -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- mengaitkan atribut DOM dengan modifier prop -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- mengaitkan prop. "prop" harus dideklarasikan pada my-component. -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- mengirimkan props dari induk kepada anak yang memiliki props serupa -->
   <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  Modifier `.camel` akan melakukan konversi penulisan nama atribut `v-bind` menjadi gaya camelCase ketika digunakan pada DOM templates, mis. atribut `viewBox` pada SVG:
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  `.camel` tidak diperlukan jika anda menggunakan templat string, atau melakukan kompilasi dengan `vue-loader`/`vueify`.
 
-- **See also:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+- **Lihat juga:**
+  - [Kelas dan Binding Gaya](../guide/class-and-style.html)
+  - [Komponen - Props](../guide/components.html#Props)
+  - [Komponen - Modifier `.sync`](../guide/components.html#sync-Modifier)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Yang diharapkan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
 
-- **Limited to:**
+- **Terbatas pada:**
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
-- **Modifiers:**
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
+- **Modifier:**
+  - [`.lazy`](../guide/forms.html#lazy) - mendengarkan event `change` dibanding `input`
+  - [`.number`](../guide/forms.html#number) - mengganti input string menjadi angka
   - [`.trim`](../guide/forms.html#trim) - trim input
 
-- **Usage:**
+- **Penggunaan:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  Membuat kait dua arah pada elemen input form atau komponen. Untuk rincian penggunaan dan catatan lainnya, lihat bagian Petunjuk yang ditautkan di bawah.
 
-- **See also:**
+- **Lihat juga:**
   - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Komponen - Form Input Komponen menggunakan Event Kustom](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-slot
 
-- **Shorthand:** `#`
+- **Penulisan Singkat:** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+- **Yang diharapkan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **Argumen:** nama slot (opsional, default untuk `default`)
 
-- **Limited to:**
+- **Terbatas pada:**
   - `<template>`
-  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+  - [komponen](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (untuk default slot dengan props)
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote named slots or slots that expect to receive props.
+  Menandai slot bernama atau slot yang mengharapkan untuk menerima prop.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- Named slots -->
+  <!-- Slot bernama -->
   <base-layout>
     <template v-slot:header>
       Header content
@@ -2256,7 +2256,7 @@ type: api
     </template>
   </base-layout>
 
-  <!-- Named slot that receives props -->
+  <!-- Slot bernama yang menerima prop -->
   <infinite-scroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -2265,41 +2265,41 @@ type: api
     </template>
   </infinite-scroll>
 
-  <!-- Default slot that receive props, with destructuring -->
+  <!-- Default slot yang menerima prop, dengan destrukturisasi -->
   <mouse-position v-slot="{ x, y }">
     Mouse position: {{ x }}, {{ y }}
   </mouse-position>
   ```
 
-  For more details, see the links below.
+  Untuk lebih banyak rincian, lihat tautan di bawah.
 
-- **See also:**
-  - [Components - Slots](../guide/components-slots.html)
+- **Lihat juga:**
+  - [Komponen - Slots](../guide/components-slots.html)
   - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Usage:**
+- **Penggunaan:**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  Melewatkan kompilasi untuk elemen dan seluruh anaknya. Anda dapat menggunakan ini untuk menampilkan tag moustache mentah. Melewatkan banyak node yang tidak memiliki direktif juga bisa mempercepat kompilasi.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ ini tidak akan dikompilasi }}</span>
    ```
 
 ### v-cloak
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Usage:**
+- **Penggunaan:**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  Direktif ini akan tetap pada elemen sampai Vue Instance selesai dikompilasi. Dikombinasikan dengan aturan CSS seperti `[v-cloak] { display: none }`, Direktif ini bisa digunakan untuk menyembunyikan kaitan mustache yang belum dikompilasi sampai Vue instance siap.
 
-- **Example:**
+- **Contoh:**
 
   ```css
   [v-cloak] {
@@ -2313,35 +2313,35 @@ type: api
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  `<div>` tidak akan bisa dilihat sampai kompilasi selesai
 
 ### v-once
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Details:**
+- **Rincian:**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  Me-render elemen dan komponen hanya **sekali**. Pada render ulang selanjutnya, elemen/komponen dan semua anaknya akan diperlakukan seperti konten statis dan dilewatkan. Ini dapat digunakan untuk mengoptimasi performa update.
 
   ```html
-  <!-- single element -->
+  <!-- elemen tunggal -->
   <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- elemen yang memiliki anak -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- komponen -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- `v-for` directive -->
+  <!-- direktif `v-for` -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-- **See also:**
-  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
+- **Lihat juga:**
+  - [Sintaksis Data Binding - interpolasi](../guide/syntax.html#Text)
+  - [Komponen - Komponen Statis Murah dengan `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Special Attributes
 
