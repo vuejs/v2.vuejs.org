@@ -94,7 +94,7 @@ var voorbeeld2 = new Vue({
 </script>
 {% endraw %}
 
-Er kan ook gebruik gemaakt worden van `of` in plaats van `in`, dit sluit dichter aan bij de syntax voor iterators in JavaScript:
+Er kan ook gebruik gemaakt worden van `of` in plaats van `in`, dit sluit dichter aan bij de syntax voor 'iterators' in JavaScript:
 
 ``` html
 <div v-for="item of items"></div>
@@ -209,9 +209,9 @@ new Vue({
 
 Bij het bijwerken van een lijst van elementen die weergegeven worden door een `v-for` wordt standaard gebruik gemaakt van een 'in-place patch'-strategie. Wanneer de volgorde van de items wijzigt, dan zal niet het element in het DOM verplaatst worden, maar dan zal elk element ter plaatse wijzigen in de correcte waarde om weer te geven. Dit is gelijkaardige functionaliteit dat `track-by="$index"` voorziet in Vue 1.x.
 
-Deze standaard functionaliteit is efficiënt, maar enkel bruibkaar **wanneer het weergegeven resultaat niet afhankelijk is van 'child'-componenten of een tijdelijkse staat in het DOM (bv. waarden van een formulierveld)**.
+Deze standaard functionaliteit is efficiënt, maar alleen bruikbaar **wanneer het weergegeven resultaat niet afhankelijk is van 'child'-componenten of een tijdelijke staat in het DOM (bv. waarden van een formulierveld)**.
 
-Om aan Vue aan te geven dat het mogelijk is om alle nodes individueel te volgen om vervolgens bestaande elementen te herbruiken en herschikken, moet er voor elk item een uniek `key`-attribuut toegekend worden. Een ideale waarde voor deze `key` is het unieke 'id' van elk item. Dit speciale attribuut is een ruw equivalent van `track-by` in 1.x, maar het werkt zoals een attribuut, er moet dus gebruik gemaakt worden van `v-bind` om de dynamische waarde te koppelen (er wordt hier gebruik gemaakt van de verkorte notatie):
+Om aan Vue aan te geven dat het mogelijk is om alle 'nodes' individueel te volgen om vervolgens bestaande elementen te herbruiken en herschikken, moet er voor elk item een uniek `key`-attribuut toegekend worden. Een ideale waarde voor deze `key` is het unieke 'id' van elk item. Dit speciale attribuut is een ruw equivalent van `track-by` in 1.x, maar het werkt zoals een attribuut, er moet dus gebruik gemaakt worden van `v-bind` om de dynamische waarde te koppelen (er wordt hier gebruik gemaakt van de verkorte notatie):
 
 ``` html
 <div v-for="item in items" :key="item.id">
@@ -221,15 +221,15 @@ Om aan Vue aan te geven dat het mogelijk is om alle nodes individueel te volgen 
 
 Het is aangeraden om een `key` te voorzien wanneer `v-for` gebruikt wordt. Tenzij dat de geïtereerde content in het DOM eenvoudig is van structuur of wanneer er met opzet vertrouwd wordt op het standaardgedrag voor betere prestaties.
 
-Aangezien het een generiek mechanisme voor Vue is om nodes te indentificieren, heeft `key` meerdere toepassingen die niet specifiek gekoppeld zijn aan `v-for`. Dit wordt later besproken.
+Aangezien het een generiek mechanisme voor Vue is om 'nodes' te indentificieren, heeft `key` meerdere toepassingen die niet specifiek gekoppeld zijn aan `v-for`. Dit wordt later besproken.
 
-<p class="tip">Gebruik geen niet-primitieve waarden zoals objecten en 'arrays' als sleutels voor `v-for`. Gebruik 'string'- of numerische waarden in de plaats.</p>
+<p class="tip">Gebruik geen niet-primitieve waarden zoals objecten en 'arrays' als sleutels voor `v-for`. Gebruik 'string'- of numerieke waarden in de plaats.</p>
 
 ## 'Array'-wijzigingsdetectie
 
 ### Mutatiemethodes
 
-Vue verpakt de mutatiemethodes van een geobserveerde 'array' zodat ze ook activeren bij het wijzigen van de weergave. De verpakte methodes zijn:
+Vue omvat de mutatiemethodes van een geobserveerde 'array' zodat ze ook activeren bij het wijzigen van de weergave. De verpakte methodes zijn:
 
 - `push()`
 - `pop()`
@@ -251,7 +251,7 @@ voorbeeld1.items = voorbeeld1.items.filter(function (item) {
 })
 ```
 
-Sommigen zullen denken dat Vue het bestaande DOM weggooit en vervolgens de volledige lijst opnieuw zal genereren. Dit is gelukkig niet het geval. Vue implementeert enkele slimmen heuristieken om het hergebruik van DOM-elementen te maximaliseren, het vervangen van een 'array' door een andere 'array' met overlappende objecten is dus een zeer efficiënte operatie.
+Sommigen zullen denken dat Vue het bestaande DOM weggooit en vervolgens de volledige lijst opnieuw zal genereren. Dit is gelukkig niet het geval. Vue implementeert enkele slimme heuristieken om het hergebruik van DOM-elementen te maximaliseren, het vervangen van een 'array' door een andere 'array' met overlappende objecten is dus een zeer efficiënte operatie.
 
 ### Valkuilen
 
@@ -353,51 +353,51 @@ vm.profielVanGebruiker = Object.assign({}, vm.profielVanGebruiker, {
 })
 ```
 
-## Displaying Filtered/Sorted Results
+## Gefilterde/gesorteerde resultaten weergeven
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+Soms is het gewenst om een gefilterde of een gesorteerde versie van een 'array' weer te geven, zonder de 'array' te wijzigen of de originele data te resetten.
 
-For voorbeeld:
+Bijvoorbeeld:
 
 ``` html
-<li v-for="n in evenNumbers">{{ n }}</li>
+<li v-for="n in evenNummers">{{ n }}</li>
 ```
 
 ``` js
 data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
+  nummers: [ 1, 2, 3, 4, 5 ]
 },
 computed: {
-  evenNumbers: function () {
-    return this.numbers.filter(function (number) {
-      return number % 2 === 0
+  evenNummers: function () {
+    return this.nummers.filter(function (nummer) {
+      return nummer % 2 === 0
     })
   }
 }
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+In situaties waar berekende eigenschappen niet mogelijk zijn (bv. in een geneste `v-for`-loop), is het mogelijk een methode te gebruiken:
 
 ``` html
-<li v-for="n in even(numbers)">{{ n }}</li>
+<li v-for="n in even(nummers)">{{ n }}</li>
 ```
 
 ``` js
 data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
+  nummers: [ 1, 2, 3, 4, 5 ]
 },
 methods: {
-  even: function (numbers) {
-    return numbers.filter(function (number) {
-      return number % 2 === 0
+  even: function (nummers) {
+    return nummers.filter(function (nummer) {
+      return nummer % 2 === 0
     })
   }
 }
 ```
 
-## `v-for` with a Range
+## `v-for` met een bereik
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` kan ook een geheel getal accepteren. In dit geval zal het de 'template' net zo vaak herhalen als de grootte van het getal.
 
 ``` html
 <div>
@@ -408,42 +408,42 @@ methods: {
 Resultaat:
 
 {% raw %}
-<div id="range" class="demo">
+<div id="bereik" class="demo">
   <span v-for="n in 10">{{ n }} </span>
 </div>
 <script>
-  new Vue({ el: '#range' })
+  new Vue({ el: '#bereik' })
 </script>
 {% endraw %}
 
-## `v-for` on a `<template>`
+## `v-for` op een `<template>`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For voorbeeld:
+Net zoals `v-if` op een template, is het mogelijk om een `v-for` op een template te gebruiken om een blok van meerdere elementen weer te geven. Bijvoorbeeld:
 
 ``` html
 <ul>
   <template v-for="item in items">
     <li>{{ item.msg }}</li>
-    <li class="divider" role="presentation"></li>
+    <li class="verdeler" role="presentation"></li>
   </template>
 </ul>
 ```
 
 ## `v-for` met `v-if`
 
-<p class="tip">Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
+<p class="tip">Merk op dat het **niet** aangeraden is om `v-if` en `v-for` samen te gebruiken. Bekijk de [stijlgids](/v2/style-guide/#Vermijd-v-if-met-v-for-essentieel) voor meer details.</p>
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+Wanneer `v-for` en `v-if` op dezelfde 'node' bestaan, dan heeft `v-for` een hogere prioriteit dan `v-if`. Dit betekent dat de `v-if` op elke iteratie van de 'loop' toegepast zal worden, wat handig kan zijn in het geval dat er alleen iets weergegeven moet worden voor sommige items, zoals hieronder:
 
 ``` html
-<li v-for="todo in todos" v-if="!todo.isComplete">
+<li v-for="todo in todos" v-if="!todo.isVoltooid">
   {{ todo }}
 </li>
 ```
 
-The above only renders the todos that are not complete.
+Bovenstaande zal alleen de todos weergeven die nog niet voltooid zijn.
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For voorbeeld:
+Wanneer het de bedoeling is om conditioneel een 'loop' over te slaan, dan kan een `v-if` geplaatst worden op een omvattend element (of [`<template>`](conditional.html#Conditionele-groepen-met-v-if-en-lt-template-gt)). Bijvoorbeeld:
 
 ``` html
 <ul v-if="todos.length">
@@ -451,99 +451,99 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
     {{ todo }}
   </li>
 </ul>
-<p v-else>No todos left!</p>
+<p v-else>Er zijn geen todos meer!</p>
 ```
 
-## `v-for` with a Component
+## `v-for` met een component
 
-> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
+> Deze sectie gaat uit van kennis over [componenten](components.html). Het is mogelijk om dit over te slaan en later terug te komen.
 
-You can directly use `v-for` on a custom component, like any normal element:
+Het is mogelijk om `v-for` direct op een component te plaatsen, zoals bij alle normale elementen:
 
 ``` html
-<my-component v-for="item in items" :sleutel="item.id"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> In 2.2.0+, when using `v-for` with a component, a [`sleutel`](list.html#sleutel) is now required.
+> In 2.2.0+, wanneer `v-for` gebruikt wordt met een component, is het gebruik van een [`sleutel`](list.html#sleutel) vereist.
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+Dit zal niet automatisch data doorgeven aan de component. Componenten hebben een eigen geïsoleerde 'scope'. Om de geïtereerde data door te geven aan de component zullen eigenschappen gebruikt moeten worden:
 
 ``` html
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:sleutel="item.id"
+  v-bind:key="item.id"
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+De reden dat `item` niet automatisch geïnjecteerd wordt in de component is dat het zorgt voor een strikte koppeling tussen de component en hoe `v-for` werkt. Expliciet zijn over waar de data vandaan komt, maakt de component herbruikbaar in andere situaties.
 
-Here's a complete voorbeeld of a simple todo list:
+Dit is een compleet voorbeeld van een simpele todolijst:
 
 ``` html
-<div id="todo-list-voorbeeld">
-  <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Add a todo</label>
+<div id="todo-lijst-voorbeeld">
+  <form v-on:submit.prevent="nieuweTodoToevoegen">
+    <label for="nieuwe-todo">Todo toevoegen</label>
     <input
-      v-model="newTodoText"
-      id="new-todo"
-      placeholder="E.g. Feed the cat"
+      v-model="nieuweTodoTekst"
+      id="nieuwe-todo"
+      placeholder="bv. Kat eten geven"
     >
-    <button>Add</button>
+    <button>Toevoegen</button>
   </form>
   <ul>
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
       v-bind:sleutel="todo.id"
-      v-bind:title="todo.title"
+      v-bind:title="todo.titel"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+<p class="tip">Merk op dat het `is="todo-item"`-attribuut nodig is in DOM 'templates'. Dit is omdat alleen een `<li>`-element geldig is in een `<ul>`. Het doet hetzelfde als `<todo-item>`, maar werkt om een potentieel probleem heen. Bekijk [Valkuilen van DOM 'template parsing'](components.html#Valkuilen-van-DOM-'template'-'parsing') om meer te leren.</p>
 
 ``` js
 Vue.component('todo-item', {
   template: '\
     <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">Remove</button>\
+      {{ titel }}\
+      <button v-on:click="$emit(\'verwijderen\')">Verwijderen</button>\
     </li>\
   ',
-  props: ['title']
+  props: ['titel']
 })
 
 new Vue({
-  el: '#todo-list-voorbeeld',
+  el: '#todo-lijst-voorbeeld',
   data: {
-    newTodoText: '',
+    nieuweTodoTekst: '',
     todos: [
       {
         id: 1,
-        title: 'Do the dishes',
+        titel: 'Afwas doen',
       },
       {
         id: 2,
-        title: 'Take out the trash',
+        titel: 'Vuilnis buitenzetten',
       },
       {
         id: 3,
-        title: 'Mow the lawn'
+        titel: 'Grasmaaien'
       }
     ],
-    nextTodoId: 4
+    volgendTodoId: 4
   },
   methods: {
-    addNewTodo: function () {
+    nieuweTodoToevoegen: function () {
       this.todos.push({
-        id: this.nextTodoId++,
-        title: this.newTodoText
+        id: this.volgendTodoId++,
+        titel: this.nieuweTodoTekst
       })
-      this.newTodoText = ''
+      this.nieuweTodoTekst = ''
     }
   }
 })
@@ -551,21 +551,21 @@ new Vue({
 
 {% raw %}
 <div id="todo-list-voorbeeld" class="demo">
-  <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Add a todo</label>
+  <form v-on:submit.prevent="nieuweTodoToevoegen">
+    <label for="nieuwe-todo">Todo toevoegen</label>
     <input
-      v-model="newTodoText"
-      id="new-todo"
-      placeholder="E.g. Feed the cat"
+      v-model="nieuweTodoTekst"
+      id="nieuwe-todo"
+      placeholder="bv. Kat eten geven"
     >
-    <button>Add</button>
+    <button>Toevoegen</button>
   </form>
   <ul>
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
       v-bind:sleutel="todo.id"
-      v-bind:title="todo.title"
+      v-bind:title="todo.titel"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -574,40 +574,40 @@ new Vue({
 Vue.component('todo-item', {
   template: '\
     <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">Remove</button>\
+      {{ titel }}\
+      <button v-on:click="$emit(\'verwijderen\')">Verwijderen</button>\
     </li>\
   ',
-  props: ['title']
+  props: ['titel']
 })
 
 new Vue({
   el: '#todo-list-voorbeeld',
   data: {
-    newTodoText: '',
+    nieuweTodoTekst: '',
     todos: [
       {
         id: 1,
-        title: 'Do the dishes',
+        titel: 'Afwas doen',
       },
       {
         id: 2,
-        title: 'Take out the trash',
+        titel: 'Vuilnis buitenzetten',
       },
       {
         id: 3,
-        title: 'Mow the lawn'
+        titel: 'Grasmaaien'
       }
     ],
-    nextTodoId: 4
+    volgendTodoId: 4
   },
   methods: {
-    addNewTodo: function () {
+    nieuweTodoToevoegen: function () {
       this.todos.push({
-        id: this.nextTodoId++,
-        title: this.newTodoText
+        id: this.volgendTodoId++,
+        title: this.nieuweTodoTekst
       })
-      this.newTodoText = ''
+      this.nieuweTodoTekst = ''
     }
   }
 })

@@ -603,7 +603,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with
 
 That's all you need to know about dynamic components for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-dynamic-async.html).
 
-## DOM Template Parsing Caveats
+## Valkuilen van DOM 'template parsing'
 
 Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
 
