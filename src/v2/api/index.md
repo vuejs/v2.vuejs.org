@@ -1880,7 +1880,7 @@ type: api
 
 ### v-text
 
-- **Mengharapkan:** `string`
+- **Yang diharapkan:** `string`
 
 - **Rincian:**
 
@@ -1898,7 +1898,7 @@ type: api
 
 ### v-html
 
-- **Mengharapkan:** `string`
+- **Yang diharapkan:** `string`
 
 - **Rincian:**
 
@@ -1918,7 +1918,7 @@ type: api
 
 ### v-show
 
-- **Mengharapkan:** `any`
+- **Yang diharapkan:** `any`
 
 - **Penggunaan:**
 
@@ -1930,7 +1930,7 @@ type: api
 
 ### v-if
 
-- **Mengharapkan:** `any`
+- **Yang diharapkan:** `any`
 
 - **Penggunaan:**
 
@@ -1967,7 +1967,7 @@ type: api
 
 > Baru pada 2.1.0+
 
-- **Mengharapkan:** `any`
+- **Yang diharapkan:** `any`
 
 - **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
@@ -1994,7 +1994,7 @@ type: api
 
 ### v-for
 
-- **Mengharapkan:** `Array | Object | number | string | Iterable (since 2.6)`
+- **Yang diharapkan:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **Penggunaan:**
 
@@ -2036,7 +2036,7 @@ type: api
 
 - **Penulisan Singkat:** `@`
 
-- **Mengharapkan:** `Function | Inline Statement | Object`
+- **Yang diharapkan:** `Function | Inline Statement | Object`
 
 - **Argumen:** `event`
 
@@ -2126,7 +2126,7 @@ type: api
 
 - **Penulisan Singkat:** `:`
 
-- **Mengharapkan:** `any (with argument) | Object (without argument)`
+- **Yang diharapkan:** `any (with argument) | Object (without argument)`
 
 - **Argumen:** `attrOrProp (optional)`
 
@@ -2203,7 +2203,7 @@ type: api
 
 ### v-model
 
-- **Mengharapkan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
+- **Yang diharapkan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
 
 - **Terbatas pada:**
   - `<input>`
@@ -2228,7 +2228,7 @@ type: api
 
 - **Penulisan Singkat:** `#`
 
-- **Mengharapkan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
+- **Yang diharapkan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
 
 - **Argumen:** nama slot (opsional, default untuk `default`)
 
