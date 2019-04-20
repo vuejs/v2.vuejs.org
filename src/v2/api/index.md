@@ -2014,7 +2014,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  Prilaku standar `v-for` akan mencoba mengubah/menambal elemen pada tempatnya tanpa menggerakkan mereka. Agar bisa memaksanya untuk mengurutkan kembali elemen, Anda perlu menyediakan petunjuk pengurutan dengan atribut khusus `key`:
+  Prilaku standar `v-for` akan mencoba mengubah/menambal elemen pada tempatnya tanpa menggerakkan mereka. Agar bisa memaksanya untuk mengurutkan elemennya kembali, Anda perlu menyediakan petunjuk pengurutan dengan atribut khusus `key`:
 
   ``` html
   <div v-for="item in items" :key="item.id">
