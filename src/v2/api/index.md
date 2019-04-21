@@ -1782,64 +1782,64 @@ type: api
   </script>
   {% endraw %}
 
-## Instance Methods / Lifecycle
+## Instance Methods / Siklus Hidup
 
 ### vm.$mount( [elementOrSelector] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Mengembalikan:** `vm` - instansiasi dari dirinya sendiri
 
-- **Usage:**
+- **Penggunaan:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Jika *instance* vue tidak mencantumkan opsi `el` saat instansiasi, maka *instance* tersebut akan masuk kedalam keadaan "tidak terpasang/*unmounted*", tanpa terasosiasi dengan elemen *DOM* manapun. `vm.$mount()` dapat digunakan untuk menjalankan proses pemasangan/*mount* secara manual dari sebuah *instance* vue yang tak terpasang sebelumnya.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Jika argumen `elementOrSelector` tidak disediakan, maka templat akan di*render* sebagai dokumen mati atau *off-document element*, dan anda dapat menggunakan *native DOM API* untuk memasukannya elemen kedalam dokumen anda.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  *method* ini akan mengembalikan *instance*nya sendiri, oleh sebab itu anda dapat mengaitkannya ke method-method yang lain setelah pemanggilannya.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // instansiasi dan pemasangan kedalam elemen #app (akan menggantikan #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // kode diatas serupa dengan ini:
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // atau, me*render* dokumen mati dan menambahkan setelahnya:
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **Lihat juga:**
+  - [Siklus Hidup Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Proses Render Pada Sisi Server](../guide/ssr.html)
 
 ### vm.$forceUpdate()
 
-- **Usage:**
+- **Penggunaan:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Memaksa *instance* Vue untuk melakukan proses *render* ulang. Catatan hal ini tidak akan berpengaruh kepada semua anak dari komponen, hanya berpengaruh pada *instance*nya sendiri dan anak komponen yang disertai masukan isi slot (*slot content*).
 
 ### vm.$nextTick( [callback] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Function} [callback]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Menunda eksekusi dari *callback* setelah siklus pembaharuan DOM berikutnya. Gunakan method ini sesegera mungkin setelah anda melakukan perubahan data untuk menunggu pembaharuan *DOM*. Ini sama halnya dengan global `Vue.nextTick`, kecuali dalam kontek `this` pada *callback* yang akan otomatis tertuju kepada *instance* vue pemanggil. 
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Baru di 2.1.0+: mengembalikan *Promise* jika tidak disediakan *callback* dan *Promise* ini telah mendukung eksekusi lingkungan/*environtment*. Mohon dicatat *promise* yang disediakan oleh *Vue* tidak menyertakan *polyfill*, oleh sebab itu jika target browser anda tidak mendukung *promise* (seperti IE), anda sendiri yang memiliki kewajiban untuk menyediakannya.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   new Vue({
@@ -1847,12 +1847,12 @@ type: api
     methods: {
       // ...
       example: function () {
-        // modify data
+        // mengubah data
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM belum diperbaharui
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM telah diperbaharui
+          // `this` tertuju pada yang menginstansiasi
           this.doSomethingElse()
         })
       }
@@ -1860,21 +1860,21 @@ type: api
   })
   ```
 
-- **See also:**
+- **Lihat juga:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [Pembaharuan Antrian Async](../guide/reactivity.html#Async-Update-Queue)
 
 ### vm.$destroy()
 
-- **Usage:**
+- **Kegunaan:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Menuntaskan pemusnahan sebuah vm. Membersihkan koneksi-koneksi terhadap vm-vm aktif yang lain, melepaskan *binding* terhadap semua direktifnya, dan menonaktifkan semua *event listener*nya.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Memicu `beforeDestroy` dan `destroyed` *hooks*.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">Dalam situasi normal anda diharapkan tidak menggunakan method ini. Dalam pengontrolan siklus hidup komponen anak pada *data-driven*, Lebih disarankan untuk menggunakan `v-if` and `v-for`.</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Siklus Hidup Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ## Direktif
 
