@@ -674,14 +674,14 @@ type: api
       },
       // string method name
       b: 'someMethod',
-      // deep watcher
+      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
       // the callback will be called immediately after the start of the observation
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: 'someMethod',
         immediate: true
       },
       e: [
