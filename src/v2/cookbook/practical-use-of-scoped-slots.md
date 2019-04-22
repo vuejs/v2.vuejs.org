@@ -1,23 +1,23 @@
 ---
-title: Practical use of scoped slots with GoogleMaps
+title: Uso práctico de scoped slots con GoogleMaps
 type: cookbook
 order: 14
 ---
 
-## Base Example
+## Ejemplo Base
 
-There are situations when you want the template inside the slot to be able to access data from the child component that is responsible for rendering the slot content. This is particularly useful when you need freedom in creating custom templates that use the child component's data properties. That is a typical use case for scoped slots.
+Hay situaciones en la que usted querrá que el _template_ dentro del _slot_ acceda a los datos del componente hijo que es responsable de renderizar el contenido del _slot_. Esto es particularmente útil cuando usted necesita libertad al crear _templates_ personalizados que utilizen los datos y propiedades del componente hijo. Este es un caso típico para el uso de _scoped slots_.
 
-Imagine a component that configures and prepares an external API to be used in another component, but is not tightly coupled with any specific template. Such a component could then be reused in multiple places rendering different templates but using the same base object with specific API.
+Imagine una componente que configure y prepara una API externa para ser usada en otra componente, pero no esta fuertemente acoplada a un _template_ específico. Tal componente puede ser reusado en muchos lugares renderizando diferentes _templates_ pero usando el mismo objeto con la API específica.
 
-We'll create a component (`GoogleMapLoader.vue`) that:
-1. Initializes the [Google Maps API](https://developers.google.com/maps/documentation/javascript/reference/)
-2. Creates `google` and `map` objects
-3. Exposes those objects to the parent component in which the `GoogleMapLoader` is used
+Crearemos una componente (`GoogleMapLoader.vue`) que:
+1. Inicializará la [API de Google Maps](https://developers.google.com/maps/documentation/javascript/reference/)
+2. Creará los objetos `google` y `map`
+3. Expondrá estos objetos a su componente padre donde `GoogleMapLoader` es utilizada
 
-Below is an example of how this can be achieved. We will analyze the code piece-by-piece and see what is actually happening in the next section.
+Debajo hay un ejemplo de como se puede lograr esto. Analizaremos el código pieza por pieza y veremos que es lo que realmente esta sucediendo en la siguiente sección.
 
-Let’s first establish our `GoogleMapLoader.vue` template:
+Pero primero, declaramos el _template_ para `GoogleMapLoader.vue`:
 
 ```html
 <template>
@@ -33,7 +33,7 @@ Let’s first establish our `GoogleMapLoader.vue` template:
 </template>
 ```
 
-Now, our script needs to pass some props to the component which allows us to set the [Google Maps API](https://developers.google.com/maps/documentation/javascript/reference/) and [Map object](https://developers.google.com/maps/documentation/javascript/reference/map#Map):
+Ahora, nuestro _script_ necesita pasar algunas _props_ a el componente que nos permita setear la [API de Google Maps](https://developers.google.com/maps/documentation/javascript/reference/) y el [objeto Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map):
 
 ```js
 import GoogleMapsApiLoader from 'google-maps-api-loader'
@@ -70,17 +70,17 @@ export default {
 }
 ```
 
-This is just part of a working example, you can find the whole example in the Codesandbox below.
+Éste es simplemente un ejemplo funcional, usted puede encontrar el ejemplo completo abajo.
 
 <iframe src="https://codesandbox.io/embed/1o45zvxk0q" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-## Real-World Example: Creating a Google Map Loader component
+## Ejemplo en el mundo real: creando una componente que inicialize Google Map
 
-### 1. Create a component that initializes our map
+### 1. Crear una componente que inicialize nuestro mapa
 
 `GoogleMapLoader.vue`
 
-In the template, we create a container for the map which will be used to mount the [Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map) object extracted from the Google Maps API.
+En este _template_, creamos un contenedor para el mapa, el cuál será utilizado para montar el objeco [Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map) extraído desde la API de Google Maps. 
 
 ```html
 <template>
@@ -90,10 +90,10 @@ In the template, we create a container for the map which will be used to mount t
 </template>
 ```
 
-Next up, our script needs to receive props from the parent component which will allow us to set the Google Map. Those props consist of:
+Luego, nuestro _script_ necesita recivir _props_ desde su componente padre, esto nos permitirá setear el Google Map. Estas _props_ consisten en:
 
-- [mapConfig](https://developers.google.com/maps/documentation/javascript/reference/3/map#MapOptions): Google Maps config object
-- [apiKey](https://developers.google.com/maps/documentation/javascript/get-api-key): Our personal api key required by Google Maps
+- [mapConfig](https://developers.google.com/maps/documentation/javascript/reference/3/map#MapOptions): objeto de configuración de  Google Maps
+- [apiKey](https://developers.google.com/maps/documentation/javascript/get-api-key): nuestra clave personal requerida por la API de Google Maps
 
 ```js
 import GoogleMapsApiLoader from 'google-maps-api-loader'
@@ -104,7 +104,8 @@ export default {
     apiKey: String,
   },
 ```
-Then, we set the initial values of google and map to null:
+
+Después, inicializamos _google_ y _map_ como _null_:
 
 ```js
   data() {
@@ -115,7 +116,7 @@ Then, we set the initial values of google and map to null:
   },
 ```
 
-On `mounted` hook we instantiate a `googleMapApi` and `Map` objects from the `GoogleMapsApi` and we set the values of `google` and `map` to the created instances:
+En el método `mounted` instanciamos los objetos `googleMapApi` y `Map` desde `googleMapsApi` y asignamos nuestras propiedades `google` y `map` con los de la instancia creada:
 
 ```js
   async mounted() {
@@ -135,17 +136,17 @@ On `mounted` hook we instantiate a `googleMapApi` and `Map` objects from the `Go
 }
 ```
 
-So far, so good. With all that done, we could continue adding the other objects to the map (Markers, Polylines, etc.) and use it as an ordinary map component.
+Hasta ahora todo bien. Podríamos continuar añandiendole objetos al mapa (Marcadores, Líneas Polígonales, etc.) y usarla como si fuera una componente ordinaria.
 
-But, we want to use our `GoogleMapLoader` component only as a loader that prepares the map — we don’t want to render anything on it.
+Pero lo que queremos es usar nuestra componente `GoogleMapLoader` solamente como un inicializador que prepara el mapa - no queremos renderizar nada en ella.
 
-To achieve that, we need to allow the parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the `GoogleMapLoader` component. That’s where [scoped slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) really shine. Scoped slots allow us to expose the properties set in a child component to the parent component. It may sound like Inception, but bear with me one more minute as we break that down further.
+Para lograrlo, tenemos que permitir que la componente padre que utilizará `GoogleMapLoader` acceda a `this.google` y `this.map`, los cuáles se encuentran definidos dentro de nuestra componente `GoogleMapLoader`. Aquí es donde los [scoped slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) realmente brillan. Los _scoped slots_ nos permiten exponer propiedades definidas en el componente hijo al componente padre. Esto podria parecer magia, pero no lo es,  a ctontinuacion veremos como funciona.
 
-### 2. Create component that uses our initializer component.
+### 2. Crear una componente que use nuestra componente inicializadora
 
 `TravelMap.vue`
 
-In the template, we render the `GoogleMapLoader` component and pass props that are required to initialize the map.
+En el _template_, renderizamos la componente `GoogleMapLoader` y le pasamos las _props_ requeridas para inicializar el mapa.
 
 ```html
 <template>
@@ -156,7 +157,7 @@ In the template, we render the `GoogleMapLoader` component and pass props that a
 </template>
 ```
 
-Our script tag will look like this:
+Nuestra _script tag_ se verá de la siguiente forma:
 
 ```js
 <script>
@@ -167,7 +168,6 @@ export default {
   components: {
     GoogleMapLoader
   },
-
   computed: {
     mapConfig () {
       return {
@@ -180,11 +180,11 @@ export default {
 </script>
 ```
 
-Still no scoped slots, so let's add one.
+Aún no hay _scoped slots_, así que añadamos uno.
 
-### 3. Expose `google` and `map` properties to the parent component by adding a scoped slot.
+### 3. Exponer las propiedades `google` y `map` a el componente padre añadiendo un _scoped slot_
 
-Finally, we can add a scoped slot that will do the job and allow us to access the child component props in the parent component. We do that by adding the `<slot>` tag in the child component and passing the props that we want to expose (using `v-bind` directive or `:propName` shorthand). It does not differ from passing the props down to the child component, but doing it in the `<slot>` tag will reverse the direction of data flow.
+Finalmente, podemos añadir un _scoped slot_ que hará el trabajo de permitirnos acceder a las propiedades del componente hijo desde el componente padre. Logramos esto añadiendo una _tag_ `<slot>` en el componente hijo y pasandole las _props_ que queremos exponer (usando la directiva `v-bind` o el modo abreviado `:propName`). No difiere en pasar _props_ a un componente hijo, pero realizarlo en la _tag_ `<slot>` va a revertir la dirección del flujo de información.
 
 `GoogleMapLoader.vue`
 
@@ -202,13 +202,13 @@ Finally, we can add a scoped slot that will do the job and allow us to access th
 </template>
 ```
 
-Now, when we have the slot in the child component, we need to receive and consume the exposed props in the parent component.
+Ahora, cuando tenemos el _slot_ en el componente hijo, en el componente padre tenemos que recibir y consumir las propiedas expuestas.
 
-### 4. Receive exposed props in the parent component using `slot-scope` attribute.
+### 4. Recibir en el componente padre las propiedades expuestas utilizando el atributo `slot-scope`
 
-To receive the props in the parent component, we declare a template element and use the `slot-scope` attribute. This attribute has access to the object carrying all the props exposed from the child component. We can grab the whole object or we can [de-structure that object](https://vuejs.org/v2/guide/components-slots.html#Destructuring-slot-scope) and only what we need.
+Para recibir las propiedad en el componente padre, declaramos un _template_ y utilizamos el atributo `slot-scope`. Este atributo tiene acceso al objeto que contiene todas las propiedades expuestas por el componente hijo. Podemos acceder a todo el objeto o podemos [desestructurar este objeto](https://vuejs.org/v2/guide/components-slots.html#Destructuring-slot-scope) y sólo acceder a lo que necesitamos.
 
-Let’s de-structure this thing to get what we need.
+Desestructuremoslo y obtengamos lo que necesitamos.
 
 `TravelMap.vue`
 
@@ -224,15 +224,15 @@ Let’s de-structure this thing to get what we need.
 </GoogleMapLoader>
 ```
 
-Even though the `google` and `map` props do not exist in the `TravelMap` scope, the component has access to them and we can use them in the template.
+Aunque las propiedades `google` y `map` no existen en el el _scope_ de `TravelMap`, la componente tiene acceso a ellas y pueden ser usadas en el _template_.
 
-You might wonder why would we do things like that and what is the use of all that?
+Puede estar pensando ¿porque haría cosas como esta? y ¿cuál es el uso de todo esto?
 
-Scoped slots allow us to pass a template to the slot instead of a rendered element. It’s called a `scoped` slot because it will have access to certain child component data even though the template is rendered in the parent component scope. This gives us the freedom to fill the template with custom content from the parent component.
+Los _scoped slots_ nos permiten pasar un _template_ al _slot_ en vez de un elemento renderizado. Se le llama `scoped` _slot_ porque tendrá acceso a ciertos datos del componente hijo aunque este _template_ sea renderizado en el _scope_ del componente padre. Eso nos da la libertad de elegir el contenido del _template_ desde el componente padre.
 
-### 5. Create factory components for Markers and Polylines
+### 5. Crear una componente factory para Marcadores y Líneas Poligonales
 
-Now when we have our map ready we will create two factory components that will be used to add elements to the `TravelMap`.
+Ahora que nuestro mapa está pronto, crearmos dos componentes _factory_ que usaramos para añadir elemntos a `TravelMal`.
 
 `GoogleMapMarker.vue`
 
@@ -297,21 +297,21 @@ export default {
 }
 ```
 
-Both of these receive `google` that we use to extract the required object (Marker or Polyline) as well as `map` which gives as a reference to the map on which we want to place our element.
+Ambos reciven la propiedad `google` que usamos para extraer el objeto deseado (Marcadores o Líneas Poligonales) así como `map`, la cuál da referencia al mapa en el que queremos poner nuestro elemento.
 
-Each component also expects an extra prop to create a corresponding element. In this case, we have `marker` and `path`, respectively.
+Cada componente también acepta una _prop_ extra para crear el elemnto correspondiente. En este caso tenemos `marker` y `path` respectivamente.
 
-On the mounted hook, we create an element (Marker/Polyline) and attach it to our map by passing the `map` property to the object constructor.
+En el método `mounted` del ciclo de vida, creamos un element (Marcador/Línea Polígonal) y lo añadimos a nuestro mapa pasando la propiedad `map` al constructor del objeto.
 
-There’s still one more step to go...
+Aún queda un paso más por hacer...
 
-### 6. Add elements to map
+### 6. Añadir elemntos al mapa
 
-Let’s use our factory components to add elements to our map. We must render the factory component and pass the `google` and `map` objects so data flows to the right places.
+Utilicemos nuestros componentes _factory_ para añadir elementos al mapa. Debemos renderizar la componente _factory_ y pasarle los objetos `google` y `map` así la información fluye al lugar correcto.
 
-We also need to provide the data that’s required by the element itself. In our case, that’s the `marker` object with the position of the marker and the `path` object with Polyline coordinates.
+También debemos proveer la información que requiere el elemento. En nuestro caso, este es el objeto `marker` con la posición del marcador y el objeto `path` con las coordenadas de la Línea Poligonal.
 
-Here we go, integrating the data points directly into the template:
+Integremos la información directamente en el _template_:
 
 ```html
 <GoogleMapLoader
@@ -337,7 +337,7 @@ Here we go, integrating the data points directly into the template:
 </GoogleMapLoader>
 ```
 
-We need to import the required factory components in our script and set the data that will be passed to the markers and lines:
+Necesitamos importar los componentes _factory_ en nuestro _script_ y luego preparar la información que luego le pasaremos a los marcadores y líneas:
 
 ```js
 import { mapSettings } from '@/constants/mapSettings'
@@ -352,9 +352,9 @@ export default {
   data () {
     return {
       markers: [
-      { id: 'a', position: { lat: 3, lng: 101 } },
-      { id: 'b', position: { lat: 5, lng: 99 } },
-      { id: 'c', position: { lat: 6, lng: 97 } },
+        { id: 'a', position: { lat: 3, lng: 101 } },
+        { id: 'b', position: { lat: 5, lng: 99 } },
+        { id: 'c', position: { lat: 6, lng: 97 } }
       ],
       lines: [
         { id: '1', path: [{ lat: 3, lng: 101 }, { lat: 5, lng: 99 }] },
@@ -378,10 +378,12 @@ export default {
 }
 ```
 
-## When To Avoid This Pattern
-It might be tempting to create a very complex solution based on the example, but at some point we can get to the situation where this abstraction becomes an independent part of the code living in our codebase. If we get to that point it might be worth considering extraction to an add-on.
+## Cuando evitar este patrón
 
-## Wrapping Up
-That's it. With all those bits and pieces created we can now re-use the `GoogleMapLoader` component as a base for all our maps by passing different templates to each one of them. Imagine that you need to create another map with different Markers or just Markers without Polylines. By using the above pattern it becomes very easy as we just need to pass different content to the `GoogleMapLoader` component.
+Puede parecer muy tentador crear una solución muy compleja basada en este ejemplo, pero en cierto punto podemos llegar a la situación en la que esta abstracción se convierte en una parte independiente de código viviendo en el proyecto. Si llegamos a tal punto, puede valer la pena considerar extraer está abstracción a una componente que no utilize _scoped slots_.
 
-This pattern is not strictly connected to Google Maps; it can be used with any library to set the base component and expose the library's API that might be then used in the component that summoned the base component.
+## Resumiendo
+
+Esto es todo. Ahora podemos reusar la componente `GoogleMapLoader` como base para todos nuestros mapa pasando diferentes template a cada uno de ellos. Imagine que necesita crear otro mapa con diferentes marcador o simplemente marcadores sin líneas poligonales. Usando este patrón se vuelve muy fácil, ya que sólo se requiere pasar un contenido diferente a el componente `GoogleMapLoader`.
+
+Este patrón no está estrictamente connectado con Google Maps; puede ser utilizado en una componente base con cualquier librería para luego exponer la API de la misma, que luego puede ser utilizada por el componente que invoca dicho componente base.
