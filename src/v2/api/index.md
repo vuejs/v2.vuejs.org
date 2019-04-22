@@ -681,6 +681,7 @@ type: api
       },
       // the callback will be called immediately after the start of the observation
       d: {
+        // use a method name, instead of an anonymous function
         handler: 'someMethod',
         immediate: true
       },
