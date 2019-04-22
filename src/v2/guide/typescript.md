@@ -70,6 +70,18 @@ const Component = {
 }
 ```
 
+To use vue types in environment without module bundler you can create custom type definition file containing declare global (see https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+
+``` ts
+//global.d.ts - name does not matter
+import { VueConstructor } from 'vue'
+
+declare global {
+    const Vue: VueConstructor
+}
+```
+
+
 ## Class-Style Vue Components
 
 If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
