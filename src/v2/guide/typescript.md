@@ -70,8 +70,7 @@ const Component = {
 }
 ```
 
-To use Vue types in an environment without a module bundler, you can create a custom type definition file containing `declared global` (see [Declaration Merging
-](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)).
+To use Vue types in an environment without a module bundler, you can create a custom type definition file containing `declare global` (see [Declaration Merging https://www.typescriptlang.org/docs/handbook/declaration-merging.html](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)).
 
 ``` ts
 //global.d.ts - name does not matter
