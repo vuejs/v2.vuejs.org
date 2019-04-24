@@ -85,6 +85,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
   ```
   npm run serve
   ```
+  Add details here - what shoud be in package.json for this to work?
 
 3.  Go to the Debug view, select the **'vuejs: chrome/firefox'** configuration, then press F5 or click the green play button.
 
