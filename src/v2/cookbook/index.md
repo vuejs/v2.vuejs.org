@@ -16,6 +16,8 @@ How is the cookbook different from the guide? Why is this necessary?
 
 * **Exploring the Ecosystem**: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
 
+<p class="tip">With all these differences, please note that the cookbook is still _not_ a step-by-step manual. For most of its content, you are expected to have a basic understanding of concepts like HTML, CSS, JavaScript, npm/yarn, etc.</p>
+
 ## Cookbook Contributions
 
 ### What we're looking for
