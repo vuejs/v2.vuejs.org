@@ -333,18 +333,16 @@ order: 803
       github: 'posva',
       twitter: 'posva',
       work: {
-        role: 'Lead Instructor',
-        org: 'IronHack',
-        orgUrl: 'https://www.ironhack.com/'
+        role: 'Freelance Developer & Consultant',
       },
       reposOfficial: [
         'vuefire', 'vue-router'
       ],
       reposPersonal: [
-        'vuexfire', 'vue-mdc', 'vue-motion'
+        'vuex-mock-store', 'vue-promised', 'vue-motion'
       ],
       links: [
-        'https://www.codementor.io/posva'
+        'https://www.patreon.com/posva'
       ]
     },
     {
