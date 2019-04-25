@@ -246,11 +246,11 @@ type: api
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-### Vue.set( target, key, value )
+### Vue.set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -263,11 +263,11 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-### Vue.delete( target, key )
+### Vue.delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key/index`
+  - `{string | number} propertyName/index`
 
   > Only in 2.2.0+: Also works with Array + index.
 
@@ -1576,11 +1576,11 @@ type: api
   // `callback` is fired immediately with current value of `a`
   ```
 
-### vm.$set( target, key, value )
+### vm.$set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -1591,11 +1591,11 @@ type: api
 
 - **See also:** [Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+### vm.$delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
 
 - **Usage:**
 
@@ -2013,7 +2013,7 @@ type: api
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
-  <div v-for="(val, key, index) in object"></div>
+  <div v-for="(val, name, index) in object"></div>
   ```
 
   The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:

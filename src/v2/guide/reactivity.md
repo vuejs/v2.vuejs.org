@@ -34,7 +34,7 @@ vm.b = 2
 // `vm.b` is NOT reactive
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method:
+Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, propertyName, value)` method:
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
