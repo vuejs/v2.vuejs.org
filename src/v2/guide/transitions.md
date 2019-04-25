@@ -569,8 +569,6 @@ By default, this will use the transitions specified for entering and leaving. If
 
 and custom JavaScript hooks:
 
-<p class="tip">Both `appear` attribute and `v-on:appear` hook will cause an appear transition. Compared to `appear` attribute, `v-on:appear` hook has a higher priority. If `v-on:appear` hook is specified, using `:appear="false"` does not cancel the transition.</p>
-
 ``` html
 <transition
   appear
@@ -582,6 +580,8 @@ and custom JavaScript hooks:
   <!-- ... -->
 </transition>
 ```
+
+In the example above, either `appear` attribute or `v-on:appear` hook will cause an appear transition.
 
 ## Transitioning Between Elements
 
