@@ -73,7 +73,7 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same property order across browsers.
 
 {% raw %}
 <div class="upgrade-path">

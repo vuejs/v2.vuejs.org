@@ -186,7 +186,7 @@ When including an `index`, the argument order for arrays used to be `(index, val
 
 ### `v-for` Argument Order for Objects <sup>changed</sup>
 
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+When including a property name/key, the argument order for objects used to be `(name, value)`. It is now `(value, name)` to be more consistent with common object iterators such as lodash's.
 
 {% raw %}
 <div class="upgrade-path">
