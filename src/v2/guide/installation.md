@@ -247,10 +247,6 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 
 ### CSP environments
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
-
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
-
 Google Chrome Апп зэрэг зарим орчнууд нь Мэдээллийн аюулгүй байдлын (CSP) үүднээс `new Function()` -ийг ашиглахыг хориглодог. Full build template compile хийх боломжийг агуулдаг учраас эдгээр орчинд ашиглагдах боломжгүй.
 
 Нөгөө талаас, зөвхөн ажиллах runtime-only build нь бүрэн CSP-тэй нийцдэг. Runtime-only хувилбар [Webpack + vue-loader] (https://github.com/vuejs-templates/webpack-simple) эсвэл [Browserify + vueify] (https://github.com/vuejs-templates / browser-simple) зэрэгтэй хамт ашиглахад таны template render функцууд нь CSP орчнуудад төгс ажиллах болно.

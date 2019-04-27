@@ -6,43 +6,43 @@ order: 2
 
 ## Vue.js гэж юу вэ?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (дуудлага нь / vjuː /, **view** шиг) нь хэрэглэгчийн интерфэйсийг бүтээхэд зориулсан **дэвшилтэт framework** юм. Бусад monolotic framework-уудаас ялгаатай нь Vue нь жижиг хэсгүүдээс бага багаар өргөтгөж хэрэглэх зорилготой байна. Үндсэн сан нь зөвхөн view layer дээр төвлөрч байгаа бөгөөд бусад сангууд болон,  төслүүдтэй хамтарч, нэгтгэх боломжтой. Нөгөөтэйгүүр, Vue нь [орчин үеийн багаж хэрэгсэл](single-file-components.html) болон [нэмэлт сангууд](https://github.com/vuejs/awesome-vue#components--libraries) тай хослуулан Single-Page Application-уудыг маш сайн хөгжүүлэх боломжтой.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Хэрэв та Vue ашиглахаасаа өмнө илүү ихийг мэдэхийг хүсч байвал, бид үндсэн ойлголтууд болон жишээ төслүүдийг багтаасан <a id="modal-player"  href="#">бичлэг бэлдсэн байгаа.</a> 
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Та frontend хөгжүүлэгчээд ашилладаг туршлагатай бол Vue болон бусад libraries/framework-ийг харьцуулж хараарай [Бусад Framework-уудтай харьцуулсан](comparison.html).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Vue Mastery үнэгүй видео хичээл үзээрэй</a></div>
 
-## Getting Started
+## Эхлэх
 
-<a class="button" href="installation.html">Installation</a>
+<a class="button" href="installation.html">Суулгах</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Энэхүү албан ёсны заавруудтай танилцахын тулд HTML, CSS, болон JavaScript-ийн анхан шатны мэдлэгтэй байх хэрэгтэй. Хэрэв шинээр frontend хөгжүүлэлт сурах гэж байгаа бол, шууд framework ашиглах нь тохирмжгүй бөгөөд, эхлээд анхан шатны үндсэн ойлголтуудыг судалсаны дараа эргэж ирэхийг хүсч байна! Өмнө нь бусад framework ашиглаж байсан туршлага хэрэг болох хэдий ч чухал биш.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Vue.js туршиж үзэх хамгийн хялбар арга нь [JSFiddle Hello World жишээ](https://jsfiddle.net/chrisvfritz/50wL7mdz/) ашиглах. Өөр таб нээж бусад энгийн жишээнүүд болон заавруудыг дагаж турших бүрэн боломжтой. Мөн <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">шинээр <code>index.html</code> файл </a> үүсгэж Vue-ийг оруулж болно.
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- хөгжүүлэлтийн хувилбар, хэрэгтэй console анхааруулгуудыг багтаасан -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+болон:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- production хувилбар, хэмжээг нь багасгасан илүү хурдтай -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+Vue хэрхэн суулгах талаар дэлгэрэнгүй мэдээллийг [Суулгах](installation.html) хуудаснаас харна уу . Тэмдэглэл: Бид анхлан сурж эхлэж байгаа хүмүүст `vue-cli` **ашиглахгүй** байхыг зөвлөж байна, Ялангуяа Node.js дээр суурьласан хөгжүүлэлтэнд ашигладаг багаж хэрэгсэлүүд ашиглаж байгаагүй бол.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+Хэрэв та илүү интерактив сонирхож байвал, [энэхүү цуврал хичээлийг Scrimba дээр](https://scrimba.com/playlist/pXKqta) дээр үзэж болно, олон төрлийн видео хичээлүүд байгаа бөгөөд хүссэн үедээ ухрааж зогсоож үзэх боломжтой.
 
 ## Declarative Rendering
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Scrimba дээр энэ хичээлийг туршиж үзээрэй</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Vue.js core нь бидэнд энгийн template syntax ашиглаж илэрхийлэл болон өгөгдлийг DOM руу рэндэр хийх боломжийг олгодог систем юм:
 
 ``` html
 <div id="app">
@@ -53,7 +53,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Сайн уу Vue!'
   }
 })
 ```
@@ -65,15 +65,15 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Сайн уу Vue!'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Бид анхны Vue апп үүсгэсэн! Энэ энгийн string template рэндэр хийсэн мэт харагдаж байна, гэвч Vue цаана нь маш их ажил амжуулсан байгаа. Одоо DOM болон өгөгдөл холбогдсон, мөн бүх зүйл **reactive** ажиллаж байгаа. Бид яаж мэдэх вэ? Өөрийнхөө вэб хөтөчийг нээж JavaScript console (яг одоо, энэ хуудас дээр) нээж `app.message`-д өөр утга өгнө үү. Та дээр дурдсан өөрчлөгдсөн жишээ харах болно.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Текст засч оруулахаас гадна, дараах байдлаар элементүүдийн шинж чанарыг тодорхойлж болно:
 
 ``` html
 <div id="app-2">
