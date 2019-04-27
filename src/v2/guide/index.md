@@ -10,7 +10,7 @@ Vue (дуудлага нь / vjuː /, **view** шиг) нь хэрэглэгчи
 
 Хэрэв та Vue ашиглахаасаа өмнө илүү ихийг мэдэхийг хүсч байвал, бид үндсэн ойлголтууд болон жишээ төслүүдийг багтаасан <a id="modal-player"  href="#">бичлэг бэлдсэн байгаа.</a> 
 
-Та frontend хөгжүүлэгчээд ашилладаг туршлагатай бол Vue болон бусад libraries/framework-ийг харьцуулж хараарай [Бусад Framework-уудтай харьцуулсан](comparison.html).
+Та frontend хөгжүүлэгчээр ажилладаг туршлагатай бол Vue болон бусад libraries/framework-ийг харьцуулж хараарай [Бусад Framework-уудтай харьцуулсан](comparison.html).
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Vue Mastery үнэгүй видео хичээл үзээрэй</a></div>
 
@@ -18,7 +18,7 @@ Vue (дуудлага нь / vjuː /, **view** шиг) нь хэрэглэгчи
 
 <a class="button" href="installation.html">Суулгах</a>
 
-<p class="tip">Энэхүү албан ёсны заавруудтай танилцахын тулд HTML, CSS, болон JavaScript-ийн анхан шатны мэдлэгтэй байх хэрэгтэй. Хэрэв шинээр frontend хөгжүүлэлт сурах гэж байгаа бол, шууд framework ашиглах нь тохирмжгүй бөгөөд, эхлээд анхан шатны үндсэн ойлголтуудыг судалсаны дараа эргэж ирэхийг хүсч байна! Өмнө нь бусад framework ашиглаж байсан туршлага хэрэг болох хэдий ч чухал биш.</p>
+<p class="tip">Энэхүү албан ёсны заавруудтай танилцахын тулд HTML, CSS, болон JavaScript-ийн анхан шатны мэдлэгтэй байх хэрэгтэй. Хэрэв шинээр frontend хөгжүүлэлт сурах гэж байгаа бол, шууд framework ашиглах нь тохиромжгүй бөгөөд, эхлээд анхан шатны үндсэн ойлголтуудыг судалсаны дараа эргэж ирэхийг хүсч байна! Өмнө нь бусад framework ашиглаж байсан туршлага хэрэг болох хэдий ч тийм ч чухал биш.</p>
 
 Vue.js туршиж үзэх хамгийн хялбар арга нь [JSFiddle Hello World жишээ](https://jsfiddle.net/chrisvfritz/50wL7mdz/) ашиглах. Өөр таб нээж бусад энгийн жишээнүүд болон заавруудыг дагаж турших бүрэн боломжтой. Мөн <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">шинээр <code>index.html</code> файл </a> үүсгэж Vue-ийг оруулж болно.
 
@@ -36,7 +36,7 @@ Vue.js туршиж үзэх хамгийн хялбар арга нь [JSFiddle
 
 Vue хэрхэн суулгах талаар дэлгэрэнгүй мэдээллийг [Суулгах](installation.html) хуудаснаас харна уу . Тэмдэглэл: Бид анхлан сурж эхлэж байгаа хүмүүст `vue-cli` **ашиглахгүй** байхыг зөвлөж байна, Ялангуяа Node.js дээр суурьласан хөгжүүлэлтэнд ашигладаг багаж хэрэгсэлүүд ашиглаж байгаагүй бол.
 
-Хэрэв та илүү интерактив сонирхож байвал, [энэхүү цуврал хичээлийг Scrimba дээр](https://scrimba.com/playlist/pXKqta) дээр үзэж болно, олон төрлийн видео хичээлүүд байгаа бөгөөд хүссэн үедээ ухрааж зогсоож үзэх боломжтой.
+Хэрэв та илүү интерактив зүйл сонирхож байвал, [энэхүү цуврал хичээлийг Scrimba дээр](https://scrimba.com/playlist/pXKqta) дээр үзэж болно, олон төрлийн видео хичээлүүд байгаа бөгөөд хүссэн үедээ ухрааж зогсоож үзэх боломжтой.
 
 ## Declarative Rendering
 
@@ -78,8 +78,7 @@ var app = new Vue({
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Намайг хулганаараа hover хийж гарч ирэх гарчигийг хараарай!
   </span>
 </div>
 ```
@@ -87,39 +86,39 @@ var app = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Та энэ хуудсыг ' + new Date().toLocaleString() + '-д дуудсан байна'
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Намайг хулганаараа hover хийж гарч ирэх гарчигийг хараарай!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Та энэ хуудсыг ' + new Date().toLocaleString() + '-д дуудсан байна'
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Энд бид шинэ зүйлтэй уулзаж байна. Дээрх `v-bind` шинж чанар нь **directive** гэж нэрлэгддэг. Directive-ууд нь урдаа `v-` гэсэн албан ёсны шинж чанар авах боломжыг Vue хангаж өгсөн байдаг, энэ нь таны бодож байгаагаар энэ нь reactive шинж чанарыг rendered DOM дээр хэрэглэдэг. Энд үндсэндээ "энэ элементийн `гарчиг` шинж чанарыг Vue жишээн дээрх `message` шинж чанараар байнга шинэчилж байна гэсэн үг юм.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Хэрэв та өөрийн JavaScript консолоо дахин нээгээд `app2.message = 'зарим шинэ мессеж'` - г оруулбал, та энэ үед bound HTML дээр `title` атрибут шинэчлэгдсэн байгааг харах болно.
 
-## Conditionals and Loops
+## Conditionals болон Loops
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Scrimba дээр хичээл үзэх</a></div>
 
-It's easy to toggle the presence of an element, too:
+Элементийн идэвхитэй харагдах үгүйг зохицуулах амархан:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Та одоо намайг харж байна</span>
 </div>
 ```
 
@@ -134,7 +133,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Та одоо намайг харж байна</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -146,11 +145,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Одоо console дээр `app3.seen = false` болгоод enter товч дарна уу. Та мессежийг харах боломжгүй болно.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Энэ жишээ нь бид зөвхөн текст болон шинж чанарууд бус, DOM-ийн **бүтэц** уруу өгөгдөл холбох боломжтой гэдгийг харуулж байна. Үүнээс гадна, Vue өгөгдөл болон элемент нэмэх/устгах/засах үед автоматаар систем дээр өөрчлөлт хийдэг хүчирхэг [transition effects](transitions.html)-ээр хангадаг.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Өөрийн тусгай үүрэг бүхий хэд хэдэн directives байдаг. Жишээ нь, `v-for` directive Array-ийн өгөгдөлийн ашиглан өгөгдлийн жагсаалт харуулахад ашигладаг:
 
 ``` html
 <div id="app-4">
@@ -166,9 +165,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript сурах' },
+      { text: 'Vue сурах' },
+      { text: 'Ямар нэг юм хийх' }
     ]
   }
 })
@@ -186,22 +185,22 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript сурах' },
+      { text: 'Vue сурах' },
+      { text: 'Ямар нэг юм хийх' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Console дээр `app4.todos.push({ text: 'Шинэ өгөгдөл' })` оруулна уу. Та жагсаалтад шинэ өгөгдөл орсон байгааг харж болно.
 
 ## Handling User Input
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Scrimba дээр хичээл үзэх</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+Хэрэглэгчид таны апп-тай харилцах боломжийг олгохын тулд бид `v-on` directive ашиглан Vue instance бүрт event listeners болон method-уудтай нь хавсаргаж ашиглаж болно:
 
 ``` html
 <div id="app-5">
