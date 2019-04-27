@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Багийн гишүүдийн танилцуулга
 type: guide
 order: 803
 ---

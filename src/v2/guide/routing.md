@@ -1,5 +1,5 @@
 ---
-title: Routing
+title: Чиглүүлэх
 type: guide
 order: 501
 ---
