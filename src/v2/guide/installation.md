@@ -2,7 +2,7 @@
 title: Суулгах заавар
 type: guide
 order: 1
-vue_version: 2.5.16
+vue_version: 2.6.10
 gz_size: "30.90"
 ---
 
@@ -124,9 +124,9 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+`vue-loader` эсвэл ` vueify` ашиглаж байх үед `* .vue` файл доторх загвар нь JavaScript build хийхээс өмнө compile хийгдсэн байдаг. Та эцсийн багцад хөрвүүлэгчийг заавал ашиглах шаардлагагүй бөгөөд зөвхөн runtime-only хувилбар ашиглах нь тохиромжтой.
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+Runtime-only хувилбар нь бүтэн хувилбараас 30% илүү бага хэмжээтэй байдаг тул ашиглахад илүү тохирмжтой. Хэрэв та бүтэн хувилбарыг ашиглахыг хүсэж байгаа бол та өөрийн bundler-ийн alias-г тохируулах хэрэгтэй:
 
 #### Webpack
 
@@ -135,7 +135,7 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' webpack 1 ашиглаж байгаа бол
     }
   }
 }
@@ -182,17 +182,17 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### Development vs. Production горим
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+Development/production горимыг UMD бүтээхэд хатуу кодчилдог/hard-coded/ : un-minified файлууд нь development горим зориулагддаг бөгөөд minified файлууд нь production горимд ашиглахад зориулагдсан.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+CommonJS болон ES модулиуд нь тухайн bundler-т зориулагдсан учраас бид тэдэнд зориулж minified хувилбаруудыг хангаж өгөх боломжгүй. Та эцсийн багцыг өөрөө багасгах үүрэгтэй.
 
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+CommonJS болон ES модуль нь ажиллуулах горимыг тодорхойлохын тулд `process.env.NODE_ENV`-д raw check-уудыг хадгалах. Vue нь ямар горимд ажиллахыг хянахын тулд тухайн орчны тохиргооны хувьсагчуудыг сольж тохируулах ёстой. `process.env.NODE_ENV` нь зөвхөн тэмдэгт мөр буюу string утга бичиж өгөх боломжтой учир хөгжүүлэлтийн горимд UglifyJS гэх мэт minifiers ашиглан кодын хэмжээгээ багасгадаг.
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+Webpack 4+, дээр та `mode` сонголтыг ашиглах боломжтой:
 
 ``` js
 module.exports = {
@@ -200,7 +200,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Гэвч Webpack 3 болон түүнээс өмнөх хувилбарууд дээр [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) ашиглах хэрэгтэй:
 
 ``` js
 var webpack = require('webpack')
@@ -220,7 +220,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Ашиглах: [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -237,13 +237,13 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+Өөрийн bundle-д глобалаар [envify](https://github.com/hughsk/envify) тохиргоо хийх.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+Мөн үзэх [Сэрвэрт байршуулах зөвлөмжүүд](deployment.html).
 
 ### CSP environments
 
@@ -251,9 +251,13 @@ Some environments, such as Google Chrome Apps, enforce Content Security Policy (
 
 On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
+Google Chrome Апп зэрэг зарим орчнууд нь Мэдээллийн аюулгүй байдлын (CSP) үүднээс `new Function()` -ийг ашиглахыг хориглодог. Full build template compile хийх боломжийг агуулдаг учраас эдгээр орчинд ашиглагдах боломжгүй.
+
+Нөгөө талаас, зөвхөн ажиллах runtime-only build нь бүрэн CSP-тэй нийцдэг. Runtime-only хувилбар [Webpack + vue-loader] (https://github.com/vuejs-templates/webpack-simple) эсвэл [Browserify + vueify] (https://github.com/vuejs-templates / browser-simple) зэрэгтэй хамт ашиглахад таны template render функцууд нь CSP орчнуудад төгс ажиллах болно.
+
 ## Dev Build
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Чухал**: GitHub-ийн `/dist` хавтсанд байгаа build хийсэн файлууд нь зөвхөн release хийх үед шалгагддаг. GitHub дээрх хамгийн сүүлийн эх кодоос Vue ашиглахын тулд та үүнийг өөрөө build хийх хэрэгтэй болно!!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -264,14 +268,14 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+Bower ашиглаж байгаа бол зөвхөн UMD хувилбар ашиглах боломжтой.
 
 ``` bash
-# latest stable
+# хамгийн сүүлийн үеийн тогтвортой хувилбар
 $ bower install vue
 ```
 
 ## AMD Module Loaders
 
-All UMD builds can be used directly as an AMD module.
+Бүх UMD хувилбарыг шууд AMD модул болгон ашиглаж болно.
   
