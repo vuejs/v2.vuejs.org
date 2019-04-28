@@ -35,7 +35,7 @@ No solo hacer esto ayuda a evitar a copiar/pegar componentes, sino que también 
 
 ## ¿No puedo simplemente compartir archivos `.vue` directamente?
 
-Vue ya permite que los componentes sean escritos como un único archivo. Porque un Componente de Archivo Único <i>(SFC siglas el inglés para Single File Component)</i> es ahora mismo solo un archivo y usted puede preguntar:
+Vue ya permite que los componentes sean escritos como un único archivo. Porque un Componente de Archivo Único <i>(SFC siglas en inglés para Single File Component)</i> es ahora mismo solo un archivo y usted puede preguntar:
 
 > "¿Porque no se puede usar los archivos `.vue` directamente? ¿No es la forma más simple de compartir componentes?"
 
