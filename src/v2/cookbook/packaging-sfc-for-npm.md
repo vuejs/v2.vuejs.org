@@ -1,14 +1,14 @@
 ---
-title: Packaging Vue Components for npm
+title: Paquete de Componentes de Vue para npm
 type: cookbook
 order: 12
 ---
 
-## Base Example
+## Ejemplo base
 
-Vue components by nature are meant to be re-used. This is easy when the component is only used within a single application. But how can you write a component once and use it in multiple sites/applications? Perhaps the easiest solution is via npm.
+Los componentes de Vue están destinados a ser reusados. Es sencillo cuando el componente solo es usado dentro de una aplicación sencilla. ¿Pero, cómo se puede escribir un componente una vez y usarlo en múltiples sitios/aplicaciones? Quizá la solución más fácil es via npm.
 
-By packaging your component to be shared via npm, it can be imported/required into a build process for use in full-fledged web applications:
+Al empaquetar su componente para ser compartido vía npm, este se puede importar/requerir en un proceso de compilación para su uso en aplicaciones web completamente desarrolladas.
 
 ```js
 import MyComponent from 'my-component';
@@ -17,11 +17,11 @@ export default {
   components: {
     MyComponent,
   },
-  // rest of the component
+  // resto del componente
 }
 ```
 
-Or even used via `<script>` tag in the browser directly:
+O incluso usados via etiqueta `<script>` directamente en el navegador:
 
 ```html
   <script src="https://unpkg.com/vue"></script>
@@ -31,17 +31,17 @@ Or even used via `<script>` tag in the browser directly:
   ...
 ```
 
-Not only does this help you avoid copy/pasting components around, but it also allows you to give back to the Vue community!
+No solo hacer esto ayuda a evitar a copiar/pegar componentes, sino que también nos permite devolver a la comunidad de Vue! 
 
-## Can't I Just Share `.vue` Files Directly?
+## ¿No puedo simplemente compartir archivos `.vue` directamente?
 
-Vue already allows components to be written as a single file. Because a Single File Component (SFC) is already just one file, you might ask:
+Vue ya permite que los componentes sean escritos como un único archivo. Porque un Componente de Archivo Único <i>(SFC siglas en inglés para Single File Component)</i> es ahora mismo solo un archivo y usted puede preguntar:
 
-> "Why can't people use my `.vue` file directly? Isn't that the simplest way to share components?"
+> "¿Porque no se puede usar los archivos `.vue` directamente? ¿No es la forma más simple de compartir componentes?"
 
-It's true, you can share `.vue` files directly, and anyone using a [Vue build](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) containing the Vue compiler can consume it immediately. Also, the SSR build uses string concatenation as an optimization, so the `.vue` file might be preferred in this scenario (see [Packaging Components for npm > SSR Usage](#SSR-Usage) for details). However, this excludes anyone who wishes to use the component directly in a browser via `<script>` tag, anyone who uses a runtime-only build, or build processes which don't understand what to do with `.vue` files.
+Es verdad, usted puede compartir archivos `.vue` directamente y cualquiera usando un [Compilado de Vue](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) conteniendo el compilador de Vue puede consumirlo inmediatamente. También, el compilado SSR <i>(Server-side Rendering)</i> usa la concatenación de string como una optimización, así el archivo `.vue` pudiera ser preferido en este escenario (ver [Empaquetando Componentes para npm > Uso SSR](#Uso-SSR) para los detalles). Sin embargo, este excluye a cualquiera que desee usar el componente directamente en el navegador vía etiqueta `<script>`, cualquiera que use un compilado solo en tiempo de ejecución, o procesos de compilado los cuales no entiendan que hacer con los archivos `.vue` 
 
-Properly packaging your SFC for distribution via npm enables your component to be shared in a way which is ready to use everywhere!
+Empaquetando apropiadamente tu distribución de SFC vía npm  permite que a tu compoenente ser compartido de una manera en la cuál está listo para usarlo donde sea!
 
 ## Packaging Components for npm
 
