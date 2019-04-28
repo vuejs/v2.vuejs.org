@@ -89,7 +89,7 @@ import MyComponent from 'my-component/sfc'; // Note the '/sfc'
 
 Los bundlers compatibles ven la definición de `browser` en el package.json y traducen la petición para `my-component/` dentro de `my-component/src/my-component.vue`, resultando en el archivo original `.vue` siendo usado en su lugar.
 
-<p class="tip">Nota: Cuando se usa el componente `.vue` directamente, preste atención a cualquier tipo de prepocesado requerido por las etiquetas `script` y `style`. Esas dependencias serán pasadas a los usuarios. Considere proporcionar SFCs 'planos' para mantener las cosas lo más clara posibles</p>
+<p class="tip">Nota: Cuando se usa el componente `.vue` directamente, preste atención a cualquier tipo de prepocesado requerido por las etiquetas `script` y `style`. Esas dependencias serán pasadas a los usuarios. Considere proporcionar SFCs 'planos' para mantener las cosas lo más clara posibles.</p>
 
 ### How do I make multiple versions of my component?
 
