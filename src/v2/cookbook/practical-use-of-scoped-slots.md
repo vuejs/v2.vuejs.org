@@ -8,7 +8,7 @@ order: 14
 
 Hay situaciones en la que usted querrá que el _template_ dentro del _slot_ acceda a los datos del componente hijo que es responsable de renderizar el contenido del _slot_. Esto es particularmente útil cuando usted necesita libertad al crear _templates_ personalizados que utilizen los datos y propiedades del componente hijo. Este es un caso típico para el uso de _scoped slots_.
 
-Imagine un componente que configura y prepara una API externa para ser usada en otra componente, pero no esta fuertemente acoplada a un _template_ específico. Tal componente puede ser reusado en muchos lugares renderizando diferentes _templates_ pero usando el mismo objeto con la API específica.
+Imagine un componente que configura y prepara una API externa para ser usada en otro componente, pero no está fuertemente acoplada a un _template_ específico. Tal componente puede ser reusado en muchos lugares renderizando diferentes _templates_ pero usando el mismo objeto con la API específica.
 
 Crearemos un componente (`GoogleMapLoader.vue`) que:
 1. Inicializará la [API de Google Maps](https://developers.google.com/maps/documentation/javascript/reference/)
@@ -80,7 +80,7 @@ Este es simplemente un ejemplo funcional, usted puede encontrar el ejemplo compl
 
 `GoogleMapLoader.vue`
 
-En este _template_, creamos un contenedor para el mapa, el cuál será utilizado para montar el objeco [Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map) extraído desde la API de Google Maps. 
+En este _template_, creamos un contenedor para el mapa, el cuál será utilizado para montar el objeto [Map](https://developers.google.com/maps/documentation/javascript/reference/map#Map) extraído desde la API de Google Maps. 
 
 ```html
 <template>
@@ -140,13 +140,13 @@ Hasta ahora todo bien. Podríamos continuar añandiendole objetos al mapa (Marca
 
 Pero lo que queremos es usar nuestro componente `GoogleMapLoader` solamente como un inicializador que prepara el mapa - no queremos renderizar nada en ella.
 
-Para lograrlo, tenemos que permitir que la componente padre que utilizará `GoogleMapLoader` acceda a `this.google` y `this.map`, los cuáles se encuentran definidos dentro de nuestro componente `GoogleMapLoader`. Aquí es donde los [scoped slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) realmente brillan. Los _scoped slots_ nos permiten exponer propiedades definidas en el componente hijo al componente padre. Esto podria parecer magia, pero no lo es,  a continuación veremos como funciona.
+Para lograrlo, tenemos que permitir que el componente padre que utilizará `GoogleMapLoader` acceda a `this.google` y `this.map`, los cuáles se encuentran definidos dentro de nuestro componente `GoogleMapLoader`. Aquí es donde los [scoped slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) realmente brillan. Los _scoped slots_ nos permiten exponer propiedades definidas en el componente hijo al componente padre. Esto podria parecer magia, pero no lo es,  a continuación veremos como funciona.
 
 ### 2. Crear un componente que use nuestro componente inicializador
 
 `TravelMap.vue`
 
-En el _template_, renderizamos la componente `GoogleMapLoader` y le pasamos las _props_ requeridas para inicializar el mapa.
+En el _template_, renderizamos el componente `GoogleMapLoader` y le pasamos las _props_ requeridas para inicializar el mapa.
 
 ```html
 <template>
@@ -224,7 +224,7 @@ Desestructurémoslo y obtengamos lo que necesitamos.
 </GoogleMapLoader>
 ```
 
-Aunque las propiedades `google` y `map` no existen en el el _scope_ de `TravelMap`, la componente tiene acceso a ellas y pueden ser usadas en el _template_.
+Aunque las propiedades `google` y `map` no existen en el el _scope_ de `TravelMap`, el componente tiene acceso a ellas y pueden ser usadas en el _template_.
 
 Puede estar pensando ¿porque haría cosas como esta? y ¿cuál es el uso de todo esto?
 
@@ -307,7 +307,7 @@ Aún queda un paso más por hacer...
 
 ### 6. Añadir elementos al mapa
 
-Utilicemos nuestros componentes _factory_ para añadir elementos al mapa. Debemos renderizar la componente _factory_ y pasarle los objetos `google` y `map` así la información fluye al lugar correcto.
+Utilicemos nuestros componentes _factory_ para añadir elementos al mapa. Debemos renderizar el componente _factory_ y pasarle los objetos `google` y `map` así la información fluye al lugar correcto.
 
 También debemos proveer la información que requiere el elemento. En nuestro caso, este es el objeto `marker` con la posición del marcador y el objeto `path` con las coordenadas de la Línea Poligonal.
 
@@ -384,6 +384,6 @@ Puede parecer muy tentador crear una solución muy compleja basada en este ejemp
 
 ## Resumiendo
 
-Esto es todo. Ahora podemos reusar la componente `GoogleMapLoader` como base para todos nuestros mapa pasando diferentes template a cada uno de ellos. Imagine que necesita crear otro mapa con diferentes marcador o simplemente marcadores sin líneas poligonales. Usando este patrón se vuelve muy fácil, ya que sólo se requiere pasar un contenido diferente a el componente `GoogleMapLoader`.
+Esto es todo. Ahora podemos reusar el componente `GoogleMapLoader` como base para todos nuestros mapa pasando diferentes template a cada uno de ellos. Imagine que necesita crear otro mapa con diferentes marcador o simplemente marcadores sin líneas poligonales. Usando este patrón se vuelve muy fácil, ya que sólo se requiere pasar un contenido diferente a el componente `GoogleMapLoader`.
 
-Este patrón no está estrictamente connectado con Google Maps; puede ser utilizado en un componente base con cualquier librería para luego exponer la API de la misma, que luego puede ser utilizada por el componente que invoca dicho componente base.
+Este patrón no está estrictamente conectado con Google Maps; puede ser utilizado en un componente base con cualquier librería para luego exponer la API de la misma, que luego puede ser utilizada por el componente que invoca dicho componente base.
