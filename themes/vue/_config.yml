@@ -107,6 +107,9 @@ gold_sponsors:
   - url: 'https://www.simplyswitch.com/'
     img: energy_comparison.png
     name: Energy Comparison
+  - url: 'https://blokt.com/'
+    img: blokt_cryptocurrency_news.png
+    name: Blokt Cryptocurrency News
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
