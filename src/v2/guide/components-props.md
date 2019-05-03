@@ -27,7 +27,7 @@ Nuevamente, si está utilizando plantillas de cadenas de texto, esta limitación
 
 ## Tipos de propiedades
 
-Hasta ahora, solo hemos visto los accesorios listados como un arreglo de cadenas de texto:
+Hasta ahora, solo hemos visto las propiedades listadas como un arreglo de cadenas de texto:
 
 ```js
 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
