@@ -8,20 +8,26 @@ order: 103
 
 ## Event Names
 
-Unlike components and props, event names don't provide any automatic case transformation. Instead, the name of an emitted event must exactly match the name used to listen to that event. For example, if emitting a camelCased event name:
+HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when emitting a custom event it is recommended to use the kebab-case format, for example:
+
 
 ```js
+// DO:
+this.$emit('my-event')
+
+// !! DO NOT:
 this.$emit('myEvent')
 ```
 
-Listening to the kebab-cased version will have no effect:
+And defining that event with its kebab-case equivalent:
+
 
 ```html
-<!-- Won't work -->
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
-Unlike components and props, event names will never be used as variable or property names in JavaScript, so there's no reason to use camelCase or PascalCase. Additionally, `v-on` event listeners inside DOM templates will be automatically transformed to lowercase (due to HTML's case-insensitivity), so `v-on:myEvent` would become `v-on:myevent` -- making `myEvent` impossible to listen to.
+<p class="tip">Unlike components and props, event names will never be used as variable or property names in JavaScript, so there's no reason to use camelCase or PascalCase. Additionally, <code>v-on</code> event listeners inside DOM templates will be automatically transformed to lowercase (due to HTML's case-insensitivity), so <code>v-on:myEvent</code> would become <code>v-on:myevent</code> -- making <code>myEvent</code> impossible to listen to.</p>
+
 
 For these reasons, we recommend you **always use kebab-case for event names**.
 
