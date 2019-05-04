@@ -14,8 +14,7 @@ var vm = new Vue({
 })
 ```
 
-Aunque no extrictamente asociado con el [patrón MVVM]
-(https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue fue en parte inspirado por él.
+Aunque no extrictamente asociado con el [patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue fue en parte inspirado por él.
 Como una convención, solemos usar la variable `vm` (abreviación de ViewModel) para hacer referencia a nuestra instancia de Vue.
 
 Cuando usted crea una instancia de Vue, lo pasa en un **objeto options**. La mayor parte de esta guía describe cómo usted puede usar estas opciones para crear el comportamiento deseado.
