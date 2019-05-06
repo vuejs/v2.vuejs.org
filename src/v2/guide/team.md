@@ -413,16 +413,18 @@ order: 803
       github: 'kazupon',
       twitter: 'kazu_pon',
       work: {
-        role: 'CTO & Full Stack Developer'
+        role: 'Engineer',
+        org: 'PLAID,inc.',
+        orgUrl: 'https://plaid.co.jp'
       },
       reposOfficial: [
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
+        'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'eslint-plugin-vue-i18n', 'vue-i18n-extensions', 'vue-cli-plugin-p11n'
       ],
       links: [
-        'https://www.patreon.com/kazupon', 'https://cuusoo.com', 'http://frapwings.jp'
+        'https://www.patreon.com/kazupon'
       ]
     },
     {
