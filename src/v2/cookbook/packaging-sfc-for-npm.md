@@ -39,11 +39,11 @@ Vue ya permite que los componentes sean escritos como un único archivo. Porque 
 
 > "¿Porque no se puede usar los archivos `.vue` directamente? ¿No es la forma más simple de compartir componentes?"
 
-Es verdad, usted puede compartir archivos `.vue` directamente y cualquiera usando un [Compilado de Vue](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) conteniendo el compilador de Vue puede consumirlo inmediatamente. También, el compilado SSR <i>(Server-side Rendering)</i> usa la concatenación de string como una optimización, así el archivo `.vue` pudiera ser preferido en este escenario (ver [Empaquetando Componentes para npm > Uso SSR](#Uso-SSR) para los detalles). Sin embargo, este excluye a cualquiera que desee usar el componente directamente en el navegador vía etiqueta `<script>`, cualquiera que use un compilado solo en tiempo de ejecución, o procesos de compilado los cuales no entiendan que hacer con los archivos `.vue` 
+Es verdad, usted puede compartir archivos `.vue` directamente y cualquiera usando un [Compilado de Vue](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds) conteniendo el compilador de Vue puede consumirlo inmediatamente. También, el compilado SSR <i>(Server-side Rendering)</i> usa la concatenación de string como una optimización, así el archivo `.vue` pudiera ser preferido en este escenario (ver [Empaquetando Componentes para npm > Uso SSR](#Uso-SSR) para los detalles). Sin embargo, este excluye a cualquiera que desee usar el componente directamente en el navegador vía etiqueta `<script>`, cualquiera que use un compilado solo en tiempo de ejecución, o procesos de compilación los cuales no entiendan que hacer con los archivos `.vue` 
 
-Empaquetando apropiadamente tu distribución de SFC vía npm  permite que a tu compoenente ser compartido de una manera en la cuál está listo para usarlo donde sea!
+El empaquetado adecuado de su SFC para su distribución a través de npm permite que su componente se comparta de una manera que está lista para usar en cualquier lugar.
 
-## Empaquetando Compoenentes para npm
+## Empaquetando Componentes para npm
 
 Para los propósitos de esta sección, asuma la siguiente estructura del archivo:
 
@@ -57,9 +57,9 @@ src/
 dist/
 ```
 
-<p class="tip">A través de este documento, las referencias están echas al package.json listado arriba. El archivo usado en estos ejemplos fue generado a mano, e incluirá la configuración mínima requerida par la discusión/tarea del momento. Es posible que su propio package.json contendrá mucho más de lo que se expone acá</p>
+<p class="tip">A través de este documento, las referencias están echas al package.json listado arriba. El archivo usado en estos ejemplos fue generado a mano, e incluirá la configuración mínima requerida par la discusión/tarea del momento. Es posible que su propio package.json contenga mucho más de lo que se expone acá</p>
 
-### ¿Cómo sabe npm cuál versión servir al navegador/proceso compilado?
+### ¿Cómo sabe npm cuál versión servir al navegador/proceso de compilación?
 
 El archivo package.json usado por npm realmente solo requiere una versión (`main`), sin embargo, no estamos limitados a eso. Podemos direccionar el caso de uso más común especificando dos versiones adicionales (`module` y `unpkg`), y proveer acceso al archivo `.vue` en sí mismo usando el campo `browser`. Un ejemplo de package.json pudiera lucir así:
 
@@ -77,7 +77,7 @@ El archivo package.json usado por npm realmente solo requiere una versión (`mai
 }
 ```
 
-Cuando webpack 2+, Rollup, u otras herramientas modernas de compilado son usadas, levantan sobre el compilado de `module`. Aplicaciones <i>Legacy</i> pudieran usar el compilado de `main`, y el compilado de `unpkg` puede ser usado directamente en el navegador. De echo el [unpkg](https://unpkg.com) cdn automáticamente usa esto cuando alguien entra la URL para tu módulo dentro su servicio.
+Cuando webpack 2+, Rollup, u otras herramientas modernas de compilación son usadas, levantan sobre el compilado de `module`. Aplicaciones <i>Legacy</i> pudieran usar el compilado de `main`, y el compilado de `unpkg` puede ser usado directamente en el navegador. De echo el [unpkg](https://unpkg.com) cdn automáticamente usa esto cuando alguien ingresa la URL para tu módulo dentro su servicio.
 
 ### Uso SSR
 
