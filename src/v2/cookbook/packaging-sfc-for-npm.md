@@ -45,7 +45,7 @@ El empaquetado adecuado de su SFC para su distribución a través de npm permite
 
 ## Empaquetando Componentes para npm
 
-Para los propósitos de esta sección, asuma la siguiente estructura del archivo:
+Para los propósitos de esta sección, asuma la siguiente estructura de archivo:
 
 ```
 package.json
@@ -81,7 +81,8 @@ Cuando webpack 2+, Rollup, u otras herramientas modernas de compilación son usa
 
 ### Uso SSR
 
-Usted pudiera haber notado algo interesante - los navegadores no van a usar la versión `browser`. Esto es porque este campo está entendido realmente para permitir a los autores proveer una [sugerencia a un bundler](https://github.com/defunctzombie/package-browser-field-spec#spec) en la cuál se generan sus propios paquetes para uso del lado del cliente. Con un poco de creatividad, este campo nos permite mapear un alias para el archivo `.vue` en sí. Por ejemplo:
+Es posible que hayas notado algo interesante - los navegadores no van a usar la versión `browser`. Esto es porque este campo está realmente destinado a permitir a los autores proveer una [sugerencia a un bundler](https://github.com/defunctzombie/package-browser-field-spec#spec) en la cuál se generan sus propios paquetes para uso del lado del cliente. Con un poco de creatividad, este campo nos permite mapear un alias para el archivo `.vue` en sí. Por ejemplo:
+
 
 ```js
 import MyComponent from 'my-component/sfc'; // Note the '/sfc'
@@ -89,7 +90,7 @@ import MyComponent from 'my-component/sfc'; // Note the '/sfc'
 
 Los bundlers compatibles ven la definición de `browser` en el package.json y traducen la petición para `my-component/` dentro de `my-component/src/my-component.vue`, resultando en el archivo original `.vue` siendo usado en su lugar.
 
-<p class="tip">Nota: Cuando se usa el componente `.vue` directamente, preste atención a cualquier tipo de prepocesado requerido por las etiquetas `script` y `style`. Esas dependencias serán pasadas a los usuarios. Considere proporcionar SFCs 'planos' para mantener las cosas lo más clara posibles.</p>
+<p class="tip">Nota: Cuando use los componentes `.vue` directamente, preste atención a cualquier tipo de procesamiento requerido por las etiquetas `script` y `style`. Esas dependencias serán pasadas a los usuarios. Considere proporcionar SFCs 'planos' para mantener las cosas lo más clara posibles.</p>
 
 ### How do I make multiple versions of my component?
 
