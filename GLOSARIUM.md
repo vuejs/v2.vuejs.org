@@ -44,6 +44,7 @@
 
 ## D
 
+- Default Value: Nilai Anggapan
 - Define: Mendefinisikan
 - Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
 - Deploy: Menggelar (Tetap diikuti dengan bahasa inggris asli italic dan dalam kurung)
@@ -187,7 +188,7 @@
 
 - Value: Nilai
 - Virtual DOM: DOM Virtual
-- 
+-
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
