@@ -1880,7 +1880,7 @@ type: api
 
 ### v-text
 
-- **Yang diharapkan:** `string`
+- **Nilai Anggapan:** `string`
 
 - **Rincian:**
 
@@ -1898,7 +1898,7 @@ type: api
 
 ### v-html
 
-- **Yang diharapkan:** `string`
+- **Nilai Anggapan:** `string`
 
 - **Rincian:**
 
@@ -1918,7 +1918,7 @@ type: api
 
 ### v-show
 
-- **Yang diharapkan:** `any`
+- **Nilai Anggapan:** `any`
 
 - **Penggunaan:**
 
@@ -1930,7 +1930,7 @@ type: api
 
 ### v-if
 
-- **Yang diharapkan:** `any`
+- **Nilai Anggapan:** `any`
 
 - **Penggunaan:**
 
@@ -1967,7 +1967,7 @@ type: api
 
 > Baru pada 2.1.0+
 
-- **Yang diharapkan:** `any`
+- **Nilai Anggapan:** `any`
 
 - **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
@@ -1994,7 +1994,7 @@ type: api
 
 ### v-for
 
-- **Yang diharapkan:** `Array | Object | number | string | Iterable (since 2.6)`
+- **Nilai Anggapan:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **Penggunaan:**
 
@@ -2036,7 +2036,7 @@ type: api
 
 - **Penulisan Singkat:** `@`
 
-- **Yang diharapkan:** `Function | Inline Statement | Object`
+- **Nilai Anggapan:** `Function | Inline Statement | Object`
 
 - **Argumen:** `event`
 
@@ -2126,7 +2126,7 @@ type: api
 
 - **Penulisan Singkat:** `:`
 
-- **Yang diharapkan:** `any (with argument) | Object (without argument)`
+- **Nilai Anggapan:** `any (with argument) | Object (without argument)`
 
 - **Argumen:** `attrOrProp (optional)`
 
@@ -2203,7 +2203,7 @@ type: api
 
 ### v-model
 
-- **Yang diharapkan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
+- **Nilai Anggapan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
 
 - **Terbatas pada:**
   - `<input>`
@@ -2228,7 +2228,7 @@ type: api
 
 - **Penulisan Singkat:** `#`
 
-- **Yang diharapkan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
+- **Nilai Anggapan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
 
 - **Argumen:** nama slot (opsional, default untuk `default`)
 
@@ -2347,7 +2347,7 @@ type: api
 
 ### key
 
-- **Yang diharapkan:** `number | string`
+- **Nilai Anggapan:** `number | string`
 
   kegunaan Atribut spesial `key` adalah sebagai petunjuk bagi algoritma DOM virtual dari Vue untuk mengidentifikasi *VNodes* ketika membandingkan list yang baru terhadap list yang lama. Tanpa *keys*, Vue menggunakan algoritma yang meminimalisir pergerakan elemen dan mencoba untuk *patch/reuse* elemen di tempat dengan tipe yang sama sebanyak mungkin. Dengan *keys*, elemen-elemen akan disusun kembali berdasarkan susunan perubahan dari *keys*, dan elemen-elemen dengan *keys* yang sudah tidak ada lagi akan selalu di hapus.
 
@@ -2378,7 +2378,7 @@ type: api
 
 ### ref
 
-- **Yang diharapkan:** `string`
+- **Nilai Anggapan:** `string`
 
   `ref` digunakan untuk mendaftarkan referensi terhadap elemen atau komponen anak. Referensi akan didaftarkan dibawah obyek `$refs` dari komponen parent. Jika digunakan pada elemen DOM polos, referensi akan menjadi elemen itu; jika digunakan pada sebuah elemen anak, referensi akan menjadi *instance* komponen:
 
@@ -2398,7 +2398,7 @@ type: api
 
 ### is
 
-- **Yang diharapkan:** `string | Object (Objek opsi komponen)`
+- **Nilai Anggapan:** `string | Object (Objek opsi komponen)`
 
   Digunakan untuk [Komponen-komponen dinamis](../guide/components.html#Dynamic-Components) dan juga sebagai solusi pada [keterbatasan dari *in-DOM templates*](../guide/components.html#DOM-Template-Parsing-Caveats).
 
@@ -2425,7 +2425,7 @@ type: api
 
 **Rujuk ke [v-slot](#v-slot) di 2.6.0+.**
 
-- **Yang diharapkan:** `string`
+- **Nilai Anggapan:** `string`
 
   Digunakan pada konten yang dimasukkan pada komponen anak untuk menunjukkan slot mana yang dinamai pada konten tersebut.
 
@@ -2435,7 +2435,7 @@ type: api
 
 **Rujuk ke [v-slot](#v-slot) di 2.6.0+.**
 
-- **Yang diharapkan:** `ekspresi fungsi argumen`
+- **Nilai Anggapan:** `ekspresi fungsi argumen`
 
 - **Kegunaan:**
 
