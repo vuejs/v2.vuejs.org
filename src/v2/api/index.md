@@ -5,7 +5,7 @@ type: api
 
 ## Global Config
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` adalah objek yang berisi konfigurasi global Vue. Anda dapat memodifikasi propertinya yang terdaftar di bawah ini sebelum mem-*bootstrap* aplikasi Anda:
 
 ### silent
 
@@ -19,7 +19,7 @@ type: api
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Memunculkan semua log dan peringatan Vue.
 
 ### optionMergeStrategies
 
@@ -41,17 +41,17 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Menetapkan strategi penggabungan kustom untuk opsi.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  Strategi penggabungan menerima nilai dari opsi yang didefinisikan pada *instance* induk dan anak sebagai argumen pertama dan kedua. Konteks dari Vue *instance* dioper sebagai argumen ketiga.
 
-- **Lihat juga:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Lihat juga:** [Strategi Penggabungan pada Opsi Khusus](../guide/mixins.html#Strategi-Penggabungan-pada-Opsi-Khusus)
 
 ### devtools
 
 - **Tipe:** `boolean`
 
-- **Nilai Anggapan:** `true` (`false` in production builds)
+- **Nilai Anggapan:** `true` (`false` pada build produksi)
 
 - **Penggunaan:**
 
@@ -60,7 +60,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Konfigurasi untuk mengizinkan [vue-devtools](https://github.com/vuejs/vue-devtools) inspeksi. Nilai aggapan dari opsi ini adalah `true` dalam build pengembangan. Dan` false` di build produksi. Anda dapat mengaturnya ke `true` untuk mengaktifkan inspeksi untuk produksi.
 
 ### errorHandler
 
@@ -72,13 +72,13 @@ type: api
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // penanganan galat
+    // `info` adalah informasi galat yang spesifik pada Vue, seperti pada kait siklus hidup
+    // galat ditemukan di. Hanya tersedia di 2.2.0+
   }
   ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  Tetapkan handler untuk kesalahan yang tidak tertangkap selama fungsi render komponen dan pengamat. Handler dipanggil dengan galat dan Vue instance.
 
   > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
@@ -86,11 +86,17 @@ type: api
 
   > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
-  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > Di 2.2.0+, kait ini juga menangkap kesalahan dalam kait siklus hidup komponen. Juga, ketika kait ini `undefined`, kesalahan yang ditangkap akan dicatat dengan` console.error` alih-alih merusak aplikasi.
+
+  > Di 2.4.0+, hook ini juga menangkap kesalahan yang dilemparkan di dalam *Vue custom event handlers*.
+
+  > Di 2.6.0+, kait ini juga menangkap kesalahan yang dilemparkan di dalam `v-on` DOM listener. Selain itu, jika ada kait atau handler yang mengembalikan rantai *Promise* (mis. Fungsi async), kesalahan dari rantai *Promise* itu juga akan ditangani.
+
+  > Servis pelacak galat [Sentry](https://sentry.io/for/vue/) dan [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) menyediakan intergasi resmi dengan opsi ini.
 
 ### warnHandler
 
-> New in 2.4.0+
+> Baru di 2.4.0+
 
 - **Tipe:** `Function`
 
@@ -100,11 +106,11 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` is the component hierarchy trace
+    // `trace` adalah jejak hierarki komponen
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Menetapkan handler khusus untuk peringatan pada *runtime Vue*. Perhatikan ini hanya berfungsi selama mode pengembangan dan diabaikan dalam produksi.
 
 ### ignoredElements
 
@@ -118,13 +124,13 @@ type: api
   Vue.config.ignoredElements = [
     'my-custom-web-component',
     'another-web-component',
-    // Use a `RegExp` to ignore all elements that start with "ion-"
-    // 2.5+ only
+    // Gunakan `RegExp` untuk mengabaikan semua elemen yang dimulai dengan "ion-"
+    // hanya 2.5+
     /^ion-/
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Membuat Vue mengabaikan elemen khusus yang didefinisikan di luar Vue (mis., Menggunakan Web Components APIs). Jika tidak, itu akan memunculkan peringatan tentang `Unknown custom element`, dengan asumsi Anda lupa mendaftarkan komponen global atau salah mengeja nama komponen.
 
 ### keyCodes
 
@@ -138,9 +144,9 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase tidak akan bekerja
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // bandingkan menggunakan kebab-case dengan tanda kutip ganda
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -150,11 +156,11 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for `v-on`.
+  Menetapkan alias key kustom untuk `v-on`.
 
 ### performance
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
 - **Tipe:** `boolean`
 
@@ -162,19 +168,19 @@ type: api
 
 - **Usage**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Setel ini menjadi `true` untuk mengaktifkan pelacakan inisialisasi komponen, kompilasi, render, dan palacakan performa patch pada browser devtool panel performance/timeline. Hanya berfungsi dalam mode pengembangan dan di browser yang mendukung [performance.mark] (https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
 ### productionTip
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
 - **Tipe:** `boolean`
 
 - **Nilai Anggapan:** `true`
 
-- **Usage**:
+- **Penggunaan**:
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Setel ini menjadi `false` untuk mencegah tip produksi pada memulai Vue.
 
 ## Global API
 
