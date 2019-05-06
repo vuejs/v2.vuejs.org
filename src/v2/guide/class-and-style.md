@@ -1,5 +1,5 @@
 ---
-title: Class болон Style холболтууд
+title: Class болон Style Bindings
 type: guide
 order: 6
 ---

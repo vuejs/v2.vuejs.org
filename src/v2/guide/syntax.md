@@ -1,5 +1,5 @@
 ---
-title: Тэмплэйт синтакс
+title: Template Syntax
 type: guide
 order: 4
 ---

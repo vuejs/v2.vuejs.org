@@ -205,14 +205,14 @@ Console дээр `app4.todos.push({ text: 'Шинэ өгөгдөл' })` оруу
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Мэссэжийг урвуугаар харуулах</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Сайн уу Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -224,13 +224,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Мэссэжийг урвуугаар харуулах</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Сайн уу Vue.js!'
   },
   methods: {
     reverseMessage: function () {

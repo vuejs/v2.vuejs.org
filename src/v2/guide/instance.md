@@ -4,13 +4,13 @@ type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Vue Instance үүсгэх
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Бүх Vue application нь `Vue` функц ашиглан **Vue instance** үүсгэдэг:
 
 ```js
 var vm = new Vue({
-  // options
+  // боломжууд
 })
 ```
 
