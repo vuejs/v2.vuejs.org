@@ -8,6 +8,8 @@ order: 301
 
 Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/next-level-vue/mixins" target="_blank" rel="noopener" title="Mixins Tutorial">Watch a video explanation on Vue Mastery</a></div>
+
 Example:
 
 ``` js

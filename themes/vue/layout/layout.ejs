@@ -119,7 +119,8 @@
       apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
       indexName: 'vuejs',
       inputSelector: selector,
-      algoliaOptions: { facetFilters: ["version:" + version] }
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
       })
     })
     </script>
