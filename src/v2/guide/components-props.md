@@ -41,7 +41,9 @@ props: {
   likes: Number,
   isPublished: Boolean,
   commentIds: Array,
-  author: Object
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
 }
 ```
 
@@ -188,7 +190,7 @@ To specify prop validations, you can provide an object with validation requireme
 ``` js
 Vue.component('my-component', {
   props: {
-    // Basic type check (`null` matches any type)
+    // Basic type check (`null` and `undefined` values will pass any type validation)
     propA: Number,
     // Multiple possible types
     propB: [String, Number],
@@ -313,7 +315,7 @@ This can be especially useful in combination with the `$attrs` instance property
 
 ```js
 {
-  class: 'username-input',
+  required: true,
   placeholder: 'Enter your username'
 }
 ```
@@ -337,12 +339,14 @@ Vue.component('base-input', {
 })
 ```
 
+<p class="tip">Note that `inheritAttrs: false` option does **not** affect `style` and `class` bindings.</p>
+
 This pattern allows you to use base components more like raw HTML elements, without having to care about which element is actually at its root:
 
 ```html
 <base-input
   v-model="username"
-  class="username-input"
+  required
   placeholder="Enter your username"
 ></base-input>
 ```

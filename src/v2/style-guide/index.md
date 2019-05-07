@@ -43,7 +43,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### Multi-word component names <sup data-p="a">essential</sup>
 
-**Component names should always be multi-word, except for root `App` components.**
+**Component names should always be multi-word, except for root `App` components, and built-in components provided by Vue, such as `<transition>` or `<component>`.**
 
 This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
 
@@ -331,7 +331,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -366,7 +366,7 @@ computed: {
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -386,7 +386,7 @@ We get similar benefits from updating:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -399,7 +399,7 @@ to:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -418,7 +418,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -430,7 +430,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -445,7 +445,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -456,7 +456,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -564,7 +564,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 ### Private property names <sup data-p="a">essential</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Use module scoping to keep private functions inaccessible from the outside. If that's not possible, always use the `$_` prefix for custom private properties in a plugin, mixin, etc that should not be considered public API. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
@@ -642,6 +642,25 @@ var myGreatMixin = {
     }
   }
 }
+```
+
+``` js
+// Even better!
+var myGreatMixin = {
+  // ...
+  methods: {
+    publicMethod() {
+      // ...
+      myPrivateFunction()
+    }
+  }
+}
+
+function myPrivateFunction() {
+  // ...
+}
+
+export default myGreatMixin
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1215,9 +1234,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greetingText="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
@@ -1229,9 +1248,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greeting-text="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 
@@ -1736,15 +1755,6 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
   v-else
   key="search-results"
 >
-  {{ results }}
-</div>
-```
-
-``` html
-<p v-if="error">
-  Error: {{ error }}
-</p>
-<div v-else>
   {{ results }}
 </div>
 ```

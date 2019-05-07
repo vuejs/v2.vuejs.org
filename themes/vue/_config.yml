@@ -3,9 +3,6 @@ google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.16
 platinum_sponsors_china:
-  - url: >-
-      https://studio.qcloud.coding.net/campaign/favorite-plugins/?utm_source=vue.js&utm_content=cs-logo
-    img: cloudstudio.png
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
 special_sponsors:
@@ -13,6 +10,10 @@ special_sponsors:
     img: stdlib.png
     description: 'Build APIs you need in minutes instead of days, for free.'
 platinum_sponsors:
+  - url: >-
+      https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip
+    img: modus.png
+    name: Modus
   - url: >-
       https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
@@ -68,10 +69,8 @@ gold_sponsors:
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
-  - url: 'https://webdock.io/en'
-    img: webdock.png
-    name: Webdock
-  - url: 'https://syncfusion.com/products/vue'
+  - url: >-
+      http://www.syncfusion.com/?utm_source=vuejs&utm_medium=list&utm_campaign=vuejsjslistcy19
     img: syncfusion.png
     name: SyncFusion
   - url: 'https://opteo.com/vue'
@@ -80,32 +79,48 @@ gold_sponsors:
   - url: 'https://devsquad.com/'
     img: devsquad.png
     name: DevSquad
-  - url: 'https://www.inkoop.in/'
-    img: inkoop.png
-    name: Inkoop
   - url: 'https://www.firesticktricks.com/'
     img: firestick_tricks.png
     name: Firestick Tricks
-  - url: 'https://github.com/marcus-hiles'
-    img: marcus_hiles.png
-    name: Marcus Hiles
+  - url: 'https://intygrate.com/'
+    img: intygrate.png
+    name: Intygrate
   - url: 'https://isleofcode.com/'
     img: isle_of_code.png
     name: Isle of Code
+  - url: 'https://passionatepeople.io/'
+    img: passionate_people.png
+    name: Passionate People
+  - url: 'https://www.bestvpn.co/'
+    img: bestvpn_co.png
+    name: BestVPN.co
+  - url: 'http://en.shopware.com/'
+    img: shopware_ag.png
+    name: shopware AG
+  - url: >-
+      https://x-team.com/join/?utm_source=vuejsorg&utm_medium=sponsor&utm_campaign=vuejsorg-patreon
+    img: x_team.png
+    name: X-Team
+  - url: 'https://www.vpnranks.com/'
+    img: vpnranks.png
+    name: VPNRanks
+  - url: 'https://www.simplyswitch.com/'
+    img: energy_comparison.png
+    name: Energy Comparison
+  - url: 'https://www.bacancytechnology.com'
+    img: bacancy_technology.png
+    name: Bacancy Technology
+  - url: 'https://blokt.com/'
+    img: blokt_cryptocurrency_news.png
+    name: Blokt Cryptocurrency News
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
     name: Dopamine
-  - url: 'https://gridsome.org/'
-    img: gridsome.png
-    name: Gridsome
 bronze_sponsors:
   - url: 'http://tighten.co/'
     img: tighten_co.png
     name: Tighten.co
-  - url: 'https://alligator.io'
-    img: alligator_io.svg
-    name: Alligator.io
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
     name: Accelebrate
