@@ -44,11 +44,6 @@ var example1 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-1'))
-    }
   }
 })
 </script>
@@ -94,11 +89,6 @@ var example2 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-2'))
-    }
   }
 })
 </script>
@@ -127,9 +117,9 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -148,37 +138,37 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
 </script>
 {% endraw %}
 
-You can also provide a second argument for the key:
+You can also provide a second argument for the property's name (a.k.a. key):
 
 ``` html
-<div v-for="(value, key) in object">
-  {{ key }}: {{ value }}
+<div v-for="(value, name) in object">
+  {{ name }}: {{ value }}
 </div>
 ```
 
 {% raw %}
-<div id="v-for-object-value-key" class="demo">
-  <div v-for="(value, key) in object">
-    {{ key }}: {{ value }}
+<div id="v-for-object-value-name" class="demo">
+  <div v-for="(value, name) in object">
+    {{ name }}: {{ value }}
   </div>
 </div>
 <script>
 new Vue({
-  el: '#v-for-object-value-key',
+  el: '#v-for-object-value-name',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -188,52 +178,54 @@ new Vue({
 And another for the index:
 
 ``` html
-<div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }}: {{ value }}
+<div v-for="(value, name, index) in object">
+  {{ index }}. {{ name }}: {{ value }}
 </div>
 ```
 
 {% raw %}
-<div id="v-for-object-value-key-index" class="demo">
-  <div v-for="(value, key, index) in object">
-    {{ index }}. {{ key }}: {{ value }}
+<div id="v-for-object-value-name-index" class="demo">
+  <div v-for="(value, name, index) in object">
+    {{ index }}. {{ name }}: {{ value }}
   </div>
 </div>
 <script>
 new Vue({
-  el: '#v-for-object-value-key-index',
+  el: '#v-for-object-value-name-index',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
 </script>
 {% endraw %}
 
-<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
+<p class="tip">When iterating over an object, the order is based on the enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
-## `key`
+## Maintaining State
 
 When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
-This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+This default mode is efficient, but **only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
+To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item:
 
 ``` html
-<div v-for="item in items" :key="item.id">
+<div v-for="item in items" v-bind:key="item.id">
   <!-- content -->
 </div>
 ```
 
-It is recommended to provide a `key` with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+It is recommended to provide a `key` attribute with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
 
 Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
 
 <p class="tip">Don't use non-primitive values like objects and arrays as `v-for` keys. Use string or numeric values instead.</p>
+
+For detailed usage of the `key` attribute, please see the [`key` API documentation](https://vuejs.org/v2/api/#key).
 
 ## Array Change Detection
 
@@ -321,7 +313,7 @@ vm.b = 2
 // `vm.b` is NOT reactive
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, propertyName, value)` method. For example, given:
 
 ``` js
 var vm = new Vue({
@@ -440,6 +432,8 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 ```
 
 ## `v-for` with `v-if`
+
+<p class="tip">Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
 
 When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
 
