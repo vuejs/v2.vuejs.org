@@ -414,7 +414,7 @@ order: 803
       twitter: 'kazu_pon',
       work: {
         role: 'Engineer',
-        org: 'PLAID,inc.',
+        org: 'PLAID, Inc.',
         orgUrl: 'https://plaid.co.jp'
       },
       reposOfficial: [
