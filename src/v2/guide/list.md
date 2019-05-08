@@ -158,7 +158,7 @@ You can also provide a second argument for the property's name (a.k.a. key):
 {% raw %}
 <div id="v-for-object-value-name" class="demo">
   <div v-for="(value, name) in object">
-    {{ name }}: {{ value }}
+    {{ value }}: {{name}}
   </div>
 </div>
 <script>
