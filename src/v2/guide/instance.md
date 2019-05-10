@@ -10,15 +10,14 @@ Cada aplicación de Vue se comienza creando una nueva **Instancia de Vue** con l
 
 ```js
 var vm = new Vue({
-  // options
+  // opciones
 })
 ```
 
-Aunque no extrictamente asociado con el [patrón MVVM]
-(https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue fue en parte inspirado por él.
+Aunque no estrictamente asociado con el [patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue fue en parte inspirado por él.
 Como una convención, solemos usar la variable `vm` (abreviación de ViewModel) para hacer referencia a nuestra instancia de Vue.
 
-Cuando usted crea una instancia de Vue, lo pasa en un **objeto options**. La mayor parte de esta guía describe cómo usted puede usar estas opciones para crear el comportamiento deseado.
+Cuando usted crea una instancia de Vue, le pasa un **objeto options**. La mayor parte de esta guía describe cómo usted puede usar estas opciones para crear el comportamiento deseado.
 Como referencia, usted puede visitar también la lista completa de opciones en la [documentación de la API](../api/#Options-Data).
 
 Una aplicación Vue está conformada por una **instancia Vue raíz** creada con `new Vue`, opcionalmente organizada dentro de un árbol de componentes reusables anidados. Por ejemplo, el árbol de una aplicación TO-DO podría verse así:
@@ -41,24 +40,24 @@ Hablaremos sobre [el sistema de componentes](components.html) en detalle despué
 Cuando una instancia Vue es creada, agrega todas las propiedades encontradas en su objeto `data` al **sistema de reactividad** de Vue. Cuando los valores de estas propiedades cambian, la vista "reaccionará", actualizándose para coincidir con los nuevos valores.
 
 ```js
-// Our data object
+// Nuestro objeto data
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// El objeto se agrega a una instancia de Vue
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+// Obteniendo la propiedad de la instancia
+// retorna lo mismo que el objeto data original
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Asignando la propiedad en la instancia
+// también afecta la original
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... y también a la inversa
 data.a = 3
 vm.a // => 3
 ```
@@ -99,7 +98,7 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
+  <!-- esto ya no actualizará `foo`! -->
   <button v-on:click="foo = 'baz'">Cámbialo</button>
 </div>
 ```
@@ -116,9 +115,9 @@ var vm = new Vue({
 vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
-// $watch is an instance method
+// $watch es un método de instancia
 vm.$watch('a', function (newValue, oldValue) {
-  // This callback will be called when `vm.a` changes
+  // Esta función será ejecutada cuando `vm.a` cambie
 })
 ```
 
@@ -126,7 +125,7 @@ En el futuro, puede consultar la [documentación de la API](../api/#Instance-Pro
 
 ## Hooks del Ciclo de vida de la Instancia
 
-Cada instancia de Vue pasa a través de una serie de pasos de inicialización cuando es creada - por ejemplo, se necesita configurar la observación de datos, compilar la plantilla, montar la instancia en el DOM y actualizar el DOM cuando cambian los datos. A lo largo del camino, también se ejecutan funciones llamadas **hooks del ciclo de vida**, lo que brinda a los usuarios la oportunidad de agregar su propio código en etapas específicas.
+Cada instancia de Vue pasa a través de una serie de pasos de inicialización cuando es creada - por ejemplo, se necesita configurar la observación de datos, compilar la plantilla, montar la instancia en el DOM y actualizar el DOM cuando cambian los datos. En el camino, también se ejecutan funciones llamadas **hooks del ciclo de vida**, lo que brinda a los usuarios la oportunidad de agregar su propio código en etapas específicas.
 
 Por ejemplo, el hook [`created`](../api/#created) puede ser utilizado para ejecutar código después que una instancia es creada:
 
@@ -136,11 +135,11 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
-    console.log('a is: ' + this.a)
+    // `this` hace referencia a la instancia vm
+    console.log('a es: ' + this.a)
   }
 })
-// => "a is: 1"
+// => "a es: 1"
 ```
 
 También hay otros hooks que se llamarán en diferentes etapas del ciclo de vida de la instancia, como [`mounted`](../api/#mounted), [`updated`](../api/#updated), y [`destroyed`](../api/#destroyed). Todos los hooks del ciclo de vida se llaman en el contexto `this` apuntando a la instancia de Vue que lo invoca.
