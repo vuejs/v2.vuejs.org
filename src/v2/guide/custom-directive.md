@@ -164,7 +164,6 @@ Vue.directive('tack', {
   }
 });
 
-// start app
 new Vue({
   el: '#dynamicexample',
   data() {
@@ -175,28 +174,12 @@ new Vue({
 })
 ```
 
+Result:
 {% raw %}
-<div id="dynamicexample" class="demo">
-  <p v-tack:[position]="200">I am tacked onto the page at 200px to the left.</p>
-</div>
-<script>
-Vue.directive('tack', {
-  bind(el, binding, vnode) {
-    el.style.position = 'fixed';
-    var s = (binding.arg == 'left' ? 'left' : 'top');
-    el.style[s] = binding.value + 'px';
-  }
-});
-
-new Vue({
-  el: '#dynamicexample',
-  data() {
-    return {
-      position: 'left'
-    }
-  }
-})
-</script>
+<iframe height="200" style="width: 100%;" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="//codepen.io/team/Vue/embed/rgLLzb/?height=300&theme-id=32763&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/team/Vue/pen/rgLLzb/'>Dynamic Directive Arguments</a> by Vue
+  (<a href='https://codepen.io/Vue'>@Vue</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 {% endraw %}
 
 ## Function Shorthand
