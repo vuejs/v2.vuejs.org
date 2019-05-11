@@ -190,7 +190,7 @@ Vue.directive('pin', {
 
 new Vue({
   el: '#dynamicexample',
-  data() {
+  data: function () {
     return {
       position: 'left'
     }
