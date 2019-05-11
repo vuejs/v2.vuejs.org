@@ -145,9 +145,32 @@ new Vue({
 
 ### Dynamic Directive Arguments
 
-Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="dataproperty"`, `argument` is the string value assigned to the *arg* property in your directive hook *binding* parameter and `dataproperty` is a reference to a data property on your component instance assigned to the *value* property in the same *binding* parameter. As directive hooks are invoked, the *value* property of the *binding* parameter will dynamically change based on the value of `dataproperty`.
+Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, we can update the argument in a custom directive based on data properties in our component instance! This makes our custom directives extremely flexible for use throughout our application.
 
-An example of a custom directive using a dynamic argument:
+Let's say you want to make a custom directive that allows you to easily tack elements to your page in fixed positioning. We could pass a value in that would allow it to be tacked 200px from the top of the page like so:
+
+```html
+<div id="baseexample">
+  <p>Scroll down the page</p>
+  <p v-tack="200">Stick me 200px from the top of the page</p>
+</div>
+```
+
+```js
+Vue.directive('tack', {
+  bind(el, binding, vnode) {
+    el.style.position = 'fixed';
+    el.style.top = binding.value + 'px';
+  }
+}); 
+
+new Vue({
+  el: '#baseexample'
+});
+```
+
+This would tack the element with fixed positioning 200px down the page. But what happens if we run into a scenario when we need to tack the element from the left, instead of the top? Here's where a dynamic directive that you could update per component instance would come in very handy:
+
 
 ```html
 <div id="dynamicexample">
@@ -181,6 +204,8 @@ Result:
   (<a href='https://codepen.io/Vue'>@Vue</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 {% endraw %}
+
+Our custom directive is now flexible enough to support a few different use cases.
 
 ## Function Shorthand
 
