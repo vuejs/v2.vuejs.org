@@ -145,7 +145,7 @@ new Vue({
 
 ### Dynamic Directive Arguments
 
-Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument`  can be updated based on data properties in our component instance! This makes our custom directives  flexible for use throughout our application.
+Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument`  can be updated based on data properties in our component instance! This makes our custom directives flexible for use throughout our application.
 
 Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
 
