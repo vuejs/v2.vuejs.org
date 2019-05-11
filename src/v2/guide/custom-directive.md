@@ -147,17 +147,17 @@ new Vue({
 
 Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument`  can be updated based on data properties in our component instance! This makes our custom directives  flexible for use throughout our application.
 
-Let's say you want to make a custom directive that allows you to tack elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
+Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
 
 ```html
 <div id="baseexample">
   <p>Scroll down the page</p>
-  <p v-tack="200">Stick me 200px from the top of the page</p>
+  <p v-pin="200">Stick me 200px from the top of the page</p>
 </div>
 ```
 
 ```js
-Vue.directive('tack', {
+Vue.directive('pin', {
   bind(el, binding, vnode) {
     el.style.position = 'fixed';
     el.style.top = binding.value + 'px';
@@ -169,17 +169,18 @@ new Vue({
 });
 ```
 
-This would tack the element 200px from the top of the page. But what happens if we run into a scenario when we need to tack the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
+This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
 
 
 ```html
 <div id="dynamicexample">
-  <p v-tack:[position]="200">I am tacked onto the page at 200px to the left.</p>
+  <h3>Scroll down inside this section ↓</h3>
+  <p v-pin:[position]="200">I am pinned onto the page at 200px to the left.</p>
 </div>
 ```
 
 ```js
-Vue.directive('tack', {
+Vue.directive('pin', {
   bind(el, binding, vnode) {
     el.style.position = 'fixed';
     const s = (binding.arg == 'left' ? 'left' : 'top');
