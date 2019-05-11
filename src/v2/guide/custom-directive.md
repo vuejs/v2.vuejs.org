@@ -147,7 +147,7 @@ new Vue({
 
 Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, we can update the argument in a custom directive based on data properties in our component instance! This makes our custom directives extremely flexible for use throughout our application.
 
-Let's say you want to make a custom directive that allows you to easily tack elements to your page in fixed positioning. We could pass a value in that would allow it to be tacked 200px from the top of the page like so:
+Let's say you want to make a custom directive that allows you to easily tack elements to your page using fixed positioning. We could create a custom directive so that we can pass in a value that would update its vertical positioning in pixels, like this:
 
 ```html
 <div id="baseexample">
@@ -169,7 +169,7 @@ new Vue({
 });
 ```
 
-This would tack the element with fixed positioning 200px down the page. But what happens if we run into a scenario when we need to tack the element from the left, instead of the top? Here's where a dynamic directive that you could update per component instance would come in very handy:
+This would tack the element with fixed positioning 200px from the top of the page. But what happens if we run into a scenario when we need to tack the element from the left, instead of the top? Here's where a dynamic argument that you could update per component instance would come in very handy:
 
 
 ```html
