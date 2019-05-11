@@ -143,14 +143,15 @@ new Vue({
 </script>
 {% endraw %}
 
-Directive arguments can be dynamic. For example, in `v-mydirective:argument=[dataproperty]`, `argument` is the string value assigned to the *arg* property in your directive hook *binding* parameter and `dataproperty` is a reference to a data property on your component instance assigned to the *value* property in the same *binding* parameter. As directive hooks are invoked, the *value* property of the *binding* parameter will dynamically change based on the value of `dataproperty`.
+### Dynamic Directive Arguments
+
+Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="dataproperty"`, `argument` is the string value assigned to the *arg* property in your directive hook *binding* parameter and `dataproperty` is a reference to a data property on your component instance assigned to the *value* property in the same *binding* parameter. As directive hooks are invoked, the *value* property of the *binding* parameter will dynamically change based on the value of `dataproperty`.
 
 An example of a custom directive using a dynamic argument:
 
 ```html
-<div id="app">
-  <p>Scroll down the page</p>
-  <p v-tack:left="[dynamicleft]">I’ll now be offset from the left instead of the top</p>
+<div id="dynamicexample">
+  <p v-tack:[position]="200">I am tacked onto the page at 200px to the left.</p>
 </div>
 ```
 
@@ -161,18 +162,42 @@ Vue.directive('tack', {
     const s = (binding.arg == 'left' ? 'left' : 'top');
     el.style[s] = binding.value + 'px';
   }
-})
+});
 
 // start app
 new Vue({
-  el: '#app',
+  el: '#dynamicexample',
   data() {
     return {
-      dynamicleft: 500
+      position: 'left'
     }
   }
 })
 ```
+
+{% raw %}
+<div id="dynamicexample" class="demo">
+  <p v-tack:[position]="200">I am tacked onto the page at 200px to the left.</p>
+</div>
+<script>
+Vue.directive('tack', {
+  bind(el, binding, vnode) {
+    el.style.position = 'fixed';
+    var s = (binding.arg == 'left' ? 'left' : 'top');
+    el.style[s] = binding.value + 'px';
+  }
+});
+
+new Vue({
+  el: '#dynamicexample',
+  data() {
+    return {
+      position: 'left'
+    }
+  }
+})
+</script>
+{% endraw %}
 
 ## Function Shorthand
 
