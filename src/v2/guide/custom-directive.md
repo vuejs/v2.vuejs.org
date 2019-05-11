@@ -158,7 +158,7 @@ Let's say you want to make a custom directive that allows you to pin elements to
 
 ```js
 Vue.directive('pin', {
-  bind(el, binding, vnode) {
+  bind: function (el, binding, vnode) {
     el.style.position = 'fixed';
     el.style.top = binding.value + 'px';
   }
@@ -181,9 +181,9 @@ This would pin the element 200px from the top of the page. But what happens if w
 
 ```js
 Vue.directive('pin', {
-  bind(el, binding, vnode) {
+  bind: function (el, binding, vnode) {
     el.style.position = 'fixed';
-    const s = (binding.arg == 'left' ? 'left' : 'top');
+    var s = (binding.arg == 'left' ? 'left' : 'top');
     el.style[s] = binding.value + 'px';
   }
 });
