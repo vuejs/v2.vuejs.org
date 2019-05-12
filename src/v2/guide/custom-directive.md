@@ -183,7 +183,7 @@ This would pin the element 200px from the top of the page. But what happens if w
 Vue.directive('pin', {
   bind: function (el, binding, vnode) {
     el.style.position = 'fixed';
-    var s = (binding.arg == 'left' ? 'left' : 'top');
+    var s = (binding.arg === 'left' ? 'left' : 'top');
     el.style[s] = binding.value + 'px';
   }
 });
