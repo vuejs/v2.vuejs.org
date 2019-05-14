@@ -196,7 +196,7 @@ methods: {
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">관련 코드가 동일한 순서로 생성되므로 수식어를 사용할 때 순서를 지정하세요. 다시말해 `@click.prevent.self`를 사용하면 **모든 클릭**을 막을 수 있으며 `@click.self.prevent`는 엘리먼트 자체에 대한 클릭만 방지합니다.</p>
+<p class="tip">관련 코드가 동일한 순서로 생성되므로 수식어를 사용할 때 순서를 지정하세요. 다시말해 `v-on:click.prevent.self`를 사용하면 **모든 클릭**을 막을 수 있으며 `v-on:click.self.prevent`는 엘리먼트 자체에 대한 클릭만 방지합니다.</p>
 
 > 2.1.4에 새로 추가됨
 
@@ -323,7 +323,7 @@ Vue.config.keyCodes.f1 = 112
 - `.right`
 - `.middle`
 
-위 수정자는 특정 마우스 버튼에 의해 트리거 된 이벤트로 핸들러를 제한합니다.
+위 수식어는 특정 마우스 버튼에 의해 트리거 된 이벤트로 핸들러를 제한합니다.
 
 ## 왜 HTML로 된 리스너를 사용합니까
 

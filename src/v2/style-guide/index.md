@@ -4,7 +4,7 @@ type: style-guide
 
 # 스타일 가이드 <sup class="beta">베타</sup>
 
-이 문서는 뷰 코드에 대한 공식 스타일 가이드입니다. 만약 현재 뷰를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
+이 문서는 Vue 코드에 대한 공식 스타일 가이드입니다. 만약 현재 Vue를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
 
 대부분의 경우 우리는 HTML과 자바스크립트에 대한 제안은 일반적으로 피합니다. 우리는 당신이 세미콜론이나 쉼표(trailing commas)에 대한 사용여부는 신경쓰지 않습니다. 우리는 당신이 HTML의 속성값을 위해 작음따옴표를 사용하지는 큰따옴표를 사용하는지 신경쓰지 않습니다. 그러나 특정 패턴이 뷰 컨텍스트에서 유용하다고 발견된 경우 예외가 존재합니다.
 
@@ -44,9 +44,10 @@ type: style-guide
 
 ### 컴포넌트 이름에 합성어 사용 <sup data-p="a">필수</sup>
 
-**root컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용하여야 합니다.**
+**root 컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용해야한다.**
 
 모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해줍니다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
 
@@ -87,16 +88,16 @@ export default {
 
 **컴포넌트의 `data` 는 반드시 함수여야 합니다.**
 
-컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 속성은 값으로 오브젝트를 반환하는 함수여야 합니다.
+컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 프로퍼티의 값은 반드시 객체(object)를 반환하는 함수여야 한다.
 
 {% raw %}
 <details>
 <summary>
-  <h4>상세 설명</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+`data` 의 값이 오브젝트일 경우, 컴포넌트의 모든 인스턴스가 공유한다. 예를 들어, 다음 data 를 가진 `TodoList` 컴포넌트를 상상해보자.
 
 ``` js
 data: {
@@ -105,9 +106,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+이 컴포넌트는 재사용하여 사용자가 여러 목록(e.g. 쇼핑, 소원, 오늘 할일 등)을 유지할 수 있도록 해야 할 수 있다. 컴포넌트의 모든 인스턴스가 동일한 data 객체를 참조하므로, 하나의 목록의 타이틀을 변경할 때 다른 모든 리스트의 타이틀도 변경될 것이다. Todo를 추가/수정/삭제하는 경우에도 마찬가지다.
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+대신 우리는 각 컴포넌트의 인스턴스 자체 data만을 관리하기를 원한다. 이렇게 하려면 각 인스턴스는 고유한 data 객체를 생성해야 한다. JavaScript에서는 함수안에서 객체를 반환하는 방법으로 해결할 수 있다:
 
 ``` js
 data: function () {
@@ -185,14 +186,14 @@ new Vue({
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+자세한 [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) 두 가지 이점을 갖는다:
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- 이 API는 컴포넌트의 API를 문서화하므로 컴포넌트의 사용 방법을 쉽게 알 수 있다.
+- 개발 중에, Vue는 컴포넌트의 타입이 잘못 지정된 props를 전달하면 경고 메시지를 표시하여 오류의 잠재적 원인을 파악할 수 있도록 도와준다.
 
 {% raw %}</details>{% endraw %}
 
@@ -235,20 +236,20 @@ props: {
 
 
 
-### `v-for`에 키 지정  <sup data-p="a">필수</sup>
+### `v-for` 에 `key` 지정  <sup data-p="a">필수</sup>
 
-**`v-for`는 `key`와 항상 함께 사용되어야 합니다.**
+**`v-for`는 `key`와 항상 함께 사용합니다.**
 
 서브트리의 내부 컴포넌트 상태를 유지하기 위해 `v-for`는 _항상_ `key`와 함께 요구됩니다. 비록 엘리먼트이긴 하지만 에니메이션의 [객체 불변성](https://bost.ocks.org/mike/constancy/)과 같이 예측 가능한 행동을 유지하는것은 좋은 습관입니다.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+할일 목록이 있다고 가정 해보자:
 
 ``` js
 data: function () {
@@ -267,7 +268,7 @@ data: function () {
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+그 다음 알파벳순으로 정렬한다. DOM 이 업데이트될 때, Vue는 가능한 적은 DOM 전이(mutations)를 수행하기 위해 렌더링을 최적화한다. 즉, 첫번째 할일 엘리먼트를 지우고, 리스트의 마지막에 다시 추가한다.
 
 The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
 
@@ -304,7 +305,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">essential</sup>
+### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">필수</sup>
 
 **`v-for`가 사용된 엘리먼트에 절대 `v-if`를 사용하지 마세요.**
 
@@ -317,7 +318,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -370,7 +371,7 @@ computed: {
 </ul>
 ```
 
-We get the following benefits:
+다음과 같은 이점을 얻을 수 있다:
 
 - The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
 - Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
@@ -408,7 +409,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 나쁨
 
 ``` html
 <ul>
@@ -436,7 +437,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 좋음
 
 ``` html
 <ul>
@@ -463,7 +464,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### 컴포넌트 스타일 스코프 <sup data-p="a">필수</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
@@ -476,7 +477,7 @@ This makes overriding internal styles easier, with human-readable class names th
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -564,12 +565,12 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 ### Private 속성 이름 <sup data-p="a">필수</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**플러그인, mixin 등에서 커스텀 사용자 private 프로터피에는 항상 접두사 `$_`를 사용하라. 그 다음 다른 사람의 코드와 충돌을 피하려면 named scope를 포함하라. (e.g. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -732,7 +733,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -845,7 +846,7 @@ If a component only makes sense in the context of a single parent component, tha
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -921,7 +922,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1102,7 +1103,7 @@ OR
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1322,7 +1323,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1474,50 +1475,50 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ### 컴포넌트/인스턴스 옵션 순서 <sup data-p="c">추천함</sup>
 
-**Component/instance options should be ordered consistently.**
+**컴포넌트/인스턴스 옵션의 순서는 언제나 일정한 순서로 정렬되어야 합니다.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+아래는 권장하는 컴포넌트 옵션 순서입니다. 유형별로 나누어 놓았으므로, 플러그인으로 추가되는 새로운 옵션들 역시 이에 맞추어 정렬하면 됩니다.
 
-1. **Side Effects** (triggers effects outside the component)
+1. **사이드 이펙트(Side Effects)** (컴포넌트 외부에 효과가 미치는 옵션)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **전역 인지(Global Awareness)** (컴포넌트 바깥의 지식을 필요로 하는 옵션)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **컴포넌트 유형(Component Type)** (컴포넌트의 유형을 바꾸는 옵션)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **템플릿 변경자(Template Modifiers)** (템플릿이 컴파일되는 방식을 바꾸는 옵션)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **템플릿 의존성(Template Dependencies)** (템플릿에 이용되는 요소들을 지정하는 옵션)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **컴포지션(Composition)** (다른 컴포넌트의 속성을 가져와 합치는 옵션)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **인터페이스(Interface)** (컴포넌트의 인터페이스를 지정하는 옵션)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-8. **Local State** (local reactive properties)
+8. **지역 상태(Local State)** (반응적인 지역 속성들을 설정하는 옵션)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **이벤트(Events)** (반응적인 이벤트에 의해 실행되는 콜백을 지정하는 옵션)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - 라이프사이클 이벤트 (호출 순서대로 정렬)
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **비반응적 속성(Non-Reactive Properties)** (시스템의 반응성과 관계 없는 인스턴스 속성을 지정하는 옵션)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
+11. **렌더링(Rendering)** (컴포넌트 출력을 선언적으로 지정하는 옵션)
   - `template`/`render`
   - `renderError`
 
@@ -1525,44 +1526,44 @@ This is the default order we recommend for component options. They're split into
 
 ### 엘리먼트 속성 순서 <sup data-p="c">추천함</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**엘리먼트 및 컴포넌트의 속성은 언제나 일정한 순서로 정렬되어야 합니다.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+아래는 권장하는 엘리먼트 속성 순서입니다. 유형별로 나누어 놓았으므로, 커스텀 속성이나 directive 역시 이에 맞추어 정렬하면 됩니다.
 
-1. **Definition** (provides the component options)
+1. **정의(Definition)** (컴포넌트 옵션을 제공하는 속성)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **리스트 렌더링(List Rendering)** (같은 엘리먼트의 변형을 여러 개 생성하는 속성)
   - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
+3. **조건부(Conditionals)** (엘리먼트가 렌더링되는지 혹은 보여지는지 여부를 결정하는 속성)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
+4. **렌더 변경자(Render Modifiers)** (엘리먼트의 렌더링 방식을 변경하는 속성)
   - `v-pre`
   - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
+5. **전역 인지(Global Awareness)** (컴포넌트 바깥의 지식을 요구하는 속성)
   - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
+6. **유일한 속성(Unique Attributes)** (유일한 값을 가질 것을 요구하는 속성)
   - `ref`
   - `key`
   - `slot`
 
-7. **Two-Way Binding** (combining binding and events)
+7. **양방향 바인딩(Two-Way Binding)** (바인딩과 이벤트를 결합하는 속성)
   - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **기타 속성** (따로 언급하지 않은 속성들)
 
-9. **Events** (component event listeners)
+9. **이벤트(Events)** (컴포넌트 이벤트 리스너를 지정하는 속성)
   - `v-on`
 
-10. **Content** (overrides the content of the element)
+10. **내용(Content)** (엘리먼트의 내용을 덮어쓰는 속성)
   - `v-html`
   - `v-text`
 
@@ -1750,7 +1751,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>자세한 설명</h4>
 </summary>
 {% endraw %}
 
@@ -1889,9 +1890,9 @@ Vue.component('TodoItem', {
 
 ### 전역 상태 관리 <sup data-p="d">주의요함</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**전역 상태 관리에는 `this.$root` 나 글로벌 이벤트 버스(global event bus)보다는 [Vuex](https://github.com/vuejs/vuex)를 이용하는 것이 좋습니다.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+전역 상태 관리에 `this.$root`나 [글로벌 이벤트 버스](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced)를 이용하는 것은 아주 단순한 경우에는 편리할 수 있지만 대부분의 Application에는 부적절합니다. Vuex는 상태를 관리하는 중앙 저장소를 제공하는 것만이 아니라 상태 변화를 체계화하고, 추적하며, 디버깅을 용이하게 하는 도구들을 제공합니다.
 
 {% raw %}</details>{% endraw %}
 
