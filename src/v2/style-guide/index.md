@@ -26,15 +26,15 @@ type: style-guide
 
 ### 우선순위 C: 추천함
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+동일하게 좋은 여러가지 옵션이 존재하는 경우, 일관성을 보장하기 위해 임의의 선택을 할 수 있습니다. 이 규칙은 각각의 수용가능한 옵션을 설명하고 기본 선택을 제안합니다. 즉, 일관성 있고 좋은 이유가 있으면 당신의 코드베이스에서 자유롭게 다른 선택을 할 수 있습니다. 좋은 이유가 있어야 합니다! 커뮤니티 표준에 적응되기 위해서 당신은 다음과 같이 해야합니다.
 
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+1. 당신이 마주하는 대부분의 커뮤니티 코드를 더 쉽게 분석할 수 있도록 훈련하세요
+2. 커뮤니티 코드 예제를 수정하기 한고 복사 그리고 붙혀넣기 할 수 있어야 합니다
+3. 적어도 뷰에 있어서는 당신이 선호하는 코딩 스타일을 수용하는 새로운 직원을 자주 찾을 것입니다
 
 ### 우선순위 D: 주의요함
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+뷰의 몇 가지 은 특성은 드문 엣지 케이스 또는 레거시 코드로의 부터 마이크레이션을 위해 존재합니다. 그러나 그것들을 남용하면 당신의 코드를 유지보수하기 어렵게만들거나 버그를 발생시키는 원인이 될 수 있습니다. 이 규칙은 잠재적 위험요소를 인식시켜주고 언제 그리고 왜 피해야되는지 설명해 줍니다.
 
 
 
@@ -86,7 +86,7 @@ export default {
 
 ### 컴포넌트 데이터 <sup data-p="a">필수</sup>
 
-**컴포넌트의 `data` 는 반드시 함수여야한다.**
+**컴포넌트의 `data` 는 반드시 함수여야 합니다.**
 
 컴포넌트(i.e. `new Vue`를 제외한 모든곳)의 `data` 프로퍼티의 값은 반드시 객체(object)를 반환하는 함수여야 한다.
 
@@ -179,9 +179,9 @@ new Vue({
 
 ### Props 정의 <sup data-p="a">필수</sup>
 
-**Prop 는 가능한 자세히 정의해야한다.**
+**Prop은 가능한 상세하게 정의되어야 합니다.**
 
-커멧된 코드에서, prop 는 적어도 type을 지정하고 항상 가능한 자세히 정의해야 항상 가능한한 자세해야 한다.
+커밋 된 코드에서, prop 정의는 적어도 타입은 명시되도록 가능한 상세하게 정의되어야 합니다.
 
 {% raw %}
 <details>
@@ -238,9 +238,9 @@ props: {
 
 ### `v-for` 에 `key` 지정  <sup data-p="a">필수</sup>
 
-**`v-for` 와 `key`를 항상 같이 사용하라.**
+**`v-for`는 `key`와 항상 함께 사용합니다.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+서브트리의 내부 컴포넌트 상태를 유지하기 위해 `v-for`는 _항상_ `key`와 함께 요구됩니다. 비록 엘리먼트이긴 하지만 에니메이션의 [객체 불변성](https://bost.ocks.org/mike/constancy/)과 같이 예측 가능한 행동을 유지하는것은 좋은 습관입니다.
 
 {% raw %}
 <details>
@@ -307,13 +307,13 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 ### `v-if`와 `v-for`를 동시에 사용하지 마세요 <sup data-p="a">필수</sup>
 
-**`v-for` 와 같은 요소(element)에 `v-if` 를 사용하지 말아라.**
+**`v-for`가 사용된 엘리먼트에 절대 `v-if`를 사용하지 마세요.**
 
-이것은 보통 생각나게 할 수 있는 두 가지 케이스가 있다:
+사용 가능해 보이는 두 가지 일반적인 경우가 있습니다:
 
-- 목록 안의 아이템을 필터링 하라 (e.g. `v-for="user in users" v-if="user.isActive"`). 이 경우에, `users`를 필터링 된 목록을 반환하는 새로운 computed 속성으로 변경하라 (e.g. `activeUsers`).
+- 리스트 목록을 필터링하기 위해서 입니다 (e.g. `v-for="user in users" v-if="user.isActive"`).  이 경우 users을 새로운 computed 속성으로 필더링된 목록으로 대체하십시오(e.g. `activeUsers`).
 
-- 리스트를 숨길 필요가 있을 경우 렌더링을 피하라 (e.g. `v-for="user in users" v-if="shouldShowUsers"`). 이 경우에, 컨테이너의 요소로 `v-if` 를 옮겨라 (e.g. `ul`, `ol`).
+- 숨기기 위해 리스트의 랜더링을 피할 때 입니다 (e.g. `v-for="user in users" v-if="shouldShowUsers"`). 이 경우 `v-if`를 컨테이너 엘리먼트로 옮기세요 (e.g. `ul`, `ol`).
 
 {% raw %}
 <details>
