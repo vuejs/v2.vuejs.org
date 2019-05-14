@@ -76,12 +76,12 @@ directives: {
 - `binding`: 아래의 속성을 가진 객체입니다.
   - `name`: 디렉티브 이름, `v-` 프리픽스가 없습니다.
   - `value`: 디렉티브에서 전달받은 값. 예를 들어 `v-my-directive="1 + 1"`인 경우 value는 `2` 입니다.
-  - `oldValue`: 이전 값. `update`와 `componentUdated`에서만 사용할 수 있습니다. 이를 통해 값이 변경되었는지 확인할 수 있습니다.
+  - `oldValue`: 이전 값. `update`와 `componentUpdated`에서만 사용할 수 있습니다. 이를 통해 값이 변경되었는지 확인할 수 있습니다.
   - `expression`: 표현식 문자열. 예를 들어 `v-my-directive="1 + 1"`이면, 표현식은 `"1 + 1"` 입니다.
   - `arg`: 디렉티브의 전달인자, 있는 경우에만 존재합니다. 예를 들어 `v-my-directive:foo` 이면  `"foo"` 입니다.
   - `modifiers`: 포함된 수식어 객체, 있는 경우에만 존재합니다. 예를 들어 `v-my-directive.foo.bar`이면, 수식어 객체는 `{ foo: true, bar: true }`입니다.
 - `vnode`: Vue 컴파일러가 만든 버추얼 노드. [VNode API](../api/#VNode-Interface)에 전체 설명이 있습니다.
-- `oldVnode`: 이전의 버추얼 노드. `update`와 `componentUdated`에서만 사용할 수 있습니다.
+- `oldVnode`: 이전의 버추얼 노드. `update`와 `componentUpdated`에서만 사용할 수 있습니다.
 
 <p class="tip">`el` 뿐만아니라 모든 전달인자는 읽기 전용으로 사용하여야 합니다. 절대 변경하면 안됩니다. 훅을 통해 이 정보들을 전달하는 경우, 엘리먼트의 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)을 이용하면 됩니다.</p>
 
