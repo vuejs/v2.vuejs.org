@@ -523,6 +523,8 @@ Vue.component('my-component', {
 ```
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> 
+> The reference will be HTMLElement when used with functional components because they’re stateless and instanceless.
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 
