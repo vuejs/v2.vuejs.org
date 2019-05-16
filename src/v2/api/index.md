@@ -2396,11 +2396,7 @@ type: api
 
   An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
 
-  > Note: The reference will be HTMLElement when used to functional components because they’re stateless and instanceless.
-
-- **See also:** 
-    - [Child Component Refs](../guide/components.html#Child-Component-Refs)
-    - [Functional Components](../guide/render-function.html#Functional-Components)
+- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
 ### is
 
