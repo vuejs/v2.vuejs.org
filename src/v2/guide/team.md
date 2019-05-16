@@ -515,15 +515,21 @@ order: 803
       city: 'Denver, CO, USA',
       languages: ['en'],
       work: {
-        role: 'Senior Cloud Developer Advocate',
-        org: 'Microsoft',
-        orgUrl: 'https://www.microsoft.com/'
+        role: 'Head of Developer Experience',
+        org: 'Netlify',
+        orgUrl: 'https://www.netlify.com/'
       },
       github: 'sdras',
       twitter: 'sarah_edo',
       codepen: 'sdras',
+      reposOfficial: [
+        'vuejs.org'
+      ],
       reposPersonal: [
-        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-vscode-extensionpack', 'sample-vue-shop'
+      ],
+      links: [
+        'https://sarah.dev/'
       ]
     },
     {
