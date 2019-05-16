@@ -241,9 +241,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Энэ аргын хувьд бид DOM-тэй холбогдохгүйгээр манай аппликешны төлөвийг шинэчилдэг. DOM-ийн бүх үйлдлүүд нь Vue-аар зохицуулдаг бөгөөд таны бичих код нь үндсэн логик дээр төвлөрдөг.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue нь `v-model` directive зааж өгдөг бөгөөд энэ нь form input болон app state хоорондын холболтыг зохицуулдаг.
 
 ``` html
 <div id="app-6">
@@ -255,7 +255,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Сайн уу Vue!'
   }
 })
 ```
@@ -268,7 +268,7 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Сайн уу Vue!'
   }
 })
 </script>
@@ -276,52 +276,52 @@ var app6 = new Vue({
 
 ## Composing with Components
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Scrimba дээрх хичээлийг үзнэ үү</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+Component систем нь Vue-д бас нэг чухал ойлголт юм. Энэ нь жижиг, бие даасан, дахин ашиглагдах боломжтой бүрэлдэхүүн хэсгүүдээс бүрдсэн томоохон хэмжээний програмуудыг бий болгох боломжийг олгодог хийсвэрлэл юм. Энэ бүх төрлийн програмын интерфейсийг жижиг бүрэлдэхүүн хэсгүүд болгон хөгжүүлэх боломж олгоно:
 
 ![Component Tree](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+Vue-д component хэсэг нь шинж чанарууд болон нөхцөлүүдийг нь урьдчилан тодорхойлсон загварууд юм. Vue апп дээрээ component-уудыг шууд дуудаж ашиглаж болно:
 
 ``` js
-// Define a new component called todo-item
+// todo-item нэртэй шинэ component үүсгэе
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>Энэ бол todo</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+Одоо та өөр component эсвэл template дээр ашиглаж болно:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- todo-item component-ийг үүсгэх -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Гэвч энэ нь бүх todo дээр ижил текст харуулна. Бид parent scope-оос child component-уудад өгөгдөл дамжуулах чадвартай байх ёстой. Бид component-уудаа өөрчилж [prop](components.html#Props) шинж чанарыг тодорхойлж өгөх ёстой:
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // Энэхүү todo-item component одоо "prop" авах боломжтой боллоо
+  // Энэ нь дурын онцлог шинж чанарыг тодорхойлж өгөх боломжтой.
+  // Доорх prop-ийг todo гэж дуудая.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Одоо бид `v-bind` хэмээх тодорхойлолт ашиглан component дуудагдах бүрт todo дамжуулах боломжтой:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Одоо бид todo-item бүрт todo объект тодорхойлж өгч болно. 
+      Ингэснээр өгөгдөл нь динамик байх боломжтой болно. 
+      Бид бүр component бүрийг "key" -ээр хангах хэрэгтэй 
+      бөгөөд үүнийг дараа тайлбарлах болно.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -341,9 +341,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Байцаа' },
+      { id: 1, text: 'Бяслаг' },
+      { id: 2, text: 'Идэх зүйл' }
     ]
   }
 })
@@ -363,18 +363,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Байцаа' },
+      { id: 1, text: 'Бяслаг' },
+      { id: 2, text: 'Идэх зүйл' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Дээрх жишээ нь зохиомол жишээ бөгөөд, бид өөрсдийн аппаа хоёр жижиг нэгж болгон нь салгаж чадсан, child нь props interface-ээр дамжуулан parent component-тэй харилцах боломжтой. Бид одоо parent app-г сайжруулахгүйгээр `<todo-item>` component-ийг илүү боловсронгуй загвар, логикоор сайжруулах боломжтой.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+Том хэмжээний програмуудын хөгжүүлэлтийг илүү уян хатан сайжруулахад хялбар байлгахын тулд олон жижиг хэсэгүүд болгон хуваах хэрэгтэй болдог. Бид component-ийн тухай олон ярилцах болно [энэхүү тодорхойлолтыг харна уу](components.html), дараах апп нь олон жижиг component болгох задалсан үед ямар харагдахыг харуулсан жишээ юм:
 
 ``` html
 <div id="app">
