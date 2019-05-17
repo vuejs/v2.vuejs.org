@@ -85,6 +85,11 @@ Spanish translation is maintained by [1950Labs](https://1950labs.com) and Vue.js
 
 * Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
 
+## Turkish
+
+* Turkish translation is maintainted by [animyrch](http://blog.traductionturcfrancais.com).
+* Translation Repo - [/animyrch/tr.vuejs.org](https://github.com/animyrch/tr.vuejs.org)
+
 ### Vietnamese
 
 Vietnamese translation is maintained by [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
