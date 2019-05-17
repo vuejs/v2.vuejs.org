@@ -189,10 +189,10 @@ For example:
 
 ``` html
 <div id="watch-example">
-  <p>
+  <label>
     Ask a yes/no question:
     <input v-model="question">
-  </p>
+  </label>
   <p>{{ answer }}</p>
 </div>
 ```
@@ -253,10 +253,10 @@ Result:
 
 {% raw %}
 <div id="watch-example" class="demo">
-  <p>
+  <label>
     Ask a yes/no question:
     <input v-model="question">
-  </p>
+  </label>
   <p>{{ answer }}</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
