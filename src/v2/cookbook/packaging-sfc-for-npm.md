@@ -61,35 +61,38 @@ dist/
 
 ### How does npm know which version to serve to a browser/build process?
 
-The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`), and provide access to the `.vue` file itself using the `browser` field. A sample package.json would look like this:
+The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`). The `.vue` file can also be included in the package for those who need access to it. A sample package.json would look like this:
 
 ```json
 {
   "name": "my-component",
   "version": "1.2.3",
-  "main": "dist/my-component.umd.js",
+  "main": "dist/my-component.ssr.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
-  "browser": {
-    "./sfc": "src/my-component.vue"
-  },
+  "files": [
+    "dist/*",
+    "src/**/*.vue"
+  ],
   ...
 }
 ```
 
-When webpack 2+, Rollup, or other modern build tools are used, they will pick up on the `module` build. Legacy applications would use the `main` build, and the `unpkg` build can be used directly in browsers. In fact, the [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service!
+When webpack 2+, Rollup, or other modern build tools are used, by default they will pick up on the `module` build. Node.js and many legacy applications would use the `main` build, and the `unpkg` build can be used directly in browsers. In fact, the [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service! By specifying the `files` property in package.json, we tell npm what files will be included in our package - in this case, the source `.vue` files are included as well as the transpiled versions for optional SSR usage.
 
 ### SSR Usage
 
-You might have noticed something interesting - browsers aren't going to be using the `browser` version. That's because this field is actually intended to allow authors to provide [hints to bundlers](https://github.com/defunctzombie/package-browser-field-spec#spec) which in turn create their own packages for client side use. With a little creativity, this field allows us to map an alias to the `.vue` file itself. For example:
+When people use Vue components in "universal" or "isomorphic" apps, the SSR build of Vue is tuned differently than the browser build for performance reasons. By using the [`optimizeSSR`](https://vue-loader.vuejs.org/options.html#optimizessr) option provided as part of our bundling process, we can produce a version which is compatible with the tuning that Vue SSR expects. It is likely that most of these apps will be running on Node.js, so this build should be the `main` version specified. If a developer still wants to utilize the `.vue` source files, they can still be included in the package, but those developers will need to reference them by file path instead of just package name. For example:
 
 ```js
-import MyComponent from 'my-component/sfc'; // Note the '/sfc'
+// Node.js app - using 'require' instead of 'import'
+var MyComponent = require('my-component'); // Returns package.json 'main' version, the ssr build
+var MyComponentSrc = require('my-component/src/my-component.vue'); // Returns source '.vue' file
 ```
 
-Compatible bundlers see the `browser` definition in package.json and translate requests for `my-component/sfc` into `my-component/src/my-component.vue`, resulting in the original `.vue` file being used instead. Now the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
+With either option, the SSR process can use the string concatenation optimizations it needs to for a boost in performance.
 
-<p class="tip">Note: When using `.vue` components directly, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to users. Consider providing 'plain' SFCs to keep things as light as possible.</p>
+<p class="tip">Note: When producing SSR compatible components, pay attention to any type of pre-processing required by `script` and `style` tags. These dependencies will be passed on to developers using `.vue` components directly. Consider providing 'plain' SFCs to keep things as light as possible.</p>
 
 ### How do I make multiple versions of my component?
 
@@ -99,24 +102,27 @@ There is no need to write your module multiple times. It is possible to prepare 
 {
   "name": "my-component",
   "version": "1.2.3",
-  "main": "dist/my-component.umd.js",
+  "main": "dist/my-component.ssr.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
-  "browser": {
-    "./sfc": "src/my-component.vue"
-  },
+  "files": [
+    "dist/*",
+    "src/**/*.vue"
+  ],
   "scripts": {
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/my-component.umd.js",
+    "build:ssr": "rollup --config build/rollup.config.js --format cjs --file dist/my-component.ssr.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/my-component.esm.js",
     "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
   },
   "devDependencies": {
-    "rollup": "^0.57.1",
-    "rollup-plugin-buble": "^0.19.2",
-    "rollup-plugin-vue": "^3.0.0",
-    "vue": "^2.5.16",
-    "vue-template-compiler": "^2.5.16",
+    "minimist": "^1.2.0",
+    "rollup": "^1.12.1",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
     ...
   },
   ...
@@ -129,7 +135,7 @@ Our changes to package.json are complete. Next, we need a small wrapper to expor
 
 ### What does my packaged component look like?
 
-Depending on how your component is being used, it needs to be exposed as either a [CommonJS/UMD](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#c33a) javascript module, an [ES6 javascript](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#4f5e) module, or in the case of a `<script>` tag, it will be automatically loaded into Vue via `Vue.use(...)` so it's immediately available to the page. This is accomplished by a simple wrapper.js file which handles the module export and auto-install. That wrapper, in its entirety, looks like this:
+Depending on how your component is being used, it needs to be exposed as either a [CommonJS](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#c33a) javascript module, an [ES6 javascript](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#4f5e) module, or in the case of a `<script>` tag, it will be automatically loaded into Vue via `Vue.use(...)` so it's immediately available to the page. This is accomplished by a simple wrapper.js file which handles the module export and auto-install. That wrapper, in its entirety, looks like this:
 
 ```js
 // Import vue component
@@ -158,6 +164,10 @@ if (GlobalVue) {
 	GlobalVue.use(plugin);
 }
 
+// Inject install function into component - allows component
+// to be registered via Vue.use() as well as Vue.component()
+component.install = install;
+
 // To allow use as module (npm/webpack/etc.) export component
 export default component;
 ```
@@ -166,11 +176,16 @@ Notice the first line directly imports your SFC, and the last line exports it un
 
 ### How do I configure the Rollup build?
 
-With the package.json `scripts` section ready and the SFC wrapper in place, all that is left is to ensure Rollup is properly configured. Fortunately, this can be done with a small 16 line rollup.config.js file:
+With the package.json `scripts` section ready and the SFC wrapper in place, all that is left is to ensure Rollup is properly configured. Fortunately, this can be done with a small 25 line rollup.config.js file:
 
 ```js
 import vue from 'rollup-plugin-vue'; // Handle .vue SFC files
+import commonjs from 'rollup-plugin-commonjs'; // rollup-plugin-vue dependency when working with commonjs
 import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable browser support
+import minimist from 'minimist'; // Parse build command
+
+const argv = minimist(process.argv.slice(2)); // Access build arguments as an object
+
 export default {
     input: 'src/wrapper.js', // Path relative to package.json
     output: {
@@ -178,9 +193,13 @@ export default {
         exports: 'named',
     },
     plugins: [
+        commonjs(),
         vue({
             css: true, // Dynamically inject css as a <style> tag
-            compileTemplate: true, // Explicitly convert template to render function
+            template: {
+              isProduction: true,
+              optimizeSSR: (argv.format === 'cjs') // Only optimize for SSR in that build
+            },
         }),
         buble(), // Transpile to ES5
     ],
@@ -209,7 +228,7 @@ In addition, pay attention to any dependencies that your SFC might have. For exa
 
 ## Alternative Patterns
 
-At the time this recipe was written, Vue CLI 3 was itself in beta. This version of the CLI comes with a built-in `library` build mode, which creates CommonJS and UMD versions of a component. This might be adequate for your use cases, though you will still need to make sure your package.json file points to `main` and `unpkg` properly. Also, there will be no ES6 `module` output unless that capability is added to the CLI before its release or via plugin.
+Vue CLI 3 comes with a built-in `library` build mode, which creates CommonJS and UMD versions of a component. This might be adequate for your use cases, though you will still need to make sure your package.json file points to `main` and `unpkg` properly. Also, Vue CLI is based on webpack, so there is no ES6 `module` output due to current webpack limitations.
 
 ## Acknowledgements
 
