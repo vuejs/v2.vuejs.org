@@ -149,3 +149,48 @@ There are also other hooks which will be called at different stages of the insta
 Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
 
 ![The Vue Instance Lifecycle](/images/lifecycle.png)
+
+## Lifecycle Hooks Example
+
+Below is an example of how you would call each hook. 
+
+```js
+export default {
+    data () {
+        return {
+            foo: 'bar'
+        }
+    },
+    beforeCreate: function(){
+        console.log('beforeCreate');
+    },
+    created: function(){
+        console.log('created');
+    },
+    beforeMount: function(){
+        console.log('beforeMount');
+    },
+    mounted: function(){
+        console.log('mounted');
+    },
+    beforeUpdate: function(){
+        console.log('beforeUpdate');
+    },
+    updated: function(){
+        console.log('updated');
+    },
+    activated: function(){
+        console.log('activated');
+    },
+    deactivated: function(){
+        console.log('deactivated');
+    },
+    beforeDestroy: function(){
+        console.log('beforeDestroy');
+    },
+    destroyed: function(){
+        console.log('destroyed');
+    }
+}
+```
+
