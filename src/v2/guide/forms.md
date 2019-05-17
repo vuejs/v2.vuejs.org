@@ -20,13 +20,13 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 ### Text
 
 ``` html
-<input v-model="message" placeholder="edit me">
+<label>Add a message: <input v-model="message" placeholder="edit me"></label>
 <p>Message is: {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
+  <label>Add a message: <input v-model="message" placeholder="edit me"></label>
   <p>Message is: {{ message }}</p>
 </div>
 <script>
@@ -42,18 +42,18 @@ new Vue({
 ### Multiline text
 
 ``` html
-<span>Multiline message is:</span>
+<label>Add a message: <textarea v-model="message" placeholder="add multiple lines"></textarea></label>
+
+<p>Multiline message is:</p>
 <p style="white-space: pre-line;">{{ message }}</p>
-<br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+   <label>Add a message: <textarea v-model="message" placeholder="add multiple lines"></textarea></label>
+
+  <p>Multiline message is:</p>
   <p style="white-space: pre-line;">{{ message }}</p>
-  <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
 <script>
 new Vue({
@@ -74,13 +74,13 @@ new Vue({
 Single checkbox, boolean value:
 
 ``` html
-<input type="checkbox" id="checkbox" v-model="checked">
-<label for="checkbox">{{ checked }}</label>
+<label><input type="checkbox" v-model="checked"> Everything is awesome</label>
+<p>{{ checked }}</p>
 ```
 {% raw %}
 <div id="example-2" class="demo">
-  <input type="checkbox" id="checkbox" v-model="checked">
-  <label for="checkbox">{{ checked }}</label>
+  <label><input type="checkbox" id="checkbox" v-model="checked"> Everything is awesome</label>
+  <p>{{ checked }}</p>
 </div>
 <script>
 new Vue({
@@ -102,8 +102,8 @@ Multiple checkboxes, bound to the same Array:
   <label for="john">John</label>
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
-  <br>
-  <span>Checked names: {{ checkedNames }}</span>
+
+  <p>Checked names: {{ checkedNames }}</p>
 </div>
 ```
 
@@ -124,8 +124,8 @@ new Vue({
   <label for="john">John</label>
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
-  <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  
+  <p>Checked names: {{ checkedNames }}</p>
 </div>
 <script>
 new Vue({
@@ -145,8 +145,8 @@ new Vue({
 <br>
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
-<br>
-<span>Picked: {{ picked }}</span>
+
+<p>Picked: {{ picked }}</p>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -155,8 +155,8 @@ new Vue({
   <br>
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
-  <br>
-  <span>Picked: {{ picked }}</span>
+
+  <p>Picked: {{ picked }}</p>
 </div>
 <script>
 new Vue({
@@ -173,13 +173,15 @@ new Vue({
 Single select:
 
 ``` html
+<label>Select an option:
 <select v-model="selected">
   <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+</label>
+<p>Selected: {{ selected }}</p>
 ```
 ``` js
 new Vue({
@@ -191,13 +193,15 @@ new Vue({
 ```
 {% raw %}
 <div id="example-5" class="demo">
+  <label>Select an option:
   <select v-model="selected">
     <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  </label>
+  <p>Selected: {{ selected }}</p>
 </div>
 <script>
 new Vue({
@@ -214,23 +218,25 @@ new Vue({
 Multiple select (bound to Array):
 
 ``` html
+<label>Select all that apply:
 <select v-model="selected" multiple>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
-<br>
-<span>Selected: {{ selected }}</span>
+</label>
+<p>Selected: {{ selected }}</p>
 ```
 {% raw %}
 <div id="example-6" class="demo">
+  <label>Select all that apply:
   <select v-model="selected" multiple style="width: 50px;">
     <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
-  <br>
-  <span>Selected: {{ selected }}</span>
+  </label>
+  <p>Selected: {{ selected }}</p>
 </div>
 <script>
 new Vue({
@@ -245,12 +251,14 @@ new Vue({
 Dynamic options rendered with `v-for`:
 
 ``` html
+<label>Select an option:
 <select v-model="selected">
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+</label>
+<p>Selected: {{ selected }}</p>
 ```
 ``` js
 new Vue({
@@ -272,7 +280,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <p>Selected: {{ selected }}</p>
 </div>
 <script>
 new Vue({
