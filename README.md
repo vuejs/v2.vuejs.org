@@ -1,6 +1,6 @@
 ﻿# vuejs.org
 
-Niniejsza strona została zbudowana w oparciu o [hexo](http://hexo.io/). Zawartość strony zapisywana jest w formacie Markdown umieszczonym w `src`. Prośby o ściągnięcie są mile widziane!
+Niniejsza strona została zbudowana w oparciu o [hexo](http://hexo.io/). Zawartość strony zapisywana jest w formacie Markdown w plikach umieszczonych w `src`. Prośby o ściągnięcie są mile widziane!
 
 ## Dewelopment
 
@@ -9,15 +9,15 @@ $ npm install
 $ npm start # dev server at http://localhost:4000
 ```
 
-## Implementacja
+## Wdrażanie
 
-The site is automatically deployed when commits land in master, via Netlify.
+Ta strona jest wdrażana automatycznie po pojawieniu się nowego commita w gałęzi master, dzięki Netlify.
 
-If you are the maintainer of a community translation fork and would like to deploy via Netlify instead of GitHub pages, please ping @yyx990803 in an issue to request a Netlify team membership and DNS update.
+Jeżeli zarządzasz forkiem z tłumaczeniem społeczności i chciał(a)byś wdrożyć je z użyciem Netlify zamiast GitHub Pages, wywołaj @yyx990803 w zgłoszeniu, aby poprosić o członkowstwo w zespole Netlify i aktualizację DNS.
 
 ## Tłumaczenia
 
-Tłumaczenia dokumentacji dla tego projektu  są obecnie przechowywane w oddzielnych repozytoriach, oddzielonych od repozytoriów oryginalnych.
+Tłumaczenia dokumentacji dla tego projektu są obecnie przechowywane w oddzielnych repozytoriach, oddzielonych od repozytoriów oryginalnych.
 
 
 ### Arabski
@@ -77,7 +77,6 @@ Rosyjskie tłumaczenie utrzymywane jest przez Translation Gang.
 
 ### Hiszpański
 
-<<<<<<< HEAD
 Hiszpańskie tłumaczenie utrzymywane [1950Labs](https://1950labs.com) i Vue.js Montevideo ([Leonel More](https://twitter.com/leonelmore), [Sebastian Camacho](https://twitter.com/sxcamacho) oraz [Diana Rodriguez](https://vue.beingadev.rocks).
 
 * Repozytorium tłumaczenia - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
@@ -91,8 +90,8 @@ Perskie tłumaczenie utrzymywane jest przez VueJS-fa.
 
 ### Chcesz pomóc w tłumaczeniu?
 
-Jeśli czujesz się na siłach do samodzielego tłumaczenia możesz zrobić fork repozytorium, utworzyć problem "work-in-progress" by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.
+Jeśli czujesz się na siłach do samodzielego tłumaczenia, możesz zrobić fork repozytorium, utworzyć problem „work-in-progress” by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.
 
-Jeśli dalej nie jesteś pewnien, lub masz jakieś inne pytania skontaktuj się z [Jakubem Grzywaczem](https://github.com/JakeTvvv), lub innym członkiem organizacji [vuejs-pl](https://github.com/vuejs-pl)
+Jeśli dalej nie jesteś pewien(-na), lub masz jakieś inne pytania skontaktuj się z [Jakubem Grzywaczem](https://github.com/JakeTvvv), lub innym członkiem organizacji [vuejs-pl](https://github.com/vuejs-pl)
 
 I z góry dziękujemy ;)
