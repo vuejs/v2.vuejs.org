@@ -1,4 +1,3 @@
----
 title: Migrasi dari Vue 1.x
 type: guide
 order: 701
@@ -384,26 +383,28 @@ methods: {
 </div>
 {% endraw %}
 
-## Built-In Directives
+## Direktif Bawaan
 
-### Truthiness/Falsiness with `v-bind` <sup>changed</sup>
+### _Truthiness/Falsiness_ dengan `v-bind` <sup>diubah</sup>
 
-When used with `v-bind`, the only falsy values are now: `null`, `undefined`, and `false`. This means `0` and empty strings will render as truthy. So for example, `v-bind:draggable="''"` will render as `draggable="true"`.
+Ketika digunakan dengan  `v-bind`, nilai yang bernilai _false_ sekarang hanya: `null`, `undefined`, dan `false`. ini berarti `0` dan _string_ kosong akan bernilai _true_. Contohnya, `v-bind:draggable="''"` diperbaiki menjadi `draggable="true"`.
 
-For enumerated attributes, in addition to the falsy values above, the string `"false"` will also render as `attr="false"`.
 
-<p class="tip">Note that for other directives (e.g. `v-if` and `v-show`), JavaScript's normal truthiness still applies.</p>
+Untuk atribut yang disebutkan, selain nilai-nilai palsu diatas, nilai _string_ `"false"`  akan di-_render_ sebagai `attr="false"`.
+
+<p class="tip">Catatan untuk direktif lainnya (e.g. `v-if` and `v-show`), nilai-nilai *truthiness* JavaScript masih berlaku.</p>
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Jalur Upgrade</h4>
+  <p> Jalankan *end-to-end test suite* Anda, Jika Anda memilikinya. Bagian <strong>*failed tests*</strong> akan memperingatkan Anda terhadap bagian-bagian dari aplikasi yang terkena dampak oleh perubahan ini.</p>
 </div>
 {% endraw %}
 
-### Listening for Native Events on Components with `v-on` <sup>changed</sup>
+### Mengetahui nilai asli dengan `v-on` <sup>diubah/sup>
 
-When used on a component, `v-on` now only listens to custom events `$emit`ted by that component. To listen for a native DOM event on the root element, you can use the `.native` modifier. For example:
+Ketika digunakan pada sebuah komponen, `v-on` hanya akan mendengarkan _event-event_ yang ter- `$emit` oleh komponen tersebut. Untuk mendengarkan _event DOM_ bawaan pada elemen root, Anda dapat menggunakan *modifier* `.native`. Contohnya:
+
 
 {% codeblock lang:html %}
 <my-component v-on:click.native="doSomething"></my-component>
@@ -411,22 +412,22 @@ When used on a component, `v-on` now only listens to custom events `$emit`ted by
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <i>end-to-end</i>, jika Anda memilikinya. Bagian <strong>*failed tests*</strong> akan memperingatkan Anda terhadap bagian-bagian dari aplikasi yang terkena dampak oleh perubahan ini.</p>
 </div>
 {% endraw %}
 
-### `debounce` Param Attribute for `v-model` <sup>removed</sup>
+### `debounce` Atribut Param untuk `v-model` <sup>dihapus</sup>
 
-Debouncing is used to limit how often we execute Ajax requests and other expensive operations. Vue's `debounce` attribute parameter for `v-model` made this easy for very simple cases, but it actually debounced __state updates__ rather than the expensive operations themselves. It's a subtle difference, but it comes with limitations as an application grows.
+Vue's `debounce` parameter atribut untuk `v-model` membuat mudah untuk kasus - kasus sederhana, tetapi operasi ini sebenarnya ditolak oleh *__state updates__* daripada operasi yang mahal itu sendiri. Ini sebuah perbedaan yang halus, namun akan ada keterbatasan jika aplikasi tersebut tumbuh.
 
-These limitations become apparent when designing a search indicator, like this one for example:
+Keterbatasan itu akan muncul ketika merancang indikator pencarian, Seperti:
 
 {% raw %}
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo" class="demo">
-  <input v-model="searchQuery" placeholder="Type something">
-  <strong>{{ searchIndicator }}</strong>
+  <input v-model="searchQuery" placeholder="Tulis Sesuatu">
+  <strong>{{ Pencarian indikator }}</strong>
 </div>
 <script>
 new Vue({
@@ -466,14 +467,12 @@ new Vue({
 </script>
 {% endraw %}
 
-Using the `debounce` attribute, there'd be no way to detect the "Typing" state, because we lose access to the input's real-time state. By decoupling the debounce function from Vue however, we're able to debounce only the operation we want to limit, removing the limits on features we can develop:
+Menggunakan atribut `debounce`, tidak ada cara untuk mengenali "Tipe" *state*, karena kita kehilangan akses pada *input real-time state*. Namun memisahkan fungsi *debounce* dari Vue, kami hanya dapat *debounce* pada operasi yang kami ingin batasi, menghapus keterbatasan pada fitur dapat dikembangkan sebagai berikut:
+
 
 ``` html
 <!--
-By using the debounce function from lodash or another dedicated
-utility library, we know the specific debounce implementation we
-use will be best-in-class - and we can use it ANYWHERE. Not only
-in our template.
+Dengan menggunakan fungsi debounce dari lodash atau perpustakaan utilitas khusus lainnya, kami tahu implementasi debounce spesifik yang kami gunakan akan menjadi yang terbaik di kelasnya - dan kita dapat menggunakannya dimana saja. Tidak hanya di template kami.
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo">
@@ -520,25 +519,25 @@ new Vue({
 })
 ```
 
-Another advantage of this approach is there will be times when debouncing isn't quite the right wrapper function. For example, when hitting an API for search suggestions, waiting to offer suggestions until after the user has stopped typing for a period of time isn't an ideal experience. What you probably want instead is a __throttling__ function. Now since you're already using a utility library like lodash, refactoring to use its `throttle` function instead takes only a few seconds.
+Keuntungan lain dari pendekatan ini adalah akan ada waktu ketika *debouncing* tidak cukup sebagai fungsi *wrapper*. Misalnya, saat memanggil API untuk pencarian saran, menunggu untuk menawarkan saran sampai setelah pengguna berhenti mengetik untuk jangka waktu tertentu bukanlah pengalaman yang ideal. Yang mungkin Anda inginkan adalah fungsi __throttling__. Sekarang karena Anda sudah menggunakan pustaka utilitas seperti lodash, refactoring untuk menggunakan fungsi `throttle` sebagai gantinya hanya membutuhkan beberapa detik.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>debounce</code> attribute.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut <code>*debounce*</code>.</p>
 </div>
 {% endraw %}
 
-### `lazy` or `number` Param Attributes for `v-model` <sup>replaced</sup>
+### `lazy` atau `number` Atribut Param untuk `v-model` <sup>diganti</sup>
 
-The `lazy` and `number` param attributes are now modifiers, to make it more clear what That means instead of:
+`lazy` dan `number` param atribut dapat di modifikasi, untuk membuat lebih jelas, artinya:
 
 ``` html
 <input v-model="name" lazy>
 <input v-model="age" type="number" number>
 ```
 
-You would use:
+Kamu dapat menggunakan:
 
 ``` html
 <input v-model.lazy="name">
@@ -547,22 +546,22 @@ You would use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the these param attributes.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut .</p>
 </div>
 {% endraw %}
 
-### `value` Attribute with `v-model` <sup>removed</sup>
+### `value` Atribut dengan `v-model` <sup>dihapus</sup>
 
-`v-model` no longer cares about the initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
+`v-model` tidak peduli dengan nilai awal dari barisan atribut `value`. Untuk bisa diprediksi, `v-model` akan memperlakukan data dari Vue *intance* sebagai sumber kebenaran.
 
-That means this element:
+Maksud dari elemen ini:
 
 ``` html
 <input v-model="text" value="foo">
 ```
 
-backed by this data:
+Didukung dengan data ini:
 
 ``` js
 data: {
@@ -570,7 +569,7 @@ data: {
 }
 ```
 
-will render with a value of "bar" instead of "foo". The same goes for a `<textarea>` with existing content. Instead of:
+Akan *render* dengan nilai "bar" daripada "foo". Hal yang sama berlaku untuk `<textarea>` dengan konten yang ada. Daripada:
 
 ``` html
 <textarea v-model="text">
@@ -578,24 +577,24 @@ will render with a value of "bar" instead of "foo". The same goes for a `<textar
 </textarea>
 ```
 
-You should ensure your initial value for `text` is "hello world".
+Anda harus memastikan nilai awal `text` adalah "hello world".
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about inline value attributes with <code>v-model</code>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan *end-to-end test suite* atau  peningkatan setelah pengujian aplikasi dan mencari <strong><i>console warnings<i></strong> tentang kebenaran nilai dalam atribut <code>v-model</code>.</p>
 </div>
 {% endraw %}
 
-### `v-model` with `v-for` Iterated Primitive Values <sup>removed</sup>
+### `v-model` dengan `v-for` Nilai Primtif Iterasi<sup>dihapus</sup>
 
-Cases like this no longer work:
+Kasus seperti ini tidak berfungsi lagi pada:
 
 ``` html
 <input v-for="str in strings" v-model="str">
 ```
 
-The reason is this is the equivalent JavaScript that the `<input>` would compile to:
+Alasannya adalah kesetaraan Javascript yang akan di *compile</i> dari `<input>` tersebut:
 
 ``` js
 strings.map(function (str) {
@@ -603,9 +602,9 @@ strings.map(function (str) {
 })
 ```
 
-As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's only a local variable in the function scope.
+Seperti yang Anda lihat, `v-model` pengikatan dua arah ini tidak masuk akal . Menetapkan `str` menjadi nilai lain dalam fungsi iterasi tetapi tidak akan melakukan apa-apa karena itu hanya variabel lokal yang berada dalam cakupan fungsi.
 
-Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
+Sebagai gantinya, Anda seharusnya menggunakan *array __objects__* sehingga `v-model` bisa memperbaharui *field* dalam *object* tersebut. Seperti:
 
 {% codeblock lang:html %}
 <input v-for="obj in objects" v-model="obj.str">
@@ -613,20 +612,20 @@ Instead, you should use an array of __objects__ so that `v-model` can update the
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Jalur Upgrade></h4>
+  <p>Jalankan *your test suite*, jika Anda memilikinya. Bagian <strong>*failed tests*</strong> akan memperingatkan Anda terhadap bagian-bagian dari aplikasi yang terkena dampak oleh perubahan ini.</p>
 </div>
 {% endraw %}
 
-### `v-bind:style` with Object Syntax and `!important` <sup>removed</sup>
+### `v-bind:style` dengan *Object Syntax* dan `!important` <sup>dihapus</sup>
 
-This will no longer work:
+Konsep ini tidak lagi berfungsi:
 
 ``` html
 <p v-bind:style="{ color: myColor + ' !important' }">hello</p>
 ```
 
-If you really need to override another `!important`, you must use the string syntax:
+Jika Anda ingin menimpa `!important` lainnya, Anda harus menggunakan <i>string syntax</i>:
 
 ``` html
 <p v-bind:style="'color: ' + myColor + ' !important'">hello</p>
@@ -634,48 +633,48 @@ If you really need to override another `!important`, you must use the string syn
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of style bindings with <code>!important</code> in objects.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> pada baris kode Anda menemukan contoh-contoh dengan ikatan gaya  <code>*!important*</code> dalam objek.</p>
 </div>
 {% endraw %}
 
-### `v-el` and `v-ref` <sup>replaced</sup>
+### `v-el` and `v-ref` <sup>diganti</sup>
 
-For simplicity, `v-el` and `v-ref` have been merged into the `ref` attribute, accessible on a component instance via `$refs`. That means `v-el:my-element` would become `ref="myElement"` and `v-ref:my-component` would become `ref="myComponent"`. When used on a normal element, the `ref` will be the DOM element, and when used on a component, the `ref` will be the component instance.
+Untuk kesederhanaan, `v-el` dan `v-ref` sudah digabungkan menjadi atribut `ref` , dapat diakses melalui komponen <i>instance</i> `$refs`. Maksudnya `v-el:my-element` akan muncul `ref="myElement"` dan `v-ref:my-component` nampak `ref="myComponent"`.Ketika digunakan pada elemen normal,   `ref` akan ke DOM elemen, dan ketika menggunakan dalam komponen tersebut , `ref` akan kembali menggunakan komponen <i>instance</i>.
 
-Since `v-ref` is no longer a directive, but a special attribute, it can also be dynamically defined. This is especially useful in combination with `v-for`. For example:
+Karena `v-ref` bukan lagi sebuah direktif, tetapi adalah atribut spesial, dapat juga didefinisikan secara dinamis. Ini sangat berguna dalam kombinasi dengan `v-for`. Seperti:
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by giving each item the same `ref`:
+Sebelumnya, `v-el`/`v-ref` kombinasi dengan `v-for` akan menghasilkan *array* pada elemen/komponen, karena tidak ada cara memberi nama yang unik pada setiap item. Anda masih dapat mencapai ini dengan memberikan *item* `ref` yang sama:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
 ```
 
-Unlike in 1.x, these `$refs` are not reactive, because they're registered/updated during the render process itself. Making them reactive would require duplicate renders for every change.
+Tidak seperti 1.x, `$refs` ini tidak *reactive*, karena mereka sudah terdaftar/diperbaharui selama proses *render* itu sendiri. Membuat mereka *reactive* akan membutuhkan duplikasi *render* pada setiap perubahan.
 
-On the other hand, `$refs` are designed primarily for programmatic access in JavaScript - it is not recommended to rely on them in templates, because that would mean referring to state that does not belong to the instance itself. This would violate Vue's data-driven view model.
+Disamping itu, `$refs` dirancang untuk program dalam javascript - Tidak disaranakan penggunaan dalam tampilan, karena akan merujuk pada negara bukan pada instance itu sendiri. Akan terkana pelanggaran dalam tampilan model Vue js sendiri.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>v-el</code> and <code>v-ref</code>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan<a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-el</code> dan <code>v-ref</code>.</p>
 </div>
 {% endraw %}
 
-### `v-else` with `v-show` <sup>removed</sup>
+### `v-else` with `v-show` <sup>di hapus</sup>
 
-`v-else` no longer works with `v-show`. Use `v-if` with a negation expression instead. For example, instead of:
+`v-else` tidak lagi berfungsi dengan `v-show`. Menggunakan `v-if` dengan sebuah ekpresi negasi sebagai gantinya. Untuk contohnya, daripada:
 
 ``` html
 <p v-if="foo">Foo</p>
 <p v-else v-show="bar">Not foo, but bar</p>
 ```
 
-You can use:
+Anda dapat menggunakan:
 
 ``` html
 <p v-if="foo">Foo</p>
@@ -684,8 +683,8 @@ You can use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-else</code> with <code>v-show</code>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-else</code> dengan <code>v-show</code>.</p>
 </div>
 {% endraw %}
 
