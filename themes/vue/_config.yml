@@ -1,4 +1,4 @@
-site_description: Vue.js - The Progressive JavaScript Framework
+﻿site_description: Vue.js - Kademeli JavaScript Uygulama Çerçevesi
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.6.10
@@ -8,7 +8,7 @@ platinum_sponsors_china:
 special_sponsors:
   - url: 'https://stdlib.com/'
     img: stdlib.png
-    description: 'Build APIs you need in minutes instead of days, for free.'
+    description: 'İhtiyaç duyduğunuz API leri günler değil dakikalar içerisinde ücretsiz olarak inşa edin.'
 platinum_sponsors:
   - url: >-
       https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip

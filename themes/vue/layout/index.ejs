@@ -13,13 +13,13 @@
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
-        The Progressive<br>JavaScript Framework
+        Kademeli<br>JavaScript Uygulama Çerçevesi
       </h1>
       <p>
         <a id="modal-player" class="button has-icon" href="javascript:;">
           <%- partial('icons/play') %>
-          WHY VUE.JS?</a>
-        <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+          NEDEN VUE.JS?</a>
+        <a class="button white" href="<%- url_for("/v2/guide/") %>">ÖĞRENMEYE BAŞLAYIN</a>
         <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank">
           <%- partial('icons/github-dark') %>
           GITHUB</a>
@@ -29,7 +29,7 @@
 </div>
 
 <div id="special-sponsor">
-  <h3>Special Sponsor</h3>
+  <h3>Özel Sponsorumuz</h3>
   <% var specialSponsor = theme.special_sponsors[0]; %>
   <a href="<%- specialSponsor.url %>" target="_blank">
     <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
@@ -41,21 +41,21 @@
 <div id="highlights">
   <div class="inner">
     <div class="point">
-      <h2>Approachable</h2>
-      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+      <h2>Öğrenmesi Kolay</h2>
+      <p>HTML, CSS ve JavaScript'e hakim misiniz? Kılavuzumuzu okuyarak projenize hızla başlayın!</p>
     </div>
 
     <div class="point">
-      <h2>Versatile</h2>
-      <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
+      <h2>Çok Amaçlı Kullanım</h2>
+      <p>Projelerinizde bir kütüphaneden tam donanımlı bir uygulama çerçevesine kadar kademeli olarak kullanmaya başlayabileceğiniz bir ekosistem.</p>
     </div>
 
     <div class="point">
-      <h2>Performant</h2>
+      <h2>Yüksek Performanslı</h2>
       <p>
-        20KB min+gzip Runtime<br>
-        Blazing Fast Virtual DOM<br>
-        Minimal Optimization Efforts
+        Min+gzip 20KB Yürütme Ortamı<br>
+        Yüksek Hızlı Sanal DOM<br>
+        Asgari Optimizasyon İhtiyacı
       </p>
     </div>
   </div>
@@ -69,7 +69,7 @@
 
 <div id="news">
   <div class="inner">
-    <h3><label for="member_email">Subscribe to our Weekly Newsletter</label></h3>
+    <h3><label for="member_email">Haftalık Haber Bültenimize abone olun</label></h3>
     <form
       class="newsletter-form"
       id="revue-form"
@@ -85,18 +85,18 @@
         name="member[email]"
         id="member_email"
         required
-        placeholder="Email address"
+        placeholder="E-posta adresi"
       >
       <input
         class="button newsletter-button"
         type="submit"
-        value="Subscribe"
+        value="Abone olun"
         name="member[subscribe]"
         id="member_submit"
       >
     </form>
     <p>
-      You can read the previous issues and listen to our podcast at <a href="https://news.vuejs.org" target="_blank">news.vuejs.org</a>.
+      Geçmişteki yayınları okumak ve podcastımızı dinlemek için <a href="https://news.vuejs.org" target="_blank">news.vuejs.org</a> adresini ziyaret edin.
     </p>
   </div>
 </div>
@@ -113,14 +113,14 @@
       <%- partial('icons/medium') %>
     </a>
   </p>
-  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
+  <p><a href="https://opensource.org/licenses/MIT" target="_blank">MIT Lisansı</a> çerçevesinde yayınlanmaktadır<br>
+  Telif Hakkı &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <div id="video-modal" class="modal">
   <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </div><script src="https://player.vimeo.com/api/player.js"></script>
-  <p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.
+  <p class="modal-text"><a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue Mastery’deki Vue.js Dersleri">Vue Mastery</a> videosu. Vue Mastery’nin ücretsiz <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue’ye giriş dersi</a>ni izleyin.
   </p>
 </div>
 
