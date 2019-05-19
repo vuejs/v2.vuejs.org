@@ -1,48 +1,48 @@
 ---
-title: Introduction
+title: Giriş
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Vue.js nedir?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (/viyuv/ şeklinde telaffuz edilir, İngilizcedeki view kelimesi gibi) kullanıcı arayüzleri oluşturmayı sağlayan kademeli bir uygulama çerçevesidir (framework). Yazılım geliştirme ortamının her alanına nüfus eden diğer uygulama çerçevelerinin aksine Vue, basit bir temel üzerine inşa edildiğinden kademeli olarak kullanılabilir. Ana kütüphane yalnızca görüntüleme katmanına odaklanmaktadır. Öğrenmesi kolay olup diğer kütüphanelere ve mevcut projelere entegre edilebilir. Diğer taraftan, Vue [modern dosya yönetimi](single-file-components.html) ve [destekleyici kütüphaneler](https://github.com/vuejs/awesome-vue#components--libraries) eşliğinde sofistike Tek Sayfa Uygulamalar yaratmak için tamamen uygundur.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Eğer Vue öğrenmeye başlamadan önce daha fazla bilgi edinmek isterseniz, bu teknolojinin temel prensiplerinin dile getirildiği ve örnek bir projenin sunulduğu <a id="modal-player"  href="#">bir video hazırladık</a>.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Eğer kullanıcı arayüzü programcılığı alanında deneyimli iseniz ve Vue'nin diğer kütüphaneler/uygulama çerçevelerine göre bir karşılaştırmasını görmek istiyorsanız [Diğer Uygulama Çerçeveleri ile Karşılaştırma](comparison.html) sayfasına bakınız.
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Ücretsiz Vue.js Dersi">Vue Mastery’de ücretsiz bir ders videosu izleyebilirsiniz</a></div>
 
-## Getting Started
+## İlk Adımlar
 
-<a class="button" href="installation.html">Installation</a>
+<a class="button" href="installation.html">Kurulum</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Sitemiz üzerinde sunulan kılavuz HTML, CSS ve JavaScript alanlarında orta seviye bilgiye sahip olduğunuzu varsaymaktadır. Eğer kullanıcı arayüzü programcılığına yeni giriş yapıyorsanız ilk adım olarak bir uygulama çerçevesi öğrenmeye çalışmak doğru olmayabilir. Öncelikle o alanlardaki temel bilgileri öğrenin. Ardından bu kılavuza geri dönebilirsiniz!  Diğer uygulama çerçeveleri alanında deneyim işinize yarayacaktır ancak zorunlu değildir.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Vue.js'i denemenin en kolay yolu [JSFiddle Hello World örneği](https://jsfiddle.net/chrisvfritz/50wL7mdz/).'ne bakmaktır. Bu sayfayı başka bir sekmede açarsanız değineceğimiz birtakım basit örneklere daha yakından göz atabilirsiniz. Veya bir <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer"><code>index.html</code> sayfası oluşturduktan</a> sonra Vue'yi aşağıdaki bağlantı ile projeye dâhil edebilirsiniz:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- geliştirme versiyonu, yardımcı konsol uyarıları içerir -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+veya:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- son kullanıcı versiyonu, boyut ve hız açısından optimize edilmiştir -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+[Kurulum](installation.html) sayfası Vue'nin kurulumuna dair ilave seçenekleri açıklar. Not: Özellikle Node.js bazlı proje kurma araçlarına henüz alışkın değilseniz başlangıç seviyesinde `vue-cli` kullanmanızı tavsiye **etmiyoruz**.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+Eğer daha etkileşimli bir ortamı tercih ederseniz, bir taraftan ekran paylaşımlı ders diğer taraftan dilediğiniz anda durdurup kodu değiştirebileceğiniz bir deney ortamı sunan [şu Scrimba ders serisine](https://scrimba.com/playlist/pXKqta) göz atabilirsiniz.
 
-## Declarative Rendering
+## Beyansal Görüntüleme
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Bu derse Scrimba üzerinde göz atın</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Verileri basit bir şablon sentaksı kullanarak DOM'a beyansal olarak yansıtmayı sağlayan bir sistem Vue.js'nin kalbinde yatmaktadır:
 
 ``` html
 <div id="app">
@@ -53,7 +53,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 ```
@@ -65,21 +65,21 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Bu şekilde ilk Vue uygulamamızı yaratmış olduk! Bu teknik, bir dizgi şablonunun ekrana yansıtılmasına oldukça benzemektedir fakat Vue arka planda birçok şey gerçekleştirmektedir. Şu anda veriler ve DOM arasında bir bağlantı kurulmuş ve her şey **reaktif** bir hale gelmiş durumda. Kendi gözlerinizle görmeye ne dersiniz? Tarayıcınızın JavaScript konsolunu açın (doğrudan bu sayfaya ait konsol) ve `app.message` değişkenine farklı bir değer verin. Yukarıda ekrana yansıtılmış olan örneğin girdiğiniz değere göre değiştiğini göreceksiniz.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Metin değerlerinin takibine ek olarak aşağıda görebileceğiniz şekilde HTML öğesi niteliklerini de değişkenlere bağlayabilirsiniz:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Fare imlecini üzerimde birkaç saniye bekleterek dinamik
+    bir şekilde bağlanmış "title" niteliğini görebilirsin!
   </span>
 </div>
 ```
@@ -87,39 +87,39 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: Bu sayfayı şu zamanda yüklediniz: ' + new Date().toLocaleString()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Fare imlecini üzerimde bekleterek dinamik bir şekilde bağlanmış "title" niteliğini görebilirsin!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: Bu sayfayı şu zamanda yüklediniz: ' + new Date().toLocaleString()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Burada yeni bir şeye tanıklık ediyoruz. Bu kod parçasında kullanılan `v-bind` niteliğine **direktif** denilir. Direktifler, Vue çerçevesinde özel bir nitelik olduğunu belirten `v-` ifadesi ile başlar ve sizin de tahmin edebileceğiniz gibi ekrana yansıtılan DOM mimarisi üzerinde özel bir reaktivite tesis eder. Yukarıda görmekte olduğunuz kullanım "söz konusu HTML elementinin `title` niteliğini Vue örneğindeki (Vue instance) `message` özelliği ile birebir aynı tut" anlamına geliyor.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Eğer yine JavaScript konsolunu açarsanız ve `app2.message = 'dilediğiniz yeni bir mesaj'` komutunu girerseniz bağlanmış olan HTML elementinin - bu durumda `title` niteliğinin - güncelleneceğini göreceksiniz.
 
-## Conditionals and Loops
+## Koşullar ve Döngüler
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Bu derse Scrimba üzerinde göz atın</a></div>
 
-It's easy to toggle the presence of an element, too:
+Bir elementin görünürlüğünü değiştirmek de son derece kolay:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Şu an beni görüyorsun</span>
 </div>
 ```
 
@@ -134,7 +134,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Şu an beni görüyorsun</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -146,11 +146,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Şimdi konsolu açın ve `app3.seen = false` komutunu girin. Mesajın kaybolacağını göreceksiniz.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Bu örnek yalnızca metin ve niteliklerin değil, aynı zamanda bütün DOM **yapısının** değişkenlere bağlanabileceğini göstermektedir. Vue aynı zamanda HTML elementlerinin Vue tarafından eklenmesi/güncellenmesi/kaldırılması sırasında otomatik olarak [geçiş efektlerinin](transitions.html) uygulanmasını sağlayan güçlü bir geçiş sistemi temin etmektedir.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Her biri farklı bir işleve bir dizi direktif mevcuttur. Örneğin, `v-for` direktifi bir Veri Dizisi içerisindeki verileri kullanarak ekranda bir liste görüntülemek için kullanılabilir:  
 
 ``` html
 <div id="app-4">
@@ -166,9 +166,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript Öğren' },
+      { text: 'Vue Öğren' },
+      { text: 'Harika bir proje gerçekleştir' }
     ]
   }
 })
@@ -186,34 +186,34 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript Öğren' },
+      { text: 'Vue Öğren' },
+      { text: 'Harika bir proje gerçekleştir' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Konsolu açıp `app4.todos.push({ text:  'Yeni liste elemanı' })` yazın. Yeni liste elemanının listeye eklendiğini göreceksiniz.
 
-## Handling User Input
+## Kullanıcı Girdilerini Yönetmek
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Bu derse Scrimba üzerinde göz atın</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+Kullanıcıların uygulamanız ile etkileşim gerçekleştirmesini sağlamak için Vue örneklerimize ait yöntemleri çağıran olay dinleyicilerini entegre etmek için `v-on` direktifini kullanabiliriz:
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Mesajı Tersine Çevir</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Merhaba Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -225,13 +225,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Mesajı Tersine Çevir</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Merhaba Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -242,9 +242,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Dikkat ederseniz yukarıdaki bu yöntem sayesinde DOM'a dokunma ihtiyacı duymadan uygulamamızın durumunu güncelleyebildik; DOM ile gerçekleştirilmesi gereken tüm etkileşimler Vue tarafından yönetiliyor ve sizin yazdığınız kod da uygulamanızın altında yatan mantığa odaklanıyor.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue aynı zamanda form girdileri ile uygulamanızın durumu arasında iki yönlü etkileşimi çocuk oyuncağı haline getiren `v-model` direktifini de size sunuyor:
 
 ``` html
 <div id="app-6">
@@ -256,7 +256,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 ```
@@ -269,60 +269,60 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Merhaba Vue!'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## Bileşenler ile Proje İnşası
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Bu derse Scrimba üzerinde göz atın</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+Bileşen sistemi Vue içerisinde önem taşıyan bir diğer konsepttir. Bu soyutlama yaklaşımı küçük, kendine yeten ve çoğu zaman yeniden kullanılabilen bileşenleri bir araya getirerek büyük çaplı uygulamalar inşa etmeyi sağlar. Düşünecek olursak her türden uygulama bir bileşenler ağacı olarak soyutlanabilir:
 
-![Component Tree](/images/components.png)
+![Bileşen Ağacı](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+Vue çerçevesinde bir bileşen, önceden belirlenmiş seçeneklere sahip bir Vue örneğidir. Vue içerisinde bir bileşen oluşturmak son derece basit:
 
 ``` js
-// Define a new component called todo-item
+// todo-item isimli yeni bir bileşen belirlemek
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: ‘<li>Yapılacaklar listesi elemanı</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+Bunun ardından bir başka bileşenin şablon metni içerisinde bu bileşeni dahil edebilirsiniz:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- todo-item bileşeninin bir örneğini oluşturmak -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Fakat bu örnek her kullanımda aynı metni ekrana yansıtacağından çok yararlı olmayacaktır. Bizim amacımız bir üst kademeden bu bileşene veri aktarabilmektir. Bileşen beyanını biraz değiştirerek bir [prop](components.html#Props) kabul etmesini sağlayalım:
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // todo-item bileşeni şu anda bizim belirlediğimiz bir HTML 
+  // niteliği olarak hareket edecek olan bir "prop" kabul ediyor.
+  // Bu prop'a todo adını verdik.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Şimdi `v-bind` direktifini kullanarak tekrar eden her bileşen içerisinde todo niteliğini tayin edebiliriz:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Aşağıda her todo-item'a temsil etmekte olduğu todo nesnesini     
+      aktarıyoruz. Böylece todo-item dinamik bir hale geliyor.
+      Aynı zamanda her bileşene bir "key" (anahtar) veriyoruz.
+      Bu işlemin amacını daha sonra açıklayacağız.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -342,9 +342,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Sebze' },
+      { id: 1, text: 'Peynir' },
+      { id: 2, text: 'İnsanların yiyebileceği diğer herhangi bir şey' }
     ]
   }
 })
@@ -364,18 +364,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Sebze' },
+      { id: 1, text: 'Peynir' },
+      { id: 2, text: 'İnsanların yiyebileceği diğer herhangi bir şey' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Bu çok gerçekçi bir örnek olmasa da uygulamamızı iki parçaya ayırabildik ve alt konumdaki bileşen üst kademeden prop arayüzü sayesinde yeterli ölçüde ayrılmış durumda. Bu sayede üst kademedeki uygulamayı etkilemeden `<todo-item>` bileşenimizi daha kompleks bir şablon ve mantık ile geliştirebiliriz.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+Büyük çaplı bir uygulamada geliştirme sürecini daha kolay yönetebilmek amacıyla bütün uygulamayı farklı bileşenlere bölmek önem taşır. [Kılavuzun ilerleyen kısımlarında](components.html) bileşenlere daha yakından göz atacağız fakat bir uygulama şablonunun bileşenler aracılığı ile nasıl inşa edilebileceğine dair (teorik) bir örneği aşağıda bulabilirsiniz:
 
 ``` html
 <div id="app">
@@ -387,18 +387,18 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### Özel HTML Elementlerine Benzerlik
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+Vue bileşenlerinin, [Web Bileşenleri Standartları](https://www.w3.org/wiki/WebComponents/)nın bir parçası olan **Özel HTML Elementleri**ne son derece benzer olduğunu fark etmiş olabilirsiniz. Bunun sebebi Vue'nin bileşen sentaksının kabaca söz konusu standart baz alınarak modellenmiş olmasıdır. Örneğin Vue bileşenleri [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)'yi ve `is` özel niteliğini desteklemektedir. Fakat birtakım kilit farklılıklar da mevcuttur:
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. Web Bileşenleri Standartları tamamlanmış olsa da her tarayıcıda otomatik olarak desteklenmemektedir. Web bileşenlerini otomatik olarak destekleyen tarayıcılar Safari 10.1 ve üstü, Chrome 54 ve üstü, Firefox 63 ve üstüdür. Buna karşılık, Vue bileşenleri polyfill uygulanmasını gerektirmez ve bütün tarayıcılarda desteklenmektedir (IE9 ve üstü). Gerek olduğunda Vue bileşenleri özel HTML elementi içerisine yerleştirilebilir.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2. Vue bileşenleri sıradan özel elementlerde yer almayan birçok önemli özelliğe sahiptir. Bunların başında ise bileşenlerarası veri akışı, kendi olay iletişimini tasarlama imkanı ve proje kurma araçlarının entegrasyonu geliyor.
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+Vue, özel HTML elementlerini kendi içerisinde kullanmasa da, özel HTML elementi olarak tüketim ve dağıtım gerçekleştirme açısından [güçlü bir çapraz kullanım kapasitesine](https://custom-elements-everywhere.com/#vue) sahiptir. Aynı zamanda Vue CLI, gerçek bir özel HTML elementi olarak tanımlanan Vue bileşenlerinin tasarlanmasına müsaade etmektedir.
 
-## Ready for More?
+## Daha fazlası için hazır mısınız?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+Bu yazı içerisinde ana Vue.js kütüphanesinin en temel özelliklerine değindik. Bu kılavuzun geri kalan kısımlarında bu konseptler ve diğer ileri düzey özellikler çok daha detaylı bir şekilde ele alınacak. Bu kılavuzun tamamını okumanızı tavsiye ederiz!
 
-<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text"><a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue Mastery’deki Vue.js Dersleri">Vue Mastery</a> videosu. Vue Mastery’nin ücretsiz <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue’ye giriş dersi</a>ni izleyin.</div>
