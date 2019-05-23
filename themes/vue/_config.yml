@@ -110,6 +110,9 @@ gold_sponsors:
   - url: 'https://www.jqwidgets.com/vue/'
     img: jqwidgets_ltd.png
     name: jQWidgets LTD
+  - url: 'https://www.y8.com/'
+    img: y8.png
+    name: Y8
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
