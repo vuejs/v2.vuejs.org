@@ -16,37 +16,37 @@ Najnowsza stabilna wersja: {{vue_version}}
 
 Szczegółowe informacje o wydaniu dla każdej wersji znajdują się na [GitHubie](https://github.com/vuejs/vue/releases).
 
-## Vue Devtools
+## Narzędzia deweloperskie Vue
 
-Jeżeli korzystasz z Vue, zalecamy również instalację w przeglądarce [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools), pozwalających na zbadanie i debugowanie aplikacji Vue z poziomu bardziej przyjaznego interfejsu.
+Jeżeli korzystasz z Vue, zalecamy również instalację w przeglądarce [narzędzi deweloperskich Vue](https://github.com/vuejs/vue-devtools#vue-devtools), pozwalających na zbadanie i debugowanie aplikacji Vue z poziomu bardziej przyjaznego interfejsu.
 
 ## Bezpośrednie użycie `<script>`
 
-Po prostu pobierz i uwzględnij tag script. `Vue` zostanie zarejestrowane jako zmienna globalna.
+Pobierz i uwzględnij tag script. `Vue` zostanie zarejestrowane jako zmienna globalna.
 
 <p class="tip">Nie korzystaj ze zminifikowanej wersji w fazie tworzenia. Stracisz wszystkie ostrzeżenia o częstych pomyłkach!</p>
 
 <div id="downloads">
   <a class="button" href="/js/vue.js" download>Wersja deweloperska</a><span class="light info">Ze wszystkimi ostrzeżeniami i trybem debugowania</span>
 
-  <a class="button" href="/js/vue.min.js" download>Wersja produkcyjna</a><span class="light info">Ostrzeżenia nie są uwzględnione, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Wersja produkcyjna</a><span class="light info">Ostrzeżenia nie są uwzględniane, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-Aby zacząć tworzyć prototypy lub uczyć się, możesz użyć najnowszej wersji z:
+Aby zacząć prototypowanie lub naukę, możesz skorzystać z najnowszej wersji za pomocą:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-Na produkcji, zalecamy użycie określonego numeru wersji i kompilacji, aby uniknąć przeszkód po wydaniu nowej wersji:
+W produkcji, zalecamy użycie określonego numeru wersji i kompilacji, aby uniknąć niespodziewanych błędów spowodowanych nowszą wersją:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-Jeżeli korzystasz z natywnych modułów ES, istnieje też kompilacja kompatybilna z nimi:
+Jeżeli korzystasz z natywnych modułów ES, istnieje kompatybilna z nimi kompilacja:
 
 ``` html
 <script type="module">
@@ -54,11 +54,11 @@ Jeżeli korzystasz z natywnych modułów ES, istnieje też kompilacja kompatybil
 </script>
 ```
 
-Możesz przejrzeć źródło lakieru NPM na [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Możesz przejrzeć źródło paczki NPM na [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
 Vue jest także dostępne na [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) i [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (na cdnjs synchronizacja do najnowszej wersji zajmuje trochę czasu, więc może być jeszcze niedostępna).
 
-Pamiętaj o przeczytaniu o [różnicach pomiędzy różnymi kompilacjami Vue](#Objaśnienie-różnych-kompilacji) i korzystaniu z **wersji produkcyjnej** na publikowanej stronie, zastępując`vue.js` na `vue.min.js`. Jest to mniejsza kompilacja zoptymalizowana pod kątem wydajności, zamiast doświadczenia przy programowaniu.
+Pamiętaj o przeczytaniu o [różnicach pomiędzy różnymi kompilacjami Vue](#Objaśnienie-różnych-kompilacji) i korzystaniu z **wersji produkcyjnej** na publikowanej stronie, zmieniając `vue.js` na `vue.min.js`. Jest to mniejsza kompilacja zoptymalizowana pod kątem wydajności, zamiast dodatkowych udogodnień przy programowaniu.
 
 ## NPM
 
@@ -71,9 +71,9 @@ $ npm install vue
 
 ## CLI
 
-Vue dostarcza również [oficjalne CLI](https://github.com/vuejs/vue-cli) przeznaczone do szybkiego tworzenia szkieletów dla bardziej ambitnych aplikacji single page. Tworzy ono konfiguracje zawierające dodatkowe narzędzia do pracy nad front-endem. W kilka minut uzyskasz hot-reloading, lintowanie przy zapisie i kompilacje gotowe na produkcję. Zajrzyj do [dokumentacji Vue CLI](https://cli.vuejs.org) po więcej szczegółów.
+Vue dostarcza również [oficjalne CLI](https://github.com/vuejs/vue-cli) przeznaczone do szybkiego tworzenia szkieletów ambitniejszych aplikacji single page. Tworzy ono konfiguracje zawierające dodatkowe narzędzia do pracy nad front-endem. W kilka minut uzyskasz hot-reloading, lintowanie przy zapisie i kompilacje gotowe na produkcję. Zajrzyj do [dokumentacji Vue CLI](https://cli.vuejs.org) po więcej szczegółów.
 
-<p class="tip">CLI zaklada znajomość Node.js i związanych z nim narzędzi. Jeżeli jesteś nowy(-a) w Vue lub narzędziach do kompilacji front-endu, zalecamy przejście przez <a href="./">przewodnik</a> bez korzystania z żadnych narzędzi do kompilacji, zanim zaczniesz używać CLI.</p>
+<p class="tip">CLI zaklada znajomość Node.js i związanych z nim narzędzi. Jeżeli jesteś nowy(-a) w Vue lub narzędziach front-endowych, zalecamy przejście przez <a href="./">przewodnik</a> bez korzystania z żadnych narzędzi do kompilacji, zanim zaczniesz używać CLI.</p>
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Obejrzyj film wyjaśniający na Vue Mastery</a></div>
 
@@ -96,17 +96,17 @@ W [katalogu `dist/` pakietu NPM](https://cdn.jsdelivr.net/npm/vue/dist/) znajdzi
 
 - **Środowisko uruchomieniowe**: kod odpowiedzialny za tworzenie instancji Vue, renderowanie i aktualizację wirtualnego DOM itd. W zasadzie wszystko poza kompilatorem.
 
-- **[UMD](https://github.com/umdjs/umd)**: kompilacje UMD mogą być używane w przeglądarce bezpośrednio w tagu `<script>`. Domyślny plik z CDN jsDelivr na [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) to kompilacja UMD środowiska uruchomieniowego i kompilatora (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: kompilacje UMD mogą być używane w przeglądarce bezpośrednio w tagu `<script>`. Domyślny plik z CDN jsDelivr na [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) to środowisko uruchomieniowe i kompilator UMD (`vue.js`).
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: kompilacje CommonJS są przeznaczone dla starszych bundlerów takich jak [browserify](http://browserify.org/) czy [webpack 1](https://webpack.github.io). Głównym plikiem dla tych bundlerów (`pkg.main`) jest kompilacja CommonJS zawierająca tylko środowisko uruchomieniowe (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: kompilacje CommonJS są przeznaczone dla starszych bundlerów takich jak [browserify](http://browserify.org/) czy [webpack 1](https://webpack.github.io). Domyślnym dla nich plikiem (`pkg.main`) jest kompilacja CommonJS zawierająca tylko środowisko uruchomieniowe (`vue.runtime.common.js`).
 
-- **[Moduł ES](http://exploringjs.com/es6/ch_modules.html)**: od wersji 2.6, Vue dostarcza dwie kompilacja modułów ES (ESM):
+- **[Moduł ES](http://exploringjs.com/es6/ch_modules.html)**: od wersji 2.6 Vue dostarcza dwie kompilacja modułów ES (ESM):
 
-  - ESM dla bundlerów — przeznaczony do wykorzystania przez nowoczesne bundlery, takie jak [webpack 2](https://webpack.js.org) czy [Rollup](https://rollupjs.org/). Format ESM jest zaprojektowany tak, aby była możliwa statyczna analiza, pozwalając bundlerom na „tree-shaking” i usunięcie niepotrzebnego kodu z końcowego zestawu. Domyślnym plikiem dla tych bundlerów (`pkg.module`) jest kompilacja modułu ES zawierająca tylko środowisko uruchomieniowe (`vue.runtime.esm.js`).
+  - ESM dla bundlerów — przeznaczony do wykorzystania przez nowoczesne bundlery, takie jak [webpack 2](https://webpack.js.org) czy [Rollup](https://rollupjs.org/). Format ESM jest zaprojektowany tak, aby umożliwić statyczną analizę, pozwalając im na „tree-shaking” i usunięcie niepotrzebnego kodu z końcowej paczki. Domyślnym plikiem dla tych bundlerów (`pkg.module`) jest kompilacja modułu ES zawierająca tylko środowisko uruchomieniowe (`vue.runtime.esm.js`).
 
   - ESM dla przeglądarek (tylko 2.6+): przeznaczony do bezpośredniego importowania w nowoczesnych przeglądarkach z użyciem `<script type="module">`.
 
-### Środowisko uruchomieniowe + kompilator vs. samo środowisko uruchomieniowe
+### Środowisko uruchomieniowe + kompilator a samo środowisko uruchomieniowe
 
 Jeżeli potrzebujesz kompilować szablony po stronie klienta (np. przekazując ciąg znaków w opcji `template` lub montując do elementu używając jego HTML w DOM jako szablonu), będziesz potrzebować kompilatora, więc również pełnej kompilacji:
 
@@ -182,13 +182,13 @@ Dodaj do `package.json` projektu:
 }
 ```
 
-### Tryb programisty/produkcyjny
+### Tryb programisty a produkcyjny
 
-Tryby produkcyjny i programisty są trwale zapisane dla kompilacji UMD — niezminifikowane pliki przeznaczone są do programowania, a zminifikowane — na produkcję.
+Tryb produkcyjny i programisty są trwale zapisane dla kompilacji UMD - niezminifikowane pliki przeznaczone są do programowania a zminifikowane w produkcji.
 
 Kompilacje CommonJS i modułów ES są przeznaczone dla bundlerów, więc nie dostarczamy ich zminifikowanych wersji. Będziesz odpowiedzialny(-a) za zminifikowanie końcowej wersji samodzielnie.
 
-Kompilacje CommonJS i modułów ES sprawdzają również `process.env.NODE_ENV`, aby określić w jakim trybie powinny zostać uruchomione. Musisz użyć odpowiedniej konfiguracji bundlera aby zamienić te zmienne, aby kontrolować w jakim trybie zostanie uruchomiony Vue. Zamiana `process.env.NODE_ENV` na ciąg znaków pozwala minifikatorom takim jak UglifyJS na całkowite pominięcie kodu tylko dla programisty, zmniejszając rozmiar końcowego pliku.
+Kompilacje CommonJS i modułów ES sprawdzają również `process.env.NODE_ENV`, aby określić w jakim trybie powinny zostać uruchomione. Musisz użyć odpowiedniej konfiguracji bundlera, aby zamienić te zmienne, żeby kontrolować w jakim trybie zostanie uruchomiony Vue. Zamiana `process.env.NODE_ENV` na ciąg znaków pozwala minifikatorom takim jak UglifyJS na całkowite pominięcie kodu tylko dla programisty, zmniejszając rozmiar końcowego pliku.
 
 #### Webpack
 
@@ -237,19 +237,19 @@ rollup({
 
 #### Browserify
 
-Zastosuj globalną transformację [envify](https://github.com/hughsk/envify) w swoim zestawie.
+Zastosuj globalną transformację [envify](https://github.com/hughsk/envify) w swojej paczce.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Przeczytaj także [Wskazówki dotyczące wdrażania na produkcji](deployment.html).
+Przeczytaj także [Wskazówki dotyczące wdrażania wersji produkcyjnej](deployment.html).
 
 ### Środowiska CSP
 
 Niektóre środowiska, takie jak aplikacje Google Chrome, wymuszają Politykę Bezpieczeństwa Treści (ang. *Content Security Policy*, **CSP), uniemożliwiającą wykorzystywanie `new Function()` do wykonywania wyrażeń. Pełna kompilacja używa tej funkcji, aby kompilować szablony, więc nie może być użyta w takich środowiskach.
 
-Z drugiej strony, kompilacja zawierającą tylko środowisko uruchomieniowe jest w oleju zgodna z CSP. Jeżeli używasz tej kompilacji z [Webpackiem + vue-loader](https://github.com/vuejs-templates/webpack-simple) lub [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), szablony zostaną wcześniej skompilowane do funkcji `render`, działających bez problemów w środowiskach CSP.
+Z drugiej strony, kompilacja zawierającą tylko środowisko uruchomieniowe jest w pełni zgodna z CSP. Jeżeli używasz tej kompilacji z [Webpackiem + vue-loader](https://github.com/vuejs-templates/webpack-simple) lub [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), szablony zostaną wcześniej skompilowane do funkcji `render`, która działa bez problemów w środowisku CSP.
 
 ## Kompilacja dla programisty
 
