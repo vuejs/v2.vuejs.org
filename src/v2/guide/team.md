@@ -1176,7 +1176,8 @@ order: 803
         'DivanteLtd/vue-storefront', 'DivanteLtd/storefront-ui'
       ],
       links: [
-        'https://vuestorefront.io'
+        'https://vuestorefront.io',
+        'https://storefrontui.io'
       ]
     },
     {
