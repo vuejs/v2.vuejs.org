@@ -14,6 +14,7 @@
 @import "_modal"
 @import "_scrimba"
 @import "_vue-mastery"
+@import "_themes-example"
 
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
@@ -22,7 +23,7 @@
 .content
   position: relative
   padding: 2.2em 0
-  max-width: 600px
+  max-width: 700px
   margin: 0 auto
   padding-left: 50px
   &.api
@@ -39,7 +40,7 @@
     font-size: .9em
     color: #fff
     margin: .2em 0
-    width: 180px
+    width: 200px
     text-align: center
     padding: 12px 24px
     display: inline-block
@@ -103,7 +104,7 @@
     // FIX: For nested lists, the top margins on ul/ol
     // creates extra space at the top. (Issue: 1308)
     ul, ol
-      margin: 0;
+      margin: 0
   a
     color: $green
     font-weight: 600
@@ -185,7 +186,6 @@
   margin-top: 2em
   padding-top: 2em
   border-top: 1px solid #e5e5e5
-  font-size: .9em
 
 #main.fix-sidebar
   position: static
@@ -194,7 +194,7 @@
 
 @media screen and (min-width: 1590px)
   #header
-    background-color: rgba(255,255,255,.4)
+    background-color: #fff
 
 @media screen and (max-width: 1300px)
   .content.with-sidebar

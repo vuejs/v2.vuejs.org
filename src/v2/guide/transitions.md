@@ -581,6 +581,8 @@ and custom JavaScript hooks:
 </transition>
 ```
 
+In the example above, either `appear` attribute or `v-on:appear` hook will cause an appear transition.
+
 ## Transitioning Between Elements
 
 We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:

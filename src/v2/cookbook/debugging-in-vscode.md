@@ -6,7 +6,7 @@ order: 8
 
 Every application reaches a point where it's necessary to understand failures, small to large. In this recipe, we explore a few workflows for VS Code users who would like to debug their application in the browser.
 
-This recipe shows how to to debug [Vue CLI](https://github.com/vuejs/vue-cli) applications in VS Code as they run in the browser.
+This recipe shows how to debug [Vue CLI](https://github.com/vuejs/vue-cli) applications in VS Code as they run in the browser.
 
 <p class="tip">Note: This recipe covers Chrome and Firefox. If you know how to setup VS Code debugging with other browsers, please consider sharing your insights (see bottom of the page).</p>
 
@@ -41,6 +41,8 @@ module.exports = {
 
 ### Launching the Application from VS Code
 
+<p class="tip">We're assuming the port to be `8080` here. If it's not the case (for instance, if `8080` has been taken and Vue CLI automatically picks another port for you), just modify the configuration accordingly.</p>
+
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome/Firefox: Launch** as the environment. Replace content of the generated launch.json with the corresponding configuration:
 
 ![Add Chrome Configuration](/images/config_add.png)
@@ -57,7 +59,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///./src/*": "${webRoot}/*"
       }
     },
     {
@@ -81,7 +83,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 2.  Open your favorite terminal at the root folder and serve the app using Vue CLI:
 
   ```
-  npm start
+  npm run serve
   ```
 
 3.  Go to the Debug view, select the **'vuejs: chrome/firefox'** configuration, then press F5 or click the green play button.

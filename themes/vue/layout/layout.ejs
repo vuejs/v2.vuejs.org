@@ -6,7 +6,7 @@
     <title><%- page.title ? page.title + ' — ' : '' %>Vue.js</title>
     <meta charset="utf-8">
     <meta name="description" content="<%- theme.site_description %>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="alternate" hreflang="x-default" href="https://vuejs.org/<%- page.path %>">
     <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/<%- page.path %>">
@@ -119,7 +119,8 @@
       apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
       indexName: 'vuejs',
       inputSelector: selector,
-      algoliaOptions: { facetFilters: ["version:" + version] }
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
       })
     })
     </script>

@@ -73,7 +73,7 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same property order across browsers.
 
 {% raw %}
 <div class="upgrade-path">
@@ -211,9 +211,9 @@ to a definition like below in your `routes` configuration:
 
 If you need multiple aliases, you can also use an array syntax:
 
-``` js
+{% codeblock lang:js %}
 alias: ['/manage', '/administer', '/administrate']
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">

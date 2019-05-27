@@ -207,10 +207,14 @@ requireComponent.keys().forEach(fileName => {
   // Get PascalCase name of component
   const componentName = upperFirst(
     camelCase(
-      // Strip the leading `./` and extension from the filename
-      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+      // Gets the file name regardless of folder depth
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
     )
   )
+
 
   // Register component globally
   Vue.component(
