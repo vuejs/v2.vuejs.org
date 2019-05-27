@@ -1,5 +1,5 @@
 ---
-title: Vue-ийн Instance
+title: Vue-ийн Instance үүсгэх
 type: guide
 order: 3
 ---
@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+[MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel) нарын чанд баримталдаггүй боловч, Vue-ийн загвар нь зарим талаараа санаа авсан байдаг. Тогтсон журамын дагуу Vue instance үүсгэхэд `vm` буюу (ViewModel гэсэн үгний богино) хувьсагч ашигладаг.
 
 When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
 
