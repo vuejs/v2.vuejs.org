@@ -345,20 +345,6 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 </current-user>
 ```
 
-## Dynamic Slot Names
-
-> New in 2.6.0+
-
-[Dynamic directive arguments](syntax.html#Dynamic-Arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
-
-``` html
-<base-layout>
-  <template v-slot:[dynamicSlotName]>
-    ...
-  </template>
-</base-layout>
-```
-
 ## Named Slots Shorthand
 
 > New in 2.6.0+
@@ -395,6 +381,30 @@ Instead, you must always specify the name of the slot if you wish to use the sho
 <current-user #default="{ user }">
   {{ user.firstName }}
 </current-user>
+```
+
+## Dynamic Slot Names
+
+> New in 2.6.0+
+
+[Dynamic directive arguments](syntax.html#Dynamic-Arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
+
+``` html
+<base-layout>
+  <template v-slot:[dynamicSlotName]>
+    ...
+  </template>
+</base-layout>
+```
+
+Dynamic slot names can also be used with the [Named Slots Shorthand](syntax.html#Named-Slots-Shorthand) syntax:
+
+``` html
+<base-layout>
+  <template #[dynamicSlotName]>
+    ...
+  </template>
+</base-layout>
 ```
 
 ## Other Examples
