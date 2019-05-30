@@ -1,21 +1,21 @@
 ---
-title: Routing
+title: Routing - Чиглүүлэлт
 type: guide
 order: 501
 ---
 
-## Official Router
+## Албан ёсны Router
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+Ихэхн Single Page Application-уудын хувьд албан ёсоор дэмжигдсэн [vue-router санг](https://github.com/vuejs/vue-router) ашиглахыг зөвлөж байна. Дэлгэрэнгүй танилцахыг хүсвэл vue-router-ийн [documentation](https://router.vuejs.org/)-руу орно уу.
 
-## Simple Routing From Scratch
+## Энгийн Routing From Scratch
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+Хэрэв та маш энгийн чиглүүлэлт хэрэгтэй бөгөөд өргөн боломжтой routing сан ашиглахыг хүсэхгүй байгаа бол хуудсуудаа динамик байдлаар ингэж хийж болно:
 
 ``` js
-const NotFound = { template: '<p>Page not found</p>' }
-const Home = { template: '<p>home page</p>' }
-const About = { template: '<p>about page</p>' }
+const NotFound = { template: '<p>Хуудас олдсонгүй</p>' }
+const Home = { template: '<p>Нүүр хуудас</p>' }
+const About = { template: '<p>Бидний тухай</p>' }
 
 const routes = {
   '/': Home,
@@ -36,8 +36,8 @@ new Vue({
 })
 ```
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+HTML5 history API-тэй хослуулан та маш энгийн боловч бүрэн ажиллагаатай клиент талын чиглүүлэгчийг бүтээж болно. Практик дээр туршсан [энэхүү жишээг харна уу](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
 
-## Integrating 3rd-Party Routers
+## Гуравдагч Router сангууд ашиглах
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+Та гуравдагч чиглүүлэгч сангууд ашиглахыг хүсч байвал, [Page.js](https://github.com/visionmedia/page.js) болон [Director](https://github.com/flatiron/director), өөрийн аппдаа оруулах [маш амархан](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Энд Page.js ашигласан [бүтэн жишээ байна.](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs).
