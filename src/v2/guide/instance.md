@@ -10,15 +10,15 @@ order: 3
 
 ```js
 var vm = new Vue({
-  // боломжууд
+  // тохиргоо
 })
 ```
 
-[MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel) нарын чанд баримталдаггүй боловч, Vue-ийн загвар нь зарим талаараа санаа авсан байдаг. Тогтсон журамын дагуу Vue instance үүсгэхэд `vm` буюу (ViewModel гэсэн үгний богино) хувьсагч ашигладаг.
+Vue нь [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel) нарын чанд баримталдаггүй боловч, Vue-ийн загвар нь зарим талаараа санаа авсан байдаг. Тогтсон журамын дагуу Vue instance үүсгэхэд `vm` буюу (ViewModel гэсэн үгний богино) хувьсагч ашигладаг.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Та Vue instance үүсгэхдээ **тохиргоонууд** дамжуулж болно. Энэхүү заавар нь хэрхэн эдгээр сонголтуудыг ашиглан таны хүссэн шинж чанарыг хэрхэн үүсгэх талаар тайлбарлана. Та options-уудын талаар бүтэн жагсаалт [API reference](../api/#Options-Data) хэсгээс харж болно.
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Vue application-ий бүтэц нь `new Vue` аар үүссэн **root Vue instance**, мөн дахин ашиглагдах боломжтой component-ууд аас бүрдэнэ. Жишээ нь, todo app-ийн бүтэц дараах байдлаар харагдана:
 
 ```
 Root Instance
