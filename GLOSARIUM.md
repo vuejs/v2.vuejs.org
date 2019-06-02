@@ -37,8 +37,10 @@
 - Chain: Rantai (atau bisa dengan tetap *Chain*)
 - Child: Anak
 - Component: Komponen
+- Compile: Menyusun/Menghimpun
 - Console: Konsol
 - Constructor: Konstruktor
+- Custom: Khusus
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -162,6 +164,7 @@
 
 ## S
 
+- String: Untai
 - Style: Gaya
 - Style Guide: Panduan Gaya
 - Single Page Application:	Aplikasi *Single-Page*
@@ -175,6 +178,7 @@
 ## T
 
 - Template: Templat
+- Trigger: Picu (memicu/dipicu)
 
 [⬆️](#navigasi-berdasarkan-abjad)
 

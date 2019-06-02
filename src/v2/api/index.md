@@ -60,7 +60,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  Konfigurasi untuk mengizinkan [vue-devtools](https://github.com/vuejs/vue-devtools) inspeksi. Nilai aggapan dari opsi ini adalah `true` dalam build pengembangan. Dan` false` di build produksi. Anda dapat mengaturnya ke `true` untuk mengaktifkan inspeksi untuk produksi.
+  Konfigurasi untuk mengizinkan [vue-devtools](https://github.com/vuejs/vue-devtools) inspeksi. Nilai anggapan dari opsi ini adalah `true` dalam build pengembangan. Dan` false` di build produksi. Anda dapat mengaturnya ke `true` untuk mengaktifkan inspeksi untuk produksi.
 
 ### errorHandler
 
@@ -166,7 +166,7 @@ type: api
 
 - **Nilai Anggapan:** `false (from 2.2.3+)`
 
-- **Usage**:
+- **Penggunaan**:
 
   Setel ini menjadi `true` untuk mengaktifkan pelacakan inisialisasi komponen, kompilasi, render, dan palacakan performa patch pada browser devtool panel performance/timeline. Hanya berfungsi dalam mode pengembangan dan di browser yang mendukung [performance.mark] (https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
@@ -186,21 +186,21 @@ type: api
 
 ### Vue.extend( options )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} options`
 
 - **Penggunaan:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Membuat sebuah "subclass" dari konstruktor. Argumen harus berisi objek yang berisi opsi komponen.
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  Kasus spesial untuk dicatat disini adalah opsi `data` - ini harus berupa fungsi ketika digunakan dengan `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create constructor
+  // buat konstruktor
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -211,11 +211,11 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // buat sebuah instance dari profil dan pasang ke dalam elemen
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  Akan menghasilkan:
 
   ``` html
   <p>Walter White aka Heisenberg</p>
@@ -225,75 +225,75 @@ type: api
 
 ### Vue.nextTick( [callback, context] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Function} [callback]`
   - `{Object} [context]`
 
 - **Penggunaan:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Menangguhkan panggilan balik untuk dieksekusi setelah siklus pembaruan DOM selanjutnya. Gunakan ini segera setelah Anda mengubah beberapa data untuk menunggu untuk pembaruan DOM.
 
   ``` js
-  // modify data
+  // modifikasi data
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM belum diperbarui
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM telah diperbarui
   })
 
-  // usage as a promise (2.1.0+, see note below)
+  // gunakan sebagai promise (2.1.0+, lihat catatan di bawah)
   Vue.nextTick()
     .then(function () {
-      // DOM updated
+      // DOM telah diperbarui
     })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Baru di 2.1.0+: mengembalikan sebuah _Promise_ jika tidak tersedia panggilan balikdan _Promise_ didukung di lingkungan eksekusi. Tolong catat bahwa Vue tidak datang dengan _Promise_ _polyfill_, jadi jika Anda menargetkan peramban yang tidak mendukung _Promise_ secara bawaan (melihat Anda, IE). Anda harus menyediakan _polyfill_ Anda sendiri.
 
 - **Lihat juga:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
 ### Vue.set( target, key, value )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Returns:** set nilai.
 
 - **Penggunaan:**
 
-  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
+  Menambahkan properti ke dalam objek reaktif, menjamin properti baru untuk reaktif juga, jadi memicu pembaruan _view_. Ini harus digunakan untuk menambah properti baru untuk objek reaktif, karena Vue tidak dapat mendeteksi penambahan properti normal (sebagai contoh `this.myObject.newProperty = 'hi'`).
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">Objek target tidak dapat menjadi _instance_ Vue, atau objek data root dari _instance_ Vue.</p>
 
 - **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.delete( target, key )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only in 2.2.0+: Also works with Array + index.
+  > Hanya di 2.2.0+: Juga bekerja dengan Array + index.
 
 - **Penggunaan:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Menghapus properti dalam objek. Jika objek reaktif, menjamin pembaruan pemicu penghapusan _view_. Ini terutama digunakan untuk mengatasi batasan dimana Vue tidak dapat mendeteksi penghapusan properti, tapi Anda jarang harus menggunakannya.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">Objek target tidak dapat menjadi _instance_ Vue, atau objek data root dari _instance_ Vue.</p>
 
 - **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Penggunaan:**
 
-  Register or retrieve a global directive.
+  Mendaftarkan atau mengambil directif global.
 
   ``` js
   // register
@@ -307,10 +307,10 @@ type: api
 
   // register (function directive)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // ini akan dipanggil sebagai `bind` dan `update`
   })
 
-  // getter, return the directive definition if registered
+  // getter, mengembalikan definisi direktif jika terdaftar
   var myDirective = Vue.directive('my-directive')
   ```
 
@@ -318,13 +318,13 @@ type: api
 
 ### Vue.filter( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function} [definition]`
 
 - **Penggunaan:**
 
-  Register or retrieve a global filter.
+  Mendaftarkan atau mengambil filter global.
 
   ``` js
   // register
@@ -332,7 +332,7 @@ type: api
     // return processed value
   })
 
-  // getter, return the filter if registered
+  // getter, mengembalikan filter jika terdaftar
   var myFilter = Vue.filter('my-filter')
   ```
 
@@ -340,22 +340,22 @@ type: api
 
 ### Vue.component( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Penggunaan:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Mendaftarkan atau mengambil komponen global. Pendaftaran juga secara otomatis menset komponen `name` dengan `id` yang diberikan.
 
   ``` js
-  // register an extended constructor
+  // mendaftarkan sebuah perpanjangan konstruktor
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // mendaftarkan opsi objek (secara otomatis memanggil Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // mengambil komponen yang telah terdaftar (selalu mengembalikan konstruktor)
   var MyComponent = Vue.component('my-component')
   ```
 
@@ -363,38 +363,38 @@ type: api
 
 ### Vue.use( plugin )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Function} plugin`
 
 - **Penggunaan:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Memasang plugin Vue.js. Jika plugin adalah sebuah objek, objek tersebut harus membuka metode `install`. Jika ini adalah fungsinya sendiri, ini akan diperlukan sebagai metode pemasangan. Metode pemasangan akan dipanggil dengan Vue sebagai argumen.
 
-  This method has to be called before calling `new Vue()`
+  Metode ini harus dipanggil sebelum memanggil `new Vue()`
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Ketika metode ini dipanggil dalam plugin yang sama beberapa kali, plugin hanya akan dipasang sekali.
 
 - **Lihat juga:** [Plugins](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} mixin`
 
 - **Penggunaan:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Menerapkan _mixin_ secara global, akan berpengaruh ke setiap _instance_ Vue yang tercipta setelah itu. Ini dapat digunakan oleh pembuat plugin untuk menginjeksi perilaku khusus ke dalam komponen. **Tidak direkomendasikan dalam kode aplikasi**.
 
 - **Lihat juga:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
 ### Vue.compile( template )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} template`
 
 - **Penggunaan:**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  Menghimpun untai templat kedalam fungsi render. **Hanya tersedia dalam build penuh.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -412,16 +412,16 @@ type: api
 
 ### Vue.observable( object )
 
-> New in 2.6.0+
+> Baru di 2.6.0+
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} object`
 
 - **Penggunaan:**
 
-  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+  Membuat sebuah reaktif objek. Secara internal, Vue menggunakan ini dalam objek yang dikembalikan oleh fungsi `data`.
 
-  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+  Objek yang dikembalikan dapat digunakan secara langsung dalam [fungsi render](../guide/render-function.html) dan [properti computed](../guide/computed.html), dan akan memicu pembaruan yang sesuai ketika bermutasi. Ini juga dapat digunakan secara minimal, menyimpan _state_ lintas komponen untuk skenario sederhana:
 
   ``` js
   const state = Vue.observable({ count: 0 })
@@ -435,15 +435,15 @@ type: api
   }
   ```
 
-  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+  <p class="tip">Dalam Vue 2.x, `Vue.observable` secara langsung memutasikan objek yang dioper ke dalamnya, jadi ini sama dengan pengembalian objek, [didemonstrasikan disini](../guide/instance.html#Data-and-Methods). Dalam Vue 3.x, proksi reaktif akan kembali sebagai gantinya, meninggalkan objek nonreaktif aslinya jika bermutasi secara langsung. Karena itu, untuk kompatibilitas di masa yang akan datang, kami selalu merekomendasikan bekerja dengan objek yang dikembalikan oleh `Vue.observable`, dari pada objek asli yang dioper ke dalamnya.</p>
 
 - **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.version
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **Detil**: Menyediakan versi yang terpasang dari Vue sebagai untai. Terutama beguna untuk plugin dan komponen dari komunitas, dimana Anda mungkin menggunakan stretegi berbeda untuk versi yang berbeda.
 
-- **Usage**:
+- **Penggunaan**:
 
   ```js
   var version = Number(Vue.version.split('.')[0])
