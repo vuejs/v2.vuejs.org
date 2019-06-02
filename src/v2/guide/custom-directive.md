@@ -175,7 +175,7 @@ This would pin the element 200px from the top of the page. But what happens if w
 ```html
 <div id="dynamicexample">
   <h3>Scroll down inside this section ↓</h3>
-  <p v-pin:[position]="200">I am pinned onto the page at 200px to the left.</p>
+  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
 </div>
 ```
 
@@ -192,7 +192,7 @@ new Vue({
   el: '#dynamicexample',
   data: function () {
     return {
-      position: 'left'
+      direction: 'left'
     }
   }
 })
