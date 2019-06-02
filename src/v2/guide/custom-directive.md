@@ -159,14 +159,14 @@ Let's say you want to make a custom directive that allows you to pin elements to
 ```js
 Vue.directive('pin', {
   bind: function (el, binding, vnode) {
-    el.style.position = 'fixed';
-    el.style.top = binding.value + 'px';
+    el.style.position = 'fixed'
+    el.style.top = binding.value + 'px'
   }
-}); 
+})
 
 new Vue({
   el: '#baseexample'
-});
+})
 ```
 
 This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
@@ -182,11 +182,11 @@ This would pin the element 200px from the top of the page. But what happens if w
 ```js
 Vue.directive('pin', {
   bind: function (el, binding, vnode) {
-    el.style.position = 'fixed';
-    var s = (binding.arg == 'left' ? 'left' : 'top');
-    el.style[s] = binding.value + 'px';
+    el.style.position = 'fixed'
+    var s = (binding.arg == 'left' ? 'left' : 'top')
+    el.style[s] = binding.value + 'px'
   }
-});
+})
 
 new Vue({
   el: '#dynamicexample',
