@@ -83,7 +83,21 @@ This can be useful sometimes, but it's not a good idea when you're trying to lis
 
 In that case, the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when we expected it to.
 
-To solve this problem, Vue provides a `$listeners` property containing an object of listeners being used on the component. For example:
+To solve this problem, Vue provides a `$listeners` property, which can be used to forward all event listeners on the component to a specific child element with `v-on="$listeners"`.
+
+```html
+<template>
+  <label>
+    {{ label }}
+    <!-- Now you can use @click on this component without needing .native -->
+    <button v-on="$listeners">
+  </label>
+</template>
+```
+
+### Native events for input elements with v-model
+
+`$listeners` contains an object of listeners being used on the component:
 
 ```js
 {
@@ -92,7 +106,7 @@ To solve this problem, Vue provides a `$listeners` property containing an object
 }
 ```
 
-Using the `$listeners` property, you can forward all event listeners on the component to a specific child element with `v-on="$listeners"`. For elements like `<input>`, that you also want to work with `v-model`, it's often useful to create a new computed property for listeners, like `inputListeners` below:
+For elements like `<input>`, that you also want to work with `v-model`, it's often useful to create a new computed property for listeners, like `inputListeners` below:
 
 ```js
 Vue.component('base-input', {
