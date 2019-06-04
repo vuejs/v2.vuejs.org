@@ -1509,7 +1509,7 @@ While attribute values without any spaces are not required to have quotes in HTM
   <h1>Here might be a page title</h1> 
 </template>
 
-template #footer>
+<template #footer>
   <p>Here's some contact info</p>
 </template>
 ```
