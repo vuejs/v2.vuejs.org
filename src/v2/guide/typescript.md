@@ -4,7 +4,7 @@ type: guide
 order: 403
 ---
 
-> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support. In our next major version of Vue (3.x), we are also planning to considerably improve our TypeScript support with built-in class based components API and TSX support.
+> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support. 
 
 ## Official Declaration in NPM Packages
 
