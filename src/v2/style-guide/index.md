@@ -1433,7 +1433,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ### Directive shorthands <sup data-p="b">strongly recommended</sup>
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+**Directive shorthands (`:` for `v-bind:`, `@` for `v-on:` and `#` for `v-slot`) should be used always or never.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1450,6 +1450,16 @@ While attribute values without any spaces are not required to have quotes in HTM
   v-on:input="onInput"
   @focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1482,6 +1492,26 @@ While attribute values without any spaces are not required to have quotes in HTM
   v-on:input="onInput"
   v-on:focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template v-slot:footer>
+  <p>Here's some contact info</p>
+</template>
+```
+
+``` html
+<template #header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
