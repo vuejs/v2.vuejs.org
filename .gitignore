@@ -7,3 +7,7 @@ public/
 .deploy*/
 src/_drafts
 package-lock.json
+
+# Editor directories and files
+.idea
+.vscode
