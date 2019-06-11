@@ -31,11 +31,11 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+Бид [component system](components.html)-ийн талаар дараа дэлгэрэнгүй тайлбарлах болно. Харин одоо, Бүх Vue component нь Vue instances юм, мөн ижилхэн options object ашиглах боломж олгодог (цөөн тооны root-specific option-оос бусад).
 
-## Data and Methods
+## Data болон Methods
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Vue instance үүсгэсэн тохиолдолд, `data` түлхүүр үг ашиглан обект болон өгөгдөлийг Vue ийн **reactivity system**-д нэмдэг. When the values of those properties change, the view will "react", updating to match the new values.
 
 ```js
 // Our data object
