@@ -112,6 +112,9 @@ gold_sponsors:
   - url: 'https://js.devexpress.com/'
     img: devexpress.png
     name: DevExpress
+  - url: 'https://fastcoding.jp/javascript/ '
+    img: fastcoding_inc.svg
+    name: FASTCODING Inc
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
