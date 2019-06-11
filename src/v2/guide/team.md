@@ -855,7 +855,7 @@ order: 803
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/*', 'nuxt-community/*', 'declandewet/vue-meta'
+        'nuxt/*', 'nuxt-community/*', 'nuxt/vue-meta'
       ]
     },
     {
