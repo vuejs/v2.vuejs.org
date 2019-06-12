@@ -81,11 +81,10 @@ Russian translation is maintained by Translation Gang.
 
 ### Spanish
 
-* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)	* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
+* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)	
+* Spanish translation is maintained by:
 
-Spanish translation is maintained by:
-
-[1950Labs](https://1950labs.com) & [Vue.js Montevideo](https://www.meetup.com/Montevideo-Vue-JS-Meetup/):	[1950Labs](https://1950labs.com) & [Vue.js Montevideo](https://www.meetup.com/Montevideo-Vue-JS-Meetup/):
+[1950Labs](https://1950labs.com) & [Vue.js Montevideo](https://www.meetup.com/Montevideo-Vue-JS-Meetup/):	
 
 - [Leonel More](https://github.com/leonelmore) | [Twitter](https://twitter.com/leonelmore)
 - [Sebastián Camacho](https://github.com/sxcamacho) | [Twitter](https://twitter.com/sxcamacho)	
