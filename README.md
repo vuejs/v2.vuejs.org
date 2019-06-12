@@ -86,7 +86,7 @@ Spanish translation is maintained by:
 - [Nicolás Tinte](https://github.com/Tintef) | [Twitter](https://twitter.com/NicoTinte)
 - [Diego Barreiro](https://github.com/faliure)
 - [Matías Verdier](https://github.com/MatiasVerdier) | [Twitter](https://twitter.com/matiasvj)
-- [Leonardo Fagundez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
+- [Leonardo Fagúndez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
 
 * Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
 
