@@ -215,9 +215,11 @@ requireComponent.keys().forEach(fileName => {
   // 컴포넌트의 파스칼표기법 이름 가져오기
   const componentName = upperFirst(
     camelCase(
-      // 파일이름 앞의 `./` 등 파스칼표기법 이름에 들어갈 필요없는 
-      // 기호들을 제거
-      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+      // 폴더 위치와 무관하게 파일이름 추출
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
     )
   )
 
