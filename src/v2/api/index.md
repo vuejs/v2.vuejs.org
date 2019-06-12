@@ -2197,6 +2197,11 @@ type: api
   ```
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  
+  ## Truthiness/Falsiness with `v-bind` <sup>2.0+</sup>
+  When used with `v-bind`, the only falsy values are now: `null`, `undefined`, and `false`. This means `0` and empty strings will render as truthy. So for example, `v-bind:draggable="''"` will render as `draggable="true"`.
+  
+  For enumerated attributes, in addition to the falsy values above, the string `"false"` will also render as `attr="false"`.
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
