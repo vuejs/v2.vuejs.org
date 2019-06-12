@@ -190,10 +190,3 @@ Generally speaking, `v-if` has higher toggle costs while `v-show` has higher ini
 <p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
 
 When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.
-
-
-### Truthiness/Falsiness with `v-show`
-
-When used with `v-show`, the only falsy values are now: `null`, `undefined`, and `false`. This means `0` and empty strings will render as truthy. So for example, `v-show="''"` will render as `v-show="true"`.
-
-<p class="tip">Note that for other directives (e.g. `v-if` and `v-show`), JavaScript's normal truthiness still applies.</p>
