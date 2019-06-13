@@ -29,10 +29,10 @@ Así es como se ve un ejemplo sencillo en acción:
 ``` html
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Mostrar/Ocultar
   </button>
   <transition name="fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 ```
@@ -58,10 +58,10 @@ new Vue({
 {% raw %}
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Mostrar/Ocultar
   </button>
   <transition name="demo-transition">
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 <script>
@@ -113,10 +113,10 @@ Uno de los tipos de transición más comunes usa transiciones CSS. Aquí hay un 
 ``` html
 <div id="example-1">
   <button @click="show = !show">
-    Toggle render
+    Mostrar/Ocultar
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 ```
@@ -149,10 +149,10 @@ new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle
+    Mostrar/Ocultar
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 <script>
@@ -185,9 +185,9 @@ Aquí hay un ejemplo, omitiendo las reglas con prefijo de CSS para mayor breveda
 
 ``` html
 <div id="example-2">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Mostrar/Ocultar</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Mírame!</p>
   </transition>
 </div>
 ```
@@ -223,9 +223,9 @@ new Vue({
 
 {% raw %}
 <div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Mostrar/Ocultar</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Mírame!</p>
   </transition>
 </div>
 
@@ -297,14 +297,14 @@ Por ejemplo:
 
 <div id="example-3">
   <button @click="show = !show">
-    Toggle render
+    Mostrar/Ocultar
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 ```
@@ -322,14 +322,14 @@ new Vue({
 <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
-    Toggle render
+    Mostrar/Ocultar
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
 </div>
 <script>
@@ -431,7 +431,7 @@ y es una gran opción para animaciones JavaScript
 
 <div id="example-4">
   <button @click="show = !show">
-    Toggle
+    Mostrar/Ocultar
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -477,7 +477,7 @@ new Vue({
 {% raw %}
 <div id="example-4" class="demo">
   <button @click="show = !show">
-    Toggle
+    Mostrar/Ocultar
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -566,7 +566,7 @@ Ya discutiremos las [transiciones entre componentes](#Transiciones-Entre-Compone
   <table v-if="items.length > 0">
     <!-- ... -->
   </table>
-  <p v-else>Sorry, no items found.</p>
+  <p v-else>No se han encontrado elementos.</p>
 </transition>
 ```
 
@@ -580,10 +580,10 @@ Por ejemplo:
 ``` html
 <transition>
   <button v-if="isEditing" key="save">
-    Save
+    Guardar
   </button>
   <button v-else key="edit">
-    Edit
+    Editar
   </button>
 </transition>
 ```
@@ -593,7 +593,7 @@ En estos casos, puede también usar el atributo `key` para realizar una trancisi
 ``` html
 <transition>
   <button v-bind:key="isEditing">
-    {{ isEditing ? 'Save' : 'Edit' }}
+    {{ isEditing ? 'Guardar' : 'Editar' }}
   </button>
 </transition>
 ```
@@ -603,13 +603,13 @@ Es posible realizar una transición entre cualquier número de elementos, ya sea
 ``` html
 <transition>
   <button v-if="docState === 'saved'" key="saved">
-    Edit
+    Editar
   </button>
   <button v-if="docState === 'edited'" key="edited">
-    Save
+    Guardar
   </button>
   <button v-if="docState === 'editing'" key="editing">
-    Cancel
+    Cancelar
   </button>
 </transition>
 ```
@@ -629,9 +629,9 @@ Que también puede ser escrito de la siguiente forma:
 computed: {
   buttonMessage: function () {
     switch (this.docState) {
-      case 'saved': return 'Edit'
-      case 'edited': return 'Save'
-      case 'editing': return 'Cancel'
+      case 'saved': return 'Editar'
+      case 'edited': return 'Guardar'
+      case 'editing': return 'Cancelar'
     }
   }
 }
@@ -645,10 +645,10 @@ Aún se presenta un problema. Intente hacer click sobre el botón:
 <div id="no-mode-demo" class="demo">
   <transition name="no-mode-fade">
     <button v-if="on" key="on" @click="on = false">
-      on
+      prendido
     </button>
     <button v-else key="off" @click="on = true">
-      off
+      apagado
     </button>
   </transition>
 </div>
@@ -679,10 +679,10 @@ Algunas veces funciona genial, por ejemplo cuando estamos realizando transicione
   <div class="no-mode-absolute-demo-wrapper">
     <transition name="no-mode-absolute-fade">
       <button v-if="on" key="on" @click="on = false">
-        on
+        prendido
       </button>
       <button v-else key="off" @click="on = true">
-        off
+        apagado
       </button>
     </transition>
   </div>
@@ -719,10 +719,10 @@ O también cuando se trasladan para que parezcan transiciones de deslizamiento:
   <div class="no-mode-translate-demo-wrapper">
     <transition name="no-mode-translate-fade">
       <button v-if="on" key="on" @click="on = false">
-        on
+        prendido
       </button>
       <button v-else key="off" @click="on = true">
-        off
+        apagado
       </button>
     </transition>
   </div>
@@ -776,10 +776,10 @@ Ahora actualicemos las transiciones para nuestros botones on/off con `out-in`:
 <div id="with-mode-demo" class="demo">
   <transition name="with-mode-fade" mode="out-in">
     <button v-if="on" key="on" @click="on = false">
-      on
+      prendido
     </button>
     <button v-else key="off" @click="on = true">
-      off
+      apagado
     </button>
   </transition>
 </div>
@@ -810,10 +810,10 @@ El modo `in-out` no es usado a menudo, pero a veces puede ser útil para un efec
   <div class="in-out-translate-demo-wrapper">
     <transition name="in-out-translate-fade" mode="in-out">
       <button v-if="on" key="on" @click="on = false">
-        on
+        prendido
       </button>
       <button v-else key="off" @click="on = true">
-        off
+        apagado
       </button>
     </transition>
   </div>
@@ -853,7 +853,7 @@ Se vé genial, ¿no?
 
 ## Transiciones Entre Componentes
 
-Las transiciones entre componentes es aún más sencillo - nisiquiera necesitamos el atributo `key`. En su lugar, sólo envolvemos un [componente dinámico](components.html#Componentes-Dinámicos):
+Las transiciones entre componentes son aún más sencillas - ni siquiera necesitamos el atributo `key`. En su lugar, sólo envolvemos un [componente dinámico](components.html#Componentes-Dinámicos):
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -869,10 +869,10 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Componente A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Componente B</div>'
     }
   }
 })
@@ -912,10 +912,10 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Componente A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Componente B</div>'
     }
   }
 })
@@ -940,8 +940,8 @@ Ahora veamos un ejemplo sencillo, transiciones de entrada y salida usando las mi
 
 ``` html
 <div id="list-demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="add">Agregar</button>
+  <button v-on:click="remove">Remover</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" v-bind:key="item" class="list-item">
       {{ item }}
@@ -987,8 +987,8 @@ new Vue({
 
 {% raw %}
 <div id="list-demo" class="demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="add">Agregar</button>
+  <button v-on:click="remove">Remover</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" :key="item" class="list-item">
       {{ item }}
@@ -1042,7 +1042,7 @@ Esta clase es muy útil para especificar el tiempo y la curva de suavizado de la
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="flip-list-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
+  <button v-on:click="shuffle">Mezclar</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" v-bind:key="item">
       {{ item }}
@@ -1074,7 +1074,7 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="flip-list-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
+  <button v-on:click="shuffle">Mezclar</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" :key="item">
       {{ item }}
@@ -1109,9 +1109,9 @@ Esto podrá parecer magia, pero por debajo, Vue está usando una sencilla técni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="shuffle">Mezclar</button>
+  <button v-on:click="add">Agregar</button>
+  <button v-on:click="remove">Remover</button>
   <transition-group name="list-complete" tag="p">
     <span
       v-for="item in items"
@@ -1167,9 +1167,9 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="list-complete-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="shuffle">Mezclar</button>
+  <button v-on:click="add">Agregar</button>
+  <button v-on:click="remove">Remover</button>
   <transition-group name="list-complete" tag="p">
     <span v-for="item in items" :key="item" class="list-complete-item">
       {{ item }}
@@ -1221,10 +1221,10 @@ Estas animaciones FLIP no están limitadas a un eje particular. Los elementos en
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
-  <strong>Lazy Sudoku</strong>
-  <p>Keep hitting the shuffle button until you win.</p>
+  <strong>Sudoku Perezoso</strong>
+  <p>Continúa apretando el botón mezclar hasta que ganes.</p>
   <button @click="shuffle">
-    Shuffle
+    Mezclar
   </button>
   <transition-group name="cell" tag="div" class="sudoku-container">
     <div v-for="cell in cells" :key="cell.id" class="cell">
@@ -1498,24 +1498,24 @@ Pero en realidad, cualquier transición puede ser asignada dinámicamente. Y no 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="dynamic-fade-demo" class="demo">
-  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
-  Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+  Transición de Entrada: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+  Transición de Salida: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
     v-on:enter="enter"
     v-on:leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
   <button
     v-if="stop"
     v-on:click="stop = false; show = false"
-  >Start animating</button>
+  >Comenzar Animación</button>
   <button
     v-else
     v-on:click="stop = true"
-  >Stop it!</button>
+  >Parar!</button>
 </div>
 ```
 
@@ -1569,24 +1569,24 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 <div id="dynamic-fade-demo" class="demo">
-  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
-  Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+  Transición de Entrada: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+  Transición de Salida: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
     v-on:enter="enter"
     v-on:leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">hola</p>
   </transition>
   <button
     v-if="stop"
     v-on:click="stop = false; show = false"
-  >Start animating</button>
+  >Comenzar Animación</button>
   <button
     v-else
     v-on:click="stop = true"
-  >Stop it!</button>
+  >Parar!</button>
 </div>
 <script>
 new Vue({
@@ -1637,4 +1637,3 @@ new Vue({
 {% endraw %}
 
 Finalmente, la mejor forma de crear transiciones dinámicas es a través de componentes que aceptan props para cambiar la naturaleza de la transición a ser usada. Puede sonar como cliché, pero el único límite realmente es su imaginación.
-
