@@ -431,3 +431,4 @@ While this cookbook entry focused on doing form validation "by hand", there are,
 
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
+* [vue-daval](https://github.com/deulos/vue-daval)
