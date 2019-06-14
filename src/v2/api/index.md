@@ -3,31 +3,31 @@ title: API
 type: api
 ---
 
-## Global Config
+## Configuración Global
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` es un objeto contenedor de las configuraciones globales de Vue. Podemos modificar sus propiedades listadas debajo antes de inicializar nuestra aplicación:
 
 ### silent
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Por defecto:** `false`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Suprimir todos los logs y warnings de Vue
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Por defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -49,11 +49,11 @@ type: api
 
 ### devtools
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Por defecto:** `true` (`false` in production builds)
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   // make sure to set this synchronously immediately after loading Vue
@@ -64,11 +64,11 @@ type: api
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Por defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
@@ -90,11 +90,11 @@ type: api
 
 > New in 2.4.0+
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** `undefined`
+- **Por defecto:** `undefined`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
@@ -106,11 +106,11 @@ type: api
 
 ### ignoredElements
 
-- **Type:** `Array<string | RegExp>`
+- **Tipo:** `Array<string | RegExp>`
 
-- **Default:** `[]`
+- **Por defecto:** `[]`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -126,11 +126,11 @@ type: api
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **Tipo:** `{ [key: string]: number | Array<number> }`
 
-- **Default:** `{}`
+- **Por defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.keyCodes = {
@@ -154,9 +154,9 @@ type: api
 
 > New in 2.2.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false (from 2.2.3+)`
+- **Por defecto:** `false (from 2.2.3+)`
 
 - **Usage**:
 
@@ -166,9 +166,9 @@ type: api
 
 > New in 2.2.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true`
+- **Por defecto:** `true`
 
 - **Usage**:
 
@@ -181,7 +181,7 @@ type: api
 - **Arguments:**
   - `{Object} options`
 
-- **Usage:**
+- **Uso:**
 
   Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
 
@@ -221,7 +221,7 @@ type: api
   - `{Function} [callback]`
   - `{Object} [context]`
 
-- **Usage:**
+- **Uso:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
 
@@ -253,7 +253,7 @@ type: api
 
 - **Returns:** the set value.
 
-- **Usage:**
+- **Uso:**
 
   Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
 
@@ -269,7 +269,7 @@ type: api
 
   > Only in 2.2.0+: Also works with Array + index.
 
-- **Usage:**
+- **Uso:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
 
@@ -283,7 +283,7 @@ type: api
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **Uso:**
 
   Register or retrieve a global directive.
 
@@ -314,7 +314,7 @@ type: api
   - `{string} id`
   - `{Function} [definition]`
 
-- **Usage:**
+- **Uso:**
 
   Register or retrieve a global filter.
 
@@ -336,7 +336,7 @@ type: api
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **Uso:**
 
   Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
 
@@ -358,7 +358,7 @@ type: api
 - **Arguments:**
   - `{Object | Function} plugin`
 
-- **Usage:**
+- **Uso:**
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
@@ -373,7 +373,7 @@ type: api
 - **Arguments:**
   - `{Object} mixin`
 
-- **Usage:**
+- **Uso:**
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
@@ -384,7 +384,7 @@ type: api
 - **Arguments:**
   - `{string} template`
 
-- **Usage:**
+- **Uso:**
 
   Compiles a template string into a render function. **Only available in the full build.**
 
@@ -424,7 +424,7 @@ type: api
 
 ### data
 
-- **Type:** `Object | Function`
+- **Tipo:** `Object | Function`
 
 - **Restriction:** Only accepts `Function` when used in a component definition.
 
@@ -472,7 +472,7 @@ type: api
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **Tipo:** `Array<string> | Object`
 
 - **Details:**
 
@@ -508,7 +508,7 @@ type: api
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **Tipo:** `{ [key: string]: any }`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -533,7 +533,7 @@ type: api
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Tipo:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **Details:**
 
@@ -580,7 +580,7 @@ type: api
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
 - **Details:**
 
@@ -607,7 +607,7 @@ type: api
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object | Array}`
+- **Tipo:** `{ [key: string]: string | Function | Object | Array}`
 
 - **Details:**
 
@@ -667,7 +667,7 @@ type: api
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Tipo:** `string | HTMLElement`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -689,7 +689,7 @@ type: api
 
 ### template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
 - **Details:**
 
@@ -707,7 +707,7 @@ type: api
 
 ### render
 
-  - **Type:** `(createElement: () => VNode) => VNode`
+  - **Tipo:** `(createElement: () => VNode) => VNode`
 
   - **Details:**
 
@@ -723,7 +723,7 @@ type: api
 
 > New in 2.2.0+
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **Tipo:** `(createElement: () => VNode, error: Error) => VNode`
 
   - **Details:**
 
@@ -752,7 +752,7 @@ type: api
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -762,7 +762,7 @@ type: api
 
 ### created
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -772,7 +772,7 @@ type: api
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -784,7 +784,7 @@ type: api
 
 ### mounted
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -807,7 +807,7 @@ type: api
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -819,7 +819,7 @@ type: api
 
 ### updated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -844,7 +844,7 @@ type: api
 
 ### activated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -858,7 +858,7 @@ type: api
 
 ### deactivated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -872,7 +872,7 @@ type: api
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -884,7 +884,7 @@ type: api
 
 ### destroyed
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
 - **Details:**
 
@@ -898,7 +898,7 @@ type: api
 
 > New in 2.5.0+
 
-- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+- **Tipo:** `(err: Error, vm: Component, info: string) => ?boolean`
 
 - **Details:**
 
@@ -920,7 +920,7 @@ type: api
 
 ### directives
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Details:**
 
@@ -930,7 +930,7 @@ type: api
 
 ### filters
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Details:**
 
@@ -940,7 +940,7 @@ type: api
 
 ### components
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Details:**
 
@@ -952,7 +952,7 @@ type: api
 
 ### parent
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
 - **Details:**
 
@@ -962,7 +962,7 @@ type: api
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **Tipo:** `Array<Object>`
 
 - **Details:**
 
@@ -988,7 +988,7 @@ type: api
 
 ### extends
 
-- **Type:** `Object | Function`
+- **Tipo:** `Object | Function`
 
 - **Details:**
 
@@ -1012,7 +1012,7 @@ type: api
 
 > New in 2.2.0+
 
-- **Type:**
+- **Tipo:**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
@@ -1141,7 +1141,7 @@ type: api
 
 ### name
 
-- **Type:** `string`
+- **Tipo:** `string`
 
 - **Restriction:** only respected when used as a component option.
 
@@ -1153,9 +1153,9 @@ type: api
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Por defecto:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
@@ -1175,7 +1175,7 @@ type: api
 
 ### functional
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
 - **Details:**
 
@@ -1187,7 +1187,7 @@ type: api
 
 > New in 2.2.0
 
-- **Type:** `{ prop?: string, event?: string }`
+- **Tipo:** `{ prop?: string, event?: string }`
 
 - **Details:**
 
@@ -1232,9 +1232,9 @@ type: api
 
 > New in 2.4.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true`
+- **Por defecto:** `true`
 
 - **Details:**
 
@@ -1246,9 +1246,9 @@ type: api
 
 > New in 2.4.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Por defecto:** `false`
 
 - **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
@@ -1260,7 +1260,7 @@ type: api
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Details:**
 
@@ -1272,7 +1272,7 @@ type: api
 
 > New in 2.2.0+
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Details:**
 
@@ -1280,7 +1280,7 @@ type: api
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Tipo:** `HTMLElement`
 
 - **Read only**
 
@@ -1290,7 +1290,7 @@ type: api
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Read only**
 
@@ -1309,7 +1309,7 @@ type: api
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
 - **Read only**
 
@@ -1319,7 +1319,7 @@ type: api
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
 - **Read only**
 
@@ -1329,7 +1329,7 @@ type: api
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Tipo:** `Array<Vue instance>`
 
 - **Read only**
 
@@ -1339,7 +1339,7 @@ type: api
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Tipo:** `{ [name: string]: ?Array<VNode> }`
 
 - **Read only**
 
@@ -1391,7 +1391,7 @@ type: api
 
 > New in 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Tipo:** `{ [name: string]: props => VNode | Array<VNode> }`
 
 - **Read only**
 
@@ -1408,7 +1408,7 @@ type: api
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
 - **Read only**
 
@@ -1422,7 +1422,7 @@ type: api
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
 - **Read only**
 
@@ -1436,7 +1436,7 @@ type: api
 
 > New in 2.4.0+
 
-- **Type:** `{ [key: string]: string }`
+- **Tipo:** `{ [key: string]: string }`
 
 - **Read only**
 
@@ -1448,7 +1448,7 @@ type: api
 
 > New in 2.4.0+
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **Tipo:** `{ [key: string]: Function | Array<Function> }`
 
 - **Read only**
 
@@ -1469,7 +1469,7 @@ type: api
 
 - **Returns:** `{Function} unwatch`
 
-- **Usage:**
+- **Uso:**
 
   Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
 
@@ -1534,7 +1534,7 @@ type: api
 
 - **Returns:** the set value.
 
-- **Usage:**
+- **Uso:**
 
   This is the **alias** of the global `Vue.set`.
 
@@ -1546,7 +1546,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key`
 
-- **Usage:**
+- **Uso:**
 
   This is the **alias** of the global `Vue.delete`.
 
@@ -1560,7 +1560,7 @@ type: api
   - `{string | Array<string>} event` (array only supported in 2.2.0+)
   - `{Function} callback`
 
-- **Usage:**
+- **Uso:**
 
   Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
 
@@ -1580,7 +1580,7 @@ type: api
   - `{string} event`
   - `{Function} callback`
 
-- **Usage:**
+- **Uso:**
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
@@ -1590,7 +1590,7 @@ type: api
   - `{string | Array<string>} event` (array only supported in 2.2.2+)
   - `{Function} [callback]`
 
-- **Usage:**
+- **Uso:**
 
   Remove custom event listener(s).
 
@@ -1743,7 +1743,7 @@ type: api
 
 - **Returns:** `vm` - the instance itself
 
-- **Usage:**
+- **Uso:**
 
   If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
 
@@ -1775,7 +1775,7 @@ type: api
 
 ### vm.$forceUpdate()
 
-- **Usage:**
+- **Uso:**
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
@@ -1784,7 +1784,7 @@ type: api
 - **Arguments:**
   - `{Function} [callback]`
 
-- **Usage:**
+- **Uso:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
@@ -1817,7 +1817,7 @@ type: api
 
 ### vm.$destroy()
 
-- **Usage:**
+- **Uso:**
 
   Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
 
@@ -1871,7 +1871,7 @@ type: api
 
 - **Expects:** `any`
 
-- **Usage:**
+- **Uso:**
 
   Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
@@ -1883,7 +1883,7 @@ type: api
 
 - **Expects:** `any`
 
-- **Usage:**
+- **Uso:**
 
   Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
@@ -1899,7 +1899,7 @@ type: api
 
 - **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Usage:**
+- **Uso:**
 
   Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
 
@@ -1922,7 +1922,7 @@ type: api
 
 - **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Usage:**
+- **Uso:**
 
   Denote the "else if block" for `v-if`. Can be chained.
 
@@ -1947,7 +1947,7 @@ type: api
 
 - **Expects:** `Array | Object | number | string`
 
-- **Usage:**
+- **Uso:**
 
   Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
 
@@ -2002,7 +2002,7 @@ type: api
   - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
   - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
 
-- **Usage:**
+- **Uso:**
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
@@ -2078,7 +2078,7 @@ type: api
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
-- **Usage:**
+- **Uso:**
 
   Dynamically bind one or more attributes, or a component prop to an expression.
 
@@ -2153,7 +2153,7 @@ type: api
   - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
-- **Usage:**
+- **Uso:**
 
   Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
@@ -2165,7 +2165,7 @@ type: api
 
 - **Does not expect expression**
 
-- **Usage:**
+- **Uso:**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
@@ -2179,7 +2179,7 @@ type: api
 
 - **Does not expect expression**
 
-- **Usage:**
+- **Uso:**
 
   This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
 
@@ -2296,7 +2296,7 @@ type: api
 
 - **Expects:** `function argument expression`
 
-- **Usage:**
+- **Uso:**
 
   Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
 
@@ -2308,7 +2308,7 @@ type: api
 
 Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
 
-- **Usage:**
+- **Uso:**
 
   Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
@@ -2345,7 +2345,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
-- **Usage:**
+- **Uso:**
 
   A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
 
@@ -2392,7 +2392,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - `leave-cancelled` (`v-show` only)
   - `appear-cancelled`
 
-- **Usage:**
+- **Uso:**
 
   `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
@@ -2439,7 +2439,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **Events:**
   - exposes the same events as `<transition>`.
 
-- **Usage:**
+- **Uso:**
 
   `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
 
@@ -2464,7 +2464,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
   - `max` - number. The maximum number of component instances to cache.
 
-- **Usage:**
+- **Uso:**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
@@ -2542,7 +2542,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **Props:**
   - `name` - string, Used for named slot.
 
-- **Usage:**
+- **Uso:**
 
   `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
 
