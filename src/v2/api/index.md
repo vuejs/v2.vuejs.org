@@ -2201,7 +2201,7 @@ type: api
 - **Note on truthiness and falsiness**
   When used with `v-bind`, the only falsy values are `null`, `undefined`, and `false`. This means `0` and empty strings will be rendered as truthy. For example, `v-bind:draggable="''"` will become `draggable="true"`.
   
-  For enumerated attributes, in addition to the falsy values above, the string `'false'` will also be rendered as `attr="false"`.
+  For enumerated attributes, in addition to the falsy values above, the string `'false'` will also be rendered as `attr="false"`. For example, `<input type="checkbox" v-bind:disabled="''" />` will be rendered as `disabled`.
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
