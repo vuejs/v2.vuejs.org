@@ -16,11 +16,11 @@ Finalmente, hemos dividido las reglas en cuatro categorías:
 
 ### Prioridad A: Esencial
 
-Estas reglas ayudan a prevenir errores, así que aprendalas y cumpla con ellas a toda costa. Pueden existir excepciones, pero deben ser muy raras y solo las deben realizar aquellas personas con conocimientos de JavaScript y Vue.
+Estas reglas ayudan a prevenir errores, así que apréndalas y cumpla con ellas a toda costa. Pueden existir excepciones, pero deben ser muy raras y sólo las deben realizar aquellas personas con conocimientos de JavaScript y Vue.
 
 ### Prioridad B: Muy recomendable
 
-Se ha descubierto que estas reglas mejoran la legibilidad y / o la experiencia del desarrollador en la mayoría de los proyectos. Su código aún se ejecutará si no las ejecuta, pero estas excepciones deben ser raras y estar bien justificadas.
+Se ha descubierto que estas reglas mejoran la legibilidad y/o la experiencia del desarrollador en la mayoría de los proyectos. Su código aún se ejecutará si no las respeta, pero estas excepciones deben ser raras y estar bien justificadas.
 
 ### Prioridad C: Recomendado
 
@@ -104,7 +104,7 @@ data: {
 
 Es posible que deseemos reutilizar este componente, lo que permite a los usuarios mantener listas múltiples (por ejemplo, para comprar, listas de regalos, tareas diarias, etc.). Sin embargo, hay un problema. Como cada instancia del componente hace referencia al mismo objeto de datos, cambiar el título de una lista también cambiará el título de cada otra lista. Lo mismo es cierto para agregar / editar / eliminar un "ToDo".
 
-En cambio, queremos que cada instancia de componente solo administre sus propios datos. Para que eso suceda, cada instancia debe generar un objeto de datos único. En JavaScript, esto se puede lograr devolviendo el objeto en una función:
+En cambio, queremos que cada instancia de componente sólo administre sus propios datos. Para que eso suceda, cada instancia debe generar un objeto de datos único. En JavaScript, esto se puede lograr devolviendo el objeto en una función:
 
 ``` js
 data: function () {
@@ -303,7 +303,7 @@ En nuestra experiencia, es mejor agregar siempre una clave única, para que uste
 
 ### Evitar `v-if` con `v-for` <sup data-p="a">esencial</sup>
 
-**Nunca use `v-if` en el mismo elemente que `v-for`.**
+**Nunca use `v-if` en el mismo elemento que `v-for`.**
 
 Hay dos casos comunes en los que esto puede ser tentador: 
 
@@ -342,7 +342,7 @@ this.users.map(function (user) {
 })
 ```
 
-Por lo tanto, aunque solo rendericemos elementos para una pequeña fracción de usuarios, debemos iterar sobre la lista completa cada vez que volvemos a renderizar, independientemente si el conjunto de usuarios activos ha cambiado o no. 
+Por lo tanto, aunque solo rendericemos elementos para una pequeña fracción de usuarios, debemos iterar sobre la lista completa cada vez que volvemos a renderizar, independientemente de si el conjunto de usuarios activos ha cambiado o no. 
 
 Al iterar sobre una propiedad calculada en su lugar, de esta manera:
 
@@ -369,8 +369,8 @@ computed: {
 
 Obtenemos los siguientes beneficios:
 
-- La lista filtrada _sólo_ se volverá a evaluar si hay cambios relevantes en la matriz `users`, lo que hace que el filtrado sea mucho más eficiente.
-- Usando `v-for="user en activeUsers"`, _sólo_ iteramos sobre usuarios activos durante el renderizado, haciendo que el renderizado sea mucho más eficiente.
+- La lista filtrada _sólo_ se volverá a evaluar si hay cambios relevantes en el arreglo `users`, lo que hace que el filtrado sea mucho más eficiente.
+- Usando `v-for="user in activeUsers"`, _sólo_ iteramos sobre usuarios activos durante el renderizado, haciendo que el renderizado sea mucho más eficiente.
 - La lógica ahora está desacoplada de la capa de presentación, por lo que el mantenimiento (cambio / extensión de la lógica) es mucho más fácil.
 
 Obtenemos beneficios similares de la actualización:
@@ -462,13 +462,13 @@ Al mover el `v-if` a un elemento contenedor, ya no estamos comprobando `shouldSh
 
 ### Scoping de Estilos de Componentes <sup data-p="a">esencial</sup>
 
-**Para las aplicaciones, los estilos, en un componente `App` de nivel superior y en los componentes de layout pueden ser globales, pero todos los demás componentes siempre deben ser scoped**
+**Para las aplicaciones, los estilos, en un componente `App` de nivel superior y en los componentes de "layout" pueden ser globales, pero todos los demás componentes siempre deben ser _scoped_**
 
-Esto es solo relevante a [single-file components](../guide/single-file-components.html)._No_ requiere que se use el atributo [`scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). El scoping podría ser a través de [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), una estrategia basada en clases como [BEM](http://getbem.com/), ú otra biblioteca/convención.
+Esto es relevante sólo a [single-file components](../guide/single-file-components.html). _No_ requiere que se use el atributo [`scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). El "scoping" podría ser a través de [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), una estrategia basada en clases como [BEM](http://getbem.com/), ú otra biblioteca/convención.
 
 **Para las bibliotecas de componentes, sin embargo, se debería implementar una estrategia basada en clases en vez de usar el atributo `scoped`.**
 
-Esto hace el "overriding" de los estilos internos sea más fácil, con nombres de clase legibles que no tienen una especificidad demasiado alta, y menos probable que generen conflictos.
+Esto hace que el "overriding" de los estilos internos sea más fácil, con nombres de clase legibles que no tienen una especificidad demasiado alta, y menos probable que generen conflictos.
 
 {% raw %}
 <details>
@@ -479,7 +479,7 @@ Esto hace el "overriding" de los estilos internos sea más fácil, con nombres d
 
 Si está desarrollando un proyecto grande, trabajando con otros desarrolladores o, a veces, incluye HTML / CSS de terceros (por ejemplo, de Auth0), el "consistent scoping" garantizará que sus estilos solo se apliquen a los componentes para los que están diseñados.
 
-Más allá del atributo `scoped`, El uso de nombres de clase únicos puede ayudar a garantizar que el CSS de terceros no se aplique a su propio HTML. Por ejemplo, muchos proyectos usan los nombres de las clases `button`,` btn` o `icon`, por lo que incluso si no usan una estrategia como BEM, agregan un prefijo específico de la aplicación y / o componente específico (por ejemplo,`ButtonClose- icon`) puede proporcionar cierta protección.
+Más allá del atributo `scoped`, el uso de nombres de clase únicos puede ayudar a garantizar que el CSS de terceros no se aplique a su propio HTML. Por ejemplo, muchos proyectos usan los nombres de las clases `button`,` btn` o `icon`, por lo que incluso si no usan una estrategia como BEM, agregan un prefijo específico de la aplicación y / o componente específico (por ejemplo,`ButtonClose-icon`) puede proporcionar cierta protección.
 
 {% raw %}</details>{% endraw %}
 
@@ -559,9 +559,9 @@ Más allá del atributo `scoped`, El uso de nombres de clase únicos puede ayuda
 
 
 
-### Private property names <sup data-p="a">esencial</sup>
+### Nombres de propiedades privadas <sup data-p="a">esencial</sup>
 
-**Siempre use el prefijo `$_` para  custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Siempre use el prefijo `$_` para propiedades privadas en un plugin, mixin, etc. Luego, para evitar conflictos con código de otros desarrolladores, también incluya un _scope_ (ej. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
@@ -570,11 +570,11 @@ Más allá del atributo `scoped`, El uso de nombres de clase únicos puede ayuda
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue utiliza el prefijo `_` para definir sus propias propiedades privadas, entonces, utilizar el mismo prefijo (ej. `_update`) puede causar que una propiedad privada sea sobreescrita. Incluso si usted verifica y Vue no esta haciendo uso de dicho nombre, no hay garantía de que este conflicto no surja en una versión futura.
 
-As for the `$` prefix, its purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+En cuanto al prefijo `$`, su propósito en el ecosistema de Vue es identificar las propiedades especiales de instancia que están expuestas al usuario, por lo tanto, utilizarlo para propiedades privadas no sería apropiado.
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+En su lugar, recomendamos combinar ambos prefijos en `$_`, como una convención para propiedades privadas, definidas por el usuario para que no haya conflicto con Vue.
 
 {% raw %}</details>{% endraw %}
 
