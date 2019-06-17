@@ -1347,7 +1347,7 @@ type: api
   })
   ```
     
-  <p class="tip">As a rule of thumb, make sure you don't name them with the prefixes `$` or `_`, as the Vue api/internal properties or misuse or overwrite the existing ones.</p>
+Don't prefix these properties with `$` or `_` to avoid possible naming clashes with Vue's internal ones.
   
   Note that they [won't be reactive](https://github.com/vuejs/vue/issues/1988#issuecomment-355980148). If you need reactivity, you need to initialize the properties as usual: within [`data`](#data) (or [`computed` properties](#computed)), passing [`props`](#props) or for more advanced use cases [`injecting`](#provide-inject) reactive objects. Bear in mind that the recommended way of adding non-reactive properties to the current instance is using the `created()` hook, as described [here](https://github.com/vuejs/vue/issues/1988#issuecomment-163013818): 
   
