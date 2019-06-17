@@ -255,6 +255,27 @@ example1.items = example1.items.filter(function (item) {
 
 You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
+#### Replacing an Array with an entirely new Array
+
+Note that replacing an array with a new one entirely will work just as you might expect - reactivity will not be lost.
+
+```js
+let example = new Vue({
+  data: {
+    items: [
+      "Hello",
+      "World"
+    ]
+  },
+  methods: {
+    replaceArray() {
+      // This is fine:
+      this.items = ["Goodbye", "World"]
+    }
+  }
+})
+```
+
 ### Caveats
 
 Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
