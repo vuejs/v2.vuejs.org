@@ -663,80 +663,80 @@ type: api
 
 - **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Opciones / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Tipo:** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restricción:** solamente respetado al crear instancias usando `new`.
 
-- **Details:**
+- **Detalles:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Proporciona a la instancia de Vue un elemento del DOM existente para montarse. Puede ser un selector CSS o un HTMLElement.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Una vez que se haya montado la instancia, el elemento resultante estará accesible como `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Si esta opción está disponible en la instanciación, la instancia ejecutará inmediatamente la compilación; de lo contrario, el usuario tendrá que llamar explícitamente a `vm.$mount()` para iniciar manualmente la compilación.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">El elemento proporcionado sirve simplemente como punto de montaje. A diferencia de Vue 1.x, el elemento montado se reemplazará con el DOM generado por Vue en todos los casos. Por lo tanto, no se recomienda montar la instancia raíz en `<html>` o `<body>`.</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">Si no está presente la función `render` ni la opción `template`, el HTML en el DOM del elemento de montaje se extraerá como el *template*. En este caso, se debe utilizar el Runtime + Compilador de Vue.</p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+- **Vea También:**
+  - [Diagrama del ciclo de vida](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compilador vs. Solo Runtime](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalles:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Un *string* que se usa como plantilla para la instancia de Vue. La plantilla **reemplazará** el elemento montado. Cualquier HTML existente dentro del elemento montado será ignorado, a menos que los *slots* de distribución de contenido estén presentes en la plantilla.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Si el *string* comienza con `#`, se usará como `querySelector` y usará el `innerHTML` del elemento seleccionado como la plantilla. Esto permite el uso del "truco" `<script type ="x-template ">` para incluir plantillas.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip"> Desde una perspectiva de seguridad, solo debe usar plantillas de Vue en las que pueda confiar. Nunca use contenido generado por el usuario como su plantilla. </p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Si la función de `render` está presente en las opciones de Vue, la plantilla se ignorará. </p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Vea también:**
+  - [Diagrama del ciclo de vida](../guide/instance.html#Lifecycle-Diagram)
+  - [Distribución de contenido con Slots](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `(createElement: () => VNode) => VNode`
+  - **Tipo:** `(createElement: () => VNode) => VNode`
 
-  - **Details:**
+  - **Detalles:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Es una alternativa a las plantillas que le permiten aprovechar todo el poder programático de JavaScript. La función de renderización recibe un método `createElement` como primer argumento utilizado para crear `VNode`s.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Si el componente es un componente funcional, la función de procesamiento también recibe un argumento `context` adicional, que proporciona acceso a los datos contextuales, ya que los componentes funcionales no tienen instancia.
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">La función `render` tiene prioridad sobre la función de procesamiento compilada desde la opción `template` o la plantilla HTML en el DOM del elemento de montaje que se especifica con la opción `el`. </p>
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Vea También:** [Función Render](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0+
+> Nuevo en 2.2.0+
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **Tipo:** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **Detalles:**
 
-    **Only works in development mode.**
+    **Solo funciona en modo desarrollo.**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    Proporciona una salida de render alternativa cuando la función predeterminada de `render` encuentra un error. El error se pasará a `renderError` como el segundo argumento. Esto es particularmente útil cuando se usa junto con la recarga *hot-reload*.
 
-  - **Example:**
+  - **Ejemplo:**
 
     ``` js
     new Vue({
       render (h) {
-        throw new Error('oops')
+        throw new Error('ups')
       },
       renderError (h, err) {
         return h('pre', { style: { color: 'red' }}, err.stack)
@@ -744,7 +744,7 @@ type: api
     }).$mount('#app')
     ```
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Vea También:** [Función Render](../guide/render-function.html)
 
 ## Options / Lifecycle Hooks
 
