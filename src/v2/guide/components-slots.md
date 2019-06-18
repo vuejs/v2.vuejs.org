@@ -332,7 +332,7 @@ That means the value of `v-slot` can actually accept any valid JavaScript expres
 This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props, e.g. `user` to `person`:
 
 ``` html
-<current-user v-slot="{ user: person }">
+<current-user v-slot="{ person: user }">
   {{ person.firstName }}
 </current-user>
 ```
