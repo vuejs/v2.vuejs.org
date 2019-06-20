@@ -14,4 +14,4 @@ Production-ready server-rendered аппликешны бүх хэлэлцсэн 
 
 ## Quasar Framework SSR + PWA
 
-[Quasar Framework](https://quasar-framework.org/) нь SSR (нэмэлт PWA handoff бүхий) апп үүсгэх бөгөөд өөрийн best-in-class бүтээх систем, ухаалаг тохируулга, хөгжүүлэгч хүссэнээрээ хялбар өргөтгөх. Зуу гаруй тусгай "Material Design 2.0" -той тохирсон component-уудтай мөн сэрвэр дээр хялбар тохируулж ажиллуулах боломжтой. Quasar нь SPA, PWA, SSR, Electron болон Cordova аппликейшнүүдийн хөгжүүлэх node.js болон вэбpack-д суурилсан хөгжүүлэлтийн орчин юм.
+[Quasar Framework](https://quasar.dev) нь SSR (нэмэлт PWA handoff бүхий) апп үүсгэх бөгөөд өөрийн best-in-class бүтээх систем, ухаалаг тохируулга, хөгжүүлэгч хүссэнээрээ хялбар өргөтгөх. Зуу гаруй тусгай "Material Design 2.0" -той тохирсон component-уудтай мөн сэрвэр дээр хялбар тохируулж ажиллуулах боломжтой. Quasar нь SPA, PWA, SSR, Electron болон Cordova аппликейшнүүдийн хөгжүүлэх node.js болон вэбpack-д суурилсан хөгжүүлэлтийн орчин юм.
