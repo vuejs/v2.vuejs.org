@@ -688,36 +688,36 @@ Anda dapat menggunakan:
 </div>
 {% endraw %}
 
-## Custom Directives <sup>simplified</sup>
+## Direktif Kustom <sup>yang disederhanakan</sup>
 
-Directives have a greatly reduced scope of responsibility: they are now only used for applying low-level direct DOM manipulations. In most cases, you should prefer using components as the main code-reuse abstraction.
+Direktif-direktif memiliki cakupan tanggung jawab yang sangat dikurangi: mereka sekarang hanya digunakan untuk menerapkan manipulasi DOM pada <i>low level</i> secara langsung. Umumnya, Anda seharusnya menggunakan komponen sebagai abtraksi utama <i>code-reuse</i>.
 
-Some of the most notable differences include:
+Beberapa perbedaan yang paling menonjol termasuk:
 
-- Directives no longer have instances. This means there's no more `this` inside directive hooks. Instead, they receive everything they might need as arguments. If you really must persist state across hooks, you can do so on `el`.
-- Options such as `acceptStatement`, `deep`, `priority`, etc have all been removed. To replace `twoWay` directives, see [this example](#Two-Way-Filters-replaced).
-- Some of the current hooks have different behavior and there are also a couple new hooks.
+- Direkftif tidak lagi memiliki _instance_. Maksudnya tidak lagi memiliki `this` dalam _directive hooks_. Sebaliknya, mereka menerima semua yang mungkin dibutuhkan sebagai argumen-argumen. Jika anda benar-benar harus mempertahankan dalam _state_ lintas _hooks_, Anda dapat menggunakan `el`.
+- Opsi-opsi seperti `acceptStatement`, `deep`, `priority`, dll telah dihapus. Pengganti direktif `twoWay` , perhatikan [contoh ini](#Two-Way-Filters-replaced).
+- Beberapa _hooks_ saat ini memiliki perbedaan perilaku dan juga beberapa _hooks_ baru.
 
-Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Custom Directives guide](custom-directive.html) to learn more.
+Untungnya, karena direktif-direktif baru jauh lebih sederhana, maka kamu dapat menguasainya lebih mudah. Baca [Panduan direktif kustom](custom-directive.html) untuk mempelajari lebih lanjut.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of defined directives. The helper will flag all of them, as it's likely in most cases that you'll want to refactor to a component.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif. <i>Helper</i> akan menandai mereka semua, karena dalam kebanyakan kasus yang ingin Anda <i>refactory</i> ke dalam komponen.</p>
 </div>
 {% endraw %}
 
-### Directive `.literal` Modifier <sup>removed</sup>
+### Direktif Pengubah `.literal` <sup>dihapus</sup>
 
-The `.literal` modifier has been removed, as the same can be easily achieved by providing a string literal as the value.
+Pengubah `.literal` sudah dihapus, karena hal yang sama dapat dilakukan dengan mudah memberikan *strings literal* sebagai nilainya.
 
-For example, you can update:
+Sebagai contoh, Anda bisa memperbaharui:
 
 ``` html
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-to:
+Jadi:
 
 ``` html
 <p v-my-directive="'foo bar baz'"></p>
@@ -725,8 +725,8 @@ to:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the `.literal` modifier on a directive.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif modifikasi `.literal`.</p>
 </div>
 {% endraw %}
 
