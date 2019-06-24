@@ -639,7 +639,8 @@ order: 803
       city: 'Kyiv, Ukraine',
       languages: ['uk', 'ru', 'en'],
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org',
+        'vue-cli'
       ],
       work: {
         role: 'Senior Frontend Engineer',
@@ -648,9 +649,6 @@ order: 803
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
-      links: [
-        'https://vuevixens.org/'
-      ]
     }
   ]))
 
