@@ -41,26 +41,28 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Define estrategias personalizadas de mezclado <i>(merge)</i> por opción
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de es pasado como tercer argumento. 
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+
+
+- **Ver además:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
 - **Tipo:** `boolean`
 
-- **Por defecto:** `true` (`false` in production builds)
+- **Por defecto:** `true` (`false` en ambiente de produción)
 
 - **Uso:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // asegúrese de configurarlo de forma sincronizada inmediatamente después de cargar Vue  
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Configura si se permite la inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en ambiente de desarrollo y `false` en ambiente de producción. Usted puede configurar a `true` para habilitar la inspección para el ambiente de producción. 
 
 ### errorHandler
 
@@ -72,23 +74,23 @@ type: api
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // manejo de error
+    // `info` es un error específico de Vue info, e.g. el cuál se engancha del ciclo de vida
+    // el error fue encontrado sólo disponible en 2.2.0+
   }
   ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  Asigna un manejador para errores no capturados durante la renderización de componentes y observadores. Los manipuladores son llamados con el el error y la instancia de Vue.
 
-  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > En 2.2.0+, este hook captura también errores en los hooks del ciclo de vida de los componentes. Además cuando este hook está `undefined`, los errores capturados serán logueados con `console.error` en vez de colapsar la aplicación.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > En 2.4.0+ este hook también captura errores lanzados dentro de los manipuladores de eventos personalizados de Vue.
 
-  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > Servicios de traceo de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proveen la integración oficial usando esta opción.
 
 ### warnHandler
 
-> New in 2.4.0+
+> Nuevo en 2.4.0+
 
 - **Tipo:** `Function`
 
@@ -98,11 +100,11 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` is the component hierarchy trace
+    // `trace` es la traza de la jerarquía de componentes.
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Asigna un manipulador personalizado para advertencias en tiempo de ejecución. Note que solo funciona durante desarrollo y es ignorado en producción.
 
 ### ignoredElements
 
@@ -116,13 +118,13 @@ type: api
   Vue.config.ignoredElements = [
     'my-custom-web-component',
     'another-web-component',
-    // Use a `RegExp` to ignore all elements that start with "ion-"
-    // 2.5+ only
+    // Use una `RegExp` para ignorar todos los elementos que comienzan con "ion-"
+    // 2.5+ solamente
     /^ion-/
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Hace a Vue ignorar elementos personalizados definidos fuera de Vue (e.g., usando APIs de Compoenentes Web). De otra manera lanzará una advertencia de esta forma `Unknown custom element`, asumiendo que usted olvidó registrar un componente global o escribió mal el nombre del componente.
 
 ### keyCodes
 
@@ -136,9 +138,9 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase no funcionará
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // en su lugar usted puede usar kebab-case con comillas dobles
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -148,51 +150,51 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for `v-on`.
+  Define alias(es) de teclas personalizados para `v-on`.
 
 ### performance
 
-> New in 2.2.0+
+> Nuevo en 2.2.0+
 
 - **Tipo:** `boolean`
 
 - **Por defecto:** `false (from 2.2.3+)`
 
-- **Usage**:
+- **Uso**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Configúralo a `true` para permitir inicializar el componente, compilarlo, renderizarlo y parchear el traceo de rendimiento en las herramientas de desarrollo del navegador y en el panel de rendimiento/línea de tiempo.
 
 ### productionTip
 
-> New in 2.2.0+
+> Nuevo en 2.2.0+
 
 - **Tipo:** `boolean`
 
 - **Por defecto:** `true`
 
-- **Usage**:
+- **Uso**:
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Configúralo a `false` para prevenir los consejos de producción cuando Vue se inicializa.
 
-## Global API
+## API Global 
 
-### Vue.extend( options )
+### Vue.extend( opciones )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object} options`
 
 - **Uso:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Crea una "subclase" del constructor base de Vue. El argumento debería ser un objeto que contenga opciones del componente
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  El caso especial a tener en cuenta es la opción `data` - la cuál tiene que ser una función cuando se usa `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create constructor
+  // crear el constructor
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -203,40 +205,40 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // crear una instancia de Profile y montarla sobre el componente
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  Resultará en:
 
   ``` html
-  <p>Walter White aka Heisenberg</p>
+  <p>Walter White conocido como Heisenberg</p>
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Ver además:** [Componentes](../guide/components.html)
 
 ### Vue.nextTick( [callback, context] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Function} [callback]`
   - `{Object} [context]`
 
 - **Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Aplaza el callback para ser ejecutado después del próximo ciclo de actualización del DOM. Úselo inmediatamente después que ha cambiado algunos datos para esperar por la actualización del DOM.
 
   ``` js
-  // modify data
+  // modifica la data
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM sin actualizar aún
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM actualizado
   })
 
-  // usage as a promise (2.1.0+, see note below)
+  // usado cómo promesa (2.1.0+, ver la nota debajo)
   Vue.nextTick()
     .then(function () {
-      // DOM updated
+      // DOM actualizado
     })
   ```
 
