@@ -2206,7 +2206,7 @@ type: api
 
   - For “boolean attributes” and xlinks, Vue removes them if they are 'undefined', 'null' or 'false' and adds them otherwise. For example, `<input v-bind:disabled="''" />` will be rendered as `<input disabled />`.
 
-  - For “enumerated attributes” ('contenteditable','draggable','spellcheck'), Vue tried to do some coercion before setting the value. If 'contenteditable' have valid value (e.g. 'events', 'caret', 'typing', 'plaintext-only') will be rendered as `true`.
+  - For “enumerated attributes” ('contenteditable','draggable','spellcheck'), Vue tried to do some coercion before setting the value. If 'contenteditable' has valid value (e.g. 'events', 'caret', 'typing', 'plaintext-only') it will be rendered as `true`.
 
   - For other attributes, Vue remove “falsy” values (undefined, null, or false) and set other values as-is.
 
