@@ -15,6 +15,7 @@
     <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/<%- page.path %>">
     <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/<%- page.path %>">
     <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/<%- page.path %>">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/<%- page.path %>">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
@@ -57,7 +58,7 @@
     <%- css(isIndex ? 'css/index' : 'css/page') %>
 
     <!-- this needs to be loaded before guide's inline scripts -->
-    <script src="<%- url_for("/js/vue.js") %>"></script>
+    <script src="<%- url_for('/js/vue.js') %>"></script>
     <script>
       Vue.config.productionTip = false
       window.PAGE_TYPE = "<%- page.type %>"
