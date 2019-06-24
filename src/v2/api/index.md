@@ -2199,9 +2199,16 @@ type: api
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
   
 - **Note on truthiness and falsiness**
-  When used with `v-bind`, the only falsy values are `null`, `undefined`, and `false`. This means `0` and empty strings will be rendered as truthy. For example, `v-bind:draggable="''"` will become `draggable="true"`.
-  
-  For enumerated attributes, in addition to the falsy values above, the string `'false'` will also be rendered as `attr="false"`. For example, `<input type="checkbox" v-bind:disabled="''" />` will be rendered as `disabled`.
+
+  'v-bind' have four different handle ways for attribute/element pairs.
+
+  - For elements '<input>', '<textarea>', '<option>', '<select>', '<progress>' attribute 'value' and '<option selected="">', '<input checked="">', '<video muted="">', Vue is always using the corresponding IDL attribute (property).
+
+  - For “boolean attributes” and xlinks, Vue removes them if they are 'undefined', 'null' or 'false' and adds them otherwise. For example, `<input v-bind:disabled="''" />` will be rendered as `<input disabled />`.
+
+  - For “enumerated attributes” ('contenteditable','draggable','spellcheck'), Vue tried to do some coercion before setting the value. If 'contenteditable' have valid value (e.g. 'events', 'caret', 'typing', 'plaintext-only') will be rendered as `true`.
+
+  - For other attributes, Vue remove “falsy” values (undefined, null, or false) and set other values as-is.
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
