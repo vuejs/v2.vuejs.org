@@ -36,18 +36,18 @@ Solo Vue Router 2 es compatible con Vue 2, así que sí, también tendrá que se
 
 En cuanto a Vuex, incluso la versión 0.8 es compatible con Vue 2, por lo que no está obligado a actualizar. La única razón por la que es posible que desee actualizar de inmediato es aprovechar las nuevas funciones de Vuex 2, como los módulos y el _boilerplate_ reducido.
 
-## Templates
+## Plantillas
 
-### Fragment Instances <sup>removed</sup>
+### Fragmentos de instancias <sup>quitada</sup>
 
-Every component must have exactly one root element. Fragment instances are no longer allowed. If you have a template like this:
+Cada componente debe tener exactamente un elemento raíz. Las instancias de fragmentos ya no están permitidas. Si tienes una plantilla como esta:
 
 ``` html
 <p>foo</p>
 <p>bar</p>
 ```
 
-It's recommended to wrap the entire contents in a new element, like this:
+Se recomienda envolver todo el contenido en un nuevo elemento, como este:
 
 ``` html
 <div>
@@ -58,8 +58,8 @@ It's recommended to wrap the entire contents in a new element, like this:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about multiple root elements in a template.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute sus pruebas de extremo a extremo o su después de la actualización y busque <strong>advertencias en la consola</strong> sobre varios elementos raíz en una plantilla.</p>
 </div>
 {% endraw %}
 
