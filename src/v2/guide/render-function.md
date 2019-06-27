@@ -1,30 +1,30 @@
 ---
-title: Render Functions & JSX
+title: Funciones de renderizado & JSX
 type: guide
 order: 303
 ---
 
-## Basics
+## Lo esencial
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Vue recomienda utilizar plantillas para construir su HTML en la gran mayoría de los casos. Sin embargo, hay situaciones en las que usted realmente necesita el poder programático completo de JavaScript. Ahí es donde puede usar la **función render**, una alternativa más cercana al compilador para las plantillas.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Vayamos a un ejemplo simple donde una función `render` sería práctica. Digamos que usted quiere generar encabezados anclados:
 
 ``` html
 <h1>
   <a name="hello-world" href="#hello-world">
-    Hello world!
+    Hola mundo!
   </a>
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Para el código HTML anterior, usted decide que desea esta interfaz de componente:
 
 ``` html
-<anchored-heading :level="1">Hello world!</anchored-heading>
+<anchored-heading :level="1">Hola mundo!</anchored-heading>
 ```
 
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+Cuando usted comienza con un componente que solo genera un encabezado basado en la propiedad `level`, rápidamente llega a esto:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,16 +61,16 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
+Esa plantilla no se siente muy bien. No solo es muy detallada, sino que estamos duplicando `<slot></slot>` para cada nivel de encabezado y tendremos que hacer lo mismo cuando agreguemos el elemento delimitador.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Si bien las plantillas funcionan bien para la mayoría de los componentes, está claro que este no es uno de ellos. Así que intentemos reescribirlo con una función `render`:
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // nombre de etiqueta
+      this.$slots.default // arreglo de hijos
     )
   },
   props: {
@@ -82,35 +82,35 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+¡Mucho más simple! El código es más corto, pero también requiere una mayor familiaridad con las propiedades de la instancia de Vue. En este caso, debe saber que cuando pasa hijos sin un atributo `slot` a un componente, como el `¡Hola mundo!` dentro de `anchored-heading`, esos hijos se almacenan en la instancia del componente en `$slots.default`. Si usted no lo ha hecho ya, **es recomendable que lea [API de propiedades de instancia](../api/#Instance-Properties) antes de ahondar en las funciones render.**
 
-## Nodes, Trees, and the Virtual DOM
+## Nodos, árboles y el DOM virtual
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Antes de sumergirnos en las funciones de render, es importante saber un poco sobre cómo funcionan los navegadores. Considere el siguiente HTML como ejemplo:
 
 ```html
 <div>
-  <h1>My title</h1>
-  Some text content
-  <!-- TODO: Add tagline  -->
+  <h1>Mi titulo</h1>
+  Cierto texto de contenido
+  <!-- TODO: Añadir lema  -->
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+Cuando un navegador lee este código, construye un [árbol de "nodos DOM"](https://javascript.info/dom-nodes) para ayudarlo a realizar un seguimiento de todo, tal como podría crear un árbol genealógico para realizar un seguimiento de su familia completa.
 
-The tree of DOM nodes for the HTML above looks like this:
+El árbol de nodos del DOM para el HTML anterior se ve así:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Visualización del árbol DOM](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Cada elemento es un nodo. Cada pieza de texto es un nodo. Incluso los comentarios son nodos! Un nodo es solo una parte de la página. Y como en un árbol genealógico, cada nodo puede tener hijos (es decir, cada pieza puede contener otras piezas).
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Actualizar todos estos nodos de manera eficiente puede ser difícil, pero afortunadamente, nunca tiene que hacerlo manualmente. En cambio, usted le dice a Vue qué HTML quiere en la página, en una plantilla:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+O en una función render:
 
 ``` js
 render: function (createElement) {
@@ -118,40 +118,40 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+En ambos casos, Vue mantiene la página actualizada automáticamente, incluso cuando `blogTitle` cambie.
 
-### The Virtual DOM
+### El DOM Virtual
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue logra esto al crear un **DOM virtual** para realizar un seguimiento de los cambios que debe realizar en el DOM real. Mirando de cerca esta línea:
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+¿Qué está devolviendo `createElement`? No es _exactamente_ un elemento DOM real. Tal vez podría llamarse con más precisión `createNodeDescription`, ya que contiene información que describe a Vue qué tipo de nodo debe representar en la página, incluidas las descripciones de los nodos hijos. Llamamos a esta descripción de nodo "nodo virtual", generalmente abreviado a **VNode**. "DOM virtual" es lo que llamamos el árbol completo de `VNodes`, construido por un árbol de componentes de Vue.
 
-## `createElement` Arguments
+## Argumentos `createElement`
 
-The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+Lo siguiente con lo que tendrá que familiarizarse es cómo usar las características de la plantilla en la función `createElement`. Aquí están los argumentos que `createElement` acepta:
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or async
-  // function resolving to one of these. Required.
+  // Un nombre de etiqueta HTML, opciones de componente o asíncrono
+  // función resolviendo a uno de estos. Necesario.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // Un objeto de datos correspondiente a los atributos
+  // que usaría en una plantilla. Opcional.
   {
-    // (see details in the next section below)
+    // (Vea los detalles en la siguiente sección a continuación.)
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
+  // VNodes hijos, construidos usando `createElement ()`,
+  // o usando cadenas de texto para obtener 'VNodes de texto'. Opcional.
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -164,52 +164,52 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### El objeto de datos en profundidad
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+Una cosa a tener en cuenta: similar a como `v-bind:class` y` v-bind:style` tienen un tratamiento especial en las plantillas, tienen sus propios campos de nivel superior en los objetos de datos VNode. Este objeto también le permite enlazar atributos HTML normales así como propiedades del DOM como `innerHTML` (esto reemplazaría la directiva `v-html`):
 
 ``` js
 {
-  // Same API as `v-bind:class`, accepting either
-  // a string, object, or array of strings and objects.
+  // La misma API que `v-bind:class`, aceptando cualquiera
+  // una cadena de texto, objeto, o arreglo de cadenas de texto y objetos.
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`, accepting either
-  // a string, object, or array of objects.
+  // La misma API que `v-bind:style`, aceptando cualquiera
+  // una cadena de texto, objeto o arreglo de objetos.
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Atributos normales de HTML
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // propiedades del componente
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // propiedades DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under `on`, though
-  // modifiers such as in `v-on:keyup.enter` are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Los controladores de eventos están anidados bajo `on`, aunque
+  // los modificadores como en `v-on:keyup.enter` no son
+  // soportados. Usted tendrá que revisar manualmente la
+  // keyCode en el controlador en su lugar.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using `vm.$emit`.
+  // Sólo para componentes. Te permite escuchar
+  // eventos nativos, en lugar de eventos emitidos desde
+  // el componente usando `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the `binding`'s
-  // `oldValue` cannot be set, as Vue keeps track
-  // of it for you.
+  // Directivas personalizadas. Tenga en cuenta que la 'vinculación'
+  // `oldValue` no se puede configurar, ya que Vue realiza un seguimiento
+  // de eso para usted.
   directives: [
     {
       name: 'my-custom-directive',
@@ -221,27 +221,27 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Slots acotados en la forma
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
+  // El nombre del slot, si este componente es el
+  // hijo de otro componente
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // Otras propiedades especiales de nivel superior
   key: 'myKey',
   ref: 'myRef',
-  // If you are applying the same ref name to multiple
-  // elements in the render function. This will make `$refs.myRef` become an
-  // array
+  // Si está aplicando el mismo nombre de referencia a múltiples
+  // elementos en la función de render. Esto hará que `$refs.myRef` se convierta en un
+  // arreglo
   refInFor: true
 }
 ```
 
-### Complete Example
+### Ejemplo Completo
 
-With this knowledge, we can now finish the component we started:
+Con este conocimiento, ahora podemos terminar el componente que comenzamos:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -254,7 +254,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebab-case id
+    // cree un id en formato kebab
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -281,23 +281,23 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### Restricciones
 
-#### VNodes Must Be Unique
+#### Los VNodes deben ser únicos
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Todos los VNodes en el árbol de componentes deben ser únicos. Eso significa que la siguiente función de render no es válida:
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // Atención - VNodes duplicados!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Si realmente quiere duplicar el mismo elemento/componente muchas veces, puede hacerlo con una función de fábrica. Por ejemplo, la siguiente función de representación es una forma perfectamente válida de representar 20 párrafos idénticos:
 
 ``` js
 render: function (createElement) {
@@ -309,20 +309,20 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Reemplazando las funcionalidades de la plantilla con JavaScript plano
 
-### `v-if` and `v-for`
+### `v-if` y `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Donde sea que se pueda lograr algo fácilmente en JavaScript simple, las funciones de renderizado de Vue no proporcionan una alternativa propietaria. Por ejemplo, en una plantilla usando `v-if` y `v-for`:
 
 ``` html
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
-<p v-else>No items found.</p>
+<p v-else>No se encontraron ítems.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+Esto podría ser reescrito con los `if`/`else` y `map` de JavaScript en una función de renderizado:
 
 ``` js
 props: ['items'],
@@ -332,14 +332,14 @@ render: function (createElement) {
       return createElement('li', item.name)
     }))
   } else {
-    return createElement('p', 'No items found.')
+    return createElement('p', 'No se encontraron ítems.')
   }
 }
 ```
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+No hay una contraparte directa de `v-model` en las funciones de renderizado, tendrá que implementar la lógica usted mismo:
 
 ``` js
 props: ['value'],
@@ -358,20 +358,20 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+Este es el costo de ir a un nivel inferior, pero también le da mucho más control sobre los detalles de interacción en comparación con el `v-model`.
 
-### Event & Key Modifiers
+### Modificadores de eventos y claves
 
-For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+Para los modificadores de eventos `.passive`,` .capture` y `.once`, Vue ofrece prefijos que se pueden usar con` on`:
 
-| Modifier(s) | Prefix |
+| Modificador(es) | Prefijo |
 | ------ | ------ |
 | `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+Por ejemplo:
 
 ```javascript
 on: {
@@ -381,31 +381,31 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
+Para todos los demás modificadores de evento y clave, no es necesario ningún prefijo propietario, porque puede usar métodos de evento en el controlador:
 
-| Modifier(s) | Equivalent in Handler |
+| Modificador(es) | Equivalente en el Manejador |
 | ------ | ------ |
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
-| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+| claves:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (cambia `13` a [otro código clave](http://keycode.info/) para otros modificadores clave) |
+| Teclas modificadoras:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (cambia `ctrlKey` a `altKey`, `shiftKey`, o `metaKey`, respectivamente) |
 
-Here's an example with all of these modifiers used together:
+Aquí hay un ejemplo con todos estos modificadores usados juntos:
 
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // Cancelar si el elemento que emite el evento no es
+    // el elemento al que está vinculado el evento
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // Abortar si la clave que subió no es el `enter`.
+    // tecla (13) y la tecla `shift` no se mantuvo presionada
+    // al mismo tiempo
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // Detener la propagación del evento
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // Impedir el manejador de teclas predeterminado para este elemento
     event.preventDefault()
     // ...
   }
@@ -414,7 +414,7 @@ on: {
 
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
+Puede acceder a los contenidos de los slots estáticos como Arrays de VNodes desde [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -423,7 +423,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
+Y acceder a los slots con alcance como funciones que devuelven VNodes desde  [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 props: ['message'],
@@ -437,14 +437,14 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+Para pasar slots con alcance a un componente secundario utilizando funciones de representación, use el campo `scopedSlots` en los datos de un VNode:
 
 ``` js
 render: function (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass `scopedSlots` in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // pasar `scopedSlots` en el objeto de datos
+      // en la forma de { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return createElement('span', props.text)
@@ -457,7 +457,7 @@ render: function (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+Si estás escribiendo muchas funciones `render`, puede que le resulte doloroso escribir algo como esto:
 
 ``` js
 createElement(
@@ -466,21 +466,21 @@ createElement(
       level: 1
     }
   }, [
-    createElement('span', 'Hello'),
-    ' world!'
+    createElement('span', 'Hola'),
+    ' mundo!'
   ]
 )
 ```
 
-Especially when the template version is so simple in comparison:
+Especialmente cuando la versión de la plantilla es tan simple en comparación:
 
 ``` html
 <anchored-heading :level="1">
-  <span>Hello</span> world!
+  <span>Hola</span> mundo!
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Es por eso que hay una [librería Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) para utilizar JSX con Vue, lo que nos permite volver a una sintaxis más cercana a las plantillas:
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -490,67 +490,67 @@ new Vue({
   render: function (h) {
     return (
       <AnchoredHeading level={1}>
-        <span>Hello</span> world!
+        <span>Hola</span> mundo!
       </AnchoredHeading>
     )
   }
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+<p class="tip">Generar el alias `createElement` a `h` es una convención común que verá en el ecosistema Vue y en realidad es necesaria para JSX. Si `h` no está disponible en el alcance, su aplicación arrojará un error.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Para obtener más información sobre cómo JSX se asigna a JavaScript, consulte la [documentación de uso](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
-## Functional Components
+## Componentes Funcionales
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+El componente de encabezado anclado que creamos anteriormente es relativamente simple. No gestiona ningún estado, observe cómo no se le pasa ningún estado y no tiene métodos de ciclo de vida. En realidad, es solo una función con algunas propiedades.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
+En casos como este, podemos marcar los componentes como "funcionales" (`functional`), lo que significa que no tienen estado (no hay [datos reactivos](../api/#Options-Data)) y sin instancia (no hay contexto `this`). Un **componente funcional** se ve así:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // Props are optional
+  // Las propiedades son opcionales
   props: {
     // ...
   },
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+  // Para compensar la falta de una instancia,
+  // ahora se nos proporciona un segundo argumento de contexto.
   render: function (createElement, context) {
     // ...
   }
 })
 ```
 
-> Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> Nota: en las versiones anteriores a 2.3.0, la opción `props` es necesaria si desea aceptar props en un componente funcional. En 2.3.0+ puede omitir la opción `props` y todos los atributos encontrados en el nodo componente se extraerán implícitamente como props.
 
-In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
+En 2.5.0+, si está utilizando [componentes de un solo archivo](single-file-components.html), los componentes funcionales basados en plantillas se pueden declarar con:
 
 ``` html
 <template functional>
 </template>
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+Todo lo que necesita el componente se pasa a través de `contexto`, que es un objeto que contiene:
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
-- `parent`: A reference to the parent component
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+- `props`: Un objeto de las propiedades proporcionadas
+- `children`: Un arreglo de los VNode hijos
+- `slots`: Una función retornando un objeto slots
+- `data`: El objeto entero [objecto data](#The-Data-Object-In-Depth), pasado al  componente como segundo argumento de `createElement`
+- `parent`: Una referencia al componente padre
+- `listeners`: (2.3.0+) Un objeto que contiene listeners de eventos registrados por los padres. Este es un alias de `data.on`
+- `injections`: (2.3.0+) si está usando la opción [`inject`](../api/#provide-inject) esto contendrá inyecciones resueltas.
 
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+Después de agregar `function: true`, actualizar la función de procesamiento de nuestro componente de encabezado anclado requeriría agregar el argumento` context`, actualizar `this.$Slots.default` a` context.children`, luego actualizar `this.level` a `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+Dado que los componentes funcionales son solo funciones, son mucho más baratos de representar. Sin embargo, la falta de una instancia persistente significa que no se mostrarán en el árbol de componentes [Vue devtools](https://github.com/vuejs/vue-devtools).
 
-They're also very useful as wrapper components. For example, when you need to:
+También son muy útiles como componentes de envoltura. Por ejemplo, cuando necesite:
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Elegir programáticamente uno de varios otros componentes para delegar a
+- Manipular hijos, propiedades o datos antes de pasarlos a un componente hijo.
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Aquí hay un ejemplo de un componente de `lista-inteligente` (`smart-list`) que delega en componentes más específicos, dependiendo de las propiedades que se le pasen:
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -587,25 +587,25 @@ Vue.component('smart-list', {
 })
 ```
 
-### Passing Attributes and Events to Child Elements/Components
+### Pasar atributos y eventos a elementos/componentes hijos
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+En los componentes normales, los atributos no definidos como propiedades se agregan automáticamente al elemento raíz del componente, reemplazando o [fusionando inteligentemente con](class-and-style.html) cualquier atributo existente del mismo nombre.
 
-Functional components, however, require you to explicitly define this behavior:
+Sin embargo, los componentes funcionales requieren que se defina explícitamente este comportamiento:
 
 ```js
 Vue.component('my-functional-button', {
   functional: true,
   render: function (createElement, context) {
-    // Transparently pass any attributes, event listeners, children, etc.
+    // Transparentemente pase cualquier atributo, listeners de eventos, hijos, etc.
     return createElement('button', context.data, context.children)
   }
 })
 ```
 
-By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+Al pasar `context.data` como segundo argumento a `createElement`, estamos transmitiendo los atributos o listeners de eventos utilizados en `my-function-button`. De hecho, es tan transparente que los eventos ni siquiera requieren el modificador `.native`.
 
-If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+Si está utilizando componentes funcionales basados en plantillas, también tendrá que agregar atributos y listeners manualmente. Ya que tenemos acceso a los contenidos de contexto individuales, podemos usar `data.attrs` para pasar cualquier atributo HTML y `listeners` _(el alias para `data.on`)_ para pasar a lo largo de cualquier evento.
 
 ```html
 <template functional>
@@ -621,22 +621,22 @@ If you are using template-based functional components, you will also have to man
 
 ### `slots()` vs `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Quizás se pregunte por qué necesitamos tanto `slots()` como `children`. ¿No sería `slots().default` igual que `children`? En algunos casos, sí, pero ¿qué sucede si tiene un componente funcional con los siguientes hijos?
 
 ``` html
 <my-functional-component>
   <p slot="foo">
-    first
+    Primero
   </p>
-  <p>second</p>
+  <p>segundo</p>
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+Para este componente, `children` le dará ambos párrafos,` slots().default` le dará solo el segundo, y `slots ().foo` le dará solo el primero. Por lo tanto, tener `children` y `slots()` le permite elegir si este componente conoce un sistema de tragamonedas o tal vez delegue esa responsabilidad a otro componente al transmitir `children`.
 
-## Template Compilation
+## Compilación de plantillas
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Tal vez le interese saber que las plantillas de Vue realmente se compilan para representar funciones. Este es un detalle de implementación que normalmente no necesita conocer, pero si desea ver cómo se compilan las funcionalidades específicas de la plantilla, puede que le resulte interesante. A continuación se muestra una pequeña demostración que usa `Vue.compile` para compilar en vivo una cadena de plantilla
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
@@ -649,7 +649,7 @@ You may be interested to know that Vue's templates actually compile to render fu
     <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
-    <label>Compilation Error:</label>
+    <label>Error de compilación:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </div>
@@ -660,13 +660,13 @@ new Vue({
     templateText: '\
 <div>\n\
   <header>\n\
-    <h1>I\'m a template!</h1>\n\
+    <h1>Soy una plantilla!</h1>\n\
   </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
   <p v-else>\n\
-    No message.\n\
+    No hay mensaje.\n\
   </p>\n\
 </div>\
     ',
@@ -674,7 +674,7 @@ new Vue({
   computed: {
     result: function () {
       if (!this.templateText) {
-        return 'Enter a valid template above'
+        return 'Ingrese una plantilla válida arriba'
       }
       try {
         var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))

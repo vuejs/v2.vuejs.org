@@ -1,20 +1,20 @@
 ---
-title: Avoiding Memory Leaks
+title: Evitando las fugas de memoria
 type: cookbook
 order: 10
 ---
 
-## Introduction
+## Introducción
 
-If you are developing applications with Vue, then you need to watch out for memory leaks. This issue is especially important in Single Page Applications (SPAs) because by design, users should not have to refresh their browser when using an SPA, so it is up to the JavaScript application to clean up components and make sure that garbage collection takes place as expected.
+Si está desarrollando aplicaciones con Vue, debe tener cuidado con las fugas de memoria. Este problema es especialmente importante en las aplicaciones de página única (SPAs) porque, por diseño, los usuarios no deberían tener que refrescar su navegador cuando usan una SPA, por lo que depende de la aplicación JavaScript limpiar los componentes y asegurarse que la recolección de basura se realice como es esperado.
 
-Memory leaks in Vue applications do not typically come from Vue itself, rather they can happen when incorporating other libraries into an application.
+Las fugas de memoria en las aplicaciones Vue no suelen provenir de Vue, sino que pueden ocurrir al incorporar otras librerías en una aplicación.
 
-## Simple Example
+## Ejemplo Sencillo
 
-The following example shows a memory leak caused by using the [Choices.js](https://github.com/jshjohnson/Choices) library in a Vue component and not properly cleaning it up. Later, we will show how to remove the Choices.js footprint and avoid the memory leak.
+El siguiente ejemplo muestra una fuga de memoria causada al usar la librería [Choices.js](https://github.com/jshjohnson/Choices) en un componente de Vue y no limpiarlo como corresponde. Luego, se muestra como remover la huella Choices.js y evitar la fuga de memoria.
 
-In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak.
+En el siguiente ejemplo, se carga un select con muchas opciones y luego se usa el botón mostrar/ocultar con la directiva [v-if](/v2/guide/conditional.html) para agregarla y eliminarla del DOM virtual. El problema con este ejemplo es que la directiva `v-if` elimina el elemento padre del DOM, pero no se limpian las piezas de DOM adicionales creadas por Choices.js, lo que provoca una fuga de memoria.
 
 ```html
 <link rel='stylesheet prefetch' href='https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3'>
@@ -24,11 +24,11 @@ In the example below, we load up a select with a lot of options and then we use 
   <button
     v-if="showChoices"
     @click="hide"
-  >Hide</button>
+  >Ocultar</button>
   <button
     v-if="!showChoices"
     @click="show"
-  >Show</button>
+  >Mostrar</button>
   <div v-if="showChoices">
     <select id="choices-single-default"></select>
   </div>
@@ -49,11 +49,11 @@ new Vue({
   methods: {
     initializeChoices: function () {
       let list = []
-      // lets load up our select with many choices
-      // so it will use a lot of memory
+      // se carga el select con muchas opciones para
+      // que use mucha memoria
       for (let i = 0; i < 1000; i++) {
         list.push({
-          label: "Item " + i,
+          label: "Ítem " + i,
           value: i
         })
       }
@@ -76,15 +76,15 @@ new Vue({
 })
 ```
 
-To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on Mac, choose Chrome Top Navigation > Window > Task Manager or on Windows, use the Shift+Esc shortcut. Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
+Para ver esta fuga de memoria en acción, abra este [Ejemplo de CodePen](https://codepen.io/freeman-g/pen/qobpxo) usando Chrome y luego abra el Administrador de tareas de Chrome. Para abrir el Administrador de Tareas de Chrome en Mac, elija en la barra de Navegación de Chrome > Ventana > Administrador de Tareas o en Windows, use el acceso directo Shift + Esc. Ahora, haga clic en el botón mostrar/ocultar 50 veces o similar. Debería ver que el uso de la memoria en el Administrador de tareas de Chrome aumenta y nunca se reclama.
 
 ![Memory Leak Example](/images/memory-leak-example.png)
 
-## Resolving the Memory Leak
+## Resolviendo la Fuga de Memoria
 
-In the above example, we can use our `hide()` method to do some clean up and solve the memory leak prior to removing the select from the DOM. To accomplish this, we will keep a property in our Vue instance’s data object and we will use the [Choices API’s](https://github.com/jshjohnson/Choices) `destroy()` method to perform the clean up.
+En el ejemplo anterior, se puede user el método `hide()` para limpiar y resolver la fuga de memoria antes de eliminar el select del DOM. Para lograr esto, mantendremos una propiedad en el objeto de datos de nuestra instancia de Vue y utilizaremos el método `destroy()` de [Choices API’s](https://github.com/jshjohnson/Choices) para ejecutar la limpieza.
 
-Check the memory usage again with this [updated CodePen example](https://codepen.io/freeman-g/pen/mxWMor).
+Compruebe el uso de la memoria de nuevo con esta [actualización del ejemplo en CodePen](https://codepen.io/freeman-g/pen/mxWMor).
 
 ```js
 new Vue({
@@ -103,11 +103,11 @@ new Vue({
       let list = []
       for (let i = 0; i < 1000; i++) {
         list.push({
-          label: "Item " + i,
+          label: "Ítem " + i,
           value: i
         })
       }
-      // Set a reference to our choicesSelect in our Vue instance's data object
+      // establece una referencia a choicesSelect en el objeto de datos de nuestra instancia de Vue
       this.choicesSelect = new Choices("#choices-single-default", {
         searchEnabled: true,
         removeItemButton: true,
@@ -121,8 +121,8 @@ new Vue({
       })
     },
     hide: function () {
-      // now we can use the reference to Choices to perform clean up here
-      // prior to removing the elements from the DOM
+      // ahora se puede usar la referencia a Choices para ejecutar la limpieza
+      // antes de eliminar los elementos del DOM
       this.choicesSelect.destroy()
       this.showChoices = false
     }
@@ -130,49 +130,50 @@ new Vue({
 })
 ```
 
-## Details about the Value
+## Detalles sobre el valor
 
-Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience.
+La gestión de la memoria y las pruebas de rendimiento se pueden descuidar fácilmente con la emoción de producir rápido, sin embargo, mantener una pequeña huella de memoria sigue siendo importante para la experiencia general del usuario.
 
-Consider the types of devices your users may be using and what their normal flow will be. Could they use memory constrained laptops or mobile devices? Do your users typically do lots of in-application navigation? If either of these are true, then good memory management practices can help you avoid the worst case scenario of crashing a user’s browser. Even if neither of these are true, you can still potentially have degradation of performance over extended usage of your app if you are not careful.
+Considere los tipos de dispositivos que pueden estar usando sus usuarios y cuál será su flujo normal. ¿Podrían usar computadoras portátiles o teléfonos móviles con memoria limitada? ¿Sus usuarios suelen hacer un montón de navegación en la aplicación? Si cualquiera de estos es cierto, entonces las buenas prácticas de administración de memoria pueden ayudar a evitar el peor de los casos, bloquear el navegador del usuario. Incluso si ninguno de estos es cierto, aún se puede tener una degradación del rendimiento en el uso extendido de su aplicación si no se tiene cuidado.
 
-## Real-World Example
+## Ejemplo en la vida real
 
-In the above example, we used a `v-if` directive to illustrate the memory leak, but a more common real-world scenario happens when using [vue-router](https://router.vuejs.org/en/) to route to components in a Single Page Application.
+En el ejemplo anterior, se usó una directiva `v-if` para ilustrar la fuga de memoria, sin embargo, un escenario muy común en la vida real es cuando se usa [vue-router](https://router.vuejs.org/en/)para rutear a componentes en una aplicación de una sola página (SPA).
 
-Just like the `v-if` directive, `vue-router` removes elements from the virtual DOM and replaces those with new elements when a user navigates around your application. The Vue `beforeDestroy()` [lifecycle hook](/v2/guide/instance.html#Lifecycle-Diagram) is a good place to solve the same sort of issue in a `vue-router` based application.
+Al igual que la directiva `v-if`, `vue-router` remueve elementos del DOM virtual y los reemplaza con nuevos elementos cuando el usuario navega a través de la aplicación. El hook de Vue `beforeDestroy()` [lifecycle hook](/v2/guide/instance.html#Lifecycle-Diagram) es un buen lugar para resolver el mismo tipo de fuga cuando la aplicación usa `vue-router`.
 
-We could move our clean up into the `beforeDestroy()` hook like this:
+Se puede agregar nuestro código en el hook `beforeDestroy()` de la siguiente manera:
 
 ```js
 beforeDestroy: function () {
-    this.choicesSelect.destroy()
+  this.choicesSelect.destroy()
 }
 ```
 
-## Alternative Patterns
+## Patrones Alternativos
 
-We have discussed managing memory when removing elements, but what if you intentionally want to preserve state and keep elements in memory? In this case, you can use the built-in component [keep-alive](/v2/api/#keep-alive).
+Hasta el momento se presenta como manejar la memoria al remover elementos, pero ¿qué tal si intencionalmente se quiere preservar el estado y mantener elementos en memoria? En este caso, se puede usar el componente incorporado [keep-alive](/v2/api/#keep-alive).
 
-When you wrap a component with `keep-alive`, its state will be preserved and therefore kept in memory.
+Cuando se envuelve a un componente con `keep-alive`, su estado es preservado y por lo tanto mantenido en memoria.
 
 ```html
-<button @click="show = false">Hide</button>
+<button @click="show = false">Ocultar</button>
 <keep-alive>
-  <!-- my-component will be intentionally kept in memory even when removed -->
+  <!-- my-component será intencionalmente mantenido en memoria incluso cuando sea removido -->
   <my-component v-if="show"></my-component>
 </keep-alive>
 ```
-This technique can be useful to improve user experience. For example, imagine a user starts entering comments into a text input and then decides to navigate away. If the user then navigated back, their comments would still be preserved.
 
-Once you use keep-alive, then you have access to two more lifecycle hooks: `activated` and `deactivated`. If you do want to clean up or change data when a keep-alive component is removed, you can do so in the `deactivated` hook.
+Esta técnica puede ser útil para mejorar la experiencia del usuario. Por ejemplo, imagine que un usuario comienza a ingresar comentarios en una entrada de texto y luego decide alejarse. Si el usuario regresara a navegar, sus comentarios se conservarán.
+
+Una vez que use keep-alive, tendrá acceso a dos hooks más del ciclo de vida: `activated` y` deactivated`. Si desea limpiar o cambiar datos cuando se elimina un componente bajo keep-alive, puede hacerlo usando el hook  `deactivated`.
 
 ```js
 deactivated: function () {
-  // remove any data you do not want to keep alive
+  // eliminar cualquier dato que no se quiera conservar
 }
 ```
 
-## Wrapping Up
+## En resumen
 
-Vue makes it very easy to develop amazing, reactive JavaScript applications, but you still need to be careful about memory leaks. These leaks will often occur when using additional 3rd Party libraries that manipulate the DOM outside of Vue. Make sure to test your application for memory leaks and take appropriate steps to clean up components where necessary.
+Vue hace que sea muy fácil desarrollar aplicaciones asombrosas y reactivas en JavaScript, pero aún debe tener cuidado con las fugas de memoria. Estas fugas a menudo se producen cuando se utilizan librerías de terceros que manipulan el DOM fuera de Vue. Asegúrese de probar su aplicación para detectar fugas de memoria y siga los pasos apropiados para limpiar los componentes cuando sea necesario.

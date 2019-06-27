@@ -4,7 +4,7 @@ type: guide
 order: 103
 ---
 
-> Esta página asume que usted ya ha leído [Components Basics](components.html). Léa primero esto si usted es nuevo con respecto a componentes.
+> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Lea eso primero si usted es nuevo con respecto a componentes.
 
 ## Nombre de Eventos
 

@@ -176,7 +176,7 @@ type: api
 
   Configúralo a `false` para prevenir los consejos de producción cuando Vue se inicializa.
 
-## API Global 
+## API Global
 
 ### Vue.extend( opciones )
 
@@ -205,11 +205,12 @@ type: api
       }
     }
   })
-  // crear una instancia de Profile y montarla sobre el componente
+
+  // crea una instancia de Profile y la monta en el elemento
   new Profile().$mount('#mount-point')
   ```
 
-  Resultará en:
+  Dará como resultado:
 
   ``` html
   <p>Walter White conocido como Heisenberg</p>
@@ -225,12 +226,12 @@ type: api
 
 - **Uso:**
 
-  Aplaza el callback para ser ejecutado después del próximo ciclo de actualización del DOM. Úselo inmediatamente después que ha cambiado algunos datos para esperar por la actualización del DOM.
+  Aplaza el callback para ser ejecutado después del siguiente ciclo de actualización del DOM. Úselo inmediatamente después de que usted haya cambiado algún dato para esperar por la actualización del DOM.
 
   ``` js
-  // modifica la data
+  // modificación de datos
   vm.msg = 'Hello'
-  // DOM sin actualizar aún
+  // DOM no actualizado todavía
   Vue.nextTick(function () {
     // DOM actualizado
   })
@@ -242,55 +243,55 @@ type: api
     })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Nuevo en 2.1.0+: retorna una promesa si no se provee un callback y Promise es soportado en el entorno de ejecución. Por favor tenga en cuenta que Vue no incluye un polyfill para Promise, asi que si su navegador destino no soporta Promesas de forma nativa (te estoy mirando a ti IE), deberá proveer un polyfill usted mismo.
 
-- **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **Ver también:** [Cola de actualización Asíncrona](../guide/reactivity.html#Async-Update-Queue)
 
 ### Vue.set( target, key, value )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retorna:** el valor asignado.
 
 - **Uso:**
 
-  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
+  Agrega una propiedad a un objeto reactivo, asegurando que la nueva propiedad es también reactiva, de manera que dispara actualizaciones en la vista. Esto debe ser usado para agregar nuevas propiedades a objetos reactivos, ya que Vue no puede detectar adiciones de propiedades de la forma usual (ej: `this.myObject.newProperty = 'hi'`).
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">El objeto destino no puede ser una instancia de Vue, o el objeto raíz data de una instancia de Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### Vue.delete( target, key )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only in 2.2.0+: Also works with Array + index.
+  > Solamente en 2.2.0+: También funciona con Array + index.
 
 - **Uso:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Borra una propiedad de un objeto. Si el objeto es reactivo, asegura que el borrado dispara actualizaciones en la vista. Esto es unado principalmente para sortear las limitaciones de Vue que no puede detectar la eliminación de propiedades, pero usted raramente necesitará usarlo.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">El objeto destino no puede ser una instancia de Vue, o el objeto raíz data de una instancia de Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Uso:**
 
-  Register or retrieve a global directive.
+  Registrar u obtener una directiva global.
 
   ``` js
-  // register
+  // registrar
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -299,96 +300,96 @@ type: api
     unbind: function () {}
   })
 
-  // register (function directive)
+  // registrar (directiva funcional)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // esto sera llamado como `bind` y `update`
   })
 
-  // getter, return the directive definition if registered
+  // retorna la definición de la directiva si esta registrada
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Ver también:** [Directivas personalizadas](../guide/custom-directive.html)
 
 ### Vue.filter( id, [definition] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} id`
   - `{Function} [definition]`
 
 - **Uso:**
 
-  Register or retrieve a global filter.
+̊  Registrar u obtener un filtro global.
 
   ``` js
-  // register
+  // registrar
   Vue.filter('my-filter', function (value) {
-    // return processed value
+    // retorna el valor procesado
   })
 
-  // getter, return the filter if registered
+  // retorna el filtro si esta registrado
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **See also:** [Filters](../guide/filters.html)
+- **Ver también:** [Filtros](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Uso:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Registra u obtiene un componente global. El registro también establece automáticamente la propiedad `name` del componente igual al `id` especificado.
 
   ``` js
-  // register an extended constructor
+  // registra un constructor extendido
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // registra un objeto de opciones (invoca Vue.extend automáticamente)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // Obtiene un componente registrado (siempre retorna un constructor)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Ver también:** [Componentes](../guide/components.html)
 
 ### Vue.use( plugin )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object | Function} plugin`
 
 - **Uso:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Instala un plugin de Vue.js. Si el plugin es un Objeto, debe exponer un método `install`. Si el mismo es una función, sera tratado como el método install. El método install sera invocado con Vue como el argumento.
 
-  This method has to be called before calling `new Vue()`
+  Este método debe ser invocado antes de invocar `new Vue()`
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Cuando este método es invocado en el mismo plugin multiples veces, el plugin sera instalado solo una vez.
 
-- **See also:** [Plugins](../guide/plugins.html)
+- **Ver también:** [Plugins](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object} mixin`
 
 - **Uso:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Aplica un mixin de forma global, el cual afecta cada instancia de Vue creada posteriormente. Esto puede ser usado por los creadores de plugins para inyectar comportamiento personalizado en componentes. **No recomendado en el código de aplicación**.
 
-- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **Ver también:** [Mixin Global](../guide/mixins.html#Global-Mixin)
 
 ### Vue.compile( template )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} template`
 
 - **Uso:**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  Compila un template string a una función render. **Solo disponible en la distribución completa.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -402,13 +403,13 @@ type: api
   })
   ```
 
-- **See also:** [Render Functions](../guide/render-function.html)
+- **Ver también:** [Funciones Render](../guide/render-function.html)
 
 ### Vue.version
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **Detalles**: Provee la version instalada de Vue como una cadena. Esto es especialmente util para plugins y componentes creados por la comunidad, donde usted puede usar diferentes estrategias para diferentes versiones.
 
-- **Usage**:
+- **Uso**:
 
   ```js
   var version = Number(Vue.version.split('.')[0])
@@ -418,7 +419,7 @@ type: api
   } else if (version === 1) {
     // Vue v1.x.x
   } else {
-    // Unsupported versions of Vue
+    // Version no soportada de Vue
   }
   ```
 
