@@ -1580,7 +1580,7 @@ type: api
 
   ``` js
   // This will cause an error
-  const unwatch = this.$watch(
+  const unwatch = vm.$watch(
     'value',
     () => {
       doSomething()
@@ -1592,7 +1592,7 @@ type: api
   If you still want to call an unwatch function inside the callback, you should check its availability first:
 
   ``` js
-    const unwatch = this.$watch(
+    var unwatch = vm.$watch(
     'value',
     () => {
       doSomething()
