@@ -1580,9 +1580,9 @@ type: api
 
   ``` js
   // This will cause an error
-  const unwatch = vm.$watch(
+  var unwatch = vm.$watch(
     'value',
-    function() {
+    function () {
       doSomething()
       unwatch()
     },
@@ -1594,7 +1594,7 @@ type: api
   ``` js
     var unwatch = vm.$watch(
     'value',
-    function() {
+    function () {
       doSomething()
       if (unwatch) {
         unwatch()
