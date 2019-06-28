@@ -1601,7 +1601,7 @@ type: api
       }
     },
     { immediate: true }
-  );
+  )
   ```
 
 ### vm.$set( target, propertyName/index, value )
