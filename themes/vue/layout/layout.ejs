@@ -116,10 +116,11 @@
       var version = match ? match[1] : 'v2'
       docsearch({
       appId: 'BH4D9OD16A',
-      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-      indexName: 'vuejs',
+      apiKey: 'fd19a0f4b0ab402d2b6f9f95e9003e3b',
+      indexName: 'vuejs-es',
       inputSelector: selector,
-      algoliaOptions: { facetFilters: ["version:" + version] }
+      algoliaOptions: { facetFilters: ["version:" + version, "lang:es"] },
+      debug: true
       })
     })
     </script>

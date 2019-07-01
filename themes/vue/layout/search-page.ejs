@@ -37,12 +37,12 @@
 <script>
 var match = window.location.pathname.match(/^\/(v\d+)/)
 var version = match ? match[1] : 'v2'
-var algolia = algoliasearch('BH4D9OD16A', '85cc3221c9f23bfbaa4e3913dd7625ea')
-var algoliaHelper = algoliasearchHelper(algolia, 'vuejs', {
+var algolia = algoliasearch('BH4D9OD16A', 'fd19a0f4b0ab402d2b6f9f95e9003e3b')
+var algoliaHelper = algoliasearchHelper(algolia, 'vuejs-es', {
   hitsPerPage: 15,
   maxValuesPerFacet: 10,
   advancedSyntax: true,
-  facets: ['version'],
+  facets: ['version', 'lang'],
 })
 
 algoliaHelper.addFacetRefinement('version', version)
