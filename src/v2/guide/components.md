@@ -28,9 +28,9 @@ Components are reusable Vue instances with a name: in this case, `<button-counte
 </div>
 ```
 
-```js
+{% codeblock lang:js %}
 new Vue({ el: '#components-demo' })
-```
+{% endcodeblock %}
 
 {% raw %}
 <div id="components-demo" class="demo">
@@ -268,7 +268,7 @@ Vue.component('blog-post', {
 
 Now, whenever a new property is added to `post` objects, it will automatically be available inside `<blog-post>`.
 
-## Sending Messages to Parents with Events
+## Listening to Child Components Events
 
 As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
 
@@ -323,15 +323,7 @@ The problem is, this button doesn't do anything:
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. To emit an event to the parent, we can call the built-in [**`$emit`** method](../api/#vm-emit), passing the name of the event:
-
-```html
-<button v-on:click="$emit('enlarge-text')">
-  Enlarge text
-</button>
-```
-
-Then on our blog post, we can listen for this event with `v-on`, just as we would with a native DOM event:
+When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. The parent can choose to listen to any event on the child component instance with `v-on`, just as we would with a native DOM event:
 
 ```html
 <blog-post
@@ -339,6 +331,16 @@ Then on our blog post, we can listen for this event with `v-on`, just as we woul
   v-on:enlarge-text="postFontSize += 0.1"
 ></blog-post>
 ```
+
+Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](../api/#vm-emit), passing the name of the event:
+
+```html
+<button v-on:click="$emit('enlarge-text')">
+  Enlarge text
+</button>
+```
+
+Thanks to the `v-on:enlarge-text="postFontSize += 0.1"` listener, the parent will receive the event and update `postFontSize` value.
 
 {% raw %}
 <div id="blog-posts-events-demo" class="demo">

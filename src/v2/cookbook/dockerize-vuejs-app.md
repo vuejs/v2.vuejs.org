@@ -11,7 +11,7 @@ So you built your first Vue.js app using the amazing [Vue.js webpack template](h
 Let's start by creating a `Dockerfile` in the root folder of our project:
 
 ```docker
-FROM node:9.11.1-alpine
+FROM node:lts-alpine
 
 # install simple http server for serving static content
 RUN npm install -g http-server
@@ -63,7 +63,7 @@ Let's refactor our `Dockerfile` to use NGINX:
 
  ```docker
 # build stage
-FROM node:9.11.1-alpine as build-stage
+FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -71,7 +71,7 @@ COPY . .
 RUN npm run build
 
 # production stage
-FROM nginx:1.13.12-alpine as production-stage
+FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

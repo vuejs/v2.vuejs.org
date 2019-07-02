@@ -1,8 +1,10 @@
 ---
 title: Production Deployment
 type: guide
-order: 401
+order: 404
 ---
+
+> Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org). This section is only relevant if you are using a custom build setup.
 
 ## Turn on Production Mode
 
@@ -41,6 +43,7 @@ module.exports = {
   ]
 }
 ```
+
 #### Browserify
 
 - Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.

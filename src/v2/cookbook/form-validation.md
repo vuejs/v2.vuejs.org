@@ -42,7 +42,8 @@ Given a form of three fields, make two required. Let's look at the HTML first:
       v-model="age"
       type="number"
       name="age"
-      min="0">
+      min="0"
+    >
   </p>
 
   <p>

@@ -6,7 +6,7 @@ order: 8
 
 Every application reaches a point where it's necessary to understand failures, small to large. In this recipe, we explore a few workflows for VS Code users who would like to debug their application in the browser.
 
-This recipe shows how to to debug [Vue CLI](https://github.com/vuejs/vue-cli) applications in VS Code as they run in the browser.
+This recipe shows how to debug [Vue CLI](https://github.com/vuejs/vue-cli) applications in VS Code as they run in the browser.
 
 <p class="tip">Note: This recipe covers Chrome and Firefox. If you know how to setup VS Code debugging with other browsers, please consider sharing your insights (see bottom of the page).</p>
 
@@ -41,6 +41,8 @@ module.exports = {
 
 ### Launching the Application from VS Code
 
+<p class="tip">We're assuming the port to be `8080` here. If it's not the case (for instance, if `8080` has been taken and Vue CLI automatically picks another port for you), just modify the configuration accordingly.</p>
+
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome/Firefox: Launch** as the environment. Replace content of the generated launch.json with the corresponding configuration:
 
 ![Add Chrome Configuration](/images/config_add.png)
@@ -57,7 +59,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///./src/*": "${webRoot}/*"
       }
     },
     {
@@ -81,7 +83,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 2.  Open your favorite terminal at the root folder and serve the app using Vue CLI:
 
   ```
-  npm start
+  npm run serve
   ```
 
 3.  Go to the Debug view, select the **'vuejs: chrome/firefox'** configuration, then press F5 or click the green play button.
@@ -99,16 +101,6 @@ There are other methods of debugging, varying in complexity. The most popular an
 ![Devtools Timetravel Debugger](/images/devtools-timetravel.gif)
 
 <p class="tip">Please note that if the page uses a production/minified build of Vue.js (such as the standard link from a CDN), devtools inspection is disabled by default so the Vue pane won't show up. If you switch to an unminified version, you may have to give the page a hard refresh to see them.</p>
-
-### Vuetron
-
-[Vuetron](http://vuetron.io/) is a really nice project that extends some of the work that vue-devtools has done. In addition to the normal devtools workflow, you are able to:
-
-* Quickly view API Request/Response: if you're using the fetch API for requests, this event is displayed for any request sent. The expanded card displays the request data as well as the response data.
-* Subscribe to specific parts of your application’s state for faster debugging
-* Visualize component hierarchy, and an animation allows you to collapse or expand the tree for specific hierarchy views.
-
-![Vuetron Hierarchy](/images/vuetron-hierarchy.gif)
 
 ### Simple Debugger Statement
 
