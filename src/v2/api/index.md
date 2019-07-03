@@ -1589,6 +1589,7 @@ type: api
     { immediate: true }
   )
   ```
+  
   If you still want to call an unwatch function inside the callback, you should check its availability first:
 
   ``` js
