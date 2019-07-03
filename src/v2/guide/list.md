@@ -261,6 +261,7 @@ Due to limitations in JavaScript, Vue **cannot** detect the following changes to
 
 1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
 2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+3. When you use `push` or `unshift`, etc. to add or remove an item `vm.items.unshift(newValue)`
 
 For example:
 
@@ -272,6 +273,8 @@ var vm = new Vue({
 })
 vm.items[1] = 'x' // is NOT reactive
 vm.items.length = 2 // is NOT reactive
+vm.items.unshifit('y') // is NOT reactive
+
 ```
 
 To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
