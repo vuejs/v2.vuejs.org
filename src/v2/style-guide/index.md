@@ -962,7 +962,7 @@ Usted puede verse tentado a resolver este problema de una forma diferente, anida
 
 - Generalmente lleva más tiempo navegador a través de subdirectorios anidados que recorrer un simple directorio `components`.
 - Conflictos de nombres (por ejemplo, múltiples componentes `ButtonDelete.vue`) dificultan la navegación rápida a un componente específico en un editor de código.
-- La refactorización se vuelve más difícil, ya que buscar-y-sustituir no siempre será sufuciente para actualizar las referencias relativas a la componente movida.
+- La refactorización se vuelve más difícil, ya que buscar-y-sustituir no siempre será suficiente para actualizar las referencias relativas al componente movido.
 
 {% raw %}</details>{% endraw %}
 
@@ -1465,51 +1465,50 @@ Si bien los valores de atributos sin espacios no requiren comillas en HTML, esta
 
 
 
-## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+## Reglas de prioridad C: Recomendadas (Minimizando Elecciones Arbitrarias y Sobrecarga Cognitiva)
 
 
+### Orden de las opciones en un componente/instancia <sup data-p="c">recomendado</sup>
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+**Opciones de componentes/instancias deben ser ordenadas consistentemente.**
 
-**Component/instance options should be ordered consistently.**
+Este es el orden que recomendamos para las opciones de los componentes. Estas están separadas en categorías, así usted sabe donde agregar nuevas propiedades de _plugins_.
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
-
-1. **Side Effects** (triggers effects outside the component)
+1. **Efectos colaterales** (desencadenan efectos fuera del componente)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **Consciencia Global** (requiere conocimiento más allá del componente)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **Tipo de componente** (cambia el tipo del componente)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **Modificadores de template** (cambia la forma en que el template es compilado)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **Dependencias de template** (_assets_ utilizados en el template)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **Composición** (mezcla propiedades en las opciones)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **Interfaz** (la interfaz del componente)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-8. **Local State** (local reactive properties)
+8. **Estado Local** (propiedades reactivas locales)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **Eventos** (_callbacks_ disparados por eventos reactivos)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - Eventos del ciclo de vida (en el orden que son invocados)
     - `beforeCreate`
     - `created`
     - `beforeMount`
@@ -1521,65 +1520,66 @@ This is the default order we recommend for component options. They're split into
     - `beforeDestroy`
     - `destroyed`
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **Propiedades no reactivas** (propiedades de isntancia independientes del sistema de reactividad)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
+11. **Renderización** (la descripción declarativa de la salida del componente)
   - `template`/`render`
   - `renderError`
 
 
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### Order de los atributos en un elemento <sup data-p="c">recomendado</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+**Orden de los atributos de elementos (incluyendo componentes) deben ser ordenadas consistentemente.**
 
-1. **Definition** (provides the component options)
+Este es el orden que recomendamos para las opciones de los componentes. Estas están separadas en categorías, así usted sabe donde agregar nuevos atributos y directivas.
+
+1. **Definición** (provee las opciones del componente)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **Renderización de Listas** (crea múltiples variaciones del mismo elemento)
   - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
+3. **Condicionales** (sí el elemento es renderizado/mostrado)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
+4. **Modificadores de renderizado** (cambia la forma en la que el elemento se renderiza)
   - `v-pre`
   - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
+5. **Consciencia Global** (requiere conocimiento más allá del componente)
   - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
+6. **Atributos Únicos** (atributos que requieren valores únicos)
   - `ref`
   - `key`
   - `slot`
 
-7. **Two-Way Binding** (combining binding and events)
+7. **Vinculación Bidireccional** (combinación de vinculación y eventos)
   - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Otros Atributos** (todos los no especificados)
 
-9. **Events** (component event listeners)
+9. **Eventos** (_event listeners_ del componentes)
   - `v-on`
 
-10. **Content** (overrides the content of the element)
+10. **Contenido** (sobreescribe el contenido del elemento)
   - `v-html`
   - `v-text`
 
 
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### Líneas vacías en las opciones de un componente/instancia <sup data-p="c">recomendado</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**Usted puede añadir una línea vacía entre propiedades que se extienden en múltiples líneas, particularmente si las opciones no entrar en la pantalla sin _scrollear_.**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+Cuando un componente comienza a sentirse apretado o difícil de leer, añadir espacios entre propiedades que se extienden en múltiples líneas puede mejorar la legibilidad. En algunos editores, como Vim, opciones de formateo como esta pueden facilitar la navegación con el teclado.
 
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Correcto
@@ -1612,8 +1612,8 @@ computed: {
 ```
 
 ``` js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// No tener espacios también es correcto, siempre y cuando
+// el componente siga siendo fácil de leer y navegar.
 props: {
   value: {
     type: String,
@@ -1639,9 +1639,9 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### Orden de los elementos de nivel superior de un componente single-file <sup data-p="c">recomendado</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Componentes single-file](../guide/single-file-components.html) siempre deben ordenar las etiquetas `<script>`, `<template>`, y `<style>` consistentemente, con `<style>` por último, ya que al menos una de las otras dos siempre es necesaria.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Incorrecto
