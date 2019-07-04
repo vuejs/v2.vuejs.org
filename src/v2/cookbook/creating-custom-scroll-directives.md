@@ -120,8 +120,8 @@ To show how we do this, we'll take a look at the morphing shape example, where w
 ```js
 Vue.directive('clipscroll', {
   inserted: function (el, binding) {
+    var hasRun = false
     let f = function (evt) {
-      var hasRun = false
       if (!hasRun && window.scrollY > binding.value.start) {
         hasRun = true
         TweenMax.to(el, 2, {
