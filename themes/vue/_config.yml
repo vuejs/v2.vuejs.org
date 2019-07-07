@@ -98,6 +98,9 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
+  - url: 'https://www.dailynow.co/'
+    img: daily.png
+    name: Daily
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
