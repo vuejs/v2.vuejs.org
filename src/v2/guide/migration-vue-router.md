@@ -487,7 +487,7 @@ Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>activate</code> hook.</p>
 </div>
 {% endraw %}
 
