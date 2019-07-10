@@ -4,6 +4,8 @@ type: guide
 order: 11
 ---
 
+<div class="vueschool"><a href="https://vueschool.io/courses/vuejs-components-fundamentals?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Components Fundamentals Course">Watch a free video course on Vue School</a></div>
+
 ## Base Example
 
 Here's an example of a Vue component:
