@@ -145,7 +145,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `init` <sup>diganti nama</sup>
+### `init` <sup>diubah nama</sup>
 
 Gunakan kait `beforeCreate` sebagai pengganti, dimana merupakan hal yang sama. Digantikan nama dikarenakan merujuk pada konsistensi penamaan *methods* siklus hidup yang lain.
 
@@ -177,7 +177,7 @@ mounted: function () {
 
 ## `v-for`
 
-### `v-for` Argumen Persoalan Order Dalam Array <sup>diganti</sup>
+### `v-for` Argumen Persoalan Order Dalam Array <sup>diubah</sup>
 
 Saat menggunakan `index`, argumen order dalam array dulunya `(index, value)`. Sekarang `(value, index)` untuk menjaga konsistensi dengan methods array JavaScript's seperti `forEach` dan `map`.
 
@@ -188,7 +188,7 @@ Saat menggunakan `index`, argumen order dalam array dulunya `(index, value)`. Se
 </div>
 {% endraw %}
 
-### `v-for` Argumen Order Tentang Objek <sup>diganti</sup>
+### `v-for` Argumen Order Tentang Objek <sup>diubah</sup>
 
 Saat menggunakan `key` sebagai argumen order pada objek dulunya`(key, value)`. Sekarang menjadi `(value, key)` untuk lebih konsisten dengan objek iterator pada umumnya seperti `lodash`.
 
@@ -219,7 +219,7 @@ Secara implisit variabel `$index` dan `$key` dihapuskan karena secara explisit d
 <div v-for="item in items" track-by="id">
 {% endcodeblock %}
 
-Kamu sekarang menuliskan
+Kamu sekarang menuliskan :
 
 {% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
@@ -232,7 +232,7 @@ Kamu sekarang menuliskan
 </div>
 {% endraw %}
 
-### `v-for` Nila Rentang <sup>diganti</sup>
+### `v-for` Nila Rentang <sup>diubah</sup>
 
 Dulunya, `v-for="number in 10"` dengan `number` dimulai dari 0 ke 9. Sekarang dimulai dari 1 sampai dengan 10.
 
@@ -245,9 +245,9 @@ Dulunya, `v-for="number in 10"` dengan `number` dimulai dari 0 ke 9. Sekarang di
 
 ## Props
 
-### `coerce` Prop Option <sup>removed</sup>
+### `coerce` Opsi Pada Props <sup>dihapuskan</sup>
 
-If you want to coerce a prop, setup a local computed value based on it instead. For example, instead of:
+Jika kamu ingin memaksakan sebuah *prop*, gunakan nilai hitung berdasarkan prop tersebut. Sebagai contoh, daripada :
 
 ``` js
 props: {
@@ -262,7 +262,7 @@ props: {
 }
 ```
 
-You could write:
+Anda dapat menuliskan:
 
 ``` js
 props: {
@@ -277,72 +277,72 @@ computed: {
 }
 ```
 
-There are a few advantages:
+Disini ada beberapa keuntungan:
 
-- You still have access to the original value of the prop.
-- You are forced to be more explicit, by giving your coerced value a name that differentiates it from the value passed in the prop.
+- Kamu tetap mendapatkan akses pada nilai original pada prop.
+- Kamu dipaksa untuk lebih eksplisit, dimana kamu dipaksa memberikan nilai pada nama yang membedakan prop tersebut dari nilai yang di masukan pada prop.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>coerce</code> option.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan opsi <code>coerce</code>.</p>
 </div>
 {% endraw %}
 
-### `twoWay` Prop Option <sup>removed</sup>
+### `twoWay` Prop Option <sup>dihapus</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Prop sekarang selalu satu jalur ke bawah. Untuk menimbulkan efek pada scope induk, komponen harus secara explisit memberikan event daripada harus bergantung pada binding implisit. Untuk informasi selanjutnya, lihat:
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- [event kastem komponen](components.html#Custom-Events)
+- [kastem komponen input](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [Pengelolaan global state](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>twoWay</code> option.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan opsi <code>twoWay</code>.</p>
 </div>
 {% endraw %}
 
-### `.once` and `.sync` Modifiers on `v-bind` <sup>removed</sup>
+### `.once` and `.sync` Modifiers on `v-bind` <sup>dihapus</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Prop sekarang selalu satu jalur ke bawah. Untuk menimbulkan efek pada scope induk, komponen harus secara explisit memberikan event daripada harus bergantung pada binding implisit. Untuk informasi selanjutnya, lihat:
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- [event kastem komponen](components.html#Custom-Events)
+- [kastem komponen input](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [Pengelolaan global state](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>.once</code> and <code>.sync</code> modifiers.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan contoh pengubah <code>.once</code> dan <code>.sync</code></p>
 </div>
 {% endraw %}
 
-### Prop Mutation <sup>deprecated</sup>
+### Mutasi Prop <sup>usang</sup>
 
-Mutating a prop locally is now considered an anti-pattern, e.g. declaring a prop and then setting `this.myProp = 'someOtherValue'` in the component. Due to the new rendering mechanism, whenever the parent component re-renders, the child component's local changes will be overwritten.
+Mengubah prop sekarang merupakan sebuah *anti-pattern* (tidak disarankan dilakukan), contoh mendeklarasikan prop dan men-set prop `this.myProp = 'someOtherValue'` pada komponen. Dikarenakan mekanisame *rendering* yang baru, setiap komponen induk melakukan *re-render*, perubahan lokal komponen tersebut akan ditimpa.
 
-Most use cases of mutating a prop can be replaced by one of these options:
+Sebagian besar kasus penggunaan mutasi pada props dapat diganti dengan salah satu opsi ini:
 
-- a data property, with the prop used to set its default value
-- a computed property
+- sebuah properti data, dengan prop di set pada nilai standar
+- sebuah computed properti
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about prop mutations.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Upgrade Vue lalu jalankan *end-to-end* testing kamu, cari <strong>console warnings</strong> tentang mutasi prop.</p>
 </div>
 {% endraw %}
 
-### Props on a Root Instance <sup>replaced</sup>
+### Prop pada Akar Instance <sup>digantikan</sup>
 
-On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead of `props`.
+Pada akar *instances* Vue (contoh, instances yang dibuat dengan `new Vue({ ... })`) kamu harus menggunakan `propsData` sebagai ganti `props`
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
+  <h4>Jalankan</h4>
+  <p>Jalankan *end-to-end* tes, jika kamu mempunyainya. <strong>tes gagal</strong> akan memberikan peringatan bahwa prop yang dimasukan pada akar instances Vue sudah tidak berkerja lagi.</p>
 </div>
 {% endraw %}
 
