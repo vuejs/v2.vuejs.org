@@ -346,13 +346,15 @@ Pada akar *instances* Vue (contoh, instances yang dibuat dengan `new Vue({ ... }
 </div>
 {% endraw %}
 
-## Computed properties
+## Properti Computed (Computed properties)
 
 ### `cache: false` <sup>deprecated</sup>
 
 Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
 
-For example:
+Pembatalan chaching dari senuah properti computed akan dihapuskan pada versi major Vue selanjutnya. Ganti semua *uncached* properti computed dengan method, dimana akan menghasailakn hal yang sama
+
+Contoh:
 
 ``` js
 template: '<p>message: {{ timeMessage }}</p>',
@@ -366,7 +368,7 @@ computed: {
 }
 ```
 
-Or with component methods:
+atau dengan komponen method:
 
 ``` js
 template: '<p>message: {{ getTimeMessage() }}</p>',
@@ -379,8 +381,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda dan anda akan menemukan opsi <code>cache: false</code></p>
 </div>
 {% endraw %}
 
