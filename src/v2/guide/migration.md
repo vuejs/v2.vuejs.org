@@ -67,33 +67,33 @@ Disarankan untuk membungkus seluruh konten dalam sebuah elemen baru, seperti ini
 </div>
 {% endraw %}
 
-## Lifecycle Hooks
+## Kait Siklus Hidup (Lifecycle Hooks)
 
-### `beforeCompile` <sup>removed</sup>
+### `beforeCompile` <sup>dihapuskan</sup>
 
-Use the `created` hook instead.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
-</div>
-{% endraw %}
-
-### `compiled` <sup>replaced</sup>
-
-Use the new `mounted` hook instead.
+Gunakan kait `created` sebagai penggantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `attached` <sup>removed</sup>
+### `compiled` <sup>digantikan</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Gunakan kait `mounted` sebagai penggantinya.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
+</div>
+{% endraw %}
+
+### `attached` <sup>dihapuskan</sup>
+
+Gunakan kastem *in-DOM* cek di dalam kait lain. Dengan contoh, untuk menggantikan:
 
 ``` js
 attached: function () {
@@ -101,7 +101,7 @@ attached: function () {
 }
 ```
 
-You could use:
+Kamu bisa menggunakan:
 
 ``` js
 mounted: function () {
@@ -113,14 +113,14 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `detached` <sup>removed</sup>
+### `detached` <sup>dihapuskan</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Gunakan kastem *in-DOM* cek di dalam kait lain. Dengan contoh, untuk menggantikan:
 
 ``` js
 detached: function () {
@@ -128,7 +128,7 @@ detached: function () {
 }
 ```
 
-You could use:
+Kamu bisa menggunakan:
 
 ``` js
 destroyed: function () {
@@ -140,85 +140,86 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `init` <sup>renamed</sup>
+### `init` <sup>diganti nama</sup>
 
-Use the new `beforeCreate` hook instead, which is essentially the same thing. It was renamed for consistency with other lifecycle methods.
+Gunakan kait `beforeCreate` sebagai pengganti, dimana merupakan hal yang sama. Digantikan nama dikarenakan merujuk pada konsistensi penamaan *methods* siklus hidup yang lain.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `ready` <sup>replaced</sup>
+### `ready` <sup>digantikan</sup>
 
-Use the new `mounted` hook instead. It should be noted though that with `mounted`, there's no guarantee to be in-document. For that, also include `Vue.nextTick`/`vm.$nextTick`. For example:
+Gunakan kait baru `mounted` sebagai pengganti. Harus menjadi perhatian bahwa dengan `mounted`, tidak ada garansi untuk bahwa page sudah benar benar di load oleh browser. Untuk itu, gunakan `Vue.nextTick`/`vm.$nextTick`. Sebagai contoh
 
 ``` js
 mounted: function () {
   this.$nextTick(function () {
-    // code that assumes this.$el is in-document
+    // kode anda dimana memastikan bahwa element sudah di load oleh browser
   })
 }
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
 ## `v-for`
 
-### `v-for` Argument Order for Arrays <sup>changed</sup>
+### `v-for` Argumen Persoalan Order Dalam Array <sup>diganti</sup>
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
-</div>
-{% endraw %}
-
-### `v-for` Argument Order for Objects <sup>changed</sup>
-
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+Saat menggunakan `index`, argumen order dalam array dulunya `(index, value)`. Sekarang `(value, index)` untuk menjaga konsistensi dengan methods array JavaScript's seperti `forEach` dan `map`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh argumen order yang lama. Perlu diperhatikan jika anda menamai index dengan <code>position</code> atau <code>num</code>, alat bantu tidak akan memberikan peringatan.</p>
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>removed</sup>
+### `v-for` Argumen Order Tentang Objek <sup>diganti</sup>
 
-The implicitly assigned `$index` and `$key` variables have been removed in favor of explicitly defining them in `v-for`. This makes the code easier to read for developers less experienced with Vue and also results in much clearer behavior when dealing with nested loops.
+Saat menggunakan `key` sebagai argumen order pada objek dulunya`(key, value)`. Sekarang menjadi `(value, key)` untuk lebih konsisten dengan objek iterator pada umumnya seperti `lodash`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these removed variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh argumen order yang lama. Perlu diperhatikan jika anda menamai kunci argumen anda dengan <code>name</code> atau <code>property</code> alat bantu tidak akan memberikan peringatan.</p>
 </div>
 {% endraw %}
 
-### `track-by` <sup>replaced</sup>
+### `$index` and `$key` <sup>dihapuskan</sup>
+
+Secara implisit variabel `$index` dan `$key` dihapuskan karena secara explisit didefinisikan kedalam `v-for`. Ini membuat kode lebih gampang di baca untuk developer yang kurang berpengalaman dengan Vue dan juga membuat perilaku yang lebih jelas saat berkerja dengan *nested loops*.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan variabel yang telah dihapuskan berikut. Jika kamu lupa untuk menhapusnya, kamu akan melihat <strong>console errors</strong> seperti: <code>Uncaught ReferenceError: $index is not defined</code></p>
+</div>
+{% endraw %}
+
+### `track-by` <sup>digantikan</sup>
 
 `track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
+`track-by` telah diganti dengan `key`, dimana berkerja seperti attribut lain: tanpa `v-bind:` atau `:` sebagai prefix, `key` di perlakukan sebagai *literal string*. DI banyak kasus, kamu mungkin ingin menggunakan *binding* dinamis dimana mengharapakan suatu *full expression*  daripada kunci saja. Sebagai contoh :
 
 {% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
 {% endcodeblock %}
 
-You would now write:
+Kamu sekarang menuliskan
 
 {% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
@@ -226,19 +227,19 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> untuk menemukan contoh dari pada <code>track-by</code>.</p>
 </div>
 {% endraw %}
 
-### `v-for` Range Values <sup>changed</sup>
+### `v-for` Nila Rentang <sup>diganti</sup>
 
-Previously, `v-for="number in 10"` would have `number` starting at 0 and ending at 9. Now it starts at 1 and ends at 10.
+Dulunya, `v-for="number in 10"` dengan `number` dimulai dari 0 ke 9. Sekarang dimulai dari 1 sampai dengan 10.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Cari di kodebase anda <code>/\w+ in \d+/</code>. Dimana ini muncul pada <code>v-for</code>, lalu cek jika mungkin memberikan efek pada kode anda.</p>
 </div>
 {% endraw %}
 
@@ -524,7 +525,7 @@ Keuntungan lain dari pendekatan ini adalah akan ada waktu ketika *debouncing* ti
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut <code>*debounce*</code>.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut <code>*debounce*</code>.</p>
 </div>
 {% endraw %}
 
@@ -547,7 +548,7 @@ Kamu dapat menggunakan:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut .</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut .</p>
 </div>
 {% endraw %}
 
@@ -634,7 +635,7 @@ Jika Anda ingin menimpa `!important` lainnya, Anda harus menggunakan <i>string s
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> pada baris kode Anda menemukan contoh-contoh dengan ikatan gaya  <code>*!important*</code> dalam objek.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada baris kode Anda menemukan contoh-contoh dengan ikatan gaya  <code>*!important*</code> dalam objek.</p>
 </div>
 {% endraw %}
 
@@ -661,7 +662,7 @@ Disamping itu, `$refs` dirancang untuk program dalam javascript - Tidak disarana
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan<a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-el</code> dan <code>v-ref</code>.</p>
+  <p>Jalankan<a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-el</code> dan <code>v-ref</code>.</p>
 </div>
 {% endraw %}
 
@@ -684,7 +685,7 @@ Anda dapat menggunakan:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-else</code> dengan <code>v-show</code>.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-else</code> dengan <code>v-show</code>.</p>
 </div>
 {% endraw %}
 
@@ -703,7 +704,7 @@ Untungnya, karena direktif-direktif baru jauh lebih sederhana, maka kamu dapat m
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif. <i>Helper</i> akan menandai mereka semua, karena dalam kebanyakan kasus yang ingin Anda <i>refactory</i> ke dalam komponen.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif. <i>Helper</i> akan menandai mereka semua, karena dalam kebanyakan kasus yang ingin Anda <i>refactory</i> ke dalam komponen.</p>
 </div>
 {% endraw %}
 
@@ -726,7 +727,7 @@ Jadi:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif modifikasi `.literal`.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif modifikasi `.literal`.</p>
 </div>
 {% endraw %}
 
