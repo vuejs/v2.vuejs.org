@@ -166,13 +166,15 @@ computed: {
   fullName: {
     // getter
     get: function () {
-      return this.firstName + ' ' + this.lastName
+      return `${this.firstName} ${this.lastName}`.trim()
     },
     // setter
     set: function (newValue) {
-      var names = newValue.split(' ')
+      const names = newValue.split(' ')
       this.firstName = names[0]
-      this.lastName = names[names.length - 1]
+      if (names.length > 1) {
+        this.lastName = names[names.length - 1]
+      }
     }
   }
 }
