@@ -772,36 +772,38 @@ Jika kamu ingin membuat transisi list *stagger* kamu dapat mengontrol timing den
 
 ## Events
 
-### `events` option <sup>removed</sup>
+### opsi `events` <sup>dihapus</sup>
 
 The `events` option has been removed. Event handlers should now be registered in the `created` hook instead. Check out the [`$dispatch` and `$broadcast` migration guide](#dispatch-and-broadcast-replaced) for a detailed example.
 
-### `Vue.directive('on').keyCodes` <sup>replaced</sup>
+Opsi `events` telah dihapuskan. Event handler untuk sekarang harus di registrasikan pada kait `created`. Cek [ dokumentasi migrasi `$dispatch` dan `$broadcast`](#dispatch-and-broadcast-replaced)
 
-The new, more concise way to configure `keyCodes` is through `Vue.config.keyCodes`. For example:
+### `Vue.directive('on').keyCodes` <sup>diganti</sup>
+
+Cara baru dan ringkas untuk mengatur `keyCodes` ini adalah melalui `Vue.config.keyCodes`. Contoh :
 
 ``` js
-// enable v-on:keyup.f1
+// izinkan v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the the old <code>keyCode</code> configuration syntax.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan sintaks konfigurasi lama <code>keyCode</code>.</p>
 </div>
 {% endraw %}
 
-### `$dispatch` and `$broadcast` <sup>replaced</sup>
+### `$dispatch` dan `$broadcast` <sup>digantikan</sup>
 
-`$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` dan `$broadcast` sudah dihapuskan untuk lebih explisit saat melakukan komunikasi antar komponen dan menghasilakn *state management* yang lebih dapat di pelihara, contoh [Vuex](https://github.com/vuejs/vuex)
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+Masalahnya adalah event yang mengalir tergantung pada struktur pohon komponen sangat sangatlah sulit untuk dipikirkan, sangat rapuh saat pohon komponen menjadi besar. Hal tersebut sangat susah untuk di-*scaling* dan hanya membuat sakit kepala pada nantinya. `$dispatch` dan `$broadcast` tidak juga menyelesaikan masalah *sibling* komponen (komponen yang menggunakan props value sama).
 
-One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
+Salah satu contoh yang biasa digunakan pada methods ini adalah untuk berkomunikasi antara induk komponen dengan anak langsung induk komponen tersebut. Pada kasus berikut, kamu dapat menggunakan *event* [`$emit` dari komponen anak menggunakan `v-on`](components.html#Form-Input-Components-using-Custom-Events). Ini membuatmu menjaga kenyamanan pada *event* dengan menambah secara ekplisit pada *event* tersebut.
 
-However, when communicating between distant descendants/ancestors, `$emit` won't help you. Instead, the simplest possible upgrade would be to use a centralized event hub. This has the added benefit of allowing you to communicate between components no matter where they are in the component tree - even between siblings! Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
+Bagaimanapun itu, saat berkomunikasi antar komponen induk/anak yang jauh, `$emit` tidak dapat menolongmu. Untuk itu, solusi paling simple adalah dengan menggunakan *event hub* yang ter-sentralisasi. Cara ini menambahkan keuntungan dengan mengizinkan komunikasi antar komponen, dimanapun posisi komponen itu berada dalam struktur pohon komponen, dikarenakan *instance* Vue meng-implementasikan antar muka *event emitter*, kamu sebenarnya dapat menggunakan *instance* Vue kosong untuk hal ini.
 
-For example, let's say we have a todo app structured like this:
+Contoh, katakanlah kita mempunyai sebuah *todo app* terstruktur seperti berikut:
 
 ```
 Todos
@@ -810,15 +812,17 @@ Todos
    └─ DeleteTodoButton
 ```
 
-We could manage communication between components with this single event hub:
+Kita dapat mengelola komunikasi antar komponen dengan satu *event hub*:
 
 ``` js
-// This is the event hub we'll use in every
-// component to communicate between them.
+// Ini adalah event hub yang kita
+// gunakan untuk berkomunu kasi antar komponen
 var eventHub = new Vue()
 ```
 
 Then in our components, we can use `$emit`, `$on`, `$off` to emit events, listen for events, and clean up event listeners, respectively:
+
+Lalu di dalam komponen, kita dapat menggunakan `$emit`, `$on`, `$off` untuk memasukan *event*, mendengar *event*, dan menghapus *event*, dengan benar:
 
 ``` js
 // NewTodoInput
@@ -848,8 +852,8 @@ created: function () {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
-// It's good to clean up event listeners before
-// a component is destroyed.
+// Sangat disarankan untuk menghapus *Event.listener* sebelum \
+// komponen di hancurkan (sebelum kait `destroyed`)
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
@@ -866,12 +870,12 @@ methods: {
 }
 ```
 
-This pattern can serve as a replacement for `$dispatch` and `$broadcast` in simple scenarios, but for more complex cases, it's recommended to use a dedicated state management layer such as [Vuex](https://github.com/vuejs/vuex).
+Pola ini dapat digunakan sebagai ganti `$dispatch` dan `$broadcast` pada skenario yang mudah, untuk kasus yang lebih komplex, direkomendasikan menggunakan *state management* sendiri seperti [Vuex](https://github.com/vuejs/vuex).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>$dispatch</code> and <code>$broadcast</code>.</p>
+  <h4>jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda untuk menemukan sintaks <code>$dispatch</code> dan <code>$broadcast</code>.</p>
 </div>
 {% endraw %}
 
