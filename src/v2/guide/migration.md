@@ -733,38 +733,40 @@ Jadi:
 </div>
 {% endraw %}
 
-## Transitions
+## Transisi
 
-### `transition` Attribute <sup>replaced</sup>
+### Atribut `transition` <sup>diubah</sup>
 
 Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
 
+Sistem transisi sistem sekarang sudah berganti cukup drastis dan sekarang menggunakan `<transition>` dan `<transition-group>` elemen pembungkus, daripada memakai atribut `transisi`. Di rekomendasikan untuk membaca dokumentasi terbaru [tentang transisi](transitions.html) untuk info lebih lanjut.
+
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh penggunaan attribut <code>transition</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.transition` for Reusable Transitions <sup>replaced</sup>
+### `Vue.transition` untuk transisi yang dapat digunakan kembali <sup>diubah</sup>
 
-With the new transition system, you can now [use components for reusable transitions](transitions.html#Reusable-Transitions).
+Dengan sistem transisi yang terbaru anda [dapat menggunakan komponen](transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh penggunaan attribut <code>Vue.transition</code>.</p>
 </div>
 {% endraw %}
 
 ### Transition `stagger` Attribute <sup>removed</sup>
 
-If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
+Jika kamu ingin membuat transisi list *stagger* kamu dapat mengontrol timing dengan menyeting dan meng-akses `data-index` (atau attribut yang sama lain-nya) di dalam elemen. Lihat contoh [disini](transitions.html#Staggering-List-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan contoh pneggunaan atribut <code>transition</code>. Saat aplikasi ter-update, kamu dapat mentransisikan ke dalam strategi `stagger` terbaru juga.</p>
 </div>
 {% endraw %}
 
