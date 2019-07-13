@@ -56,7 +56,7 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 
 You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue is also available on [PageCDN](https://pagecdn.com/lib/vue.js), [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
 
 Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
  version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
