@@ -181,6 +181,35 @@ computed: {
 
 Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
 
+### Computed Setter with Arrays
+
+When setting the value of a complex type such as an `Array`, methods that appear to change only part of the data such as `.push()` or `.splice()` will return the entire array to the setter.
+
+
+``` js
+// ...
+computed: {
+  participants: {
+    // getter
+    get: function () {
+      return this.addressBook.join(', ')
+    },
+    // setter
+    set: function (newValue) {
+      this.addressBook = newValue
+    }
+  }
+},
+methods: {
+  addName: function (fullName) {
+    this.names.push(fullName)
+  }
+},
+// ...
+```
+
+Notice that even though there is only one added value using push the setter assigns the entire array to `vm.addressBook`.
+
 ## Watchers
 
 While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
