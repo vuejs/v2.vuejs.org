@@ -202,7 +202,7 @@ computed: {
 },
 methods: {
   addName: function (fullName) {
-    this.names.push(fullName)
+    this.participants.push(fullName)
   }
 },
 // ...
