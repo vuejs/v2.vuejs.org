@@ -919,37 +919,37 @@ type: api
 
   - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
 
-## Options / Assets
+## Opciones / Recursos
 
 ### directives
 
 - **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of directives to be made available to the Vue instance.
+  Un conjunto de directivas que se pondrán a disposición para la instancia Vue.
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Vea también:** [Directivas Personalizadas](../guide/custom-directive.html)
 
 ### filters
 
 - **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of filters to be made available to the Vue instance.
+  Un conjunto de filtros que se pondrán a disposición para la instancia Vue.
 
-- **See also:** [`Vue.filter`](#Vue-filter)
+- **Vea también:** [`Vue.filter`](#Vue-filter)
 
 ### components
 
 - **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of components to be made available to the Vue instance.
+  Un conjunto de componentes que se pondrán a disposición para la instancia Vue.
 
-- **See also:** [Components](../guide/components.html)
+- **Vea también:** [Componentes](../guide/components.html)
 
 ## Options / Composition
 
