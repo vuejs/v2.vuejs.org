@@ -969,9 +969,9 @@ type: api
 
 - **Detalles:**
 
-  La opción `mixins` acepta un arreglo de objetos _mixin_. Estos objetos pueden contender opciones de instancia, así como instancias de objetos normales, y luego serán combinados con las eventuales opciones utilizando la misma lógica de combinación que en `Vue.extend()`. Por ejemplo, sí su `mixin` contiene el _hook_ _created_ y su componente también lo tiene, ambas funciones serán invocadas.
+  La opción `mixins` acepta un arreglo de objetos _mixin_. Estos objetos pueden contener opciones de instancia, así como instancias de objetos normales, y luego serán combinados con las eventuales opciones utilizando la misma lógica de combinación que en `Vue.extend()`. Por ejemplo, sí su `mixin` contiene el _hook_ _created_ y su componente también lo tiene, ambas funciones serán invocadas.
 
-  Los _hooks_ de _mixin_ son invocadas en el orden que son proporcionados, e invocadas antes que los _hooks_ de la componente.
+  Los _hooks_ de _mixin_ son invocados en el orden que son proporcionados, e invocados antes que los _hooks_ del componente.
 
 - **Ejemplo:**
 
@@ -995,7 +995,7 @@ type: api
 
 - **Detalles:**
 
-  Permite extender declarativamente otra componente (puede ser tanto un objeto plano con opciones como un constructor) sin tener que utilizar `Vue.extend`. Esto está destinado principalmente a facilitar la extensión entre componente _single-file_.
+  Permite extender declarativamente otro componente (puede ser tanto un objeto plano con opciones como un constructor) sin tener que utilizar `Vue.extend`. Esto está destinado principalmente a facilitar la extensión entre componente _single-file_.
 
   Esto es similar a los `mixinis`.
 
@@ -1023,9 +1023,9 @@ type: api
 
   <p class="tip">`provide` e `inject` se proporcionan principalmente para casos de uso avanzados en _plugins_ / componentes. NO es recomendado su uso en código de una aplicación genérica.</p>
 
-  Este par de opciones son utilizadas conjuntamente para hacer posible que una componente padre sirva como un inyector de dependencias para todos sus descendientes, independientemente de la profunidad de la jerarquía de componentes, siempre que esten en la misma cadena "familiar". Si usted está familiarizado con React, esto es muy similar a la funcionalidad _context_ de React.
+  Este par de opciones son utilizadas conjuntamente para hacer posible que un componente padre sirva como un inyector de dependencias para todos sus descendientes, independientemente de la profunidad de la jerarquía de componentes, siempre que esten en la misma cadena "familiar". Si usted está familiarizado con React, esto es muy similar a la funcionalidad _context_ de React.
 
-  La opción `provide` debe ser un objeto o una función que retorna un objeto. Este objeto contiene las propiedades que están disponibles para ser inyectadas en sus descendientes. Ustedes puede usar _ES2015 Symbols_ como claves en este objeto, pero solo en ambientes que soportan nativamente `Symbol` y `Reflect.ownKeys`.
+  La opción `provide` debe ser un objeto o una función que retorna un objeto. Este objeto contiene las propiedades que están disponibles para ser inyectadas en sus descendientes. Usted puede usar _ES2015 Symbols_ como claves en este objeto, pero solo en ambientes que soportan nativamente `Symbol` y `Reflect.ownKeys`.
 
   La opción `inject` debe ser una de las siguientes opciones:
 
