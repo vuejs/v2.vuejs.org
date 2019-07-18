@@ -603,6 +603,8 @@ In the example above, `currentTabComponent` can contain either:
 
 See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
 
+<p class="tip">If you are creating an &lt;input&gt; element with the dynamic component and need to bind to the `value` attribute, you will need to append the `.prop` modifier to the `value` attribute like so `:value.prop="yourData"`</p>
+
 That's all you need to know about dynamic components for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-dynamic-async.html).
 
 ## DOM Template Parsing Caveats
