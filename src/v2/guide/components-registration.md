@@ -41,7 +41,7 @@ Vue.component('my-component-name', { /* ... */ })
 Vue.component('MyComponentName', { /* ... */ })
 ```
 
-파스칼표기법으로 컴포넌트를 정의할 때는 자용자 정의 엘리먼트를 부를 때 두 가지 표기법 모두 사용할 수 있습니다. 즉 `<my-component-name>`와 `<MyComponentName>` 모두 괜찮습니다. 단, DOM에 바로 쓸 때는 케밥-표기법 이름만 가능합니다.
+파스칼표기법으로 컴포넌트를 정의할 때는 사용자 정의 엘리먼트를 부를 때 두 가지 표기법 모두 사용할 수 있습니다. 즉 `<my-component-name>`와 `<MyComponentName>` 모두 괜찮습니다. 단, DOM에 바로 쓸 때는 케밥-표기법 이름만 가능합니다.
 
 
 ## 전역 등록
