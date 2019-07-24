@@ -437,8 +437,6 @@ type: api
 
   Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia. 
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
-
   Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxie a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
 
   Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
