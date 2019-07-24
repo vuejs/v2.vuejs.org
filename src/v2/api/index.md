@@ -435,7 +435,7 @@ type: api
 
   El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla sobre el thumb es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia. 
 
   After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
 
