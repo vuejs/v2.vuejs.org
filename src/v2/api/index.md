@@ -429,11 +429,11 @@ type: api
 
 - **Tipo:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Restricción:** Sólo acepta `Function` cuando es usado en la definición del componente.
 
-- **Details:**
+- **Detalles:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla sobre el thumb es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
 
   Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
 
