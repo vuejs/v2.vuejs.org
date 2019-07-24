@@ -439,25 +439,25 @@ type: api
 
   Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxie a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  La propiedades que comienzan con `_` o `$` **no** serán proxiadas en la instancia de Vue debido a que pueden causar conflicto con las propiedades internas de Vue y los métodos de la API. Usted tendrá que acceder a ellas como `vm.$data._property`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
+  Al definir un **componente**, `data` debe ser declarada como una función que devuelve los datos del objeto inicial, porque habrán muchas instancias creadas usando la misma definición. Si usamos un objeto plano para `data`, este mismo objeto será **compartido por referencia** a lo través de todas las instancias creadas! Al proporcionar una función `data`, cada vez que una nueva instancia es creada podemos llamarla para devolver una copia reciente de los datos iniciales.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Si fuera necesario un clon en profundidad del objeto original lo podemos obtener al pasar `vm.$data` mediante `JSON.parse(JSON.stringify(...))`.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // instancia directa de creación
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
+  // debe usar la funcion cuando esta en Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -465,13 +465,13 @@ type: api
   })
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Note que si usted usa una función flecha con la propiedad `data`, `this` no será la instancia del componente,  pero usted puede seguir accediendo a la instancia por el primer argumento de la función:
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### props
 
