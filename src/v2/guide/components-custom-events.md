@@ -157,6 +157,7 @@ For convenience, we offer a shorthand for this pattern with the `.sync` modifier
 ```html
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
+All that's left to do is to add event emitter inside the component
 
 <p class="tip">Note that <code>v-bind</code> with the <code>.sync</code> modifier does <strong>not</strong> work with expressions (e.g. <code>v-bind:title.sync="doc.title + '!'"</code> is invalid). Instead, you must only provide the name of the property you want to bind, similar to <code>v-model</code>.</p>
 
