@@ -1453,6 +1453,8 @@ new Vue({
 </script>
 {% endraw %}
 
+Another technique is CSS variables such as `:style="'--animation-order:' + index` and `transition-delay: calc(var(--animation-order) * 50ms);`. This isn't as [cross-browser compatible](https://caniuse.com/#feat=css-variables), but it does not require coding a timeout. See a [complete but non-vue example](https://css-tricks.com/different-approaches-for-creating-a-staggered-animation/).
+
 ## Reusable Transitions
 
 Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
