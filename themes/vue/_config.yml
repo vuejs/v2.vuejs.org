@@ -101,6 +101,9 @@ gold_sponsors:
   - url: 'https://www.dailynow.co/'
     img: daily.png
     name: Daily
+  - url: 'https://storekit.com'
+    img: storekit.png
+    name: StoreKit
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
