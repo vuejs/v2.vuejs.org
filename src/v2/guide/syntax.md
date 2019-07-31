@@ -135,6 +135,10 @@ Here the argument is the event name to listen to. We will talk about event handl
 Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
 
 ``` html
+<!--
+Note that there are some constraints to the argument expression, as explained
+in the "Dynamic Argument Expression Constraints" section below.
+-->
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
@@ -146,7 +150,7 @@ Similarly, you can use dynamic arguments to bind a handler to a dynamic event na
 <a v-on:[eventName]="doSomething"> ... </a>
 ```
 
-Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
 
 #### Dynamic Argument Value Constraints
 
@@ -154,9 +158,7 @@ Dynamic arguments are expected to evaluate to a string, with the exception of `n
 
 #### Dynamic Argument Expression Constraints
 
-<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes. You also need to avoid uppercase keys when using in-DOM templates.</p>
-
-For example, the following is invalid:
+Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:
 
 ``` html
 <!-- This will trigger a compiler warning. -->
@@ -165,10 +167,13 @@ For example, the following is invalid:
 
 The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
 
-In addition, if you are using in-DOM templates (templates directly written in an HTML file), you have to be aware that browsers will coerce attribute names into lowercase:
+When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
 
 ``` html
-<!-- This will be converted to v-bind:[someattr] in in-DOM templates. -->
+<!--
+This will be converted to v-bind:[someattr] in in-DOM templates.
+Unless you have a "someattr" property in your instance, your code won't work.
+-->
 <a v-bind:[someAttr]="value"> ... </a>
 ```
 
