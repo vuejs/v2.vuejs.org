@@ -313,6 +313,13 @@ components: {
   TreeFolderContents: () => import('./tree-folder-contents.vue')
 }
 ```
+or
+
+``` js
+components: {
+  'tree-folder-contents': () => import('./tree-folder-contents.vue')
+}
+```
 
 Problem solved!
 
