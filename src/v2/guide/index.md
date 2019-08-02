@@ -84,7 +84,7 @@ var app2 = new Vue({
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    내 위에 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
+    내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
   </span>
 </div>
 <script>
