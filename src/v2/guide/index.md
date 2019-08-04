@@ -213,11 +213,11 @@ To let users interact with your app, we can use the `v-on` directive to attach e
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue.js!🖖🖖'
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
+      this.message = [...this.message].reverse().join('')
     }
   }
 })
@@ -231,11 +231,11 @@ var app5 = new Vue({
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue.js!🖖🖖'
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
+      this.message = [...this.message].reverse().join('')
     }
   }
 })
