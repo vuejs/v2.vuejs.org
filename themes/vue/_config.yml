@@ -38,6 +38,9 @@ gold_sponsors:
   - url: 'https://htmlburger.com'
     img: html_burger.png
     name: HTML Burger
+  - url: 'https://www.frontenddeveloperlove.com/'
+    img: frontendlove.png
+    name: FrontendLove
   - url: 'https://onsen.io/vue/'
     img: onsen_ui.png
     name: Onsen UI
