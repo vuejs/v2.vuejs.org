@@ -149,7 +149,7 @@ Vue.component('some-comp', {
 ```
 
 ``` js
-// En un archivo .vue 
+// En un archivo .vue
 export default {
   data () {
     return {
@@ -160,7 +160,7 @@ export default {
 ```
 
 ``` js
-// Está bien usar un objeto directamente  
+// Está bien usar un objeto directamente
 // en una instancia raíz de Vue,
 // ya que solo existirá esa única instancia.
 new Vue({
@@ -305,9 +305,9 @@ En nuestra experiencia, es mejor agregar siempre una clave única, para que uste
 
 **Nunca use `v-if` en el mismo elemento que `v-for`.**
 
-Hay dos casos comunes en los que esto puede ser tentador: 
+Hay dos casos comunes en los que esto puede ser tentador:
 
-- Para filtrar elementos en una lista (por ejemplo, `v-for="user in users" v-if="user.isActive"`). En estos casos, reemplace `users` con una nueva propiedad calculada que devuelva su lista filtrada (por ejemplo `activeUsers`). 
+- Para filtrar elementos en una lista (por ejemplo, `v-for="user in users" v-if="user.isActive"`). En estos casos, reemplace `users` con una nueva propiedad calculada que devuelva su lista filtrada (por ejemplo `activeUsers`).
 
 - Para evitar renderizar una lista si debe estar oculta (por ejemplo, `v-for="user in users" v-if="shouldShowUsers"`). En estos casos, mueva el `v-if` a un elemento contenedor (por ejemplo,`ul`, `ol`).
 
@@ -342,7 +342,7 @@ this.users.map(function (user) {
 })
 ```
 
-Por lo tanto, aunque solo rendericemos elementos para una pequeña fracción de usuarios, debemos iterar sobre la lista completa cada vez que volvemos a renderizar, independientemente de si el conjunto de usuarios activos ha cambiado o no. 
+Por lo tanto, aunque solo rendericemos elementos para una pequeña fracción de usuarios, debemos iterar sobre la lista completa cada vez que volvemos a renderizar, independientemente de si el conjunto de usuarios activos ha cambiado o no.
 
 Al iterar sobre una propiedad calculada en su lugar, de esta manera:
 
@@ -742,7 +742,7 @@ Sus nombres generalmente incluyen el nombre del elemento que envuelven (por ejem
 
 Algunas ventajas de esta convención:
 
-- Cuando están organizados alfabéticamente en los editores, los componentes base serán listados todos juntos, volviendose más fácil de identificar.
+- Cuando están organizados alfabéticamente en los editores, los componentes base serán listados todos juntos, volviéndose más fácil de identificar.
 
 - Dado que los nombres de los componentes siempre deben ser multi-palabras, esta convención impide tener que elegir un prefijo arbitrario para componentes base simples (por ejemplo `MyButton`, `VueButton`).
 
@@ -802,11 +802,11 @@ components/
 
 
 
-### Nombres de componentes de instancia úncia <sup data-p="b">altamente recomendado</sup>
+### Nombres de componentes de instancia única <sup data-p="b">altamente recomendado</sup>
 
 **Componentes que deben tener solamente una única instancia activa deben comenzar con el prefijo `The`, para denotar que solo puede haber una.**
 
-Esto no quiere decir que la componente solamente es utiliza en una única página, sino que solamente será utilizada una vez _por página_. Este tipo de componente nunca aceptan _props_, dado que son específicas para la aplicación, no del contexto de la misma. Si usted encuentra la necesidad de añadir _props_, puede ser un buen indicio de que se trata de un comoponente reusable que solamente es utiliza una vez por página, _por ahora_.
+Esto no quiere decir que el componente solamente se utiliza en una única página, sino que solamente será utilizado una vez _por página_. Este tipo de componente nunca aceptan propiedades, dado que son específicas para la aplicación, no del contexto de la misma. Si usted encuentra la necesidad de añadir propiedades, puede ser un buen indicio de que se trata de un componente reusable que solamente se utiliza una vez por página, _por ahora_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Incorrecto
@@ -867,8 +867,8 @@ components/
 
 Esto no es recomendado, ya que resulta en:
 
-- Muchas archivos con nombres similares, haciendo difícil cambiar entre archivos en un editor de código.
-- Muchas subdirectorios anidados, lo cual incremente el tiempo que toma buscar un componente específico en un editor.
+- Muchos archivos con nombres similares, haciendo difícil cambiar entre archivos en un editor de código.
+- Muchos subdirectorios anidados, lo cual incrementa el tiempo que toma buscar un componente específico en un editor.
 
 {% raw %}</details>{% endraw %}
 
@@ -923,7 +923,7 @@ Usted se debe estar preguntando:
 
 > "¿Por qué forzar un lenguaje menos natural al nombrar componentes?"
 
-En el inglés natural, adjetivos y otros descriptores aparecen tipicamente antes de los sustantivos, mientras que excepciones requiren conectores. Por ejemplo:
+En inglés, adjetivos y otros descriptores aparecen típicamente antes de los sustantivos, mientras que excepciones requieren conectores. Por ejemplo:
 
 - Café _con_ leche
 - Sopa _del_ día
@@ -932,7 +932,7 @@ En el inglés natural, adjetivos y otros descriptores aparecen tipicamente antes
 Usted puede definitivamente incluir estos conectores en el nombre de los componentes si así lo desea, pero el orden de las palabras sigue siendo importante.
 
 
-También observe que **lo qué es considerado "de más alto nivle" será contextual a su aplicación**. Por ejemplo, imagine una aplicación con un formulario de búsqueda. Este puede incluir componentes como:
+También observe que **lo que es considerado "de más alto nivel" será contextual a su aplicación**. Por ejemplo, imagine una aplicación con un formulario de búsqueda. Este puede incluir componentes como:
 
 ```
 components/
@@ -1000,7 +1000,7 @@ components/
 
 **Componentes sin contenido deben cerrarse automáticamenete en [componentes single-file](../guide/single-file-components.html), _templates_ basados en _strings_, y [JSX](../guide/render-function.html#JSX) - pero nunca en _DOM templates_.**
 
-Los componentes que se cierran automáticamente no solo comunican que no tienen contenido, sino que garantizan que no deben tener contendio. Es la diferencia entre una página en blanco en un libro y una con el texto "Está página fue intencionalmente dejada en blanco". También, su código es más limpio sin la _tag_ de cerrado innecesaria.
+Los componentes que se cierran automáticamente no solo comunican que no tienen contenido, sino que garantizan que no deben tener contenido. Es la diferencia entre una página en blanco en un libro y una con el texto "Está página fue intencionalmente dejada en blanco". También, su código es más limpio sin la _tag_ de cerrado innecesaria.
 
 Desafortunadamente, HTML no permite que los elementos personalizados se cierren automáticamente - sólo los [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). Es por eso que esta estrategia solo es posible cuando los _templates_ Vue son compilados antes de estar en el DOM, por lo que pueden servir HTML compatible con la especifiación.
 
@@ -1008,12 +1008,12 @@ Desafortunadamente, HTML no permite que los elementos personalizados se cierren 
 #### Incorrecto
 
 ``` html
-<!-- En componentes single-file, templates basados en string, y JSX -->
+<!-- En componentes de un solo archivo, templates basados en string, y JSX -->
 <MyComponent></MyComponent>
 ```
 
 ``` html
-<!-- En DOM templates -->
+<!-- En plantillas del DOM -->
 <my-component/>
 ```
 {% raw %}</div>{% endraw %}
@@ -1022,12 +1022,12 @@ Desafortunadamente, HTML no permite que los elementos personalizados se cierren 
 #### Correcto
 
 ``` html
-<!-- En componentes single-file, templates basados en string, y JSX -->
+<!-- En componentes de un solo archivo, templates basados en string, y JSX -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- En DOM templates -->
+<!-- En plantillas del DOM -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
@@ -1040,11 +1040,11 @@ Desafortunadamente, HTML no permite que los elementos personalizados se cierren 
 
 PascalCase tiene algunas ventajas sobre kebab-case:
 
-- Editores puede autocompletar nombres de componentes en _templates_, ya que en JavaScript también se utiliza PascalCase.
-- `<MyComponent>` es más disntivo visualmente que un elemento HTML simple que `<my-component>`, porque hay dos caracteres distintos (las dos mayúsculas), en lugar de solo uno (el guión).
-- Si usted utiliza cualquier elemento no Vue en sus _templates_, como un componente web, PascalCase asegura que sus componente Vue se mantendrán distinguibles visualmente.
+- Editores pueden autocompletar nombres de componentes en plantillas, ya que en JavaScript también se utiliza PascalCase.
+- `<MyComponent>` es más distintivo visualmente que un elemento HTML simple que `<my-component>`, porque hay dos caracteres distintos (las dos mayúsculas), en lugar de solo uno (el guión).
+- Si usted utiliza cualquier elemento no Vue en sus plantillas, como un componente web, PascalCase asegura que sus componente Vue se mantendrán distinguibles visualmente.
 
-Desafortunadamente, como HTML es insensible a las mayúsculas y minúsculas, DOM _templates_ deben utilizar kebab-case.
+Desafortunadamente, como HTML es insensible a las mayúsculas y minúsculas, plantillas del DOM deben utilizar kebab-case.
 
 También tenga en cuenta que si usted ya ha invertido fuertemente en kebab-case, la consistencia con las convenciones de HTLM y la posibilidad de utilizar ese mismo enfoque en todos sus proyectos puede ser más importante que las ventajas mencionadas anteriormente. En dichos casos, **utilizar kebab-case en todos lados también es aceptable**.
 
