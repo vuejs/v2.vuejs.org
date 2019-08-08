@@ -998,11 +998,11 @@ components/
 
 ### Componentes con cierre automático <sup data-p="b">altamente recomendado</sup>
 
-**Componentes sin contenido deben cerrarse automáticamenete en [componentes single-file](../guide/single-file-components.html), _templates_ basados en _strings_, y [JSX](../guide/render-function.html#JSX) - pero nunca en _DOM templates_.**
+**Componentes sin contenido deben cerrarse automáticamenete en [componentes single-file](../guide/single-file-components.html), plantillas basadas en _strings_, y [JSX](../guide/render-function.html#JSX) - pero nunca en plantillas del DOM.**
 
 Los componentes que se cierran automáticamente no solo comunican que no tienen contenido, sino que garantizan que no deben tener contenido. Es la diferencia entre una página en blanco en un libro y una con el texto "Está página fue intencionalmente dejada en blanco". También, su código es más limpio sin la _tag_ de cerrado innecesaria.
 
-Desafortunadamente, HTML no permite que los elementos personalizados se cierren automáticamente - sólo los [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). Es por eso que esta estrategia solo es posible cuando los _templates_ Vue son compilados antes de estar en el DOM, por lo que pueden servir HTML compatible con la especifiación.
+Desafortunadamente, HTML no permite que los elementos personalizados se cierren automáticamente - sólo los [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). Es por eso que esta estrategia solo es posible cuando las plantillas Vue son compiladas antes de estar en el DOM, por lo que pueden servir HTML compatible con la especifiación.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Incorrecto
@@ -1036,7 +1036,7 @@ Desafortunadamente, HTML no permite que los elementos personalizados se cierren 
 
 ### Notación de nombres de componentes en templates <sup data-p="b">altamente recomendado</sup>
 
-**En la mayoría de los proyectos, los nombres de los componentes deben ser siempre PascalCase en [componentes single-file](../guide/single-file-components.html) y _templates_ basados en _string_ - pero kebab-case en DOM _templates_.**
+**En la mayoría de los proyectos, los nombres de los componentes deben ser siempre PascalCase en [componentes single-file](../guide/single-file-components.html) y plantillas basadas en _string_ - pero kebab-case en plantillas del DOM.**
 
 PascalCase tiene algunas ventajas sobre kebab-case:
 
@@ -1101,12 +1101,12 @@ OR
 </summary>
 {% endraw %}
 
-En JavaScript, PascalCase es la convención para clases y constructores - esencialmente, cualquier cosa que pueda tener instancias diferentes. Los componentes de Vue también tienen instancias, así que tiene sentido utilizar PascalCase. Como un beneficio agregado, utilizar PascalCase en JSX (y _templates_) nos permite distinguir de una manera más fácil entre componentes y elementos HTML.
+En JavaScript, PascalCase es la convención para clases y constructores - esencialmente, cualquier cosa que pueda tener instancias diferentes. Los componentes de Vue también tienen instancias, así que tiene sentido utilizar PascalCase. Como un beneficio agregado, utilizar PascalCase en JSX (y plantillas) nos permite distinguir de una manera más fácil entre componentes y elementos HTML.
 
 Sin embargo, para aplicaciones que **solo** utilizen definiciones globales vía `Vue.component`, nosotros recomendamos utilizar kebab-case. Las razones son las siguientes:
 
 - Es raro que los componentes globales sean referenciados en JavaScript, entonces adoptar una convención para Javascript no tiene sentido.
-- Estas aplicaciones siempre incluyen muchos DOM _templates_ donde [kebab-case **debe** ser utilizada](#Notacion-de-nombres-de-componentes-en-templates-altamente-recomendado).
+- Estas aplicaciones siempre incluyen muchas plantillas del DOM donde [kebab-case **debe** ser utilizada](#Notacion-de-nombres-de-componentes-en-templates-altamente-recomendado).
 
 {% raw %}</details>{% endraw %}
 
@@ -1197,7 +1197,7 @@ components/
 
 ### Notación de nombres de propiedades <sup data-p="b">altamente recomendado</sup>
 
-**Los nombres de propiedades siempre deben utilizar camelCase al declararse, pero kebab-case en _templates_ y [JSX](../guide/render-function.html#JSX).**
+**Los nombres de propiedades siempre deben utilizar camelCase al declararse, pero kebab-case en plantillas y [JSX](../guide/render-function.html#JSX).**
 
 Simplemente estamos siguiendo las convenciones de cada lenguaje. En Javascript, camelCase es más natural, mientras que HTML, kebab-case lo es.
 
@@ -1236,7 +1236,7 @@ props: {
 
 **Elementos con múltiples atributos deben ocupar múltiples líneas, con un atributo por línea.**
 
-En Javascript, dividir objetos que poseen múltiples propiedades en varias líneas es considerado una buena práctica, porque es mucho más fácil de leer. Nuestros _templates_ y [JSX](../guide/render-function.html#JSX) merecen la misma consideración.
+En Javascript, dividir objetos que poseen múltiples propiedades en varias líneas es considerado una buena práctica, porque es mucho más fácil de leer. Nuestras plantillas y [JSX](../guide/render-function.html#JSX) merecen la misma consideración.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Incorrecto
@@ -1273,9 +1273,9 @@ En Javascript, dividir objetos que poseen múltiples propiedades en varias líne
 
 ### Expresiones simples en tempaltes <sup data-p="b">altamente recomendado</sup>
 
-**_Templates_ de componentes debe incluir exxpresiones simple, con exxpresiones más complejas refactorizadas en propiedades computadas o métodos.**
+**Plantillas de componentes deben incluir expresiones simples, con expresiones más complejas refactorizadas en propiedades computadas o métodos.**
 
-Las expresiones complejos en sus _templates_ los tornan menos declaratimos. Debemos enfocarnos en escribir _qué_ debe aparecer, no en _cómo_ estamos computando dicho valor. También, las propiedades computadas y métodos permite que el código sea reutilizado.
+Las expresiones complejas en sus plantillas los tornan menos declarativos. Debemos enfocarnos en escribir _qué_ debe aparecer, no en _cómo_ estamos computando dicho valor. También, las propiedades computadas y métodos permite que el código sea reutilizado.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Incorrecto
