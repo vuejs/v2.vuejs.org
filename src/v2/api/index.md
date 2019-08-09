@@ -951,29 +951,29 @@ type: api
 
 - **Vea también:** [Componentes](../guide/components.html)
 
-## Options / Composition
+## Opciones / Composición
 
 ### parent
 
 - **Tipo:** `Vue instance`
 
-- **Details:**
+- **Detalles:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Especifica la instancia padre para la instancia que será creada. Establece la relación padre-hijo entre ambas. El padre será accesible como `this.$parent` para el hijo, y el hijo será insertado en el arreglo `$children` del padre.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Use `$parent` y `$children` con moderación. Prefiera el uso de _props_ y eventos para la comunicación entre padre y hijo.</p>
 
 ### mixins
 
 - **Tipo:** `Array<Object>`
 
-- **Details:**
+- **Detalles:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  La opción `mixins` acepta un arreglo de objetos _mixin_. Estos objetos pueden contener opciones de instancia, así como instancias de objetos normales, y luego serán combinados con las eventuales opciones utilizando la misma lógica de combinación que en `Vue.extend()`. Por ejemplo, sí su `mixin` contiene el _hook_ _created_ y su componente también lo tiene, ambas funciones serán invocadas.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Los _hooks_ de _mixin_ son invocados en el orden que son proporcionados, e invocados antes que los _hooks_ del componente.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var mixin = {
@@ -987,24 +987,24 @@ type: api
   // => 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **Vea también:** [Mixins](../guide/mixins.html)
 
 ### extends
 
 - **Tipo:** `Object | Function`
 
-- **Details:**
+- **Detalles:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Permite extender declarativamente otro componente (puede ser tanto un objeto plano con opciones como un constructor) sin tener que utilizar `Vue.extend`. Esto está destinado principalmente a facilitar la extensión entre componente _single-file_.
 
-  This is similar to `mixins`.
+  Esto es similar a los `mixinis`.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // extiende CompA sin tener que invocar `Vue.extend`
   var CompB = {
     extends: CompA,
     ...
@@ -1013,34 +1013,35 @@ type: api
 
 ### provide / inject
 
-> New in 2.2.0+
+> Nuevo en 2.2.0+
 
 - **Tipo:**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
-- **Details:**
+- **Detalles:**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` e `inject` se proporcionan principalmente para casos de uso avanzados en _plugins_ / componentes. NO es recomendado su uso en código de una aplicación genérica.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  Este par de opciones son utilizadas conjuntamente para hacer posible que un componente padre sirva como un inyector de dependencias para todos sus descendientes, independientemente de la profunidad de la jerarquía de componentes, siempre que esten en la misma cadena "familiar". Si usted está familiarizado con React, esto es muy similar a la funcionalidad _context_ de React.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  La opción `provide` debe ser un objeto o una función que retorna un objeto. Este objeto contiene las propiedades que están disponibles para ser inyectadas en sus descendientes. Usted puede usar _ES2015 Symbols_ como claves en este objeto, pero solo en ambientes que soportan nativamente `Symbol` y `Reflect.ownKeys`.
 
-  The `inject` option should be either:
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  La opción `inject` debe ser una de las siguientes opciones:
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  - un arreglo de _string_, o
+  - un objeto cuyas claves hacen referencia a los nombres de _bind_ locales y los valores son:
+    - la clave (_string_ o _Symbol_) para buscar en las inyecciones disponibles, o
+    - un objeto donde:
+      - la propiedad `from` es la clave (_string_ o _Symbol_) para buscar en las inyecciones disponibles, y
+      - la propiedad `default` es utilizada como valor por defecto
 
-- **Example:**
+  > Nota: los _binds_ `provide` e `inject` NO son reactivos. Esto es intencional. Sin embargo, si usted provee un objeto _observed_, las propiedades en ese objeto se mantienen reactivas.
+
+- **Ejemplo:**
 
   ``` js
-  // parent component providing 'foo'
+  // componente padre proporcionando 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1048,7 +1049,7 @@ type: api
     // ...
   }
 
-  // child component injecting 'foo'
+  // componente hijo inyectando 'foo'
   var Child = {
     inject: ['foo'],
     created () {
@@ -1058,7 +1059,7 @@ type: api
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Con _ES2015 Symbols_, función `provide` y objeto `inject`:
   ``` js
   const s = Symbol()
 
@@ -1076,9 +1077,9 @@ type: api
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > Los próximos dos ejemplos funcionan con Vue 2.2.1+. En versiones anteriores, los valores inyectados eran resueltos luego de la inicilización de las `props` y `data`.
 
-  Using an injected value as the default for a prop:
+  Utilizando un valor inyectado como el valor por defecto de una _prop_:
   ```js
   const Child = {
     inject: ['foo'],
@@ -1092,7 +1093,7 @@ type: api
   }
   ```
 
-  Using an injected value as data entry:
+  Utilizando un valor inyectado como una entrada para `data`:
   ```js
   const Child = {
     inject: ['foo'],
@@ -1104,7 +1105,7 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > En 2.5.0+ las inyecciones pueden ser opcionales con un valor por defecto:
 
   ``` js
   const Child = {
@@ -1114,7 +1115,7 @@ type: api
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  Si necesita ser inyectado desde una propiedad con un nombre diferente, utilize `from` para denotar la propiedad de origen:
 
   ``` js
   const Child = {
@@ -1127,7 +1128,7 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  Similar a los valores por defecto de las _props_, ustede debe utilizar una función _factory_ para valores no primitivos:
 
   ``` js
   const Child = {
