@@ -43,7 +43,7 @@ type: api
 
   Define estrategias personalizadas de mezclado <i>(merge)</i> por opción
 
-  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de es pasado como tercer argumento. 
+  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de es pasado como tercer argumento.
 
 
 
@@ -58,11 +58,11 @@ type: api
 - **Uso:**
 
   ``` js
-  // asegúrese de configurarlo de forma sincronizada inmediatamente después de cargar Vue  
+  // asegúrese de configurarlo de forma sincronizada inmediatamente después de cargar Vue
   Vue.config.devtools = true
   ```
 
-  Configura si se permite la inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en ambiente de desarrollo y `false` en ambiente de producción. Usted puede configurar a `true` para habilitar la inspección para el ambiente de producción. 
+  Configura si se permite la inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en ambiente de desarrollo y `false` en ambiente de producción. Usted puede configurar a `true` para habilitar la inspección para el ambiente de producción.
 
 ### errorHandler
 
@@ -1141,19 +1141,19 @@ type: api
   }
   ```
 
-## Options / Misc
+## Opciones / Misc
 
 ### name
 
 - **Tipo:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Restricción:** solo se respeta cuando es utiliza como opción de componente.
 
-- **Details:**
+- **Detalles:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Permite al componente a invocarse recursivamente en su propia plantilla. Note que cuando un componente se registra globalmente con `Vue.component()`, el ID global se configura automáticamente como su nombre.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Otro beneficio de especificar la opción `name` es para el depurado. Componentes con nombre resultan en mensaje de advertancia más útiles. También, al inspeccionar una aplicación con las [vue-devtools](https://github.com/vuejs/vue-devtools), componentes sin nombre se mostrarán como `<AnonymousComponent>`, lo cual no es muy informativo. Al proveer la opción `name`, usted obtendrá un árbol de componentes mucho más informativo.
 
 ### delimiters
 
@@ -1161,31 +1161,31 @@ type: api
 
 - **Por defecto:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restricciones:** solo disponible en la distribución completa, con compilación en el navegador.
 
-- **Details:**
+- **Detalles:**
 
-  Change the plain text interpolation delimiters.
+  Cambia los delimitadores para la interpolación de texto.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Cambia los delimitadores al estilo de plantillas de string de ES6
   ```
 
 ### functional
 
 - **Tipo:** `boolean`
 
-- **Details:**
+- **Detalles:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+  Causa que una componente sea sin estado (sin `data`) y sin instancia (no tendrá contexto `this`). Son simplemente una función de renderizado que retorna nodos virtuales, lo cual las hace mucho más baratas de renderizar.
 
-- **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Vea también:** [Componente Funcionales](../guide/render-function.html#Functional-Components)
 
 ### model
 
@@ -1193,11 +1193,11 @@ type: api
 
 - **Tipo:** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **Detalles:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Permite en un componente personalizado customizar la propiedad y el evento al utilizarlo con `v-model`. Por defecto, `v-model` en un componente utiliza `value` como la propiedad e `input` como el evento. Pero en algunos tipos de inputs como _checkboxes_ y _radio buttons_ usted podría desear utilizar la propiedad `value` para un propósito diferente. Utilizar la opción `model` puede evitar conflictos en dichos casos.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   Vue.component('my-checkbox', {
@@ -1206,9 +1206,9 @@ type: api
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // esto permite utilizar la propieda `value` para un propósito diferente
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // utiliza `checked` como la propiedad que toma el lugar de `value`
       checked: {
         type: Number,
         default: 0
@@ -1222,7 +1222,7 @@ type: api
   <my-checkbox v-model="foo" value="some value"></my-checkbox>
   ```
 
-  The above will be equivalent to:
+  Esto será equivalente a:
 
   ``` html
   <my-checkbox
@@ -1240,11 +1240,11 @@ type: api
 
 - **Por defecto:** `true`
 
-- **Details:**
+- **Detalles:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Por defecto, atributos _binded_ en el _scope_ del componente padre que no son reconocidos como _props_ serán aplicados al elemento raíz del componente hijo como atributos normales de HTML. Al implementar un componente con el objetivo de envolver otro elemnto y otro componente, este podría no ser el comportamiento deseado. Asignando el valor `false` a la opción `inheritAttrs`, este comportamiento por defecto puede ser deshabilitado. Los atributos estarán disponibles en la propiedad de instancia `$attrs` (también nueva en la versión 2.4) y pueden ser explícitamente vinculados a un elemntos que no es la raíz utilizando `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Nota: esta opción **no** afecta los _bindings_ de `class` y `style`.
 
 ### comments
 
@@ -1254,11 +1254,11 @@ type: api
 
 - **Por defecto:** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restricciones:** solo disponible en la distribución completa, con compilación en el navegador.
 
-- **Details:**
+- **Detalles:**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Cuando es `true`, se preservarán y renderizarán los comentarios HTML encontrados en la plantilla. El comportamiento por defecto es descatarlos.
 
 ## Instance Properties
 
