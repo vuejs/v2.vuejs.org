@@ -17,7 +17,7 @@ partners_list:
         languages:
             - English
         url: www.vehikl.com
-        email: 'go+vuejs@vehikl.com'
+        email: 'go+partner@vehikl.com'
         social_links:
             -
                 name: Github
@@ -31,8 +31,4 @@ partners_list:
                 name: Instagram
                 class: instagram
                 url: 'https://www.instagram.com/vehiklteam/'
-            -
-                name: LinkedIn
-                class: linkedin
-                url: 'https://www.linkedin.com/company/vehikl/'
 ---
