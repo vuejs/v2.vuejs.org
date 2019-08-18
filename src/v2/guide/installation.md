@@ -37,13 +37,13 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 For prototyping or learning purposes, you can use the latest version with:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 ```
 
 If you are using native ES Modules, there is also an ES Modules compatible build:
