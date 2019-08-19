@@ -37,13 +37,13 @@ Vue ашиглах үед, өөрийн хөтөч дээрээ [Vue Devtools](h
 Та prototype болон сургалтын зорилгоор хамгийн сүүлийн хувилбарыг ашиглаж болно:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 Production хөгжүүлэлтийн хувьд, тусгай хувилбарын дугаарыг ашиглахыг бид зөвлөж байна. Учир нь шинэ хувилбарууд дээр ямар нэг гэнэтийн алдаа гарахаас зайлхийж байгаа юм:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 ```
 
 Хэрвээ native ES Module-ууд ашиглаж байгаа бол, ES Modules-д тохиромжтой хувилбар бас байдаг:
