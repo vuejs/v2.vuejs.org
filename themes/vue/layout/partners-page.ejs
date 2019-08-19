@@ -1,13 +1,9 @@
 <div id="partners">
     <p>
-        Vue Partners are premium shops providing top-notch Vue development and consulting. Each of our partners can help you craft a beautiful, well-architected project.
+      Vue Partners are premium shops that provide first-class Vue consulting and development.
     </p>
 
     <h2>Active Partners</h2>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur earum fugit harum iusto, laborum minus nam odit provident quibusdam vero!
-    </p>
 
     <% for (let partner of page.partners_list) { %>
         <div class="partner">
@@ -54,7 +50,7 @@
                         <span class="sr-only">Link</span>
                     </dt>
                     <dd>
-                        <a href="https://<%- partner.url %>?utm_source=<%= page.permalink %>" target=_blank><%- partner.url %></a>
+                        <a href="https://<%- partner.url %>?utm_source=vue_partners_page" target=_blank><%- partner.url %></a>
                     </dd>
                     <footer class="social">
                         <% for( let link of partner.social_links) { %>
