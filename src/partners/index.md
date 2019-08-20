@@ -13,6 +13,7 @@ partners_list:
             - VueJs
             - Laravel
             - Node
+            - Team Augmentation
         location: Ontario, Canada
         languages:
             - English
