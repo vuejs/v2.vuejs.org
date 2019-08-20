@@ -17,7 +17,8 @@ partners_list:
         languages:
             - English
         url: www.vehikl.com
-        email: 'go+partner@vehikl.com'
+        hire_url: www.vehikl.com
+        email: go+partner@vehikl.com
         social_links:
             -
                 name: Github
