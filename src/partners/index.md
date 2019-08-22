@@ -18,7 +18,7 @@ partners_list:
         languages:
             - English
         url: www.vehikl.com?utm_source=vue_partners_page
-        hire_url: www.vehikl.com?utm_source=vue_partners_page
+        hire_url: www.vehikl.com/contact/?utm_source=vue_partners_page
         email: go+partner@vehikl.com
         social_links:
             -
