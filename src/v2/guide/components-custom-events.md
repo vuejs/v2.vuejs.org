@@ -25,6 +25,17 @@ Unlike components and props, event names will never be used as variable or prope
 
 For these reasons, we recommend you **always use kebab-case for event names**.
 
+Here a working example:
+
+```js
+this.$emit('my-event')
+```
+
+```html
+<!-- Works! -->
+<my-component v-on:my-event="doSomething"></my-component>
+```
+
 ## Customizing Component `v-model`
 
 > New in 2.2.0+
