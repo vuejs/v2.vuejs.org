@@ -885,7 +885,7 @@ Pola ini dapat digunakan sebagai ganti `$dispatch` dan `$broadcast` pada skenari
 
 Filter sekarang hanya dapat digunakan dalam interpolasi text (`{% raw %}{{ }}{% endraw %}` tags). Pada dulunya kita menemukan bahwa menggunakan filter didalam *directive* seperti `v-model`, `v-on`, etc malah mendatangkan kompleksitas daripada kenyamanan. Untuk filter list pada `v-for` juga lebih baik memindahkan filter sebagai *computed properties*, jadi dapat digunakan kembali di seluruh komponen.
 
-Pada dasarnya, dimana sesuatu dapat dicapai dengan Javascript biasa, kita ingin menghindari sintaks spesial seperti filter untuk menangani hal yang pada dasarnya sama. Berikut adalah cara bagaimana kamu dapat mengganti filter *directive* bawaan pada Vue:
+Secara umum, dimana sesuatu dapat dicapai dengan Javascript biasa, kita ingin menghindari sintaks spesial seperti filter untuk menangani hal yang secara umum sama. Berikut adalah cara bagaimana kamu dapat mengganti filter *directive* bawaan pada Vue:
 
 #### Menggantikan Filter `debounce`
 
@@ -1038,37 +1038,37 @@ kita kelilingi argumen dengan tanda kurung dan membatasi argumen dengan koma:
 
 ### Filter text bawaan <sup>dihapuskan</sup>
 
-Walaupun filter pada interpolasi teks masih diperbolehkan, semua filter telah dihapuskan. Sebagai gantinya, sangat di rekomendasikan untuk menggunakan librari khusus untuk memecahkan problem pada setiap domain (contoh: [`date-fns`](https://date-fns.org/) untuk men-format tanggal dan [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk mata uang)
+Walaupun filter pada interpolasi teks masih diperbolehkan, semua filter telah dihapuskan. Sebagai gantinya, sangat di rekomendasikan untuk menggunakan pustaka khusus untuk memecahkan problem pada setiap domain (contoh: [`date-fns`](https://date-fns.org/) untuk men-format tanggal dan [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk mata uang)
 
 For each of Vue's built-in text filters, we go through how you can replace them below. The example code could exist in custom helper functions, methods, or computed properties.
 
 Untuk setiap direktif filter bawaan Vue, kita mambahas bagaimana kamu dapat menggantinya dibawah ini. Contoh kode dapat ada pada fungsi kastem, *method*, ataupun *computed properties*
 
-#### Replacing the `json` Filter
+#### Menggantikan Filter `json`
 
-You actually don't need to for debugging anymore, as Vue will nicely format output for you automatically, whether it's a string, number, array, or plain object. If you want the exact same functionality as JavaScript's `JSON.stringify` though, then you can use that in a method or computed property.
+Kamu sebenarnya tidak membuhtukan ini untuk debugging lagi, Vue otomatis akan mem-format output baik itu teks, angka, *array*, maupun sebuah objek. Jika kamu ingin mendapatkan fungsionalitas yang sama maka fungsi `JSON.stringify` dapat membantu, dan kamu dapat menggunakannya pada *method* atau *computed properties*
 
-#### Replacing the `capitalize` Filter
+#### Menggantikan Filter `capitalize`
 
 ``` js
 text[0].toUpperCase() + text.slice(1)
 ```
 
-#### Replacing the `uppercase` Filter
+#### Menggantikan Filter `uppercase`
 
 ``` js
 text.toUpperCase()
 ```
 
-#### Replacing the `lowercase` Filter
+#### Menggantikan Filter `lowercase`
 
 ``` js
 text.toLowerCase()
 ```
 
-#### Replacing the `pluralize` Filter
+#### Menggantikan Filter `pluralize`
 
-The [pluralize](https://www.npmjs.com/package/pluralize) package on NPM serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
+Paket [pluralize](https://www.npmjs.com/package/pluralize) di NPM dapat digunakan untuk tujuan ini, tapi jika kamu ingin menjamakkan beberapa kata spesifik atau sebuah keluaran khusus seperti saat mendapatkan 0, maka kamu dapat mendefinisikan fungsi jamak-mu sendiri:
 
 ``` js
 function pluralizeKnife (count) {
@@ -1084,60 +1084,62 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-For a very naive implementation, you could do something like this:
+Untuk implementasi yang sangat naif, kamu dapat melakukan dengan cara ini
 
 {% codeblock lang:js %}
 '$' + price.toFixed(2)
 {% endcodeblock %}
 
-In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
+Walau di banyak kasus, kamu akan menemukan perilaku aneh (contoh: `0.035.toFixed(2)` dibulatkan ke atas menjadi `0.04`, tapi `0.045` dibulatkan kebawah menjadi `0.04`), Untuk itu kamu dapat menggunakan pustaka [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk menformat mata uang.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete text filters. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda dan temukan filter text yang dihapuskan. Jika kamu melewatkan sesuatu, lihatlah pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-### Two-Way Filters <sup>replaced</sup>
+### Filter Dua Arah <sup>diganti</sup>
 
-Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
+Beberapa pengguna nyaman menggunakan filter 2 arah dengan `v-model` untuk membuat isian unik dengan kode yang sedikit. Walaupun kelihatannya mudah tetapi, filter 2 arah juga menyembunyikan kompleksitas yang besar - dan bahkan mendukung UX yang sangat buruk dengan menunda memperbaharui *state*. Sebagai gantinya, komponen yang membungkus isian sangat di rekomendasikan sebagai cara eksplisit dan kaya fitur untuk membuat isian kastem.
 
-As an example, we'll now walk the migration of a two-way currency filter:
+Sebagai contoh, kita akan melakukan migrasi filter dua arah pada mata uang:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-It mostly works well, but the delayed state updates can cause strange behavior. For example, click on the `Result` tab and try entering `9.999` into one of those inputs. When the input loses focus, its value will update to `$10.00`. When looking at the calculated total however, you'll see that `9.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+Contoh itu hampir berkerja dengan baik, tapi penundaan pembaharuan *state* dapat menyebabkan perilaku aneh. Contoh, klik pada tab `Result` dan coba isikan `9.999` pada salah satu isian tersebut. Pada saat isian hilang fokus-nya, nilai pdaa isian akan berubah ke `$10.00`. Tapi pada saat melihat total kalkulasi yang tersimpan pada data menunjukan '9.999'. Versi realitas yang dilihat user kita tidak sinkron.
 
-To start transitioning towards a more robust solution using Vue 2.0, let's first wrap this filter in a new `<currency-input>` component:
+Untuk memulai transisi kedepannya dengan solusi yang lebih mudah di Vue 2.0 mari kira bungkus filter ini pada komponen `<currency-input>`:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 This allows us add behavior that a filter alone couldn't encapsulate, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter. Below, we pull everything out into an external [`currencyValidator` object](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
 
+Ini memungkinkan kita untuk menambahkan perilaku yang tidak dapat diringkas, seperti memilih konten dari sebuah isian yang sedang kondisi fokus. Langkah selanjutnya adalah meng-ekstrak logis bisnis pada filter. Dibawah, ini kita menarik keluar semuanya menjadi [objek `currencyValidator`](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
+
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
+Ini menambahkan modularitas, tidak hanya membuat mudah untuk migrasi ke Vue 2, tapi juga memungkinkan penguraian mata uang dan format dapat:
 
-- unit tested in isolation from your Vue code
-- used by other parts of your application, such as to validate the payload to an API endpoint
+- *unit testing* dalam isolasi dari kode Vue
+- digunakan pada bagaian lain dari aplikasi, seperti untuk memvalidasi muatan ke titik akhir API
 
-Having this validator extracted out, we've also more comfortably built it up into a more robust solution. The state quirks have been eliminated and it's actually impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+Setelah validator ini diekstrak, kita juga dapat menggunakannya untuk memecahnkan solusi solusi yang lain. Keanehan pada *state* sudah dieliminasi dan sebenarnya ini tidak memungkinkan pengguna untuk memasukan isian yang salah, seperti pada isian asli browser.
 
-We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
+Kita masih terbatas, dengan filter dan Vue 1.0 secara umum, jadi mari kita selesaikan upgrade ke Vue 2.0:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-You may notice that:
+Kamu mungkin memperhatikan bahwa:
 
-- Every aspect of our input is more explicit, using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters.
-- We can now use `v-model` directly on our custom inputs, which is not only more consistent with normal inputs, but also means our component is Vuex-friendly.
-- Since we're no longer using filter options that require a value to be returned, our currency work could actually be done asynchronously. That means if we had a lot of apps that had to work with currencies, we could easily refactor this logic into a shared microservice.
+- Setiap aspek pada isian lebih eksplisit, menggunakan kait siklus hidup dan event pada DOM sebagai ganti filter dua arah.
+- Kita sekarang dapat menggunakan `v-model` langsung pada isian kastem, dimana tidak hanya lebih konsisten sama seperti isian normal, tapi juga dapat membuat komponen kita enak digunakan dengan Vuex.
+- Karena kita tidak lagi menggunakan opsi filter yang memerlukan nilai untuk dikembalikan, kerja fungsi mata uang yang kita buat dapat diselesaikan secara tidak sinkron (*asyncronously*). Berarti jika kita mempunyai banyak sekali aplikasi yang harus berkerja dengan mata uang, kita dapat meringkas logika ini sebagai *microservice* untuk digunakan bersama.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters used in directives like <code>v-model</code>. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda dan temukan filter text yang dihapuskan. Jika kamu melewatkan sesuatu, lihatlah pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
