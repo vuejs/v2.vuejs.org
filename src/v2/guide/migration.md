@@ -879,17 +879,17 @@ Pola ini dapat digunakan sebagai ganti `$dispatch` dan `$broadcast` pada skenari
 </div>
 {% endraw %}
 
-## Filters
+## Filter
 
-### Filters Outside Text Interpolations <sup>removed</sup>
+### Filter di Luar Interpolasi Teks  <sup>dihapuskan</sup>
 
-Filters can now only be used inside text interpolations (`{% raw %}{{ }}{% endraw %}` tags). In the past we've found using filters within directives such as `v-model`, `v-on`, etc led to more complexity than convenience. For list filtering on `v-for`, it's also better to move that logic into JavaScript as computed properties, so that it can be reused throughout your component.
+Filter sekarang hanya dapat digunakan dalam interpolasi text (`{% raw %}{{ }}{% endraw %}` tags). Pada dulunya kita menemukan bahwa menggunakan filter didalam *directive* seperti `v-model`, `v-on`, etc malah mendatangkan kompleksitas daripada kenyamanan. Untuk filter list pada `v-for` juga lebih baik memindahkan filter sebagai *computed properties*, jadi dapat digunakan kembali di seluruh komponen.
 
-In general, whenever something can be achieved in plain JavaScript, we want to avoid introducing a special syntax like filters to take care of the same concern. Here's how you can replace Vue's built-in directive filters:
+Pada dasarnya, dimana sesuatu dapat dicapai dengan Javascript biasa, kita ingin menghindari sintaks spesial seperti filter untuk menangani hal yang pada dasarnya sama. Berikut adalah cara bagaimana kamu dapat mengganti filter *directive* bawaan pada Vue:
 
-#### Replacing the `debounce` Filter
+#### Menggantikan Filter `debounce`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <input v-on:keyup="doStuff | debounce 500">
@@ -903,7 +903,7 @@ methods: {
 }
 ```
 
-Use [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (or possibly [`throttle`](https://lodash.com/docs/4.15.0#throttle)) to directly limit calling the expensive method. You can achieve the same as above like this:
+Gunakan [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (atau mungkin [`throttle`](https://lodash.com/docs/4.15.0#throttle)) untuk melimitasi memanggil method yang berat. Kamu dapat menggunakan ini untuk mendapatkan hasil sama seperti diatas:
 
 ``` html
 <input v-on:keyup="doStuff">
@@ -917,17 +917,18 @@ methods: {
 }
 ```
 
-For more on the advantages of this strategy, see [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
+Untuk lebih lanjut tentang kelebihan strategi ini, lihat  [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
 
-#### Replacing the `limitBy` Filter
+#### Menggantikan filter `limitBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
+gunakan Javascript [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) pada *computed property*:
+
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -941,15 +942,15 @@ computed: {
 }
 ```
 
-#### Replacing the `filterBy` Filter
+#### Menggantikan filter `filterBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
+Gunakan Javascript [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) pada *computed property*:
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -966,8 +967,8 @@ computed: {
 }
 ```
 
-JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
-
+*Method* Javascript `.filter` juga dapat mengelola operasi penyaringan yang lebih kompleks. Sebagai contoh, jika kamu ingin menemukan setiap user
+ yang aktif secara *case-sensitive* cocok dengan nama dan email mereka:
 ``` js
 var self = this
 self.users.filter(function (user) {
@@ -979,15 +980,15 @@ self.users.filter(function (user) {
 })
 ```
 
-#### Replacing the `orderBy` Filter
+#### Menggantikan filter `orderBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-Use [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) in a computed property:
+Gunakan [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (atau [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) pada *computed property*:
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -1009,20 +1010,20 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters being used inside directives. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda untuk menemukan contoh filter yang digunakan dalam direktif. Jika kamu melupakan salah satu lihat juga <strong>konsol galat</strong>
 </div>
 {% endraw %}
 
-### Filter Argument Syntax <sup>changed</sup>
+### Filter Argumen Sintaks <sup>diganti</sup>
 
-Filters' syntax for arguments now better aligns with JavaScript function invocation. So instead of taking space-delimited arguments:
+Sintaks filters untuk argumen sekarang lebih selaras dengan fungsi invokasi pada Javascript.
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
 ```
 
-We surround the arguments with parentheses and delimit the arguments with commas:
+kita kelilingi argumen dengan tanda kurung dan membatasi argumen dengan koma:
 
 ``` html
 <p>{{ date | formatDate('YY-MM-DD', timeZone) }}</p>
@@ -1030,16 +1031,18 @@ We surround the arguments with parentheses and delimit the arguments with commas
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the old filter syntax. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan filter. Jika kamu melewatkannya , silahkan lihat pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-### Built-In Text Filters <sup>removed</sup>
+### Filter text bawaan <sup>dihapuskan</sup>
 
-Although filters within text interpolations are still allowed, all of the filters have been removed. Instead, it's recommended to use more specialized libraries for solving problems in each domain (e.g. [`date-fns`](https://date-fns.org/) to format dates and [`accounting`](http://openexchangerates.github.io/accounting.js/) for currencies).
+Walaupun filter pada interpolasi teks masih diperbolehkan, semua filter telah dihapuskan. Sebagai gantinya, sangat di rekomendasikan untuk menggunakan librari khusus untuk memecahkan problem pada setiap domain (contoh: [`date-fns`](https://date-fns.org/) untuk men-format tanggal dan [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk mata uang)
 
 For each of Vue's built-in text filters, we go through how you can replace them below. The example code could exist in custom helper functions, methods, or computed properties.
+
+Untuk setiap direktif filter bawaan Vue, kita mambahas bagaimana kamu dapat menggantinya dibawah ini. Contoh kode dapat ada pada fungsi kastem, *method*, ataupun *computed properties*
 
 #### Replacing the `json` Filter
 
