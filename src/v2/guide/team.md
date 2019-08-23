@@ -862,7 +862,7 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
-      twitter: '_achopin',
+      twitter: 'iamnuxt',
       work: {
         org: 'NuxtJS',
         orgUrl: 'https://nuxtjs.org'
