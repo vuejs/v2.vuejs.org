@@ -67,33 +67,33 @@ Disarankan untuk membungkus seluruh konten dalam sebuah elemen baru, seperti ini
 </div>
 {% endraw %}
 
-## Lifecycle Hooks
+## Kait Siklus Hidup (Lifecycle Hooks)
 
-### `beforeCompile` <sup>removed</sup>
+### `beforeCompile` <sup>dihapuskan</sup>
 
-Use the `created` hook instead.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
-</div>
-{% endraw %}
-
-### `compiled` <sup>replaced</sup>
-
-Use the new `mounted` hook instead.
+Gunakan kait `created` sebagai penggantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `attached` <sup>removed</sup>
+### `compiled` <sup>digantikan</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Gunakan kait `mounted` sebagai penggantinya.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
+</div>
+{% endraw %}
+
+### `attached` <sup>dihapuskan</sup>
+
+Gunakan kastem *in-DOM* cek di dalam kait lain. Dengan contoh, untuk menggantikan:
 
 ``` js
 attached: function () {
@@ -101,7 +101,7 @@ attached: function () {
 }
 ```
 
-You could use:
+Kamu bisa menggunakan:
 
 ``` js
 mounted: function () {
@@ -113,14 +113,14 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `detached` <sup>removed</sup>
+### `detached` <sup>dihapuskan</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Gunakan kastem *in-DOM* cek di dalam kait lain. Dengan contoh, untuk menggantikan:
 
 ``` js
 detached: function () {
@@ -128,7 +128,7 @@ detached: function () {
 }
 ```
 
-You could use:
+Kamu bisa menggunakan:
 
 ``` js
 destroyed: function () {
@@ -140,85 +140,86 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `init` <sup>renamed</sup>
+### `init` <sup>diubah nama</sup>
 
-Use the new `beforeCreate` hook instead, which is essentially the same thing. It was renamed for consistency with other lifecycle methods.
+Gunakan kait `beforeCreate` sebagai pengganti, dimana merupakan hal yang sama. Digantikan nama dikarenakan merujuk pada konsistensi penamaan *methods* siklus hidup yang lain.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
-### `ready` <sup>replaced</sup>
+### `ready` <sup>digantikan</sup>
 
-Use the new `mounted` hook instead. It should be noted though that with `mounted`, there's no guarantee to be in-document. For that, also include `Vue.nextTick`/`vm.$nextTick`. For example:
+Gunakan kait baru `mounted` sebagai pengganti. Harus menjadi perhatian bahwa dengan `mounted`, tidak ada garansi untuk bahwa page sudah benar benar di load oleh browser. Untuk itu, gunakan `Vue.nextTick`/`vm.$nextTick`. Sebagai contoh
 
 ``` js
 mounted: function () {
   this.$nextTick(function () {
-    // code that assumes this.$el is in-document
+    // kode anda dimana memastikan bahwa element sudah di load oleh browser
   })
 }
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk melihat contoh kait berikut.</p>
 </div>
 {% endraw %}
 
 ## `v-for`
 
-### `v-for` Argument Order for Arrays <sup>changed</sup>
+### `v-for` Argumen Persoalan Order Dalam Array <sup>diubah</sup>
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
-</div>
-{% endraw %}
-
-### `v-for` Argument Order for Objects <sup>changed</sup>
-
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+Saat menggunakan `index`, argumen order dalam array dulunya `(index, value)`. Sekarang `(value, index)` untuk menjaga konsistensi dengan methods array JavaScript's seperti `forEach` dan `map`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh argumen order yang lama. Perlu diperhatikan jika anda menamai index dengan <code>position</code> atau <code>num</code>, alat bantu tidak akan memberikan peringatan.</p>
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>removed</sup>
+### `v-for` Argumen Order Tentang Objek <sup>diubah</sup>
 
-The implicitly assigned `$index` and `$key` variables have been removed in favor of explicitly defining them in `v-for`. This makes the code easier to read for developers less experienced with Vue and also results in much clearer behavior when dealing with nested loops.
+Saat menggunakan `key` sebagai argumen order pada objek dulunya`(key, value)`. Sekarang menjadi `(value, key)` untuk lebih konsisten dengan objek iterator pada umumnya seperti `lodash`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these removed variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh argumen order yang lama. Perlu diperhatikan jika anda menamai kunci argumen anda dengan <code>name</code> atau <code>property</code> alat bantu tidak akan memberikan peringatan.</p>
 </div>
 {% endraw %}
 
-### `track-by` <sup>replaced</sup>
+### `$index` and `$key` <sup>dihapuskan</sup>
+
+Secara implisit variabel `$index` dan `$key` dihapuskan karena secara explisit didefinisikan kedalam `v-for`. Ini membuat kode lebih gampang di baca untuk developer yang kurang berpengalaman dengan Vue dan juga membuat perilaku yang lebih jelas saat berkerja dengan *nested loops*.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan variabel yang telah dihapuskan berikut. Jika kamu lupa untuk menhapusnya, kamu akan melihat <strong>console errors</strong> seperti: <code>Uncaught ReferenceError: $index is not defined</code></p>
+</div>
+{% endraw %}
+
+### `track-by` <sup>digantikan</sup>
 
 `track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
+`track-by` telah diganti dengan `key`, dimana berkerja seperti attribut lain: tanpa `v-bind:` atau `:` sebagai prefix, `key` di perlakukan sebagai *literal string*. DI banyak kasus, kamu mungkin ingin menggunakan *binding* dinamis dimana mengharapakan suatu *full expression*  daripada kunci saja. Sebagai contoh :
 
 {% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
 {% endcodeblock %}
 
-You would now write:
+Kamu sekarang menuliskan :
 
 {% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
@@ -226,27 +227,27 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> untuk menemukan contoh dari pada <code>track-by</code>.</p>
 </div>
 {% endraw %}
 
-### `v-for` Range Values <sup>changed</sup>
+### `v-for` Nila Rentang <sup>diubah</sup>
 
-Previously, `v-for="number in 10"` would have `number` starting at 0 and ending at 9. Now it starts at 1 and ends at 10.
+Dulunya, `v-for="number in 10"` dengan `number` dimulai dari 0 ke 9. Sekarang dimulai dari 1 sampai dengan 10.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Cari di kodebase anda <code>/\w+ in \d+/</code>. Dimana ini muncul pada <code>v-for</code>, lalu cek jika mungkin memberikan efek pada kode anda.</p>
 </div>
 {% endraw %}
 
 ## Props
 
-### `coerce` Prop Option <sup>removed</sup>
+### `coerce` Opsi Pada Props <sup>dihapuskan</sup>
 
-If you want to coerce a prop, setup a local computed value based on it instead. For example, instead of:
+Jika kamu ingin memaksakan sebuah *prop*, gunakan nilai hitung berdasarkan prop tersebut. Sebagai contoh, daripada :
 
 ``` js
 props: {
@@ -261,7 +262,7 @@ props: {
 }
 ```
 
-You could write:
+Anda dapat menuliskan:
 
 ``` js
 props: {
@@ -276,82 +277,84 @@ computed: {
 }
 ```
 
-There are a few advantages:
+Disini ada beberapa keuntungan:
 
-- You still have access to the original value of the prop.
-- You are forced to be more explicit, by giving your coerced value a name that differentiates it from the value passed in the prop.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>coerce</code> option.</p>
-</div>
-{% endraw %}
-
-### `twoWay` Prop Option <sup>removed</sup>
-
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
-
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- Kamu tetap mendapatkan akses pada nilai original pada prop.
+- Kamu dipaksa untuk lebih eksplisit, dimana kamu dipaksa memberikan nilai pada nama yang membedakan prop tersebut dari nilai yang di masukan pada prop.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>twoWay</code> option.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan opsi <code>coerce</code>.</p>
 </div>
 {% endraw %}
 
-### `.once` and `.sync` Modifiers on `v-bind` <sup>removed</sup>
+### `twoWay` Prop Option <sup>dihapus</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Prop sekarang selalu satu jalur ke bawah. Untuk menimbulkan efek pada scope induk, komponen harus secara explisit memberikan event daripada harus bergantung pada binding implisit. Untuk informasi selanjutnya, lihat:
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- [event kastem komponen](components.html#Custom-Events)
+- [kastem komponen input](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [Pengelolaan global state](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>.once</code> and <code>.sync</code> modifiers.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan opsi <code>twoWay</code>.</p>
 </div>
 {% endraw %}
 
-### Prop Mutation <sup>deprecated</sup>
+### `.once` and `.sync` Modifiers on `v-bind` <sup>dihapus</sup>
 
-Mutating a prop locally is now considered an anti-pattern, e.g. declaring a prop and then setting `this.myProp = 'someOtherValue'` in the component. Due to the new rendering mechanism, whenever the parent component re-renders, the child component's local changes will be overwritten.
+Prop sekarang selalu satu jalur ke bawah. Untuk menimbulkan efek pada scope induk, komponen harus secara explisit memberikan event daripada harus bergantung pada binding implisit. Untuk informasi selanjutnya, lihat:
 
-Most use cases of mutating a prop can be replaced by one of these options:
-
-- a data property, with the prop used to set its default value
-- a computed property
+- [event kastem komponen](components.html#Custom-Events)
+- [kastem komponen input](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [Pengelolaan global state](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about prop mutations.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan contoh pengubah <code>.once</code> dan <code>.sync</code></p>
 </div>
 {% endraw %}
 
-### Props on a Root Instance <sup>replaced</sup>
+### Mutasi Prop <sup>usang</sup>
 
-On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead of `props`.
+Mengubah prop sekarang merupakan sebuah *anti-pattern* (tidak disarankan dilakukan), contoh mendeklarasikan prop dan men-set prop `this.myProp = 'someOtherValue'` pada komponen. Dikarenakan mekanisame *rendering* yang baru, setiap komponen induk melakukan *re-render*, perubahan lokal komponen tersebut akan ditimpa.
+
+Sebagian besar kasus penggunaan mutasi pada props dapat diganti dengan salah satu opsi ini:
+
+- sebuah properti data, dengan prop di set pada nilai standar
+- sebuah computed properti
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Upgrade Vue lalu jalankan *end-to-end* testing kamu, cari <strong>console warnings</strong> tentang mutasi prop.</p>
 </div>
 {% endraw %}
 
-## Computed properties
+### Prop pada Akar Instance <sup>digantikan</sup>
+
+Pada akar *instances* Vue (contoh, instances yang dibuat dengan `new Vue({ ... })`) kamu harus menggunakan `propsData` sebagai ganti `props`
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalankan</h4>
+  <p>Jalankan *end-to-end* tes, jika kamu mempunyainya. <strong>tes gagal</strong> akan memberikan peringatan bahwa prop yang dimasukan pada akar instances Vue sudah tidak berkerja lagi.</p>
+</div>
+{% endraw %}
+
+## Properti Computed (Computed properties)
 
 ### `cache: false` <sup>deprecated</sup>
 
 Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
 
-For example:
+Pembatalan chaching dari senuah properti computed akan dihapuskan pada versi major Vue selanjutnya. Ganti semua *uncached* properti computed dengan method, dimana akan menghasailakn hal yang sama
+
+Contoh:
 
 ``` js
 template: '<p>message: {{ timeMessage }}</p>',
@@ -365,7 +368,7 @@ computed: {
 }
 ```
 
-Or with component methods:
+atau dengan komponen method:
 
 ``` js
 template: '<p>message: {{ getTimeMessage() }}</p>',
@@ -378,8 +381,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda dan anda akan menemukan opsi <code>cache: false</code></p>
 </div>
 {% endraw %}
 
@@ -524,7 +527,7 @@ Keuntungan lain dari pendekatan ini adalah akan ada waktu ketika *debouncing* ti
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut <code>*debounce*</code>.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut <code>*debounce*</code>.</p>
 </div>
 {% endraw %}
 
@@ -547,7 +550,7 @@ Kamu dapat menggunakan:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut .</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh atribut .</p>
 </div>
 {% endraw %}
 
@@ -634,7 +637,7 @@ Jika Anda ingin menimpa `!important` lainnya, Anda harus menggunakan <i>string s
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> pada baris kode Anda menemukan contoh-contoh dengan ikatan gaya  <code>*!important*</code> dalam objek.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada baris kode Anda menemukan contoh-contoh dengan ikatan gaya  <code>*!important*</code> dalam objek.</p>
 </div>
 {% endraw %}
 
@@ -661,7 +664,7 @@ Disamping itu, `$refs` dirancang untuk program dalam javascript - Tidak disarana
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan<a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-el</code> dan <code>v-ref</code>.</p>
+  <p>Jalankan<a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-el</code> dan <code>v-ref</code>.</p>
 </div>
 {% endraw %}
 
@@ -684,7 +687,7 @@ Anda dapat menggunakan:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur Upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-else</code> dengan <code>v-show</code>.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> untuk mencari contoh-contoh <code>v-else</code> dengan <code>v-show</code>.</p>
 </div>
 {% endraw %}
 
@@ -703,7 +706,7 @@ Untungnya, karena direktif-direktif baru jauh lebih sederhana, maka kamu dapat m
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif. <i>Helper</i> akan menandai mereka semua, karena dalam kebanyakan kasus yang ingin Anda <i>refactory</i> ke dalam komponen.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif. <i>Helper</i> akan menandai mereka semua, karena dalam kebanyakan kasus yang ingin Anda <i>refactory</i> ke dalam komponen.</p>
 </div>
 {% endraw %}
 
@@ -726,77 +729,81 @@ Jadi:
 {% raw %}
 <div class="upgrade-path">
   <h4>Jalur upgrade</h4>
-  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">bantuan migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif modifikasi `.literal`.</p>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dari <i>codebase</i> Anda untuk mencari contoh-contoh pada direktif modifikasi `.literal`.</p>
 </div>
 {% endraw %}
 
-## Transitions
+## Transisi
 
-### `transition` Attribute <sup>replaced</sup>
+### Atribut `transition` <sup>diubah</sup>
 
 Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
 
+Sistem transisi sistem sekarang sudah berganti cukup drastis dan sekarang menggunakan `<transition>` dan `<transition-group>` elemen pembungkus, daripada memakai atribut `transisi`. Di rekomendasikan untuk membaca dokumentasi terbaru [tentang transisi](transitions.html) untuk info lebih lanjut.
+
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh penggunaan attribut <code>transition</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.transition` for Reusable Transitions <sup>replaced</sup>
+### `Vue.transition` untuk transisi yang dapat digunakan kembali <sup>diubah</sup>
 
-With the new transition system, you can now [use components for reusable transitions](transitions.html#Reusable-Transitions).
+Dengan sistem transisi yang terbaru anda [dapat menggunakan komponen](transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di kode anda untuk menemukan contoh penggunaan attribut <code>Vue.transition</code>.</p>
 </div>
 {% endraw %}
 
 ### Transition `stagger` Attribute <sup>removed</sup>
 
-If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
+Jika kamu ingin membuat transisi list *stagger* kamu dapat mengontrol timing dengan menyeting dan meng-akses `data-index` (atau attribut yang sama lain-nya) di dalam elemen. Lihat contoh [disini](transitions.html#Staggering-List-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan contoh pneggunaan atribut <code>transition</code>. Saat aplikasi ter-update, kamu dapat mentransisikan ke dalam strategi `stagger` terbaru juga.</p>
 </div>
 {% endraw %}
 
 ## Events
 
-### `events` option <sup>removed</sup>
+### opsi `events` <sup>dihapus</sup>
 
 The `events` option has been removed. Event handlers should now be registered in the `created` hook instead. Check out the [`$dispatch` and `$broadcast` migration guide](#dispatch-and-broadcast-replaced) for a detailed example.
 
-### `Vue.directive('on').keyCodes` <sup>replaced</sup>
+Opsi `events` telah dihapuskan. Event handler untuk sekarang harus di registrasikan pada kait `created`. Cek [ dokumentasi migrasi `$dispatch` dan `$broadcast`](#dispatch-and-broadcast-replaced)
 
-The new, more concise way to configure `keyCodes` is through `Vue.config.keyCodes`. For example:
+### `Vue.directive('on').keyCodes` <sup>diganti</sup>
+
+Cara baru dan ringkas untuk mengatur `keyCodes` ini adalah melalui `Vue.config.keyCodes`. Contoh :
 
 ``` js
-// enable v-on:keyup.f1
+// izinkan v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the the old <code>keyCode</code> configuration syntax.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan sintaks konfigurasi lama <code>keyCode</code>.</p>
 </div>
 {% endraw %}
 
-### `$dispatch` and `$broadcast` <sup>replaced</sup>
+### `$dispatch` dan `$broadcast` <sup>digantikan</sup>
 
-`$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` dan `$broadcast` sudah dihapuskan untuk lebih explisit saat melakukan komunikasi antar komponen dan menghasilakn *state management* yang lebih dapat di pelihara, contoh [Vuex](https://github.com/vuejs/vuex)
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+Masalahnya adalah event yang mengalir tergantung pada struktur pohon komponen sangat sangatlah sulit untuk dipikirkan, sangat rapuh saat pohon komponen menjadi besar. Hal tersebut sangat susah untuk di-*scaling* dan hanya membuat sakit kepala pada nantinya. `$dispatch` dan `$broadcast` tidak juga menyelesaikan masalah *sibling* komponen (komponen yang menggunakan props value sama).
 
-One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
+Salah satu contoh yang biasa digunakan pada methods ini adalah untuk berkomunikasi antara induk komponen dengan anak langsung induk komponen tersebut. Pada kasus berikut, kamu dapat menggunakan *event* [`$emit` dari komponen anak menggunakan `v-on`](components.html#Form-Input-Components-using-Custom-Events). Ini membuatmu menjaga kenyamanan pada *event* dengan menambah secara ekplisit pada *event* tersebut.
 
-However, when communicating between distant descendants/ancestors, `$emit` won't help you. Instead, the simplest possible upgrade would be to use a centralized event hub. This has the added benefit of allowing you to communicate between components no matter where they are in the component tree - even between siblings! Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
+Bagaimanapun itu, saat berkomunikasi antar komponen induk/anak yang jauh, `$emit` tidak dapat menolongmu. Untuk itu, solusi paling simple adalah dengan menggunakan *event hub* yang ter-sentralisasi. Cara ini menambahkan keuntungan dengan mengizinkan komunikasi antar komponen, dimanapun posisi komponen itu berada dalam struktur pohon komponen, dikarenakan *instance* Vue meng-implementasikan antar muka *event emitter*, kamu sebenarnya dapat menggunakan *instance* Vue kosong untuk hal ini.
 
-For example, let's say we have a todo app structured like this:
+Contoh, katakanlah kita mempunyai sebuah *todo app* terstruktur seperti berikut:
 
 ```
 Todos
@@ -805,15 +812,17 @@ Todos
    └─ DeleteTodoButton
 ```
 
-We could manage communication between components with this single event hub:
+Kita dapat mengelola komunikasi antar komponen dengan satu *event hub*:
 
 ``` js
-// This is the event hub we'll use in every
-// component to communicate between them.
+// Ini adalah event hub yang kita
+// gunakan untuk berkomunu kasi antar komponen
 var eventHub = new Vue()
 ```
 
 Then in our components, we can use `$emit`, `$on`, `$off` to emit events, listen for events, and clean up event listeners, respectively:
+
+Lalu di dalam komponen, kita dapat menggunakan `$emit`, `$on`, `$off` untuk memasukan *event*, mendengar *event*, dan menghapus *event*, dengan benar:
 
 ``` js
 // NewTodoInput
@@ -843,8 +852,8 @@ created: function () {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
-// It's good to clean up event listeners before
-// a component is destroyed.
+// Sangat disarankan untuk menghapus *Event.listener* sebelum \
+// komponen di hancurkan (sebelum kait `destroyed`)
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
@@ -861,26 +870,26 @@ methods: {
 }
 ```
 
-This pattern can serve as a replacement for `$dispatch` and `$broadcast` in simple scenarios, but for more complex cases, it's recommended to use a dedicated state management layer such as [Vuex](https://github.com/vuejs/vuex).
+Pola ini dapat digunakan sebagai ganti `$dispatch` dan `$broadcast` pada skenario yang mudah, untuk kasus yang lebih komplex, direkomendasikan menggunakan *state management* sendiri seperti [Vuex](https://github.com/vuejs/vuex).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>$dispatch</code> and <code>$broadcast</code>.</p>
+  <h4>jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda untuk menemukan sintaks <code>$dispatch</code> dan <code>$broadcast</code>.</p>
 </div>
 {% endraw %}
 
-## Filters
+## Filter
 
-### Filters Outside Text Interpolations <sup>removed</sup>
+### Filter di Luar Interpolasi Teks  <sup>dihapuskan</sup>
 
-Filters can now only be used inside text interpolations (`{% raw %}{{ }}{% endraw %}` tags). In the past we've found using filters within directives such as `v-model`, `v-on`, etc led to more complexity than convenience. For list filtering on `v-for`, it's also better to move that logic into JavaScript as computed properties, so that it can be reused throughout your component.
+Filter sekarang hanya dapat digunakan dalam interpolasi text (`{% raw %}{{ }}{% endraw %}` tags). Pada dulunya kita menemukan bahwa menggunakan filter didalam *directive* seperti `v-model`, `v-on`, etc malah mendatangkan kompleksitas daripada kenyamanan. Untuk filter list pada `v-for` juga lebih baik memindahkan filter sebagai *computed properties*, jadi dapat digunakan kembali di seluruh komponen.
 
-In general, whenever something can be achieved in plain JavaScript, we want to avoid introducing a special syntax like filters to take care of the same concern. Here's how you can replace Vue's built-in directive filters:
+Secara umum, dimana sesuatu dapat dicapai dengan Javascript biasa, kita ingin menghindari sintaks spesial seperti filter untuk menangani hal yang secara umum sama. Berikut adalah cara bagaimana kamu dapat mengganti filter *directive* bawaan pada Vue:
 
-#### Replacing the `debounce` Filter
+#### Menggantikan Filter `debounce`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <input v-on:keyup="doStuff | debounce 500">
@@ -894,7 +903,7 @@ methods: {
 }
 ```
 
-Use [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (or possibly [`throttle`](https://lodash.com/docs/4.15.0#throttle)) to directly limit calling the expensive method. You can achieve the same as above like this:
+Gunakan [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (atau mungkin [`throttle`](https://lodash.com/docs/4.15.0#throttle)) untuk melimitasi memanggil method yang berat. Kamu dapat menggunakan ini untuk mendapatkan hasil sama seperti diatas:
 
 ``` html
 <input v-on:keyup="doStuff">
@@ -908,17 +917,18 @@ methods: {
 }
 ```
 
-For more on the advantages of this strategy, see [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
+Untuk lebih lanjut tentang kelebihan strategi ini, lihat  [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
 
-#### Replacing the `limitBy` Filter
+#### Menggantikan filter `limitBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
+gunakan Javascript [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) pada *computed property*:
+
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -932,15 +942,15 @@ computed: {
 }
 ```
 
-#### Replacing the `filterBy` Filter
+#### Menggantikan filter `filterBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
+Gunakan Javascript [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) pada *computed property*:
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -957,8 +967,8 @@ computed: {
 }
 ```
 
-JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
-
+*Method* Javascript `.filter` juga dapat mengelola operasi penyaringan yang lebih kompleks. Sebagai contoh, jika kamu ingin menemukan setiap user
+ yang aktif secara *case-sensitive* cocok dengan nama dan email mereka:
 ``` js
 var self = this
 self.users.filter(function (user) {
@@ -970,15 +980,15 @@ self.users.filter(function (user) {
 })
 ```
 
-#### Replacing the `orderBy` Filter
+#### Menggantikan filter `orderBy`
 
-Instead of:
+Daripada menggunakan:
 
 ``` html
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-Use [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) in a computed property:
+Gunakan [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (atau [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) pada *computed property*:
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -1000,20 +1010,20 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters being used inside directives. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda untuk menemukan contoh filter yang digunakan dalam direktif. Jika kamu melupakan salah satu lihat juga <strong>konsol galat</strong>
 </div>
 {% endraw %}
 
-### Filter Argument Syntax <sup>changed</sup>
+### Filter Argumen Sintaks <sup>diganti</sup>
 
-Filters' syntax for arguments now better aligns with JavaScript function invocation. So instead of taking space-delimited arguments:
+Sintaks filters untuk argumen sekarang lebih selaras dengan fungsi invokasi pada Javascript.
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
 ```
 
-We surround the arguments with parentheses and delimit the arguments with commas:
+kita kelilingi argumen dengan tanda kurung dan membatasi argumen dengan koma:
 
 ``` html
 <p>{{ date | formatDate('YY-MM-DD', timeZone) }}</p>
@@ -1021,42 +1031,44 @@ We surround the arguments with parentheses and delimit the arguments with commas
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the old filter syntax. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> di dalam kode anda untuk menemukan filter. Jika kamu melewatkannya , silahkan lihat pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-### Built-In Text Filters <sup>removed</sup>
+### Filter text bawaan <sup>dihapuskan</sup>
 
-Although filters within text interpolations are still allowed, all of the filters have been removed. Instead, it's recommended to use more specialized libraries for solving problems in each domain (e.g. [`date-fns`](https://date-fns.org/) to format dates and [`accounting`](http://openexchangerates.github.io/accounting.js/) for currencies).
+Walaupun filter pada interpolasi teks masih diperbolehkan, semua filter telah dihapuskan. Sebagai gantinya, sangat di rekomendasikan untuk menggunakan pustaka khusus untuk memecahkan problem pada setiap domain (contoh: [`date-fns`](https://date-fns.org/) untuk men-format tanggal dan [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk mata uang)
 
 For each of Vue's built-in text filters, we go through how you can replace them below. The example code could exist in custom helper functions, methods, or computed properties.
 
-#### Replacing the `json` Filter
+Untuk setiap direktif filter bawaan Vue, kita mambahas bagaimana kamu dapat menggantinya dibawah ini. Contoh kode dapat ada pada fungsi kastem, *method*, ataupun *computed properties*
 
-You actually don't need to for debugging anymore, as Vue will nicely format output for you automatically, whether it's a string, number, array, or plain object. If you want the exact same functionality as JavaScript's `JSON.stringify` though, then you can use that in a method or computed property.
+#### Menggantikan Filter `json`
 
-#### Replacing the `capitalize` Filter
+Kamu sebenarnya tidak membuhtukan ini untuk debugging lagi, Vue otomatis akan mem-format output baik itu teks, angka, *array*, maupun sebuah objek. Jika kamu ingin mendapatkan fungsionalitas yang sama maka fungsi `JSON.stringify` dapat membantu, dan kamu dapat menggunakannya pada *method* atau *computed properties*
+
+#### Menggantikan Filter `capitalize`
 
 ``` js
 text[0].toUpperCase() + text.slice(1)
 ```
 
-#### Replacing the `uppercase` Filter
+#### Menggantikan Filter `uppercase`
 
 ``` js
 text.toUpperCase()
 ```
 
-#### Replacing the `lowercase` Filter
+#### Menggantikan Filter `lowercase`
 
 ``` js
 text.toLowerCase()
 ```
 
-#### Replacing the `pluralize` Filter
+#### Menggantikan Filter `pluralize`
 
-The [pluralize](https://www.npmjs.com/package/pluralize) package on NPM serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
+Paket [pluralize](https://www.npmjs.com/package/pluralize) di NPM dapat digunakan untuk tujuan ini, tapi jika kamu ingin menjamakkan beberapa kata spesifik atau sebuah keluaran khusus seperti saat mendapatkan 0, maka kamu dapat mendefinisikan fungsi jamak-mu sendiri:
 
 ``` js
 function pluralizeKnife (count) {
@@ -1072,92 +1084,98 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-For a very naive implementation, you could do something like this:
+Untuk implementasi yang sangat naif, kamu dapat melakukan dengan cara ini
 
 {% codeblock lang:js %}
 '$' + price.toFixed(2)
 {% endcodeblock %}
 
-In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
+Walau di banyak kasus, kamu akan menemukan perilaku aneh (contoh: `0.035.toFixed(2)` dibulatkan ke atas menjadi `0.04`, tapi `0.045` dibulatkan kebawah menjadi `0.04`), Untuk itu kamu dapat menggunakan pustaka [`accounting`](http://openexchangerates.github.io/accounting.js/) untuk menformat mata uang.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete text filters. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda dan temukan filter text yang dihapuskan. Jika kamu melewatkan sesuatu, lihatlah pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-### Two-Way Filters <sup>replaced</sup>
+### Filter Dua Arah <sup>diganti</sup>
 
-Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
+Beberapa pengguna nyaman menggunakan filter 2 arah dengan `v-model` untuk membuat isian unik dengan kode yang sedikit. Walaupun kelihatannya mudah tetapi, filter 2 arah juga menyembunyikan kompleksitas yang besar - dan bahkan mendukung UX yang sangat buruk dengan menunda memperbaharui *state*. Sebagai gantinya, komponen yang membungkus isian sangat di rekomendasikan sebagai cara eksplisit dan kaya fitur untuk membuat isian kastem.
 
-As an example, we'll now walk the migration of a two-way currency filter:
+Sebagai contoh, kita akan melakukan migrasi filter dua arah pada mata uang:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-It mostly works well, but the delayed state updates can cause strange behavior. For example, click on the `Result` tab and try entering `9.999` into one of those inputs. When the input loses focus, its value will update to `$10.00`. When looking at the calculated total however, you'll see that `9.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+Contoh itu hampir berkerja dengan baik, tapi penundaan pembaharuan *state* dapat menyebabkan perilaku aneh. Contoh, klik pada tab `Result` dan coba isikan `9.999` pada salah satu isian tersebut. Pada saat isian hilang fokus-nya, nilai pdaa isian akan berubah ke `$10.00`. Tapi pada saat melihat total kalkulasi yang tersimpan pada data menunjukan '9.999'. Versi realitas yang dilihat user kita tidak sinkron.
 
-To start transitioning towards a more robust solution using Vue 2.0, let's first wrap this filter in a new `<currency-input>` component:
+Untuk memulai transisi kedepannya dengan solusi yang lebih mudah di Vue 2.0 mari kira bungkus filter ini pada komponen `<currency-input>`:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 This allows us add behavior that a filter alone couldn't encapsulate, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter. Below, we pull everything out into an external [`currencyValidator` object](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
 
+Ini memungkinkan kita untuk menambahkan perilaku yang tidak dapat diringkas, seperti memilih konten dari sebuah isian yang sedang kondisi fokus. Langkah selanjutnya adalah meng-ekstrak logis bisnis pada filter. Dibawah, ini kita menarik keluar semuanya menjadi [objek `currencyValidator`](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
+
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
+Ini menambahkan modularitas, tidak hanya membuat mudah untuk migrasi ke Vue 2, tapi juga memungkinkan penguraian mata uang dan format dapat:
 
-- unit tested in isolation from your Vue code
-- used by other parts of your application, such as to validate the payload to an API endpoint
+- *unit testing* dalam isolasi dari kode Vue
+- digunakan pada bagaian lain dari aplikasi, seperti untuk memvalidasi muatan ke titik akhir API
 
-Having this validator extracted out, we've also more comfortably built it up into a more robust solution. The state quirks have been eliminated and it's actually impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+Setelah validator ini diekstrak, kita juga dapat menggunakannya untuk memecahnkan solusi solusi yang lain. Keanehan pada *state* sudah dieliminasi dan sebenarnya ini tidak memungkinkan pengguna untuk memasukan isian yang salah, seperti pada isian asli browser.
 
-We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
+Kita masih terbatas, dengan filter dan Vue 1.0 secara umum, jadi mari kita selesaikan upgrade ke Vue 2.0:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-You may notice that:
+Kamu mungkin memperhatikan bahwa:
 
-- Every aspect of our input is more explicit, using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters.
-- We can now use `v-model` directly on our custom inputs, which is not only more consistent with normal inputs, but also means our component is Vuex-friendly.
-- Since we're no longer using filter options that require a value to be returned, our currency work could actually be done asynchronously. That means if we had a lot of apps that had to work with currencies, we could easily refactor this logic into a shared microservice.
+- Setiap aspek pada isian lebih eksplisit, menggunakan kait siklus hidup dan event pada DOM sebagai ganti filter dua arah.
+- Kita sekarang dapat menggunakan `v-model` langsung pada isian kastem, dimana tidak hanya lebih konsisten sama seperti isian normal, tapi juga dapat membuat komponen kita enak digunakan dengan Vuex.
+- Karena kita tidak lagi menggunakan opsi filter yang memerlukan nilai untuk dikembalikan, kerja fungsi mata uang yang kita buat dapat diselesaikan secara tidak sinkron (*asyncronously*). Berarti jika kita mempunyai banyak sekali aplikasi yang harus berkerja dengan mata uang, kita dapat meringkas logika ini sebagai *microservice* untuk digunakan bersama.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters used in directives like <code>v-model</code>. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a>di dalam kode anda dan temukan filter text yang dihapuskan. Jika kamu melewatkan sesuatu, lihatlah pada <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-## Slots
+## Slot
 
-### Duplicate Slots <sup>removed</sup>
+### Slot Duplikat <sup>dihapuskan</sup>
 
 It is no longer supported to have `<slot>`s with the same name in the same template. When a slot is rendered it is "used up" and cannot be rendered elsewhere in the same render tree. If you must render the same content in multiple places, pass that content as a prop.
 
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
-</div>
-{% endraw %}
-
-### `slot` Attribute Styling <sup>removed</sup>
-
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+Vue tidak lagi mendukung adanya `<slot>` dengan nama yang sama di template yang sama. Saat slot di *render* slot akan "terpakai" dan tidak dapat di *render* kembali pada pohon *render* yang sama. Jika kamu harus merender konten yang sama di beberapa tempat, lempar konten tersebut sebagai prop.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan *end-to-end* tes kamu atau aplikasimu setelah upgrade dan cari   <strong>peringatan pada konsol</strong> tentang duplikat slot <code>v-model</code>.</p>
 </div>
 {% endraw %}
 
-## Special Attributes
+### Atribut gaya pada `slot` <sup>removed</sup>
+
+Konten yang dimasukan lewat `<slot>` bernama sudah tidak lagi menjaga atribut `slot`. Gunakan elemen pembungkus untuk memberikan gaya, atau untuk kasus penggunaan lanjutan, ubah konten yang dimasukan secara terprogram dengan [render functions](render-function.html).
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dalam kode anda find untuk menemukan gaya CSS yang menargetkan slot bernama (contoh: <code>[slot="my-slot-name"]</code>).</p>
+</div>
+{% endraw %}
+
+## Attribut Spesial
 
 ### `keep-alive` Attribute <sup>replaced</sup>
 
 `keep-alive` is no longer a special attribute, but rather a wrapper component, similar to `<transition>`. For example:
+
+`keep-alive` sekarang sudah tidak termasuk attribut spesial, tetapi sebuah komponen pembungkus, sama halnya seperti `<transition>`. Contoh:
 
 ``` html
 <keep-alive>
@@ -1165,7 +1183,7 @@ Content inserted via named `<slot>` no longer preserves the `slot` attribute. Us
 </keep-alive>
 ```
 
-This makes it possible to use `<keep-alive>` on multiple conditional children:
+Ini membuat attribut `keep-alive` dapat digunakan pada banyak komponen anak berkondisi:
 
 ``` html
 <keep-alive>
@@ -1174,9 +1192,9 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will be ignored.</p>
+<p class="tip">Saat `<keep-alive>` mempunyai banyak komponen anak, mereka pada akhirnya harus mengevaluasi pada satu anak komponen. Komponen anak mana pun selain yang pertama akan diabaikan.</p>
 
-When used together with `<transition>`, make sure to nest it inside:
+Saat digunakan bersama `<transition>`, pastikan ada di dalam komponen tersebut:
 
 ``` html
 <transition>
@@ -1188,28 +1206,28 @@ When used together with `<transition>`, make sure to nest it inside:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan atribut<code>keep-alive</code>.</p>
 </div>
 {% endraw %}
 
-## Interpolation
+## interpolasi
 
-### Interpolation within Attributes <sup>removed</sup>
+### Interpolasi diantara atribut <sup>dihapuskan</sup>
 
-Interpolation within attributes is no longer valid. For example:
+Interpolasi diantara atribut sudah tidak lagi valid. Sebagai contoh:
 
 ``` html
 <button class="btn btn-{{ size }}"></button>
 ```
 
-Should either be updated to use an inline expression:
+Harus diperbaharui untuk menggunakan ekspresi sebaris:
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
 ```
 
-Or a data/computed property:
+Atau sebagai data/properti *computed*
 
 ``` html
 <button v-bind:class="buttonClasses"></button>
@@ -1230,25 +1248,32 @@ computed: {
 </div>
 {% endraw %}
 
-### HTML Interpolation <sup>removed</sup>
-
-HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in favor of the [`v-html` directive](../api/#v-html).
-
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find HTML interpolations.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh interpolasi yang digunakan diantara atribut.</p>
 </div>
 {% endraw %}
 
-### One-Time Bindings <sup>replaced</sup>
+### Interpolasi HTML <sup>dihapuskan</sup>
 
-One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been replaced by the new [`v-once` directive](../api/#v-once).
+Interpolasi (`{% raw %}{{{ foo }}}{% endraw %}`) telah dihapuskan demi [`v-html` directive](../api/#v-html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find one-time bindings.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh interpolasi pada HTML.</p>
+</div>
+{% endraw %}
+
+### Satu kali *binding* <sup>digantikan</sup>
+
+Satu kali *binding* (`{% raw %}{{* foo }}{% endraw %}`) telah digantikan oleh [`v-once` directive](../api/#v-once).
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan <i>binding</i> satu kali.</p>
 </div>
 {% endraw %}
 
