@@ -1169,11 +1169,13 @@ Konten yang dimasukan lewat `<slot>` bernama sudah tidak lagi menjaga atribut `s
 </div>
 {% endraw %}
 
-## Special Attributes
+## Attribut Spesial
 
 ### `keep-alive` Attribute <sup>replaced</sup>
 
 `keep-alive` is no longer a special attribute, but rather a wrapper component, similar to `<transition>`. For example:
+
+`keep-alive` sekarang sudah tidak termasuk attribut spesial, tetapi sebuah komponen pembungkus, sama halnya seperti `<transition>`. Contoh:
 
 ``` html
 <keep-alive>
@@ -1181,7 +1183,7 @@ Konten yang dimasukan lewat `<slot>` bernama sudah tidak lagi menjaga atribut `s
 </keep-alive>
 ```
 
-This makes it possible to use `<keep-alive>` on multiple conditional children:
+Ini membuat attribut `keep-alive` dapat digunakan pada banyak komponen anak berkondisi:
 
 ``` html
 <keep-alive>
@@ -1190,9 +1192,9 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will be ignored.</p>
+<p class="tip">Saat `<keep-alive>` mempunyai banyak komponen anak, mereka pada akhirnya harus mengevaluasi pada satu anak komponen. Komponen anak mana pun selain yang pertama akan diabaikan.</p>
 
-When used together with `<transition>`, make sure to nest it inside:
+Saat digunakan bersama `<transition>`, pastikan ada di dalam komponen tersebut:
 
 ``` html
 <transition>
@@ -1204,8 +1206,8 @@ When used together with `<transition>`, make sure to nest it inside:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan atribut<code>keep-alive</code>.</p>
 </div>
 {% endraw %}
 
