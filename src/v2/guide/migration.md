@@ -191,7 +191,7 @@ Cuando se incluye una `clave`, el orden de los argumentos para los objetos solí
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos del orden de argumento obsoleto. Tenga en cuenta que si nombra sus argumentos clave como <code>name</code> o <code>property</code>, el asistente no los encontrará.</p>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> para encontrar ejemplos del orden de argumento obsoleto. Tenga en cuenta que si nombra sus argumentos clave como <code>name</code> o <code>property</code>, el asistente no los encontrará.</p>
 </div>
 {% endraw %}
 
@@ -202,13 +202,13 @@ Las variables implícitamente asignadas `$index` y `$key` se han eliminado a fav
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos de estas variables removidas en su código. Si usted se pierde de alguna, también debería ver los <strong>errores de consola</strong> como: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> para encontrar ejemplos de estas variables removidas en su código. Si usted se pierde de alguna, también debería ver los <strong>errores de consola</strong> como: <code>Uncaught ReferenceError: $index is not defined</code></p>
 </div>
 {% endraw %}
 
 ### `track-by` <sup>reemplazado</sup>
 
-`track-by` ha sido reemplazado por `key`, que funciona como cualquier otro atributo: sin el prefijo `v-bind:` o `:`, se trata como una cadena de texto literal. En la mayoría de los casos, desearía utilizar un enlace dinámico que espera una expresión completa en lugar de una clave. Por ejemplo, en lugar de:
+`track-by` ha sido reemplazado por `key`, que funciona como cualquier otro atributo: sin el prefijo `v-bind:` o `:`, se trata como una cadena de texto literal. En la mayoría de los casos, usted desearía utilizar un enlace dinámico que espera una expresión completa en lugar de una clave. Por ejemplo, en lugar de:
 
 ```html
 <div v-for="item in items" track-by="id">
@@ -223,7 +223,7 @@ Usted debería escribir:
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos de <code>track-by</code> en su código.</p>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> para encontrar ejemplos de <code>track-by</code> en su código.</p>
 </div>
 {% endraw %}
 
