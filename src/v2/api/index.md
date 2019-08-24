@@ -1268,7 +1268,7 @@ type: api
 
 - **Detalles:**
 
-  El objeto _data_ que la instancia Vue esta observando. La instancia Vue provee acceso a estas propiedades en su objeto _data_.
+  El objeto _data_ que la instancia Vue está observando. La instancia Vue provee acceso a estas propiedades en su objeto _data_.
 
 - **Vea también:** [Opciones / Data - data](#data)
 
@@ -1331,7 +1331,7 @@ type: api
 
 - **Detalles:**
 
-  La instancia Vue raíz del árbol de componente actual. Sí la instancia actual no tiene un padre, este valor será él mismo.
+  La instancia Vue raíz del árbol de componentes actual. Sí la instancia actual no tiene un padre, este valor será el componente mismo.
 
 ### vm.$children
 
@@ -1351,7 +1351,7 @@ type: api
 
 - **Detalles:**
 
-  Utilizado para acceder programaticamente al contenido [distribuido por los _slots_](../guide/components.html#Content-Distribution-with-Slots). Cada [_slot_ con nombre](../guide/components.html#Named-Slots) tiene su propia propiedad correspondiente (por ejemplo, el contenido de `slot=foo` se encontrará en `vm.$slots.foo`). La propiedad `default` contiene cualquier nodo que no este incluído en un _slot_ con nombre.
+  Utilizado para acceder programaticamente al contenido [distribuido por los _slots_](../guide/components.html#Content-Distribution-with-Slots). Cada [_slot_ con nombre](../guide/components.html#Named-Slots) tiene su propia propiedad correspondiente (por ejemplo, el contenido de `slot=foo` se encontrará en `vm.$slots.foo`). La propiedad `default` contiene cualquier nodo que no esté incluido en un _slot_ con nombre.
 
   Acceder a `vm.$slots` es útil cuando se está implementando un componente con [función de renderizado](../guide/render-function.html).
 
@@ -1420,10 +1420,10 @@ type: api
 
 - **Detalles:**
 
-  Un objeto de elementos del DOM e instancias de componentes, registrado con [atributos `ref`](#ref).
+  Un objeto de elementos del DOM e instancias de componentes, registrados con [atributos `ref`](#ref).
 
 - **Vea también:**
-  - [Referencias a Componentes Hijo](../guide/components.html#Child-Component-Refs)
+  - [Referencias a Componentes Hijos](../guide/components.html#Child-Component-Refs)
   - [Atributos Especiales - ref](#ref)
 
 ### vm.$isServer
@@ -1448,7 +1448,7 @@ type: api
 
 - **Detalles:**
 
-  Contiene _bindings_ de atributos del _scope_ del componente padre (excepto para `class` y `style`) que no son reconocidos como _props_. Cuando un componente no tiene _props_ decalaradas, esta propiedad contiene todos los _bindings_ de atributos del _scope_ del componente padre (excepto `class` y `style`), y puede ser pasada a un componente interno vía `v-bind="$attrs"` - útil cuando se quiere implementar componentes de orden superior.
+  Contiene _bindings_ de atributos del _scope_ del componente padre (excepto para `class` y `style`) que no son reconocidos como _props_. Cuando un componente no tiene _props_ declaradas, esta propiedad contiene todos los _bindings_ de atributos del _scope_ del componente padre (excepto `class` y `style`), y puede ser pasada a un componente interno vía `v-bind="$attrs"` - útil cuando se quiere implementar componentes de orden superior.
 
 ### vm.$listeners
 
