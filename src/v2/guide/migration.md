@@ -1211,23 +1211,23 @@ Saat digunakan bersama `<transition>`, pastikan ada di dalam komponen tersebut:
 </div>
 {% endraw %}
 
-## Interpolation
+## interpolasi
 
-### Interpolation within Attributes <sup>removed</sup>
+### Interpolasi diantara atribut <sup>dihapuskan</sup>
 
-Interpolation within attributes is no longer valid. For example:
+Interpolasi diantara atribut sudah tidak lagi valid. Sebagai contoh:
 
 ``` html
 <button class="btn btn-{{ size }}"></button>
 ```
 
-Should either be updated to use an inline expression:
+Harus diperbaharui untuk menggunakan ekspresi sebaris:
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
 ```
 
-Or a data/computed property:
+Atau sebagai data/properti *computed*
 
 ``` html
 <button v-bind:class="buttonClasses"></button>
@@ -1248,25 +1248,32 @@ computed: {
 </div>
 {% endraw %}
 
-### HTML Interpolation <sup>removed</sup>
-
-HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in favor of the [`v-html` directive](../api/#v-html).
-
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find HTML interpolations.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh interpolasi yang digunakan diantara atribut.</p>
 </div>
 {% endraw %}
 
-### One-Time Bindings <sup>replaced</sup>
+### Interpolasi HTML <sup>dihapuskan</sup>
 
-One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been replaced by the new [`v-once` directive](../api/#v-once).
+Interpolasi (`{% raw %}{{{ foo }}}{% endraw %}`) telah dihapuskan demi [`v-html` directive](../api/#v-html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find one-time bindings.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh interpolasi pada HTML.</p>
+</div>
+{% endraw %}
+
+### Satu kali *binding* <sup>digantikan</sup>
+
+Satu kali *binding* (`{% raw %}{{* foo }}{% endraw %}`) telah digantikan oleh [`v-once` directive](../api/#v-once).
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan <i>binding</i> satu kali.</p>
 </div>
 {% endraw %}
 
