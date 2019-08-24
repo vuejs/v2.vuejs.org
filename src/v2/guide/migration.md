@@ -173,68 +173,68 @@ mounted: function () {
 
 ## `v-for`
 
-### `v-for` Argument Order for Arrays <sup>changed</sup>
+### `v-for` Orden de argumento para Arreglos <sup>cambiado</sup>
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
-</div>
-{% endraw %}
-
-### `v-for` Argument Order for Objects <sup>changed</sup>
-
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+Cuando se incluye un `índice`, el orden de los argumentos para los arreglos solía ser `(índice, valor)`. Ahora es `(valor, índice)` para ser más coherente con los métodos de matriz nativos de JavaScript, como `forEach` y` map`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> para encontrar ejemplos del orden de argumentos obsoleto. Tenga en cuenta que si nombra su argumento de índice con algún nombre inusual como <code>position</code> o <code>num</code>, el asistente no los encontrará.</p>
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>removed</sup>
+### `v-for` Orden de argumento para objetos <sup>cambiado</sup>
 
-The implicitly assigned `$index` and `$key` variables have been removed in favor of explicitly defining them in `v-for`. This makes the code easier to read for developers less experienced with Vue and also results in much clearer behavior when dealing with nested loops.
+Cuando se incluye una `clave`, el orden de los argumentos para los objetos solía ser `(clave, valor)`. Ahora es `(valor, clave)` para ser más consistente con iteradores de objetos comunes como lodash.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these removed variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos del orden de argumento obsoleto. Tenga en cuenta que si nombra sus argumentos clave como <code>name</code> o <code>property</code>, el asistente no los encontrará.</p>
 </div>
 {% endraw %}
 
-### `track-by` <sup>replaced</sup>
+### `$index` y `$key` <sup>removido</sup>
 
-`track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
+Las variables implícitamente asignadas `$index` y `$key` se han eliminado a favor de definirlas explícitamente en `v-for`. Esto hace que el código sea más fácil de leer para los desarrolladores con menos experiencia en Vue y también da como resultado un comportamiento mucho más claro cuando se trata de bucles anidados.
 
-``` html
+{% raw %}
+<div class="upgrade-path">
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos de estas variables removidas en su código. Si usted se pierde de alguna, también debería ver los <strong>errores de consola</strong> como: <code>Uncaught ReferenceError: $index is not defined</code></p>
+</div>
+{% endraw %}
+
+### `track-by` <sup>reemplazado</sup>
+
+`track-by` ha sido reemplazado por `key`, que funciona como cualquier otro atributo: sin el prefijo `v-bind:` o `:`, se trata como una cadena de texto literal. En la mayoría de los casos, desearía utilizar un enlace dinámico que espera una expresión completa en lugar de una clave. Por ejemplo, en lugar de:
+
+```html
 <div v-for="item in items" track-by="id">
 ```
 
-You would now write:
+Usted debería escribir:
 
-``` html
+```html
 <div v-for="item in items" v-bind:key="item.id">
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper"> asistente de migración</a> para encontrar ejemplos de <code>track-by</code> en su código.</p>
 </div>
 {% endraw %}
 
-### `v-for` Range Values <sup>changed</sup>
+### `v-for` Valores de rango <sup>cambiado</sup>
 
-Previously, `v-for="number in 10"` would have `number` starting at 0 and ending at 9. Now it starts at 1 and ends at 10.
+Previamente, `v-for="number in 10"` tenía `number` empezando en 0 y terminando en 9. Ahora, comienza en 1 y termina en 10.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Busque en su código con la expresión regular <code>/\w+ in \d+/</code>. Donde sea que aparezca en un <code>v-for</code>, verifique si puede verse afectado.</p>
 </div>
 {% endraw %}
 
