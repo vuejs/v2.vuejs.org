@@ -1462,22 +1462,22 @@ Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal de
 </div>
 {% endraw %}
 
-## Instance DOM Options
+## Opciones de la instancia DOM
 
-### `replace: false` <sup>removed</sup>
+### `replace: false` <sup>removido</sup>
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+Los componentes ahora siempre reemplazan al elemento al que están vinculados. Para simular el comportamiento de `replace: false`, usted puede ajustar su componente raíz con un elemento similar al que está reemplazando. Por ejemplo:
 
-``` js
+```js
 new Vue({
   el: '#app',
   template: '<div id="app"> ... </div>'
 })
 ```
 
-Or with a render function:
+O una función render:
 
-``` js
+```js
 new Vue({
   el: '#app',
   render: function (h) {
@@ -1492,8 +1492,10 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para entontrar ejemplos de <code>replace: false</code>.
+  </p>
 </div>
 {% endraw %}
 
