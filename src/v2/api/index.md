@@ -43,7 +43,7 @@ type: api
 
   Define estrategias personalizadas de mezclado <i>(merge)</i> por opción
 
-  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de es pasado como tercer argumento.
+  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de Vue es pasado como tercer argumento.
 
 
 
@@ -1141,19 +1141,19 @@ type: api
   }
   ```
 
-## Opciones / Misc
+## Opciones / Misceláneas
 
 ### name
 
 - **Tipo:** `string`
 
-- **Restricción:** solo se respeta cuando es utiliza como opción de componente.
+- **Restricción:** solo se respeta cuando es utilizada como opción de componente.
 
 - **Detalles:**
 
-  Permite al componente a invocarse recursivamente en su propia plantilla. Note que cuando un componente se registra globalmente con `Vue.component()`, el ID global se configura automáticamente como su nombre.
+  Permite al componente invocarse recursivamente en su propia plantilla. Note que cuando un componente se registra globalmente con `Vue.component()`, el ID global se configura automáticamente como su nombre.
 
-  Otro beneficio de especificar la opción `name` es para el depurado. Componentes con nombre resultan en mensaje de advertancia más útiles. También, al inspeccionar una aplicación con las [vue-devtools](https://github.com/vuejs/vue-devtools), componentes sin nombre se mostrarán como `<AnonymousComponent>`, lo cual no es muy informativo. Al proveer la opción `name`, usted obtendrá un árbol de componentes mucho más informativo.
+  Otro beneficio de especificar la opción `name` es para el depurado. Componentes con nombre resultan en mensajes de advertencia más útiles. También, al inspeccionar una aplicación con las [vue-devtools](https://github.com/vuejs/vue-devtools), componentes sin nombre se mostrarán como `<AnonymousComponent>`, lo cual no es muy informativo. Al proveer la opción `name`, usted obtendrá un árbol de componentes mucho más informativo.
 
 ### delimiters
 
@@ -1183,7 +1183,7 @@ type: api
 
 - **Detalles:**
 
-  Causa que una componente sea sin estado (sin `data`) y sin instancia (no tendrá contexto `this`). Son simplemente una función de renderizado que retorna nodos virtuales, lo cual las hace mucho más baratas de renderizar.
+  Causa que un componente sea sin estado (sin `data`) y sin instancia (no tendrá contexto `this`). Son simplemente una función de renderizado que retorna nodos virtuales, lo cual las hace mucho más baratas de renderizar.
 
 - **Vea también:** [Componente Funcionales](../guide/render-function.html#Functional-Components)
 
@@ -1206,7 +1206,7 @@ type: api
       event: 'change'
     },
     props: {
-      // esto permite utilizar la propieda `value` para un propósito diferente
+      // esto permite utilizar la propiedad `value` para un propósito diferente
       value: String,
       // utiliza `checked` como la propiedad que toma el lugar de `value`
       checked: {
@@ -1242,7 +1242,7 @@ type: api
 
 - **Detalles:**
 
-  Por defecto, atributos _binded_ en el _scope_ del componente padre que no son reconocidos como _props_ serán aplicados al elemento raíz del componente hijo como atributos normales de HTML. Al implementar un componente con el objetivo de envolver otro elemnto y otro componente, este podría no ser el comportamiento deseado. Asignando el valor `false` a la opción `inheritAttrs`, este comportamiento por defecto puede ser deshabilitado. Los atributos estarán disponibles en la propiedad de instancia `$attrs` (también nueva en la versión 2.4) y pueden ser explícitamente vinculados a un elemntos que no es la raíz utilizando `v-bind`.
+  Por defecto, atributos _binded_ en el _scope_ del componente padre que no son reconocidos como _props_ serán aplicados al elemento raíz del componente hijo como atributos normales de HTML. Al implementar un componente con el objetivo de envolver otro elemento y otro componente, este podría no ser el comportamiento deseado. Asignando el valor `false` a la opción `inheritAttrs`, este comportamiento por defecto puede ser deshabilitado. Los atributos estarán disponibles en la propiedad de instancia `$attrs` (también nueva en la versión 2.4) y pueden ser explícitamente vinculados a un elemento que no es la raíz utilizando `v-bind`.
 
   Nota: esta opción **no** afecta los _bindings_ de `class` y `style`.
 
@@ -1258,7 +1258,7 @@ type: api
 
 - **Detalles:**
 
-  Cuando es `true`, se preservarán y renderizarán los comentarios HTML encontrados en la plantilla. El comportamiento por defecto es descatarlos.
+  Cuando es `true`, se preservarán y renderizarán los comentarios HTML encontrados en la plantilla. El comportamiento por defecto es descartarlos.
 
 ## Instance Properties
 
