@@ -684,36 +684,36 @@ You can use:
 </div>
 {% endraw %}
 
-## Custom Directives <sup>simplified</sup>
+## Directivas personalizadas <sup>simplificado</sup>
 
-Directives have a greatly reduced scope of responsibility: they are now only used for applying low-level direct DOM manipulations. In most cases, you should prefer using components as the main code-reuse abstraction.
+Las directivas tienen un alcance de responsabilidad muy reducido: ahora solo se usan para aplicar manipulaciones del DOM de bajo nivel. En la mayoría de los casos, debería preferir usar componentes como la abstracción principal de reutilización de código.
 
-Some of the most notable differences include:
+Algunas de las diferencias más notables incluyen:
 
-- Directives no longer have instances. This means there's no more `this` inside directive hooks. Instead, they receive everything they might need as arguments. If you really must persist state across hooks, you can do so on `el`.
-- Options such as `acceptStatement`, `deep`, `priority`, etc have all been removed. To replace `twoWay` directives, see [this example](#Two-Way-Filters-replaced).
-- Some of the current hooks have different behavior and there are also a couple new hooks.
+- Las directivas ya no tienen instancias. Esto significa que no hay más `this` dentro de los ganchos de la directiva. En cambio, reciben todo lo que puedan necesitar como argumentos. Si realmente debe persistir el estado a través de los ganchos, puede hacerlo en `el`.
+- Opciones como `acceptStatement`, `deep`, `priority`, etc han sido removidas. Para reemplazar directivas `twoWay`, vea [este ejemple](#Two-Way-Filters-replaced).
+- Algunos de los ganchos actuales tienen un comportamiento diferente y también hay un par de ganchos nuevos.
 
-Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Custom Directives guide](custom-directive.html) to learn more.
+Afortunadamente, dado que las nuevas directivas son mucho más simples, puede dominarlas más fácilmente. Lea la nueva [Guía de directivas personalizadas](custom-directive.html) para obtener más información.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of defined directives. The helper will flag all of them, as it's likely in most cases that you'll want to refactor to a component.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de directivas definidas. El asistente los marcará a todos, ya que es probable que en la mayoría de los casos desee refactorizar a un componente.</p>
 </div>
 {% endraw %}
 
-### Directive `.literal` Modifier <sup>removed</sup>
+### Directiva `.literal` Modificador <sup>removido</sup>
 
-The `.literal` modifier has been removed, as the same can be easily achieved by providing a string literal as the value.
+Se ha eliminado el modificador `.literal`, ya que se puede lograr fácilmente proporcionando una cadena de texto como valor.
 
-For example, you can update:
+Por ejemplo, puede cambiar:
 
 ``` js
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-to:
+por:
 
 ``` html
 <p v-my-directive="'foo bar baz'"></p>
@@ -721,8 +721,8 @@ to:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the `.literal` modifier on a directive.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos del modificador `.literal` en una directiva.</p>
 </div>
 {% endraw %}
 
