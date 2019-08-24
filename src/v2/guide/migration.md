@@ -1143,27 +1143,29 @@ Kamu mungkin memperhatikan bahwa:
 </div>
 {% endraw %}
 
-## Slots
+## Slot
 
-### Duplicate Slots <sup>removed</sup>
+### Slot Duplikat <sup>dihapuskan</sup>
 
 It is no longer supported to have `<slot>`s with the same name in the same template. When a slot is rendered it is "used up" and cannot be rendered elsewhere in the same render tree. If you must render the same content in multiple places, pass that content as a prop.
 
+Vue tidak lagi mendukung adanya `<slot>` dengan nama yang sama di template yang sama. Saat slot di *render* slot akan "terpakai" dan tidak dapat di *render* kembali pada pohon *render* yang sama. Jika kamu harus merender konten yang sama di beberapa tempat, lempar konten tersebut sebagai prop.
+
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan *end-to-end* tes kamu atau aplikasimu setelah upgrade dan cari   <strong>peringatan pada konsol</strong> tentang duplikat slot <code>v-model</code>.</p>
 </div>
 {% endraw %}
 
-### `slot` Attribute Styling <sup>removed</sup>
+### Atribut gaya pada `slot` <sup>removed</sup>
 
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+Konten yang dimasukan lewat `<slot>` bernama sudah tidak lagi menjaga atribut `slot`. Gunakan elemen pembungkus untuk memberikan gaya, atau untuk kasus penggunaan lanjutan, ubah konten yang dimasukan secara terprogram dengan [render functions](render-function.html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> dalam kode anda find untuk menemukan gaya CSS yang menargetkan slot bernama (contoh: <code>[slot="my-slot-name"]</code>).</p>
 </div>
 {% endraw %}
 
