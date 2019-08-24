@@ -726,38 +726,40 @@ to:
 </div>
 {% endraw %}
 
-## Transitions
+## Transiciones
 
-### `transition` Attribute <sup>replaced</sup>
+### Atributo `transition` <sup>reemplazado</sup>
 
-Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
+El sistema de transición de Vue ha cambiado drásticamente y ahora usa elementos de envoltura `<transition>` y `<transition-group>`, en lugar del atributo `transition`. Se recomienda leer la nueva [Guía de transiciones](transitions.html) para obtener más información.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos del atributo <code>transition</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.transition` for Reusable Transitions <sup>replaced</sup>
+### `Vue.transition` para transiciones reutilizables <sup>reemplazado</sup>
 
-With the new transition system, you can now [use components for reusable transitions](transitions.html#Reusable-Transitions).
+Con el nuevo sistema de transición, ahora puede [usar componentes para transiciones reutilizables](transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplose de <code>Vue.transition</code>.</p>
 </div>
 {% endraw %}
 
-### Transition `stagger` Attribute <sup>removed</sup>
+### Transición atributo `stagger` <sup>removido</sup>
 
-If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
+Si necesita escalonar las transiciones de la lista, puede controlar el tiempo configurando y accediendo a un `data-index` (o atributo similar) en un elemento. Ver [un ejemplo aquí](transitions.html#Staggering-List-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplose del atributo <code>transition</code>. Durante su actualización, usted puede hacer la transición (juego de palabras muy intencionado) a la nueva estrategia asombrosa también.
+  </p>
 </div>
 {% endraw %}
 
