@@ -151,7 +151,9 @@ rollup({
   // ...
   plugins: [
     alias({
-      'vue': require.resolve('vue/dist/vue.esm.js')
+      entries: [
+        { find: "vue", replacement: require.resolve("vue/dist/vue.esm.js") }
+      ]
     })
   ]
 })
