@@ -752,13 +752,13 @@ Con el nuevo sistema de transición, ahora puede [usar componentes para transici
 
 ### Transición atributo `stagger` <sup>removido</sup>
 
-Si necesita escalonar las transiciones de la lista, puede controlar el tiempo configurando y accediendo a un `data-index` (o atributo similar) en un elemento. Ver [un ejemplo aquí](transitions.html#Staggering-List-Transitions).
+Si necesita escalonar las transiciones de la lista, puede controlar el tiempo configurando y accediendo a un `data-index` (o atributo similar) en un elemento. Vea [un ejemplo aquí](transitions.html#Staggering-List-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplose del atributo <code>transition</code>. Durante su actualización, usted puede hacer la transición (juego de palabras muy intencionado) a la nueva estrategia asombrosa también.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos del atributo <code>transition</code>. Durante su actualización, usted puede hacer la transición (juego de palabras muy intencionado) a la nueva estrategia asombrosa también.
   </p>
 </div>
 {% endraw %}
