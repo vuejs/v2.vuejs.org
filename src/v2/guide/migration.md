@@ -1475,7 +1475,7 @@ new Vue({
 })
 ```
 
-O una función render:
+O con una función de renderizado:
 
 ```js
 new Vue({
@@ -1494,7 +1494,7 @@ new Vue({
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para entontrar ejemplos de <code>replace: false</code>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>replace: false</code>.
   </p>
 </div>
 {% endraw %}
