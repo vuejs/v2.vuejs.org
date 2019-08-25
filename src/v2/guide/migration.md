@@ -1391,11 +1391,11 @@ Sebagai gantinya, mengambil data reaktif secara langsung.
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## Metode *Instance* DOM-terfokus (DOM-Focused Instance Methods)
 
-### `vm.$appendTo` <sup>removed</sup>
+### `vm.$appendTo` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.appendChild(vm.$el)
@@ -1403,14 +1403,14 @@ myElement.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$appendTo</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>removed</sup>
+### `vm.$before` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
@@ -1418,20 +1418,20 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk melihat contoh <code>vm.$before</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>removed</sup>
+### `vm.$after` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 {% endcodeblock %}
 
-Or if `myElement` is the last child:
+Atau jika `myElement` merupakan komponen anak terakhir
 
 {% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
@@ -1439,14 +1439,14 @@ myElement.parentNode.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk melihat contoh <code>vm.$after</code>. Jika kamu melewatkan sesuatu, kamu kan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>removed</sup>
+### `vm.$remove` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 vm.$el.remove()
@@ -1454,8 +1454,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh<code>vm.$remove</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
