@@ -1277,57 +1277,58 @@ Satu kali *binding* (`{% raw %}{{* foo }}{% endraw %}`) telah digantikan oleh [`
 </div>
 {% endraw %}
 
-## Reactivity
+## Reaktifitas
 
-### `vm.$watch` <sup>changed</sup>
+### `vm.$watch` <sup>digantikan</sup>
 
-Watchers created via `vm.$watch` are now fired before the associated component rerenders. This gives you the chance to further update state before the component rerender, thus avoiding unnecessary updates. For example, you can watch a component prop and update the component's own data when the prop changes.
+Pengamat (*Watchers*) yang dibuat dengan `vm.$watch` sekarang terpanggil sebelum komponen yang terasosiasi di render. Ini memberikanmu untuk lebih lanjut memperbaharui *state* sebelum komponen di render, sehingga menghindari pembaharuan yang tidak perlu. Contoh, kamu dapat memantau properti (*prop*) sebuah komponen dan memperbaharui data saat properti komponen berubah.
 
-If you were previously relying on `vm.$watch` to do something with the DOM after a component updates, you can instead do so in the `updated` lifecycle hook.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that a watcher was relying on the old behavior.</p>
-</div>
-{% endraw %}
-
-### `vm.$set` <sup>changed</sup>
-
-`vm.$set` is now an alias for [`Vue.set`](../api/#Vue-set).
+Jika kamu sebelumnya bergantung pada `vm.$watch` untuk melakukan sesuatu dalam DOM setelah komponen diperbaharui, kamu dapat juga melakukannya pada `updated` kait suklus hidup Vue.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <i>end-to-end test</i> anda, jika kamu memilikinya. <strong>Tes yang gagal</strong> akan memperingatkanmu jika pengamat <i>(watcher)</i> masih bergantung/menggunakan cara lama.</p>
 </div>
 {% endraw %}
 
-### `vm.$delete` <sup>changed</sup>
+### `vm.$set` <sup>digantikan</sup>
 
-`vm.$delete` is now an alias for [`Vue.delete`](../api/#Vue-delete).
+`vm.$set` sekarang adalah padanan dari [`Vue.set`](../api/#Vue-set).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode untuk menemukan contoh penggunaan yang sudah usang.</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$set` <sup>removed</sup>
+### `vm.$delete` <sup>digantikan</sup>
 
-Use `Vue.set` instead.
+`vm.$delete` sekarang merupakan padanan dari [`Vue.delete`](../api/#Vue-delete).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$set</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode untuk menemukan contoh penggunaan yang sudah usang.</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$remove` <sup>removed</sup>
 
-Use `Array.prototype.splice` instead. For example:
+### `Array.prototype.$set` <sup>dihapuskan</sup>
+
+Gunakan `Vue.set` sebagai gantinya.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>.$set</code> pada <i>array</i>. Jika kamu melewatkannya , silahkan lihat pada <strong>konsol galat</strong> dari metode yang hilang.</p>
+</div>
+{% endraw %}
+
+### `Array.prototype.$remove` <sup>dihapuskan</sup>
+
+Gunakan `Array.prototype.splice` sebagai gantinya. Contoh:
 
 ``` js
 methods: {
@@ -1338,7 +1339,7 @@ methods: {
 }
 ```
 
-Or better yet, pass removal methods an index:
+Atau lebih baik, berikan parameter index pada *method* hapus:
 
 ``` js
 methods: {
@@ -1350,41 +1351,43 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$remove</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>.$remove</code> pada <i>array</i>. Jika kamu melewatkan sesuatu, coba lihat <strong>konsol galat</strong> dari <i>method</i> yang kamu lewatkan.</p>
 </div>
 {% endraw %}
 
-### `Vue.set` and `Vue.delete` on Vue instances <sup>removed</sup>
 
-`Vue.set` and `Vue.delete` can no longer work on Vue instances. It is now mandatory to properly declare all top-level reactive properties in the data option. If you'd like to delete properties on a Vue instance or its `$data`, set it to null.
+### `Vue.set` dan `Vue.delete` pada *instance* Vue <sup>dihapuskan</sup>
+
+`Vue.set` dan `Vue.delete` tidak dapat berkerja lagi pada *instance* Vue. Sekarang merupakan sebuah kewajiban untuk mendeklarasikan dengan benar properti reaktif tingkat-atas pada opsi data. Jika kamu ingin menghapus properti pada *instance* Vue atau `$data` setel ke nol (*null*).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.set</code> or <code>Vue.delete</code> on a Vue instance. If you miss any, they'll trigger <strong>console warnings</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>Vue.set</code> atau <code>Vue.delete</code> pada <i>instance</i> Vue. Jika kamu melewatkan sesuatu, hal tersebut akan menimbulkan <strong>peringatan pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### Replacing `vm.$data` <sup>removed</sup>
+###  `vm.$data` <sup>dihapuskan</sup>
 
-It is now prohibited to replace a component instance's root $data. This prevents some edge cases in the reactivity system and makes the component state more predictable (especially with type-checking systems).
+Mengantikan *instance* komponen pada akar `$data` sekarang telah dilarang. Ini mencegah beberapa kasus langka pada sistem reaktifitas Vue dan membuat *state* pada komponen lebih dapat di prediksi (khususnya dengan sistem pengecekan-tipe).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of overwriting <code>vm.$data</code>. If you miss any, <strong>console warnings</strong> will be emitted.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penimpaan <code>vm.$data</code>. Jika kamu melewatkannya, <strong>peringatan pada konsol</strong> akan dimunculkan.</p>
 </div>
 {% endraw %}
 
-### `vm.$get` <sup>removed</sup>
 
-Instead, retrieve reactive data directly.
+### `vm.$get` <sup>dihapuskan</sup>
+
+Sebagai gantinya, mengambil data reaktif secara langsung.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$get</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$get</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
