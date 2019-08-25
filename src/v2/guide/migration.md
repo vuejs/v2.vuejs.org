@@ -1427,7 +1427,7 @@ vm.$el.remove()
 </div>
 {% endraw %}
 
-## Métodos de metainstancia
+## Métodos de meta instancia
 
 ### `vm.$eval` <sup>removida</sup>
 
