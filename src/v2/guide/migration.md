@@ -1437,7 +1437,7 @@ Sin uso real. Si de alguna manera confía en esta característica y no está seg
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> su código para encontrar ejemplos de <code>vm.$eval</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$eval</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
   </p>
 </div>
 {% endraw %}
@@ -1450,20 +1450,20 @@ Sin uso real. Si de alguna manera confía en esta característica y no está seg
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> su código para encontrar ejemplos de <code>vm.$interpolate</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$interpolate</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
   </p>
 </div>
 {% endraw %}
 
 ### `vm.$log` <sup>removida</sup>
 
-Use las [Vue Devtools](https://github.com/vuejs/vue-devtools) para obeten una experiencia de depuración óptima.
+Use las [Vue Devtools](https://github.com/vuejs/vue-devtools) para obtener una experiencia de depuración óptima.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> su código para encontrar ejemplos de <code>vm.$log</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$log</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
   </p>
 </div>
 {% endraw %}
