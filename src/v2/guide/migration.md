@@ -341,13 +341,13 @@ On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must
 </div>
 {% endraw %}
 
-## Computed properties
+## Propiedades computadas
 
-### `cache: false` <sup>deprecated</sup>
+### `cache: false` <sup>obsoleta</sup>
 
-Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
+La invalidación del almacenamiento en caché de las propiedades computadas se eliminará en futuras versiones principales de Vue. Reemplace las propiedades computadas no almacenadas en caché con métodos, que tendrán el mismo resultado.
 
-For example:
+Por ejemplo:
 
 ``` js
 template: '<p>message: {{ timeMessage }}</p>',
@@ -361,7 +361,7 @@ computed: {
 }
 ```
 
-Or with component methods:
+O con métodos de componentes:
 
 ``` js
 template: '<p>message: {{ getTimeMessage }}</p>',
@@ -374,8 +374,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración </a> en su código para encontrar ejemplos de <code>cache: false</code>.</p>
 </div>
 {% endraw %}
 
