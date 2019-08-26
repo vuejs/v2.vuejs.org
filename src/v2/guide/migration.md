@@ -1559,41 +1559,47 @@ HTML interpolation has been [removed in favor of `v-html`](#HTML-Interpolation-r
 </div>
 {% endraw %}
 
-## Global API
+## API Global
 
-### `Vue.extend` with `el` <sup>removed</sup>
+### `Vue.extend` con `el` <sup>removido</sup>
 
-The el option can no longer be used in `Vue.extend`. It's only valid as an instance creation option.
+La opción `el` ya no se puede usar en `Vue.extend`. Solo es válido como una opción de creación de instancia.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute su suite o aplicación de prueba de extremo a extremo después de la actualización y busque <strong>advertencias en la consola</strong> sobre <code>el</code> con <code>Vue.extend</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>removed</sup>
+### `Vue.elementDirective` <sup>removido</sup>
 
-Use components instead.
+Use componentes en su lugar.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.elementDirective</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>removed</sup>
+### `Vue.partial` <sup>removido</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
+Se han eliminado los parciales a favor de un flujo de datos más explícito entre los componentes, utilizando propiedades. A menos que esté usando un parcial en un área de rendimiento crítico, la recomendación es usar un [componente normal](components.html) en su lugar. Si usted vinculaba dinámicamente el `nombre (name)` de un parcial, puede usar un [componente dinámico](components.html#Dynamic-Components).
 
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, like partials. This makes rendering extremely fast.
+Si utiliza parciales en una parte crítica de su aplicación, entonces debe actualizar a [componentes funcionales](render-function.html#Functional-Components). Deben estar en un archivo JS/JSX simple (en lugar de en un archivo `.vue`) y no tienen estado ni instancia, como los parciales. Esto hace que el renderizado sea extremadamente rápido.
 
-A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
+Una ventaja de los componentes funcionales sobre los parciales es que pueden ser mucho más dinámicos, ya que le otorgan acceso a todo el poder de JavaScript. Sin embargo, hay un costo para este poder. Si nunca antes ha usado un framework de componentes con funciones de renderizado, puede tardar un poco más en aprender.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.partial</code>.
+  </p>
 </div>
 {% endraw %}
