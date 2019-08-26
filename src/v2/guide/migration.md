@@ -1498,7 +1498,7 @@ Gunakan [Vue Devtools](https://github.com/vuejs/vue-devtools) untuk pengalaman *
 
 ### `replace: false` <sup>dihapuskan</sup>
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+Tiap - tiap komponen sekarang selalu menggantikan element yang terkait dengan mereka. Untuk mengsimulasikan sifat dari `replace: false`, kamu dapat membungkus akar komponen dengan elemen yang sama terhadap elemen yang kamu ganti. Contoh:
 
 ``` js
 new Vue({
@@ -1507,7 +1507,7 @@ new Vue({
 })
 ```
 
-Or with a render function:
+Atau menggunakan fungsi *render*:
 
 ``` js
 new Vue({
@@ -1524,8 +1524,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>replace: false</code>.</p>
 </div>
 {% endraw %}
 
