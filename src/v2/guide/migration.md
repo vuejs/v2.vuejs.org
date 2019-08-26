@@ -1459,44 +1459,44 @@ vm.$el.remove()
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## Metode pada *Meta Instance* (Meta Instance Methods)
 
-### `vm.$eval` <sup>removed</sup>
+### `vm.$eval` <sup>dihapuskan</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
-</div>
-{% endraw %}
-
-### `vm.$interpolate` <sup>removed</sup>
-
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Tidak ada gunanya. Jika kamu ternyata bergantung pada fitur ini dan tidak tahu bagaimana harus menggantinya, silahkan membuka obrolan pada [forum Vue.js](https://forum.vuejs.org/) untuk ide.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$eval</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>removed</sup>
+### `vm.$interpolate` <sup>dihapuskan</sup>
 
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+Tidak ada gunanya. Jika kamu ternyata bergantung pada fitur ini dan tidak tahu bagaimana harus menggantinya, silahkan membuka obrolan pada [forum Vue.js](https://forum.vuejs.org/) untuk ide.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$interpolate</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-## Instance DOM Options
+### `vm.$log` <sup>dihapuskan</sup>
 
-### `replace: false` <sup>removed</sup>
+Gunakan [Vue Devtools](https://github.com/vuejs/vue-devtools) untuk pengalaman *debugging* yang optimal.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$log</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
+</div>
+{% endraw %}
+
+## Opsi pada *Instance* DOM (Instance DOM Options)
+
+### `replace: false` <sup>dihapuskan</sup>
 
 Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
 
