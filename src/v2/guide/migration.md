@@ -1435,38 +1435,44 @@ vm.$el.remove()
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## Métodos de meta instancia
 
-### `vm.$eval` <sup>removed</sup>
+### `vm.$eval` <sup>removida</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Sin uso real. Si de alguna manera confía en esta característica y no está seguro de cómo solucionarla, publique en el [foro](https://forum.vuejs.org/) para obtener ideas.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$eval</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>removed</sup>
+### `vm.$interpolate` <sup>removida</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Sin uso real. Si de alguna manera confía en esta característica y no está seguro de cómo solucionarla, publique en el [foro](https://forum.vuejs.org/) para obtener ideas.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$interpolate</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>removed</sup>
+### `vm.$log` <sup>removida</sup>
 
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+Use las [Vue Devtools](https://github.com/vuejs/vue-devtools) para obtener una experiencia de depuración óptima.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$log</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
