@@ -1359,125 +1359,139 @@ Instead, retrieve reactive data directly.
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## Métodos de instancia centrados en el DOM
 
-### `vm.$appendTo` <sup>removed</sup>
+### `vm.$appendTo` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.appendChild(vm.$el)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$appendTo</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>removed</sup>
+### `vm.$before` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.parentNode.insertBefore(vm.$el, myElement)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$before</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>removed</sup>
+### `vm.$after` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 ```
 
-Or if `myElement` is the last child:
+O si `myElement` es el último hijo:
 
-``` js
+```js
 myElement.parentNode.appendChild(vm.$el)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$after</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>removed</sup>
+### `vm.$remove` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 vm.$el.remove()
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$remove</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## Métodos de meta instancia
 
-### `vm.$eval` <sup>removed</sup>
+### `vm.$eval` <sup>removida</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Sin uso real. Si de alguna manera confía en esta característica y no está seguro de cómo solucionarla, publique en el [foro](https://forum.vuejs.org/) para obtener ideas.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$eval</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>removed</sup>
+### `vm.$interpolate` <sup>removida</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Sin uso real. Si de alguna manera confía en esta característica y no está seguro de cómo solucionarla, publique en el [foro](https://forum.vuejs.org/) para obtener ideas.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$interpolate</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>removed</sup>
+### `vm.$log` <sup>removida</sup>
 
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+Use las [Vue Devtools](https://github.com/vuejs/vue-devtools) para obtener una experiencia de depuración óptima.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$log</code>. En caso de omitir alguno, usted verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-## Instance DOM Options
+## Opciones de la instancia DOM
 
-### `replace: false` <sup>removed</sup>
+### `replace: false` <sup>removido</sup>
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+Los componentes ahora siempre reemplazan al elemento al que están vinculados. Para simular el comportamiento de `replace: false`, usted puede ajustar su componente raíz con un elemento similar al que está reemplazando. Por ejemplo:
 
-``` js
+```js
 new Vue({
   el: '#app',
   template: '<div id="app"> ... </div>'
 })
 ```
 
-Or with a render function:
+O con una función de renderizado:
 
-``` js
+```js
 new Vue({
   el: '#app',
   render: function (h) {
@@ -1492,8 +1506,10 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>replace: false</code>.
+  </p>
 </div>
 {% endraw %}
 
@@ -1543,41 +1559,47 @@ HTML interpolation has been [removed in favor of `v-html`](#HTML-Interpolation-r
 </div>
 {% endraw %}
 
-## Global API
+## API Global
 
-### `Vue.extend` with `el` <sup>removed</sup>
+### `Vue.extend` con `el` <sup>removido</sup>
 
-The el option can no longer be used in `Vue.extend`. It's only valid as an instance creation option.
+La opción `el` ya no se puede usar en `Vue.extend`. Solo es válido como una opción de creación de instancia.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute su suite o aplicación de prueba de extremo a extremo después de la actualización y busque <strong>advertencias en la consola</strong> sobre <code>el</code> con <code>Vue.extend</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>removed</sup>
+### `Vue.elementDirective` <sup>removido</sup>
 
-Use components instead.
+Use componentes en su lugar.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.elementDirective</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>removed</sup>
+### `Vue.partial` <sup>removido</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
+Se han eliminado los parciales a favor de un flujo de datos más explícito entre los componentes, utilizando propiedades. A menos que esté usando un parcial en un área de rendimiento crítico, la recomendación es usar un [componente normal](components.html) en su lugar. Si usted vinculaba dinámicamente el `nombre (name)` de un parcial, puede usar un [componente dinámico](components.html#Dynamic-Components).
 
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, like partials. This makes rendering extremely fast.
+Si utiliza parciales en una parte crítica de su aplicación, entonces debe actualizar a [componentes funcionales](render-function.html#Functional-Components). Deben estar en un archivo JS/JSX simple (en lugar de en un archivo `.vue`) y no tienen estado ni instancia, como los parciales. Esto hace que el renderizado sea extremadamente rápido.
 
-A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
+Una ventaja de los componentes funcionales sobre los parciales es que pueden ser mucho más dinámicos, ya que le otorgan acceso a todo el poder de JavaScript. Sin embargo, hay un costo para este poder. Si nunca antes ha usado un framework de componentes con funciones de renderizado, puede tardar un poco más en aprender.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.partial</code>.
+  </p>
 </div>
 {% endraw %}
