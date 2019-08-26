@@ -1277,57 +1277,58 @@ Satu kali *binding* (`{% raw %}{{* foo }}{% endraw %}`) telah digantikan oleh [`
 </div>
 {% endraw %}
 
-## Reactivity
+## Reaktifitas
 
-### `vm.$watch` <sup>changed</sup>
+### `vm.$watch` <sup>digantikan</sup>
 
-Watchers created via `vm.$watch` are now fired before the associated component rerenders. This gives you the chance to further update state before the component rerender, thus avoiding unnecessary updates. For example, you can watch a component prop and update the component's own data when the prop changes.
+Pengamat (*Watchers*) yang dibuat dengan `vm.$watch` sekarang terpanggil sebelum komponen yang terasosiasi di render. Ini memberikanmu untuk lebih lanjut memperbaharui *state* sebelum komponen di render, sehingga menghindari pembaharuan yang tidak perlu. Contoh, kamu dapat memantau properti (*prop*) sebuah komponen dan memperbaharui data saat properti komponen berubah.
 
-If you were previously relying on `vm.$watch` to do something with the DOM after a component updates, you can instead do so in the `updated` lifecycle hook.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that a watcher was relying on the old behavior.</p>
-</div>
-{% endraw %}
-
-### `vm.$set` <sup>changed</sup>
-
-`vm.$set` is now an alias for [`Vue.set`](../api/#Vue-set).
+Jika kamu sebelumnya bergantung pada `vm.$watch` untuk melakukan sesuatu dalam DOM setelah komponen diperbaharui, kamu dapat juga melakukannya pada `updated` kait suklus hidup Vue.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <i>end-to-end test</i> anda, jika kamu memilikinya. <strong>Tes yang gagal</strong> akan memperingatkanmu jika pengamat <i>(watcher)</i> masih bergantung/menggunakan cara lama.</p>
 </div>
 {% endraw %}
 
-### `vm.$delete` <sup>changed</sup>
+### `vm.$set` <sup>digantikan</sup>
 
-`vm.$delete` is now an alias for [`Vue.delete`](../api/#Vue-delete).
+`vm.$set` sekarang adalah padanan dari [`Vue.set`](../api/#Vue-set).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode untuk menemukan contoh penggunaan yang sudah usang.</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$set` <sup>removed</sup>
+### `vm.$delete` <sup>digantikan</sup>
 
-Use `Vue.set` instead.
+`vm.$delete` sekarang merupakan padanan dari [`Vue.delete`](../api/#Vue-delete).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$set</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode untuk menemukan contoh penggunaan yang sudah usang.</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$remove` <sup>removed</sup>
 
-Use `Array.prototype.splice` instead. For example:
+### `Array.prototype.$set` <sup>dihapuskan</sup>
+
+Gunakan `Vue.set` sebagai gantinya.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>.$set</code> pada <i>array</i>. Jika kamu melewatkannya , silahkan lihat pada <strong>konsol galat</strong> dari metode yang hilang.</p>
+</div>
+{% endraw %}
+
+### `Array.prototype.$remove` <sup>dihapuskan</sup>
+
+Gunakan `Array.prototype.splice` sebagai gantinya. Contoh:
 
 ``` js
 methods: {
@@ -1338,7 +1339,7 @@ methods: {
 }
 ```
 
-Or better yet, pass removal methods an index:
+Atau lebih baik, berikan parameter index pada *method* hapus:
 
 ``` js
 methods: {
@@ -1350,49 +1351,51 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$remove</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>.$remove</code> pada <i>array</i>. Jika kamu melewatkan sesuatu, coba lihat <strong>konsol galat</strong> dari <i>method</i> yang kamu lewatkan.</p>
 </div>
 {% endraw %}
 
-### `Vue.set` and `Vue.delete` on Vue instances <sup>removed</sup>
 
-`Vue.set` and `Vue.delete` can no longer work on Vue instances. It is now mandatory to properly declare all top-level reactive properties in the data option. If you'd like to delete properties on a Vue instance or its `$data`, set it to null.
+### `Vue.set` dan `Vue.delete` pada *instance* Vue <sup>dihapuskan</sup>
+
+`Vue.set` dan `Vue.delete` tidak dapat berkerja lagi pada *instance* Vue. Sekarang merupakan sebuah kewajiban untuk mendeklarasikan dengan benar properti reaktif tingkat-atas pada opsi data. Jika kamu ingin menghapus properti pada *instance* Vue atau `$data` setel ke nol (*null*).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.set</code> or <code>Vue.delete</code> on a Vue instance. If you miss any, they'll trigger <strong>console warnings</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>Vue.set</code> atau <code>Vue.delete</code> pada <i>instance</i> Vue. Jika kamu melewatkan sesuatu, hal tersebut akan menimbulkan <strong>peringatan pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### Replacing `vm.$data` <sup>removed</sup>
+###  `vm.$data` <sup>dihapuskan</sup>
 
-It is now prohibited to replace a component instance's root $data. This prevents some edge cases in the reactivity system and makes the component state more predictable (especially with type-checking systems).
+Mengantikan *instance* komponen pada akar `$data` sekarang telah dilarang. Ini mencegah beberapa kasus langka pada sistem reaktifitas Vue dan membuat *state* pada komponen lebih dapat di prediksi (khususnya dengan sistem pengecekan-tipe).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of overwriting <code>vm.$data</code>. If you miss any, <strong>console warnings</strong> will be emitted.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penimpaan <code>vm.$data</code>. Jika kamu melewatkannya, <strong>peringatan pada konsol</strong> akan dimunculkan.</p>
 </div>
 {% endraw %}
 
-### `vm.$get` <sup>removed</sup>
 
-Instead, retrieve reactive data directly.
+### `vm.$get` <sup>dihapuskan</sup>
+
+Sebagai gantinya, mengambil data reaktif secara langsung.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$get</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$get</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>konsol galat</strong>.</p>
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## Metode *Instance* DOM-terfokus (DOM-Focused Instance Methods)
 
-### `vm.$appendTo` <sup>removed</sup>
+### `vm.$appendTo` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.appendChild(vm.$el)
@@ -1400,14 +1403,14 @@ myElement.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$appendTo</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>removed</sup>
+### `vm.$before` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
@@ -1415,20 +1418,20 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk melihat contoh <code>vm.$before</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>removed</sup>
+### `vm.$after` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 {% endcodeblock %}
 
-Or if `myElement` is the last child:
+Atau jika `myElement` merupakan komponen anak terakhir
 
 {% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
@@ -1436,14 +1439,14 @@ myElement.parentNode.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk melihat contoh <code>vm.$after</code>. Jika kamu melewatkan sesuatu, kamu kan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>removed</sup>
+### `vm.$remove` <sup>dihapuskan</sup>
 
-Use the native DOM API:
+Gunakan API DOM asli (*native*):
 
 {% codeblock lang:js %}
 vm.$el.remove()
@@ -1451,51 +1454,51 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh<code>vm.$remove</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## Metode pada *Meta Instance* (Meta Instance Methods)
 
-### `vm.$eval` <sup>removed</sup>
+### `vm.$eval` <sup>dihapuskan</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Tidak ada gunanya. Jika kamu ternyata bergantung pada fitur ini dan tidak tahu bagaimana harus menggantinya, silahkan membuka obrolan pada [forum Vue.js](https://forum.vuejs.org/) untuk ide.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$eval</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>removed</sup>
+### `vm.$interpolate` <sup>dihapuskan</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](https://forum.vuejs.org/) for ideas.
+Tidak ada gunanya. Jika kamu ternyata bergantung pada fitur ini dan tidak tahu bagaimana harus menggantinya, silahkan membuka obrolan pada [forum Vue.js](https://forum.vuejs.org/) untuk ide.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$interpolate</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>removed</sup>
+### `vm.$log` <sup>dihapuskan</sup>
 
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+Gunakan [Vue Devtools](https://github.com/vuejs/vue-devtools) untuk pengalaman *debugging* yang optimal.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>vm.$log</code>. Jika kamu melewatkan sesuatu, kamu akan melihat <strong>galat pada konsol</strong>.</p>
 </div>
 {% endraw %}
 
-## Instance DOM Options
+## Opsi pada *Instance* DOM (Instance DOM Options)
 
-### `replace: false` <sup>removed</sup>
+### `replace: false` <sup>dihapuskan</sup>
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+Tiap - tiap komponen sekarang selalu menggantikan element yang terkait dengan mereka. Untuk mengsimulasikan sifat dari `replace: false`, kamu dapat membungkus akar komponen dengan elemen yang sama terhadap elemen yang kamu ganti. Contoh:
 
 ``` js
 new Vue({
@@ -1504,7 +1507,7 @@ new Vue({
 })
 ```
 
-Or with a render function:
+Atau menggunakan fungsi *render*:
 
 ``` js
 new Vue({
@@ -1521,8 +1524,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh <code>replace: false</code>.</p>
 </div>
 {% endraw %}
 
@@ -1572,41 +1575,41 @@ HTML interpolation has been [removed in favor of `v-html`](#HTML-Interpolation-r
 </div>
 {% endraw %}
 
-## Global API
+## API Global
 
-### `Vue.extend` with `el` <sup>removed</sup>
+### `Vue.extend` dengan `el` <sup>dihapuskan</sup>
 
-The el option can no longer be used in `Vue.extend`. It's only valid as an instance creation option.
+Opsi `el` sudah tidak dapat digunakan pada `Vue.extend`. Sekarang hal ini hanay valid sebagai opsi pembuatan *instance*.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <i>end-to-end testing</i> pada aplikasi anda atau setelah anda meng-update Vue cari <strong>peringatan pada konsol</strong> soal penggunaan opsi <code>el</code> dengan <code>Vue.extend</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>removed</sup>
+### `Vue.elementDirective` <sup>dihapuskan</sup>
 
-Use components instead.
+Gunakan komponen sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penggunaan dari <code>Vue.elementDirective</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>removed</sup>
+### `Vue.partial` <sup>dihapuskan</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
+*Partials* telah dihapus dengan alasan untuk menjaga aliran data antara komponen, menggunakan *props* komponen. Kecuali kamu menggunakan *partial* pada area yang memerlukan performa lebih, rekomendasi untuk masalah tersebut adalah dengan menggunakan [komponen biasa](components.html) sebagai gantinya. Jika kamu secara dinamis mengikat `name` dari sebuah partial, kamu dapat menggunakan [komponen dinamis](components.html#Dynamic-Components).
 
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, like partials. This makes rendering extremely fast.
+Jika kamu ternyata menggunakan *partial* di applikasi andad pada tempat yang membutuhkan performa lebih cepat, maka kamu harus ganti dengan [komponen fungsional](render-function.html#Functional-Components). Komponen tersebut harus di deklarasikan dengan JS/JSX file (bukan menggunakan `.vue` file) dan juga *stateless* dan *instanceless*, seperti partials. Ini membuat kecepatan render sangat cepat
 
-A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
+Keuntungan menggunakan komponen fungsional daripada *partial* adalah komponen fungsional lebih dinamis, dikarenakan kamu dapat menggunakan javascript seutuhnya pada komponen. Tetapi ada juga hal yang harus di bayar saat menggunakan komponen fungsional. Jika kamu belum pernah menggunakan kerangka kerja dengan fungsi *render* sebelumnya, mungkin kamu perlu waktu agak lama untuk mempelajarinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penggunaan <code>Vue.partial</code>.</p>
 </div>
 {% endraw %}
