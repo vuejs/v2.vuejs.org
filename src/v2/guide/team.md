@@ -639,7 +639,8 @@ order: 803
       city: 'Kyiv, Ukraine',
       languages: ['uk', 'ru', 'en'],
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org',
+        'vue-cli'
       ],
       work: {
         role: 'Senior Frontend Engineer',
@@ -648,9 +649,6 @@ order: 803
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
-      links: [
-        'https://vuevixens.org/'
-      ]
     }
   ]))
 
@@ -846,16 +844,16 @@ order: 803
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Paris, France',
+      city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'Atinux',
       twitter: 'Atinux',
       work: {
-        org: 'Orion',
-        orgUrl: 'https://orion.sh'
+        org: 'NuxtJS',
+        orgUrl: 'https://nuxtjs.org'
       },
       reposPersonal: [
-        'nuxt/*', 'nuxt-community/*', 'declandewet/vue-meta'
+        'nuxt/*', 'nuxt-community/*', 'nuxt/vue-meta'
       ]
     },
     {
@@ -864,10 +862,10 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
-      twitter: '_achopin',
+      twitter: 'iamnuxt',
       work: {
-        org: 'Orion',
-        orgUrl: 'https://orion.sh'
+        org: 'NuxtJS',
+        orgUrl: 'https://nuxtjs.org'
       },
       reposPersonal: [
         'nuxt/*', 'nuxt-community/*', 'vue-flexboxgrid'
@@ -1168,15 +1166,16 @@ order: 803
       github: 'filrak',
       twitter: 'filrakowski',
       work: {
-        role: 'FED & Vue Storefront Co-founder',
+        role: 'Co-founder of Vue Storefront',
         org: 'Divante',
         orgUrl: 'https://divante.co/'
       },
       reposPersonal: [
-        'DivanteLtd/vue-storefront', 'filrak/vue-offline'
+        'DivanteLtd/vue-storefront', 'DivanteLtd/storefront-ui'
       ],
       links: [
-        'https://vuestorefront.io'
+        'https://vuestorefront.io',
+        'https://storefrontui.io'
       ]
     },
     {
