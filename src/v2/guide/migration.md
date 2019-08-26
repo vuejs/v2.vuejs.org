@@ -690,16 +690,18 @@ Las directivas tienen un alcance de responsabilidad muy reducido: ahora solo se 
 
 Algunas de las diferencias más notables incluyen:
 
-- Las directivas ya no tienen instancias. Esto significa que no hay más `this` dentro de los ganchos de la directiva. En cambio, reciben todo lo que puedan necesitar como argumentos. Si realmente debe persistir el estado a través de los ganchos, puede hacerlo en `el`.
+- Las directivas ya no tienen instancias. Esto significa que no hay más `this` dentro de los ganchos de la directiva. En cambio, reciben todo lo que puedan necesitar como argumentos. Si realmente debe persistir el estado a través de los ganchos, puede hacerlo en el elemento `el`.
 - Opciones como `acceptStatement`, `deep`, `priority`, etc han sido removidas. Para reemplazar directivas `twoWay`, vea [este ejemple](#Two-Way-Filters-replaced).
-- Algunos de los ganchos actuales tienen un comportamiento diferente y también hay un par de ganchos nuevos.
+- Algunos de los ganchos actuales tienen un comportamiento diferente y también algunos ganchos nuevos.
 
 Afortunadamente, dado que las nuevas directivas son mucho más simples, puede dominarlas más fácilmente. Lea la nueva [Guía de directivas personalizadas](custom-directive.html) para obtener más información.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de directivas definidas. El asistente los marcará a todos, ya que es probable que en la mayoría de los casos desee refactorizar a un componente.</p>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de directivas definidas. El asistente las marcará a todas, ya que es probable que en la mayoría de los casos desee refactorizar a un componente.
+  </p>
 </div>
 {% endraw %}
 
