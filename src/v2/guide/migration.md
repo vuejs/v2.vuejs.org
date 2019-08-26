@@ -690,9 +690,9 @@ Las directivas tienen un alcance de responsabilidad muy reducido: ahora solo se 
 
 Algunas de las diferencias más notables incluyen:
 
-- Las directivas ya no tienen instancias. Esto significa que no hay más `this` dentro de los ganchos de la directiva. En cambio, reciben todo lo que puedan necesitar como argumentos. Si realmente debe persistir el estado a través de los ganchos, puede hacerlo en el elemento `el`.
+- Las directivas ya no tienen instancias. Esto significa que no hay más `this` dentro de los hooks de la directiva. En cambio, reciben todo lo que puedan necesitar como argumentos. Si realmente debe persistir el estado a través de los hooks, puede hacerlo en el elemento `el`.
 - Opciones como `acceptStatement`, `deep`, `priority`, etc han sido removidas. Para reemplazar directivas `twoWay`, vea [este ejemple](#Two-Way-Filters-replaced).
-- Algunos de los ganchos actuales tienen un comportamiento diferente y también algunos ganchos nuevos.
+- Algunos de los hooks actuales tienen un comportamiento diferente y también algunos hooks nuevos.
 
 Afortunadamente, dado que las nuevas directivas son mucho más simples, puede dominarlas más fácilmente. Lea la nueva [Guía de directivas personalizadas](custom-directive.html) para obtener más información.
 
