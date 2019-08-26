@@ -345,7 +345,7 @@ On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must
 
 ### `cache: false` <sup>obsoleta</sup>
 
-La invalidación del almacenamiento en caché de las propiedades calculadas se eliminará en futuras versiones principales de Vue. Reemplace las propiedades calculadas no almacenadas en caché con métodos, que tendrán el mismo resultado.
+La invalidación del almacenamiento en caché de las propiedades computadas se eliminará en futuras versiones principales de Vue. Reemplace las propiedades computadas no almacenadas en caché con métodos, que tendrán el mismo resultado.
 
 Por ejemplo:
 
