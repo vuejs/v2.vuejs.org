@@ -1359,71 +1359,79 @@ Instead, retrieve reactive data directly.
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## Métodos de instancia centrados en el DOM
 
-### `vm.$appendTo` <sup>removed</sup>
+### `vm.$appendTo` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.appendChild(vm.$el)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$appendTo</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>removed</sup>
+### `vm.$before` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.parentNode.insertBefore(vm.$el, myElement)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$before</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>removed</sup>
+### `vm.$after` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 ```
 
-Or if `myElement` is the last child:
+O si `myElement` es el último hijo:
 
-``` js
+```js
 myElement.parentNode.appendChild(vm.$el)
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$after</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>removed</sup>
+### `vm.$remove` <sup>removido</sup>
 
-Use the native DOM API:
+Use la API nativa del DOM:
 
-``` js
+```js
 vm.$el.remove()
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>vm.$remove</code>. En caso de omitir alguno, verá <strong>errores en la consola</strong>.
+  </p>
 </div>
 {% endraw %}
 
