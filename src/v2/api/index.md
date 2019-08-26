@@ -1311,39 +1311,39 @@ type: api
 
 - **Detail:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  Objek data yang dipantau oleh *Vue instance*. *Vue instance* menjembatani akses ke properti-properti yang ada di objek data *instance* tersebut.
 
 - **Lihat juga:** [Options / Data - data](#data)
 
 ### vm.$props
 
-> New in 2.2.0+
+> Baru di versi 2.2.0+
 
 - **Tipe:** `Object`
 
 - **Detail:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  Sebuah objek yang merepresentasikan *props* terkini yang diterima sebuah komponen. *Vue instance* menjembatani akses ke properti-properti yang ada di objek *props* *instance* tersebut.
 
 ### vm.$el
 
 - **Tipe:** `Element`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  The root DOM element that the Vue instance is managing.
+  Elemen pangkal (root) DOM yang dikelola oleh *Vue instance*.
 
 ### vm.$options
 
 - **Tipe:** `Object`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Opsi-opsi pembuatan (*instantiation*) yang digunakan untuk *Vue instance* tersebut. Properti ini berguna saat kamu ingin memasukkan properti khusus di dalam opsi:
 
   ``` js
   new Vue({
@@ -1358,59 +1358,59 @@ type: api
 
 - **Tipe:** `Vue instance`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  The parent instance, if the current instance has one.
+  *Instance* induk (*parent*), jika *instance* tersebut mempunyainya.
 
 ### vm.$root
 
 - **Tipe:** `Vue instance`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  *Vue instance* pangkal (root) dari pohon komponen yang ada. Jika *instance* tersebut tidak mempunyai induk (*parent*), maka nilai dari properti ini adalah *instance* itu sendiri.
 
 ### vm.$children
 
 - **Tipe:** `Array<Vue instance>`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Komponen-komponen anakan (child) yang langsung berada dibawah *instance* tersebut. **Sebagai catatan, tidak ada jaminan akan urutan `$children`, dan mereka tidak bersifat reaktif.** Jika kamu ingin mencoba menggunakan `$children` untuk mengikat data (binding), pertimbangkan untuk menggunakan *Array* dan `v-for` untuk membuat (*generate*) komponen anakan (*child*), dan gunakan *Array* tersebut sebagai sumber validitas.
 
 ### vm.$slots
 
 - **Tipe:** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Digunakan untuk secara terprogram mengakses konten [yang didistribusi dengan slots](../guide/components.html#Content-Distribution-with-Slots). Tiap [slot yang memiliki nama (*named slot*)](../guide/components-slots.html#Slot-yang-Memiliki-Nama-Named-Slot) mempunyai properti terkait sendiri (misal: konten `slot="foo"` akan ditemukan pada `vm.$slots.foo`). Properti `default` berisi titik-titik (*nodes*) yang tidak masuk di dalam slot yang memiliki nama (*named slot*).
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Pengaksesan `vm.$slots` paling berguna saat menulis sebuah komponen dengan [fungsi *render*](.../guide/render-function.html).
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <blog-post>
     <h1 slot="header">
-      About Me
+      Tentang Saya
     </h1>
 
-    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+    <p>Disini beberapa konten halaman, yang akan masuk di dalam vm.$slots.default, karena tidak masuk di slot yang memiliki nama (named slot).</p>
 
     <p slot="footer">
       Copyright 2016 Evan You
     </p>
 
-    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+    <p>Jika saya memiliki beberapa konten disini, itu juga akan masuk di dalam vm.$slots.default.</p>.
   </blog-post>
   ```
 
@@ -1430,84 +1430,84 @@ type: api
   ```
 
 - **Lihat juga:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+  - [Komponen `<slot>`](#slot-1)
+  - [Distribusi Konten dengan Slots](../guide/components.html#Content-Distribution-with-Slots)
+  - [Fungsi Render - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0+
+> Baru di versi 2.1.0+
 
 - **Tipe:** `{ [name: string]: props => Array<VNode> | undefined }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Digunakan untuk secara terprogram mengakses [scoped slots](../guide/components.html#Scoped-Slots). Tiap slot, termasuk `default`, objeknya memiliki fungsi terkait yang mengembalikan *VNodes*.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Pengaksesan `vm.$scopedSlots` sangat berguna saat menulis komponen dengan [fungsi render](../guide/render-function.html).
 
-  **Note:** since 2.6.0+, there are two notable changes to this property:
+  **Catatan:** sejak versi 2.6.0+, ada dua perubahan di properti ini yg perlu diperhatikan:
 
-  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+  1. Fungsi *scoped slot* saat ini menjamin akan mengembalikan *array* dari *VNodes*, kecuali jika nilai yang dikembalikan tidak valid, yang berarti fungsi tersebut akan mengembalikan `undefined`.
 
-  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
+  2. Semua `$slots` saat ini juga akan terekspos di `$scopedSlots` sebagai fungsi. Jika kamu berurusan dengan fungsi render, saat ini direkomendasikan untuk selalu mengakses *slots* via `$scopedSlots`, entah saat ini mereka menggunakan *scope* atau tidak. Hal ini tidak hanya akan membuat *refactors* mendatang semakin mudah dalam menambahkan sebuah *scope*, tapi juga akan memudahkan migrasi nantinya ke Vue 3, yang dimana semua *slots* adalah fungsi-fungsi.
 
 - **Lihat juga:**
-  - [`<slot>` Component](#slot-1)
+  - [Komponen `<slot>`](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+  - [Fungsi Render - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
 - **Tipe:** `Object`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
+  Sebuah objek dari elemen-elemen DOM dan *instances* komponen, didaftarkan dengan [attribut `ref`](#ref).
 
 - **Lihat juga:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
+  - [*Refs* pada Komponen Anakan (*Child*)](../guide/components.html#Child-Component-Refs)
   - [Special Attributes - ref](#ref)
 
 ### vm.$isServer
 
 - **Tipe:** `boolean`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  Whether the current Vue instance is running on the server.
+  Menyatakan apakah *Vue instance* tersebut berjalan di server.
 
 - **Lihat juga:** [Server-Side Rendering](../guide/ssr.html)
 
 ### vm.$attrs
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
 - **Tipe:** `{ [key: string]: string }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Berisi ikatan (bindings) attribut yang berada di cakupan induk (*parent*) (kecuali untuk `class` dan `style`) yang tidak dianggap (dan diekstrak) sebagai *props*. Saat sebuah komponen tidak memiliki deklarasi *props*, properti ini pada dasarnya berisi semua ikatan (bindings) yang berada di cakupan induk (*parent*) (kecuali untuk `class` dan `style`), dan dapat diteruskan kebawah ke komponen *inner* via `v-bind="$attrs"` - berguna saat membuat komponen *higher-order* (HOC).
 
 ### vm.$listeners
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
 - **Tipe:** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
 - **Detail:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating transparent wrapper components.
+  Berisi pemantau (*listeners*) *events* `v-on` yang berada di cakupan induk (parent) (tanpa pengubah (*modifiers*) `.native`). Properti ini dapat diteruskan kebawah ke komponen *inner* via `v-on="$listeners"` - berguna saat membuat komponen-komponen penyelubung (wrapper) yang bersifat transparan.
 
 ## Instance Methods / Data
 
