@@ -1575,41 +1575,41 @@ HTML interpolation has been [removed in favor of `v-html`](#HTML-Interpolation-r
 </div>
 {% endraw %}
 
-## Global API
+## API Global
 
-### `Vue.extend` with `el` <sup>removed</sup>
+### `Vue.extend` dengan `el` <sup>dihapuskan</sup>
 
-The el option can no longer be used in `Vue.extend`. It's only valid as an instance creation option.
+Opsi `el` sudah tidak dapat digunakan pada `Vue.extend`. Sekarang hal ini hanay valid sebagai opsi pembuatan *instance*.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <i>end-to-end testing</i> pada aplikasi anda atau setelah anda meng-update Vue cari <strong>peringatan pada konsol</strong> soal penggunaan opsi <code>el</code> dengan <code>Vue.extend</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>removed</sup>
+### `Vue.elementDirective` <sup>dihapuskan</sup>
 
-Use components instead.
+Gunakan komponen sebagai gantinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penggunaan dari <code>Vue.elementDirective</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>removed</sup>
+### `Vue.partial` <sup>dihapuskan</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
+*Partials* telah dihapus dengan alasan untuk menjaga aliran data antara komponen, menggunakan *props* komponen. Kecuali kamu menggunakan *partial* pada area yang memerlukan performa lebih, rekomendasi untuk masalah tersebut adalah dengan menggunakan [komponen biasa](components.html) sebagai gantinya. Jika kamu secara dinamis mengikat `name` dari sebuah partial, kamu dapat menggunakan [komponen dinamis](components.html#Dynamic-Components).
 
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, like partials. This makes rendering extremely fast.
+Jika kamu ternyata menggunakan *partial* di applikasi andad pada tempat yang membutuhkan performa lebih cepat, maka kamu harus ganti dengan [komponen fungsional](render-function.html#Functional-Components). Komponen tersebut harus di deklarasikan dengan JS/JSX file (bukan menggunakan `.vue` file) dan juga *stateless* dan *instanceless*, seperti partials. Ini membuat kecepatan render sangat cepat
 
-A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
+Keuntungan menggunakan komponen fungsional daripada *partial* adalah komponen fungsional lebih dinamis, dikarenakan kamu dapat menggunakan javascript seutuhnya pada komponen. Tetapi ada juga hal yang harus di bayar saat menggunakan komponen fungsional. Jika kamu belum pernah menggunakan kerangka kerja dengan fungsi *render* sebelumnya, mungkin kamu perlu waktu agak lama untuk mempelajarinya.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>Jalur upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">alat bantu migrasi</a> pada kode anda untuk menemukan contoh penggunaan <code>Vue.partial</code>.</p>
 </div>
 {% endraw %}
