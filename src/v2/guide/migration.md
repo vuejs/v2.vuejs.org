@@ -750,7 +750,7 @@ Con el nuevo sistema de transición, ahora puede [usar componentes para transici
 </div>
 {% endraw %}
 
-### Transición atributo `stagger` <sup>removido</sup>
+### Atributo de Transición `stagger` <sup>removido</sup>
 
 Si necesita escalonar las transiciones de la lista, puede controlar el tiempo configurando y accediendo a un `data-index` (o atributo similar) en un elemento. Vea [un ejemplo aquí](transitions.html#Staggering-List-Transitions).
 
