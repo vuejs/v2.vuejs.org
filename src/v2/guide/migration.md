@@ -184,7 +184,7 @@ Cuando se incluye un `índice`, el orden de los argumentos para los arreglos sol
 </div>
 {% endraw %}
 
-### `v-for` Orden de argumento para objetos <sup>cambiado</sup>
+### `v-for` Orden de argumento para Objetos <sup>cambiado</sup>
 
 Cuando se incluye una `clave`, el orden de los argumentos para los objetos solía ser `(clave, valor)`. Ahora es `(valor, clave)` para ser más consistente con iteradores de objetos comunes como lodash.
 
