@@ -1260,25 +1260,27 @@ type: api
 
   Cuando es `true`, se preservarán y renderizarán los comentarios HTML encontrados en la plantilla. El comportamiento por defecto es descartarlos.
 
-## Instance Properties
+## Propiedades de Instancia
 
 ### vm.$data
 
 - **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  El objeto _data_ que la instancia Vue está observando. La instancia Vue provee acceso a estas propiedades en su objeto _data_.
 
-- **See also:** [Options / Data - data](#data)
+- **Vea también:** [Opciones / Data - data](#data)
 
 ### vm.$props
 
-> New in 2.2.0+
+> Nuevo en 2.2.0+
 
 - **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
+
+  Un objeto representando las propiedades actuales que un componente recibió. La instancia Vue provee acceso a estas propiedades en su objeto _props_.
 
   An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
@@ -1286,21 +1288,21 @@ type: api
 
 - **Tipo:** `HTMLElement`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The root DOM element that the Vue instance is managing.
+  Elemento raíz del DOM que gestiona la instancia Vue.
 
 ### vm.$options
 
 - **Tipo:** `Object`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Las opciones de instanciación utilizadas en la instancia Vue actual. Esto es útil cuando ustede desea incluir propiedades personalizadas en las opciones:
 
   ``` js
   new Vue({
@@ -1315,45 +1317,45 @@ type: api
 
 - **Tipo:** `Vue instance`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The parent instance, if the current instance has one.
+  La instancia padre, si la instancia actual tiene una.
 
 ### vm.$root
 
 - **Tipo:** `Vue instance`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  La instancia Vue raíz del árbol de componentes actual. Sí la instancia actual no tiene un padre, este valor será el componente mismo.
 
 ### vm.$children
 
 - **Tipo:** `Array<Vue instance>`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Los componentes hijos directos de la instancia actual. **Note que no hay garantía de orden para `$children`, y que esta propiedad no es reactiva.** Si usted encuentra la necesidad de utilizar `$children` para _binding_ de datos, considre utilizar un arreglo y `v-for` para generar los componentes hijos y utilize ese arreglo como la fuente de la verdad.
 
 ### vm.$slots
 
 - **Tipo:** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Utilizado para acceder programaticamente al contenido [distribuido por los _slots_](../guide/components.html#Content-Distribution-with-Slots). Cada [_slot_ con nombre](../guide/components.html#Named-Slots) tiene su propia propiedad correspondiente (por ejemplo, el contenido de `slot=foo` se encontrará en `vm.$slots.foo`). La propiedad `default` contiene cualquier nodo que no esté incluido en un _slot_ con nombre.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Acceder a `vm.$slots` es útil cuando se está implementando un componente con [función de renderizado](../guide/render-function.html).
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <blog-post>
@@ -1386,79 +1388,79 @@ type: api
   })
   ```
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+- **Vea también:**
+  - [Componente `<slot>`](#slot-1)
+  - [Distribución de contendo con Slots](../guide/components.html#Content-Distribution-with-Slots)
+  - [Funciones de Renderizado - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0+
+> Nuevo en 2.1.0+
 
 - **Tipo:** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Utilizado para acceder programaticamente a [scoped slots](../guide/components.html#Scoped-Slots). Para cada _slot_, incluyendo el _slot_ `default`, el objeto contiene una función correspondiente que retorna _VNodes_.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Acceder a `vm.$scopedSlots` es útil cuando se está implementando un componente con [función de renderizado](../guide/render-function.html).
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+- **Vea también:**
+  - [Componente `<slot>`](#slot-1)
+  - [Distribución de contendo con Slots](../guide/components.html#Content-Distribution-with-Slots)
+  - [Funciones de Renderizado - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
 - **Tipo:** `Object`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
+  Un objeto de elementos del DOM e instancias de componentes, registrados con [atributos `ref`](#ref).
 
-- **See also:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
-  - [Special Attributes - ref](#ref)
+- **Vea también:**
+  - [Referencias a Componentes Hijos](../guide/components.html#Child-Component-Refs)
+  - [Atributos Especiales - ref](#ref)
 
 ### vm.$isServer
 
 - **Tipo:** `boolean`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Whether the current Vue instance is running on the server.
+  Retorna si la instancia Vue actual está siendo ejecutada en un servidor.
 
-- **See also:** [Server-Side Rendering](../guide/ssr.html)
+- **Vea también:** [Renderizado del lado de Servidor](../guide/ssr.html)
 
 ### vm.$attrs
 
-> New in 2.4.0+
+> Nuevo en 2.4.0+
 
 - **Tipo:** `{ [key: string]: string }`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contiene _bindings_ de atributos del _scope_ del componente padre (excepto para `class` y `style`) que no son reconocidos como _props_. Cuando un componente no tiene _props_ declaradas, esta propiedad contiene todos los _bindings_ de atributos del _scope_ del componente padre (excepto `class` y `style`), y puede ser pasada a un componente interno vía `v-bind="$attrs"` - útil cuando se quiere implementar componentes de orden superior.
 
 ### vm.$listeners
 
-> New in 2.4.0+
+> Nuevo en 2.4.0+
 
 - **Tipo:** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Solamente lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating transparent wrapper components.
+  Contiene escucha de eventos (_event listeners_) de `v-on` en el _scope_ del componente padre (sin modificadores `.native`). Esta propiedad puede ser pasada a un componente interno vía `v-on="$listeners"` - útil cuando se quiere implementer componentes envolventes transparentes.
 
 ## Instance Methods / Data
 
