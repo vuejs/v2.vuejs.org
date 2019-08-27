@@ -245,7 +245,7 @@ type: api
 
   > Nuevo en 2.1.0+: retorna una promesa si no se provee un callback y Promise es soportado en el entorno de ejecución. Por favor tenga en cuenta que Vue no incluye un polyfill para Promise, asi que si su navegador destino no soporta Promesas de forma nativa (te estoy mirando a ti IE), deberá proveer un polyfill usted mismo.
 
-- **Ver también:** [Cola de actualización Asíncrona](../guide/reactivity.html#Async-Update-Queue)
+- **Vea también:** [Cola de actualización Asíncrona](../guide/reactivity.html#Async-Update-Queue)
 
 ### Vue.set( target, key, value )
 
@@ -262,7 +262,7 @@ type: api
 
   <p class="tip">El objeto destino no puede ser una instancia de Vue, o el objeto raíz data de una instancia de Vue.</p>
 
-- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
+- **Vea también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### Vue.delete( target, key )
 
@@ -278,7 +278,7 @@ type: api
 
   <p class="tip">El objeto destino no puede ser una instancia de Vue, o el objeto raíz data de una instancia de Vue.</p>
 
-- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
+- **Vea también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -309,7 +309,7 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **Ver también:** [Directivas personalizadas](../guide/custom-directive.html)
+- **Vea también:** [Directivas personalizadas](../guide/custom-directive.html)
 
 ### Vue.filter( id, [definition] )
 
@@ -331,7 +331,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **Ver también:** [Filtros](../guide/filters.html)
+- **Vea también:** [Filtros](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -354,7 +354,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **Ver también:** [Componentes](../guide/components.html)
+- **Vea también:** [Componentes](../guide/components.html)
 
 ### Vue.use( plugin )
 
@@ -369,7 +369,7 @@ type: api
 
   Cuando este método es invocado en el mismo plugin multiples veces, el plugin sera instalado solo una vez.
 
-- **Ver también:** [Plugins](../guide/plugins.html)
+- **Vea también:** [Plugins](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
@@ -380,7 +380,7 @@ type: api
 
   Aplica un mixin de forma global, el cual afecta cada instancia de Vue creada posteriormente. Esto puede ser usado por los creadores de plugins para inyectar comportamiento personalizado en componentes. **No recomendado en el código de aplicación**.
 
-- **Ver también:** [Mixin Global](../guide/mixins.html#Global-Mixin)
+- **Vea también:** [Mixin Global](../guide/mixins.html#Global-Mixin)
 
 ### Vue.compile( template )
 
@@ -403,7 +403,7 @@ type: api
   })
   ```
 
-- **Ver también:** [Funciones Render](../guide/render-function.html)
+- **Vea también:** [Funciones Render](../guide/render-function.html)
 
 ### Vue.version
 
@@ -749,175 +749,175 @@ type: api
 
   - **Vea También:** [Función Render](../guide/render-function.html)
 
-## Options / Lifecycle Hooks
+## Opciones / Hooks de Ciclo de Vida
 
-<p class="tip">All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.</p>
+<p class="tip">Todos los _hooks_ de ciclo de vida tienen automáticamente su contexto `this` vinculado a la instancia, de modo que usted puede acceder a datos, propiedades computadas y métodos. Esto significa que __no debe usar una _arrow function_ para definir un método de ciclo de vida__ (por ejemplo, `created: () => this.fetchTodos ()`). La razón es que las _arrow functions_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.fetchTodos` no estará definido.</p>
 
 ### beforeCreate
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  Es invocado sincrónicamente, inmediatamente después de que se ha inicializado la instancia, antes de la observación de datos y la configuración de eventos y observadores.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Se invoca sincrónicamente después de crear la instancia. En este punto, la instancia ha terminado las opciones de procesamiento, lo que significa que se ha configurado: observación de datos, propiedades computadas, métodos, _callbacks_ de observadores y eventos. Sin embargo, la fase de montaje no ha comenzado y la propiedad `$el` aún no estará disponible.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Invocado justo antes de que comience el montaje: la función `render` está a punto de llamarse por primera vez.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Es invocado después de que se ha montado la instancia, donde `el` se reemplaza por el recién creado `vm.$el`. Si la instancia raíz está montada en un elemento en el documento, `vm.$el` también estará en el documento cuando se llame a `mounted`.
 
-  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
+  Tenga en cuenta que `mounted` **no** garantiza que todos los componentes secundarios también se hayan montado. Si desea esperar hasta que se haya procesado toda la vista, puede usar [vm.$nextTick](#vm-nextTick) dentro de `mounted`:
 
   ``` js
   mounted: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
+      // Código que se ejecutará solo después de
+      // haber procesado la vista completa
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
+  Es invocado cuando los datos cambian, antes de que se actualize el DOM. Este es un buen lugar para acceder al DOM existente antes de una actualización, por ejemplo para eliminar _listeners_ de eventos agregados manualmente.
 
-  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor, porque solo la renderización inicial se realiza del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Invocado después de un cambio de datos hace que el DOM virtual se vuelva a procesar y actualizar.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  El DOM del componente se habrá actualizado cuando se llame a este _hook_, por lo que puede realizar operaciones dependientes del DOM aquí. Sin embargo, en la mayoría de los casos, debe evitar cambiar el estado dentro del _hook_. Para reaccionar a los cambios de estado, generalmente es mejor usar una [propiedad computada](#computed) o [watcher](#watch) en su lugar.
 
-  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `updated`:
+  Tenga en cuenta que `updated` **no** garantiza que todos los componentes secundarios también se hayan vuelto a renderizar. Si desea esperar hasta que se haya vuelto a renderizar toda la vista, puede usar [vm.$nextTick](#vm-nextTick) dentro de `updated`:
 
   ``` js
   updated: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
+      // Código que se ejecutará solo después
+      // de que se haya vuelto a renderizar toda la vista
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when a kept-alive component is activated.
+  Se invoca cuando se activa un componente _kept-alive_
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Vea también:**
+  - [Componentes Built-in - keep-alive](#keep-alive)
+  - [Componentes Dinámicos - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when a kept-alive component is deactivated.
+  Se invoca cuando se desactiva un componente _kept-alive_
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Vea también:**
+  - [Componentes Built-in - keep-alive](#keep-alive)
+  - [Componentes Dinámicos - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Invocado justo antes de que se destruya una instancia de Vue. En esta etapa, la instancia todavía es completamente funcional.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
 - **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Invocado después de que una instancia de Vue ha sido destruida. Cuando se llama a este _hook_, todas las directivas de la instancia de Vue se han desvinculado, todos los _listeners_ de eventos se han eliminado y todas las instancias de Vue secundarias también se han destruido.
 
-  **This hook is not called during server-side rendering.**
+  **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### errorCaptured
 
-> New in 2.5.0+
+> Nuevo en 2.5.0+
 
 - **Tipo:** `(err: Error, vm: Component, info: string) => ?boolean`
 
-- **Details:**
+- **Detalles:**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  Se invoca cuando se captura un error de cualquier componente descendiente. El _hook_ recibe tres argumentos: el error, la instancia del componente que activó el error y una cadena que contiene información sobre dónde se capturó el error. El _hook_ puede devolver `falso` para evitar que el error se propague aún más.
 
-  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+  <p class="tip">Puede modificar el estado del componente en este _hook_. Sin embargo, es importante tener condicionales en su _template_ o función de renderización que alterne otro contenido cuando se haya capturado un error; de lo contrario, el componente caerá en un bucle de renderización infinito.</p>
 
-  **Error Propagation Rules**
+  **Reglas de Propagación de Errores**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - De forma predeterminada, todos los errores aún se envían al `config.errorHandler` global si está definido, por lo que estos errores aún se pueden informar a un servicio de análisis en un solo lugar.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - Si existen varios _hooks_ `errorCaptured` en una cadena de herencia de un componente o en la cadena principal, se invocarán todos en el mismo error.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - Si el _hook_ `errorCaptured` dispara un error, tanto este error como el error original se capturan y se envían al `config.errorHandler` global.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - Un _hook_ `errorCaptured` puede devolver `falso` para evitar que el error continúe propagándose. Esto esencialmente diría "este error ya ha sido manejado y debe ignorarse". Evitará cualquier _hook_ adicional de `ErrorCaptured` y el error invocará el `config.errorHandler` global.
 
 ## Opciones / Recursos
 
