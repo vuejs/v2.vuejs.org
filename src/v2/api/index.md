@@ -799,7 +799,7 @@ type: api
   mounted: function () {
     this.$nextTick(function () {
       // Código que se ejecutará solo después de
-      // haber procesado la vista completa
+      // haber renderizado la vista completa
     })
   }
   ```
