@@ -769,7 +769,7 @@ type: api
 
 - **Detalles:**
 
-  Se invoca sincrónicamente después de crear la instancia. En este punto, la instancia ha terminado las opciones de procesamiento, lo que significa que se ha configurado: observación de datos, propiedades computadas, métodos, _callbacks_ de observadores y eventos. Sin embargo, la fase de montaje no ha comenzado y la propiedad `$el` aún no estará disponible.
+  Se invoca sincrónicamente después de crear la instancia. En este punto, la instancia ha terminado de procesar las opciones, lo que significa que se ha configurado: observación de datos, propiedades computadas, métodos, _callbacks_ de observadores y eventos. Sin embargo, la fase de montaje no ha comenzado y la propiedad `$el` aún no estará disponible.
 
 - **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
