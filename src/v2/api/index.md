@@ -826,7 +826,7 @@ type: api
 
 - **Detalles:**
 
-  Invocado después de un cambio de datos hace que el DOM virtual se vuelva a procesar y actualizar.
+  Invocado después de que un cambio de datos hace que el DOM virtual se vuelva a procesar y actualizar.
 
   El DOM del componente se habrá actualizado cuando se llame a este _hook_, por lo que puede realizar operaciones dependientes del DOM aquí. Sin embargo, en la mayoría de los casos, debe evitar cambiar el estado dentro del _hook_. Para reaccionar a los cambios de estado, generalmente es mejor usar una [propiedad computada](#computed) o [watcher](#watch) en su lugar.
 
