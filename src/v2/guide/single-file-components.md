@@ -13,9 +13,9 @@ Esto puede funcionar muy bien para proyectos pequeños y medianos, donde JavaScr
 - Las **definiciones globales** nos obligan a usar nombres únicos para cada componente
 - Las **plantillas de texto** carecen de resaltado de sintaxis y requieren feas barras para generar HTML multilínea
 - La **ausencia de soporte para CSS** significa que, en tanto HTML y JavaScript son modularizados en componentes, el CSS queda visiblemente fuera
-- **Sin una etapa de compilación** nos vemos restringidos a HTML y JavaScript ES5, en lugar de preprocesadores como Pug (anteriormente Jade) y Babel
+- **Sin una etapa de compilación** nos vemos restringidos a HTML y ES5, en lugar de pre-procesadores como Pug (anteriormente Jade) y Babel
 
-Todo esto se resuelve mediante componentes de un solo archivo con extensión .vue, hecho posible con herramientas de compilación como Webpack o Browserify.
+Todo esto se resuelve mediante Componentes de un Solo Archivo con extensión .vue, lo cual es posible con herramientas de compilación como Webpack o Browserify.
 
 Aquí tenemos un ejemplo de un archivo que llamaremos `Hello.vue`:
 
@@ -25,13 +25,13 @@ Ahora tenemos:
 
 - [Resaltado completo de la sintaxis](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [Módulos CommonJS](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
-- [CSS con ámbito de componente](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+- [CSS con alcance de componente](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
-Como prometimos, podemos también usar preprocesadores como Pug, Babel (con módulos ES2015) y Stylus para obtener componentes más limpios y con más funcionalidades.
+Como prometimos, podemos también usar pre-procesadores como Pug, Babel (con módulos ES2015) y Stylus para obtener componentes más limpios y con más funcionalidades.
 
-<a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank"><img src="/images/vue-component-with-preprocessors.png" alt="Ejemplo de Componente de un Solo Archivo con preprocesadores (click para ver código como texto)" style="display: block; margin: 30px auto;"></a>
+<a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank"><img src="/images/vue-component-with-preprocessors.png" alt="Ejemplo de Componente de un Solo Archivo con pre-procesadores (click para ver código como texto)" style="display: block; margin: 30px auto;"></a>
 
-Estos lenguajes específicos son solo ejemplos. Podrías usar, con la misma facilidad, Bublé, TypeScript, SCSS, PostCS, o cualquier otro preprocesador que te ayude a ser productivo. Si utilizas Webpack con `vue-loader`, también te ofrece soporte de primera clase para módulos CSS.
+Estos lenguajes específicos son solo ejemplos. Podrías usar, con la misma facilidad, Bublé, TypeScript, SCSS, PostCSS, o cualquier otro pre-procesador que te ayude a ser productivo. Si utilizas Webpack con `vue-loader`, también te ofrece soporte de primera clase para módulos CSS.
 
 ### ¿Qué sucede con la separación de intereses?
 
