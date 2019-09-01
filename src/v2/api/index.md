@@ -1510,14 +1510,14 @@ type: api
 
 - **Opción: deep**
 
-  Para también detectar valores anidados dentro de Objetos, usted debe pasar `deep: true` en las opcoines. Note que usted no necesita realizar esto para mutaciones de Arreglos.
+  Para también detectar valores anidados dentro de Objetos, usted debe pasar `deep: true` en las opciones. Note que usted no necesita realizar esto para mutaciones de Arreglos.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // se dispará la función `callback`
+  // se disparará la función `callback`
   ```
 
 - **Opción: immediate**
@@ -1528,7 +1528,7 @@ type: api
   vm.$watch('a', callback, {
     immediate: true
   })
-  // se dispará el `callback` inmediatamente con el nuevo valor de `a`
+  // se disparará el `callback` inmediatamente con el nuevo valor de `a`
   ```
 
 ### vm.$set( target, key, value )
@@ -1588,7 +1588,7 @@ type: api
 
 - **Uso:**
 
-  Escucho un evento personalizado, pero solamente una vez. La escucha será removida una vez que es disparada por primera vez.
+  Escucha un evento personalizado, pero solamente una vez. El _listener_ será removido una vez que es disparado por primera vez.
 
 ### vm.$off( [event, callback] )
 
@@ -1598,13 +1598,13 @@ type: api
 
 - **Uso:**
 
-  Remover escuchas de evento(s) personalizado(s).
+  Remover escuchas (_listeners_) de evento(s) personalizado(s).
 
-  - Si ningún argumento es provisto, remueve todas las escuchas a eventos.
+  - Si ningún argumento es proporcionado, remueve todas las escuchas (_listeners_) a eventos.
 
-  - Si solamente el evento es provisto, remueve todas las escuchas para ese evento.
+  - Si solamente el evento es proporcionado, remueve todas las escuchas (_listeners_) para ese evento.
 
-  - Si tanto el evento como la función _callback_ son provistas, remueve solamente la escucha para esa función _callback_ específica.
+  - Si tanto el evento como la función _callback_ son proporcionados, remueve solamente la escucha (_listener_) para esa función _callback_ específica.
 
 ### vm.$emit( eventName, [...args] )
 
@@ -1612,7 +1612,7 @@ type: api
   - `{string} eventName`
   - `[...args]`
 
-  Dispara un evento en la instancia actual. Cualquier argumento adicional será pasado a la función _callback_ de escucha.
+  Dispara un evento en la instancia actual. Cualquier argumento adicional será pasado a la función _callback_ de escucha (_listener_).
 
 - **Ejemplos:**
 
@@ -1755,7 +1755,7 @@ type: api
 
   Si el argumento `elementOrSelector` no es provisto, la plantilla será renderizara como un elemento "fuera del documento", y ustede deberá utilizar la API nativa del DOM para insertarla en el documento.
 
-  El método retorna la propia instancia para que usted pueda encadenar otros métodos de instacia luego.
+  El método retorna la propia instancia para que usted pueda encadenar otros métodos de instancia luego.
 
 - **Ejemplo:**
 
@@ -1783,7 +1783,7 @@ type: api
 
 - **Uso:**
 
-  Fuerza a la instancia de Vue a renderizarse nuevamente. Note que esto no afecta a todos sus componentes hijo, solamente a la propia instancia y componentes hijos con contenido insertado en _slot_.
+  Fuerza a la instancia de Vue a renderizarse nuevamente. Note que esto no afecta a todos sus componentes hijos, solamente a la propia instancia y componentes hijos con contenido insertado en _slot_.
 
 ### vm.$nextTick( [callback] )
 
@@ -1792,9 +1792,9 @@ type: api
 
 - **Uso:**
 
-  Pospone la ejecución de la función _callback_ para luego del próximo ciclo de actualización del DOM. Utilize este método inmediatamente luego de modificar datos para esperar por la actualización del DOM. Este método es el mismo que el método global `Vue.nextTick`, excpeto que el contexto `this` de la función _callback_ es automáticamente vinculado a la instancia que invoco este método.
+  Pospone la ejecución de la función _callback_ para luego del próximo ciclo de actualización del DOM. Utilice este método inmediatamente luego de modificar datos para esperar por la actualización del DOM. Este método es el mismo que el método global `Vue.nextTick`, excpeto que el contexto `this` de la función _callback_ es automáticamente vinculado a la instancia que invoco este método.
 
-  > Nuevo en 2.1.0+: retorna una promesa (_Promise_) si no fue provista una función _callback_ y estas son soportadas en el entorno de ejecución. Note que Vue no trae un _polyfill_ para promesas, por lo tanto, si su navegador no soporta promseas de forma nativa (mirándote, IE), usted deberá agregar un _polyfill_ por su cuenta.
+  > Nuevo en 2.1.0+: retorna una promesa (_Promise_) si no fue provista una función _callback_ y estas son soportadas en el entorno de ejecución. Note que Vue no trae un _polyfill_ para promesas, por lo tanto, si su navegador no soporta promesas de forma nativa (mirándote, IE), usted deberá agregar un _polyfill_ por su cuenta.
 
 - **Ejemplo:**
 
@@ -1808,7 +1808,7 @@ type: api
         this.message = 'changed'
         // el DOM no está actualizado todavía
         this.$nextTick(function () {
-          // el DOM está actualizaod
+          // el DOM está actualizado
           // `this` está vinculado a la instancia actual
           this.doSomethingElse()
         })
@@ -1825,9 +1825,9 @@ type: api
 
 - **Uso:**
 
-  Destruir completamente una `vm`. Limpia todas sus conecciones con otras `vms` existentes, desvincula todas sus directivas y apaga todas sus escuchas a eventos.
+  Destruir completamente una `vm`. Limpia todas sus conexiones con otras `vms` existentes, desvincula todas sus directivas y apaga todas sus escuchas (_listeners_) a eventos.
 
-  Dispará los `hooks` `beforeDestroy` y `destroyed`.
+  Dispara los `hooks` `beforeDestroy` y `destroyed`.
 
   <p class="tip">En casos de uso normales no debería necesitar llamar a este método. Prefiera controlar el ciclo de vida de componentes hijos de una forma orientada a datos utilizando `v-if` y `v-for`</p>
 
