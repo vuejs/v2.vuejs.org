@@ -1739,64 +1739,64 @@ type: api
   </script>
   {% endraw %}
 
-## Instance Methods / Lifecycle
+## Métodos de Instancia / Ciclo de vida
 
 ### vm.$mount( [elementOrSelector] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Retorna:** `vm` - la propia instancia
 
 - **Uso:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Si la instancia de Vue no recibió la opción `el` durante la instanciación, ella estará en el estado "no montada" sin un elemento del DOM asociado. `vm.$mount()` puede ser utilizado para comenzar a montar una instancia de Vue no montada.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Si el argumento `elementOrSelector` no es provisto, la plantilla será renderizara como un elemento "fuera del documento", y ustede deberá utilizar la API nativa del DOM para insertarla en el documento.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  El método retorna la propia instancia para que usted pueda encadenar otros métodos de instacia luego.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // crea y monta en #app (reemplazará #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // el ejemplo de arriba es equivalente a:
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // o, renderizar "fuera del documento" y agregarla luego:
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **Vea también:**
+  - [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-del-Ciclo-de-vida)
+  - [Renderizado del lado de Servidor](../guide/ssr.html)
 
 ### vm.$forceUpdate()
 
 - **Uso:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Fuerza a la instancia de Vue a renderizarse nuevamente. Note que esto no afecta a todos sus componentes hijo, solamente a la propia instancia y componentes hijos con contenido insertado en _slot_.
 
 ### vm.$nextTick( [callback] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Function} [callback]`
 
 - **Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Pospone la ejecución de la función _callback_ para luego del próximo ciclo de actualización del DOM. Utilize este método inmediatamente luego de modificar datos para esperar por la actualización del DOM. Este método es el mismo que el método global `Vue.nextTick`, excpeto que el contexto `this` de la función _callback_ es automáticamente vinculado a la instancia que invoco este método.
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Nuevo en 2.1.0+: retorna una promesa (_Promise_) si no fue provista una función _callback_ y estas son soportadas en el entorno de ejecución. Note que Vue no trae un _polyfill_ para promesas, por lo tanto, si su navegador no soporta promseas de forma nativa (mirándote, IE), usted deberá agregar un _polyfill_ por su cuenta.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   new Vue({
@@ -1804,12 +1804,12 @@ type: api
     methods: {
       // ...
       example: function () {
-        // modify data
+        // modificar datos
         this.message = 'changed'
-        // DOM is not updated yet
+        // el DOM no está actualizado todavía
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // el DOM está actualizaod
+          // `this` está vinculado a la instancia actual
           this.doSomethingElse()
         })
       }
@@ -1817,21 +1817,21 @@ type: api
   })
   ```
 
-- **See also:**
+- **Vea también:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [Cola de actualización asíncrona](../guide/reactivity.html#Cola-de-actualizacion-asincrona)
 
 ### vm.$destroy()
 
 - **Uso:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Destruir completamente una `vm`. Limpia todas sus conecciones con otras `vms` existentes, desvincula todas sus directivas y apaga todas sus escuchas a eventos.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Dispará los `hooks` `beforeDestroy` y `destroyed`.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">En casos de uso normales no debería necesitar llamar a este método. Prefiera controlar el ciclo de vida de componentes hijos de una forma orientada a datos utilizando `v-if` y `v-for`</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-del-Ciclo-de-vida)
 
 ## Directives
 
