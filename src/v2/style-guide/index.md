@@ -447,6 +447,18 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     {{ user.name }}
   </li>
 </ul>
+
+<script>
+export default {
+  computed: {
+    activeUsers: function () {
+      return this.users.filter(function (user) {
+        return user.isActive
+      })
+    }
+  }
+}
+</script>
 ```
 
 ``` html
