@@ -1462,99 +1462,99 @@ type: api
 
   Contiene escucha de eventos (_event listeners_) de `v-on` en el _scope_ del componente padre (sin modificadores `.native`). Esta propiedad puede ser pasada a un componente interno vía `v-on="$listeners"` - útil cuando se quiere implementer componentes envolventes transparentes.
 
-## Instance Methods / Data
+## Métodos de Instancia / Datos
 
 ### vm.$watch( expOrFn, callback, [options] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string | Function} expOrFn`
   - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Retorna:** `{Function} unwatch`
 
 - **Uso:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
+  Observa por cambios en una expresión o función computada en la instancia de Vue. La función _callback_ es llamada con el nuevo y el antiguo valor. La expresión solamente acepta caminos delimitados por puntos. Para expresiones más complejas, utilice una función.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Nota: cuando se está alterando (en vez de reemplazando) un Objeto o un Arreglo, el antiguo valor será igual al nuevo, ya que estos referencian al mismo Objeto/Arreglo. Vue no mantiene una copia del valores antes de que estos sean mutados.</p>
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
-  // keypath
+  // camino de la clave
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // hacer algo
   })
 
-  // function
+  // función
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // hacer algo
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retorna una función _unwatch_ que para de lanzar la función _callback_:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // luego, destruir el `watcher`
   unwatch()
   ```
 
-- **Option: deep**
+- **Opción: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Para también detectar valores anidados dentro de Objetos, usted debe pasar `deep: true` en las opcoines. Note que usted no necesita realizar esto para mutaciones de Arreglos.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // se dispará la función `callback`
   ```
 
-- **Option: immediate**
+- **Opción: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Pasar `immediate: true` en las opciones disparará la función _callback_ inmediatamente con el nuevo valor de la expresión:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // se dispará el `callback` inmediatamente con el nuevo valor de `a`
   ```
 
 ### vm.$set( target, key, value )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retorna:** el valor asignado.
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.set`.
+  Este es un **alias** para la función global `Vue.set`.
 
-- **See also:** [Vue.set](#Vue-set)
+- **Vea también:** [Vue.set](#Vue-set)
 
 ### vm.$delete( target, key )
 
-- **Arguments:**
+- **Argumentos:**
   - `{Object | Array} target`
   - `{string | number} key`
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Este es un **alias** para la función global `Vue.delete`.
 
 - **See also:** [Vue.delete](#Vue-delete)
 
