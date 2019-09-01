@@ -1558,19 +1558,19 @@ type: api
 
 - **See also:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Métodos de Instancia / Eventos
 
 ### vm.$on( event, callback )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+- **Argumentos:**
+  - `{string | Array<string>} event` (arreglo solamente es soportado en 2.2.0+)
   - `{Function} callback`
 
 - **Uso:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Escucha un evento personalizado en la _vm_ actual. Los eventos pueden ser disparados utilizado `vm.$emit`. La función _callback_ recibirá todos los argumentos adicionales en los métodos que disparan eventos.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1582,41 +1582,41 @@ type: api
 
 ### vm.$once( event, callback )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} event`
   - `{Function} callback`
 
 - **Uso:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Escucho un evento personalizado, pero solamente una vez. La escucha será removida una vez que es disparada por primera vez.
 
 ### vm.$off( [event, callback] )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+- **Argumentos:**
+  - `{string | Array<string>} event` (arreglo solamente es soportado en 2.2.2+)
   - `{Function} [callback]`
 
 - **Uso:**
 
-  Remove custom event listener(s).
+  Remover escuchas de evento(s) personalizado(s).
 
-  - If no arguments are provided, remove all event listeners;
+  - Si ningún argumento es provisto, remueve todas las escuchas a eventos.
 
-  - If only the event is provided, remove all listeners for that event;
+  - Si solamente el evento es provisto, remueve todas las escuchas para ese evento.
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Si tanto el evento como la función _callback_ son provistas, remueve solamente la escucha para esa función _callback_ específica.
 
 ### vm.$emit( eventName, [...args] )
 
-- **Arguments:**
+- **Argumentos:**
   - `{string} eventName`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Dispara un evento en la instancia actual. Cualquier argumento adicional será pasado a la función _callback_ de escucha.
 
-- **Examples:**
+- **Ejemplos:**
 
-  Using `$emit` with only an event name:
+  Utilizar `$emit` solamente con un nombre de evento:
 
   ```js
   Vue.component('welcome-button', {
@@ -1665,7 +1665,7 @@ type: api
   </script>
   {% endraw %}
 
-  Using `$emit` with additional arguments:
+  Utilizar `$emit` con argumentos adicionales:
 
   ```js
   Vue.component('magic-eight-ball', {
