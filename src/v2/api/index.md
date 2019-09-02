@@ -1128,7 +1128,7 @@ type: api
   }
   ```
 
-  Similar a los valores por defecto de las _props_, ustede debe utilizar una función _factory_ para valores no primitivos:
+  Similar a los valores por defecto de las _props_, usted debe utilizar una función _factory_ para valores no primitivos:
 
   ``` js
   const Child = {
@@ -1302,7 +1302,7 @@ type: api
 
 - **Detalles:**
 
-  Las opciones de instanciación utilizadas en la instancia Vue actual. Esto es útil cuando ustede desea incluir propiedades personalizadas en las opciones:
+  Las opciones de instanciación utilizadas en la instancia Vue actual. Esto es útil cuando usted desea incluir propiedades personalizadas en las opciones:
 
   ``` js
   new Vue({
@@ -1753,7 +1753,7 @@ type: api
 
   Si la instancia de Vue no recibió la opción `el` durante la instanciación, ella estará en el estado "no montada" sin un elemento del DOM asociado. `vm.$mount()` puede ser utilizado para comenzar a montar una instancia de Vue no montada.
 
-  Si el argumento `elementOrSelector` no es provisto, la plantilla será renderizara como un elemento "fuera del documento", y ustede deberá utilizar la API nativa del DOM para insertarla en el documento.
+  Si el argumento `elementOrSelector` no es provisto, la plantilla será renderizará como un elemento "fuera del documento", y usted deberá utilizar la API nativa del DOM para insertarla en el documento.
 
   El método retorna la propia instancia para que usted pueda encadenar otros métodos de instancia luego.
 
