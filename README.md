@@ -21,12 +21,9 @@ Translations for this documentation project are currently maintained in separate
 
 ### Arabic
 
-Arabic translation is maintained by [Interstellar Club](https://github.com/InterstellarClub)
+Arabic translation is maintained by [Vue.js AR](https://github.com/vuejs-ar)
 
-* Translation Repo - [/interstellarClub/ar.vuejs.org](https://github.com/interstellarClub/ar.vuejs.org)
-* Primary Maintainers :
-    * [Ilyes Chouia](https://github.com/celyes)
-    * [Ahmed Aissaoui](https://github.com/Aissaoui-Ahmed)
+* Translation Repo - [vuejs.org](https://github.com/vuejs-ar/vuejs.org)
 
 ### French
 
