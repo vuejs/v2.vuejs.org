@@ -779,7 +779,7 @@ type: api
 
 - **Detalles:**
 
-  Invocado justo antes de que comience el montaje: la función `render` está a punto de llamarse por primera vez.
+  Invocado justo antes de que comience el montaje: la función `render` está a punto de ser llamada por primera vez.
 
   **Este _hook_ no se invoca durante la renderización del lado del servidor.**
 
@@ -905,7 +905,7 @@ type: api
 
 - **Detalles:**
 
-  Se invoca cuando se captura un error de cualquier componente descendiente. El _hook_ recibe tres argumentos: el error, la instancia del componente que activó el error y una cadena que contiene información sobre dónde se capturó el error. El _hook_ puede devolver `falso` para evitar que el error se propague aún más.
+  Se invoca cuando se captura un error de cualquier componente descendiente. El _hook_ recibe tres argumentos: el error, la instancia del componente que disparó el error y una cadena que contiene información sobre dónde se capturó el error. El _hook_ puede devolver `falso` para evitar que el error se propague aún más.
 
   <p class="tip">Puede modificar el estado del componente en este _hook_. Sin embargo, es importante tener condicionales en su _template_ o función de renderización que alterne otro contenido cuando se haya capturado un error; de lo contrario, el componente caerá en un bucle de renderización infinito.</p>
 
@@ -913,7 +913,7 @@ type: api
 
   - De forma predeterminada, todos los errores aún se envían al `config.errorHandler` global si está definido, por lo que estos errores aún se pueden informar a un servicio de análisis en un solo lugar.
 
-  - Si existen varios _hooks_ `errorCaptured` en una cadena de herencia de un componente o en la cadena principal, se invocarán todos en el mismo error.
+  - Si existen múltiples _hooks_ `errorCaptured` en una cadena de herencia de componentes, todos serán invocados por el mismo error.
 
   - Si el _hook_ `errorCaptured` dispara un error, tanto este error como el error original se capturan y se envían al `config.errorHandler` global.
 
