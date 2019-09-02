@@ -15,7 +15,7 @@ Esto puede funcionar muy bien para proyectos pequeños y medianos, donde JavaScr
 - La **ausencia de soporte para CSS** significa que, en tanto HTML y JavaScript son modularizados en componentes, el CSS queda visiblemente fuera
 - **Sin una etapa de compilación** nos vemos restringidos a HTML y ES5, en lugar de pre-procesadores como Pug (anteriormente Jade) y Babel
 
-Todo esto se resuelve mediante Componentes de un Solo Archivo con extensión .vue, lo cual es posible con herramientas de compilación como Webpack o Browserify.
+Todo esto se resuelve mediante Componentes de un Solo Archivo con extensión .vue, que pueden usarse con herramientas de compilación como Webpack o Browserify.
 
 Aquí tenemos un ejemplo de un archivo que llamaremos `Hello.vue`:
 
@@ -31,13 +31,13 @@ Como prometimos, podemos también usar pre-procesadores como Pug, Babel (con mó
 
 <a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank"><img src="/images/vue-component-with-preprocessors.png" alt="Ejemplo de Componente de un Solo Archivo con pre-procesadores (click para ver código como texto)" style="display: block; margin: 30px auto;"></a>
 
-Estos lenguajes específicos son solo ejemplos. Podrías usar, con la misma facilidad, Bublé, TypeScript, SCSS, PostCSS, o cualquier otro pre-procesador que te ayude a ser productivo. Si utilizas Webpack con `vue-loader`, también te ofrece soporte de primera clase para módulos CSS.
+Estos lenguajes específicos son solo ejemplos. Usted podría usar, con la misma facilidad, Bublé, TypeScript, SCSS, PostCSS, o cualquier otro pre-procesador que le ayude a ser productivo. Si utiliza Webpack con `vue-loader`, también le ofrece soporte de primera clase para módulos CSS.
 
 ### ¿Qué sucede con la separación de intereses?
 
-Es importante notar que **la separación de intereses no equivale a la separación de tipos de archivo.** En el desarrollo moderno de UI nos encontramos con que, en lugar de dividir el código base dentro de 3 capas enormes que se entrelazan entre sí, tiene mucho más sentido dividirlas dentro de componentes más livianos, y componerlos las capas sí. Dentro de un componente, su plantilla, lógica y estilos están inherentemente acoplados y ubicándolos en un mismo lugar logramos que el componente sea más coherente y mantenible.
+Es importante notar que **la separación de intereses no equivale a la separación de tipos de archivo.** En el desarrollo moderno de UI nos encontramos con que, en lugar de dividir el código base dentro de 3 capas enormes que se entrelazan entre sí, tiene mucho más sentido dividirlas dentro de componentes más livianos, y componer las capas entre sí. Dentro de un componente, su plantilla, lógica y estilos están inherentemente acoplados; ubicándolos en un mismo lugar logramos que el componente sea más coherente y mantenible.
 
-Incluso si no te gusta la idea de utilizar Componentes de un Solo Archivo, puedes aprovechar las características de recarga en caliente y compilación previa, separando tu JavaScript y CSS en archivos diferentes:
+Incluso si no le gusta la idea de utilizar Componentes de un Solo Archivo, puede aprovechar las características de recarga en caliente y compilación previa, separando su JavaScript y CSS en archivos diferentes:
 
 ``` html
 <!-- my-component.vue -->
@@ -52,22 +52,22 @@ Incluso si no te gusta la idea de utilizar Componentes de un Solo Archivo, puede
 
 ### Ejemplo con Sandbox
 
-Si quieres profundizar y comenzar a jugar con Componentes de un Solo Archivo, visita [esta aplicación to-do de ejemplo](https://codesandbox.io/s/o29j95wx9) en CodeSandbox.
+Si quiere profundizar y comenzar a jugar con Componentes de un Solo Archivo, visite [esta aplicación to-do de ejemplo](https://codesandbox.io/s/o29j95wx9) en CodeSandbox.
 
 ### Para usuarios nuevos en Sistemas de Compilación de Módulos en JavaScript
 
-Con los componentes `.vue` entramos en el reino de las aplicaciones JavaScript avanzadas. Esto significa aprender a usar algunas herramientas adicionales, si es que aún no lo has hecho:
+Con los componentes `.vue` entramos en el reino de las aplicaciones JavaScript avanzadas. Esto significa aprender a usar algunas herramientas adicionales, si es que usted aún no lo ha hecho:
 
-- **Manejador de Paquetes de Node** (Node Package Manager, NPM): Lee la Sección 10 de la [Guía para comenzar](https://docs.npmjs.com/getting-started/what-is-npm): _Desinstalando paquetes globales_ (_Uninstalling global packages_).
+- **Manejador de Paquetes de Node** (Node Package Manager, NPM): Lea la Sección 10 de la [Guía para comenzar](https://docs.npmjs.com/getting-started/what-is-npm): _Desinstalando paquetes globales_ (_Uninstalling global packages_).
 
-- **JavaScript moderno con ES2015/16** (Modern JavaScript with ES2015/16): Lee la guía de Babel [Aprende ES2015](https://babeljs.io/docs/learn-es2015/). No es necesario memorizar cada característica, pero mantén esta página como una referencia a la cual regresar.
+- **JavaScript moderno con ES2015/16** (Modern JavaScript with ES2015/16): Lea la guía de Babel [Aprende ES2015](https://babeljs.io/docs/learn-es2015/). No es necesario memorizar cada característica, pero mantenga esta página como una referencia a la cual regresar.
 
-Luego de tomarte un día para profundizar en estos recursos, te recomendamos consultar [Vue CLI 3](https://cli.vuejs.org/). Sigue las instrucciones y deberías tener un proyecto Vue con componentes `.vue`, ES2015, y recarga en caliente en unos pocos minutos!
+Luego de tomarse un día para profundizar en estos recursos, le recomendamos consultar [Vue CLI 3](https://cli.vuejs.org/). Siga las instrucciones y debería tener un proyecto Vue con componentes `.vue`, ES2015, y recarga en caliente en unos pocos minutos!
 
 ### Para Usuarios Avanzados
 
-La Interface de Línea de Comandos (CLI) se encarga de la mayoría de las configuraciones de herramientas para ti, pero también permite una personalización detallada a través de tus propias opciones de configuración.
+La Interface de Línea de Comandos (CLI) se encarga de la mayoría de las configuraciones de herramientas para usted, pero también permite una personalización detallada a través de sus propias opciones de configuración.
 
-En caso de que prefieras definir tu configuración de compilación desde cero, deberás configurar manualmente Webpack con [vue-loader](https://vue-loader.vuejs.org/). Para obtener más información sobre Webpack, consulta su [Documentación Oficial](https://webpack.js.org/configuration/) y la [Academia Webpack](https://webpack.academy/p/the-core-concepts).
+En caso de que prefiera definir su configuración de compilación desde cero, deberá configurar manualmente Webpack con [vue-loader](https://vue-loader.vuejs.org/). Para obtener más información sobre Webpack, consulte su [Documentación Oficial](https://webpack.js.org/configuration/) y la [Academia Webpack](https://webpack.academy/p/the-core-concepts).
 
-Ya sea que prefieras Webpack o Browserify, hemos documentado plantillas para ambos, tanto para proyectos simples como otros más complejos. Te recomendamos visitar [github.com/vuejs-templates](https://github.com/vuejs-templates), eligiendo la plantilla correcta para ti, y seguir las instrucciones en el archivo README para generar un nuevo proyecto con [vue-cli](https://github.com/vuejs/vue-cli).
+Ya sea que prefiera Webpack o Browserify, hemos documentado plantillas para ambos, tanto para proyectos simples como otros más complejos. Le recomendamos visitar [github.com/vuejs-templates](https://github.com/vuejs-templates), eligiendo la plantilla correcta para usted, y seguir las instrucciones en el archivo README para generar un nuevo proyecto con [vue-cli](https://github.com/vuejs/vue-cli).
