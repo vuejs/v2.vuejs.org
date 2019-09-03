@@ -60,7 +60,7 @@ Con los componentes `.vue` entramos en el reino de las aplicaciones JavaScript a
 
 - **Manejador de Paquetes de Node** (Node Package Manager, NPM): Lea la Sección 10 de la [Guía para comenzar](https://docs.npmjs.com/getting-started/what-is-npm): _Desinstalando paquetes globales_ (_Uninstalling global packages_).
 
-- **JavaScript moderno con ES2015/16** (Modern JavaScript with ES2015/16): Lea la guía de Babel [Aprende ES2015](https://babeljs.io/docs/learn-es2015/). No es necesario memorizar cada característica, pero mantenga esta página como una referencia a la cual regresar.
+- **JavaScript moderno con ES2015/16** (Modern JavaScript with ES2015/16): Lea la guía de Babel [Aprenda ES2015](https://babeljs.io/docs/learn-es2015/). No es necesario memorizar cada característica, pero mantenga esta página como una referencia a la cual regresar.
 
 Luego de tomarse un día para profundizar en estos recursos, le recomendamos consultar [Vue CLI 3](https://cli.vuejs.org/). Siga las instrucciones y debería tener un proyecto Vue con componentes `.vue`, ES2015, y hot-reload en unos pocos minutos!
 
