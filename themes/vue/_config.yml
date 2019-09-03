@@ -25,6 +25,9 @@ platinum_sponsors:
       https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
     img: nativescript.png
     name: NativeScript
+  - url: 'https://retool.com/?utm_source=sponsor&utm_campaign=vue'
+    img: retool.png
+    name: Retool
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
