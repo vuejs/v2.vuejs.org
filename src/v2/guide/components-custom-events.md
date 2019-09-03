@@ -14,7 +14,7 @@ Unlike components and props, event names don't provide any automatic case transf
 this.$emit('myEvent')
 ```
 
-Listening to the kebab-cased version will have no effect:
+Listening to the kebab-cased version will have **no** effect:
 
 ```html
 <!-- Won't work -->
