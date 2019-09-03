@@ -2556,9 +2556,9 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **See also:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## Interfaz VNode
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- Por favor, consulte la [declaración de la clase VNode](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
 ## Server-Side Rendering
 
