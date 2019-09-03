@@ -66,7 +66,7 @@ Luego de tomarse un día para profundizar en estos recursos, le recomendamos con
 
 ### Para Usuarios Avanzados
 
-La Interface de Línea de Comandos (CLI) se encarga de la mayoría de las configuraciones de herramientas para usted, pero también permite una personalización detallada a través de sus propias opciones de configuración.
+La Interfaz de Línea de Comandos (CLI) se encarga de la mayoría de las configuraciones de herramientas para usted, pero también permite una personalización detallada a través de sus propias opciones de configuración.
 
 En caso de que prefiera definir su configuración de compilación desde cero, deberá configurar manualmente Webpack con [vue-loader](https://vue-loader.vuejs.org/). Para obtener más información sobre Webpack, consulte su [Documentación Oficial](https://webpack.js.org/configuration/) y la [Academia Webpack](https://webpack.academy/p/the-core-concepts).
 
