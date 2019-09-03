@@ -37,7 +37,7 @@ Estos lenguajes específicos son solo ejemplos. Usted podría usar, con la misma
 
 Es importante notar que **la separación de intereses no equivale a la separación de tipos de archivo.** En el desarrollo moderno de UI nos encontramos con que, en lugar de dividir el código base dentro de 3 capas enormes que se entrelazan entre sí, tiene mucho más sentido dividirlas dentro de componentes más livianos, y componer las capas entre sí. Dentro de un componente, su plantilla, lógica y estilos están inherentemente acoplados; ubicándolos en un mismo lugar logramos que el componente sea más coherente y mantenible.
 
-Incluso si no le gusta la idea de utilizar Componentes de un Solo Archivo, puede aprovechar las características de recarga en caliente y compilación previa, separando su JavaScript y CSS en archivos diferentes:
+Incluso si no le gusta la idea de utilizar Componentes de un Solo Archivo, puede aprovechar las características de hot-reload y compilación previa, separando su JavaScript y CSS en archivos diferentes:
 
 ``` html
 <!-- my-component.vue -->
@@ -62,7 +62,7 @@ Con los componentes `.vue` entramos en el reino de las aplicaciones JavaScript a
 
 - **JavaScript moderno con ES2015/16** (Modern JavaScript with ES2015/16): Lea la guía de Babel [Aprende ES2015](https://babeljs.io/docs/learn-es2015/). No es necesario memorizar cada característica, pero mantenga esta página como una referencia a la cual regresar.
 
-Luego de tomarse un día para profundizar en estos recursos, le recomendamos consultar [Vue CLI 3](https://cli.vuejs.org/). Siga las instrucciones y debería tener un proyecto Vue con componentes `.vue`, ES2015, y recarga en caliente en unos pocos minutos!
+Luego de tomarse un día para profundizar en estos recursos, le recomendamos consultar [Vue CLI 3](https://cli.vuejs.org/). Siga las instrucciones y debería tener un proyecto Vue con componentes `.vue`, ES2015, y hot-reload en unos pocos minutos!
 
 ### Para Usuarios Avanzados
 
