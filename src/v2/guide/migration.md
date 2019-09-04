@@ -1131,25 +1131,26 @@ You may notice that:
 
 ## Slots
 
-### Duplicate Slots <sup>removed</sup>
+### Slots Duplicados <sup>removido</sup>
 
-It is no longer supported to have `<slot>`s with the same name in the same template. When a slot is rendered it is "used up" and cannot be rendered elsewhere in the same render tree. If you must render the same content in multiple places, pass that content as a prop.
+Ya no se admite tener `<slot>`s con el mismo nombre en el mismo template. Cuando se renderiza un slot, se "agota" y no se puede procesar en otro lugar del mismo árbol de procesamiento. Si debe representar el mismo contenido en varios lugares, pase ese contenido como propiedad.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute su suite o aplicación de prueba de extremo a extremo después de la actualización y busque <strong>advertencias en la consola</strong> sobre slots <code>v-model</code> duplicados.</p>
 </div>
 {% endraw %}
 
-### `slot` Attribute Styling <sup>removed</sup>
+### `slot` Atributo de Estilo<sup>removido</sup>
 
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+
+El contenido insertado mediante el nombre `<slot>` ya no conserva el atributo `slot`. Utilice un elemento contenedor para aplicarles estilo, o para casos de uso avanzados, modifique el contenido insertado mediante programación utilizando [funciones de renderizado](render-function.html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar selectores CSS haciendo referencia a slots con nombres (ej: <code>[slot="mi-nombre -de-slot"]</code>).</p>
 </div>
 {% endraw %}
 
