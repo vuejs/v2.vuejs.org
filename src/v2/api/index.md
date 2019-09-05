@@ -1847,7 +1847,7 @@ type: api
 
   ```html
   <span v-text="msg"></span>
-  <!-- equivale a -->
+  <!-- es equivalente a -->
   <span>{{msg}}</span>
   ```
 
@@ -1895,7 +1895,7 @@ type: api
 
   Esta directiva dispara transiciones cuando su condición cambia.
 
-  <p class="tip">Cuando se utiliza en conjunto con v-if, v-for tiene una prioridad mayor.Vea <a href="../guide/list.html#v-for-with-v-if">guía de renderizado de listas</a> para más detalles.</p>
+  <p class="tip">Cuando se utiliza en conjunto con v-if, v-for tiene una prioridad mayor. Vea <a href="../guide/list.html#v-for-with-v-if">guía de renderizado de listas</a> para más detalles.</p>
 
 - **Vea también:** [Renderización condicional - v-if](../guide/conditional.html)
 
@@ -1911,7 +1911,7 @@ type: api
 
   ```html
   <div v-if="Math.random() > 0.5">
-    Ahora me ves
+    Ahora me ve
   </div>
   <div v-else>
     Ahora no
@@ -1977,7 +1977,7 @@ type: api
     {{ item.text }}
   </div>
   ```
-  <p class="tip">Cuando se utiliza en conjunto con v-if, v-for tiene una prioridad mayor.Vea <a href="../guide/list.html#v-for-with-v-if">guía de renderizado de listas</a> para más detalles.</p>
+  <p class="tip">Cuando se utiliza en conjunto con v-if, v-for tiene una prioridad mayor. Vea <a href="../guide/list.html#v-for-with-v-if">guía de renderizado de listas</a> para más detalles.</p>
 
   El uso detallado de `v-for` se explica en la sección de guía referenciada abajo.
 
@@ -2022,7 +2022,7 @@ type: api
   <!-- método como manejador -->
   <button v-on:click="doThis"></button>
 
-  <!-- declaración inline -->
+  <!-- declaración en línea (inline) -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- abreviación -->
@@ -2129,7 +2129,7 @@ type: api
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  El modificador `.camel` permistar transformar a camelCase el nombre de un atributo `v-bind` al usar en plantillas _in-DOM_, por ejemplo el atributo `viewBox` de SVG:
+  El modificador `.camel` permite transformar a camelCase el nombre de un atributo `v-bind` al usar en plantillas _in-DOM_, por ejemplo el atributo `viewBox` de SVG:
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
@@ -2153,13 +2153,13 @@ type: api
   - componentes
 
 - **Modificadores:**
-  - [`.lazy`](../guide/forms.html#lazy) - escucha a evento `change` en vez de `input`
-  - [`.number`](../guide/forms.html#number) - castea input válida de _string_ a números
+  - [`.lazy`](../guide/forms.html#lazy) - escucha un evento `change` en vez de `input`
+  - [`.number`](../guide/forms.html#number) - castea input válido de _string_ a número
   - [`.trim`](../guide/forms.html#trim) - recorte automático
 
 - **Uso:**
 
-  Crea un enlace bidireccional (_two way binding_) en un elemento de formulario o componente. Para uso detalles y otras notas, vea la sección de guía referenciada abajo.
+  Crea un enlace bidireccional (_two way binding_) en un elemento de formulario o componente. Por más detalles de su uso y otras notas, vea la sección de guía referenciada abajo.
 
 - **Vea también:**
   - [Binding en Formularios](../guide/forms.html)
@@ -2171,7 +2171,7 @@ type: api
 
 - **Uso:**
 
-  Saltea la compilación para este elemento y todos sus hijos. Usted puede utilizar esto para mostrar _mustache tags_ sin conversión (_raw_). Saltear una gran cantidad de nodo sin directivas en ellos también puede acelerar el tiempo de compilación.
+  Saltea la compilación para este elemento y todos sus hijos. Usted puede utilizar esto para mostrar _mustache tags_ sin conversión (_raw_). Saltear una gran cantidad de nodos sin directivas en ellos también puede acelerar el tiempo de compilación.
 
 - **Ejemplo:**
 
@@ -2185,7 +2185,7 @@ type: api
 
 - **Uso:**
 
-  Esta directiva permarecerá en el elemento hasta que instancia Vue asociada termine su compilación. Combinada con reglas de CSS tal como `[v-cloak] { display: none }`, esta directiva puede ser utilizada para esconder _mustcha bindings_ no compilados hasta que la instancia de Vue este lista.
+  Esta directiva permanecerá en el elemento hasta que la instancia Vue asociada termine su compilación. Combinada con reglas de CSS tal como `[v-cloak] { display: none }`, esta directiva puede ser utilizada para esconder _mustcha bindings_ no compilados hasta que la instancia de Vue este lista.
 
 - **Ejemplo:**
 
@@ -2208,14 +2208,14 @@ type: api
 
 - **Detalles:**
 
-  Reneriza el elemento/componente solo **una** vez. En renderizaciones posteriores, el elemento/componente y todos sus hijos serán tratados como contenido estático, y por lo tanto, salteados. Esto puede ser utilizado para optimizar la _performance_ de actualización.
+  Renerizará el elemento/componente solo **una** vez. En renderizaciones posteriores, el elemento/componente y todos sus hijos serán tratados como contenido estático, y por lo tanto, salteados. Esto puede ser utilizado para optimizar la _performance_ de actualización.
 
   ```html
   <!-- un solo elemento -->
-  <span v-once>This will never change: {{msg}}</span>
+  <span v-once>Esto nunca cambiará: {{msg}}</span>
   <!-- un elemento con hijos -->
   <div v-once>
-    <h1>comment</h1>
+    <h1>comentario</h1>
     <p>{{msg}}</p>
   </div>
   <!-- componente -->
@@ -2227,7 +2227,7 @@ type: api
   ```
 
 - **Vea también:**
-  - [Sintaxis de Plantilla - interpolaciones](../guide/syntax.html#Text0)
+  - [Sintaxis de Plantilla - interpolaciones](../guide/syntax.html#Texto)
   - [Componentes - Componente estáticos "baratos" con `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Special Attributes
