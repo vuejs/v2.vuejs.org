@@ -1133,7 +1133,7 @@ You may notice that:
 
 ### Slots Duplicados <sup>removido</sup>
 
-Ya no se admite tener `<slot>`s con el mismo nombre en el mismo template. Cuando se renderiza un slot, se "agota" y no se puede procesar en otro lugar del mismo árbol de procesamiento. Si debe representar el mismo contenido en varios lugares, pase ese contenido como propiedad.
+Ya no se admite tener `<slot>`s con el mismo nombre en la misma plantilla. Cuando se renderiza un slot, se "agota" y no se puede procesar en otro lugar del mismo árbol de procesamiento. Si debe representar el mismo contenido en varios lugares, pase ese contenido como propiedad.
 
 {% raw %}
 <div class="upgrade-path">
