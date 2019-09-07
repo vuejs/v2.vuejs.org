@@ -2185,7 +2185,7 @@ type: api
 
 - **Uso:**
 
-  Esta directiva permanecerá en el elemento hasta que la instancia Vue asociada termine su compilación. Combinada con reglas de CSS tal como `[v-cloak] { display: none }`, esta directiva puede ser utilizada para esconder _mustcha bindings_ no compilados hasta que la instancia de Vue este lista.
+  Esta directiva permanecerá en el elemento hasta que la instancia Vue asociada termine su compilación. Combinada con reglas de CSS tal como `[v-cloak] { display: none }`, esta directiva puede ser utilizada para esconder _mustache bindings_ no compilados hasta que la instancia de Vue este lista.
 
 - **Ejemplo:**
 
@@ -2208,7 +2208,7 @@ type: api
 
 - **Detalles:**
 
-  Renerizará el elemento/componente solo **una** vez. En renderizaciones posteriores, el elemento/componente y todos sus hijos serán tratados como contenido estático, y por lo tanto, salteados. Esto puede ser utilizado para optimizar la _performance_ de actualización.
+  Renderizará el elemento/componente solo **una** vez. En renderizaciones posteriores, el elemento/componente y todos sus hijos serán tratados como contenido estático, y por lo tanto, salteados. Esto puede ser utilizado para optimizar la _performance_ de actualización.
 
   ```html
   <!-- un solo elemento -->
