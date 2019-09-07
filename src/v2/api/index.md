@@ -433,15 +433,15 @@ type: api
 
 - **Detalles:**
 
-  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla sobre el thumb es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
 
   Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia. 
 
-  Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxie a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
+  Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxy a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
 
-  La propiedades que comienzan con `_` o `$` **no** serán proxiadas en la instancia de Vue debido a que pueden causar conflicto con las propiedades internas de Vue y los métodos de la API. Usted tendrá que acceder a ellas como `vm.$data._property`.
+  Las propiedades que comienzan con `_` o `$` **no** serán proxiadas en la instancia de Vue debido a que pueden causar conflicto con las propiedades internas de Vue y los métodos de la API. Usted tendrá que acceder a ellas como `vm.$data._property`.
 
-  Al definir un **componente**, `data` debe ser declarada como una función que devuelve los datos del objeto inicial, porque habrán muchas instancias creadas usando la misma definición. Si usamos un objeto plano para `data`, este mismo objeto será **compartido por referencia** a lo través de todas las instancias creadas! Al proporcionar una función `data`, cada vez que una nueva instancia es creada podemos llamarla para devolver una copia reciente de los datos iniciales.
+  Al definir un **componente**, `data` debe ser declarada como una función que devuelve los datos del objeto inicial, porque habrán muchas instancias creadas usando la misma definición. Si usamos un objeto plano para `data`, este mismo objeto será **compartido por referencia** a través de todas las instancias creadas! Al proporcionar una función `data`, cada vez que una nueva instancia es creada podemos llamarla para devolver una copia reciente de los datos iniciales.
 
   Si fuera necesario un clon en profundidad del objeto original lo podemos obtener al pasar `vm.$data` mediante `JSON.parse(JSON.stringify(...))`.
 
@@ -465,7 +465,7 @@ type: api
   })
   ```
 
-  Note que si usted usa una función flecha con la propiedad `data`, `this` no será la instancia del componente,  pero usted puede seguir accediendo a la instancia por el primer argumento de la función:
+  Note que si usted usa una función flecha con la propiedad `data`, `this` no será la instancia del componente, pero usted puede seguir accediendo a la instancia por el primer argumento de la función:
 
   ```js
   data: vm => ({ a: vm.myProp })
