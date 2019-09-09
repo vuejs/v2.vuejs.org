@@ -22,7 +22,8 @@ order: 804
     <div class="themes-grid">
       <div v-for="product in partner.products" :key="product.name" class="item-preview">
         <a class="item-preview-img" :href="product.url" rel="nofollow">
-        <img :src="product.image" :alt="`${product.name} - ${product.description}`"></a>
+          <img :src="product.image" :alt="`${product.name} - ${product.description}`" loading="lazy">
+        </a>
         <div class="item-preview-name-container">
           <h3 class="item-preview-name" :class="{'free': product.price === 0}">
             {{product.name}}
