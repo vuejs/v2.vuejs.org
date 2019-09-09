@@ -8,11 +8,9 @@
 <li>
   <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Team</a>
 </li>
+<%- partial('partials/resources_dropdown') %>
 <!-- <li>
   <a href="<%- url_for("/partners") %>" class="nav-link <%- page.path.match(/partners/) ? 'current' : '' %>">Partners</a>
 </li> -->
 <%- partial('partials/support_vue_dropdown') %>
-<li>
-  <a href="<%- url_for("/v2/guide/themes.html") %>" class="nav-link themes<%- page.path.match(/themes\.html/) ? ' current' : '' %>">Themes</a>
-</li>
 <%- partial('partials/language_dropdown') %>

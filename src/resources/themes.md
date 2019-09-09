@@ -1,6 +1,6 @@
 ---
 title: Themes
-type: guide
+type: resources
 order: 804
 ---
 {% raw %}
@@ -9,7 +9,10 @@ order: 804
     <partner-component :partner="partner"></partner-component>
   </section>
 
-  <p>Want to feature your themes here? <a href="mailto:#?subject=Theme+affiliation">Contact us</a>!</p>
+  <p>
+    Want to feature your themes here?
+    <a href="mailto:evan@vuejs.org?subject=Theme+affiliation">Contact us</a>!
+  </p>
 </div>
 
 <script type="text/template" id="partnerTemplate">
@@ -21,7 +24,9 @@ order: 804
         <a class="item-preview-img" :href="product.url" rel="nofollow">
         <img :src="product.image" :alt="`${product.name} - ${product.description}`"></a>
         <div class="item-preview-name-container">
-          <h3 class="item-preview-name" :class="{'free': product.free}">{{product.name}}</h3>
+          <h3 class="item-preview-name" :class="{'free': product.price === 0}">
+            {{product.name}}
+          </h3>
           <b v-if="product.price" class="item-preview-price">{{product.price}}$</b>
         </div>
         <div class="item-preview-description">{{product.description}}</div>

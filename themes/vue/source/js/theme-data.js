@@ -6,7 +6,7 @@ var themeData = [
     products: [
       {
         name: 'Vue Argon Design System',
-        free: true,
+        price: 0,
         description: 'Free Vue.js Design System',
         url: 'https://www.creative-tim.com/product/vue-argon-design-system?affiliate_id=116187',
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-argon-design-system/vue-argon-design-system.jpg'
@@ -27,14 +27,14 @@ var themeData = [
       },
       {
         name: 'Vue Material Kit',
-        free: true,
+        price: 0,
         description: 'Free Vue.js UI Kit',
         url: 'https://www.creative-tim.com/product/vue-material-kit?affiliate_id=116187',
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-material-kit/vue-material-kit.jpg'
       },
       {
         name: 'Vue Black Dashboard',
-        free: true,
+        price: 0,
         description: 'Free Vue.js Admin Template',
         url: 'https://www.creative-tim.com/product/vue-black-dashboard?affiliate_id=116187',
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-black-dashboard/vue-black-dashboard.jpg'
@@ -55,7 +55,7 @@ var themeData = [
       },
       {
         name: 'Vue Now UI Kit',
-        free: true,
+        price: 0,
         description: 'Free Vue.js UI Kit',
         url: 'https://www.creative-tim.com/product/vue-now-ui-kit?affiliate_id=116187',
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-now-ui-kit/vue-now-ui-kit.jpg'
@@ -83,7 +83,7 @@ var themeData = [
       },
       {
         name: 'Vue Light Bootstrap Dashboard',
-        free: true,
+        price: 0,
         description: 'Free Vue.js Admin Template',
         url: 'https://www.creative-tim.com/product/vue-light-bootstrap-dashboard?affiliate_id=116187',
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-light-bootstrap-dashboard/vue-light-bootstrap-dashboard.jpg'

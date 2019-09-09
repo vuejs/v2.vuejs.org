@@ -208,7 +208,11 @@
     var links = [
       {
         title: 'Themes',
-        updatedOn: new Date("Fri Mar 15 2019")
+        updatedOn: new Date("Mon Sep 9 2019")
+      },
+      {
+        title: 'Resources',
+        updatedOn: new Date("Mon Sep 9 2019")
       }
     ]
     var today = new Date().getTime()
