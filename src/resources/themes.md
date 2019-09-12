@@ -21,7 +21,7 @@ order: 804
     <blockquote class="theme-partner-description" v-html="partnerDescription"></blockquote>
     <div class="themes-grid">
       <div v-for="product in partner.products" :key="product.name" class="item-preview">
-        <a class="item-preview-img" :href="product.url" rel="nofollow">
+        <a class="item-preview-img" :href="product.url" rel="sponsored">
           <img :src="product.image" :alt="`${product.name} - ${product.description}`" loading="lazy">
         </a>
         <div class="item-preview-name-container">
