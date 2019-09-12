@@ -17,7 +17,8 @@ partners_list:
         location: Ontario, Canada
         languages:
             - English
-        url: www.vehikl.com?utm_source=vue_partners_page
+        url_text: www.vehikl.com
+        url_link: www.vehikl.com?utm_source=vue_partners_page
         hire_url: www.vehikl.com/contact/?utm_source=vue_partners_page
         email: go+partner@vehikl.com
         social_links:
