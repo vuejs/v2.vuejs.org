@@ -8,22 +8,12 @@
   <% for (let partner of page.partners_list) { %>
     <div class="partner">
       <div class="logo">
-        <img src="<%- url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
+        <img src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
       </div>
       <div class="profile">
-        <h3> <%= partner.name %> </h3>
+        <!-- <h3> <%= partner.name %> </h3> -->
+        <p class="description"><%= partner.description %></p>
         <dl>
-          <dt>Proficiencies</dt>
-          <dd>
-            <ul>
-              <% for (let proficiency of partner.proficiencies) { %>
-                <li>
-                  <a href="<%- page.proficiencies_urls[proficiency] %>" target=_blank> <%= proficiency %></a>
-                </li>
-              <% } %>
-            </ul>
-          </dd>
-
           <dt>
             <i class="fa fa-map-marker"></i>
             <span class="sr-only">Location</span>
@@ -52,6 +42,18 @@
           <dd>
             <a href="https://<%- partner.url_link %>" target=_blank><%- partner.url_text %></a>
           </dd>
+
+          <dt>Proficiencies</dt>
+          <dd>
+            <ul>
+              <% for (let proficiency of partner.proficiencies) { %>
+                <li>
+                  <a href="<%- page.proficiencies_urls[proficiency] %>" target=_blank> <%= proficiency %></a>
+                </li>
+              <% } %>
+            </ul>
+          </dd>
+
           <footer class="social">
             <% if (partner.email) { %>
               <a href="mailto:<%- partner.email %>?subject=Hire <%- partner.name %>">

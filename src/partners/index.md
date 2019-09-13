@@ -9,6 +9,8 @@ partners_list:
     -
         name: Vehikl
         logo: vehikl.png
+        description:
+            Vehikl is a software consultancy specialising in PHP and JavaScript.
         proficiencies:
             - VueJs
             - Laravel
