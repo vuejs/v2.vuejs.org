@@ -1,0 +1,78 @@
+<div id="partners">
+  <p>
+    Vue Partners are premium shops that provide first-class Vue consulting and development.
+  </p>
+
+  <h2>Active Partners</h2>
+
+  <% for (let partner of page.partners_list) { %>
+    <div class="partner">
+      <div class="logo">
+        <img src="<%- url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
+      </div>
+      <div class="profile">
+        <h3> <%= partner.name %> </h3>
+        <dl>
+          <dt>Proficiencies</dt>
+          <dd>
+            <ul>
+              <% for (let proficiency of partner.proficiencies) { %>
+                <li>
+                  <a href="<%- page.proficiencies_urls[proficiency] %>" target=_blank> <%= proficiency %></a>
+                </li>
+              <% } %>
+            </ul>
+          </dd>
+
+          <dt>
+            <i class="fa fa-map-marker"></i>
+            <span class="sr-only">Location</span>
+          </dt>
+          <dd>
+            <%= partner.location %>
+          </dd>
+
+          <dt>
+            <i class="fa fa-globe"></i>
+            <span class="sr-only">Languages</span>
+          </dt>
+          <dd class="language-list">
+            <ul>
+              <% for (let language of partner.languages) { %>
+                <li>
+                  <%= language %>
+                </li>
+              <% } %>
+            </ul>
+          </dd>
+          <dt>
+            <i class="fa fa-link"></i>
+            <span class="sr-only">Link</span>
+          </dt>
+          <dd>
+            <a href="https://<%- partner.url_link %>" target=_blank><%- partner.url_text %></a>
+          </dd>
+          <footer class="social">
+            <% if (partner.email) { %>
+              <a href="mailto:<%- partner.email %>?subject=Hire <%- partner.name %>">
+                <i class="fa fa-envelope"></i>
+                <span class="sr-only">Email</span>
+              </a>
+            <% } %>
+            <% for( let link of partner.social_links) { %>
+              <a class="<%= link.class %>" href="<%- link.url %>">
+                <i class="fa fa-<%= link.class %>"></i>
+                <span class="sr-only"><%= link.name %></span>
+              </a>
+            <% } %>
+          </footer>
+        </dl>
+      </div>
+      <div>
+        <a class="button" href="https://<%- partner.hire_url %>">
+          Hire <%= partner.name %>
+        </a>
+      </div>
+    </div>
+  <% } %>
+</div>
