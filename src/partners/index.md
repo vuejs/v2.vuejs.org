@@ -36,4 +36,49 @@ partners_list:
                 name: Instagram
                 class: instagram
                 url: 'https://www.instagram.com/vehiklteam/'
+
+    -
+        name: Modus Create
+        logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
+        description:
+            Modus Create is a digital product agency that offers business and product strategy consulting, customer experience, cloud services, and Agile software delivery. Our official partnerships with Vue.JS, AWS, GitHub, Atlassian, Cloudflare, and Ionic Framework mean we build client solutions with the latest and greatest technologies.
+        proficiencies:
+            - 
+              name: VueJs
+              url: https://google.com
+            - name: AWS
+              url: https://moduscreate.com/partners/aws/
+            - name: Atlassian
+              url: https://moduscreate.com/partners/atlassian/
+            - name: Ionic
+              url: https://moduscreate.com/partners/ionic/
+            - name: Product Management
+              url: https://moduscreate.com/what-we-do/product-management/
+            - name: Customer Experience
+              url: https://moduscreate.com/what-we-do/customer-experience/
+            - name: Agile Transformation
+              url: https://moduscreate.com/what-we-do/agile-transformation/
+            - name: Cloud Migration
+              url: https://moduscreate.com/what-we-do/cloud-migration/
+        location: Reston, VA, USA - Los Angeles, CA, USA - Cluj, Romania - San José, Costa Rica
+        languages:
+            - English
+            - Global
+        url_text: moduscreate.com
+        url_link: moduscreate.com?utm_source=vue_partners_page
+        hire_url: moduscreate.com/?utm_source=vue_partners_page
+        email: contact@moduscreate.com
+        social_links:
+            -
+                name: Github
+                class: github
+                url: 'https://github.com/ModusCreateOrg'
+            -
+                name: Twitter
+                class: twitter
+                url: 'https://twitter.com/ModusCreate'
+            -
+                name: Instagram
+                class: linkedin
+                url: 'https://www.linkedin.com/company/modus-create-inc'
 ---
