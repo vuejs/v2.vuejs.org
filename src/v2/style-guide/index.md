@@ -1940,7 +1940,7 @@ Vue.component('TodoItem', {
 
 ### Non-flux state management <sup data-p="d">use with caution</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus. It is the [Official Flux-Like Implementation](http://localhost:4000/v2/style-guide/#Non-flux-state-management-use-with-caution) for Vue. The use of a flux-like implementation results in an application that is easier to debug, because you can keep track of all state mutations.**
 
 Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
 
