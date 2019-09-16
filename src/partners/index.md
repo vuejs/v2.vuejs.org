@@ -41,25 +41,23 @@ partners_list:
         name: Modus Create
         logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
         description:
-            "Modus Create is a digital product agency that accelerates digital transformation. We use high performing small teams, emerging technology, and “new school” product development tools and methods to produce amazing results. We support our clients across four core delivery areas: business and product strategy consulting, customer experience, cloud services, and Agile software delivery.Our official partnerships with Atlassian, AWS, Cloudflare, GitHub, Ionic Framework, and Vue.js reinforce our proven results with digital transformation with organizations from startups to the Fortune 100."
+            "Modus Create is a digital product agency that supports clients with business and product strategy consulting, customer experience, cloud services, and Agile software delivery. Our official partnerships with Atlassian, AWS, Cloudflare, GitHub, Ionic Framework, and Vue.js reinforce our proven results with digital transformation with organizations from startups to the Fortune 100."
         proficiencies:
-            - 
-              name: VueJs
-              url: https://google.com
+            - VueJs
             - name: AWS
-              url: https://moduscreate.com/partners/aws/
+              url: https://moduscreate.com/partners/aws/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Atlassian
-              url: https://moduscreate.com/partners/atlassian/
+              url: https://moduscreate.com/partners/atlassian/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Ionic
-              url: https://moduscreate.com/partners/ionic/
+              url: https://moduscreate.com/partners/ionic/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Product Management
-              url: https://moduscreate.com/what-we-do/product-management/
+              url: https://moduscreate.com/what-we-do/product-management/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Customer Experience
-              url: https://moduscreate.com/what-we-do/customer-experience/
+              url: https://moduscreate.com/what-we-do/customer-experience/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Agile Transformation
-              url: https://moduscreate.com/what-we-do/agile-transformation/
+              url: https://moduscreate.com/what-we-do/agile-transformation/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Cloud Migration
-              url: https://moduscreate.com/what-we-do/cloud-migration/
+              url: https://moduscreate.com/what-we-do/cloud-migration/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
         location: Reston, VA, USA - Los Angeles, CA, USA - Cluj, Romania - San José, Costa Rica
         languages:
             - English
