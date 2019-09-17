@@ -76,7 +76,11 @@ partners_list:
                 class: twitter
                 url: 'https://twitter.com/ModusCreate'
             -
-                name: Instagram
+                name: LinkedIn
                 class: linkedin
                 url: 'https://www.linkedin.com/company/modus-create-inc'
+            -
+                name: YouTube
+                class: youtube
+                url: 'https://www.youtube.com/moduscreate'
 ---
