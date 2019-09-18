@@ -1,6 +1,7 @@
 <div id="partners">
   <p>
     Vue Partners are premium shops that provide first-class Vue consulting and development.
+    If your company is interested in being listed as a partner, please contact us at <a href="mailto:partners@vuejs.org">partners@vuejs.org.</a>
   </p>
 
   <h2>Active Partners</h2>
@@ -8,12 +9,22 @@
   <% for (let partner of page.partners_list) { %>
     <div class="partner">
       <div class="logo">
-        <img src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
+        <a href="https://<%- partner.url_link %>" target="_blank">
+          <img src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
+        </a>
       </div>
       <div class="profile">
         <!-- <h3> <%= partner.name %> </h3> -->
         <p class="description"><%= partner.description %></p>
         <dl>
+          <dt>
+              <i class="fa fa-link"></i>
+              <span class="sr-only">Link</span>
+            </dt>
+            <dd>
+              <a href="https://<%- partner.url_link %>" target=_blank><%- partner.url_text %></a>
+            </dd>
+
           <dt>
             <i class="fa fa-map-marker"></i>
             <span class="sr-only">Location</span>
@@ -34,13 +45,6 @@
                 </li>
               <% } %>
             </ul>
-          </dd>
-          <dt>
-            <i class="fa fa-link"></i>
-            <span class="sr-only">Link</span>
-          </dt>
-          <dd>
-            <a href="https://<%- partner.url_link %>" target=_blank><%- partner.url_text %></a>
           </dd>
 
           <dt>Proficiencies</dt>
@@ -69,11 +73,6 @@
             <% } %>
           </dd>
         </dl>
-      </div>
-      <div>
-        <a class="button" href="https://<%- partner.hire_url %>">
-          Hire <%= partner.name %>
-        </a>
       </div>
     </div>
   <% } %>

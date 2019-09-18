@@ -10,7 +10,7 @@ partners_list:
         name: Vehikl
         logo: vehikl.png
         description:
-            Vehikl is a software consultancy specialising in PHP and JavaScript.
+            Vehikl is a software consultancy specialising in PHP and JavaScript. We build best-in-class web applications written with popular frameworks such as Laravel, Express, NestJS, Vue, and React. Think of us as an extension of your team.
         proficiencies:
             - VueJs
             - Laravel
@@ -58,7 +58,7 @@ partners_list:
               url: https://moduscreate.com/what-we-do/agile-transformation/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Cloud Migration
               url: https://moduscreate.com/what-we-do/cloud-migration/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
-        location: Reston, VA, USA - Los Angeles, CA, USA - Cluj, Romania - San José, Costa Rica
+        location: Reston, VA, USA / Los Angeles, CA, USA / Cluj, Romania / San José, Costa Rica
         languages:
             - English
             - Global
