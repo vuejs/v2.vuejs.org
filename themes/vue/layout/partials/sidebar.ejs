@@ -1,8 +1,12 @@
+<% var isHomePage = page.path === 'index.html' %>
+
 <div class="sidebar">
   <div class="sidebar-inner">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
+    <% if (isHomePage) { %>
+      <ul class="main-menu">
+        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+      </ul>
+    <% } %>
     <div class="list">
       <%- partial('partials/sponsors_sidebar') %>
       <% if (type !== 'search') { %>
