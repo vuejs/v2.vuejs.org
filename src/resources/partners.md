@@ -1,4 +1,5 @@
 ---
+type: partners
 partners: true
 title: Vue Partners
 proficiencies_urls:
