@@ -1,4 +1,5 @@
 <% var isIndex = page.path === 'index.html' %>
+<% var isThemes = page.path === 'resources/themes.html' %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,13 @@
     <%- css(isIndex ? 'css/index' : 'css/page') %>
 
     <!-- this needs to be loaded before guide's inline scripts -->
-    <script src="<%- url_for("/js/vue.js") %>"></script>
+    <script src="<%- url_for('/js/vue.js') %>"></script>
+
+    <% if (isThemes) { %>
+    <script src="<%- url_for('/js/theme-data.js') %>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.0/dist/showdown.min.js" integrity="sha256-LSUpTY0kkXGKvcBC9kbmgibmx3NVVgJvAEfTZbs51mU=" crossorigin="anonymous"></script>
+    <% } %>
+
     <script>
       Vue.config.productionTip = false
       window.PAGE_TYPE = "<%- page.type %>"
