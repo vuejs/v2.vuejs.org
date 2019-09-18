@@ -36,4 +36,51 @@ partners_list:
                 name: Instagram
                 class: instagram
                 url: 'https://www.instagram.com/vehiklteam/'
+
+    -
+        name: Modus Create
+        logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
+        description:
+            "Modus Create is a digital product agency that supports clients with business and product strategy consulting, customer experience, cloud services, and Agile software delivery. Our official partnerships with Atlassian, AWS, Cloudflare, GitHub, Ionic Framework, and Vue.js reinforce our proven results with digital transformation with organizations from startups to the Fortune 100."
+        proficiencies:
+            - VueJs
+            - name: AWS
+              url: https://moduscreate.com/partners/aws/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Atlassian
+              url: https://moduscreate.com/partners/atlassian/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Ionic
+              url: https://moduscreate.com/partners/ionic/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Product Management
+              url: https://moduscreate.com/what-we-do/product-management/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Customer Experience
+              url: https://moduscreate.com/what-we-do/customer-experience/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Agile Transformation
+              url: https://moduscreate.com/what-we-do/agile-transformation/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+            - name: Cloud Migration
+              url: https://moduscreate.com/what-we-do/cloud-migration/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+        location: Reston, VA, USA - Los Angeles, CA, USA - Cluj, Romania - San José, Costa Rica
+        languages:
+            - English
+            - Global
+        url_text: moduscreate.com
+        url_link: moduscreate.com/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+        hire_url: moduscreate.com/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+        email: contact@moduscreate.com
+        social_links:
+            -
+                name: Github
+                class: github
+                url: 'https://github.com/ModusCreateOrg'
+            -
+                name: Twitter
+                class: twitter
+                url: 'https://twitter.com/ModusCreate'
+            -
+                name: LinkedIn
+                class: linkedin
+                url: 'https://www.linkedin.com/company/modus-create-inc'
+            -
+                name: YouTube
+                class: youtube
+                url: 'https://www.youtube.com/moduscreate'
 ---

@@ -48,13 +48,13 @@
             <ul>
               <% for (let proficiency of partner.proficiencies) { %>
                 <li>
-                  <a href="<%- page.proficiencies_urls[proficiency] %>" target=_blank> <%= proficiency %></a>
+                  <a href="<%- proficiency.url || page.proficiencies_urls[proficiency] %>" target=_blank rel="noopener"> <%= proficiency.name || proficiency %></a>
                 </li>
               <% } %>
             </ul>
           </dd>
 
-          <footer class="social">
+          <dd class="social">
             <% if (partner.email) { %>
               <a href="mailto:<%- partner.email %>?subject=Hire <%- partner.name %>">
                 <i class="fa fa-envelope"></i>
@@ -67,7 +67,7 @@
                 <span class="sr-only"><%= link.name %></span>
               </a>
             <% } %>
-          </footer>
+          </dd>
         </dl>
       </div>
       <div>
