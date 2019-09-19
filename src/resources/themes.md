@@ -28,7 +28,7 @@ order: 804
           <h3 class="item-preview-name" :class="{'free': product.price === 0}">
             {{product.name}}
           </h3>
-          <b v-if="product.price" class="item-preview-price">{{product.price}}$</b>
+          <b v-if="product.price" class="item-preview-price">${{product.price}}</b>
         </div>
         <div class="item-preview-description">{{product.description}}</div>
       </div>
