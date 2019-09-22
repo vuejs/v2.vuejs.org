@@ -23,7 +23,7 @@ Translations for this documentation project are currently maintained in separate
 
 Arabic translation is maintained by [Vue.js AR](https://github.com/vuejs-ar)
 
-* Translation Repo - [vuejs.org](https://github.com/vuejs-ar/vuejs.org)
+* Translation Repo - [/vuejs-ar/vuejs.org](https://github.com/vuejs-ar/vuejs.org)
 
 ### French
 
