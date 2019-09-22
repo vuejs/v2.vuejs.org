@@ -5,7 +5,7 @@ type: api
 
 ## Configuración Global
 
-`Vue.config` es un objeto contenedor de las configuraciones globales de Vue. Podemos modificar sus propiedades listadas debajo antes de inicializar nuestra aplicación:
+`Vue.config` es un objeto que contiene las configuraciones globales de Vue. Podemos modificar sus propiedades listadas debajo antes de inicializar nuestra aplicación:
 
 ### silent
 
@@ -19,7 +19,7 @@ type: api
   Vue.config.silent = true
   ```
 
-  Suprimir todos los logs y warnings de Vue
+  Suprime todos los logs y warnings de Vue
 
 ### optionMergeStrategies
 
@@ -41,19 +41,17 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define estrategias personalizadas de mezclado <i>(merge)</i> por opción
+  Define estrategias personalizadas de fusión (_merge_) para opciones.
 
-  La estrategia de merge recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de Vue es pasado como tercer argumento.
+  La estrategia de fusión recibe el valor de aquella opción definida en el padre y las instancias del hijo como primer y segundo parámetro respectivamente. El contexto de la instancia de Vue es pasado como tercer argumento.
 
-
-
-- **Ver además:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Ver además:** [Estrategias personalizadas de fusión de opciones](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
 - **Tipo:** `boolean`
 
-- **Por defecto:** `true` (`false` en ambiente de produción)
+- **Por defecto:** `true` (`false` en ambiente de producción)
 
 - **Uso:**
 
@@ -62,7 +60,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  Configura si se permite la inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en ambiente de desarrollo y `false` en ambiente de producción. Usted puede configurar a `true` para habilitar la inspección para el ambiente de producción.
+  Establece si se permite la inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en ambiente de desarrollo y `false` en ambiente de producción. Usted puede establecerlo en `true` para habilitar la inspección para el ambiente de producción.
 
 ### errorHandler
 
@@ -74,19 +72,22 @@ type: api
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // manejo de error
-    // `info` es un error específico de Vue info, e.g. el cuál se engancha del ciclo de vida
-    // el error fue encontrado sólo disponible en 2.2.0+
+    // manejo de errores
+    // `info` es información específica de Vue, por ejemplo, en cual
+    // _hook_ del ciclo de vida fue encontrado el error.
+    // Esto se encuentra disponible en 2.2.0+
   }
   ```
 
-  Asigna un manejador para errores no capturados durante la renderización de componentes y observadores. Los manipuladores son llamados con el el error y la instancia de Vue.
+  Asigna un manejador (_handler_) para errores no capturados durante la renderización de componentes y observadores (_watchers_). El manejador es invocado con el error y la instancia de Vue.
 
-  > En 2.2.0+, este hook captura también errores en los hooks del ciclo de vida de los componentes. Además cuando este hook está `undefined`, los errores capturados serán logueados con `console.error` en vez de colapsar la aplicación.
+  > En 2.2.0+, este hook captura también errores en los hooks del ciclo de vida de los componentes. Además cuando este hook es `undefined`, los errores capturados serán logueados con `console.error` en vez de colapsar la aplicación.
 
-  > En 2.4.0+ este hook también captura errores lanzados dentro de los manipuladores de eventos personalizados de Vue.
+  > En 2.4.0+, este hook también captura errores lanzados dentro de los manejadores de eventos personalizados de Vue.
 
-  > Servicios de traceo de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proveen la integración oficial usando esta opción.
+  > En 2.6.0+, este hook también captura errores lanzados dentro de los listeners DOM `v-on`. Además, si alguno de los _hooks_ o _handlers_ cubiertos devuelve una Promesa en cadena (como las funciones asíncronas), ese error de la Promesa también se manejará.
+
+  > Los servicios de seguimiento de errores [Sentry](https://sentry.io/for/vue/) y [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) proporcionan integraciones oficiales utilizando esta opción.
 
 ### warnHandler
 
@@ -104,7 +105,7 @@ type: api
   }
   ```
 
-  Asigna un manipulador personalizado para advertencias en tiempo de ejecución. Note que solo funciona durante desarrollo y es ignorado en producción.
+  Asigna un manejador personalizado para advertencias en tiempo de ejecución. Note que solo funciona en desarrollo y es ignorado en producción.
 
 ### ignoredElements
 
@@ -118,13 +119,13 @@ type: api
   Vue.config.ignoredElements = [
     'my-custom-web-component',
     'another-web-component',
-    // Use una `RegExp` para ignorar todos los elementos que comienzan con "ion-"
-    // 2.5+ solamente
+    // Use una `RegExp` para ignorar todos los elementos que comienzan
+    // con "ion-". En 2.5+ solamente
     /^ion-/
   ]
   ```
 
-  Hace a Vue ignorar elementos personalizados definidos fuera de Vue (e.g., usando APIs de Compoenentes Web). De otra manera lanzará una advertencia de esta forma `Unknown custom element`, asumiendo que usted olvidó registrar un componente global o escribió mal el nombre del componente.
+  Hace que Vue ignore elementos personalizados definidos fuera de Vue (por ejemplo, utilizando las API de componentes web). De otra manera lanzará una advertencia `Unknown custom element`, asumiendo que usted olvidó registrar un componente global o escribió mal el nombre de un componente.
 
 ### keyCodes
 
@@ -150,7 +151,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define alias(es) de teclas personalizados para `v-on`.
+  Define alias personalizados para `v-on`.
 
 ### performance
 
@@ -162,7 +163,7 @@ type: api
 
 - **Uso**:
 
-  Configúralo a `true` para permitir inicializar el componente, compilarlo, renderizarlo y parchear el traceo de rendimiento en las herramientas de desarrollo del navegador y en el panel de rendimiento/línea de tiempo.
+  Establezca en `true` para habilitar el seguimiento del rendimiento de inicio, compilación, procesamiento y actualización del componente en la línea de tiempo de inspección del navegador. Solo funciona en modo de desarrollo y navegadores que admiten la API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 ### productionTip
 
@@ -174,7 +175,7 @@ type: api
 
 - **Uso**:
 
-  Configúralo a `false` para prevenir los consejos de producción cuando Vue se inicializa.
+  Establezca en `false` para prevenir sugerencias en modo de producción al iniciar Vue.
 
 ## API Global
 
@@ -433,9 +434,9 @@ type: api
 
 - **Detalles:**
 
-  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado.
 
-  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia. 
+  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia.
 
   Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxy a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
 
