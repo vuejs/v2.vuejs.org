@@ -9,5 +9,4 @@ public/
 src/_drafts
 package-lock.json
 .idea
-.vscode
 .cache
