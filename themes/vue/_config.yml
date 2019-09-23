@@ -110,6 +110,9 @@ gold_sponsors:
   - url: 'https://storekit.com'
     img: storekit.png
     name: StoreKit
+  - url: 'https://staffaugmentation.ro/en'
+    img: staff_augmentation.png
+    name: Staff Augmentation
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
