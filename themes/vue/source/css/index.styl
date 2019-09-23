@@ -29,6 +29,7 @@ body
 
 #hero,
 #news
+  direction: rtl
   padding: $space 40px 30px
   background-color: #fff
   .inner
@@ -44,12 +45,13 @@ body
   .hero-logo
     width: 215px
     height: 215px
-    float: right
-    margin-right: 60px
+    float: left
+    margin-left: 60px
   h1
-    font-weight: 300
+    font-weight: 200
     margin: 0
-    font-size: 3.2em
+    font-size: 2.5em
+    line-height: 2em
   h2
     font-family: $logo-font
     font-weight: 500
@@ -88,7 +90,7 @@ body
   .newsletter-input
     width: 100%
     box-sizing: border-box
-    padding: 10px 80px 10px 20px
+    padding: 10px 20px 10px 80px
     height: 50px
     border-radius: 50px
     border: 1px solid #ccc
@@ -101,7 +103,7 @@ body
     padding: 4px 20px
     margin: 0
     height: calc(100% - 8px)
-    right: 4px
+    left: 4px
     top: 4px
 
 #special-sponsor
@@ -121,6 +123,7 @@ body
 #highlights
   background-color: #fff
   padding-bottom: 70px
+  direction: rtl
   .inner
     max-width: $width
     margin: 0 auto
@@ -144,6 +147,7 @@ body
   padding: $space 0
   color: #fff
   text-align: center
+  direction: rtl
   .social-icon
     margin 0 5px
     svg
