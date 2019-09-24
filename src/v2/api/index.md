@@ -2368,7 +2368,7 @@ Un metacomponente para representar componentes dinámicos. El componente actual 
 
 - **Propiedades:**
 
-  - `name` - string, Se utiliza para generar automáticamente nombres de clase de transición CSS. Por ejemplo, `name: 'fade'` se expandirá automáticamente a `.fade-enter`, `.fade-enter-active`, etc. El valor predeterminado es `"v"`.
+  - `name` - string, Se utiliza para generar automáticamente nombres de clases de transición CSS. Por ejemplo, `name: 'fade'` se expandirá automáticamente a `.fade-enter`, `.fade-enter-active`, etc. El valor predeterminado es `"v"`.
   - `appear` - boolean, Establece si se aplicará la transición en el renderizado inicial. El valor predeterminado es `false`.
   - `css` - boolean, Aplica clases de transición CSS. El valor predeterminado es `true`. Si se establece en `false`, solo se habilitarán los enlaces de JavaScript registrados en eventos de componentes.
   - `type` - string, Especifica los tipos de eventos de transición a esperar para determinar el tiempo de finalización de la transición. Los valores disponibles son `"transition"` y `"animation"`. Por defecto, detectará automáticamente el tipo que tiene una mayor duración.
