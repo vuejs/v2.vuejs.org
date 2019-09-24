@@ -2408,7 +2408,7 @@ Un metacomponente para representar componentes dinámicos. El componente que se 
     <div v-if="ok">contenido alternado</div>
   </transition>
 
-  <!-- component dinámico -->
+  <!-- componente dinámico -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
