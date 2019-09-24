@@ -2472,7 +2472,7 @@ Un metacomponente para representar componentes dinámicos. El componente actual 
 
 - **Uso:**
 
-  Cuando se envuelve alrededor de un componente dinámico, `<keep-alive>` almacena en caché las instancias de componentes inactivos sin destruirlas. Similar a `<transition>`, `<keep-alive>` es un componente abstracto: no representa un elemento DOM en sí mismo, y no aparece en la cadena padre del componente.
+  Cuando se envuelve alrededor de un componente dinámico, `<keep-alive>` almacena en caché las instancias de componentes inactivos sin destruirlas. Similar a `<transition>`, `<keep-alive>` es un componente abstracto: no representa un elemento del DOM en sí mismo, y no aparece en la cadena padre del componente.
 
   Cuando un componente se alterna dentro de `<keep-alive>`, los _hooks_ del ciclo de vida `activated` y `deactivated` se invocarán en consecuencia.
 
