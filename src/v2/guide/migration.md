@@ -1154,11 +1154,12 @@ El contenido insertado mediante el nombre `<slot>` ya no conserva el atributo `s
 </div>
 {% endraw %}
 
-## Special Attributes
+## Atributos especiales
 
-### `keep-alive` Attribute <sup>replaced</sup>
+### Atributo `keep-alive` <sup>reemplazado</sup>
 
-`keep-alive` is no longer a special attribute, but rather a wrapper component, similar to `<transition>`. For example:
+`keep-alive` ya no es un atributo especial, sino más bien un componente contenedor, similar a `<transition>`.
+Por ejemplo:
 
 ``` html
 <keep-alive>
@@ -1166,7 +1167,7 @@ El contenido insertado mediante el nombre `<slot>` ya no conserva el atributo `s
 </keep-alive>
 ```
 
-This makes it possible to use `<keep-alive>` on multiple conditional children:
+Esto hace posible usar `<keep-alive>` en múltiples hijos condicionales:
 
 ``` html
 <keep-alive>
@@ -1175,9 +1176,9 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will be ignored.</p>
+<p class="tip">Cuando `<keep-alive>` tiene varios hijos, eventualmente debería evaluar a un solo hijo. Cualquier hijo que no sea el primero será ignorado.</p>
 
-When used together with `<transition>`, make sure to nest it inside:
+Cuando se usa junto con `<transition>`, asegúrese de anidarlo dentro:
 
 ``` html
 <transition>
@@ -1189,8 +1190,8 @@ When used together with `<transition>`, make sure to nest it inside:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecutar el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar atributos <code>keep-alive</code>.</p>
 </div>
 {% endraw %}
 
