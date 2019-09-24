@@ -2400,7 +2400,7 @@ Un metacomponente para representar componentes dinámicos. El componente que se 
 
 - **Uso:**
 
-  `<transition>` sirven como efectos de transición para ***un solo*** elemento/componente.. La `<transition>` solo aplica el comportamiento de transición al contenido envuelto en el interior; no representa un elemento DOM adicional ni aparece en la jerarquía de componentes inspeccionados.
+  `<transition>` sirven como efectos de transición para ***un solo*** elemento/componente. La `<transition>` solo aplica el comportamiento de transición al contenido envuelto en el interior; no representa un elemento del DOM adicional ni aparece en la jerarquía de componentes inspeccionados.
 
   ```html
   <!-- elemento simple -->
