@@ -2372,7 +2372,7 @@ Un metacomponente para representar componentes dinámicos. El componente actual 
   - `appear` - boolean, Establece si se aplicará la transición en el renderizado inicial. El valor predeterminado es `false`.
   - `css` - boolean, Aplica clases de transición CSS. El valor predeterminado es `true`. Si se establece en `false`, solo se habilitarán los enlaces de JavaScript registrados en eventos de componentes.
   - `type` - string, Especifica los tipos de eventos de transición a esperar para determinar el tiempo de finalización de la transición. Los valores disponibles son `"transition"` y `"animation"`. Por defecto, detectará automáticamente el tipo que tiene una mayor duración.
-  - `mode` - string, Controla la secuencia de tiempo de las transiciones de entrada/salida. Los modos disponibles son `"out-in"` y `"in-out"`. Por defecto es en simultáneo.
+  - `mode` - string, Controla la secuencia de tiempo de las transiciones de entrada/salida. Los modos disponibles son `"out-in"` e `"in-out"`. Por defecto es en simultáneo.
   - `duration` - number | { enter: number, leave: number }. Especifica la duración de la transición. De forma predeterminada, Vue espera el primer evento de `transitionend` o `animationend` en el elemento de transición raíz.
   - `enter-class` - string
   - `leave-class` - string
