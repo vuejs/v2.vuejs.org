@@ -433,9 +433,9 @@ type: api
 
 - **Detalles:**
 
-  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado. 
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado.
 
-  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia. 
+  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia.
 
   Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxy a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
 
@@ -2350,7 +2350,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **Uso:**
 
-Un metacomponente para representar componentes dinámicos. El componente actual para renderizar está determinado por la propiedad `is`:
+Un metacomponente para representar componentes dinámicos. El componente que se renderizará está determinado por la propiedad `is`:
 
   ```html
   <!-- un componente dinámico controlado por -->
