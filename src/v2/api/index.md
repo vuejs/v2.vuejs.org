@@ -2481,7 +2481,7 @@ Un metacomponente para representar componentes dinámicos. El componente actual 
   Se utiliza principalmente para preservar el estado de los componentes o evitar la re-renderización.
 
   ```html
-  <!-- basico -->
+  <!-- básico -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
