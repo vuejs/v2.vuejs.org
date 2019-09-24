@@ -2447,7 +2447,7 @@ Un metacomponente para representar componentes dinámicos. El componente actual 
 
 - **Uso:**
 
-  `<transition-group>` sirve como efectos de transición para **múltiples** elementos/componentes.`<transition-group>` representa un elemento DOM real. Por defecto, muestra un `<span>`, se puede configurar qué elemento debe representar a través del atributo `tag`.
+  `<transition-group>` sirve como efectos de transición para **múltiples** elementos/componentes. `<transition-group>` representa un elemento del DOM real. Por defecto, muestra un `<span>`, se puede configurar qué elemento debe representar a través del atributo `tag`.
 
   Tenga en cuenta que cada hijo en un `<transition-group>` debe tener **una clave única** para que las animaciones funcionen correctamente.
 
