@@ -2413,7 +2413,7 @@ Un metacomponente para representar componentes dinámicos. El componente que se 
     <component :is="view"></component>
   </transition>
 
-  <!-- enganche de eventos -->
+  <!-- enlace de eventos -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">contenido alternado</div>
