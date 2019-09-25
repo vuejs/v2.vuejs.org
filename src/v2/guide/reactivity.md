@@ -121,7 +121,7 @@ Vue.component('example', {
 })
 ```
 
-Since `$nextTick()` returns a promise, you can achieve the same as the above using the new [ES2016 async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax:
+Since `$nextTick()` returns a promise, you can achieve the same as the above using the new [ES2017 async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax:
 
 ``` js
   methods: {
