@@ -406,7 +406,8 @@ For example, we are implementing a `<todo-list>` component that contains the lay
 ```html
 <ul>
   <li
-    v-for="todo in filteredTodos"
+    v-for="todo in filtered
+           "
     v-bind:key="todo.id"
   >
     {{ todo.text }}
@@ -437,7 +438,7 @@ Instead of hard-coding the content for each todo, we can let the parent componen
 Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child:
 
 ```html
-<todo-list v-bind:todos="todos">
+<todo-list v-bind:filteredTodos="todos">
   <template v-slot:todo="{ todo }">
     <span v-if="todo.isComplete">✓</span>
     {{ todo.text }}
