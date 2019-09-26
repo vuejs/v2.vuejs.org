@@ -3,13 +3,13 @@
     <input
       class="search-query"
       v-model="search"
-      placeholder="Search Vue.js"
-      aria-label="Search"
+      placeholder="Vue.js хайх"
+      aria-label="Хайх"
     >
     <div class="search-footer">
       <p>
         <template v-if="totalResults">
-          <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
+          <strong>{{ totalResults }} үр дүн</strong> {{ queryTime }}-д олдсон
         </template>
       </p>
       <a target="_blank" href="https://www.algolia.com/" aria-label="Search">
@@ -26,7 +26,7 @@
     ></search-result>
   </template>
 
-  <p v-else>No results were found.</p>
+  <p v-else>Үр дүн олдсонгүй.</p>
 
   <div ref="infiniteScrollAnchor"></div>
 

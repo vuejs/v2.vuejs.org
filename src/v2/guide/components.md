@@ -1,5 +1,5 @@
 ---
-title: Components Basics
+title: Component-уудын үндэс
 type: guide
 order: 11
 ---

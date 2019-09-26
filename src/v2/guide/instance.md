@@ -1,24 +1,24 @@
 ---
-title: The Vue Instance
+title: Vue-ийн Instance үүсгэх
 type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Vue Instance үүсгэх
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Бүх Vue application нь `Vue` функц ашиглан **Vue instance** үүсгэдэг:
 
 ```js
 var vm = new Vue({
-  // options
+  // тохиргоо
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Vue нь [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel) нарын чанд баримталдаггүй боловч, Vue-ийн загвар нь зарим талаараа санаа авсан байдаг. Тогтсон журамын дагуу Vue instance үүсгэхэд `vm` буюу (ViewModel гэсэн үгний богино) хувьсагч ашигладаг.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Та Vue instance үүсгэхдээ **тохиргоонууд** дамжуулж болно. Энэхүү заавар нь хэрхэн эдгээр сонголтуудыг ашиглан таны хүссэн шинж чанарыг хэрхэн үүсгэх талаар тайлбарлана. Та options-уудын талаар бүтэн жагсаалт [API reference](../api/#Options-Data) хэсгээс харж болно.
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Vue application-ий бүтэц нь `new Vue` аар үүссэн **root Vue instance**, мөн дахин ашиглагдах боломжтой component-ууд аас бүрдэнэ. Жишээ нь, todo app-ийн бүтэц дараах байдлаар харагдана:
 
 ```
 Root Instance
@@ -31,11 +31,11 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+Бид [component system](components.html)-ийн талаар дараа дэлгэрэнгүй тайлбарлах болно. Харин одоо, Бүх Vue component нь Vue instances юм, мөн ижилхэн options object ашиглах боломж олгодог (цөөн тооны root-specific option-оос бусад).
 
-## Data and Methods
+## Data болон Methods
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Vue instance үүсгэсэн тохиолдолд, `data` түлхүүр үг ашиглан обект болон өгөгдөлийг Vue ийн **reactivity system**-д нэмдэг. When the values of those properties change, the view will "react", updating to match the new values.
 
 ```js
 // Our data object

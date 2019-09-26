@@ -1,5 +1,5 @@
 ---
-title: TypeScript Support
+title: TypeScript дэмжлэг
 type: guide
 order: 403
 ---

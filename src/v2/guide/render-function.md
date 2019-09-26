@@ -1,5 +1,5 @@
 ---
-title: Render Functions & JSX
+title: Рэндэр функцууд & JSX
 type: guide
 order: 303
 ---

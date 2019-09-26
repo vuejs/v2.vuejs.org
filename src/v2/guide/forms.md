@@ -1,5 +1,5 @@
 ---
-title: Form Input Bindings
+title: Form Input холболтууд
 type: guide
 order: 10
 ---
