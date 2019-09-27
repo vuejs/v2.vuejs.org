@@ -6,7 +6,7 @@ order: 101
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
+<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
 
 ## Component Names
 
