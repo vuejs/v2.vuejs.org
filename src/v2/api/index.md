@@ -2514,7 +2514,7 @@ Un metacomponente para representar componentes dinámicos. El componente que se 
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- RegExp (usar `v-bind`) -->
+  <!-- Expresión regular (usar `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
