@@ -58,8 +58,9 @@ Writing documentation is an exercise in empathy. We're not describing an objecti
 - **Always prefer simpler, plainer language over complex or jargony language.** For example:
   - "you can use Vue with a script element" instead of "in order to initiate the usage of Vue, one possible option is to actually inject it via a script HTML element"
   - "function that returns a function" instead of "higher order function"
+- **Don't use emojis (except in discussions).** Emojis are cute and friendly, but they can be a distraction in documentation and some emoji even convey  different meanings in different cultures.
 
-## Iteration
+## Iteration & Communication
 
 - **Excellence comes from iteration.** First drafts are always bad, but writing them is a vital part of the process. It's extremely difficult to avoid the slow progression of Bad -> OK -> Good -> Great -> Inspiring -> Transcendent.
 - **Only wait until something is "Good" before publishing.** The community will help you push it further down the chain.
