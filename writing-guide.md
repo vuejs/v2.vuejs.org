@@ -47,6 +47,10 @@ Writing documentation is an exercise in empathy. We're not describing an objecti
 - **Specific is better than generic.** For example, a `<BlogPost>` component example is better than `<ComponentA>`.
 - **Relatable is better than obscure.** For example, a `<BlogPost>` component example is better than `<CurrencyExchangeSettings>`.
 - **Be emotionally relevant.** Explanations and examples that relate to something people have experience with and care about will always be more effective.
+- **Always prefer simpler, plainer language over complex or jargony language.** For example:
+  - "you can use Vue with a script element" instead of "in order to initiate the usage of Vue, one possible option is to actually inject it via a script HTML element"
+  - "function that returns a function" instead of "higher order function"
+- **Avoid language that invalidate struggle**, such as "easy", "just", "obviously", etc. For reference, see [Words To Avoid in Educational Writing](Words To Avoid in Educational Writing).
 
 ### Grammar
 
@@ -55,9 +59,6 @@ Writing documentation is an exercise in empathy. We're not describing an objecti
 - **Use the oxford comma** (e.g. "a, b, and c" instead of "a, b and c"). ![Why the oxford comma is important](https://www.inkonhand.com/wp-content/uploads/2015/10/serialimage.jpg)
 - **When referencing the name of a project, prioritize the broader conventions of English over internal branding conventions of that project.** For example, "webpack" and "npm" both disregard conventions such as "always start a word at the beginning of a sentence with a capital letter", "project names always use Title Case", and "acronyms are always capitalized". Instead, always write "Webpack and NPM" to provide a more consistent experience in the docs and avoid sentences like "If you don't want to use Vue CLI, you can use webpack or Rollup directly by installing them via npm or Yarn".
 - **Use Title Case for headings** - at least for now, since it's what we use through the rest of the docs. There's research suggesting that sentence case (only first word of the heading starts with a capital) is actually superior for legibility and also reduces the cognitive overhead for documentation writers, since they don't have to try to remember whether to capitalize words like "and", "with", and "about".
-- **Always prefer simpler, plainer language over complex or jargony language.** For example:
-  - "you can use Vue with a script element" instead of "in order to initiate the usage of Vue, one possible option is to actually inject it via a script HTML element"
-  - "function that returns a function" instead of "higher order function"
 - **Don't use emojis (except in discussions).** Emojis are cute and friendly, but they can be a distraction in documentation and some emoji even convey  different meanings in different cultures.
 
 ## Iteration & Communication
