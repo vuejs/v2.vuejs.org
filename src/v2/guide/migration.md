@@ -769,7 +769,7 @@ Si necesita escalonar las transiciones de la lista, puede controlar el tiempo co
 
 ### Opción `events` <sup>removido</sup>
 
-La opción `events` ha sido removida. Ahora, Los manejadores de eventos deben ser registrados en el _hook_ `created`. Vea la [guía de migración de `$dispatch` y `$broadcoast`](#dispatch-and-broadcast-replaced) para un ejemplo detallado.
+La opción `events` ha sido removida. Ahora, Los manejadores de eventos deben ser registrados en el _hook_ `created`. Vea la [guía de migración de `$dispatch` y `$broadcast`](#dispatch-and-broadcast-replaced) para un ejemplo detallado.
 
 ### `Vue.directive('on').keyCodes` <sup>reemplazado</sup>
 
@@ -788,13 +788,13 @@ Vue.config.keyCodes.f1 = 112
 
 ### `$dispatch` y `$broadcast` <sup>reemplazado</sup>
 
-`$dispatch` and `$broadcast` han sido removidos en favor de una comunicación más explícita entre componentes y soluciones de manejo de estado más mantenibles, así como [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` y `$broadcast` han sido removidos en favor de una comunicación más explícita entre componentes y soluciones de manejo de estado más mantenibles, así como [Vuex](https://github.com/vuejs/vuex).
 
-El problema es los flujos de eventos que dependen de la estructura del árbol de componentes pueden ser difíciles de razonar y muy fráfiles cuando el árobl se vuelve grande. No escala bien y no queremos prepararnos para sufrir luego. `$dispatch` y `$broadcast` tampoco resuelven la comunicación entre componentes hermanos.
+El problema son los flujos de eventos que dependen de la estructura del árbol de componentes, pueden ser difíciles de razonar y muy frágiles cuando el árbol se vuelve grande. No escala bien y no queremos prepararnos para sufrir luego. `$dispatch` y `$broadcast` tampoco resuelven la comunicación entre componentes hermanos.
 
-Uno de los casos de uso más comúnes para estos métodos es para la comunicación directaentre un componente padre y sus hijos. En estos casos, usted pueden [escuchar a un `$emit` desde un componente hijo con `v-on`](components.html#Form-Input-Components-using-Custom-Events). Esto le permite mantener la conveniencia de los eventos.
+Uno de los casos de uso más común para estos métodos es para la comunicación directa entre un componente padre y sus hijos. En estos casos, usted pueden [escuchar a un `$emit` desde un componente hijo con `v-on`](components.html#Form-Input-Components-using-Custom-Events). Esto le permite mantener la conveniencia de los eventos.
 
-Sin embargo, cuando se quiere comunicar descendientes/antepasados distantes, `$emit` no le será de ayuda. En cambio, la forma más simple de resolver este problema sería utilizando un _event hub_ centralizado. Esto tiene la ventaja de que permite comunicar componente sin importar dónde esten en el árbol de componentes - ¡incluso si son hermanos! Dado que las instancias de Vue implementar una interfaz de emisión de eventos, usted puede utilizar una instancia de Vue vacía para este propósito.
+Sin embargo, cuando se quiere comunicar descendientes/antepasados distantes, `$emit` no le será de ayuda. En cambio, la forma más simple de resolver este problema sería utilizando un _event hub_ centralizado. Esto tiene la ventaja de que permite comunicar componente sin importar dónde estén en el árbol de componentes - ¡incluso si son hermanos! Dado que las instancias de Vue implementan una interfaz de emisión de eventos, usted puede utilizar una instancia de Vue vacía para este propósito.
 
 Por ejemplo, digamos que tenemos una aplicación de _todo_ estructurada de la siguiente manera:
 
@@ -809,7 +809,7 @@ Podríamos manejar la comunicación entre componentes con un simple _event hub_:
 
 ``` js
 // Este es el event hub que usaremos en cada
-// componente para comunicarlas entre sí.
+// componente para comunicarlos entre sí.
 var eventHub = new Vue()
 ```
 
@@ -844,7 +844,7 @@ created: function () {
   eventHub.$on('delete-todo', this.deleteTodo)
 },
 // Es bueno limpiar los listeners antes
-// de que una componente sea destruida.
+// de que un componente sea destruido.
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
@@ -861,7 +861,7 @@ methods: {
 }
 ```
 
-Este patrón puede servir como reemplazo para `$dispatch` y `$broadcast` en escensario simples, pero para casos más complejos, se recomienda el uso de una capa dedicada al manejo de estado, tal como [Vuex](https://github.com/vuejs/vuex).
+Este patrón puede servir como reemplazo para `$dispatch` y `$broadcast` en escenarios simples, pero para casos más complejos, se recomienda el uso de una capa dedicada al manejo de estado, tal como [Vuex](https://github.com/vuejs/vuex).
 
 {% raw %}
 <div class="upgrade-path">
