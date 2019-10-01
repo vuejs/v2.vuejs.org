@@ -1,9 +1,9 @@
 ---
-title: Wrapper Component
+title: Wrapper Komponen
 type: examples
 order: 8
 ---
 
-> In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom component.
+> Pada contoh berikut kita akan mengintegrasikan layanan plugin jQuery (select2) dengan membungkusnya ke dalam komponen kustom.
 
 <iframe width="100%" height="500" src="https://jsfiddle.net/chrisvfritz/d131Lebj/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
