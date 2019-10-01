@@ -6,7 +6,7 @@ order: 9
 
 ## Contoh Dasar
 
-Seringkali ketika membangun aplikasi untuk web, Anda mungkin ingin menggunakan dan menampilkan data dari sebuah API. Ada beberapa cara untuk melakukannya, namun pendekatan yang sangat populer adalah dengan menggunakan [axios](https://github.com/axios/axios), sebuah _HTTP client_ berbasis promise.
+Seringkali ketika membangun aplikasi untuk web, Anda mungkin ingin menggunakan dan menampilkan data dari sebuah API. Ada beberapa cara untuk melakukannya, namun pendekatan yang sangat populer adalah dengan menggunakan [axios](https://github.com/axios/axios), sebuah _HTTP client_ berbasis _promise_.
 
 Dalam latihan ini, kita akan menggunakan [CoinDesk API](https://www.coindesk.com/api/) untuk menampilkan harga Bitcoin, yang diperbarui setiap menit. Pertama, kita akan pasang axios dengan npm/yarn atau melalui tautan CDN.
 
@@ -84,7 +84,7 @@ filters: {
 <p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Third Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-### Berurusan dengan Kesalahan
+### Berurusan dengan Galat
 
 Terkadang kita mungkin tidak mendapatkan data yang kita inginkan dari API. Ada beberapa alasan mengapa panggilan menggunakan axios gagal, termasuk namun tidak terbatas pada:
 
@@ -164,13 +164,13 @@ Anda dapat menekan tombol _re-run_ pada _pen_ ini untuk melihat status memuat se
 <p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Ini bahkan dapat lebih ditingkatkan dengan penggunaan komponen untuk bagian-bagian yang berbeda dan pelaporan kesalahan yang lebih jelas, tergantung pada API yang Anda gunakan dan kompleksitas aplikasi Anda.
+Ini bahkan dapat lebih ditingkatkan dengan penggunaan komponen untuk bagian-bagian yang berbeda dan pelaporan kesalahan/galat yang lebih jelas, tergantung pada API yang Anda gunakan dan kompleksitas aplikasi Anda.
 
 ## Pola Alternatif
 
 ### Fetch API
 
-[Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) adalah API _native_ yang bagus untuk jenis permintaan ini. Anda mungkin pernah mendengar bahwa salah satu keuntungan dari Fetch API adalah Anda tidak perlu memuat sumber daya luar untuk menggunakannya, dan itu benar! Tetapi... Fetch API belum di dukung secara penuh, jadi Anda tetap akan perlu menggunakan polyfill. Ada beberapa _gotcha_ saat bekerja dengan API ini, itulah sebabnya banyak orang lebih suka menggunakan axios untuk saat ini. Namun hal ini sangat mungkin untuk berubah di masa depan.
+[Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) adalah API _native_ yang bagus untuk jenis permintaan ini. Anda mungkin pernah mendengar bahwa salah satu keuntungan dari Fetch API adalah tidak perlu memuat pustaka tambahan untuk menggunakannya, dan itu benar! Tetapi... Fetch API belum di dukung secara penuh, jadi Anda tetap akan perlu menggunakan polyfill. Ada beberapa penghambat/rintangan saat bekerja dengan API ini, itulah sebabnya banyak orang lebih suka menggunakan axios untuk saat ini. Namun hal ini sangat mungkin untuk berubah di masa depan.
 
 Jika anda tertarik menggunakan Fetch API, ada beberapa [artikel bagus](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) yang menjelaskan cara menggunakannya.
 
