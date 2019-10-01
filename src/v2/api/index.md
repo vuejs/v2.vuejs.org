@@ -709,25 +709,25 @@ type: api
 
 - **Lihat juga:** [Instance Methods / Data - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Opsi / DOM
 
 ### el
 
 - **Tipe:** `string | Element`
 
-- **Batasan:** only respected in instance creation via `new`.
+- **Batasan:** hanya berlaku pada pembuatan _instance_ melalui `new`.
 
 - **Detail:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Berikan _instance_ Vue sebuah elemen DOM yang sudah ada untuk dipasangkan. Ini bisa berupa kata pemilih CSS atau sebuah HTMLElement sesungguhnya.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Setelah _instance_ sudah dipasangkan, elemen akan dapat diakses sebagai `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Jika opsi ini ada saat pembuatan _instance_, _instance_ akan langsung menjalankan kompilasi; jika tidak, pengguna harus memanggil `vm.$mount()` secara eksplisit untuk menjalankan kompilasi secara manual.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">Elemen yang diberikan hanya menjadi titik pemasangan. Tidak seperti Vue 1.x, elemen yang dipasangkan akan digantikan dengan DOM yang dihasilkan oleh Vue dalam semua kasus. Karena itu tidak disarankan untuk memasangkan instance akar ke `<html>` atau `<body>`.</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">Jika  fungsi `render` maupun opsi `template` tidak diberikan, DOM HTML yang di dalam dari elemen DOM yang dipasangkan akan diekstrak sebagai template. Dalam kasus ini, Runtime + Compiler build Vue harus digunakan.</p>
 
 - **Lihat juga:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
@@ -739,13 +739,13 @@ type: api
 
 - **Detail:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Templat string yang akan digunakan sebagai markup untuk _instance_ Vue. Template akan **menggantikan** elemen yang dipasang. Markup apa pun yang ada di dalam elemen yang dipasang akan diabaikan, kecuali jika slot distribusi konten ada dalam template.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Jika kata dimulai dengan `#` itu akan digunakan sebagai querySelector dan menggunakan innerHTML elemen yang dipilih sebagai string template. Ini memungkinkan penggunaan trik umum `<script type =" x-template ">` untuk menyertakan templat.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">Dari perspektif keamanan, Anda hanya boleh menggunakan templat Vue yang dapat Anda percayai. Jangan pernah menggunakan konten yang dibuat pengguna sebagai templat Anda.</p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Jika fungsi _render_ ada dalam opsi Vue, _template_ akan diabaikan.</p>
 
 - **Lihat juga:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
@@ -757,27 +757,27 @@ type: api
 
   - **Detail:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Alternatif untuk templat string yang memungkinkan Anda memanfaatkan kekuatan penuh program JavaScript. Fungsi render menerima sebuah metode `createElement` sebagai argumen pertama yang digunakan untuk membuat `VNode`.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Jika komponen merupakan sebuah komponen fungsional, fungsi render juga menerima ekstra argumen `context`, yang memberikan aksesk pada data kontekstual karena komponen fungsional tidak memiliki _instance_.
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">Fungsi `render` memiliki prioritas di atas fungsi render yang dikompilasi dari opsi `template` atau templat HTML dalam DOM dari elemen pemasangan yang ditentukan oleh opsi` el`..</p>
 
   - **Lihat juga:** [Render Functions](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
   - **Tipe:** `(createElement: () => VNode, error: Error) => VNode`
 
   - **Detail:**
 
-    **Only works in development mode.**
+    **Hanya bekerja pada mode pengembangan.**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    Memberikan sebuah keluaran _render_ alternatif ketika fungsi `render` standar menemukan kesalahan. Kesalahan akan diteruskan ke `renderError` sebagai argumen kedua. Ini sangat berguna saat digunakan bersama dengan _hot-reload_.
 
-  - **Example:**
+  - **Contoh:**
 
     ``` js
     new Vue({
