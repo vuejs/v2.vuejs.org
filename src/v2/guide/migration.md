@@ -1198,13 +1198,13 @@ When used together with `<transition>`, make sure to nest it inside:
 
 ### Interpolaciones dentro de Atributos <sup>removido</sup>
 
-La interpolación dentro de atributo ya no es válida. Por ejemplo:
+La interpolación dentro de atributos ya no es válida. Por ejemplo:
 
 ``` html
 <button class="btn btn-{{ size }}"></button>
 ```
 
-Debería actualizarse a utilizar una expresión _inline_:
+Debería actualizarse para utilizar una expresión _inline_:
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
