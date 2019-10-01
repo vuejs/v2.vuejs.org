@@ -1509,102 +1509,102 @@ type: api
 
   Berisi pemantau (*listeners*) *events* `v-on` yang berada di cakupan induk (parent) (tanpa pengubah (*modifiers*) `.native`). Properti ini dapat diteruskan kebawah ke komponen *inner* via `v-on="$listeners"` - berguna saat membuat komponen-komponen penyelubung (wrapper) yang bersifat transparan.
 
-## Instance Methods / Data
+## Metode Instance / Data 
 
 ### vm.$watch( expOrFn, callback, [options] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string | Function} expOrFn`
   - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Mengembalikan:** `{Function} unwatch`
 
 - **Penggunaan:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
+Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *instance* Vue untuk perubahan. *Callback* dipanggil dengan nilai baru dan nilai lama. Ekspresi hanya menerima jalur *dot-delimited*. Untuk ekspresi yang lebih kompleks, gunakan fungsi.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Catatan: ketika memutasi (alih-alih mengganti) suatu Objek atau Array, nilai lama akan sama dengan nilai baru karena mereka mereferensikan Objek/Array yang sama. Vue tidak menyimpan salinan dari nilai pra-mutasi.</p>
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   // keypath
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // lakukan sesuatu
   })
 
   // function
   vm.$watch(
     function () {
-      // everytime the expression `this.a + this.b` yields a different result,
-      // the handler will be called. It's as if we were watching a computed
-      // property without defining the computed property itself
+      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,     
+      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti 
+      // penghitung (computed property) tanpa mendefinisikan properti penghitung itu sendiri
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // lakukan sesuatu
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` mengembalikan fungsi yang tidak diamati yang berhenti menembakkan *callback*:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // nanti, runtuhkan pengamat
   unwatch()
   ```
 
-- **Option: deep**
+- **Opsi: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Untuk mendeteksi perubahan nilai bersarang (*nested value*) di dalam Objek, anda harus mengoper `deep: true` dalam argumen opsi. Perhatikan bahwa anda tidak perlu mendengarkan (*listen*) untuk mutasi Array.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback dieksekusi
   ```
 
-- **Option: immediate**
+- **Opsi: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Mengoper `immediate: true` dalam opsi akan segera memicu *callback* dengan nilai ekspresi saat ini:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // `callback` segera dieksekusi dengan nilai `a` saat ini
   ```
 
 ### vm.$set( target, key, value )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Mengembalikan:** set nilai.
 
 - **Penggunaan:**
 
-  This is the **alias** of the global `Vue.set`.
+  Ini adalah **alias** dari global `Vue.set`.
 
 - **Lihat juga:** [Vue.set](#Vue-set)
 
 ### vm.$delete( target, key )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
 
 - **Penggunaan:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Ini adalah **alias** dari global `Vue.delete`.
 
 - **Lihat juga:** [Vue.delete](#Vue-delete)
 
