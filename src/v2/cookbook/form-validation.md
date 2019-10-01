@@ -1,14 +1,14 @@
 ---
-title: Form Validation
+title: Validasi Form
 type: cookbook
 order: 3
 ---
 
-## Base Example
+## Contoh Dasar
 
-Form validation is natively supported by the browser, but sometimes different browsers will handle things in a manner which makes relying on it a bit tricky. Even when validation is supported perfectly, there may be times when custom validations are needed and a more manual, Vue-based solution may be more appropriate. Let's begin with a simple example.
+Validasi *Form* pada dasarnya didukung oleh browser, Tetapi kadang-kadang browser yang berbeda akan menangani hal tersebut dengan cara yang membuatnya rumit. Bahkan ketika validasi didukung dengan sempurna, mungkin akan ada saatnya validasi khusus dan manual lebih diperlukan, solusi berbasis Vue mungkin akan lebih tepat. mari kita mulai dengan contoh sederhana.
 
-Given a form of three fields, make two required. Let's look at the HTML first:
+Diberikan tiga bidang *Form*, buat dua bidang diwajibkan. Marki kita lihat kode HTML dibawah:
 
 ``` html
 <form
@@ -68,11 +68,11 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 </form>
 ```
 
-Let's cover it from the top. The `<form>` tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the `action` is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).
+Mari kita mulai dari kode teratas. Tag `<form>` memiliki ID yang akan kita gunakan untuk komponen Vue. Ada *submit handler* yang terlihat sedikit, dan `action` adalah *URL* sementara yang akan merujuk ke sebuah halaman yang nyata pada server di suatu tempat(di mana Anda tentu saja memiliki validasi *server-side* cadangan).
 
-Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified.
+Di bawahnya ada paragraf yang tampil atau tersembunyi berdasarkan status kesalahan. Ini akan membuat daftar kesalahan yang sederhana di atas *form*. Perhatikan juga kita menggunakan validasi ketika tersumbit karena setiap bidang dimodifikasi.
 
-The final thing to note is that each of the three fields has a corresponding `v-model` to connect them to values we will work with in the JavaScript. Now let's look at that.
+Hal terakhir yang perlu diperhatikan adalah bahwa masing-masing dari tiga bidang memiliki `v-model` yang sesuai untuk menghubungkannya dengan nilai yang akan kita gunakan dalam Javascript. Sekarang mari kita lihat hal itu.
 
 ``` js
 const app = new Vue({
@@ -104,14 +104,14 @@ const app = new Vue({
 })
 ```
 
-Fairly short and simple. We define an array to hold errors and set `null` values for the three form fields. The `checkForm` logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that's really it. You can run the demo below. Don't forget that on a successful submission it's going to POST to a temporary URL.
+Cukup singkat dan sederhana. Kita mendefinisikan *array* untuk meng-*handle* kesalahan dan menetapkan nilai `null` untuk tiga bidang *form*. Logika `checkForm` (yang dijalankan ketika disubmit) memeriksa bidang nama dan umur saja karena bidang film bersifat opsional. Jika kosong, maka kita periksa masing-masing dan atur pesan kesalahan spesifik untuk masing-masing. Dan itu yang sebenarnya terjadi. Anda dapat menjalankan demo di bawah ini. Jangan lupa bahwa pada pengiriman yang berhasil, itu akan di **POST** ke *URL* sementara.
 
 <p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">form validation 1</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## Using Custom Validation
+## Menggunakan Validasi Kustom
 
-For the second example, the second text field (age) was switched to email which will be validated with a bit of custom logic. The code is taken from the StackOverflow question, [How to validate email address in JavaScript?](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript). This is an awesome question because it makes your most intense Facebook political/religious argument look like a slight disagreement over who makes the best beer. Seriously - it's insane. Here is the HTML, even though it's really close to the first example.
+Untuk contoh kedua, bidang teks kedua (umur) diganti ke email yang mana akan divalidasi dengan sedikit logika khusus. Kode diambil dari pertanyaan di StackOverflow,[How to validate email address in JavaScript?](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript). Ini adalah pertanyaan yang luar biasa karena membuat argumen politik/agama Facebook Anda yang paling intens terlihat seperti sedikit perbedaan tentang siapa yang membuat bir terbaik. Serius - ini gila. Ini adalah HTML, meskipun sangat mirip dengan contoh yang pertama.
 
 ``` html
 <form
@@ -172,7 +172,7 @@ For the second example, the second text field (age) was switched to email which 
 </form>
 ```
 
-While the change here is small, note the `novalidate="true"` on top. This is important because the browser will attempt to validate the email address in the field when `type="email"`. Frankly it may make more sense to trust the browser in this case, but as we wanted an example with custom validation, we're disabling it. Here's the updated JavaScript.
+Sementara perubahan di sini kecil, perhatikan `novalidate="true"` di atas. Ini penting karena browser akan berusaha untuk memvalidasi alamat email di bidang ketika `type="email"`. Terus terang mungkin lebih masuk akal untuk mempercayai browser dalam kasus ini, tetapi karena kita ingin contoh dengan validasi khusus, Kita menonaktifkannya. Inilah Javascript yang diperbarui.
 
 ``` js
 const app = new Vue({
@@ -210,14 +210,14 @@ const app = new Vue({
 })
 ```
 
-As you can see, we've added `validEmail` as a new method and it is simply called from `checkForm`. You can play with this example here:
+Seperti yang Anda lihat, Kita telah menambahkan `validEmail` sebagai *method* baru dan hanya dipanggil dari `checkFrom`. Anda dapat bermain dengan contoh ini di sini:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqNXZ/">form validation 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## Another Example of Custom Validation
+## Contoh Lain dari Validasi Form
 
-For the third example, we've built something you've probably seen in survey apps. The user is asked to spend a "budget" for a set of features for a new Star Destroyer model. The total must equal 100. First, the HTML.
+Untuk contoh ketiga, Kita telah membuat sesuatu yang mungkin Anda lihat di aplikasi survei. Pengguna diminta untuk menghabiskan "anggaran" untuk serangkaian fitur untuk model *Star Destroyer* baru. Totalnya harus sama dengan 100. Pertama, HTML-nya.
 
 ``` html
 <form
@@ -283,7 +283,7 @@ For the third example, we've built something you've probably seen in survey apps
 </form>
 ```
 
-Note the set of inputs covering the five different features. Note the addition of `.number` to the `v-model` attribute. This tells Vue to cast the value to a number when you use it. However, there is a bug with this feature such that when the value is blank, it turns back into a string. You'll see the workaround below. To make it a bit easier for the user, we also added a current total right below so they can see, in real time, what their total is. Now let's look at the JavaScript.
+Perhatikan serangkaian input yang mencakup lima fitur berbeda. Perhatikan penambahan `.number` ke atribut `v-model`. Ini memberitahu Vue untuk mengubah nilai menjadi angka ketika kita Anda menggunakannya. Namun, ada *bug* dengan fitur ini sehingga ketika nilainya kosong, itu berubah menjadi *string*. Anda akan melihat solusinya di bawah. Untuk membuatnya lebih mudah bagi pengguna, Kita juga menambahkan total saat ini di bawah sehingga mereka dapat melihat, secara *real time*, berapa total mereka. Sekarang mari kita lihat Javascript-nya.
 
 ``` js
 const app = new Vue({
@@ -298,7 +298,7 @@ const app = new Vue({
   },
   computed: {
      total: function () {
-       // must parse because Vue turns empty value to string
+       // harus parse karena Vue mengubah nilai kosong menjadi String
        return Number(this.weapons) +
          Number(this.shields) +
          Number(this.coffee) +
@@ -323,14 +323,14 @@ const app = new Vue({
 })
 ```
 
-We set up the total value as a computed value, and outside of that bug I ran into, it was simple enough to setup. My checkForm method now just needs to see if the total is 100 and that's it. You can play with this here:
+Kita mengatur nilai total sebagai nilai yang dihitung, dan di luar bug yang saya temui, itu cukup sederhana untuk diatur. *checkForm method* saya sekarang hanya perlu melihat apakah totalnya 100 dan hanya itu. Anda dapat bermain dengan ini di sini:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqGoy/">form validation 3</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## Server-side Validation
+## Validasi di sisi Server
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [OpenWhisk](http://openwhisk.apache.org/) serverless action to do the validation. While it isn't terribly important, here is the logic:
+Dalam contoh terakhir saya, Kita membuat sesuatu yang menggunakan *Ajax* untuk memvalidasi di server. *Form* akan meminta Anda untuk memberi nama produk baru dan kemudian akan memeriksa untuk memastikan bahwa nama itu unik. Kami menulis [OpenWhisk](http://openwhisk.apache.org/) tindakan tanpa server untuk melakukan validasi. Meskipun tidak terlalu penting, inilah logikanya:
 
 ``` js
 function main(args) {
@@ -347,7 +347,7 @@ function main(args) {
 }
 ```
 
-Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's look at the form.
+Pada dasaranya nama apapun selain "vista", "empire", dan "mbp" dapat diterima. Ok, jadi mari kita lihat *form*-nya.
 
 ``` html
 <form
@@ -383,7 +383,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
 </form>
 ```
 
-There isn't anything special here. So let's go on to the JavaScript.
+Tidak ada yang istimewa di sini. Jadi mari kita lanjutkan ke JavaScript.
 
 ``` js
 const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
@@ -409,7 +409,7 @@ const app = new Vue({
           if (res.error) {
             this.errors.push(res.error);
           } else {
-            // redirect to a new URL, or do something on success
+            // alihkan ke URL yang baru, atau lakukan sesuatu ketika berhasil
             alert('ok!');
           }
         });
@@ -419,14 +419,14 @@ const app = new Vue({
 })
 ```
 
-We start off with a variable representing the URL of the API that is running on OpenWhisk. Now look at `checkForm`. In this version, we always prevent the form from submitting (which, by the way, could be done in the HTML with Vue as well). You can see a basic check on `this.name` being empty, and then we hit the API. If it's bad, we add an error as before. If it's good, right now we do nothing (just an alert), but you could navigate the user to a new page with the product name in the URL, or do other actions as well. You can run this demo below:
+Kita memulai dengan variabel yang mewakili *URL API* yang berjalan di OpenWhisk. Sekarang lihat `checkForm`. Dalam versi ini, Kita selalu mencegah pengiriman *form* (yang, ngomong-ngomong, dapat dilakukan dalam HTML dengan Vue juga). Anda dapat melihat pemeriksaan dasar pada `this.name` yang kosong, dan kemudian kita *hit* API. Jika gagal, kita menambahkan pesan kesalahan seperti sebelumnya. Jika berhasil, saat ini kita tidak melakukan apa-apa (hanya peringatan), tetapi Anda dapat mengarahkan pengguna ke halaman baru dengan nama produk di URL, atau melakukan tindakan lain juga. Anda dapat menjalankan demo ini di bawah:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/BmgzeM/">form validation 4</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## Alternative Patterns
+## Pola Alternatif
 
-While this cookbook entry focused on doing form validation "by hand", there are, of course, some great Vue libraries that will handle a lot of this for you. Switching to a prepackage library may impact the final size of your application, but the benefits could be tremendous. You have code that is (most likely) heavily tested and also updated on a regular basis. Some examples of form validation libraries for Vue include:
+Sementara entri *cookbook* ini berfokus pada melakukan validasi *form* "manual", tentu saja ada beberapa *library* Vue yang akan menangani banyak tentang ini untuk Anda. Beralih ke perpaket *library* dapat mempengaruhi ukuran akhir aplikasi Anda, tetapi manfaatnya bisa luar biasa. Anda memiliki kode yang (kemungkinan besar) sangat diuji dan juga diperbarui secara berkala. Beberapa contoh *library* validasi *form* untuk Vue termasuk:
 
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
