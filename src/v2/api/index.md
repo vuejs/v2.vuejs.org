@@ -963,7 +963,7 @@ type: api
 
   - Kait `errorCaptured` dapat mengembalikan `false` untuk mencegah kesalahan agar tidak menyebar lebih lanjut. Ini pada dasarnya mengatakan "kesalahan ini telah ditangani dan harus diabaikan." Ini akan mencegah kait `errorCaptured` tambahan atau `global config.errorHandler` global agar tidak dipanggil untuk kesalahan ini.
 
-## Options / Assets
+## Opsi / Assets
 
 ### directives
 
@@ -971,7 +971,7 @@ type: api
 
 - **Detail:**
 
-  A hash of directives to be made available to the Vue instance.
+  Sejumlah directive yang harus disediakan untuk _instance_ Vue.
 
 - **Lihat juga:** [Custom Directives](../guide/custom-directive.html)
 
@@ -981,7 +981,7 @@ type: api
 
 - **Detail:**
 
-  A hash of filters to be made available to the Vue instance.
+  Sejumlah filter yang harus disediakan untuk _instance_ Vue.
 
 - **Lihat juga:** [`Vue.filter`](#Vue-filter)
 
@@ -991,7 +991,7 @@ type: api
 
 - **Detail:**
 
-  A hash of components to be made available to the Vue instance.
+  Sejumlah komponen yang harus disediakan untuk _instance_ Vue.
 
 - **Lihat juga:** [Components](../guide/components.html)
 
