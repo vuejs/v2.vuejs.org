@@ -1,16 +1,16 @@
 ---
-title: Using Axios to Consume APIs
+title: Menggunakan Axios untuk Mengkonsumsi API
 type: cookbook
 order: 9
 ---
 
-## Base Example
+## Contoh Dasar
 
-There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
+Seringkali ketika membangun aplikasi untuk web, Anda mungkin ingin menggunakan dan menampilkan data dari sebuah API. Ada beberapa cara untuk melakukannya, namun pendekatan yang sangat populer adalah dengan menggunakan [axios](https://github.com/axios/axios), sebuah _HTTP client_ berbasis promise.
 
-In this exercise, we'll use the [CoinDesk API](https://www.coindesk.com/api/) to walk through displaying Bitcoin prices, updated every minute. First, we'd install axios with either npm/yarn or through a CDN link.
+Dalam latihan ini, kita akan menggunakan [CoinDesk API](https://www.coindesk.com/api/) untuk menampilkan harga Bitcoin, yang diperbarui setiap menit. Pertama, kita akan pasang axios dengan npm/yarn atau melalui tautan CDN.
 
-There are a number of ways we can request information from the API, but it's nice to first find out what the shape of the data looks like, in order to know what to display. In order to do so, we'll make a call to the API endpoint and output it so we can see it. We can see in the CoinDesk API documentation, that this call will be made to `https://api.coindesk.com/v1/bpi/currentprice.json`. So first, we'll create a data property that will eventually house our information, and we'll retrieve the data and assign it using the `mounted` lifecycle hook:
+Kita dapat melakukan permintaan informasi dari API dengan beberapa cara, namun sebaiknya kita pahami dulu format data nya, agar kita mengetahui apa yang akan ditampilkan. Untuk melakukan nya, kita akan melakukan panggilan ke API dan menampilkannya sehingga kita dapat melihatnya. Kita dapat melihat pada dokumentasi CoinDesk API, panggilan ini akan dilakukan ke `https://api.coindesk.com/v1/bpi/currentprice.json`. Jadi, pertama, kita akan membuat sebuah properti data yang pada akhirnya akan menyimpan informasi kita, dan kita akan mengambil data dan menetapkannya menggunakan kait siklus hidup `mounted`:
 
 ```js
 new Vue({
@@ -34,18 +34,18 @@ new Vue({
 </div>
 ```
 
-And what we get is this:
+Dan kita mendapatkan seperti berikut:
 
 <p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">First Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Excellent! We've got some data. But it looks pretty messy right now so let's display it properly and add some error handling in case things aren't working as expected or it takes longer than we thought to get the information.
+Luar biasa! Kita sudah mendapatkan beberapa data. Namun saat ini data tersebut terlihat berantakan, jadi mari kita tampilkan dengan benar dan kita tambahkan beberapa penanganan kesalahan/galat jika sesuatu tidak berjalan sesuai yang diharapkan atau memerlukan waktu lebih lama dari yang kita pikirkan untuk mendapatkan informasi tersebut.
 
-## Real-World Example: Working with the Data
+## Contoh Dunia Nyata: Bekerja dengan Data
 
-### Displaying Data from an API
+### Menampilkan Data dari API
 
-It's pretty typical that the information we'll need is within the response, and we'll have to traverse what we've just stored to access it properly. In our case, we can see that the price information we need lives in `response.data.bpi`. If we use this instead, our output is as follows:
+Pada umumnya informasi yang kita perlukan berada dalam respon, dan kita harus menelusuri apa yang baru saja kita simpan untuk dapat mengaksesnya dengan benar. Dalam kasus kita, kita dapat melihat bahwa informasi harga yang kita perlukan ada di `response.data.bpi`. Jika kita menggunakan ini, kita menampilkan sebagai berikut:
 
 ```js
 axios
@@ -56,7 +56,7 @@ axios
 <p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Second Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This is a lot easier for us to display, so we can now update our HTML to display only the information we need from the data we've received, and we'll create a [filter](../api/#Vue-filter) to make sure that the decimal is in the appropriate place as well.
+Ini jauh lebih mudah bagi kita untuk menampilkannya, jadi sekarang kita dapat melakukan pembaruan HTML kita agar hanya menampilkan informasi yang kita butuhkan dari data yang kita terima, dan kita akan membuat [filter](../api/#Vue-filter) untuk memastikan bahwa nilai desimal juga tepat.
 
 ```html
 <div id="app">
@@ -84,15 +84,15 @@ filters: {
 <p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Third Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-### Dealing with Errors
+### Berurusan dengan Kesalahan
 
-There are times when we might not get the data we need from the API. There are several reasons that our axios call might fail, including but not limited to:
+Terkadang kita mungkin tidak mendapatkan data yang kita inginkan dari API. Ada beberapa alasan mengapa panggilan menggunakan axios gagal, termasuk namun tidak terbatas pada:
 
-* The API is down.
-* The request was made incorrectly.
-* The API isn't giving us the information in the format that we anticipated.
+* API tidak berfungsi.
+* Permintaan dibuat dengan tidak benar.
+* API tidak memberikan kita informasi dengan format yang kita antisipasi.
 
-When making this request, we should be checking for just such circumstances, and giving ourselves information in every case so we know how to handle the problem. In an axios call, we'll do so by using `catch`.
+Ketika membuat permintaan, kita harus memeriksa kondisi seperti itu, dan memberi diri kita informasi pada setiap kasus sehingga kita tahu cara menangani masalah tersebut. Dalam panggilan axios, kita akan melakukannya dengan `catch`.
 
 ```js
 axios
@@ -101,7 +101,7 @@ axios
   .catch(error => console.log(error))
 ```
 
-This will let us know if something failed during the API request, but what if the data is mangled or the API is down? Right now the user will just see nothing. We might want to build a loader for this case, and then tell the user if we're not able to get the data at all.
+Ini akan memberi tahu kita jika sesuatu gagal selama permintaan API, namun bagaimana jika datanya rusak atau API tidak berfungsi? Sekarang pengguna tidak akan melihat apa-apa. Kita mungkin ingin membuat _loader_ untuk kasus ini, kemudian memberi tahu pengguna bahwa kita tidak dapat mendapatkan data sama sekali.
 
 ```js
 new Vue({
@@ -159,21 +159,21 @@ new Vue({
 </div>
 ```
 
-You can hit the rerun button on this pen to see the loading status briefly while we gather data from the API:
+Anda dapat menekan tombol _re-run_ pada _pen_ ini untuk melihat status memuat secara singkat sambil kita mengumpulkan data dari API.
 
 <p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This can be even further improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
+Ini bahkan dapat lebih ditingkatkan dengan penggunaan komponen untuk bagian-bagian yang berbeda dan pelaporan kesalahan yang lebih jelas, tergantung pada API yang Anda gunakan dan kompleksitas aplikasi Anda.
 
-## Alternative Patterns
+## Pola Alternatif
 
 ### Fetch API
 
-The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that one of the benefits of the Fetch API is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
+[Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) adalah API _native_ yang bagus untuk jenis permintaan ini. Anda mungkin pernah mendengar bahwa salah satu keuntungan dari Fetch API adalah Anda tidak perlu memuat sumber daya luar untuk menggunakannya, dan itu benar! Tetapi... Fetch API belum di dukung secara penuh, jadi Anda tetap akan perlu menggunakan polyfill. Ada beberapa _gotcha_ saat bekerja dengan API ini, itulah sebabnya banyak orang lebih suka menggunakan axios untuk saat ini. Namun hal ini sangat mungkin untuk berubah di masa depan.
 
-If you're interested in using the Fetch API, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
+Jika anda tertarik menggunakan Fetch API, ada beberapa [artikel bagus](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) yang menjelaskan cara menggunakannya.
 
-## Wrapping Up
+## Ringkasan
 
-There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
+Ada banyak cara untuk bekerja dengan Vue dan axios selain mengkonsumsi dan menampilkan API. Anda juga dapat berkomunikasi dengan _Serverless Functions_, memposting/mengedit/menghapus dari API dimana Anda memiliki hak akses tulis, dan masih banyak lagi manfaatnya. Karena integrasi yang mudah dari kedua pustaka ini, menjadikannya pilihan yang sangat umum bagi pengembang yang memerlukan integrasi _HTTP clients_ ke dalam alur kerja mereka.
