@@ -4,27 +4,27 @@ type: cookbook
 order: 4
 ---
 
-## Base Example
+## Contoh Dasar
 
-There are many ways to create an SVG Icon System, but one method that takes advantage of Vue's capabilities is to create editable inline icons as components. Some of the advantages of this way of working is:
+Ada banyak cara untuk membuat Sistem Ikon SVG, tetapi satu metode yang memanfaatkan kemampuan Vue adalah membuat ikon inline yang dapat diedit sebagai komponen. Beberapa keuntungan dari cara kerja ini adalah:
 
-* They are easy to edit on the fly
-* They are animatable
-* You can use standard props and defaults to keep them to a typical size or alter them if you need to
-* They are inline, so no HTTP requests are necessary
-* They can be made accessible dynamically
+* mudah diedit dengan cepat
+* animatable
+* Anda dapat menggunakan alat peraga standar dan standar untuk menjaganya tetap pada ukuran tipikal atau mengubahnya jika perlu
+* sebaris, sehingga tidak ada permintaan HTTP yang diperlukan
+* dapat diakses secara dinamis
 
-First, we'll create a folder for all of the icons, and name them in a standardized fashion for easy retrieval:
+Pertama, kami akan membuat folder untuk semua ikon, dan menamainya dengan cara yang terstandarisasi untuk pengambilan yang mudah:
 
 > components/icons/IconBox.vue
 > components/icons/IconCalendar.vue
 > components/icons/IconEnvelope.vue
 
-Here's an example repo to get you going, where you can see the entire setup: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
+Berikut ini contoh repo untuk memulai, tempat Anda dapat melihat seluruh pengaturan: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
 
 ![Documentation site](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg 'Docs demo')
 
-We'll create a base icon (`IconBase.vue`) component that uses a slot.
+Kami akan membuat komponen ikon dasar  (`IconBase.vue`)  yang menggunakan slot.
 
 ```html
 <template>
@@ -45,10 +45,9 @@ We'll create a base icon (`IconBase.vue`) component that uses a slot.
   </svg>
 </template>
 ```
+Anda dapat menggunakan ikon dasar ini sebagai- satu-satunya hal yang perlu Anda perbarui adalah `viewBox` tergantung pada` viewBox` ikon Anda. Di Base Source Code, kami membuat `width`,` height`, `iconColor`, dan nama ikon alat peraga sehingga dapat diperbarui secara dinamis dengan alat peraga. Nama akan digunakan untuk konten `<title>` dan `id` untuk aksesibilitas.
 
-You can use this base icon as is- the only thing you might need to update is the `viewBox` depending on the `viewBox` of your icons. In the base, we're making the `width`, `height`, `iconColor`, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the `<title>` content and its `id` for accessibility.
-
-Our script will look like this, we'll have some defaults so that our icon will be rendered consistently unless we state otherwise:
+Skrip kami akan terlihat seperti ini, kami akan memiliki beberapa default sehingga ikon kami akan ditampilkan secara konsisten kecuali kami menyatakan sebaliknya:
 
 ```js
 export default {
@@ -73,15 +72,15 @@ export default {
 }
 ```
 
-The `currentColor` property that's the default on the fill will make the icon inherit the color of whatever text surrounds it. We could also pass in a different color as a prop if we wish.
+Properti `currentColor` yang merupakan default pada form isian akan membuat ikon mewarisi warna teks apa pun yang mengelilinginya. Kita juga bisa memberikan warna berbeda sebagai penyangga jika kita mau.
 
-We can use it like so, with the only contents of `IconWrite.vue` containing the paths inside the icon:
+Kita dapat menggunakannya seperti itu, dengan satu-satunya konten `IconWrite.vue` yang berisi path di dalam ikon:
 
 ```html
 <icon-base icon-name="write"><icon-write /></icon-base>
 ```
 
-Now, if we'd like to make many sizes for the icon, we can do so very easily:
+Sekarang, jika kita ingin membuat banyak ukuran untuk ikon, kita dapat melakukannya dengan sangat mudah:
 
 ```html
 <p>
@@ -104,9 +103,9 @@ Now, if we'd like to make many sizes for the icon, we can do so very easily:
 
 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/Screen%20Shot%202018-01-01%20at%204.51.40%20PM.png" width="450" />
 
-## Animatable Icons
+## Ikon Beranimasi
 
-Keeping icons in components comes in very handy when you'd like to animate them, especially on an interaction. Inline SVGs have the highest support for interaction of any method. Here's a very basic example of an icon that's animated on click:
+Menyimpan ikon dalam komponen sangat berguna ketika Anda ingin menghidupkannya, terutama pada saat interaksi. SVG sebaris memiliki dukungan tertinggi untuk interaksi metode apa pun. Berikut adalah contoh yang sangat mendasar dari ikon yang dianimasikan saat klik:
 
 ```html
 <template>
@@ -161,27 +160,27 @@ export default {
 }
 ```
 
-We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a function we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and `transform-origin` issues across browser.
+Kami menerapkan `refs` ke grup jalur yang perlu kami pindahkan, dan karena kedua sisi gunting harus bergerak bersamaan, kami akan membuat fungsi yang dapat kami gunakan kembali di mana kami akan melewati` refs`. Penggunaan GreenSock membantu menyelesaikan dukungan animasi dan masalah `transformasi-origin` di seluruh browser.
 
-<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">Lihat the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Sistem Ikon SVG yang Dapat Diedit: Ikon animasi</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) di <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-<p style="margin-top:-30px">Pretty easily accomplished! And easy to update on the fly.</p>
+<p style="margin-top:-30px">Sangat mudah dicapai! Dan mudah untuk memperbarui dengan cepat Saat Berjalan(Eksekusi).</p>
 
-You can see more animated examples in the repo [here](https://github.com/sdras/vue-sample-svg-icons/)
+Anda dapat melihat lebih banyak contoh animasi di repo [here](https://github.com/sdras/vue-sample-svg-icons/)
 
-## Additional Notes
+## Catatan Tambahan
 
-Designers may change their minds. Product requirements change. Keeping the logic for the entire icon system in one base component means you can quickly update all of your icons and have it propagate through the whole system. Even with the use of an icon loader, some situations require you to recreate or edit every SVG to make global changes. This method can save you that time and pain.
+Desainer dapat berubah pikiran. Persyaratan produk berubah. Menyimpan logika untuk seluruh sistem ikon dalam satu komponen dasar berarti Anda dapat dengan cepat memperbarui semua ikon Anda dan menyebarkannya ke seluruh sistem. Bahkan dengan penggunaan ikon loader, beberapa situasi mengharuskan Anda untuk membuat ulang atau mengedit setiap SVG untuk membuat perubahan global. Metode ini dapat menghemat waktu dan rasa sakit Anda.
 
-## When To Avoid This Pattern
+## Kapan Harus Menghindari Pola Ini
 
-This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you're repeating the same icon many times on one page (e.g. a giant table a delete icon in each row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `<use>` tags to load them.
+Jenis sistem ikon SVG ini sangat berguna ketika Anda memiliki sejumlah ikon yang digunakan dengan berbagai cara di seluruh situs Anda. Jika Anda mengulangi ikon yang sama berkali-kali pada satu halaman (misalnya tabel raksasa ikon hapus di setiap baris), mungkin lebih masuk akal untuk membuat semua sprite dikompilasi menjadi sprite sheet dan menggunakan tag `<use>` tag untuk memuatnya.
 
-## Alternative Patterns
+## Pola Alternatif
 
-Other tooling to help manage SVG icons includes:
+Perkakas lain untuk membantu mengelola ikon SVG termasuk:
 
 * [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader)
 * [svgo-loader](https://github.com/rpominov/svgo-loader)
 
-These tools bundle SVGs at compile time, but make them a little harder to edit during runtime, because `<use>` tags can have strange cross-browser issues when doing anything more complex. They also leave you with two nested `viewBox` properties and thus two coordinate systems. This makes the implementation a little more complex.
+Alat-alat ini membundel SVG pada saat waktu kompilasi, tetapi membuatnya sedikit lebih sulit untuk diedit saat runtime, karena tag `<use>` dapat memiliki masalah lintas-browser yang aneh ketika melakukan sesuatu yang lebih kompleks. Mereka juga meninggalkan Anda dengan dua properti `viewBox` yang bersarang dan dengan demikian dua sistem koordinat. Ini membuat implementasinya sedikit lebih kompleks.
