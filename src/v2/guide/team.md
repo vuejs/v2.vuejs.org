@@ -1125,6 +1125,22 @@ order: 803
       ]
     },
     {
+      name: 'Rolf Haug',
+      title: 'Educator & Consultant',
+      city: 'Oslo, Norway',
+      languages: ['en', 'no'],
+      github: 'rahaug',
+      twitter: 'rahaug',
+      work: {
+        role: 'Educator & Co-founder',
+        org: 'Vue School',
+        orgUrl: 'https://vueschool.io/'
+      },
+      links: [
+        'https://vueschool.io/', 'https://rah.no'
+      ]
+    },
+    {
       name: 'Andrew Tomaka',
       title: 'The Server Server',
       city: 'East Lansing, MI, USA',
