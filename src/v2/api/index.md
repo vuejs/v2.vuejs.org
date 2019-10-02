@@ -2237,7 +2237,7 @@ type: api
 
 - **Espera:** `number | string`
 
-  El atributo especial `key` es utilizado principalmente como una pista para el algoritmo del DOM virtual de Vue para identificar VNodes cuando se compara nuevas listas de nodos contra listas antiguas. Sin claves, Vue utiliza un algoritma que minimiza el movimiento de elementos e intenta parchear/reusar elementes del mismo tipo lo más posible. Con claves, este reordenará elementos basado en el orden de cambio de las claves, y los elementos con claves que ya no esten presentes, siempre serán removidos/destruidos.
+  El atributo especial `key` es utilizado principalmente como una pista para el algoritmo del DOM virtual de Vue para identificar _VNodes_ cuando se compara nuevas listas de nodos contra listas antiguas. Sin claves, Vue utiliza un algoritmo que minimiza el movimiento de elementos e intenta parchear/reusar elementos del mismo tipo lo más posible. Con claves, este reordenará elementos basado en el orden de cambio de las claves, y los elementos con claves que ya no estén presentes, siempre serán removidos/destruidos.
 
   Hijos de un mismo padre en común simpre deben tener **claves únicas**. Claves duplicadas causarán errores de renderizado.
 
@@ -2268,7 +2268,7 @@ type: api
 
 - **Espera:** `string`
 
-  `ref` es utilizado para registrar una referencia a un elemento a un componente hijo. La referencia será registrada bajo el objeto `$refs` del componente padre. Si se utiliza en un elemento "plano" del DOM, la referncia será a dicho elemento; si se utiliza en un componente hijo, la referencia será a la instancia de dicha componente:
+  `ref` es utilizado para registrar una referencia a un elemento o a un componente hijo. La referencia será registrada bajo el objeto `$refs` del componente padre. Si se utiliza en un elemento "plano" del DOM, la referncia será a dicho elemento; si se utiliza en un componente hijo, la referencia será a la instancia de dicha componente:
 
   ``` html
   <!-- vm.$refs.p será el nodo del DOM -->
@@ -2278,7 +2278,7 @@ type: api
   <child-component ref="child"></child-component>
   ```
 
-  Cuando se utiliza con elementos/components con `v-for`, la referencia registrada será un arreglo que contendrá nodos del DOM o instancias de componentes.
+  Cuando se utiliza con elementos/componentes con `v-for`, la referencia registrada será un arreglo que contendrá nodos del DOM o instancias de componentes.
 
   Una nota importante sobre el tiempo de registro de referencias: dado que las mismas son creadas como resultado de la función de renderizado, usted no puede acceder a las mismas en la renderización inicial - estas no existen todavía! También, `refs` no es reactivo, por lo tanto, no intente utilizarlo en plantillas para enlace de datos (_data-binding_).
 
@@ -2302,9 +2302,9 @@ type: api
 
 - **Uso:**
 
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+  Utilizado para denotar que un elemento o componente es un _scopet slot_. El valor del atributo debe ser una expresión JavaScript válida que pueda aparecer en la posición del argumento de la firma de una función. Esto quiere decir que, en ambientes soportados, usted puede utilizar desestructuración ES2015 en la expresión. Sirve como un reemplazo para [`scope`](#scope-replaced) en 2.5.0+.
 
-  This attribute does not support dynamic binding.
+  Este atributo no soporte enlace dinámico.
 
 - **Vea también:** [Slots con Scope](../guide/components.html#Scoped-Slots)
 
