@@ -4,7 +4,7 @@ type: cookbook
 order: 4
 ---
 
-## Base Example
+## Contoh Dasar
 
 Ada banyak cara untuk membuat Sistem Ikon SVG, tetapi satu metode yang memanfaatkan kemampuan Vue adalah membuat ikon inline yang dapat diedit sebagai komponen. Beberapa keuntungan dari cara kerja ini adalah:
 
@@ -103,7 +103,7 @@ Sekarang, jika kita ingin membuat banyak ukuran untuk ikon, kita dapat melakukan
 
 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/Screen%20Shot%202018-01-01%20at%204.51.40%20PM.png" width="450" />
 
-## Animatable Icons(Icons Animasi)
+## Ikon Beranimasi
 
 Menyimpan ikon dalam komponen sangat berguna ketika Anda ingin menghidupkannya, terutama pada saat interaksi. SVG sebaris memiliki dukungan tertinggi untuk interaksi metode apa pun. Berikut adalah contoh yang sangat mendasar dari ikon yang dianimasikan saat klik:
 
