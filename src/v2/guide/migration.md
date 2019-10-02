@@ -240,9 +240,9 @@ Previamente, `v-for="number in 10"` tenía `number` empezando en 0 y terminando 
 
 ## Props
 
-### `coerce` Prop Option <sup>removed</sup>
+### Opción `coerce` de Props <sup>removido</sup>
 
-If you want to coerce a prop, setup a local computed value based on it instead. For example, instead of:
+Si usted quiere forzar una propiedad a retonar un valor diferente, configure un valor local computado basado en esta. Por ejemplo, en lugar de:
 
 ``` js
 props: {
@@ -257,7 +257,7 @@ props: {
 }
 ```
 
-You could write:
+Usted podría escribir:
 
 ``` js
 props: {
@@ -272,72 +272,72 @@ computed: {
 }
 ```
 
-There are a few advantages:
+Hay algunas ventajas:
 
-- You still have access to the original value of the prop.
-- You are forced to be more explicit, by giving your coerced value a name that differentiates it from the value passed in the prop.
+- Usted todavía tiene acceso al valor original de la propiedad.
+- Usted se ve forzado a ser más explícito, dándole a su valor un nombre que lo diferencie del valor pasado en la propiedad.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>coerce</code> option.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar casos de la opción <code>coerce</code>.</p>
 </div>
 {% endraw %}
 
-### `twoWay` Prop Option <sup>removed</sup>
+### Opción `twoWay` de Props <sup>removido</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Las propiedades ahora son siempre en un sentido. Para producir efectos colaterales en el _scope_ del padre, un componente debe emitir un evento explícitamente en vez de depender de una vinculación implícita. Por más información, vea:
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- [Eventos Personalizados](components.html#Custom-Events)
+- [Componentes `input` personalizados](components.html#Form-Input-Components-using-Custom-Events) (utilizando eventos de componentes)
+- [Administración del Estado](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>twoWay</code> option.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar casos de la opción <code>twoWay</code>.</p>
 </div>
 {% endraw %}
 
-### `.once` and `.sync` Modifiers on `v-bind` <sup>removed</sup>
+### Modifcadores `.once` y `.sync` en `v-bind` <sup>removido</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Las propiedades ahora son siempre en un sentido. Para producir efectos colaterales en el _scope_ del padre, un componente debe emitir un evento explícitamente en vez de depender de una vinculación implícita. Por más información, vea:
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state management](state-management.html)
+- [Eventos Personalizados](components.html#Custom-Events)
+- [Componentes `input` personalizados](components.html#Form-Input-Components-using-Custom-Events) (utilizando eventos de componentes)
+- [Administración del Estado](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>.once</code> and <code>.sync</code> modifiers.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar casos de los modificadores <code>.once</code> y <code>.sync</code>.</p>
 </div>
 {% endraw %}
 
-### Prop Mutation <sup>deprecated</sup>
+### Mutación de Propiedades <sup>deprecado</sup>
 
-Mutating a prop locally is now considered an anti-pattern, e.g. declaring a prop and then setting `this.myProp = 'someOtherValue'` in the component. Due to the new rendering mechanism, whenever the parent component re-renders, the child component's local changes will be overwritten.
+Ahora, mutar una propiedad local es considerado un anti-patrón. por ejemplo, declarar una propiedad y luego mutar la misma mediante `this.myProp = someOtherValue` en el componente. Dado el nuevo mecanismo de renderizado, siempre que el componente padre se re-renderize, los cambios locales de los componentes hijo se sobreescribirán.
 
-Most use cases of mutating a prop can be replaced by one of these options:
+La mayoría de los casos de uso que requieren mutar una propiedad pueden ser reemplazados por una de las siguientes opciones:
 
-- a data property, with the prop used to set its default value
-- a computed property
+- una propiedad `data`, con la propiedad utilizada para indicar su valor por defecto
+- una propiedad computada
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about prop mutations.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute sus <i>tests</i> de punta a punta y luego de la actualización busque por <strong>advertencias en consola</strong> sobre mutación de propiedades.</p>
 </div>
 {% endraw %}
 
-### Props on a Root Instance <sup>replaced</sup>
+### Props on a Root Instance <sup>reemplazado</sup>
 
-On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead of `props`.
+En las instancias raíz de Vue (creadas con `new Vue({ ... })`), usted debe utilizar `propsData` en vez de `props`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute sus <i>tests</i> de punta a punta, si tiene. Los <strong><i>tests</i> fallidos</strong> deberían alertarle que las propiedades pasadas a la instancia raíz ya no funcionan.</p>
 </div>
 {% endraw %}
 
