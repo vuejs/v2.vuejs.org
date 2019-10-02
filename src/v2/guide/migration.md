@@ -242,7 +242,7 @@ Previamente, `v-for="number in 10"` tenía `number` empezando en 0 y terminando 
 
 ### Opción `coerce` de Props <sup>removido</sup>
 
-Si usted quiere obligar (_coerce_) una propiedad, configure un valor local computado basada en ella. Por ejemplo, en lugar de:
+Si usted quiere forzar una propiedad a retonar un valor diferente, configure un valor local computado basado en esta. Por ejemplo, en lugar de:
 
 ``` js
 props: {
@@ -275,7 +275,7 @@ computed: {
 Hay algunas ventajas:
 
 - Usted todavía tiene acceso al valor original de la propiedad.
-- Usted se ve forzado a ser más explícito, al darle su valor obligado (_coerced_) un nombre que lo diferencia del valor pasado en la propiedad.
+- Usted se ve forzado a ser más explícito, dándole a su valor un nombre que lo diferencie del valor pasado en la propiedad.
 
 {% raw %}
 <div class="upgrade-path">
