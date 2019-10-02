@@ -113,6 +113,9 @@ gold_sponsors:
   - url: 'https://staffaugmentation.ro/en'
     img: staff_augmentation.png
     name: Staff Augmentation
+  - url: 'https://piratebay.ink'
+    img: piratebay_proxy.png
+    name: Piratebay Proxy
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
