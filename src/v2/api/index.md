@@ -2231,17 +2231,17 @@ type: api
   - [Sintaxis de Plantilla - interpolaciones](../guide/syntax.html#Texto)
   - [Componentes - Componente estáticos "baratos" con `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Atributos Especiales
 
 ### key
 
-- **Expects:** `number | string`
+- **Espera:** `number | string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  El atributo especial `key` es utilizado principalmente como una pista para el algoritmo del DOM virtual de Vue para identificar _VNodes_ cuando se compara nuevas listas de nodos contra listas antiguas. Sin claves, Vue utiliza un algoritmo que minimiza el movimiento de elementos e intenta parchear/reusar elementos del mismo tipo lo más posible. Con claves, este reordenará elementos basado en el orden de cambio de las claves, y los elementos con claves que ya no estén presentes, siempre serán removidos/destruidos.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Hijos de un mismo padre en común simpre deben tener **claves únicas**. Claves duplicadas causarán errores de renderizado.
 
-  The most common use case is combined with `v-for`:
+  El caso de uso más común es combinado con `v-for`:
 
   ``` html
   <ul>
@@ -2249,12 +2249,12 @@ type: api
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  También puede ser utilizado para forzar el reemplazo de un elemento/componente en vez de reusar el mismo. Esto puede ser útil cuando usted desee:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Lanzar apropiadamente funciones de ciclo de vida de un componente
+  - Lanzar transiciones
 
-  For example:
+  Por ejemplo:
 
   ``` html
   <transition>
@@ -2262,84 +2262,84 @@ type: api
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Cuando `text` cambie, el `<span>` siempre será reemplazado en vez de parchaedo, por lo cual, una transición será lanzada.
 
 ### ref
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` es utilizado para registrar una referencia a un elemento o a un componente hijo. La referencia será registrada bajo el objeto `$refs` del componente padre. Si se utiliza en un elemento "plano" del DOM, la referncia será a dicho elemento; si se utiliza en un componente hijo, la referencia será a la instancia de dicha componente:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
-  <p ref="p">hello</p>
+  <!-- vm.$refs.p será el nodo del DOM -->
+  <p ref="p">hola</p>
 
-  <!-- vm.$refs.child will be the child component instance -->
+  <!-- vm.$refs.child será la intancia del componente hijo -->
   <child-component ref="child"></child-component>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Cuando se utiliza con elementos/componentes con `v-for`, la referencia registrada será un arreglo que contendrá nodos del DOM o instancias de componentes.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Una nota importante sobre el tiempo de registro de referencias: dado que las mismas son creadas como resultado de la función de renderizado, usted no puede acceder a las mismas en la renderización inicial - estas no existen todavía! También, `refs` no es reactivo, por lo tanto, no intente utilizarlo en plantillas para enlace de datos (_data-binding_).
 
-- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Vea también:** [Referencias a Componentes Hijos](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Utilizado en el contenido insertado dentro de componentes hijo para indicar a que _slot_ con nombre pertenece el contenido.
 
-  For detailed usage, see the guide section linked below.
+  Para su uso detallado, vea la guía referenciada abajo.
 
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
+- **Vea también:** [Slots con Nombre](../guide/components.html#Named-Slots)
 
 ### slot-scope
 
-> New in 2.5.0+
+> Nuevo en 2.5.0+
 
-- **Expects:** `function argument expression`
-
-- **Uso:**
-
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
-
-  This attribute does not support dynamic binding.
-
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
-
-### scope <sup>replaced</sup>
-
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+- **Espera:** `function argument expression`
 
 - **Uso:**
 
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+  Utilizado para denotar que un elemento o componente es un _scopet slot_. El valor del atributo debe ser una expresión JavaScript válida que pueda aparecer en la posición del argumento de la firma de una función. Esto quiere decir que, en ambientes soportados, usted puede utilizar desestructuración ES2015 en la expresión. Sirve como un reemplazo para [`scope`](#scope-replaced) en 2.5.0+.
+
+  Este atributo no soporte enlace dinámico.
+
+- **Vea también:** [Slots con Scope](../guide/components.html#Scoped-Slots)
+
+### scope <sup>reemplazado</sup>
+
+Utilizado para denotar un elemento `<template>` como un slot con _scope_, el cual es reemplazado por [`slot-scope`](#slot-scope) en 2.5.0+.
+
+- **Uso:**
+
+  Mismo uso que [`slot-scope`](#slot-scope) excepto que `scope` solo puede ser usado en elementos `<template>`.
 
 ### is
 
-- **Expects:** `string | Object (component’s options object)`
+- **Espera:** `string | Object (component’s options object)`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Utilizado para [componente dinámicos](../guide/components.html#Dynamic-Components) y como un atajo para [limitaciones en templates en el DOM](../guide/components.html#DOM-Template-Parsing-Caveats).
 
-  For example:
+  Por ejemplo:
 
   ``` html
-  <!-- component changes when currentView changes -->
+  <!-- el componente cambia cuando currentView cambia -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because `<my-row>` would be invalid inside -->
-  <!-- a `<table>` element and so would be hoisted out      -->
+  <!-- necesario porque `<my-row>` sería invalido dentro -->
+  <!-- del elemento `<table>` y sería izado para fuera (hoisted out) -->
   <table>
     <tr is="my-row"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  Para su uso detallado, vea la guía referenciada abajo.
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **Vea también:**
+  - [Components Dinámicos](../guide/components.html#Dynamic-Components)
+  - [Casos especiales de análisis de templates DOM](../guide/components.html#DOM-Template-Parsing-Caveats)
 
 ## Componentes Integrados
 
