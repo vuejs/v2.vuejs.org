@@ -1195,23 +1195,23 @@ Cuando se usa junto con `<transition>`, asegúrese de anidarlo dentro:
 </div>
 {% endraw %}
 
-## Interpolation
+## Interpolaciones
 
-### Interpolation within Attributes <sup>removed</sup>
+### Interpolaciones dentro de Atributos <sup>removido</sup>
 
-Interpolation within attributes is no longer valid. For example:
+La interpolación dentro de atributos ya no es válida. Por ejemplo:
 
 ``` html
 <button class="btn btn-{{ size }}"></button>
 ```
 
-Should either be updated to use an inline expression:
+Debería actualizarse para utilizar una expresión _inline_:
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
 ```
 
-Or a data/computed property:
+O una propiedad _data_ o computada:
 
 ``` html
 <button v-bind:class="buttonClasses"></button>
@@ -1227,30 +1227,32 @@ computed: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of interpolation used within attributes.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de interpolaciones dentro de atributos.</p>
 </div>
 {% endraw %}
 
-### HTML Interpolation <sup>removed</sup>
 
-HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in favor of the [`v-html` directive](../api/#v-html).
+### Interpolación HTML <sup>removido</sup>
+
+Las interpolaciones HTML (`{% raw %}{{{ foo }}}{% endraw %}`) han sido removidas en favor de la [directiva `v-html`](../api/#v-html).
+
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find HTML interpolations.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar interpolaciones HTML.</p>
 </div>
 {% endraw %}
 
-### One-Time Bindings <sup>replaced</sup>
+### Enlaces _One-Time_ <sup>reemplazado</sup>
 
-One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been replaced by the new [`v-once` directive](../api/#v-once).
+Los enlaces _one-time_ (`{% raw %}{{* foo }}{% endraw %}`) han sido reemplazados por la nueva [directiva `v-once`](../api/#v-once).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find one-time bindings.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar enlaces <i>one-time</i>.</p>
 </div>
 {% endraw %}
 
