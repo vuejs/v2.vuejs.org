@@ -19,6 +19,7 @@
 
 ## A
 
+- Analyze: Analisis
 - Argument: Argumen
 - Attribute: Atribut
 
@@ -61,6 +62,7 @@
 - Element: Elemen
 - Error: Galat
 - Event: *Event*
+- Extracted: Diekstraksi
 - Export: Ekspor
 - Expression: Ekspresi
 
@@ -90,9 +92,11 @@
 
 - I.e. (id est / in other words): Dengan kata lain
 - Import: Impor
+- Inception: Permulaan
 - Index: Indeks
 - Inheritance: Pewarisan
 - Instance: *Instance*
+- Instantiate: *Instantiate*
 - Interpolation: Interpolasi
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -142,6 +146,7 @@
 - Parent: Induk
 - Passing: Mengoper
 - Path: Jalur
+- Piece-by-piece: Sepotong-sepotong
 - Project: Proyek
 - Property: Properti
 - Props: Props
@@ -165,6 +170,9 @@
 
 ## S
 
+- Section: Bagian/Seksi
+- Set: Menetapkan
+- Shorthand: Tulisan cepat (tambahkan imbuhan sesuai dengan konteks jika diperlukan)
 - String: Untai
 - Style: Gaya
 - Style Guide: Panduan Gaya
