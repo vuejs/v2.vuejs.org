@@ -1261,15 +1261,15 @@ Los enlaces _one-time_ (`{% raw %}{{* foo }}{% endraw %}`) han sido reemplazados
 
 ### `vm.$watch` <sup>cambiado</sup>
 
-Los _watchers_ creados a través de `vm.$watch` ahora se disparan antes de que el componente asociado se vuelva a renderizar. Esto le brinda la oportunidad de actualizar el estado antes de que el componente vuelva a renderizarse, evitando así actualizaciones innecesarias. Por ejemplo, puede escuchar por una propiedad y actualizar sus propios datos cuando la propiedad cambia.
+Los _watchers_ creados a través de `vm.$watch` ahora se disparan antes de que el componente asociado se vuelva a renderizar. Esto le brinda la oportunidad de actualizar el estado antes de que el componente vuelva a renderizarse, evitando así actualizaciones innecesarias. Por ejemplo, puede observar una propiedad y actualizar sus propios datos cuando la propiedad cambia.
 
-Si anteriormente usted dependía de `vm.$watch` para hacer algo con el DOM después de las actualizaciones de un componente, usted puede hacerlo en el enlace del ciclo de vida `updated`.
+Si anteriormente usted dependía de `vm.$watch` para hacer algo con el DOM después de las actualizaciones de un componente, usted puede hacerlo en el _hook_ de ciclo de vida `updated`.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute su conjunto de pruebas de extremo a extremo, si tiene uno. Las <strong>pruebas que fallen</strong> les deberían de alertar sobre el hecho que un _watcher_ dependía de un comportamiento anterior.
+    Ejecute su conjunto de pruebas de extremo a extremo, si tiene uno. Las <strong>pruebas que fallen</strong> les deberían de alertar sobre el hecho que un <i>watcher</i> dependía de un comportamiento anterior.
   </p>
 </div>
 {% endraw %}
@@ -1308,7 +1308,7 @@ Use `Vue.set` en su lugar.
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>.$set</code> en un arreglo. Si usted pierde alguno, debería ver <strong>errores de consola</strong> en el método que falta.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>.$set</code> en un arreglo. Si usted se olvida de alguno, debería ver <strong>errores de consola</strong> en el método que falta.
   </p>
 </div>
 {% endraw %}
@@ -1340,20 +1340,20 @@ methods: {
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>.$remove</code> en un arreglo. Si usted pierde alguno, debería ver <strong>errores de consola</strong> en el método que falta.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>.$remove</code> en un arreglo. Si usted se olvida de alguno, debería ver <strong>errores de consola</strong> en el método que falta.
   </p>
 </div>
 {% endraw %}
 
 ### `Vue.set` y `Vue.delete` en las instancias de Vue <sup>removido</sup>
 
-`Vue.set` y `Vue.delete` ya no se puede utilizar en instancias de Vue. Ahora es obligatorio declarar correctamente todas las propiedades reactivas de nivel superior en la opción de datos. Si desea eliminar propiedades en una instancia de Vue o sus `$data`, configúrelo como nulo (_null_).
+`Vue.set` y `Vue.delete` ya no se pueden utilizar en instancias de Vue. Ahora es obligatorio declarar correctamente todas las propiedades reactivas de nivel superior en la opción de datos. Si desea eliminar propiedades en una instancia de Vue o su `$data`, configúrelo como nulo (_null_).
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.set</code> o <code>Vue.delete</code> en su instancia de Vue. Si usted pierde alguno, ellos dispararán <strong>advertencias en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>Vue.set</code> o <code>Vue.delete</code> en su instancia de Vue. Si usted se olvida de alguno, ellos dispararán <strong>advertencias en la consola</strong>.
   </p>
 </div>
 {% endraw %}
@@ -1366,7 +1366,7 @@ Ahora está prohibido reemplazar los datos (_$data_) raíz de una instancia de c
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de reemplazo de <code>vm.$data</code>.Si usted pierde alguno, ellos dispararán <strong>advertencias en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de reemplazo de <code>vm.$data</code>.Si usted se olvida de alguno, ellos dispararán <strong>advertencias en la consola</strong>.
   </p>
 </div>
 {% endraw %}
@@ -1379,7 +1379,7 @@ En cambio, recupere datos reactivos directamente.
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
   <p>
-    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a>  en su código para encontrar ejemplos de reemplazo de <code>vm.$data</code>.Si usted pierde alguno, ellos dispararán <strong>advertencias en la consola</strong>.
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a>  en su código para encontrar ejemplos de reemplazo de <code>vm.$data</code>.Si usted se olvida de alguno, ellos dispararán <strong>advertencias en la consola</strong>.
   </p>
 </div>
 {% endraw %}
