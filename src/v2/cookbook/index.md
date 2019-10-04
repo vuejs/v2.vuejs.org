@@ -4,86 +4,86 @@ type: cookbook
 order: 0
 ---
 
-## The Cookbook vs the Guide
+## Buku Petunjuk vs Petunjuk
 
-How is the cookbook different from the guide? Why is this necessary?
+Bagaimana buku petunjuk berbeda dengan petunjuk? Mengapa hal ini penting?
 
-* **Greater Focus**: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+* **Fokus Yang Lebih Baik**: Di dalam petunjuk, kami pada dasarnya bercerita. Setiap bagian dibangun dan diasumsikan dari tiap bagian sebelumnya. Di dalam buku petunjuk, setiap instruksi bisa dan harus berdiri sendiri. Ini berarti instruksi dapat fokus pada satu aspek spesifik Vue, daripada harus memberikan gambaran umum. 
 
-* **Greater Depth**: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+* **Lebih Mendalam**: Untuk menghindari membuat panduan lebih panjang, kami mencoba untuk hanya menyertakan contoh paling sederhana untuk membantu anda memahami setiap fitur. Lalu kami melanjutkan. Di dalam buku petunjuk, kami bisa menyertakan lebih banyak contoh kompleks, menggabungkan fitur dengan cara yang menarik. Setiap instuksi juga bisa menjadi panjang dan rinci sesuai yang dibutuhkan, demi mendalami topik secara menyeluruh.
 
-* **Teaching JavaScript**: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+* **Mengajarkan JavaScript**: Di dalam petunjuk, kami berasumsi bahwa setidaknya sudah terbiasa dengan ES5 JavaScript. Sebagai contoh, kami tidak akan menjelaskan bagaimana `Array.prototype.filter` bekerja pada properti _computed_ yang menyaring sebuah daftar.
 
-* **Exploring the Ecosystem**: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+* **Menjelajahi Ekosistem**: Untuk fitur tingkat lanjut, kami mengasumsikan beberapa pengetahuan ekosistem. Sebagai contoh, jika anda ingin menggunakan komponen berkas tunggal (single-file components) di Webpack, kami tidak menjelaskan bagaimana cara untuk mengkonfigurasi selain bagian dari Vue pada konfigurasi Webpack. Di dalam buku petunjuk, kami memiliki ruang untuk menjelajahi pustaka ekosistem lebih dalam - setidaknya selama berguna secara universal bagi pengembang Vue.
 
-## Cookbook Contributions
+## Kontribusi Buku Petunjuk
 
-### What we're looking for
+### Apa yang kami cari
 
-The Cookbook gives developers examples to work off of that both cover common or interesting use cases, and also progressively explain more complex detail. Our goal is to move beyond a simple introductory example, and demonstrate concepts that are more widely applicable, as well as some caveats to the approach.
+Buku petunjuk memberikan contoh kepada pengembang untuk mengatasi kasus penggunaan umum atau menarik, dan juga menjelaskan detail yang lebih kompleks. Tujuan kami adalah untuk melampaui contoh pengantar sederhana, dan menunjukkan konsep yang lebih luas yang bisa diterapkan, dan beberapa peringatan untuk pendekatan.
 
-If you're interested in contributing, please initiate collaboration by filing an issue under the tag **cookbook idea** with your concept so that we can help guide you to a successful pull request. After your idea has been approved, please follow the template below as much as possible. Some sections are required, and some are optional. Following the numerical order is strongly suggested, but not required.
+Jika anda tertarik untuk berkontribusi, silakan mulai kolaborasi dengan cara mengisi sebuah isu dibawah tanda **ide buku petunjuk** dengan konsep anda sehingga kami bisa memandu anda untuk melakukan _pull request_ dengan sukses. Setelah ide anda disetujui, silakan ikuti templat dibawah ini sebanyak mungkin. Beberapa bagian diperlukan, dan lainnya adalah opsional. Mengikuti urutan penomoran sangat disarankan, tetapi tidak diwajibkan. 
 
-Recipes should generally:
+Instruksi umumnya harus:
 
-> * Solve a specific, common problem
-> * Start with the simplest possible example
-> * Introduce complexities one at a time
-> * Link to other docs, rather than re-explaining concepts
-> * Describe the problem, rather than assuming familiarity
-> * Explain the process, rather than just the end result
-> * Explain the pros and cons of your strategy, including when it is and isn't appropriate
-> * Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+> * Menyelesaikan masalah umum, secara spesifik
+> * Mulai dengan contoh yang paling sederhana
+> * Mengenalkan kompleksitas satu per satu
+> * Menautkan ke dokumentasi lain, daripada menjelaskan kembali konsep 
+> * Mendeskripsikan masalah, daripada mengasumsikan keakraban
+> * Menjelaskan prosesnya, daripada hanya memberikan hasil akhir
+> * Menjelaskan kelebihan dan kekurangan dari strategi anda, termasuk ketika tepat atau tidak tepat
+> * Menyebutkan solusi alternatif, jika relevan, tetapi berikan penjelajahan mendalam untuk instruksi terpisah
 
-We request that you follow the template below. We understand, however, that there are times when you may necessarily need to deviate for clarity or flow. Either way, all recipes should at some point discuss the nuance of the choice made using this pattern, preferably in the form of the alternative patterns section.
+Kami memohon anda untuk mengikuti templat dibawah ini. Kami mengerti, namun, bahwa ada saat ketika anda perlu menyimpang demi kejelasan maupun aliran. Bagaimanapun juga, semua instruksi pada suatu titik tertentu harus mendiskusikan nuansa pilihan yang dibuat menggunakan pola ini, lebih disukai dalam bentuk bagian pola alternatif.
 
-### Base Example
+### Basis Contoh
 
-_required_
+_diwajibkan_
 
-1.  Articulate the problem in a sentence or two.
-2.  Explain the simplest possible solution in a sentence or two.
-3.  Show a small code sample.
-4.  Explain what this accomplishes in a sentence.
+1.  Mengartikulasikan masalah dalam satu atau dua kalimat.
+2.  Menjelaskan cara paling sederhana dalam satu atau dua kalimat.
+3.  Menampilkan contoh kecil kode.
+4.  Jelaskan apa yang dicapai dalam satu kalimat. 
 
-### Details about the Value
+### Detail tentang Nilai
 
-_required_
+_diwajibkan_
 
-1.  Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2.  Show examples of common missteps and how they can be avoided.
-3.  Show very simple code samples of good and bad patterns.
-4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
+1.  Jawab pertanyaan umum yang mungkin dimiliki seseorang saat melihat contoh. (Blockquote bagus untuk hal ini)
+2.  Tunjukkan contoh kesalahan langkah umum dan bagaimana mereka dapat dihindari.
+3.  Perlihatkan contoh kode yang sangat sederhana dari pola yang baik dan buruk.
+4.  Diskusikan mengapa ini bisa menjadi pola yang meyakinkan. Tautan untuk referensi tidak diwajibkan tetapi dianjurkan.
 
-### Real-World Example
+### Contoh Nyata
 
-_required_
+_diwajibkan_
 
-Demonstrate the code that would power a common or interesting use case, either by:
+Tunjukkan kode yang akan mendukung kasus penggunaan umum atau menarik, baik dengan:
 
-1.  Walking through a few terse examples of setup, or
-2.  Embedding a codepen/jsfiddle example
+1.  Melalui beberapa contoh pengaturan yang singkat, atau
+2.  Memberikan contoh codepen/jsfiddle
 
-If you choose to do the latter, you should still talk through what it is and does.
+Jika anda memilih untuk melakukan yang terakhir, anda masih harus membicarakan apa itu dan apa yang harus dilakukan.
 
-### Additional Context
+### Konteks Tambahan
 
-_optional_
+_opsional_
 
-It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
+Sangat membantu untuk menuliskan sedikit tentang pola ini, di mana ini akan berlaku, mengapa ini bekerja dengan baik, dan menjalankan sedikit kode saat anda melakukannya atau memberikan orang bahan bacaan lebih lanjut di sini.
 
-### When To Avoid This Pattern
+### Kapan harus menghindari pola ini
 
-_optional_
+_opsional_
 
-This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
+Bagian ini tidak diwajibkan, tetapi sangat direkomendasikan. Tidak masuk akal untuk menuliskan sesuatu yang sangat sederhana seperti mengubah kelas berdasarkan perubahan _state_, tetapi untuk pola tingkat lanjut seperti mixins, ini sangat penting. Jawaban untuk sebagian besar pertanyaan tentang pengembangan adalah ["Tergantung!"](https://codepen.io/rachsmith/pen/YweZbG), bagian ini mencakup itu. Disini, kami akan menilai secara jujur apakah pola ini berguna dan kapan harus dihindari, atau ketika hal lain lebih masuk akal.
 
-### Alternative Patterns
+### Pola Alternatif
 
-_required_
+_wajib_
 
-This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
+Bagian ini diwajibkan ketika anda telah memberikan bagian diatas tentang penghindaran. Penting untuk mengeksplorasi metode lain sehingga orang-orang mengatakan bahwa sesuatu adalah anti-pola dalam situasi tertentu tidak dibiarkan bertanya-tanya. Dengan demikian, pertimbangkan bahwa web adalah tenda besar dan banyak orang memiliki struktur basis kode yang berbeda dan menyelesaikan tujuan yang berbeda. Apakah aplikasinya besar atau kecil? Apakah mereka mengintegrasikan Vue ke proyek yang ada, atau mereka membangun dari awal? Apakah pengguna mereka hanya berusaha mencapai satu tujuan atau banyak? Apakah ada banyak data yang tidak sinkron? Semua masalah ini akan berdampak pada implementasi alternatif. Buku petunjuk yang bagus memberi konteks ini pada pengembang.
 
-## Thank you
+## Terima kasih
 
-It takes time to contribute to documentation, and if you spend the time to submit a PR to this section of our docs, you do so with our gratitude.
+Memakan waktu untuk berkontribusi pada dokumentasi, dan jika anda meluangkan waktu untuk mengirimkan PR ke bagian dokumen ini, anda melakukannya dengan rasa terima kasih kami.
