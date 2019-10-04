@@ -1,45 +1,44 @@
-# Code Of Conduct
+# Kode Etik
 
-## Our Pledge
+## Janji Kami
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+Demi menumbuhkan sebuah lingkungan yang terbuka dan ramah, Kami selaku kontributor dan pengelola berjanji menjadikan partisipasi dalam proyek dan komunitas kami bebas dari pelecehan bagi semua orang, tanpa memandang usia, ukuran tubuh, disabilitas, etnis, karakteristik seks, identitas dan ekspresi gender, tingkat pengalaman, pendidikan, status ekonomi-sosial, kebangsaan, penampilan pribadi, ras, agama, partai politik, atau identitas dan orientasi seksual. Catatan, akan tetapi bahwa agama, partai politik, atau afiliasi ideologi lainya tidak memberikan pengecualian untuk perilaku yang kami sebutkan sebagai tidak dapat diterima dalam kode etik ini.    
 
-## Our Standards
+## Patokan Kami
 
-Examples of behavior that contributes to creating a positive environment include:
+Beberapa contoh perilaku yang berkontribusi dalam menciptakan lingkungan yang positif meliputi:
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- Menggunakan bahasa yang ramah dan inklusif
+- Menghormati berbagai perbedaan sudut pandang dan pengalaman 
+- Menerima kritik yang membangun dengan baik
+- Memusatkan hal terbaik untuk komunitas
+- Menunjukan empati terhadap anggota komunitas lainnya
 
-Examples of unacceptable behavior by participants include:
+Beberapa contoh perilaku yang tidak dapat diterima oleh para anggota meliputi:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or electronic address, without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- Penggunaan bahasa atau citra seksual dan tindakan seksual atau lebih yang tidak diinginkan
+- Trolling, komentar melecehkan / menghina, dan serangan pribadi atau politik
+- Pelecehan secara umum atau pribadi
+- Menyebarkan informasi pribadi orang lain, seperti alamat fisik atau elektronik, tanpa izin langsung
+- Perilaku lain yang secara wajar dapat dianggap tidak pantas dalam lingkungan profesional
 
-## Our Responsibilities
+## Tangung Jawab Kami
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+Pengelola proyek bertanggung jawab untuk menjelaskan dasar tindakan yang dapat diterima dan diharapkan untuk mengambil tindakan korektif yang tepat dan adil dalam menanggapi setiap tindakan yang tidak dapat diterima.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+Pengelola proyek memiliki hak dan kewajiban untuk menghapus, menyunting, atau menolak komentar, komit, kode, suntingan wiki, masalah dan kontribusi lain yang tidak selaras dengan kode etik, atau untuk melarang secara sementara atau permanen kontribusi apapun untuk tindakan-tindakan lain yang dianggap tidak pantas, mengancam, menyinggung atau berbahaya.       
 
-## Scope
+## Cakupan
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+Kode etik ini berlaku baik di dalam lingkup proyek atau lingkup publik ketika seorang mewaliki proyek atau komunitasnya. Contoh mewakili sebuah proyek atau komunitas termasuk dalam menggunakan alamat email proyek resmi, menerbitkan melalui akun sosial media resmi, atau bertindak sebagai perwakilan yang ditunjuk di acara baik online ataupun offline. Perwakilan proyek dapat didefinisikan lebih lanjut dan diklarifikasi oleh pengelola proyek.
 
-## Enforcement
+## Pelaksanaan
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+Perilaku kasar, melecehkan, atau tindakan lain yang tidak dapat diterima dapat dilaporkan dengan menghubungi tim proyek di community@vue.js.org. Semua keluhan akan ditinjau dan diselidiki dan akan menghasilkan tanggapan yang dianggap perlu dan sesuai dengan keadaan. Tim proyek berkewajiban untuk menjaga rahasia berkenaan dengan pelapor insiden. Rincian lebih lanjut terkait kebijakan pelaksanaan dapat diterbitkan secara terpisah 
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+Pengelola proyek yang tidak mengikuti atau menegakkan kode etik dengan itikad baik dapat menghadapi dampak sementara atau permanen sebagaimana telah ditentukan oleh anggota lain dari kepemimpinan proyek.
 
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+## Atribusi 
+Kode etik ini diadaptasi dari the [Contributor Covenant][homepage], versi 1.4, tersedia di https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
