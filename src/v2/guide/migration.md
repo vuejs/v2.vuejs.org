@@ -421,7 +421,7 @@ Cuando se usa en un componente, `v-on` ahora solo escucha eventos personalizados
 
 ### `debounce` Atributo de parámetro para `v-model` <sup>eliminado</sup>
 
-_Debouncing_ se usa para limitar la frecuencia con la que ejecutamos _requests_ Ajax y otras operaciones costosas. El parámetro de atributo `debounce` de Vue para `v-model` lo hizo fácil para casos muy simples, pero en realidad no dio lugar a __actualizaciones de estado__ en lugar de las costosas operaciones en sí mismas. Es una diferencia sutil, pero viene con limitaciones a medida que aumenta la complejidad de la aplicación.
+_Debouncing_ se usa para limitar la frecuencia con la que ejecutamos solicitudes Ajax y otras operaciones costosas. El parámetro de atributo `debounce` de Vue para `v-model` lo hizo fácil para casos muy simples, pero en realidad no dio lugar a __actualizaciones de estado__ en lugar de las costosas operaciones en sí mismas. Es una diferencia sutil, pero viene con limitaciones a medida que aumenta la complejidad de la aplicación.
 
 Estas limitaciones se hacen evidentes al diseñar un indicador de búsqueda, como este, por ejemplo:
 
@@ -469,7 +469,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Usando el atributo `debounce`, no habría forma de detectar el estado "Escribiendo", porque perdemos el acceso al estado en tiempo real de la entrada. Sin embargo, al desacoplar la función _debunce_ de Vue, solo podemos eliminar la operación que queremos limitar, eliminando los límites de las funciones que podemos desarrollar:
+Usando el atributo `debounce`, no habría forma de detectar el estado "Escribiendo", porque perdemos el acceso al estado en tiempo real de la entrada. Sin embargo, al desacoplar la función _debounce_ de Vue, solo podemos eliminar la operación que queremos limitar, eliminando los límites de las funciones que podemos desarrollar:
 
 ```html
 <!--
