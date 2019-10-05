@@ -59,7 +59,9 @@ Se recomienda envolver todo el contenido en un nuevo elemento, como este:
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute sus pruebas de extremo a extremo o su después de la actualización y busque <strong>advertencias en la consola</strong> sobre varios elementos raíz en una plantilla.</p>
+  <p>
+    Ejecute sus pruebas de extremo a extremo o su aplicación después de la actualización y busque <strong>advertencias en la consola</strong> sobre varios elementos raíz en una plantilla.
+  </p>
 </div>
 {% endraw %}
 
