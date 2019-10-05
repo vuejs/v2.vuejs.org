@@ -224,49 +224,50 @@ order: 803
 <script>
 (function () {
   var cityCoordsFor = {
-    'Annecy, France': [45.899247, 6.129384],
-    'Alicante, Spain' : [38.346543, -0.483838],
-    'Amsterdam, Netherlands': [4.895168, 52.370216],
+    'Annecy, Francia': [45.899247, 6.129384],
+    'Alicante, España' : [38.346543, -0.483838],
+    'Amsterdam, Holanda': [4.895168, 52.370216],
     'Atlanta, GA, USA': [33.749051, -84.387858],
     'Bangalore, India': [12.971599, 77.594563],
     'Beijing, China': [39.904200, 116.407396],
-    'Bordeaux, France': [44.837789, -0.579180],
+    'Bordeaux, Francia': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
     'Denver, CO, USA': [39.739236, -104.990251],
-    'Dublin, Ireland': [53.349918, -6.260174],
-    'Dubna, Russia': [56.732020, 37.166897],
+    'Dublin, Irlanda': [53.349918, -6.260174],
+    'Dubna, Rusia': [56.732020, 37.166897],
     'East Lansing, MI, USA': [42.736979, -84.483865],
     'Fort Worth, TX, USA': [32.755331, -97.325735],
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
-    'Krasnodar, Russia': [45.039267, 38.987221],
+    'Krasnodar, Rusia': [45.039267, 38.987221],
     'Lansing, MI, USA': [42.732535, -84.555535],
     'London, UK': [51.507351, -0.127758],
-    'Lyon, France': [45.764043, 4.835659],
-    'Mannheim, Germany': [49.487459, 8.466039],
-    'Moscow, Russia': [55.755826, 37.617300],
-    'Munich, Germany': [48.137154, 11.576124],
+    'Lyon, Francia': [45.764043, 4.835659],
+    'Mannheim, Alemania': [49.487459, 8.466039],
+    'Moscow, Rusia': [55.755826, 37.617300],
+    'Munich, Alemania': [48.137154, 11.576124],
     'Orlando, FL, USA': [28.538335, -81.379236],
-    'Paris, France': [48.856614, 2.352222],
-    'Poznań, Poland': [52.4006553, 16.761583],
-    'Seoul, South Korea': [37.566535, 126.977969],
+    'Paris, Francia': [48.856614, 2.352222],
+    'Poznań, Polonia': [52.4006553, 16.761583],
+    'Seoul, Corea del Sur': [37.566535, 126.977969],
     'Shanghai, China': [31.230390, 121.473702],
     'Singapore': [1.352083, 103.819839],
     'Sydney, Australia': [-33.868820, 151.209290],
-    'Taquaritinga, Brazil': [-21.430094, -48.515285],
+    'Taquaritinga, Brasil': [-21.430094, -48.515285],
+    'Taquaritinga, Brasil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
-    'Thessaloniki, Greece': [40.640063, 22.944419],
-    'Tokyo, Japan': [35.689487, 139.691706],
+    'Thessaloniki, Grecia': [40.640063, 22.944419],
+    'Tokyo, Japón': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538],
+    'Wrocław, Polonia': [51.107885, 17.038538],
     'Boston, MA, USA': [42.360081, -71.058884],
-    'Kyiv, Ukraine': [50.450100, 30.523399],
+    'Kyiv, Ucrania': [50.450100, 30.523399],
     'Washington, DC, USA': [38.8935755,-77.0846156,12],
-    'Kraków, Poland': [50.064650, 19.936579],
-    'Oslo, Norway': [59.911491, 10.757933]
+    'Kraków, Polonia': [50.064650, 19.936579],
+    'Oslo, Noruega': [59.911491, 10.757933]
   }
   var languageNameFor = {
     en: 'English',
@@ -332,7 +333,7 @@ order: 803
     {
       name: 'Eduardo',
       title: 'Real-Time Rerouter',
-      city: 'Paris, France',
+      city: 'Paris, Francia',
       languages: ['es', 'fr', 'en'],
       github: 'posva',
       twitter: 'posva',
@@ -412,7 +413,7 @@ order: 803
     {
       name: 'Kazupon',
       title: 'Validated Internationalizing Missionary',
-      city: 'Tokyo, Japan',
+      city: 'Tokyo, Japón',
       languages: ['jp', 'en'],
       github: 'kazupon',
       twitter: 'kazu_pon',
@@ -456,7 +457,7 @@ order: 803
     {
       name: 'Linusborg',
       title: 'Hive-Mind Community Wrangler (Probably a Bot)',
-      city: 'Mannheim, Germany',
+      city: 'Mannheim, Alemania',
       languages: ['de', 'en'],
       github: 'LinusBorg',
       twitter: 'Linus_Borg',
@@ -473,7 +474,7 @@ order: 803
     {
       name: 'Guillaume Chau',
       title: 'Client-Server Astronaut',
-      city: 'Lyon, France',
+      city: 'Lyon, Francia',
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
@@ -539,7 +540,7 @@ order: 803
     {
       name: 'Damian Dulisz',
       title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
+      city: 'Wrocław, Polonia',
       languages: ['pl', 'en'],
       github: 'shentao',
       twitter: 'DamianDulisz',
@@ -556,7 +557,7 @@ order: 803
     },
     {
       name: 'Michał Sajnóg',
-      city: 'Poznań, Poland',
+      city: 'Poznań, Polonia',
       languages: ['pl', 'en'],
       github: 'michalsnik',
       twitter: 'michalsnik',
@@ -609,7 +610,7 @@ order: 803
     {
       name: 'Darek Gusto Wędrychowski',
       title: 'Google Search Virtuoso',
-      city: 'Kraków, Poland',
+      city: 'Kraków, Polonia',
       languages: ['pl', 'en'],
       github: 'gustojs',
       twitter: 'gustojs'
@@ -617,7 +618,7 @@ order: 803
     {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
-      city: 'Munich, Germany',
+      city: 'Munich, Alemania',
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
@@ -640,7 +641,7 @@ order: 803
     {
       name: 'Natalia Tepluhina',
       title: 'Fox Tech Guru',
-      city: 'Kyiv, Ukraine',
+      city: 'Kyiv, Ucrania',
       languages: ['uk', 'ru', 'en'],
       reposOfficial: [
         'vuejs.org',
@@ -725,7 +726,7 @@ order: 803
     {
       name: 'Denis Karabaza',
       title: 'Director of Directives (Emoji-Human Hybrid)',
-      city: 'Dubna, Russia',
+      city: 'Dubna, Rusia',
       languages: ['ru', 'en'],
       github: 'simplesmiler',
       twitter: 'simplesmiler',
@@ -769,7 +770,7 @@ order: 803
     {
       name: 'Luke Thomas',
       title: 'Creator of Vue.js Amsterdam',
-      city: 'Amsterdam, Netherlands',
+      city: 'Amsterdam, Holanda',
       languages: ['nl', 'en', 'de'],
       work: {
         role: 'Creador',
@@ -784,7 +785,7 @@ order: 803
     {
       name: 'Jos Gerards',
       title: 'Organizer and Host of Vue.js Amsterdam & Frontend Love',
-      city: 'Amsterdam, Netherlands',
+      city: 'Amsterdam, Holanda',
       languages: ['nl', 'en', 'de'],
       work: {
         role: 'Gerente de Eventos',
@@ -799,7 +800,7 @@ order: 803
     {
       name: 'James McGlasson',
       title: 'Head of Marketing Communications',
-      city: 'Amsterdam, Netherlands',
+      city: 'Amsterdam, Holanda',
       languages: ['en', 'nl', 'de'],
       work: {
         role: 'Líder de Marketing y Comunicación',
@@ -830,7 +831,7 @@ order: 803
     {
       name: 'Alex Jover',
       title: 'Vue Components Squeezer',
-      city: 'Alicante, Spain',
+      city: 'Alicante, España',
       languages: ['es', 'en'],
       work: {
         role: 'Consultor Web, PWA y de Performance',
@@ -848,7 +849,7 @@ order: 803
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Bordeaux, France',
+      city: 'Bordeaux, Francia',
       languages: ['fr', 'en'],
       github: 'Atinux',
       twitter: 'Atinux',
@@ -863,7 +864,7 @@ order: 803
     {
       name: 'Alexandre Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Bordeaux, France',
+      city: 'Bordeaux, Francia',
       languages: ['fr', 'en'],
       github: 'alexchopin',
       twitter: 'iamnuxt',
@@ -906,7 +907,7 @@ order: 803
     {
       name: 'Xin Du',
       title: 'Nuxpert',
-      city: 'Dublin, Ireland',
+      city: 'Dublin, Irlanda',
       languages: ['zh', 'en'],
       github: 'clarkdo',
       twitter: 'ClarkDu_',
@@ -931,7 +932,7 @@ order: 803
     {
       name: 'Bruno Lesieur',
       title: 'French Community Director',
-      city: 'Annecy, France',
+      city: 'Annecy, Francia',
       languages: ['fr', 'en'],
       github: 'Haeresis',
       twitter: 'ZetesEthique',
@@ -950,7 +951,7 @@ order: 803
     {
       name: 'ChangJoo Park',
       title: 'Vuenthusiastic Korean Community Organizer',
-      city: 'Seoul, South Korea',
+      city: 'Seoul, Corea del Sur',
       languages: ['ko', 'en'],
       github: 'changjoo-park',
       twitter: 'pcjpcj2',
@@ -965,7 +966,8 @@ order: 803
     {
       name: 'Erick Petrucelli',
       title: 'Perfectionist Chief Translator for Portuguese',
-      city: 'Taquaritinga, Brazil',
+      city: 'Taquaritinga, Brasil',
+      city: 'Taquaritinga, Brasil',
       languages: ['pt', 'en'],
       github: 'ErickPetru',
       twitter: 'erickpetru',
@@ -1013,7 +1015,7 @@ order: 803
     {
       name: 'Israel Ortuño',
       title: 'VueJobs Buccaneer',
-      city: 'Alicante, Spain',
+      city: 'Alicante, España',
       languages: ['es', 'en'],
       github: 'IsraelOrtuno',
       twitter: 'IsraelOrtuno',
@@ -1044,7 +1046,7 @@ order: 803
     {
       name: 'Grigoriy Beziuk',
       title: 'Translation Gang Leader',
-      city: 'Moscow, Russia',
+      city: 'Moscow, Rusia',
       languages: ['ru', 'de', 'en'],
       github: 'gbezyuk',
       work: {
@@ -1058,8 +1060,8 @@ order: 803
     },
     {
       name: 'Alexander Sokolov',
-      title: 'Russian Translation Sharp Eye',
-      city: 'Krasnodar, Russia',
+      title: 'Rusian Translation Sharp Eye',
+      city: 'Krasnodar, Rusia',
       languages: ['ru', 'en'],
       github: 'Alex-Sokolov',
       reposPersonal: [
@@ -1114,7 +1116,7 @@ order: 803
     {
       name: 'Alex Kyriakidis',
       title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
+      city: 'Thessaloniki, Grecia',
       languages: ['el', 'en'],
       github: 'hootlex',
       twitter: 'hootlex',
@@ -1131,7 +1133,7 @@ order: 803
     {
       name: 'Rolf Haug',
       title: 'Educator & Consultant',
-      city: 'Oslo, Norway',
+      city: 'Oslo, Noruega',
       languages: ['en', 'no'],
       github: 'rahaug',
       twitter: 'rahaug',
@@ -1181,7 +1183,7 @@ order: 803
     {
       name: 'Filip Rakowski',
       title: 'eCommerce & PWA mastah',
-      city: 'Wrocław, Poland',
+      city: 'Wrocław, Polonia',
       languages: ['pl', 'en'],
       github: 'filrak',
       twitter: 'filrakowski',
