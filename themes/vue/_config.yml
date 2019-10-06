@@ -112,6 +112,9 @@ gold_sponsors:
   - url: 'https://piratebay.ink'
     img: piratebay_proxy.png
     name: Piratebay Proxy
+  - url: 'https:/www.programmers.io'
+    img: programmers_io.png
+    name: Programmers.io
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
