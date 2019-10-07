@@ -5,15 +5,15 @@
 # Site
 title: Vue.js
 subtitle:
-description: "The Progressive JavaScript Framework"
+description: "Kademeli JavaScript Uygulama Çerçevesi"
 author: Evan You
 email:
 language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://vuejs.org
-root: /
+url: https://animyrch.github.io/tr.vuejs.org/
+root: /tr.vuejs.org/
 permalink: :year/:month/:day/:title/
 tag_dir: tags
 archive_dir: archives
@@ -139,7 +139,7 @@ offline:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+  repository: git@github.com:animyrch/tr.vuejs.org.git
 
 feed:
   type: atom
