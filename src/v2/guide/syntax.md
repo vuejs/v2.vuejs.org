@@ -72,7 +72,7 @@ Mevcut olmaları `true` anlamına gelen boole nitelikleri için `v-bind` biraz f
 <button v-bind:disabled="butonAktifDegil">Buton</button>
 ```
 
-Eğer `butonAktifDeğil` değişkeninin değeri `null`, `undefined` veya `false olursa `disabled` niteliği, modellenen `<button>` elementine dahil bile edilmeyecektir.
+Eğer `butonAktifDeğil` değişkeninin değeri `null`, `undefined` veya `false` olursa `disabled` niteliği, modellenen `<button>` elementine dahil bile edilmeyecektir.
 
 ### JavaScript İfadelerinin Kullanımı
 
