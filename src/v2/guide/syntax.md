@@ -1,215 +1,215 @@
 ---
-title: Template Syntax
+title: Þablon Sentaksý
 type: guide
 order: 4
 ---
 
-Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+Vue.js, ekrana yansýtýlan DOM modelini arka plandaki Vue örneðine ait verilere beyansal olarak baðlamayý saðlayan HTML tabanlý bir þablon sentaksý kullanýr. Her Vue.js þablonu geçerli bir HTML kodu olup standartlara uyum gösteren tarayýcýlar ve HTML derleyiciler tarafýndan okunabilir.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Vue, þablonlarý kendiliðinden Sanal DOM modelleme fonksiyonlarý aracýlýðýyla derler. Otomatik tepki sisteminin de yardýmýyla Vue yeniden modellenmesi gereken minimum sayýdaki bileþeni akýllýca tespit edebilir ve uygulamanýn durumu deðiþtiðinde mümkün olan en az sayýda DOM deðiþikliðini gerçekleþtirir.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
+Eðer Sanal DOM kavramlarýna alýþýksanýz ve saf JavaScript’in gücünden yararlanmayý tercih ederseniz isteðe baðlý JSX desteði sayesinde þablona gerek olmaksýzýn [doðrudan modelleme fonksiyonlarý](render-function.html) yazabilirsiniz.
 
-## Interpolations
+## Deðiþken deðer takibi
 
-### Text
+### Metin
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+Veri baðlamanýn en basit þekli “Býyýk” sentaksý (ikiþer adet süslü parantez) ile yazýlan metin deðerlerinin takibidir.
 
 ``` html
-<span>Message: {{ msg }}</span>
+<span>Mesaj: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+Býyýk etiketiyle çevrili kýsým ilgili bileþenin veri nesnesi içerisinde yer alan `msg` özelliðinin deðeri ile deðiþtirilecektir. Söz konusu veri nesnesinin `msg` özelliði ne zaman deðiþirse bu metin de güncellenir.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any other bindings on the same node:
+Ayrýca [v-once direktifini](../api/#v-once) kullanarak deðiþken deðerinin yalnýzca bir defa kullanýlmasýný saðlayabilirsiniz. Fakat bu iþlemin ayný HTML düðümü üzerindeki tüm baðlar üzerinde etkili olacaðýný unutmayýn.
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span v-once>Bu asla deðiþmeyecektir: {{ msg }}</span>
 ```
 
-### Raw HTML
+### Saf HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
+Çift býyýk sentaksý verileri düz metin olarak yorumlar. HTML olarak deðil. Gerçek HTML yazabilmek için `v-html` direktifini kullanmalýsýnýz:
 
 ``` html
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>Býyýk ile kullaným: {{ safHtml }}</p>
+<p>v-html direktifi ile kullaným: <span v-html="safHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Using mustaches: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>Býyýk ile kullaným: {{ rawHtml }}</p>
+  <p>v-html direktifi ile kullaným: <span v-html="safHtml"></span></p>
 </div>
 <script>
 new Vue({
   el: '#example1',
   data: function () {
     return {
-      rawHtml: '<span style="color: red">This should be red.</span>'
+      safHtml: ‘<span style="color: red">Bu metnin rengi kýrmýzý olmalý.</span>'
     }
   }
 })
 </script>
 {% endraw %}
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+`span` içerisindeki metin `rawHtml` özelliðinin deðeri ile deðiþtirilecektir ve bu metin saf HTML olarak yorumlanacak olup veri baðlarý dikkate alýnmayacaktýr. `v-html` direktifi içerisinde dinamik þablon oluþturmak mümkün deðildir zira Vue, dizgi tabanlý bir þablon motoru deðildir. Bunun yerine kullanýcý arayüzü elemanlarýnýn yeniden kullanýmý ve birlikte kullanýmýna yönelik temel birim olarak bileþenler kullanýlmaktadýr.
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">Ýçeriði belirsiz HTML girdilerinin internet sitenizde dinamik olarak modellenmesi son derece tehlikeli olabilir zira kolayca [XSS zafiyetleri](https://tr.wikipedia.org/wiki/Siteler_aras%C4%B1_betik_%C3%A7al%C4%B1%C5%9Ft%C4%B1rma) ile sonuçlanabilir. HTML deðerlerinin takibi iþlevini yalnýzca güvenilir içerikler üzerinde kullanýn ve **asla** kullanýcý tarafýndan temin edilen içerik üzerinde kullanmayýn.<Çp>
 
-### Attributes
+### HTML Nitelikleri
 
-Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directive](../api/#v-bind):
+HTML nitelikleri içerisinde býyýk sentaksý kullanýlamaz. Bunun yerine [v-bind direktifini](../api/#v-bind) kullanýn:
 
 ``` html
-<div v-bind:id="dynamicId"></div>
+<div v-bind:id="dinamikId"></div>
 ```
 
-In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example:
+Mevcut olmalarý `true` anlamýna gelen boole nitelikleri için `v-bind` biraz farklý faaliyet göstermektedir. Aþaðýdaki örneðe bakalým:
 
 ``` html
-<button v-bind:disabled="isButtonDisabled">Button</button>
+<button v-bind:disabled="butonAktifDegil">Buton</button>
 ```
 
-If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
+Eðer `butonAktifDeðil` deðiþkeninin deðeri `null`, `undefined` veya `false olursa `disabled` niteliði, modellenen `<button>` elementine dahil bile edilmeyecektir.
 
-### Using JavaScript Expressions
+### JavaScript Ýfadelerinin Kullanýmý
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+Þu ana kadar þablonlarýmýzda basit özellik anahtarlarý üzerinde bað gerçekleþtirdik. Halbuki Vue.js veri baðlarý üzerinde JavaScript ifadelerinin sunduðu tüm gücü kullanmayý mümkün kýlýyor:
 
 ``` html
-{{ number + 1 }}
+{{ sayi + 1 }}
 
-{{ ok ? 'YES' : 'NO' }}
+{{ ok ? 'EVET' : 'HAYIR' }}
 
-{{ message.split('').reverse().join('') }}
+{{ mesaj.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Bu ifadeler baðlý olduklarý Vue örneðinin veri kapsamý içerisinde JavaScript olarak deðerlendirilecektir. Bu açýdan tek sýnýrlama her bað içerisinde **yalnýzca bir ifadenin** kullanýlma zorunluluðudur. Yani aþaðýdaki ifade **ÇALIÞMAYACAKTIR**:
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- Aþaðýdaki kod bir ifade deðil bir beyandýr: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
-{{ if (ok) { return message } }}
+<!-- akýþ kontrolü de çalýþmayacaktýr, bunun yerine üç terimli ifadeleri kullanýn -->
+{{ if (ok) { return mesaj } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+<p class="tip">Þablon ifadeleri dýþ ortamdan ayrýlmýþ olup yalnýzca `Math` ve `Date` gibi global deðiþkenleri içeren sýnýrlý bir listeye eriþim sunar. Þablon ifadeleri içerisinde kullanýcý tarafýndan belirlenen global deðiþkenlere eriþim gerçekleþtirmeye çalýþmayýn.</p>
 
-## Directives
+## Direktifler
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception of `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+Direktifler `v-` ön ekini kullanan özel niteliklerdir. Direktif nitelikleri, **tek bir JavaScript ifadesine** karþýlýk gelen bir deðer içermelidir (`v-for` bu açýdan bir istisna olup buna aþaðýda deðineceðiz). Direktiflerin görevi, içerisindeki ifadenin deðeri deðiþtiðinde bunun yan etkilerini DOM modeline reaktif olarak yansýtmaktýr. Giriþ bölümünde gördüðümüz örneði yeniden inceleyelim:
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">Þu an beni görüyorsun</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `seen`.
+Burada `v-if` direktifi, `<p>` elementini `seen` ifadesine ait deðerin doðru olup olmadýðýný göre DOM’a ekler veya kaldýrýr.
 
-### Arguments
+### Argümanlar
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Bazý direktifler, direktif adýndan sonra iki nokta ile iþaret edilen bir “argüman” alabilir. Örneðin `v-bind` direktifi bir HTML niteliðini reaktif olarak güncellemek üzere kullanýlýr:
 
 ``` html
 <a v-bind:href="url"> ... </a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
+Burada `href`, `v-bind`’ýn argümaný olarak kullanýlýyor ve söz konusu elementin `href` niteliðini `url` ifadesinin deðerine baðlýyor.
 
-Another example is the `v-on` directive, which listens to DOM events:
-
-``` html
-<a v-on:click="doSomething"> ... </a>
-```
-
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
-
-### Dynamic Arguments
-
-> New in 2.6.0+
-
-Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+Bir diðer örnek DOM olaylarýný dinleyen `v-on` direktifidir:
 
 ``` html
-<a v-bind:[attributeName]="url"> ... </a>
+<a v-on:click="birSeyYap"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+Burada argüman dinlenilecek olan olayýn adýdýr. Olay yönetimine ileride daha yakýndan deðineceðiz.
 
-Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+### Dinamik Argümanlar
+
+> 2.6.0+’dan itibaren
+
+2.6.0 versiyonundan itibaren bir direktif argümaný içerisinde JavaScript ifadelerini köþeli bir parantez içerisinde kullanmak mümkün:
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-bind:[nitelikAdi]="url"> ... </a>
 ```
 
-Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+Burada `nitelikAdi` dinamik bir þekilde JavaScript ifadesi olarak deðerlendirilecek ve tespit edilen deðer bu argümanýn nihai deðeri olarak kullanýlacak. Örneðin eðer Vue örneðiniz `"href"` deðerine sahip `nitelikAdi` þeklindeki bir data niteliðine sahipse yukarýdaki bað `v-bind:href`e denk olacaktýr.
 
-#### Dynamic Argument Value Constraints
-
-Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
-
-#### Dynamic Argument Expression Constraints
-
-<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes. You also need to avoid uppercase keys when using in-DOM templates.</p>
-
-For example, the following is invalid:
+Ayný þekilde dinamik argümanlar sayesinde bir olay yöneticisini dinamik bir olay adýna baðlayabilirsiniz:
 
 ``` html
-<!-- This will trigger a compiler warning. -->
-<a v-bind:['foo' + bar]="value"> ... </a>
+<a v-on:[olayAdý]="birSeyYap"> ... </a>
 ```
 
-The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+Yine yukarýdaki gibi `olayAdi`'nýn deðeri `"focus"` ise `v-on:[eventName]` ifadesi `v-on:focus`a karþýlýk gelecektir.
 
-In addition, if you are using in-DOM templates (templates directly written in an HTML file), you have to be aware that browsers will coerce attribute names into lowercase:
+#### Dinamik Argüman Deðeri Kýsýtlamalarý
+
+Dinamik argümanlar `null` dýþýnda yalnýzca dizgi olarak deðerlendirilmesi beklenir. Söz konusu baðý kaldýrabilmek için istinai olarak `null` kullanýlmasýna müsaade edilir. Bunun dýþýnda dizgi olmayan tüm deðerler bir uyarý verecektir.
+
+#### Dinamik Argüman Ýfadesi Kýsýtlamalarý
+
+<p class="tip">Dinamik argüman ifadeleri üzerinde bir takým sentaks kýsýtlamalarý mevcuttur zira HTML nitelik isimleri içerisinde boþluk veya týrnak gibi bazý karakterlerin kullanýlmasý mümkün deðildir. Ayrýca DOM içerisinde kullanýlan þablonlarda büyük harf kullanýlmamasýna da dikkat etmelisiniz.</p>
+
+Örneðin aþaðýdaki ifade geçersizdir:
 
 ``` html
-<!-- This will be converted to v-bind:[someattr] in in-DOM templates. -->
-<a v-bind:[someAttr]="value"> ... </a>
+<!-- Bu bir derleyici uyarýsýný tetikleyecektir. -->
+<a v-bind:['foo' + bar]="deger"> ... </a>
 ```
 
-### Modifiers
+Bu uyarýnýn ortaya çýkmasýný engellemek için boþluk veya týrnak kullanmayýn veya karmaþýk ifadeleri hesaplanmýþ bir nitelik ile deðiþtirin.
 
-Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
+Buna ek olarak DOM içerisinde þablon kullanýyorsanýz (þablonunuzu doðrudan bir HTML dosyasý içerisinde yazýyorsanýz) tarayýcýlarýn nitelik isimlerini küçük harf olarak düzelteceðini unutmayýn:
+
+``` html
+<!-- Aþaðýdaki ifade DOM içi þablonda v-bind:[birnitelik] þeklinde dönüþtürülecektir. -->
+<a v-bind:[birNitelik]="deger"> ... </a>
+```
+
+### Deðiþtiriciler
+
+Deðiþtiriciler bir nokta ile gösterilen özel eklerdir ve bir direktifin özel bir þekilde baðlanmasý gerektiðini ifade eder. Örneðin `.prevent` deðiþtiricisi `v-on` direktifine tetiklenen olay üzerinde `event.preventDefault()` ifadesini çaðýrmasýný söyler:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
+Söz konusu bölümlere geldiðimizde [`v-on`a](events.html#Event-Modifiers) ve [`v-model`e](forms.html#Modifiers) yönelik baþka deðiþtirici örneklerini göreceksiniz.
 
-## Shorthands
+## Kýsaltmalar
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building a [SPA](https://en.wikipedia.org/wiki/Single-page_application), where Vue manages every template. Therefore, Vue provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+`v-` ön eki þablonlarýnýzdaki Vue’ye özgü nitelikleri kolayca tespit edebilmeyi saðlayan görsel bir ipucu görevi görür. Hali hazýrda yazýlmýþ olan biçimli metinlere dinamik davranýþlar eklemek için Vue.js’nin kullanýlmasý sýrasýnda yararlý olsa da direktiflerin sýkça kullanýldýðý durumlarda metin kalabalýðý yaratabilir. Ayný zamanda her þeyin Vue tarafýndan yönetildiði bir [SPA](https://tr.wikipedia.org/wiki/Tek_sayfa_uygulamas%C4%B1) geliþtirdiðiniz sýrada `v-` ön eki önemini kaybeder. Bu nedenle Vue en çok kullanýlan iki direktif olan `v-bind` ve `v-on` için özel kýsaltmalar sunar:
 
-### `v-bind` Shorthand
+### `v-bind` Kýsaltmasý
 
 ``` html
-<!-- full syntax -->
+<!-- uzun sentaks -->
 <a v-bind:href="url"> ... </a>
 
-<!-- shorthand -->
+<!-- kýsaltma -->
 <a :href="url"> ... </a>
 
-<!-- shorthand with dynamic argument (2.6.0+) -->
+<!-- dinamik argümanlý kýsatma (2.6.0+) -->
 <a :[key]="url"> ... </a>
 ```
 
-### `v-on` Shorthand
+### `v-on` Kýsaltmasý
 
 ``` html
-<!-- full syntax -->
-<a v-on:click="doSomething"> ... </a>
+<!-- uzun sentaks -->
+<a v-on:click="birSeyYap"> ... </a>
 
-<!-- shorthand -->
-<a @click="doSomething"> ... </a>
+<!-- kýsaltma -->
+<a @click="birSeyYap"> ... </a>
 
-<!-- shorthand with dynamic argument (2.6.0+) -->
-<a @[event]="doSomething"> ... </a>
+<!-- dinamik argümanlý kýsatma (2.6.0+) -->
+<a @[olay]="birSeyYap"> ... </a>
 ```
 
-They may look a bit different from normal HTML, but `:` and `@` are valid characters for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+Bu kullaným normal HTML’den biraz farklý görünebilir ama `:` ve `@` karakterleri geçerli nitelik isimleri arasýndadýr ve Vue’nün desteklendiði tüm tarayýcýlar tarafýndan doðru bir þekilde okunabilir. Ayrýca bunlar ekrana yansýtýlan nihai biçimli metin içerisinde görüntülenmez. Kýsaltma sentaksý isteðe baðlý olmakla beraber kullanýmýný daha yakýndan öðrendikçe hoþunuza gideceðini düþünüyoruz.
