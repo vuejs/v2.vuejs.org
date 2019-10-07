@@ -1,82 +1,82 @@
 ---
-title: Şablon Sentaksı
+title: Åablon SentaksÄ±
 type: guide
 order: 4
 ---
 
-Vue.js, ekrana yansıtılan DOM modelini arka plandaki Vue örneğine ait verilere beyansal olarak bağlamayı sağlayan HTML tabanlı bir şablon sentaksı kullanır. Her Vue.js şablonu geçerli bir HTML kodu olup standartlara uyum gösteren tarayıcılar ve HTML derleyiciler tarafından okunabilir.
+Vue.js, ekrana yansÄ±tÄ±lan DOM modelini arka plandaki Vue Ã¶rneÄŸine ait verilere beyansal olarak baÄŸlamayÄ± saÄŸlayan HTML tabanlÄ± bir ÅŸablon sentaksÄ± kullanÄ±r. Her Vue.js ÅŸablonu geÃ§erli bir HTML kodu olup standartlara uyum gÃ¶steren tarayÄ±cÄ±lar ve HTML derleyiciler tarafÄ±ndan okunabilir.
 
-Vue, şablonları kendiliğinden Sanal DOM modelleme fonksiyonları aracılığıyla derler. Otomatik tepki sisteminin de yardımıyla Vue yeniden modellenmesi gereken minimum sayıdaki bileşeni akıllıca tespit edebilir ve uygulamanın durumu değiştiğinde mümkün olan en az sayıda DOM değişikliğini gerçekleştirir.
+Vue, ÅŸablonlarÄ± kendiliÄŸinden Sanal DOM modelleme fonksiyonlarÄ± aracÄ±lÄ±ÄŸÄ±yla derler. Otomatik tepki sisteminin de yardÄ±mÄ±yla Vue yeniden modellenmesi gereken minimum sayÄ±daki bileÅŸeni akÄ±llÄ±ca tespit edebilir ve uygulamanÄ±n durumu deÄŸiÅŸtiÄŸinde mÃ¼mkÃ¼n olan en az sayÄ±da DOM deÄŸiÅŸikliÄŸini gerÃ§ekleÅŸtirir.
 
-Eğer Sanal DOM kavramlarına alışıksanız ve saf JavaScript’in gücünden yararlanmayı tercih ederseniz isteğe bağlı JSX desteği sayesinde şablona gerek olmaksızın [doğrudan modelleme fonksiyonları](render-function.html) yazabilirsiniz.
+EÄŸer Sanal DOM kavramlarÄ±na alÄ±ÅŸÄ±ksanÄ±z ve saf JavaScriptâ€™in gÃ¼cÃ¼nden yararlanmayÄ± tercih ederseniz isteÄŸe baÄŸlÄ± JSX desteÄŸi sayesinde ÅŸablona gerek olmaksÄ±zÄ±n [doÄŸrudan modelleme fonksiyonlarÄ±](render-function.html) yazabilirsiniz.
 
-## Değişken değer takibi
+## DeÄŸiÅŸken deÄŸer takibi
 
 ### Metin
 
-Veri bağlamanın en basit şekli “Bıyık” sentaksı (ikişer adet süslü parantez) ile yazılan metin değerlerinin takibidir.
+Veri baÄŸlamanÄ±n en basit ÅŸekli â€œBÄ±yÄ±kâ€ sentaksÄ± (ikiÅŸer adet sÃ¼slÃ¼ parantez) ile yazÄ±lan metin deÄŸerlerinin takibidir.
 
 ``` html
 <span>Mesaj: {{ msg }}</span>
 ```
 
-Bıyık etiketiyle çevrili kısım ilgili bileşenin veri nesnesi içerisinde yer alan `msg` özelliğinin değeri ile değiştirilecektir. Söz konusu veri nesnesinin `msg` özelliği ne zaman değişirse bu metin de güncellenir.
+BÄ±yÄ±k etiketiyle Ã§evrili kÄ±sÄ±m ilgili bileÅŸenin veri nesnesi iÃ§erisinde yer alan `msg` Ã¶zelliÄŸinin deÄŸeri ile deÄŸiÅŸtirilecektir. SÃ¶z konusu veri nesnesinin `msg` Ã¶zelliÄŸi ne zaman deÄŸiÅŸirse bu metin de gÃ¼ncellenir.
 
-Ayrıca [v-once direktifini](../api/#v-once) kullanarak değişken değerinin yalnızca bir defa kullanılmasını sağlayabilirsiniz. Fakat bu işlemin aynı HTML düğümü üzerindeki tüm bağlar üzerinde etkili olacağını unutmayın.
+AyrÄ±ca [v-once direktifini](../api/#v-once) kullanarak deÄŸiÅŸken deÄŸerinin yalnÄ±zca bir defa kullanÄ±lmasÄ±nÄ± saÄŸlayabilirsiniz. Fakat bu iÅŸlemin aynÄ± HTML dÃ¼ÄŸÃ¼mÃ¼ Ã¼zerindeki tÃ¼m baÄŸlar Ã¼zerinde etkili olacaÄŸÄ±nÄ± unutmayÄ±n.
 
 ``` html
-<span v-once>Bu asla değişmeyecektir: {{ msg }}</span>
+<span v-once>Bu asla deÄŸiÅŸmeyecektir: {{ msg }}</span>
 ```
 
 ### Saf HTML
 
-Çift bıyık sentaksı verileri düz metin olarak yorumlar. HTML olarak değil. Gerçek HTML yazabilmek için `v-html` direktifini kullanmalısınız:
+Ã‡ift bÄ±yÄ±k sentaksÄ± verileri dÃ¼z metin olarak yorumlar. HTML olarak deÄŸil. GerÃ§ek HTML yazabilmek iÃ§in `v-html` direktifini kullanmalÄ±sÄ±nÄ±z:
 
 ``` html
-<p>Bıyık ile kullanım: {{ safHtml }}</p>
-<p>v-html direktifi ile kullanım: <span v-html="safHtml"></span></p>
+<p>BÄ±yÄ±k ile kullanÄ±m: {{ safHtml }}</p>
+<p>v-html direktifi ile kullanÄ±m: <span v-html="safHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Bıyık ile kullanım: {{ rawHtml }}</p>
-  <p>v-html direktifi ile kullanım: <span v-html="safHtml"></span></p>
+  <p>BÄ±yÄ±k ile kullanÄ±m: {{ rawHtml }}</p>
+  <p>v-html direktifi ile kullanÄ±m: <span v-html="safHtml"></span></p>
 </div>
 <script>
 new Vue({
   el: '#example1',
   data: function () {
     return {
-      safHtml: ‘<span style="color: red">Bu metnin rengi kırmızı olmalı.</span>'
+      safHtml: â€˜<span style="color: red">Bu metnin rengi kÄ±rmÄ±zÄ± olmalÄ±.</span>'
     }
   }
 })
 </script>
 {% endraw %}
 
-`span` içerisindeki metin `rawHtml` özelliğinin değeri ile değiştirilecektir ve bu metin saf HTML olarak yorumlanacak olup veri bağları dikkate alınmayacaktır. `v-html` direktifi içerisinde dinamik şablon oluşturmak mümkün değildir zira Vue, dizgi tabanlı bir şablon motoru değildir. Bunun yerine kullanıcı arayüzü elemanlarının yeniden kullanımı ve birlikte kullanımına yönelik temel birim olarak bileşenler kullanılmaktadır.
+`span` iÃ§erisindeki metin `rawHtml` Ã¶zelliÄŸinin deÄŸeri ile deÄŸiÅŸtirilecektir ve bu metin saf HTML olarak yorumlanacak olup veri baÄŸlarÄ± dikkate alÄ±nmayacaktÄ±r. `v-html` direktifi iÃ§erisinde dinamik ÅŸablon oluÅŸturmak mÃ¼mkÃ¼n deÄŸildir zira Vue, dizgi tabanlÄ± bir ÅŸablon motoru deÄŸildir. Bunun yerine kullanÄ±cÄ± arayÃ¼zÃ¼ elemanlarÄ±nÄ±n yeniden kullanÄ±mÄ± ve birlikte kullanÄ±mÄ±na yÃ¶nelik temel birim olarak bileÅŸenler kullanÄ±lmaktadÄ±r.
 
-<p class="tip">İçeriği belirsiz HTML girdilerinin internet sitenizde dinamik olarak modellenmesi son derece tehlikeli olabilir zira kolayca [XSS zafiyetleri](https://tr.wikipedia.org/wiki/Siteler_aras%C4%B1_betik_%C3%A7al%C4%B1%C5%9Ft%C4%B1rma) ile sonuçlanabilir. HTML değerlerinin takibi işlevini yalnızca güvenilir içerikler üzerinde kullanın ve **asla** kullanıcı tarafından temin edilen içerik üzerinde kullanmayın.<Çp>
+<p class="tip">Ä°Ã§eriÄŸi belirsiz HTML girdilerinin internet sitenizde dinamik olarak modellenmesi son derece tehlikeli olabilir zira kolayca [XSS zafiyetleri](https://tr.wikipedia.org/wiki/Siteler_aras%C4%B1_betik_%C3%A7al%C4%B1%C5%9Ft%C4%B1rma) ile sonuÃ§lanabilir. HTML deÄŸerlerinin takibi iÅŸlevini yalnÄ±zca gÃ¼venilir iÃ§erikler Ã¼zerinde kullanÄ±n ve **asla** kullanÄ±cÄ± tarafÄ±ndan temin edilen iÃ§erik Ã¼zerinde kullanmayÄ±n.<Ã‡p>
 
 ### HTML Nitelikleri
 
-HTML nitelikleri içerisinde bıyık sentaksı kullanılamaz. Bunun yerine [v-bind direktifini](../api/#v-bind) kullanın:
+HTML nitelikleri iÃ§erisinde bÄ±yÄ±k sentaksÄ± kullanÄ±lamaz. Bunun yerine [v-bind direktifini](../api/#v-bind) kullanÄ±n:
 
 ``` html
 <div v-bind:id="dinamikId"></div>
 ```
 
-Mevcut olmaları `true` anlamına gelen boole nitelikleri için `v-bind` biraz farklı faaliyet göstermektedir. Aşağıdaki örneğe bakalım:
+Mevcut olmalarÄ± `true` anlamÄ±na gelen boole nitelikleri iÃ§in `v-bind` biraz farklÄ± faaliyet gÃ¶stermektedir. AÅŸaÄŸÄ±daki Ã¶rneÄŸe bakalÄ±m:
 
 ``` html
 <button v-bind:disabled="butonAktifDegil">Buton</button>
 ```
 
-Eğer `butonAktifDeğil` değişkeninin değeri `null`, `undefined` veya `false olursa `disabled` niteliği, modellenen `<button>` elementine dahil bile edilmeyecektir.
+EÄŸer `butonAktifDeÄŸil` deÄŸiÅŸkeninin deÄŸeri `null`, `undefined` veya `false olursa `disabled` niteliÄŸi, modellenen `<button>` elementine dahil bile edilmeyecektir.
 
-### JavaScript İfadelerinin Kullanımı
+### JavaScript Ä°fadelerinin KullanÄ±mÄ±
 
-Şu ana kadar şablonlarımızda basit özellik anahtarları üzerinde bağ gerçekleştirdik. Halbuki Vue.js veri bağları üzerinde JavaScript ifadelerinin sunduğu tüm gücü kullanmayı mümkün kılıyor:
+Åu ana kadar ÅŸablonlarÄ±mÄ±zda basit Ã¶zellik anahtarlarÄ± Ã¼zerinde baÄŸ gerÃ§ekleÅŸtirdik. Halbuki Vue.js veri baÄŸlarÄ± Ã¼zerinde JavaScript ifadelerinin sunduÄŸu tÃ¼m gÃ¼cÃ¼ kullanmayÄ± mÃ¼mkÃ¼n kÄ±lÄ±yor:
 
 ``` html
 {{ sayi + 1 }}
@@ -88,128 +88,128 @@ Eğer `butonAktifDeğil` değişkeninin değeri `null`, `undefined` veya `false olurs
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Bu ifadeler bağlı oldukları Vue örneğinin veri kapsamı içerisinde JavaScript olarak değerlendirilecektir. Bu açıdan tek sınırlama her bağ içerisinde **yalnızca bir ifadenin** kullanılma zorunluluğudur. Yani aşağıdaki ifade **ÇALIŞMAYACAKTIR**:
+Bu ifadeler baÄŸlÄ± olduklarÄ± Vue Ã¶rneÄŸinin veri kapsamÄ± iÃ§erisinde JavaScript olarak deÄŸerlendirilecektir. Bu aÃ§Ä±dan tek sÄ±nÄ±rlama her baÄŸ iÃ§erisinde **yalnÄ±zca bir ifadenin** kullanÄ±lma zorunluluÄŸudur. Yani aÅŸaÄŸÄ±daki ifade **Ã‡ALIÅMAYACAKTIR**:
 
 ``` html
-<!-- Aşağıdaki kod bir ifade değil bir beyandır: -->
+<!-- AÅŸaÄŸÄ±daki kod bir ifade deÄŸil bir beyandÄ±r: -->
 {{ var a = 1 }}
 
-<!-- akış kontrolü de çalışmayacaktır, bunun yerine üç terimli ifadeleri kullanın -->
+<!-- akÄ±ÅŸ kontrolÃ¼ de Ã§alÄ±ÅŸmayacaktÄ±r, bunun yerine Ã¼Ã§ terimli ifadeleri kullanÄ±n -->
 {{ if (ok) { return mesaj } }}
 ```
 
-<p class="tip">Şablon ifadeleri dış ortamdan ayrılmış olup yalnızca `Math` ve `Date` gibi global değişkenleri içeren sınırlı bir listeye erişim sunar. Şablon ifadeleri içerisinde kullanıcı tarafından belirlenen global değişkenlere erişim gerçekleştirmeye çalışmayın.</p>
+<p class="tip">Åablon ifadeleri dÄ±ÅŸ ortamdan ayrÄ±lmÄ±ÅŸ olup yalnÄ±zca `Math` ve `Date` gibi global deÄŸiÅŸkenleri iÃ§eren sÄ±nÄ±rlÄ± bir listeye eriÅŸim sunar. Åablon ifadeleri iÃ§erisinde kullanÄ±cÄ± tarafÄ±ndan belirlenen global deÄŸiÅŸkenlere eriÅŸim gerÃ§ekleÅŸtirmeye Ã§alÄ±ÅŸmayÄ±n.</p>
 
 ## Direktifler
 
-Direktifler `v-` ön ekini kullanan özel niteliklerdir. Direktif nitelikleri, **tek bir JavaScript ifadesine** karşılık gelen bir değer içermelidir (`v-for` bu açıdan bir istisna olup buna aşağıda değineceğiz). Direktiflerin görevi, içerisindeki ifadenin değeri değiştiğinde bunun yan etkilerini DOM modeline reaktif olarak yansıtmaktır. Giriş bölümünde gördüğümüz örneği yeniden inceleyelim:
+Direktifler `v-` Ã¶n ekini kullanan Ã¶zel niteliklerdir. Direktif nitelikleri, **tek bir JavaScript ifadesine** karÅŸÄ±lÄ±k gelen bir deÄŸer iÃ§ermelidir (`v-for` bu aÃ§Ä±dan bir istisna olup buna aÅŸaÄŸÄ±da deÄŸineceÄŸiz). Direktiflerin gÃ¶revi, iÃ§erisindeki ifadenin deÄŸeri deÄŸiÅŸtiÄŸinde bunun yan etkilerini DOM modeline reaktif olarak yansÄ±tmaktÄ±r. GiriÅŸ bÃ¶lÃ¼mÃ¼nde gÃ¶rdÃ¼ÄŸÃ¼mÃ¼z Ã¶rneÄŸi yeniden inceleyelim:
 
 ``` html
-<p v-if="seen">Şu an beni görüyorsun</p>
+<p v-if="seen">Åu an beni gÃ¶rÃ¼yorsun</p>
 ```
 
-Burada `v-if` direktifi, `<p>` elementini `seen` ifadesine ait değerin doğru olup olmadığını göre DOM’a ekler veya kaldırır.
+Burada `v-if` direktifi, `<p>` elementini `seen` ifadesine ait deÄŸerin doÄŸru olup olmadÄ±ÄŸÄ±nÄ± gÃ¶re DOMâ€™a ekler veya kaldÄ±rÄ±r.
 
-### Argümanlar
+### ArgÃ¼manlar
 
-Bazı direktifler, direktif adından sonra iki nokta ile işaret edilen bir “argüman” alabilir. Örneğin `v-bind` direktifi bir HTML niteliğini reaktif olarak güncellemek üzere kullanılır:
+BazÄ± direktifler, direktif adÄ±ndan sonra iki nokta ile iÅŸaret edilen bir â€œargÃ¼manâ€ alabilir. Ã–rneÄŸin `v-bind` direktifi bir HTML niteliÄŸini reaktif olarak gÃ¼ncellemek Ã¼zere kullanÄ±lÄ±r:
 
 ``` html
 <a v-bind:href="url"> ... </a>
 ```
 
-Burada `href`, `v-bind`’ın argümanı olarak kullanılıyor ve söz konusu elementin `href` niteliğini `url` ifadesinin değerine bağlıyor.
+Burada `href`, `v-bind`â€™Ä±n argÃ¼manÄ± olarak kullanÄ±lÄ±yor ve sÃ¶z konusu elementin `href` niteliÄŸini `url` ifadesinin deÄŸerine baÄŸlÄ±yor.
 
-Bir diğer örnek DOM olaylarını dinleyen `v-on` direktifidir:
+Bir diÄŸer Ã¶rnek DOM olaylarÄ±nÄ± dinleyen `v-on` direktifidir:
 
 ``` html
 <a v-on:click="birSeyYap"> ... </a>
 ```
 
-Burada argüman dinlenilecek olan olayın adıdır. Olay yönetimine ileride daha yakından değineceğiz.
+Burada argÃ¼man dinlenilecek olan olayÄ±n adÄ±dÄ±r. Olay yÃ¶netimine ileride daha yakÄ±ndan deÄŸineceÄŸiz.
 
-### Dinamik Argümanlar
+### Dinamik ArgÃ¼manlar
 
-> 2.6.0+’dan itibaren
+> 2.6.0+â€™dan itibaren
 
-2.6.0 versiyonundan itibaren bir direktif argümanı içerisinde JavaScript ifadelerini köşeli bir parantez içerisinde kullanmak mümkün:
+2.6.0 versiyonundan itibaren bir direktif argÃ¼manÄ± iÃ§erisinde JavaScript ifadelerini kÃ¶ÅŸeli bir parantez iÃ§erisinde kullanmak mÃ¼mkÃ¼n:
 
 ``` html
 <a v-bind:[nitelikAdi]="url"> ... </a>
 ```
 
-Burada `nitelikAdi` dinamik bir şekilde JavaScript ifadesi olarak değerlendirilecek ve tespit edilen değer bu argümanın nihai değeri olarak kullanılacak. Örneğin eğer Vue örneğiniz `"href"` değerine sahip `nitelikAdi` şeklindeki bir data niteliğine sahipse yukarıdaki bağ `v-bind:href`e denk olacaktır.
+Burada `nitelikAdi` dinamik bir ÅŸekilde JavaScript ifadesi olarak deÄŸerlendirilecek ve tespit edilen deÄŸer bu argÃ¼manÄ±n nihai deÄŸeri olarak kullanÄ±lacak. Ã–rneÄŸin eÄŸer Vue Ã¶rneÄŸiniz `"href"` deÄŸerine sahip `nitelikAdi` ÅŸeklindeki bir data niteliÄŸine sahipse yukarÄ±daki baÄŸ `v-bind:href`e denk olacaktÄ±r.
 
-Aynı şekilde dinamik argümanlar sayesinde bir olay yöneticisini dinamik bir olay adına bağlayabilirsiniz:
+AynÄ± ÅŸekilde dinamik argÃ¼manlar sayesinde bir olay yÃ¶neticisini dinamik bir olay adÄ±na baÄŸlayabilirsiniz:
 
 ``` html
-<a v-on:[olayAdı]="birSeyYap"> ... </a>
+<a v-on:[olayAdÄ±]="birSeyYap"> ... </a>
 ```
 
-Yine yukarıdaki gibi `olayAdi`'nın değeri `"focus"` ise `v-on:[eventName]` ifadesi `v-on:focus`a karşılık gelecektir.
+Yine yukarÄ±daki gibi `olayAdi`'nÄ±n deÄŸeri `"focus"` ise `v-on:[eventName]` ifadesi `v-on:focus`a karÅŸÄ±lÄ±k gelecektir.
 
-#### Dinamik Argüman Değeri Kısıtlamaları
+#### Dinamik ArgÃ¼man DeÄŸeri KÄ±sÄ±tlamalarÄ±
 
-Dinamik argümanlar `null` dışında yalnızca dizgi olarak değerlendirilmesi beklenir. Söz konusu bağı kaldırabilmek için istinai olarak `null` kullanılmasına müsaade edilir. Bunun dışında dizgi olmayan tüm değerler bir uyarı verecektir.
+Dinamik argÃ¼manlar `null` dÄ±ÅŸÄ±nda yalnÄ±zca dizgi olarak deÄŸerlendirilmesi beklenir. SÃ¶z konusu baÄŸÄ± kaldÄ±rabilmek iÃ§in istinai olarak `null` kullanÄ±lmasÄ±na mÃ¼saade edilir. Bunun dÄ±ÅŸÄ±nda dizgi olmayan tÃ¼m deÄŸerler bir uyarÄ± verecektir.
 
-#### Dinamik Argüman İfadesi Kısıtlamaları
+#### Dinamik ArgÃ¼man Ä°fadesi KÄ±sÄ±tlamalarÄ±
 
-<p class="tip">Dinamik argüman ifadeleri üzerinde bir takım sentaks kısıtlamaları mevcuttur zira HTML nitelik isimleri içerisinde boşluk veya tırnak gibi bazı karakterlerin kullanılması mümkün değildir. Ayrıca DOM içerisinde kullanılan şablonlarda büyük harf kullanılmamasına da dikkat etmelisiniz.</p>
+<p class="tip">Dinamik argÃ¼man ifadeleri Ã¼zerinde bir takÄ±m sentaks kÄ±sÄ±tlamalarÄ± mevcuttur zira HTML nitelik isimleri iÃ§erisinde boÅŸluk veya tÄ±rnak gibi bazÄ± karakterlerin kullanÄ±lmasÄ± mÃ¼mkÃ¼n deÄŸildir. AyrÄ±ca DOM iÃ§erisinde kullanÄ±lan ÅŸablonlarda bÃ¼yÃ¼k harf kullanÄ±lmamasÄ±na da dikkat etmelisiniz.</p>
 
-Örneğin aşağıdaki ifade geçersizdir:
+Ã–rneÄŸin aÅŸaÄŸÄ±daki ifade geÃ§ersizdir:
 
 ``` html
-<!-- Bu bir derleyici uyarısını tetikleyecektir. -->
+<!-- Bu bir derleyici uyarÄ±sÄ±nÄ± tetikleyecektir. -->
 <a v-bind:['foo' + bar]="deger"> ... </a>
 ```
 
-Bu uyarının ortaya çıkmasını engellemek için boşluk veya tırnak kullanmayın veya karmaşık ifadeleri hesaplanmış bir nitelik ile değiştirin.
+Bu uyarÄ±nÄ±n ortaya Ã§Ä±kmasÄ±nÄ± engellemek iÃ§in boÅŸluk veya tÄ±rnak kullanmayÄ±n veya karmaÅŸÄ±k ifadeleri hesaplanmÄ±ÅŸ bir nitelik ile deÄŸiÅŸtirin.
 
-Buna ek olarak DOM içerisinde şablon kullanıyorsanız (şablonunuzu doğrudan bir HTML dosyası içerisinde yazıyorsanız) tarayıcıların nitelik isimlerini küçük harf olarak düzelteceğini unutmayın:
+Buna ek olarak DOM iÃ§erisinde ÅŸablon kullanÄ±yorsanÄ±z (ÅŸablonunuzu doÄŸrudan bir HTML dosyasÄ± iÃ§erisinde yazÄ±yorsanÄ±z) tarayÄ±cÄ±larÄ±n nitelik isimlerini kÃ¼Ã§Ã¼k harf olarak dÃ¼zelteceÄŸini unutmayÄ±n:
 
 ``` html
-<!-- Aşağıdaki ifade DOM içi şablonda v-bind:[birnitelik] şeklinde dönüştürülecektir. -->
+<!-- AÅŸaÄŸÄ±daki ifade DOM iÃ§i ÅŸablonda v-bind:[birnitelik] ÅŸeklinde dÃ¶nÃ¼ÅŸtÃ¼rÃ¼lecektir. -->
 <a v-bind:[birNitelik]="deger"> ... </a>
 ```
 
-### Değiştiriciler
+### DeÄŸiÅŸtiriciler
 
-Değiştiriciler bir nokta ile gösterilen özel eklerdir ve bir direktifin özel bir şekilde bağlanması gerektiğini ifade eder. Örneğin `.prevent` değiştiricisi `v-on` direktifine tetiklenen olay üzerinde `event.preventDefault()` ifadesini çağırmasını söyler:
+DeÄŸiÅŸtiriciler bir nokta ile gÃ¶sterilen Ã¶zel eklerdir ve bir direktifin Ã¶zel bir ÅŸekilde baÄŸlanmasÄ± gerektiÄŸini ifade eder. Ã–rneÄŸin `.prevent` deÄŸiÅŸtiricisi `v-on` direktifine tetiklenen olay Ã¼zerinde `event.preventDefault()` ifadesini Ã§aÄŸÄ±rmasÄ±nÄ± sÃ¶yler:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-Söz konusu bölümlere geldiğimizde [`v-on`a](events.html#Event-Modifiers) ve [`v-model`e](forms.html#Modifiers) yönelik başka değiştirici örneklerini göreceksiniz.
+SÃ¶z konusu bÃ¶lÃ¼mlere geldiÄŸimizde [`v-on`a](events.html#Event-Modifiers) ve [`v-model`e](forms.html#Modifiers) yÃ¶nelik baÅŸka deÄŸiÅŸtirici Ã¶rneklerini gÃ¶receksiniz.
 
-## Kısaltmalar
+## KÄ±saltmalar
 
-`v-` ön eki şablonlarınızdaki Vue’ye özgü nitelikleri kolayca tespit edebilmeyi sağlayan görsel bir ipucu görevi görür. Hali hazırda yazılmış olan biçimli metinlere dinamik davranışlar eklemek için Vue.js’nin kullanılması sırasında yararlı olsa da direktiflerin sıkça kullanıldığı durumlarda metin kalabalığı yaratabilir. Aynı zamanda her şeyin Vue tarafından yönetildiği bir [SPA](https://tr.wikipedia.org/wiki/Tek_sayfa_uygulamas%C4%B1) geliştirdiğiniz sırada `v-` ön eki önemini kaybeder. Bu nedenle Vue en çok kullanılan iki direktif olan `v-bind` ve `v-on` için özel kısaltmalar sunar:
+`v-` Ã¶n eki ÅŸablonlarÄ±nÄ±zdaki Vueâ€™ye Ã¶zgÃ¼ nitelikleri kolayca tespit edebilmeyi saÄŸlayan gÃ¶rsel bir ipucu gÃ¶revi gÃ¶rÃ¼r. Hali hazÄ±rda yazÄ±lmÄ±ÅŸ olan biÃ§imli metinlere dinamik davranÄ±ÅŸlar eklemek iÃ§in Vue.jsâ€™nin kullanÄ±lmasÄ± sÄ±rasÄ±nda yararlÄ± olsa da direktiflerin sÄ±kÃ§a kullanÄ±ldÄ±ÄŸÄ± durumlarda metin kalabalÄ±ÄŸÄ± yaratabilir. AynÄ± zamanda her ÅŸeyin Vue tarafÄ±ndan yÃ¶netildiÄŸi bir [SPA](https://tr.wikipedia.org/wiki/Tek_sayfa_uygulamas%C4%B1) geliÅŸtirdiÄŸiniz sÄ±rada `v-` Ã¶n eki Ã¶nemini kaybeder. Bu nedenle Vue en Ã§ok kullanÄ±lan iki direktif olan `v-bind` ve `v-on` iÃ§in Ã¶zel kÄ±saltmalar sunar:
 
-### `v-bind` Kısaltması
+### `v-bind` KÄ±saltmasÄ±
 
 ``` html
 <!-- uzun sentaks -->
 <a v-bind:href="url"> ... </a>
 
-<!-- kısaltma -->
+<!-- kÄ±saltma -->
 <a :href="url"> ... </a>
 
-<!-- dinamik argümanlı kısatma (2.6.0+) -->
+<!-- dinamik argÃ¼manlÄ± kÄ±satma (2.6.0+) -->
 <a :[key]="url"> ... </a>
 ```
 
-### `v-on` Kısaltması
+### `v-on` KÄ±saltmasÄ±
 
 ``` html
 <!-- uzun sentaks -->
 <a v-on:click="birSeyYap"> ... </a>
 
-<!-- kısaltma -->
+<!-- kÄ±saltma -->
 <a @click="birSeyYap"> ... </a>
 
-<!-- dinamik argümanlı kısatma (2.6.0+) -->
+<!-- dinamik argÃ¼manlÄ± kÄ±satma (2.6.0+) -->
 <a @[olay]="birSeyYap"> ... </a>
 ```
 
-Bu kullanım normal HTML’den biraz farklı görünebilir ama `:` ve `@` karakterleri geçerli nitelik isimleri arasındadır ve Vue’nün desteklendiği tüm tarayıcılar tarafından doğru bir şekilde okunabilir. Ayrıca bunlar ekrana yansıtılan nihai biçimli metin içerisinde görüntülenmez. Kısaltma sentaksı isteğe bağlı olmakla beraber kullanımını daha yakından öğrendikçe hoşunuza gideceğini düşünüyoruz.
+Bu kullanÄ±m normal HTMLâ€™den biraz farklÄ± gÃ¶rÃ¼nebilir ama `:` ve `@` karakterleri geÃ§erli nitelik isimleri arasÄ±ndadÄ±r ve Vueâ€™nÃ¼n desteklendiÄŸi tÃ¼m tarayÄ±cÄ±lar tarafÄ±ndan doÄŸru bir ÅŸekilde okunabilir. AyrÄ±ca bunlar ekrana yansÄ±tÄ±lan nihai biÃ§imli metin iÃ§erisinde gÃ¶rÃ¼ntÃ¼lenmez. KÄ±saltma sentaksÄ± isteÄŸe baÄŸlÄ± olmakla beraber kullanÄ±mÄ±nÄ± daha yakÄ±ndan Ã¶ÄŸrendikÃ§e hoÅŸunuza gideceÄŸini dÃ¼ÅŸÃ¼nÃ¼yoruz.
