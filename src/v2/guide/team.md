@@ -1177,6 +1177,21 @@ order: 803
       ]
     },
     {
+      name: 'Rui Posse',
+      title: '',
+      city: 'London, UK',
+      languages: ['pt', 'en'],
+      work: {
+        role: 'Freelance Developer & Consultant',
+      },
+      github: 'ruiposse',
+      twitter: 'ruiposse',
+      links: [
+        'https://vuejs.london',
+        'https://ruiposse.com'
+      ]
+    },
+    {
       name: 'Filip Rakowski',
       title: 'eCommerce & PWA mastah',
       city: 'Wrocław, Poland',
