@@ -1,133 +1,133 @@
 ---
-title: Kurulum
+title: Installation
 type: guide
 order: 1
-vue_version: 2.06.2010
-gz_size: "33.30"
+vue_version: 2.5.16
+gz_size: "30.90"
 ---
 
-### Uyumluluk
+### Compatibility Note
 
-Vue, IE8 ve daha önceki versiyonları **desteklememektedir** zira ECMAScript 5’in IE8 için ayar katmanı gerçekleştirilemeyecek özelliklerini kullanır. Fakat [ECMAScript 5 ile uyumlu tarayıcıların](https://caniuse.com/#feat=es5) tamamını desteklemektedir.
+Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
 
-### Sürüm Detayları
+### Release Notes
 
-En son stabil versiyon: {{vue_version}}
+Latest stable version: {{vue_version}}
 
-Her versiyona ait detaylı sürüm detayları [GitHub](https://github.com/vuejs/vue/releases) üzerinde bulunabilir.
+Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
 
 ## Vue Devtools
 
-Vue’yi kullanırken aynı zamanda Vue uygulamalarınızı daha kullanıcı-dostu bir arayüz ile incelemenizi ve hata gidermenizi sağlamak üzere tarayıcınıza [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) eklentisini eklemenizi tavsiye ederiz.
+When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
 
-## Doğrudan `<script>` Etiketiyle Kullanma
+## Direct `<script>` Include
 
-Bilgisayarınıza indirin ve bir script HTML etiketi ile basit bir şekilde projelerinize dahil edin. `Vue` global bir değişken olarak kaydedilecektir.
+Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
-<p class="tip">Geliştirme sürecinde küçültülmüş versiyonu kullanmayın. Aksi takdirde sıkça rastlanan hatalara yönelik yararlı ikazları göremeyeceksiniz!</p>
+<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Geliştirme Versiyonu</a><span class="light info">Tüm ikazlar ve hata giderme modu ile birlikte</span>
+  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
 
-  <a class="button" href="/js/vue.min.js" download>Son Kullanıcı Versiyonu</a><span class="light info">İkazlar çıkarılmış olarak, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-Prototip geliştirme veya öğrenim amacıyla Vue’nin en güncel versiyonunu aşağıdaki şekilde kullanabilirsiniz:
+For prototyping or learning purposes, you can use the latest version with:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-Son kullanıcı ortamında belirli bir versiyon numarasını ve sürümünü hedefleyen bir bağlantı kullanmanızı tavsiye ederiz:
+For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
 
-Eğer natif ES Modülleri kullanıyorsanız ES Modüllerine uyumlu bir sürüm de mevcuttur:
+If you are using native ES Modules, there is also an ES Modules compatible build:
 
 ``` html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
 </script>
 ```
 
-NPM paketinin içeriğini [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) adresinde inceleyebilirsiniz.
+You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue aynı zamanda [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) ve [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) üzerinde de sunulmaktadır (cdnjs senkronizasyonu biraz zaman aldığından en son versiyon orada olmayabilir).
+Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
 
-[Vue’nin farklı sürümleri](#Explanation-of-Different-Builds) hakkında daha fazla bilgi edinmeyi ve kullanıcılara
- sunduğunuz site üzerinde `vue.js`yi `vue.min.js` ile değiştirerek **son kullanıcı versiyonunu** kullanmayı ihmal etmeyin. Bu, geliştirme deneyimi yerine hız sunmak üzere optimize edilmiş daha küçük bir sürümdür.
+Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
+ version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
 
 ## NPM
 
-Vue ile büyük çaplı uygulamalar inşa etmeniz durumunda NPM ile kurulumu tavsiye ederiz. [Webpack](https://webpack.js.org/) ve [Browserify](http://browserify.org/) gibi modül paketleyicileri ile gayet uyumludur. Vue aynı zamanda [Tek Sayfa Bileşenler](single-file-components.html) oluşturmak için yardımcı araçlar temin etmektedir.
+NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
 
 ``` bash
-# stabil en güncel versiyon
+# latest stable
 $ npm install vue
 ```
 
 ## CLI
 
-Vue, büyük çaplı Tek Sayfa Uygulamaları hızlı bir şekilde inşa etmeyi sağlayan [resmi bir CLI](https://github.com/vuejs/vue-cli)’yi (Komut Satırı Arayüzü) kullanıma sunar. Bu arayüz modern bir kullanıcı arayüzü geliştirme akışı sağlamaya yönelik kendisine yeten proje kurma seçenekleri temin eder. Otomatik güncellemeli, her kayıtta lint kontrollü ve son kullanıcı için hazır sürümleri hazırlayıp yürütmek yalnızca birkaç dakikanızı alacak. Detaylar için [Vue CLI dokümantasyonuna](https://cli.vuejs.org) bakın.
+Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
 
-<p class="tip">CLI, Node.js ve ilişkili proje kurma araçları hakkında bilgiye sahip olduğunuzu var sayar. Eğer Vue veya genel olarak kullanıcı arayüzüne yönelik proje kurma araçları sizin için yeni bir konsept ise CLI’yi kullanmadan önce herhangi bir proje kurma aracı kullanmadan <a href="./">kılavuzu</a> kılavuzu baştan sona okumanızı şiddetle tavsiye ederiz.</p>
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Vue Mastery’de bu konuyu açıklayan bir video izleyebilirsiniz</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
 
-## Farklı Sürümlere dair Açıklamalar
+## Explanation of Different Builds
 
-[NPM paketinin `dist/` klasöründe](https://cdn.jsdelivr.net/npm/vue/dist/) Vue.js’nin birçok farklı sürümünü bulabilirsiniz. Bu sürümler arasındaki farkların bir özetini aşağıda bulabilirsiniz:
+In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
-| | UMD | CommonJS | ES Module (paketleyiciler için) | ES Module (tarayıcılar için) |
+| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
-| **Tam** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-| **Yalnızca yürütme** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Tam (son kullanıcı için)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Yalnızca yürütme (son kullanıcı için)** | vue.runtime.min.js | - | - | - |
+| **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
+| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
-### Terimler
+### Terms
 
-- **Tam**: İçeriğinde hem derleyiciyi hem de yürütme ortamını barındıran sürümler.
+- **Full**: builds that contain both the compiler and the runtime.
 
-- **Derleyici**: Şablon dizgilerinin JavaScript modelleme fonksiyonlarına dönüştürmekten sorumlu kod.
+- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
 
-- **Yürütme ortamı**: Vue örneklerinin oluşturulmasından, sanal DOM’un modellenmesi ve güncellenmesinden, vs. sorumlu kod. Bir başka deyişle derleyici hariç her şey.
+- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD sürümleri tarayıcı içerisinde `<script>` etiketi aracılığıyla doğrudan kullanılabilir. jsDelivr CDN üzerinde [Https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) adresinde varsayılan seçenek olarak sunulan sürüm Yürütme ortamı + Derleyici UMD sürümüdür (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS sürümleri [browserify](http://browserify.org/) ve [webpack 1](https://webpack.github.io) gibi daha eski paketleyiciler ile birlikte kullanıma yöneliktir. Bu sürümlere ait varsayılan dosya (`pkg.main`), yalnızca Yürütme ortamını içeren CommonJS sürümüdür (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: 2.6 versiyonundan itibaren Vue, iki farklı ES Module (ESM) sürümü sunmaktadır:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
 
-  - Paketleyiciler için ESM: [webpack 2](https://webpack.js.org) ve [Rollup](https://rollupjs.org/) gibi modern paketleyiciler ile kullanıma yöneliktir. ESM formatı, paketleyicilerin “tree-shaking” işlemini gerçekleştirerek nihai paketinizden kullanılmayan kodların çıkarılabilmesi için istatistiksel olarak analiz edilebilir şekilde tasarlanmıştır. Bu paketleyicilere yönelik varsayılan dosya (`pkg.module`), yalnızca Yürütme ortamını içeren ES Module sürümüdür (`vue.runtime.esm.js`).
+  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
-  - Tarayıcılar için ESM (yalnızca 2.6+): Modern tarayıcılarda `<script type="module">` aracılığıyla doğrudan import gerçekleştirmeye yöneliktir.
+  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 
-### Yürütme Ortamı + Derleyici ile Yalnızca Yürütme Ortamı karşılaştırması
+### Runtime + Compiler vs. Runtime-only
 
-Eğer şablonları istemcinin sisteminde derlemeniz gerekiyorsa (örn. `template` seçeneğine bir dizgi eklenmesi veya DOM içerisindeki HTML değerini şablon olarak kullanmak üzere bir elemente bağlanmak) derleyiciye ve dolayısıyla tam sürüme ihtiyacınız olacaktır:
+If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
 
 ``` js
-// aşağıdaki derleyici gerektirir
+// this requires the compiler
 new Vue({
-  template: '<div>{{ selam }}</div>'
+  template: '<div>{{ hi }}</div>'
 })
 
-// aşağıdaki gerektirmez
+// this does not
 new Vue({
   render (h) {
-    return h('div', this.selam)
+    return h('div', this.hi)
   }
 })
 ```
 
-`vue-loader` veya `vueify` kullanıldığında `*.vue` dosyaları içerisindeki şablonlar yürütme zamanında JavaScript olarak bir önderleme sürecinden geçer. Bu durumda nihai paketinizde derleyiciye gerçekten ihtiyacınız yoktur ve yalnızca yürütme ortamı sürümünü kullanabilirsiniz.
+When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
 
-Yalnızca yürütme ortamı sürümleri tam sürüm versiyonlarına oranla yaklaşık %30 daha hafif olduğundan mümkün olan tüm durumlarda yalnızca yürütme ortamı sürümünü kullanmalısınız. Fakat yine de tam sürümü kullanmak isterseniz paketleyiciniz içerisinde bir alias belirlemeniz gerekecektir:
+Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
 
 #### Webpack
 
@@ -136,7 +136,7 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // webpack 1 için 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
     }
   }
 }
@@ -159,7 +159,7 @@ rollup({
 
 #### Browserify
 
-Projenizin `package.json` dosyasını ekleyin:
+Add to your project's `package.json`:
 
 ``` js
 {
@@ -172,7 +172,7 @@ Projenizin `package.json` dosyasını ekleyin:
 
 #### Parcel
 
-Projenizin `package.json` dosyasını ekleyin:
+Add to your project's `package.json`:
 
 ``` js
 {
@@ -183,17 +183,17 @@ Projenizin `package.json` dosyasını ekleyin:
 }
 ```
 
-### Geliştirme ve Son Kullanıcı Modları
+### Development vs. Production Mode
 
-Geliştirme/son kullanıcı modları UMD sürümlerinde doğrudan kodlanmıştır. Geliştirme süreci için küçültülmemiş dosyaları, son kullanıcı ortamı için küçültülmüş dosyaları kullanın.
+Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
 
-CommonJS ve ES Module sürümleri paketleyicilere yönelik olduğundan bu sürümler için küçültülmüş versiyon temin etmiyoruz. Nihai paketinizi kendiniz küçültmeniz gerekecek.
+CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
 
-CommonJS ve ES Module sürümleri `process.env.NODE_ENV`e yönelik ham kontrolleri de bünyesinde tutarak hangi modda olmaları gerektiğini tespit edebilirler. Vue’nin hangi modda faaliyet göstereceğini kontrol etmek üzere bu ortam değişkenlerini değiştirmek için uygun paket ayarlarını kullanmalısınız. `process.env.NODE_ENV`in harf dizileriyle değiştirilmesi UglifyJS gibi küçültücülerin yalnızca kod geliştirmeye yönelik kod parçalarını ayıklayarak nihai dosya boyutunu küçültmeye olanak tanır.
+CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
 
 #### Webpack
 
-Webpack 4+’da, `mode` seçeneğini kullanabilirsiniz:
+In Webpack 4+, you can use the `mode` option:
 
 ``` js
 module.exports = {
@@ -201,7 +201,7 @@ module.exports = {
 }
 ```
 
-Fakat Webpack 3 ve önceki versiyonlarında [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)i kullanmanız gerekecek:
+But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -221,7 +221,7 @@ module.exports = {
 
 #### Rollup
 
-[Rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)yi kullanın:
+Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -238,23 +238,23 @@ rollup({
 
 #### Browserify
 
-Paketinize global bir [envify](https://github.com/hughsk/envify) transformu uygulayın.
+Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Ayrıca bkz: [Son Kullanıcı Versiyonunu Kullanıma Sürme Tavsiyeleri](deployment.html).
+Also see [Production Deployment Tips](deployment.html).
 
-### CSP ortamları
+### CSP environments
 
-Chrome Apps gibi bazı ortamlar İçerik Güvenlik Politikasını (Content Security Policy - CSP) uygulamaya almıştır. Bu politika ifadelerin değerlendirilmesi sırasında `new Function()` gerçekleştirilmesini yasaklar. Tam sürüm şablonları derlemek için bu özelliği kullandığından bu tür ortamlarda kullanılmaları mümkün değildir.
+Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
 
-Fakat yalnızca yürütme ortamı sürümü CSP ile tamamen uyumludur. Yalnızca yürütme ortamı sürümünü [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) veya [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) ile birlikte kullanırken şablonlarınız önderleme sürecinde CSP ortamlarında sorunsuz bir şekilde çalışan `render` fonksiyonlarına dönüşecektir.
+On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
-## Vue Geliştirme Sürümü
+## Dev Build
 
-**Dikkat**: GitHub üzerindeki `/dist` dosyası yalnızca sürüm dağıtımları sırasında güncellenir. Vue’nin GitHub üzerindeki en güncel kaynak kodunu kullanmak için Vue’yi yerel ortamınızda tekrar kurmanız gerekecek!
+**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -265,13 +265,13 @@ npm run build
 
 ## Bower
 
-Bower ile yalnızca UMD sürümlerine erişim sağlayabilirsiniz.
+Only UMD builds are available from Bower.
 
 ``` bash
-# stabil en güncel versiyon
+# latest stable
 $ bower install vue
 ```
 
-## AMD Modül Yükleyicileri
+## AMD Module Loaders
 
-Bütün UMD sürümleri doğrudan bir AMD modülü olarak kullanılabilir.
+All UMD builds can be used directly as an AMD module.
