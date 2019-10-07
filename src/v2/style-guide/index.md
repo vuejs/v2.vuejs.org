@@ -3,52 +3,52 @@ title: Style Guide
 type: style-guide
 ---
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+Ini adalah panduan resmi gaya menulis kode yang spesifik untuk Vue . Jika kamu menggunakan Vue pada sebuah proyek, ini adalah referensi yang bagus untuk menghindari _error_/kesalahan, menghabiskan waktu pada hal remeh, dan pola-pola yang buruk. Meskipun begitu, kami tidak menganggap panduan gaya(_style-guide_) dalam kode apapun selalu bisa sesuai dengan setiap tim atau proyek, maka penyelewengan yang hati-hati dianjurkan berdasarkan pengalaman, teknologi penunjang lain yang digunakan, dan nilai yang dijunjung.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+Secara umum, kami menghindari saran tentang JavaScript atau HTML. Tidak masalah kamu menggunakan `;` atau `,`, apakah petik tunggal: `''`, atau ganda: `""` untuk nilai atribut. Meskipun beberapa pengecualian akan tetap ada, dimana kami dapati pola tertentu lebih membantu dalam konteks Vue.
 
-> **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
+> **Segera, kami juga akan menyediakan tips penunjang.** Terkadang kamu perlu disiplin, tapi sebisa mungkin, kami tunjukan bagaimana menggunakan ESLint dan proses otomasi lainnya untuk mempermudah.
 
-Finally, we've split rules into four categories:
-
-
-
-## Rule Categories
-
-### Priority A: Essential
-
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
-
-### Priority B: Strongly Recommended
-
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
-
-### Priority C: Recommended
-
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
-
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
-
-### Priority D: Use with Caution
-
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Terakhir, kami akan membagi aturannya ke 4 kategori:
 
 
 
-## Priority A Rules: Essential (Error Prevention)
+## Kategori Aturan
+
+### Prioritas A: Essential(Mendasar)
+
+Aturan-aturan ini membantu mencegah kesalahan, jadi pelajari dan patuhi dengan cara apa pun. Pengecualian mungkin ada, tetapi harus sangat jarang dan hanya dilakukan oleh mereka yang memiliki pengetahuan mendalam tentang JavaScript dan Vue.
+
+### Prioritas B: Sangat Dianjurkan
+
+Aturan-aturan ini didapati dapat meningkatkan keterbacaan(_readability_) dan / atau memudahkan developer di sebagian besar proyek. Kode akan tetap berjalan jika Kamu melanggarnya, tetapi pelanggaran harus jarang dan memiliki alasan yang dibenarkan.
+
+### Prioritas C: Disarankan
+
+Dimana terdapat banyak opsi yang sama-sama baik, opsi manapun dapat diterima selama dipastikan konsisten. Dalam aturan ini, kami menjelaskan setiap opsi yang dapat diterima dan menyarankan pilihan default. Itu berarti kamu bebas untuk membuat pilihan yang berbeda dalam basis kode kamu sendiri, selama kamu konsisten dan memiliki alasan yang bagus. Harap punya alasan yang bagus ya! Dengan beradaptasi dengan standar komunitas, kamu akan:
+
+1. melatih otak kamu untuk lebih mudah menguraikan sebagian besar kode dari komunitas yang kamu temui
+2. dapat menyalin dan menempelkan(_copy and paste_) sebagian besar contoh kode dari komunitas tanpa modifikasi
+3. sering menemukan karyawan baru sudah terbiasa dengan gaya pengkodean pilihan kamu, setidaknya dalam hal Vue
+
+### Prioritas D: Gunakan dengan Hati-hati
+
+Beberapa fitur Vue ada untuk mengakomodasi kasus yang langka atau migrasi yang lebih lancar dari basis kode lawas. Namun ketika digunakan secara berlebihan, mereka dapat membuat kode Kamu lebih sulit untuk dirawat(_maintain_) atau bahkan menjadi sumber bug. Aturan-aturan ini menerangkan fitur-fitur yang berpotensi berisiko, menjelaskan kapan dan mengapa mereka harus dihindari.
 
 
 
-### Multi-word component names <sup data-p="a">essential</sup>
+## Aturan Prioritas A : Essential (Mencegah _Error_)
 
-**Component names should always be multi-word, except for root `App` components.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+
+### Nama komponen dengan lebih dari satu kata <sup data-p="a">essential</sup>
+
+**Nama komponen harus selalu multi-kata, kecuali untuk komponen root `App`.**
+
+Ini [mencegah konflik](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) dengan elemen HTML yang ada dan yang akan datang, karena semua elemen HTML adalah satu kata.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 Vue.component('todo', {
@@ -65,7 +65,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 Vue.component('todo-item', {
@@ -83,11 +83,11 @@ export default {
 
 
 
-### Component data <sup data-p="a">essential</sup>
+### Komponen data <sup data-p="a">essential</sup>
 
-**Component `data` must be a function.**
+**Komponen `data` harus berupa fungsi(_function_).**
 
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+Saat menggunakan properti `data` pada komponen (contoh. Di mana saja kecuali pada `new Vue`), nilai harus berupa fungsi yang mengembalikan objek.
 
 {% raw %}
 <details>
@@ -96,7 +96,7 @@ When using the `data` property on a component (i.e. anywhere except on `new Vue`
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+Ketika nilai `data` adalah objek, itu dibagi di semua _instance_ komponen. Bayangkan, misalnya, komponen `TodoList` dengan data ini:
 
 ``` js
 data: {
@@ -105,9 +105,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+Kita mungkin ingin menggunakan lagi komponen ini, untuk memungkinkan pengguna(_user_) mempertahankan beberapa daftar (contoh. Untuk belanja, daftar harapan(_wishlists_), tugas harian, dll). Tapi ada masalah. Karena setiap _instance_ komponen merujuk ke objek data yang sama, mengubah judul satu daftar juga akan mengubah judul setiap daftar lainnya. Hal yang sama berlaku untuk menambahkan / mengedit / menghapus todo.
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+Sebagai gantinya, kita ingin setiap _instance_ komponen hanya mengelola datanya sendiri. Agar itu terjadi, setiap _instance_ harus menghasilkan objek data yang unik. Dalam JavaScript, ini dapat dilakukan dengan suatu fungsi yang mengembalikan(_return_) objek:
 
 ``` js
 data: function () {
@@ -120,7 +120,7 @@ data: function () {
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 Vue.component('some-comp', {
@@ -140,7 +140,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 ``` js
 Vue.component('some-comp', {
   data: function () {
@@ -163,9 +163,9 @@ export default {
 ```
 
 ``` js
-// It's OK to use an object directly in a root
-// Vue instance, since only a single instance
-// will ever exist.
+// Tidak masalah menggunakan objek langsung di 
+// _instance_ root Vue, karena hanya akan ada
+// satu _instance_.
 new Vue({
   data: {
     foo: 'bar'
@@ -176,11 +176,11 @@ new Vue({
 
 
 
-### Prop definitions <sup data-p="a">essential</sup>
+### Definisi prop <sup data-p="a">essential</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Definisi prop harus sedetail mungkin.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+Dalam kode yang dikomit, definisi prop harus selalu sedetail mungkin, setidaknya menentukan jenis(_type_).
 
 {% raw %}
 <details>
@@ -189,24 +189,24 @@ In committed code, prop definitions should always be as detailed as possible, sp
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+[definisi prop](https://vuejs.org/v2/guide/components.html#Prop-Validation) yang detail memiliki dua keuntungan:
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- Mereka mendokumentasikan API dari komponen, sehingga mudah untuk melihat bagaimana komponen itu dimaksudkan untuk digunakan.
+- Dalam pengembangan(_development_), Vue akan memperingatkan kamu jika suatu komponen menyediakan prop yang diformat salah, membantu kamu menangkap sumber kesalahan potensial.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
-// This is only OK when prototyping
+// Hanya boleh ketika _prototyping_
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 props: {
@@ -215,7 +215,7 @@ props: {
 ```
 
 ``` js
-// Even better!
+// Lebih bagus lagi!
 props: {
   status: {
     type: String,
@@ -235,11 +235,11 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">essential</sup>
+### `v-for` dengan key <sup data-p="a">essential</sup>
 
-**Always use `key` with `v-for`.**
+**Selalu gunakan `v-for` dengan `key`.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+`v-for` dengan `key` _selalu_ digandengkan pada komponen, untuk mempertahankan status internal komponen di bawah subtree. Bahkan untuk elemen, ini adalah praktik yang baik untuk mempertahankan perilaku yang dapat diprediksi, seperti [konstanta objek](https://bost.ocks.org/mike/constancy/) dalam animasi.
 
 {% raw %}
 <details>
@@ -248,7 +248,7 @@ props: {
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+Katakanlah kamu memiliki daftar todos:
 
 ``` js
 data: function () {
@@ -267,16 +267,16 @@ data: function () {
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+Kemudian kamu mengurutkannya berdasarkan abjad. Saat memperbarui DOM, Vue akan mengoptimalkan rendering untuk melakukan mutasi DOM se-efisien mungkin. Itu mungkin berarti menghapus elemen todo pertama, lalu menambahkannya lagi di akhir daftar.
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+Masalahnya adalah, ada kasus di mana penting untuk tidak menghapus elemen yang akan tetap ada di DOM. Misalnya, kamu mungkin ingin menggunakan `<transition-group>` untuk animasi penyortiran daftar, atau mempertahankan fokus jika elemen yang diberikan adalah `<input>`. Dalam kasus ini, menambahkan kunci unik untuk setiap item (contoh. `:key="todo.id"`) akan memberi tahu Vue bagaimana berperilaku lebih dapat diprediksi.
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+Dalam pengalaman kami, lebih baik untuk _selalu_ menambahkan kunci unik, sehingga kamu dan tim kamu tidak perlu khawatir tentang kasus kecil ini. Kemudian dalam skenario langka, performa-kritis di mana konstansi objek tidak diperlukan, kamu dapat membuat pengecualian secara sadar.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <ul>
@@ -288,7 +288,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <ul>
@@ -304,15 +304,15 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+### Hindari `v-if` dengan `v-for` <sup data-p="a">essential</sup>
 
-**Never use `v-if` on the same element as `v-for`.**
+**Jangan pernah gunakan `v-if` dan `v-for` pada satu elemen yang sama.**
 
-There are two common cases where this can be tempting:
+Ada dua kasus umum di mana ini bisa menggoda:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- Untuk memfilter item dalam daftar (contoh. `v-for="user in users" v-if="user.isActive"`). Dalam kasus ini, ganti `users` dengan properti baru yang mengembalikan daftar yang telah difilter (contoh.`activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- Untuk menghindari render daftar jika harus disembunyikan (contoh. `v-for="user in users" v-if="shouldShowUsers"`). Dalam kasus ini, pindahkan `v-if` kedalam wadah elemen lain (contoh.` ul`, `ol`).
 
 {% raw %}
 <details>
@@ -321,7 +321,7 @@ There are two common cases where this can be tempting:
 </summary>
 {% endraw %}
 
-When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+Ketika Vue memproses direktif, `v-for` memiliki prioritas lebih daripada `v-if`, maka templat ini:
 
 ``` html
 <ul>
@@ -335,7 +335,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
 </ul>
 ```
 
-Will be evaluated similar to:
+Akan dievaluasi serupa dengan:
 
 ``` js
 this.users.map(function (user) {
@@ -345,9 +345,9 @@ this.users.map(function (user) {
 })
 ```
 
-So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
+Jadi, bahkan jika kita hanya membuat elemen untuk sebagian kecil pengguna, kita harus mengiterasi seluruh daftar setiap kali kita merender ulang, apakah set pengguna aktif telah berubah atau tidak.
 
-By iterating over a computed property instead, like this:
+Alih-alih dengan mengiterasi properti yang telah dikomputasi, seperti ini:
 
 ``` js
 computed: {
@@ -370,13 +370,13 @@ computed: {
 </ul>
 ```
 
-We get the following benefits:
+Kita mendapatkan keuntungan berikut:
 
-- The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
-- Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
-- Logic is now decoupled from the presentation layer, making maintenance (change/extension of logic) much easier.
+- Daftar yang difilter akan dievaluasi kembali hanya jika ada perubahan yang relevan pada array `users`, membuat penyaringan/filter jauh lebih efisien.
+- Menggunakan `v-for="user in activeUsers"`, kita _hanya_ mengiterasi pengguna aktif(`activeUsers`) selama render, menjadikan rendering jauh lebih efisien.
+- Logika sekarang dipisahkan dari lapisan presentasi, membuat pemeliharaan (perubahan / perluasan logika) jauh lebih mudah.
 
-We get similar benefits from updating:
+Kita mendapatkan manfaat serupa dari memperbarui:
 
 ``` html
 <ul>
@@ -390,7 +390,7 @@ We get similar benefits from updating:
 </ul>
 ```
 
-to:
+ke:
 
 ``` html
 <ul v-if="shouldShowUsers">
@@ -403,12 +403,12 @@ to:
 </ul>
 ```
 
-By moving the `v-if` to a container element, we're no longer checking `shouldShowUsers` for _every_ user in the list. Instead, we check it once and don't even evaluate the `v-for` if `shouldShowUsers` is false.
+Dengan memindahkan `v-if` ke elemen wadah lain, kita tidak melakukan pengecekan `shouldShowUsers` untuk _setiap_ pengguna dalam daftar. Alih-alih, kita mengecek sekali and tidak mengevaluasi `v-for` jika `shouldShowUsers` bernilai false.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <ul>
@@ -436,7 +436,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <ul>
@@ -463,15 +463,15 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### Lingkup komponen gaya(_style_) <sup data-p="a">essential</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**Untuk aplikasi, gaya dalam komponen tingkat atas `App` dan komponen tata letak(_layout_) mungkin bersifat global, tetapi semua komponen lainnya harus selalu dilingkup(_scoped_).**
 
-This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+Untuk [single-file components](../guide/single-file-components.html). _tidak_ harus menggunakan [`scoped` atribut](https://vue-loader.vuejs.org/en/features/scoped-css.html). membuat lingkupan bisa melalui [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), strategi berbasis kelas seperti [BEM](http://getbem.com/), atau pustaka(_library/convention_) lainnya.
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
+**Catatan, Pustaka komponen, harus lebih memilih strategi berbasis kelas daripada menggunakan atribut `scoped`.**
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+Ini akan memudahkan untuk mengesampingkan(_overriding_) gaya internal, dengan nama kelas yang dapat dibaca manusia , tidak terlalu spesifik, tetapi cukup untuk menghindari konflik.
 
 {% raw %}
 <details>
@@ -480,14 +480,14 @@ This makes overriding internal styles easier, with human-readable class names th
 </summary>
 {% endraw %}
 
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+Jika kamu mengembangkan proyek besar, bekerja dengan pengembang lain, atau terkadang menyertakan HTML / CSS pihak ketiga (contoh. Dari Auth0), pelingkupan yang konsisten akan memastikan bahwa gaya kamu hanya berlaku untuk komponen yang dimaksudkan untuknya.
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+Di luar atribut `scoped`, menggunakan nama kelas unik dapat membantu memastikan bahwa CSS pihak ketiga tidak berlaku untuk HTML milikmu. Misalnya, banyak proyek menggunakan nama kelas `button`,`btn`, atau `icon`, jadi walaupun tidak menggunakan strategi seperti BEM, menambahkan awalan unik-aplikasi dan / atau komponen-spesifik (contoh.`ButtonClose-icon`) dapat memberikan perlindungan.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <template>
@@ -503,14 +503,14 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <template>
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the `scoped` attribute -->
+<!-- menggunakan `scoped` atribut -->
 <style scoped>
 .button {
   border: none;
@@ -528,7 +528,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- menggunakan CSS modules -->
 <style module>
 .button {
   border: none;
@@ -546,7 +546,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- menggunakan konvensi BEM -->
 <style>
 .c-Button {
   border: none;
@@ -562,9 +562,9 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">essential</sup>
+### Nama properti pribadi <sup data-p="a">essential</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Selalu gunakan awalan `$_` properti pribadi khusus dalam plugin, mixin, dll. Kemudian untuk menghindari konflik dengan kode oleh penulis lain, sertakan juga lingkup bernama(_name scoped_) (contoh. `$_namaPluginMu`).**
 
 {% raw %}
 <details>
@@ -573,16 +573,16 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue menggunakan awalan `_` untuk mendefinisikan properti pribadinya sendiri, jadi menggunakan awalan yang sama (contoh.`_update`) berisiko menimpa properti _instance_. Bahkan jika kamu memeriksa dan Vue saat ini tidak menggunakan nama properti tertentu, tidak ada jaminan konflik tidak akan muncul di versi yang lebih baru.
 
-As for the `$` prefix, its purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+Sedangkan untuk awalan `$`, tujuannya dalam ekosistem Vue adalah properti _instance_ khusus yang diekspos kepada pengguna, jadi menggunakannya untuk properti pribadi(_private_) tidak akan sesuai.
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+Sebagai gantinya, kami menyarankan untuk menggabungkan dua awalan menjadi `$_`, sebagai konvensi untuk properti pribadi yang ditentukan pengguna yang menjamin tidak ada konflik dengan Vue.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 var myGreatMixin = {
@@ -631,7 +631,7 @@ var myGreatMixin = {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 var myGreatMixin = {
@@ -647,18 +647,18 @@ var myGreatMixin = {
 
 
 
-## Priority B Rules: Strongly Recommended (Improving Readability)
+## Aturan Prioritas B: Sangat dianjurkan (Meningkatkan Keterbacaan/_Readability_)
 
 
 
-### Component files <sup data-p="b">strongly recommended</sup>
+### File komponen <sup data-p="b">sangat dianjurkan</sup>
 
-**Whenever a build system is available to concatenate files, each component should be in its own file.**
+**Setiap kali sistem build tersedia untuk menggabungkan file, setiap komponen harus dalam file sendiri.**
 
-This helps you to more quickly find a component when you need to edit it or review how to use it.
+Ini membantu kamu untuk lebih cepat menemukan komponen ketika kamu perlu mengeditnya atau meninjau cara menggunakannya.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 Vue.component('TodoList', {
@@ -672,7 +672,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -689,14 +689,14 @@ components/
 
 
 
-### Single-file component filename casing <sup data-p="b">strongly recommended</sup>
+### Aturan huruf nama file single-file komponen <sup data-p="b">sangat dianjurkan</sup>
 
-**Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
+**Nama file [komponen file tunggal](../guide/single-file-components.html) harus selalu PascalCase atau kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
+PascalCase bekerja paling baik dengan pelengkapan otomatis dalam editor kode, karena konsisten dengan bagaimana kita mereferensikan komponen dalam JS (X) dan templat. Namun, nama file dengan campuran huruf kapital dan tidak kadang-kadang dapat membuat masalah pada sistem file yang tidak sensitif terhadap huruf kapital, yang mengapa penggunaan kebab-case juga dapat diterima.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -710,7 +710,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -725,9 +725,9 @@ components/
 
 
 
-### Base component names <sup data-p="b">strongly recommended</sup>
+### Nama komponen dasar <sup data-p="b">sangat dianjurkan</sup>
 
-**Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
+**Komponen dasar (contoh. komponen presentasi, bodoh(_dumb_), atau murni) yang menerapkan gaya dan konvensi khusus aplikasi semua harus dimulai dengan awalan tertentu, seperti `Base`,`App`, atau `V`.**
 
 {% raw %}
 <details>
@@ -736,23 +736,23 @@ components/
 </summary>
 {% endraw %}
 
-These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
+Komponen-komponen ini menjadi dasar untuk gaya dan perilaku yang konsisten dalam aplikasi kamu. Komponen ini **hanya** mungkin tersusun dari:
 
-- HTML elements,
-- other base components, and
-- 3rd-party UI components.
+- Elemen HTML,
+- komponen dasar lainnya, dan
+- Komponen UI pihak ketiga.
 
-But they'll **never** contain global state (e.g. from a Vuex store).
+Tetapi mereka **tidak boleh** memiliki keadaan(_state_) global (contoh. Dari toko(_store_) Vuex).
 
-Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
+Nama mereka sering menyertakan nama elemen yang mereka bungkus (contoh. `BaseButton`,`BaseTable`), kecuali tidak ada elemen untuk tujuan spesifik mereka (contoh. `BaseIcon`). Jika kamu membuat komponen serupa untuk konteks yang lebih spesifik, mereka akan hampir selalu mengkonsumsi komponen-komponen ini (contoh. `BaseButton` dapat digunakan dalam `ButtonSubmit`).
 
-Some advantages of this convention:
+Beberapa keuntungan dari konvensi ini:
 
-- When organized alphabetically in editors, your app's base components are all listed together, making them easier to identify.
+- Ketika disusun menurut abjad dalam editor, komponen dasar aplikasi kamu semuanya terdaftar bersama, sehingga lebih mudah diidentifikasi.
 
-- Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
+- Karena nama komponen harus selalu multi-kata, konvensi ini mencegah kamu dari keharusan memilih awalan acak untuk pembungkus komponen sederhana (contoh. `MyButton`, `VueButton`).
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
+- Karena komponen ini sangat sering digunakan, kamu mungkin ingin membuatnya menjadi global alih-alih mengimpornya ke mana-mana. Awalan memungkinkan ini dengan memanfaatkan Webpack:
 
   ``` js
   var requireComponent = require.context("./src", true, /^Base[A-Z]/)
@@ -771,7 +771,7 @@ Some advantages of this convention:
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -782,7 +782,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -808,14 +808,14 @@ components/
 
 
 
-### Single-instance component names <sup data-p="b">strongly recommended</sup>
+### Nama komponen single-instance <sup data-p="b">sangat dianjurkan</sup>
 
-**Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
+**Komponen yang seharusnya hanya memiliki satu _instance_ aktif harus dimulai dengan awalan `The`, untuk menyatakan bahwa hanya akan ada satu.**
 
-This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
+Ini tidak berarti komponen hanya digunakan dalam satu halaman, tetapi hanya akan digunakan sekali _per halaman_. Komponen-komponen ini tidak pernah menerima prop, karena mereka khusus untuk aplikasi kamu, bukan konteksnya dalam aplikasi kamu. Jika kamu merasa perlu menambahkan prop, ini merupakan indikasi yang baik bahwa ini sebenarnya komponen yang dapat digunakan kembali yang hanya digunakan sekali per halaman _untuk saat ini_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -825,7 +825,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -836,11 +836,11 @@ components/
 
 
 
-### Tightly coupled component names <sup data-p="b">strongly recommended</sup>
+### Nama komponen yang tergabung dengan erat  <sup data-p="b">sangat dianjurkan</sup>
 
-**Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
+**Komponen anak yang dipasangkan dengan induknya harus menyertakan nama komponen induk sebagai awalan.**
 
-If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
+Jika komponen hanya menjadi jelas / mungkin dalam konteks komponen induk, hubungan itu harus jelas dalam namanya. Karena editor biasanya mengatur file berdasarkan abjad, ini akan membuat file berkaitan bersebelahan.
 
 {% raw %}
 <details>
@@ -849,8 +849,7 @@ If a component only makes sense in the context of a single parent component, tha
 </summary>
 {% endraw %}
 
-You might be tempted to solve this problem by nesting child components in directories named after their parent. For example:
-
+Kamu mungkin tergoda untuk memecahkan masalah ini dengan memasukkan komponen anak di direktori yang dinamai dengan induknya. Sebagai contoh:
 ```
 components/
 |- TodoList/
@@ -860,7 +859,7 @@ components/
    |- index.vue
 ```
 
-or:
+atau:
 
 ```
 components/
@@ -871,15 +870,15 @@ components/
 |- TodoList.vue
 ```
 
-This isn't recommended, as it results in:
+Ini tidak direkomendasikan, karena menghasilkan:
 
-- Many files with similar names, making rapid file switching in code editors more difficult.
-- Many nested sub-directories, which increases the time it takes to browse components in an editor's sidebar.
+- Banyak file dengan nama yang mirip, membuat pengalihan file dengan cepat dalam editor kode lebih sulit.
+- Banyak sub-direktori bersarang, yang meningkatkan waktu yang diperlukan untuk menelusuri komponen di bilah sisi(_sidebar_) editor.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -896,7 +895,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -914,9 +913,9 @@ components/
 
 
 
-### Order of words in component names <sup data-p="b">strongly recommended</sup>
+### Urutan kata dalam nama komponen <sup data-p="b">sangat dianjurkan</sup>
 
-**Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
+**Nama-nama komponen harus dimulai dengan kata-kata level tertinggi (seringkali paling umum) dan diakhiri dengan kata-kata pengubah deskriptif.**
 
 {% raw %}
 <details>
@@ -925,19 +924,20 @@ components/
 </summary>
 {% endraw %}
 
-You may be wondering:
+Kamu mungkin bertanya-tanya:
 
-> "Why would we force component names to use less natural language?"
+> "Mengapa kita memaksakan nama komponen untuk menggunakan bahasa yang kurang alami?"
 
-In natural English, adjectives and other descriptors do typically appear before the nouns, while exceptions require connector words. For example:
+Dalam bahasa Inggris alami, kata sifat dan deskriptor lain biasanya muncul sebelum kata benda, sementara pengecualian membutuhkan kata-kata penghubung. Sebagai contoh:
 
 - Coffee _with_ milk
 - Soup _of the_ day
 - Visitor _to the_ museum
 
-You can definitely include these connector words in component names if you'd like, but the order is still important.
+Kamu pasti dapat memasukkan kata-kata penghubung ini dalam nama komponen jika kamu mau, tetapi urutannya tetap penting.
 
-Also note that **what's considered "highest-level" will be contextual to your app**. For example, imagine an app with a search form. It may include components like this one:
+Juga perhatikan bahwa **apa yang dianggap "level tertinggi" akan kontekstual untuk aplikasi kamu.**Misalnya, bayangkan aplikasi dengan formulir pencarian. Ini mungkin termasuk komponen seperti ini:
+:
 
 ```
 components/
@@ -949,7 +949,7 @@ components/
 |- TermsCheckbox.vue
 ```
 
-As you might notice, it's quite difficult to see which components are specific to the search. Now let's rename the components according to the rule:
+Seperti yang mungkin kamu perhatikan, sangat sulit untuk melihat komponen mana yang spesifik untuk pencarian(_search_). Sekarang mari kita ganti nama komponen sesuai aturan:
 
 ```
 components/
@@ -961,18 +961,18 @@ components/
 |- SettingsCheckboxTerms.vue
 ```
 
-Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
+Karena editor biasanya mengatur file secara alfabet, semua hubungan penting antara komponen sekarang terlihat jelas.
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend considering this approach in very large apps (e.g. 100+ components), for these reasons:
+Kamu mungkin tergoda untuk memecahkan masalah ini secara berbeda, mengumpulkan semua komponen pencarian di bawah direktori "search", lalu semua komponen pengaturan di bawah direktori "settings". Kami hanya menyarankan mempertimbangkan pendekatan ini di aplikasi yang sangat besar (contoh. 100+ komponen), karena alasan ini:
 
-- It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
-- Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
-- Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
+- Biasanya dibutuhkan lebih banyak waktu untuk menavigasi melalui sub-direktori yang bersarang, daripada menggulir melalui direktori `components` tunggal.
+- Konflik nama (contoh. Beberapa komponen `ButtonDelete.vue`) membuatnya lebih sulit untuk bernavigasi dengan cepat ke komponen tertentu dalam editor kode.
+- _Refactoring_ menjadi lebih sulit, karena menemukan dan mengganti seringkali tidak cukup untuk memperbarui referensi relatif ke komponen yang dipindahkan.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -986,7 +986,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -1001,16 +1001,16 @@ components/
 
 
 
-### Self-closing components <sup data-p="b">strongly recommended</sup>
+### Komponen yang dapat ditutup sendiri  <sup data-p="b">sangat dianjurkan</sup>
 
-**Components with no content should be self-closing in [single-file components](../guide/single-file-components.html), string templates, and [JSX](../guide/render-function.html#JSX) - but never in DOM templates.**
+**Komponen tanpa konten harus ditutup sendiri di [komponen file tunggal](../guide/single-file-components.html), templat string, dan [JSX](../guide/render-function.html#JSX) - tetapi tidak boleh di templat DOM.**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
+Komponen yang menutup sendiri mengkomunikasin bahwa mereka tidak hanya tidak memiliki konten, tetapi **dimaksudkan** untuk tidak memiliki konten. Seperti perbedaan antara halaman kosong di buku dan yang berlabel "Halaman ini sengaja dikosongkan." Kode kamu juga lebih bersih tanpa tag penutup yang tidak perlu.
 
-Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
+Sayangnya, HTML tidak mengizinkan elemen khusus untuk ditutup sendiri - hanya elemen [resmi kekosongan(_"void"_)](https://www.w3.org/TR/html/syntax.html#void-elements). Itulah sebabnya strategi ini hanya mungkin ketika kompiler templat Vue dapat mencapai templat sebelum DOM, kemudian melayani HTML yang memenuhi spesifikasi DOM.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <!-- In single-file components, string templates, and JSX -->
@@ -1024,7 +1024,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <!-- In single-file components, string templates, and JSX -->
@@ -1039,65 +1039,65 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 
 
-### Component name casing in templates <sup data-p="b">strongly recommended</sup>
+### Aturan huruf nama komponen dalam templat <sup data-p="b">sangat dianjurkan</sup>
 
-**In most projects, component names should always be PascalCase in [single-file components](../guide/single-file-components.html) and string templates - but kebab-case in DOM templates.**
+**Dalam kebanyakan proyek, nama komponen harus selalu PascalCase di [komponen file tunggal](../guide/single-file-components.html) dan templat string - tetapi kebab-case dalam templat DOM.**
 
-PascalCase has a few advantages over kebab-case:
+PascalCase memiliki beberapa keunggulan dibandingkan kebab-case:
 
-- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
-- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
-- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+- Editor dapat melengkapi nama komponen secara otomatis dalam templat, karena PascalCase juga digunakan dalam JavaScript.
+- `<MyComponent>` lebih berbeda secara visual dari elemen HTML yang satu kata daripada `<my-component>`, karena ada dua perbedaan karakter (dua huruf kapital), daripada hanya satu (tanda hubung).
+- Jika kamu menggunakan elemen khusus non-Vue dalam templat kamu, seperti komponen web, PascalCase memastikan bahwa komponen Vue kamu tetap terlihat jelas.
 
-Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
+Sayangnya, karena ketidakpekaan huruf HTML, templat DOM masih harus menggunakan kebab-case.
 
-Also note that if you've already invested heavily in kebab-case, consistency with HTML conventions and being able to use the same casing across all your projects may be more important than the advantages listed above. In those cases, **using kebab-case everywhere is also acceptable.**
+Juga perhatikan bahwa jika kamu sudah terlanjur banyak menggunakan kebab-case, konsistensi dengan konvensi HTML dan dapat menggunakan aturan huruf(_casing_) yang sama di semua proyek kamu mungkin lebih penting daripada keuntungan yang tercantum di atas. Dalam kasus tersebut, **menggunakan kebab-case di manapun juga dapat diterima.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Di single-file components dan string templates -->
 <mycomponent/>
 ```
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Di single-file components dan string templates -->
 <myComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Di DOM templates -->
 <MyComponent></MyComponent>
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Di single-file components dan string templates -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Di DOM templates -->
 <my-component></my-component>
 ```
 
-OR
+ATAU
 
 ``` html
-<!-- Everywhere -->
+<!-- Dimanapun -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
 
 
 
-### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
+### Aturan huruf nama komponen pada JS/JSX <sup data-p="b">sangat dianjurkan</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**Nama komponen dalam JS / [JSX](../guide/render-function.html#JSX) harus selalu PascalCase, meskipun mereka mungkin kebab-case di dalam string untuk aplikasi yang lebih sederhana yang hanya menggunakan registrasi komponen global melalui `Vue.component`.**
 
 {% raw %}
 <details>
@@ -1106,17 +1106,17 @@ OR
 </summary>
 {% endraw %}
 
-In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
+Dalam JavaScript, PascalCase adalah konvensi untuk kelas dan konstruktor prototipe - pada dasarnya, apa pun yang dapat memiliki _instance_ berbeda. Komponen Vue juga memiliki _instance_, jadi masuk akal juga menggunakan PascalCase. Sebagai manfaat tambahan, menggunakan PascalCase dalam JSX (dan templat) memungkinkan pembaca kode untuk lebih mudah membedakan antara komponen dan elemen HTML.
 
-However, for applications that use **only** global component definitions via `Vue.component`, we recommend kebab-case instead. The reasons are:
+Namun, untuk aplikasi yang **hanya** menggunakan definisi komponen global melalui `Vue.component`, kami sarankan kebab-case. Alasannya adalah:
 
-- It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
-- These applications always include many in-DOM templates, where [kebab-case **must** be used](#Component-name-casing-in-templates-strongly-recommended).
+- Jarang sekali komponen global direferensikan dalam JavaScript, jadi mengikuti konvensi untuk JavaScript kurang masuk akal.
+- Aplikasi ini selalu menyertakan banyak templat di-DOM, yang mana [**harus** menggunakan kebab-case](#Component-name-casing-in-templates-strongly-recommended).
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 Vue.component('myComponent', {
@@ -1144,7 +1144,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 Vue.component('MyComponent', {
@@ -1172,14 +1172,15 @@ export default {
 
 
 
-### Full-word component names <sup data-p="b">strongly recommended</sup>
+### Nama komponen dengan kata lengkap <sup data-p="b">sangat dianjurkan</sup>
 
-**Component names should prefer full words over abbreviations.**
 
-The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
+**Nama komponen harus lebih mengutamakan kata yang lengkap daripada singkatan.**
+
+Pelengkap otomatis(_autocompletion_) dalam editor membuat 'biaya' penulisan nama yang lebih panjang menjadi sangat rendah, sementara kejelasan yang mereka berikan sangat berharga. Singkatan yang tidak biasa, khususnya, harus selalu dihindari.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ```
 components/
@@ -1189,7 +1190,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ```
 components/
@@ -1200,14 +1201,14 @@ components/
 
 
 
-### Prop name casing <sup data-p="b">strongly recommended</sup>
+### Aturan huruf nama prop <sup data-p="b">sangat dianjurkan</sup>
 
-**Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#JSX).**
+**Nama prop harus selalu menggunakan camelCase ketika deklarasi, tetapi  menggunakan kebab-case di templat dan [JSX](../guide/render-function.html#JSX).**
 
-We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
+Kami hanya mengikuti konvensi masing-masing bahasa. Dalam JavaScript, camelCase lebih alami. Dalam HTML, yang alami adalah kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 props: {
@@ -1221,7 +1222,7 @@ props: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 props: {
@@ -1236,14 +1237,14 @@ props: {
 
 
 
-### Multi-attribute elements <sup data-p="b">strongly recommended</sup>
+### ### Elemen multi-atribut <sup data-p="b">sangat dianjurkan</sup>
 
-**Elements with multiple attributes should span multiple lines, with one attribute per line.**
+**Elemen dengan banyak atribut harus menjangkau beberapa baris, dengan satu atribut per baris.**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#JSX) deserve the same consideration.
+Dalam JavaScript, menulis objek dengan beberapa properti pada beberapa baris secara luas dianggap sebagai konvensi yang bagus, karena jauh lebih mudah dibaca. Templat dan [JSX](../guide/render-function.html#JSX) kami pandang layak mendapatkan pertimbangan yang sama.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
@@ -1255,7 +1256,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <img
@@ -1275,14 +1276,14 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
-### Simple expressions in templates <sup data-p="b">strongly recommended</sup>
+### Ekspresi sederhana pada templat <sup data-p="b">sangat dianjurkan</sup>
 
-**Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
+**Templat komponen hanya boleh menyertakan ekspresi sederhana, dengan ekspresi yang lebih kompleks di-_refactor_ menjadi properti atau metode yang yang telah dikomputasi.**
 
-Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
+Ekspresi kompleks dalam templat kamu membuatnya kurang deklaratif. Kita harus berusaha menggambarkan _apa_ yang akan muncul, bukan _bagaimana_ kita menghitung nilai itu. Properti dan metode yang dikomputasi juga memungkinkan kode untuk digunakan kembali.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 {{
@@ -1294,7 +1295,7 @@ Complex expressions in your templates make them less declarative. We should stri
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <!-- In a template -->
@@ -1315,9 +1316,10 @@ computed: {
 
 
 
-### Simple computed properties <sup data-p="b">strongly recommended</sup>
+### Properti terkomputasi yang sederhana <sup data-p="b">sangat dianjurkan</sup>
 
-**Complex computed properties should be split into as many simpler properties as possible.**
+
+**Properti terkomputasi yang kompleks harus dipecah menjadi properti yang lebih sederhana sebanyak mungkin.**
 
 {% raw %}
 <details>
@@ -1326,26 +1328,26 @@ computed: {
 </summary>
 {% endraw %}
 
-Simpler, well-named computed properties are:
+Properti dengan penamaan baik, terkomputasi sederhana adalah yang:
 
-- __Easier to test__
+- __Lebih mudah untuk diuji__
 
-  When each computed property contains only a very simple expression, with very few dependencies, it's much easier to write tests confirming that it works correctly.
+   Ketika setiap properti yang dikomputasi hanya mengandung ekspresi yang sangat sederhana, dengan sangat sedikit dependensi, akan lebih mudah untuk menulis tes yang mengonfirmasi bahwa itu berfungsi dengan benar.
 
-- __Easier to read__
+- __Lebih mudah dibaca__
 
-  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+   Menyederhanakan properti yang dihitung memaksa kamu untuk memberikan setiap nilai nama deskriptif, meskipun itu tidak digunakan kembali. Ini membuatnya lebih mudah bagi pengembang lain (dan masa depan kamu) untuk fokus pada kode yang mereka pedulikan dan mencari tahu apa yang terjadi.
 
-- __More adaptable to changing requirements__
+- __Lebih mudah beradaptasi dengan perubahan persyaratan/kebutuhan__
 
-  Any value that can be named might be useful to the view. For example, we might decide to display a message telling the user how much money they saved. We might also decide to calculate sales tax, but perhaps display it separately, rather than as part of the final price.
+   Nilai apa pun yang dapat dinamai mungkin berguna untuk tampilan. Misalnya, kami mungkin memutuskan untuk menampilkan pesan yang memberi tahu pengguna berapa banyak uang yang mereka simpan. Kami mungkin juga memutuskan untuk menghitung pajak penjualan, tetapi mungkin menampilkannya secara terpisah, bukan sebagai bagian dari harga akhir.
 
-  Small, focused computed properties make fewer assumptions about how information will be used, so require less refactoring as requirements change.
+   Properti terkomputasi yang kecil dan terfokus membuat asumsi yang lebih sedikit tentang bagaimana informasi akan digunakan, sehingga memerlukan lebih sedikit _refactoring_ ketika persyaratan/kebutuhan berubah.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 computed: {
@@ -1361,7 +1363,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 computed: {
@@ -1380,14 +1382,14 @@ computed: {
 
 
 
-### Quoted attribute values <sup data-p="b">strongly recommended</sup>
+### Nilai atribut yang dikutip <sup data-p="b">sangat dianjurkan</sup>
 
-**Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
+**Nilai atribut HTML yang tidak kosong harus selalu berada di dalam tanda kutip (tunggal atau ganda, mana saja yang tidak digunakan dalam JS).**
 
-While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
+Meskipun nilai atribut tanpa spasi tidak perlu memiliki tanda kutip dalam HTML, praktik ini sering membuat nilai atribut lebih susah terbaca.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <input type=text>
@@ -1399,7 +1401,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <input type="text">
@@ -1412,12 +1414,12 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Directive shorthands <sup data-p="b">strongly recommended</sup>
+### Menulis cepat direktif <sup data-p="b">sangat dianjurkan</sup>
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+**Tulisan ringkas atau lebih dikenal dengan shorthands dari Direktif (`:` untuk `v-bind:` and `@` untuk `v-on:`) harus selalu digunakan atau tidak sama sekali.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <input
@@ -1435,7 +1437,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <input
@@ -1469,51 +1471,51 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+## Aturan Prioritas C : Dianjurkan (Mengurangi Pilihan Asal dan Kelelahan Kognitif)
 
 
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+### Urutan pilihan komponen/_instance_ <sup data-p="c">dianjurkan</sup>
 
-**Component/instance options should be ordered consistently.**
+**Pilihan komponen/_instance_ harus diurutkan secara konsisten.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+Ini adalah urutan default yang kami sarankan untuk pilihan komponen. Mereka dibagi menjadi beberapa kategori, jadi kamu akan tahu di mana menambahkan properti baru dari plugin.
 
-1. **Side Effects** (triggers effects outside the component)
+1. **Efek Samping** (memicu efek di luar komponen)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **Kesadaran Global** (membutuhkan pengetahuan di luar komponen)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **Tipe Komponen** (mengubah jenis komponen)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **Pengubah Template** (mengubah cara templat dikompilasi)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **Ketergantungan Templat** (aset yang digunakan dalam templat)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **Komposisi** (menggabungkan properti ke dalam pilihan)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **Antarmuka(_Interface_)** (antarmuka ke komponen)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-8. **Local State** (local reactive properties)
+8. **State Lokal** (properti reaktif lokal)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **_Events_** (panggilan balik dipicu oleh _event_ reaktif)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - Siklus Hidup _Event_ (dalam urutan yang disebut)
     - `beforeCreate`
     - `created`
     - `beforeMount`
@@ -1525,68 +1527,68 @@ This is the default order we recommend for component options. They're split into
     - `beforeDestroy`
     - `destroyed`
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **Properti Non-Reaktif** (properti _instance_ tidak tergantung pada sistem reaktivitas)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
-  - `template`/`render`
+11. **Rendering** (deskripsi deklaratif dari output komponen)
+  - `template` /`render`
   - `renderError`
 
 
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### Urutan atribut elemen <sup data-p="c">dianjurkan</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**Atribut dari elemen (termasuk komponen) harus diurutkan secara konsisten.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+Ini adalah urutan default yang kami sarankan untuk pilihan komponen. Mereka dibagi menjadi beberapa kategori, jadi kamu akan tahu di mana menambahkan atribut dan direktif khusus.
 
-1. **Definition** (provides the component options)
-  - `is`
+1. **Definisi** (memberikan pilihan komponen)
+   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
-  - `v-for`
+2. **Daftar Penyajian** (membuat beberapa variasi elemen yang sama)
+   - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
-  - `v-if`
-  - `v-else-if`
-  - `v-else`
-  - `v-show`
-  - `v-cloak`
+3. **Persyaratan** (apakah elemen diberikan / ditampilkan)
+   - `v-if`
+   - `v-else-if`
+   - `v-else`
+   - `v-show`
+   - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
-  - `v-pre`
-  - `v-once`
+4. **Render Modifiers** (mengubah cara elemen merender)
+   - `v-pre`
+   - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
-  - `id`
+5. **Kesadaran Global** (membutuhkan pengetahuan di luar komponen)
+   - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
-  - `ref`
-  - `key`
-  - `slot`
+6. **Atribut Unik** (atribut yang membutuhkan nilai unik)
+   - `ref`
+   - `key`
+   - `slot`
 
-7. **Two-Way Binding** (combining binding and events)
-  - `v-model`
+7. **Pengikatan Dua Arah** (menggabungkan pengikatan(_binding_) dan _event_)
+   - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Atribut Lainnya** (semua atribut terikat & terikat tidak ditentukan)
 
-9. **Events** (component event listeners)
-  - `v-on`
+9. **_Event_** (pendengar(_listener_) _event_ komponen)
+   - `v-on`
 
-10. **Content** (overrides the content of the element)
+10. **Konten** (menimpa konten elemen)
   - `v-html`
   - `v-text`
 
 
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### Baris kosong pada pilihan komponen/_instance_ <sup data-p="c">dianjurkan</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**Kamu boleh menambahkan satu baris kosong di antara properti multi-baris, terutama jika pilihan tidak dapat lagi masuk ke layar kamu tanpa menggulir(_scroll_).**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+Ketika komponen mulai terasa penuh atau sulit dibaca, menambahkan ruang di antara properti multi-garis dapat membuatnya lebih mudah untuk dibaca sekilas. Di beberapa editor, seperti Vim, opsi pemformatan seperti ini juga dapat membuatnya lebih mudah dinavigasi dengan keyboard.
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 props: {
@@ -1616,8 +1618,8 @@ computed: {
 ```
 
 ``` js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// Tanpa spasi pun tak mengapa selama komponen
+// masih mudah dibaca dan navigasi.
 props: {
   value: {
     type: String,
@@ -1643,12 +1645,12 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### Urutan elemen tingkat atas komponen file tunggal <sup data-p="c">dianjurkan</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Komponen file tunggal](../guide/single-file-components.html) harus selalu mengurutkan tag `<script>`, `<template>`, dan `<style>` secara konsisten, dengan `<style >` terakhir, karena setidaknya satu dari dua lainnya selalu diperlukan.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <style>/* ... */</style>
@@ -1670,7 +1672,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <!-- ComponentA.vue -->
@@ -1699,18 +1701,18 @@ computed: {
 
 
 
-## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
+## Aturan Prioritas D Rules: Digunakan dengan hati-hati (Pola Berpotensi Membahayakan)
 
 
 
-### `v-if`/`v-else-if`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### `v-if`/`v-else-if`/`v-else` tanpa `key` <sup data-p="d">digunakan hati-hati</sup>
 
-**It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
+**Biasanya lebih baik menggunakan `key` dengan `v-if` + `v-else`, jika keduanya adalah tipe elemen yang sama (contoh. Keduanya `<div>` elemen).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended consequences](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+Secara default, Vue memperbarui DOM seefisien mungkin. Itu berarti ketika beralih di antara elemen-elemen dari tipe yang sama, itu hanya menambal elemen yang ada, daripada menghapusnya dan menambahkan yang baru di tempatnya. Ini dapat memiliki [konsekuensi yang tidak diinginkan](https://jsfiddle.net/chrisvfritz/bh8fLeds/) jika elemen-elemen ini seharusnya tidak dianggap sama.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <div v-if="error">
@@ -1723,7 +1725,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <div
@@ -1752,11 +1754,11 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
+### Penyeleksi elemen dalam `scoped` <sup data-p="d">digunakan hati-hati</sup>
 
-**Element selectors should be avoided with `scoped`.**
+**Selektor elemen sebaiknya dihindari dalam `scoped`.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+Utamakan penyeleksi kelas daripada penyeleksi elemen dalam gaya `scoped`, karena sejumlah besar penyeleksi elemen lambat.
 
 {% raw %}
 <details>
@@ -1765,14 +1767,14 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 </summary>
 {% endraw %}
 
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+Untuk gaya lingkupan(_scoped_), Vue menambahkan atribut unik ke elemen komponen, seperti `data-v-f3f3eg9`. Kemudian penyeleksi dimodifikasi sehingga hanya elemen yang cocok dengan atribut ini yang dipilih (contoh. Tombol `[data-v-f3f3eg9]`).
 
-The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+Masalahnya adalah sejumlah besar [penyeleksi elemen](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (contoh. `tombol [data-v-f3f3eg9]`) akan jauh lebih lambat dari [penyeleksi kelas](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&isi=latarbelakang%3A+%23CFD&ne=1000) (contoh. `.Btn-close [data-v-f3f3eg9]`), sehingga penyeleksi kelas harus lebih diutamakan jika memungkinkan.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` html
 <template>
@@ -1788,7 +1790,7 @@ button {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` html
 <template>
@@ -1805,16 +1807,16 @@ button {
 
 
 
-### Implicit parent-child communication <sup data-p="d">use with caution</sup>
+### Komunikasi orangtua-anak implisit <sup data-p="d">digunakan hati-hati</sup>
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**Prop dan _event_ harus dipilih untuk komunikasi komponen orangtua-anak, daripada `this.$parent` atau prop yang bermutasi.**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+Aplikasi Vue yang ideal adalah `props down, events up`. Berpegang teguh pada konvensi ini membuat komponen kamu lebih mudah dipahami. Namun, ada kasus kecil dimana mutasi prop atau `this.$parent` dapat menyederhanakan dua komponen yang sudah sangat terikat.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+Masalahnya adalah, ada juga banyak kasus _simple_ di mana pola-pola ini menawarkan kenyamanan. Hati-hati: jangan tergoda untuk 'menjual' kemudahan jangka panjang (bisa memahami aliran _state_ kamu) untuk kenyamanan jangka pendek (menulis lebih sedikit kode).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 Vue.component('TodoItem', {
@@ -1857,7 +1859,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 Vue.component('TodoItem', {
@@ -1898,16 +1900,16 @@ Vue.component('TodoItem', {
 
 
 
-### Non-flux state management <sup data-p="d">use with caution</sup>
+### mengelola _non-flux state_ <sup data-p="d">digunakan hati-hati</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**[Vuex](https://github.com/vuejs/vuex) harus lebih diutamakan untuk mengelola state global, daripada `this.$root` atau global event bus.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Mengelola _state_ pada `this.$root` dan / atau menggunakan [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) bisa terasa nyaman untuk kasus yang sangat sederhana, tetapi tidak patut untuk sebagian besar aplikasi. Vuex tidak hanya menawarkan tempat sentral untuk mengelola _state_, tetapi juga alat untuk mengatur, melacak, dan men-debug perubahan _state_.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Buruk
 
 ``` js
 // main.js
@@ -1931,7 +1933,7 @@ new Vue({
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bagus
 
 ``` js
 // store/modules/todos.js
