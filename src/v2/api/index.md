@@ -1509,7 +1509,7 @@ type: api
 
   Berisi pemantau (*listeners*) *events* `v-on` yang berada di cakupan induk (parent) (tanpa pengubah (*modifiers*) `.native`). Properti ini dapat diteruskan kebawah ke komponen *inner* via `v-on="$listeners"` - berguna saat membuat komponen-komponen penyelubung (wrapper) yang bersifat transparan.
 
-## Metode Instance / Data 
+## Metode Instance / Data
 
 ### vm.$watch( expOrFn, callback, [options] )
 
@@ -1539,8 +1539,8 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   // function
   vm.$watch(
     function () {
-      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,     
-      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti 
+      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,
+      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti
       // penghitung (computed property) tanpa mendefinisikan properti penghitung itu sendiri
       return this.a + this.b
     },
@@ -1608,131 +1608,131 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
 
 - **Lihat juga:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Metode Instance / Events
 
 ### vm.$on( event, callback )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+- **Argumen:**
+  - `{string | Array<string>} event` (_array_ hanya didukung pada versi 2.2.0+)
   - `{Function} callback`
 
 - **Penggunaan:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Digunakan untuk memantau _event_ khusus pada _instance_ di sebuah _instance_. _Event_ dapat dipicu dengan metode `vm.$emit`. _Callback_ akan menerima seluruh argumen tambahan yang diberikan pada metode pemicu _event_ tersebut.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   vm.$on('test', function (msg) {
     console.log(msg)
   })
-  vm.$emit('test', 'hi')
-  // => "hi"
+  vm.$emit('test', 'halo')
+  // => "halo"
   ```
 
 ### vm.$once( event, callback )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} event`
   - `{Function} callback`
 
 - **Penggunaan:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Digunakan untuk memantau _event_ khusus, tapi hanya sekali saja. Pemantau ini akan diabaikan setelah dijalankan untuk pertama kali.
 
 ### vm.$off( [event, callback] )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+- **Argumen:**
+  - `{string | Array<string>} event` (_array_ hanya didukung pada versi 2.2.2+)
   - `{Function} [callback]`
 
 - **Penggunaan:**
 
-  Remove custom event listener(s).
+  Menghapus pemantau (_listener_) untuk _event_ khusus.
 
-  - If no arguments are provided, remove all event listeners;
+  - Jika tidak disertai argumen satupun, maka semua pemantau akan dihapus;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Jika hanya disertai argumen `event`, maka hanya pemantau untuk _event_ tersebut yang akan dihapus;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Jika kedua argumen `event` dan `callback` disertakan, maka hanya pemantau spesifik untuk _callback_ tersebut yang akan dihapus.
 
 ### vm.$emit( eventName, [...args] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} eventName`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Digunakan untuk memicu (_trigger_) sebuah _event_ pada _instance_ ini. Seluruh argumen yang ditambahkan akan diteruskan ke fungsi _callback_ pada pemantau (_listener_).
 
-- **Examples:**
+- **Contoh:**
 
-  Using `$emit` with only an event name:
+  Menggunakan `$emit` hanya dengan nama _event_:
 
   ```js
   Vue.component('welcome-button', {
     template: `
-      <button v-on:click="$emit('welcome')">
-        Click me to be welcomed
+      <button v-on:click="$emit('kenalan')">
+        Klik di sini agar disapa
       </button>
     `
   })
   ```
   ```html
   <div id="emit-example-simple">
-    <welcome-button v-on:welcome="sayHi"></welcome-button>
+    <welcome-button v-on:kenalan="katakanHalo"></welcome-button>
   </div>
   ```
   ```js
   new Vue({
     el: '#emit-example-simple',
     methods: {
-      sayHi: function () {
-        alert('Hi!')
+      katakanHalo: function () {
+        alert('Haloo!')
       }
     }
   })
   ```
   {% raw %}
   <div id="emit-example-simple" class="demo">
-    <welcome-button v-on:welcome="sayHi"></welcome-button>
+    <welcome-button v-on:kenalan="katakanHalo"></welcome-button>
   </div>
   <script>
     Vue.component('welcome-button', {
       template: `
-        <button v-on:click="$emit('welcome')">
-          Click me to be welcomed
+        <button v-on:click="$emit('kenalan')">
+          Klik di sini agar disapa
         </button>
       `
     })
     new Vue({
       el: '#emit-example-simple',
       methods: {
-        sayHi: function () {
-          alert('Hi!')
+        katakanHalo: function () {
+          alert('Haloo!')
         }
       }
     })
   </script>
   {% endraw %}
 
-  Using `$emit` with additional arguments:
+  Menggunakan `$emit` dengan argumen tambahan:
 
   ```js
-  Vue.component('magic-eight-ball', {
+  Vue.component('pemberi-saran', {
     data: function () {
       return {
-        possibleAdvice: ['Yes', 'No', 'Maybe']
+        opsiSaran: ['Ya', 'Tidak', 'Mungkin']
       }
     },
     methods: {
-      giveAdvice: function () {
-        var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-        this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+      beriSaran: function () {
+        var indeksSaranAcak = Math.floor(Math.random() * this.opsiSaran.length)
+        this.$emit('beri-saran', this.opsiSaran[indeksSaranAcak])
       }
     },
     template: `
-      <button v-on:click="giveAdvice">
-        Click me for advice
+      <button v-on:click="beriSaran">
+        Klik di sini untuk meminta saran
       </button>
     `
   })
@@ -1740,7 +1740,7 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
 
   ```html
   <div id="emit-example-argument">
-    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    <pemberi-saran v-on:beri-saran="tampilkanSaran"></pemberi-saran>
   </div>
   ```
 
@@ -1748,8 +1748,8 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   new Vue({
     el: '#emit-example-argument',
     methods: {
-      showAdvice: function (advice) {
-        alert(advice)
+      tampilkanSaran: function (saran) {
+        alert(saran)
       }
     }
   })
@@ -1757,39 +1757,39 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
 
   {% raw %}
   <div id="emit-example-argument" class="demo">
-    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    <pemberi-saran v-on:beri-saran="tampilkanSaran"></pemberi-saran>
   </div>
   <script>
-    Vue.component('magic-eight-ball', {
+    Vue.component('pemberi-saran', {
       data: function () {
         return {
-          possibleAdvice: ['Yes', 'No', 'Maybe']
+          opsiSaran: ['Ya', 'Tidak', 'Mungkin']
         }
       },
       methods: {
-        giveAdvice: function () {
-          var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-          this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+        beriSaran: function () {
+          var indeksSaranAcak = Math.floor(Math.random() * this.opsiSaran.length)
+          this.$emit('beri-saran', this.opsiSaran[indeksSaranAcak])
         }
       },
       template: `
-        <button v-on:click="giveAdvice">
-          Click me for advice
+        <button v-on:click="beriSaran">
+          Klik di sini untuk meminta saran
         </button>
       `
     })
     new Vue({
       el: '#emit-example-argument',
       methods: {
-        showAdvice: function (advice) {
-          alert(advice)
+        tampilkanSaran: function (saran) {
+          alert(saran)
         }
       }
     })
   </script>
   {% endraw %}
 
-## Instance Methods / Siklus Hidup
+## Metode Instance / Siklus Hidup
 
 ### vm.$mount( [elementOrSelector] )
 
