@@ -1509,7 +1509,7 @@ type: api
 
   Berisi pemantau (*listeners*) *events* `v-on` yang berada di cakupan induk (parent) (tanpa pengubah (*modifiers*) `.native`). Properti ini dapat diteruskan kebawah ke komponen *inner* via `v-on="$listeners"` - berguna saat membuat komponen-komponen penyelubung (wrapper) yang bersifat transparan.
 
-## Metode Instance / Data 
+## Metode Instance / Data
 
 ### vm.$watch( expOrFn, callback, [options] )
 
@@ -1539,8 +1539,8 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   // function
   vm.$watch(
     function () {
-      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,     
-      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti 
+      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,
+      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti
       // penghitung (computed property) tanpa mendefinisikan properti penghitung itu sendiri
       return this.a + this.b
     },
@@ -1789,7 +1789,7 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   </script>
   {% endraw %}
 
-## Instance Methods / Siklus Hidup
+## Metode Instance / Siklus Hidup
 
 ### vm.$mount( [elementOrSelector] )
 
