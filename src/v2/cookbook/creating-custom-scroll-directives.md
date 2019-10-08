@@ -1,12 +1,12 @@
 ---
-title: Creating Custom Scroll Directives
+title: Membuat Scroll Directives Khusus
 type: cookbook
 order: 7
 ---
 
-## Base Example
+## Contoh Dasar
 
-There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is perhaps to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
+Ada kalanya kita ingin menambahkan sedikit perilaku, terutama animasi, untuk melakukan *scroll* di situs. Ada banyak cara untuk melakukannya, tetapi jalur dengan jumlah kode dan dependensi yang paling sedikit adalah menggunakan [*custom directive*](https://vuejs.org/v2/guide/custom-directive.html) untuk membuat kail/*hook* untuk apapun yang memicu *scroll event* tertentu.
 
 ```js
 Vue.directive('scroll', {
@@ -49,9 +49,9 @@ new Vue({
 </div>
 ```
 
-<p class="tip">Remember! The directive must be registered before the Vue instance.</p>
+<p class="tip">Ingat! <em>Directive</em> harus didaftarkan sebelum <em>Vue instance</em>.</p>
 
-We'd also need a style property that will transition the intermediary values here, in this case:
+Kita juga membutuhkan *style property* yang akan mentransiisikan nilai perentara di sini, pada kasus ini:
 
 ```css
 .box {
@@ -59,10 +59,10 @@ We'd also need a style property that will transition the intermediary values her
 }
 ```
 
-<p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">Lihat Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Or, with GreenSock(GSAP) or any other JavaScript animation library, the code becomes even more simple:
+Atau, dengan *GreenScok(GSAP)* atau pustaka animasi *JavaScript* lainnya, kodenya akan menjadi lebih simpel.
 
 ```js
 Vue.directive('scroll', {
@@ -94,28 +94,28 @@ new Vue({
 })
 ```
 
-Though we would remove the previous CSS transition from this implementation because it's now handled with JavaScript.
+Meskipun kita akan menghapus CSS transisi sebelumnya dari impplementasi ini karena sekarang sudah ditangani oleh *JavaScript*
 
-## The Benefit of Using Custom Directives
+## Manfaat Menggunakan *Custom Directives*
 
-Vue is rich with options for directives, most of which cover very common use-cases, which can create a very productive developer experience. But even if you have an edge case not covered by the framework, it's got you covered in this case as well, because you can quite easily create a custom directive to fit your needs.
+Vue kaya akan pilihan untuk *directives*, sebagian besar mencakup kasus penggunaan yang sangat umum, yang dapat mencipatakan pengalaman pengembang yang sangat produktif. Tetapi jika kamu memiliki *edge case* yang tidak tercakup pada *framework*, Vue dapat mencakup dalam kasus ini juga, karena kamu dapat dengan mudah membuat *custom directive* yang sesuai dengan kebutuhan kamu.
 
-Attaching and removing scroll events to elements is a really good use case for this technique because just like other directives we use, they are necessarily tied to the element and otherwise, we'd have to find the reference for it in the DOM. This pattern avoids the need for traversal, and keeps the event logic paired with the node that it's in reference to.
+Menambahkan dan menghapus *scroll event* ke elemen adalah kasus penggunaan yang sangat baik untuk teknik ini, karena sama seperti *directive* yang kita pakai, mereka harus dipasangkan ke elemen dan sebaliknya, kita harus menemukan refrensi untuk di DOM. Pola ini menghindari *DOM traversal*, dan membuat logika *event* dipasangkan dengan *node* yamg mengacu padanya.
 
-## Real-World Example: Using a Custom Scroll Directive for Cascading Animations
+## Contoh Dunia Nyata: Menggunakan Custom Scroll Directive Untuk Animasi Cascading
 
-In the course of creating a cohesive site, you may find that you're reusing the same type of animation logic in several areas. It seems simple, we would then create a very specific custom directive, right? Well, typically if you're reusing it, you will need to change it _just_ slightly for each use.
+Dalam rangka membuat situs yang kohesif, kamu mungkin menemukan bahwa kamu menggunakan kembali tipe animasi dan logika yang sama dibeberapa tempat. Itu terlihat simpel, kita akan membuat *custom directive* yang sangat spesifi, benar? Biasanya, jika kau menggunakan kembali, kamu harus mengubahnya *sedikit* untuk setiap penggunaan.
 
-To help keep our code concise and legible, we would want to pass in some predefined arguments such as the beginning point and ending of the animation as we scroll down the page.
+Untuk membantu kode kita tetap ringkas dan mudah untuk dibaca, kta akan memberikan beberapa argumen yang sudah ditentukan sebelumnya, seperti titik awal dan akhir dari animasi saat kita melakukan *scroll* ke bawah.
 
-**This example is better viewed in the [full screen version](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).**
+**Contoh ini lebih baik dilihat dalam [versi layar penuh](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).**
 
-<p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">Lihat Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-In the demo above, each of the sections has two different types of animation triggered from the scroll: a morphing animation, and a drawing animation that animates the individual paths in the SVG. We reuse those two animations, so we can create a custom directive for each. The arguments we'll pass in will help keep everything simple and reusable.
+Pada demo di atas, masing-masing bagian memiliki dua jenis animasi yang dipicu ketika *scroll*: perubahan animasi, dan animasi gambar yang menggerakkan beberapa *path* di SVG. Kita menggunakan kembali kedua animasi tersebut, sehingga kita dapat membuat *custom directive* masing-masing. Argumen yang kita masukkan akan membantu menjaga semuanya tetap simpel dan dapat digunakan kembali.
 
-To show how we do this, we'll take a look at the morphing shape example, where we'll need to state the start and finish, as well as pass in a path value that we'll create a morph to. These arguments are each defined as `binding.value.foo`:
+Untuk menunjukka bagaimana kita melakukan ini, kita akan meliha pada contoh perubahan bentuk, di mana kita akan membutuhkan *state* mulai dan akhir, serta memberikan nilai pada *path* yang akan kita ubah. Argumen ini masing-masing didefiniskan sebagai `binding.value.foo`:
 
 ```js
 Vue.directive('clipscroll', {
@@ -138,7 +138,7 @@ Vue.directive('clipscroll', {
 })
 ```
 
-We can then use this animation in our template, in this case we're attaching the directive to the `clipPath` element, and pass all of our arguments to the directives in an object.
+Kita kemudian dapat menggunakan animasi pada *template*, pada kasus ini kita menambahkan *directive* pada `clipPath` *element*, dan memasukkan semua argumen ke *directives* dalam objek.
 
 ```html
 <clipPath id="clip-path">
@@ -150,8 +150,9 @@ We can then use this animation in our template, in this case we're attaching the
 </clipPath>
 ```
 
-## Alternative Patterns
+## Pola Alternatif
 
-Custom directives are extremely useful, but you may find some situations where you need something very specific that already exists in scrolling libraries that you don't wish to rebuild from scratch yourself.
+*Custom directives* sangatlah berguna, tetapi kamu akan menemukan situasi dimana kamu mebutuhkan sesuatu yang sangat sepesifik yang sudah ada pada *scrolling libraries* sehingga kamu tidak perlu lagi untuk membuatnya dari awal.
 
-[Scrollmagic](http://scrollmagic.io/) has a very rich ecosystem of offerings to work with, as well as good documentation and demos to explore. This includes, but is not limited to things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html).
+[Scrollmagic](http://scrollmagic.io/) memiliki ekosistem yang sangat kaya untuk digunakan, serta dokumentasi yang bagus dan demo yang baik untuk dijelajahi. Ini termasuk, tetapi tidah terbatas pada hal-hal seperti [*parallax*](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [*cascading pinning*](http://scrollmagic.io/examples/expert/cascading_pins.html), [*section wipes*](http://scrollmagic.io/examples/basic/section_wipes_natural.html), dan [*responsive duration*](http://scrollmagic.io/examples/basic/responsive_duration.html).
+
