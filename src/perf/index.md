@@ -1,15 +1,15 @@
 ---
-title: Performance Comparisons
+judul: Perbandingan Kinerja/Performa
 ---
 
-## TodoMVC Benchmark
+## Tolok Ukur(_Benchmark_) TodoMVC
 
-> *Last Updated: 2014-10-12*
+> * Terakhir Diperbarui: 2014-10-12 *
 
-Looking for the TodoMVC Benchmark? It's been removed because after discussion with some other framework authors we have agreed that:
+Mencari tolok ukur TodoMVC? tolok ukur itu telah dihapus karena setelah diskusi dengan beberapa penulis kerangka kerja lain kami telah sepakat bahwa:
 
-1. The original intention of these benchmarks were for comparing Browser performance rather than that of frameworks. The "synchronously trigger an action xxx times" test routine doesn't reflect meaningful real world user actions.
+1. Tujuan sebenarnya dari tolok ukur ini adalah untuk membandingkan kinerja Browser dan bukan kinerja kerangka kerja. Pengujian dengan bentuk "memicu tindakan/aksi tertentu xxx kali" tidak mencerminkan tindakan yang bermakna dari pengguna di dunia nyata.
 
-2. Due to internal implementation differences, frameworks that uses async rendering (e.g. Vue, Om, Mercury) gains the advantage by skipping part of the calculations that happened in the same event loop. The real world user experience doesn't demonstrate such dramatic difference.
+2. Karena perbedaan implementasi internal, kerangka kerja yang menggunakan rendering async (contoh. Vue, Om, Mercury) mendapatkan keuntungan dengan melewati sebagian dari perhitungan yang terjadi dalam perulangan peristiwa(_event_) yang sama. Pengalaman pengguna di dunia nyata tidak menunjukkan perbedaan dramatis seperti itu.
 
-3. Overall this benchmark suite gave rise to more controversy than constructive insights, so it's been removed and I'd be happy to replace it with a more meaningful way to measure front-end performance.
+3. Secara keseluruhan rangkaian tolok ukur ini memunculkan lebih banyak kontroversi daripada wawasan yang membangun, sehingga lebih baik dihapus dan saya akan senang untuk menggantinya dengan cara yang lebih bermakna untuk mengukur kinerja program bagian depan(_front-end_)/tampilan.
