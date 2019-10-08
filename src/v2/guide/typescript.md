@@ -75,8 +75,7 @@ const Component = {
 If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
 
 ``` ts
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from "vue-property-decorator";
 
 // The @Component decorator indicates the class is a Vue component
 @Component({
