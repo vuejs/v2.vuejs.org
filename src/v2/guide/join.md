@@ -25,6 +25,7 @@ Our [Code of Conduct](/coc) is a guide to make it easier to enrich all of us and
 
 - [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
 - [The "Show and Tell" Subforum](https://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+- [DEV's Vue Community](https://dev.to/t/vue): The collection of all posts tagged Vue within the DEV Community. DEV is a network of thousands of software developers who blog about and discuss code. 
 
 ## What You Can Do
 
