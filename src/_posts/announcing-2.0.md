@@ -3,52 +3,52 @@ title: Announcing Vue.js 2.0
 date: 2016-04-27 13:33:00
 ---
 
-Today I am thrilled to announce the first public preview of Vue.js 2.0, which brings along many exciting improvements and new features. Let's take a peek at what's in store!
+Hari ini saya senang mengumumkan preview publik pertama dari Vue.js 2.0, yang membawa banyak perbaikan menarik dan fitur baru. Mari kita intip apa yang ada di toko!
 
 <!-- more -->
 
 ## Even Leaner, Even Faster
 
-Vue.js has always focused on staying light and fast, but 2.0 pushes it even further. The rendering layer is now based on a lightweight virtual-DOM implementation (based on [Snabbdom](https://github.com/paldepind/snabbdom)) that improves initial rendering speed and memory consumption by up to 2~4x in most scenarios (check out [these benchmarks](https://github.com/vuejs/vue/tree/next/benchmarks)). The template-to-virtual-DOM compiler and the runtime can be separated, so you can pre-compile templates and ship your app with only the runtime, which is less than 12KB min+gzip (as a reference, React 15 is 44KB min+gzip). The compiler also works in the browser, which means you can still drop in one script tag and start hacking, just like before. Even with the compiler included, the build is sitting at 17KB min+gzip, still lighter than the current 1.0 build.
+Vue.js selalu fokus untuk tetap ringan dan cepat, tetapi 2.0 mendorongnya lebih jauh. Lapisan rendering sekarang didasarkan pada implementasi DOM virtual-ringan (berdasarkan [Snabbdom] (https://github.com/paldepind/snabbdom)) yang meningkatkan kecepatan rendering awal dan konsumsi memori hingga 2 ~ 4x dalam sebagian besar skenario (lihat [tolak ukur ini] (https://github.com/vuejs/vue/tree/next/benchmark)). Kompiler template-to-virtual-DOM dan runtime dapat dipisahkan, sehingga Anda dapat melakukan pra-kompilasi template dan mengirimkan aplikasi Anda hanya dengan runtime, yang kurang dari 12KB min + gzip (sebagai referensi, Bereaksi 15 adalah 44KB min + gzip). Kompiler juga berfungsi di browser, yang berarti Anda masih dapat memasukkan satu tag skrip dan mulai meretas, seperti sebelumnya. Bahkan dengan kompiler yang disertakan, build berada di 17KB min + gzip, masih lebih ringan dari versi 1.0 saat ini.
 
 ## Not Your Average Virtual-DOM
 
-Now, just virtual-DOM sounds boring because there are so many implementations out there - but this one is different. Combined with Vue's reactivity system, it provides optimized re-rendering out of the box without you having to do anything. Each component keeps track of its reactive dependencies during its render, so the system knows precisely when to re-render, and which components to re-render. No need for `shouldComponentUpdate` or immutable data structures - **it just works**.
+Sekarang, hanya virtual-DOM yang terdengar membosankan karena ada begitu banyak implementasi di luar sana - tetapi yang ini berbeda. Dikombinasikan dengan sistem reaktivitas Vue, Vue memberikan proses rendering ulang yang dioptimalkan tanpa Anda harus melakukan apa pun. Setiap komponen melacak dependensi reaktif selama render, sehingga sistem tahu persis kapan harus merender ulang, dan komponen mana yang akan dirender ulang. Tidak perlu untuk `shouldComponentUpdate` atau struktur data yang tidak dapat diubah - ** itu hanya berfungsi **.
 
-In addition, Vue 2.0 applies some advanced optimizations during the template-to-virtual-DOM compilation phase:
+Selain itu, Vue 2.0 menerapkan beberapa optimasi lanjutan selama fase kompilasi template-to-virtual-DOM:
 
-1. It detects static class names and attributes so that they are never diffed after the initial render.
+1. Mendeteksi nama dan atribut kelas statis sehingga tidak pernah berbeda setelah render di awal.
 
-2. It detects the maximum static sub trees (sub trees with no dynamic bindings) and hoist them out of the render function. So on each re-render, it directly reuses the exact same virtual nodes and skips the diffing.
+2. Mendeteksi sub trees statis maksimum (sub trees tanpa ikatan dinamis) dan mengeluarkannya dari fungsi render. Jadi pada setiap re-render, secara langsung menggunakan kembali node virtual yang sama persis dan melewatkan diffing.
 
-These advanced optimizations can usually only be achieved via Babel plugins when using JSX, but with Vue 2.0 you can get them even using the in-browser compiler.
+Optimalisasi lanjutan ini biasanya hanya dapat dicapai melalui plugin Babel saat menggunakan JSX, tetapi dengan Vue 2.0 Anda bisa mendapatkannya bahkan menggunakan kompiler dalam browser.
 
-The new rendering system also allows you to disable reactive conversions by simply freezing your data and manually force updates, essentially giving you full control over the re-rendering process.
+Sistem rendering baru juga memungkinkan Anda untuk menonaktifkan konversi reaktif hanya dengan membekukan data Anda dan secara manual memaksa pembaruan, pada dasarnya memberi Anda kontrol penuh atas proses rendering ulang.
 
-With these techniques combined, Vue 2.0 ensures blazing fast performance in every possible scenario while requiring minimal optimization efforts from the developer.
+Dengan teknik-teknik ini digabungkan, Vue 2.0 memastikan kinerja yang sangat cepat dalam setiap skenario yang mungkin sambil memerlukan upaya optimasi minimal dari pengembang.
 
 ## Templates, JSX, or Hyperscript?
 
-Developers tend to have strong opinions on templates vs. JSX. On the one hand, templates are closer to HTML - they map better to the semantic structure of your app and make it much easier to think visually about the design, layout and styling. On the other hand, templates are limited to the DSL while the programmatic nature of JSX/hyperscript provides the full expressive power of a turing-complete language.
+Pengembang cenderung memiliki pendapat yang kuat tentang template vs JSX. Di satu sisi, templat lebih dekat ke HTML - templat lebih baik pada struktur semantik aplikasi Anda dan membuatnya lebih mudah untuk berpikir secara visual tentang desain, tata letak, dan gaya. Di sisi lain, template terbatas pada DSL sementara sifat program JSX / hyperscript memberikan kekuatan ekspresif penuh dari bahasa turing-complete.
 
-Being a designer/developer hybrid, I prefer writing most of my interfaces in templates, but in certain cases I do miss the flexibility of JSX/hyperscript. An example would be writing a component that programmatically handles its children, something not feasible with just the template-based slot mechanism.
+Menjadi hibrida desainer / pengembang, saya lebih suka menulis sebagian besar antarmuka saya di templat, tetapi dalam kasus tertentu saya kehilangan fleksibilitas JSX / hyperscript. Contohnya adalah menulis komponen yang secara terprogram menangani anak-anaknya, sesuatu yang tidak layak hanya dengan mekanisme slot berbasis template.
 
-Well, why not have both? In Vue 2.0, you can keep using the familiar template syntax, or drop down to the virtual-DOM layer whenever you feel constrained by the template DSL. Instead of the `template` option, just replace it with a `render` function. You can even embed render functions in your templates using the special `<render>` tag! The best of both worlds, in the same framework.
+Nah, mengapa tidak memiliki keduanya? Dalam Vue 2.0, Anda dapat terus menggunakan sintaks template yang sudah dikenal, atau drop-down ke lapisan virtual-DOM setiap kali Anda merasa terkendala oleh template DSL. Alih-alih opsi `template`, ganti saja dengan fungsi` render`. Anda bahkan dapat menanamkan fungsi render dalam templat Anda menggunakan tag `<render>` khusus! Yang terbaik dari kedua dunia, dalam kerangka yang sama.
 
 ## Streaming Server-side Rendering
 
-With the migration to virtual-DOM, Vue 2.0 naturally supports server-side rendering with client-side hydration. One pain point of current mainstream server rendering implementations, such as React's, is that the rendering is synchronous so it can block the server's event loop if the app is complex. Synchronous server-side rendering may even adversely affect time-to-content on the client. Vue 2.0 provides built-in streaming server-side rendering, so that you can render your component, get a readable stream back and directly pipe it to the HTTP response. This ensures your server is responsive, and gets the rendered content to your users faster.
+Dengan migrasi ke virtual-DOM, Vue 2.0 secara alami mendukung rendering sisi server dengan hidrasi sisi klien. Salah satu titik sakit dari implementasi render server utama saat ini, seperti React's, adalah renderingnya sinkron sehingga dapat memblokir loop acara server jika aplikasinya kompleks. Render sisi server yang sinkron bahkan dapat mempengaruhi waktu-ke-konten pada klien. Vue 2.0 menyediakan rendering sisi server streaming internal, sehingga Anda dapat merender komponen Anda, mendapatkan aliran yang dapat dibaca kembali dan langsung menyalurkannya ke respons HTTP. Ini memastikan server Anda responsif, dan membuat konten yang diberikan kepada pengguna Anda lebih cepat.
 
 ## Unlocking More Possibilities
 
-With the new architecture, there are even more possibilities to explore - for example, rendering to native interfaces on mobile. Currently, we are exploring a port of Vue.js 2.0 that uses [weex](http://alibaba.github.io/weex/) as a native rendering backend, a project maintained by engineers at Alibaba Group, the biggest tech enterprise of China. It is also technically feasible to adapt Vue 2.0's virtual-DOM to run inside ReactNative. We are excited to see how it goes!
+Dengan arsitektur baru, bahkan ada lebih banyak kemungkinan untuk dijelajahi - misalnya, rendering ke antarmuka asli di seluler. Saat ini, kami sedang mengeksplorasi port Vue.js 2.0 yang menggunakan [weex] (http://alibaba.github.io/weex/) sebagai backend rendering asli, sebuah proyek yang dikelola oleh para insinyur di Alibaba Group, perusahaan teknologi terbesar dari Cina. Secara teknis juga memungkinkan untuk mengadaptasi virtual-DOM Vue 2.0 untuk dijalankan di dalam ReactNative. Kami sangat senang melihat hasilnya!
 
 ## Compatibility and What to Expect Next
 
-Vue.js 2.0 is still in pre-alpha, but you can checkout the source code [here](https://github.com/vuejs/vue/tree/next/). Despite being a full rewrite, the API is largely compatible with 1.0 with the exception of some intentional deprecations. Check out [the same official examples written in 2.0](https://github.com/vuejs/vue/tree/next/examples) - you will see that not much has changed!
+Vue.js 2.0 masih dalam pra-alfa, tetapi Anda dapat checkout kode sumber [di sini] (https://github.com/vuejs/vue/tree/next/). Meskipun menjadi penulisan ulang penuh, API sebagian besar kompatibel dengan 1.0 dengan pengecualian beberapa penghentian yang disengaja. Lihat [contoh resmi yang sama yang ditulis dalam 2.0] (https://github.com/vuejs/vue/tree/next/examples) - Anda akan melihat bahwa tidak banyak yang berubah!
 
-The feature deprecations are part of our continued effort to provide the simplest API possible for maximum developer productivity. You can check out a 1.0 vs. 2.0 feature comparison [here](https://github.com/vuejs/vue/wiki/2.0-features). This does mean that it will take some effort to migrate an existing app if you happen to use some of these deprecated features heavily, but we will provide detailed upgrade guides in the future.
+Penghentian fitur adalah bagian dari upaya berkelanjutan kami untuk menyediakan API sesederhana mungkin untuk produktivitas pengembang maksimum. Anda dapat memeriksa perbandingan fitur 1.0 vs. 2.0 [di sini] (https://github.com/vuejs/vue/wiki/2.0-features). Ini berarti perlu upaya untuk memigrasikan aplikasi yang ada jika Anda sering menggunakan beberapa fitur yang sudah usang ini, tetapi kami akan memberikan panduan pemutakhiran terperinci di masa mendatang.
 
-There is still much work left to be done. We will be releasing the first alpha once we reach satisfactory test coverage, and we are aiming for beta by end of May / early June. In addition to more tests, we also need to update the supporting libraries (vue-router, Vuex, vue-loader, vueify...). Currently only Vuex works with 2.0 out of the box, but we will make sure that everything works smoothly together when 2.0 ships.
+Masih banyak pekerjaan yang harus dilakukan. Kami akan merilis alpha pertama setelah kami mencapai cakupan tes yang memuaskan, dan kami menargetkan beta pada akhir Mei / awal Juni. Selain lebih banyak tes, kami juga perlu memperbarui perpustakaan pendukung (vue-router, Vuex, vue-loader, vueify ...). Saat ini hanya Vuex bekerja dengan 2.0 di luar kotak, tetapi kami akan memastikan bahwa semuanya bekerja dengan lancar saat 2.0 dikirimkan.
 
-We are also not forgetting about 1.x! 1.1 will be released alongside 2.0 beta, with an LTS period of 6-month critical bug fixes and 9-month security updates. It will also ship with optional deprecation warnings to get you prepared for upgrading to 2.0. Stay tuned!
+Kami juga tidak melupakan tentang 1.x! 1.1 akan dirilis bersamaan dengan 2.0 beta, dengan periode LTS perbaikan bug kritis 6 bulan dan pembaruan keamanan 9 bulan. Ini juga akan dikirimkan dengan peringatan penghentian opsional untuk membuat Anda siap untuk meningkatkan ke 2.0. Tetap disini!
