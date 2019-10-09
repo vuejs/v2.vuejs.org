@@ -81,7 +81,7 @@ This can be useful sometimes, but it's not a good idea when you're trying to lis
 </label>
 ```
 
-In that case, the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when we expected it to.
+The `focus` event is one of the javascript events that don't bubble-up, therefore the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when we expected it to.
 
 To solve this problem, Vue provides a `$listeners` property containing an object of listeners being used on the component. For example:
 
