@@ -1540,47 +1540,47 @@ new Vue({
 
 ## Global Config
 
-### `Vue.config.debug` <sup>removed</sup>
+### `Vue.config.debug` <sup>removido</sup>
 
-No longer necessary, since warnings come with stack traces by default now.
+Ya no es necesario, ya que ahora las advertencias vienen con seguimiento de pila por defecto.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.debug</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> sobre su código para encontrar ejemplos de <code>Vue.config.debug</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.config.async` <sup>removed</sup>
+### `Vue.config.async` <sup>removido</sup>
 
-Async is now required for rendering performance.
+Ahora async es requerido para el rendimiento de la renderización.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.async</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> sobre su código para encontrar ejemplos de <code>Vue.config.async</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.config.delimiters` <sup>replaced</sup>
+### `Vue.config.delimiters` <sup>reemplazado</sup>
 
-This has been reworked as a [component-level option](../api/#delimiters). This allows you to use alternative delimiters within your app without breaking 3rd-party components.
+Esto se ha modificado como una [opción a nivel de componente](../api/#delimiters). Esto le permite usar delimitadores alternativos dentro de su aplicación sin romper componentes de terceros.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.delimiters</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> sobre su código para encontrar ejemplos de <code>Vue.config.delimiters</code>.</p>
 </div>
 {% endraw %}
 
-### `Vue.config.unsafeDelimiters` <sup>removed</sup>
+### `Vue.config.unsafeDelimiters` <sup>removido</sup>
 
-HTML interpolation has been [removed in favor of `v-html`](#HTML-Interpolation-removed).
+La interpolación HTML ha sido [removida en favor de `v-html`](#HTML-Interpolation-removed).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.unsafeDelimiters</code>. After this, the helper will also find instances of HTML interpolation so that you can replace them with `v-html`.</p>
+  <h4>Ruta de actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> sobre su código para encontrar ejemplos de  <code>Vue.config.unsafeDelimiters</code>. Después de esto, el asistente encontrará también instancias de interpolación HTML para que pueda reemplazarlas con `v-html`.</p>
 </div>
 {% endraw %}
 
