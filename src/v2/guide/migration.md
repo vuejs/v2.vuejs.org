@@ -534,16 +534,18 @@ Otra ventaja de este enfoque es que habrá momentos en que _debouncing_ no será
 </div>
 {% endraw %}
 
-### `lazy` or `number` Param Attributes for `v-model` <sup>replaced</sup>
+### `lazy` o `number` Atributos de parámetro para `v-model` <sup>cambiado</sup>
 
-The `lazy` and `number` param attributes are now modifiers, to make it more clear what That means instead of:
+Los atributos de parámetro `lazy` y `number` ahora son modificadores, para que quede más claro lo que eso significa, veamos el siguiente ejemplo:
+
+En vez de:
 
 ``` html
 <input v-model="name" lazy>
 <input v-model="age" type="number" number>
 ```
 
-You would use:
+Usted usará:
 
 ``` html
 <input v-model.lazy="name">
@@ -552,22 +554,24 @@ You would use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the these param attributes.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código base para encontrar ejemplos de estos atributos de parámeto.
+  </p>
 </div>
 {% endraw %}
 
-### `value` Attribute with `v-model` <sup>removed</sup>
+### Atributo `value` con `v-model` <sup>eliminado</sup>
 
-`v-model` no longer cares about the initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
+`v-model` ya no se preocupa por el valor inicial de un atributo en línea `value`. Para la previsibilidad, siempre tratará los datos de la instancia de Vue como la fuente de la verdad.
 
-That means this element:
+Eso significa que este elemento:
 
 ``` html
 <input v-model="text" value="foo">
 ```
 
-backed by this data:
+respaldado por estos datos:
 
 ``` js
 data: {
@@ -575,32 +579,34 @@ data: {
 }
 ```
 
-will render with a value of "bar" instead of "foo". The same goes for a `<textarea>` with existing content. Instead of:
+se renderizará con un valor de "bar" en lugar de "foo". Lo mismo ocurre con un `<textarea>` con contenido existente. En lugar de:
 
 ``` html
 <textarea v-model="text">
-  hello world
+  Hola mundo
 </textarea>
 ```
 
-You should ensure your initial value for `text` is "hello world".
+Usted debe asegurarse de que su valor inicial para `text` sea "Hola mundo".
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about inline value attributes with <code>v-model</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute sus pruebas de extremo a extremo o su aplicación luego de la actualización, y busque <strong>advertencias de consola</strong> sobre valores en línea para atributos con <code>v-model</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `v-model` with `v-for` Iterated Primitive Values <sup>removed</sup>
+### `v-model` con `v-for` Valores primitivos iterados <sup>eliminados</sup>
 
-Cases like this no longer work:
+Casos como este ya no funcionan:
 
 ``` html
 <input v-for="str in strings" v-model="str">
 ```
 
-The reason is this is the equivalent JavaScript that the `<input>` would compile to:
+La razón es que este es el código JavaScript equivalente que compilaría el `<input>`:
 
 ``` js
 strings.map(function (str) {
@@ -608,9 +614,9 @@ strings.map(function (str) {
 })
 ```
 
-As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's only a local variable in the function scope.
+Como usted puede ver, el enlace bidireccional de `v-model` no tiene sentido aquí. Establecer `str` en otro valor en la función de iterador no hará nada porque es solo una variable local en el alcance de la función.
 
-Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
+En su lugar, usted debe utilizar un arreglo de __Objetos__ para que `v-model` pueda actualizar el campo en el objeto. Por ejemplo:
 
 ``` html
 <input v-for="obj in objects" v-model="obj.str">
@@ -618,8 +624,10 @@ Instead, you should use an array of __objects__ so that `v-model` can update the
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute su conjunto de pruebas, si tiene uno. Las <strong>pruebas fallidas</strong> deberían alertarlo sobre cualquier parte de su aplicación que pueda verse afectada por este cambio.
+  </p>
 </div>
 {% endraw %}
 
