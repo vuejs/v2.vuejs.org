@@ -16,7 +16,7 @@ order: 701
 
 2. Después de eso, navegue por la tabla de contenido de esta página en la barra lateral. Si ve un tema que puede afectarle, pero que el asistente de migración no captó, compruébelo.
 
-3. Si usted tiene algunos tests, ejecútelos y vea lo que aún falla. Si no tiene test, solo abra la aplicación en su navegador y esté atento a las advertencias o errores mientras navega.
+3. Si usted tiene algunos tests, ejecútelos y vea los que aún fallan. Si no tiene tests, solo abra la aplicación en su navegador y esté atento a las advertencias o errores mientras navega.
 
 4. En este punto, su aplicación debería estar migrada por completo. Si aún tiene ganas de más, puede leer el resto de esta página [desde el principio](index.html). Muchas partes serán demasiado fáciles, ya que ya está familiarizado con los conceptos básicos.
 
