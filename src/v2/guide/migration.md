@@ -536,7 +536,7 @@ Otra ventaja de este enfoque es que habrá momentos en que _debouncing_ no será
 
 ### `lazy` o `number` Atributos de parámetro para `v-model` <sup>cambiado</sup>
 
-Los atributos de parámetro `lazy` y `number` ahora son modificadores, para que quede más claro lo que eso significa veamos el siguiente ejemplo:
+Los atributos de parámetro `lazy` y `number` ahora son modificadores, para que quede más claro lo que eso significa, veamos el siguiente ejemplo:
 
 En vez de:
 
