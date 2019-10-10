@@ -59,7 +59,9 @@ Se recomienda envolver todo el contenido en un nuevo elemento, como este:
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute sus pruebas de extremo a extremo o su después de la actualización y busque <strong>advertencias en la consola</strong> sobre varios elementos raíz en una plantilla.</p>
+  <p>
+    Ejecute sus pruebas de extremo a extremo o su aplicación después de la actualización y busque <strong>advertencias en la consola</strong> sobre varios elementos raíz en una plantilla.
+  </p>
 </div>
 {% endraw %}
 
@@ -379,26 +381,30 @@ methods: {
 </div>
 {% endraw %}
 
-## Built-In Directives
+## Directivas incorporadas
 
-### Truthiness/Falsiness with `v-bind` <sup>changed</sup>
+### Veracidad/falsedad con `v-bind` <sup>cambiado</sup>
 
-When used with `v-bind`, the only falsy values are now: `null`, `undefined`, and `false`. This means `0` and empty strings will render as truthy. So for example, `v-bind:draggable="''"` will render as `draggable="true"`.
+Cuando se usa con `v-bind`, los únicos valores falsos son ahora: `null`, `undefined` y `false`. Esto significa `0` y las cadenas de texto vacías evaluarán como verdaderas y se renderizarán. Entonces, por ejemplo, `v-bind:draggable="''"` se representará como `draggable="true"`.
 
-For enumerated attributes, in addition to the falsy values above, the string `"false"` will also render as `attr="false"`.
+Para los atributos enumerados, además de los valores falsos anteriores, la cadena `"false"` también se representará como `attr="false"`.
 
-<p class="tip">Note that for other directives (e.g. `v-if` and `v-show`), JavaScript's normal truthiness still applies.</p>
+<p class="tip">
+  Tenga en cuenta que para otras directivas (por ejemplo, `v-if` y `v-show`), la veracidad normal de JavaScript aún se aplica.
+</p>
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute sus pruebas de extremo a extremo, si tiene una. Las <strong>pruebas fallidas</strong> le alertarán sobre cualquier parte de su aplicación que pueda ser afectada por este cambio.
+  </p>
 </div>
 {% endraw %}
 
-### Listening for Native Events on Components with `v-on` <sup>changed</sup>
+### Escuchar eventos nativos en componentes con `v-on` <sup>cambiado</sup>
 
-When used on a component, `v-on` now only listens to custom events `$emit`ted by that component. To listen for a native DOM event on the root element, you can use the `.native` modifier. For example:
+Cuando se usa en un componente, `v-on` ahora solo escucha eventos personalizados (`$emit`) emitidos por ese componente. Para escuchar un evento del DOM nativo en el elemento raíz, usted puede usar el modificador `.native`. Por ejemplo:
 
 ``` html
 <my-component v-on:click.native="doSomething"></my-component>
@@ -406,21 +412,23 @@ When used on a component, `v-on` now only listens to custom events `$emit`ted by
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute sus pruebas de extremo a extremo, si tiene una. Las <strong>pruebas fallidas</strong> le alertarán sobre cualquier parte de su aplicación que pueda ser afectada por este cambio.
+  </p>
 </div>
 {% endraw %}
 
-### `debounce` Param Attribute for `v-model` <sup>removed</sup>
+### `debounce` Atributo de parámetro para `v-model` <sup>eliminado</sup>
 
-Debouncing is used to limit how often we execute Ajax requests and other expensive operations. Vue's `debounce` attribute parameter for `v-model` made this easy for very simple cases, but it actually debounced __state updates__ rather than the expensive operations themselves. It's a subtle difference, but it comes with limitations as an application grows.
+_Debouncing_ se usa para limitar la frecuencia con la que ejecutamos solicitudes Ajax y otras operaciones costosas. El parámetro de atributo `debounce` de Vue para `v-model` lo hizo fácil para casos muy simples, pero en realidad no dio lugar a __actualizaciones de estado__ en lugar de las costosas operaciones en sí mismas. Es una diferencia sutil, pero viene con limitaciones a medida que aumenta la complejidad de la aplicación.
 
-These limitations become apparent when designing a search indicator, like this one for example:
+Estas limitaciones se hacen evidentes al diseñar un indicador de búsqueda, como este, por ejemplo:
 
 {% raw %}
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo" class="demo">
-  <input v-model="searchQuery" placeholder="Type something">
+  <input v-model="searchQuery" placeholder="Escriba algo">
   <strong>{{ searchIndicator }}</strong>
 </div>
 <script>
@@ -434,11 +442,11 @@ new Vue({
   computed: {
     searchIndicator: function () {
       if (this.isCalculating) {
-        return '⟳ Fetching new results'
+        return '⟳ Trayendo nuevos resultados'
       } else if (this.searchQueryIsDirty) {
-        return '... Typing'
+        return '... Escribiendo'
       } else {
-        return '✓ Done'
+        return '✓ Listo'
       }
     }
   },
@@ -461,18 +469,18 @@ new Vue({
 </script>
 {% endraw %}
 
-Using the `debounce` attribute, there'd be no way to detect the "Typing" state, because we lose access to the input's real-time state. By decoupling the debounce function from Vue however, we're able to debounce only the operation we want to limit, removing the limits on features we can develop:
+Usando el atributo `debounce`, no habría forma de detectar el estado "Escribiendo", porque perdemos el acceso al estado en tiempo real de la entrada. Sin embargo, al desacoplar la función _debounce_ de Vue, solo podemos eliminar la operación que queremos limitar, eliminando los límites de las funciones que podemos desarrollar:
 
-``` html
+```html
 <!--
-By using the debounce function from lodash or another dedicated
-utility library, we know the specific debounce implementation we
-use will be best-in-class - and we can use it ANYWHERE. Not only
-in our template.
+Mediante el uso de la función _debounce_ de lodash u otra librería dedicada,
+sabemos que la implementación específica de _debounce_ que usamos será la mejor-en-su-clase,
+y podemos usarla EN CUALQUIER LUGAR. No solo
+en nuestra plantilla
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo">
-  <input v-model="searchQuery" placeholder="Type something">
+  <input v-model="searchQuery" placeholder="Escriba algo">
   <strong>{{ searchIndicator }}</strong>
 </div>
 ```
@@ -488,11 +496,11 @@ new Vue({
   computed: {
     searchIndicator: function () {
       if (this.isCalculating) {
-        return '⟳ Fetching new results'
+        return '⟳ Trayendo nuevos resultados'
       } else if (this.searchQueryIsDirty) {
-        return '... Typing'
+        return '... Escribiendo'
       } else {
-        return '✓ Done'
+        return '✓ Listo'
       }
     }
   },
@@ -515,25 +523,29 @@ new Vue({
 })
 ```
 
-Another advantage of this approach is there will be times when debouncing isn't quite the right wrapper function. For example, when hitting an API for search suggestions, waiting to offer suggestions until after the user has stopped typing for a period of time isn't an ideal experience. What you probably want instead is a __throttling__ function. Now since you're already using a utility library like lodash, refactoring to use its `throttle` function instead takes only a few seconds.
+Otra ventaja de este enfoque es que habrá momentos en que _debouncing_ no será la función de envoltura correcta. Por ejemplo, al llamar a una API para buscar sugerencias, esperar para ofrecer sugerencias hasta después de que el usuario haya dejado de escribir por un período de tiempo no es una experiencia ideal. Lo que probablemente quieras es una función de  __throttling__. Ahora, como ya está utilizando una biblioteca de utilidades como lodash, la refactorización para usar su función `throttle` en su lugar solo lleva unos segundos.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>debounce</code> attribute.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código fuente para encontrar usos de <code>debounce</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `lazy` or `number` Param Attributes for `v-model` <sup>replaced</sup>
+### `lazy` o `number` Atributos de parámetro para `v-model` <sup>cambiado</sup>
 
-The `lazy` and `number` param attributes are now modifiers, to make it more clear what That means instead of:
+Los atributos de parámetro `lazy` y `number` ahora son modificadores, para que quede más claro lo que eso significa, veamos el siguiente ejemplo:
+
+En vez de:
 
 ``` html
 <input v-model="name" lazy>
 <input v-model="age" type="number" number>
 ```
 
-You would use:
+Usted usará:
 
 ``` html
 <input v-model.lazy="name">
@@ -542,22 +554,24 @@ You would use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the these param attributes.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código base para encontrar ejemplos de estos atributos de parámeto.
+  </p>
 </div>
 {% endraw %}
 
-### `value` Attribute with `v-model` <sup>removed</sup>
+### Atributo `value` con `v-model` <sup>eliminado</sup>
 
-`v-model` no longer cares about the initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
+`v-model` ya no se preocupa por el valor inicial de un atributo en línea `value`. Para la previsibilidad, siempre tratará los datos de la instancia de Vue como la fuente de la verdad.
 
-That means this element:
+Eso significa que este elemento:
 
 ``` html
 <input v-model="text" value="foo">
 ```
 
-backed by this data:
+respaldado por estos datos:
 
 ``` js
 data: {
@@ -565,32 +579,34 @@ data: {
 }
 ```
 
-will render with a value of "bar" instead of "foo". The same goes for a `<textarea>` with existing content. Instead of:
+se renderizará con un valor de "bar" en lugar de "foo". Lo mismo ocurre con un `<textarea>` con contenido existente. En lugar de:
 
 ``` html
 <textarea v-model="text">
-  hello world
+  Hola mundo
 </textarea>
 ```
 
-You should ensure your initial value for `text` is "hello world".
+Usted debe asegurarse de que su valor inicial para `text` sea "Hola mundo".
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about inline value attributes with <code>v-model</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute sus pruebas de extremo a extremo o su aplicación luego de la actualización, y busque <strong>advertencias de consola</strong> sobre valores en línea para atributos con <code>v-model</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `v-model` with `v-for` Iterated Primitive Values <sup>removed</sup>
+### `v-model` con `v-for` Valores primitivos iterados <sup>eliminados</sup>
 
-Cases like this no longer work:
+Casos como este ya no funcionan:
 
 ``` html
 <input v-for="str in strings" v-model="str">
 ```
 
-The reason is this is the equivalent JavaScript that the `<input>` would compile to:
+La razón es que este es el código JavaScript equivalente que compilaría el `<input>`:
 
 ``` js
 strings.map(function (str) {
@@ -598,9 +614,9 @@ strings.map(function (str) {
 })
 ```
 
-As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's only a local variable in the function scope.
+Como usted puede ver, el enlace bidireccional de `v-model` no tiene sentido aquí. Establecer `str` en otro valor en la función de iterador no hará nada porque es solo una variable local en el alcance de la función.
 
-Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
+En su lugar, usted debe utilizar un arreglo de __Objetos__ para que `v-model` pueda actualizar el campo en el objeto. Por ejemplo:
 
 ``` html
 <input v-for="obj in objects" v-model="obj.str">
@@ -608,8 +624,10 @@ Instead, you should use an array of __objects__ so that `v-model` can update the
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute su conjunto de pruebas, si tiene uno. Las <strong>pruebas fallidas</strong> deberían alertarlo sobre cualquier parte de su aplicación que pueda verse afectada por este cambio.
+  </p>
 </div>
 {% endraw %}
 
