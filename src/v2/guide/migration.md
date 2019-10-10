@@ -1562,7 +1562,7 @@ Ahora async es requerido para el rendimiento de la renderización.
 </div>
 {% endraw %}
 
-### `Vue.config.delimiters` <sup>remplazado</sup>
+### `Vue.config.delimiters` <sup>reemplazado</sup>
 
 Esto se ha modificado como una [opción a nivel de componente](../api/#delimiters). Esto le permite usar delimitadores alternativos dentro de su aplicación sin romper componentes de terceros.
 
