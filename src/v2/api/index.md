@@ -438,7 +438,7 @@ type: api
 
   Una vez observado, ya no puede agregar propiedades reactivas al objeto de datos raíz. Por lo tanto, se recomienda declarar todas las propiedades reactivas de nivel raíz por adelantado, antes de crear la instancia.
 
-  Una vez creada la instancia, se puede acceder al objeto de datos original como `vm.$data`. La instancia de Vue también representa todas las propiedades encontradas en el objeto de datos, por lo que `vm.a` será equivalente a` vm.$data.a`.
+  Una vez creada la instancia, se puede acceder al objeto de datos original como `vm.$data`. La instancia de Vue también representa todas las propiedades encontradas en el objeto de datos, por lo que `vm.a` será equivalente a `vm.$data.a`.
 
   Las propiedades que comienzan con `_` o `$` **no** serán representadas en la instancia de Vue porque pueden entrar en conflicto con las propiedades internas y los métodos API de Vue. Tendrá que acceder a ellos como `vm.$data._property`.
 
