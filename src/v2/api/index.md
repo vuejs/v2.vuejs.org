@@ -434,7 +434,7 @@ type: api
 
 - **Detalles:**
 
-  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getter/setters para hacerlas "reactivas". **El objeto debe ser simple**: los objetos nativos como los objetos API del navegador y las propiedades del prototipo se ignoran. Una regla general es que los datos deberían ser solo datos; no se recomienda observar objetos con su propio comportamiento de estado.
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en _getter/setters_ para hacerlas "reactivas". **El objeto debe ser simple**: los objetos nativos como los objetos API del navegador y las propiedades del prototipo se ignoran. Una regla general es que los datos deberían ser solo datos; no se recomienda observar objetos con su propio comportamiento de estado.
 
   Una vez observado, ya no puede agregar propiedades reactivas al objeto de datos raíz. Por lo tanto, se recomienda declarar todas las propiedades reactivas de nivel raíz por adelantado, antes de crear la instancia.
 
