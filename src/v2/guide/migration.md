@@ -377,7 +377,7 @@ methods: {
 {% raw %}
 <div class="upgrade-path">
   <h4>Ruta de actualización</h4>
-  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración </a> en su código para encontrar ejemplos de <code>cache: false</code>.</p>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>cache: false</code>.</p>
 </div>
 {% endraw %}
 
@@ -631,74 +631,81 @@ En su lugar, usted debe utilizar un arreglo de __Objetos__ para que `v-model` pu
 </div>
 {% endraw %}
 
-### `v-bind:style` with Object Syntax and `!important` <sup>removed</sup>
 
-This will no longer work:
+### `v-bind:style` con sintaxis de Objeto y `!important` <sup>eliminado</sup>
+
+Esto ya no funcionará:
 
 ``` html
-<p v-bind:style="{ color: myColor + ' !important' }">hello</p>
+<p v-bind:style="{ color: myColor + ' !important' }">hola</p>
 ```
 
-If you really need to override another `!important`, you must use the string syntax:
+Si usted realmente necesita anular otro `!Important`, debe usar la sintaxis de cadena de texto:
 
 ``` html
-<p v-bind:style="'color: ' + myColor + ' !important'">hello</p>
+<p v-bind:style="'color: ' + myColor + ' !important'">hola</p>
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of style bindings with <code>!important</code> in objects.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de estilos unidos con <code>!important</code> en los Objetos.
+  </p>
 </div>
 {% endraw %}
 
-### `v-el` and `v-ref` <sup>replaced</sup>
+### `v-el` y `v-ref` <sup>cambiado</sup>
 
-For simplicity, `v-el` and `v-ref` have been merged into the `ref` attribute, accessible on a component instance via `$refs`. That means `v-el:my-element` would become `ref="myElement"` and `v-ref:my-component` would become `ref="myComponent"`. When used on a normal element, the `ref` will be the DOM element, and when used on a component, the `ref` will be the component instance.
+Para simplificar, `v-el` y `v-ref` se han fusionado en el atributo `ref`, accesible en una instancia de componente a través de `$refs`. Eso significa que `v-el:my-element` se convertiría en `ref="myElement"` y `v-ref:my-component` se convertiría en `ref="myComponent"`. Cuando se usa en un elemento normal, la `ref` será el elemento DOM, y cuando se use en un componente, la `ref` será la instancia del componente.
 
-Since `v-ref` is no longer a directive, but a special attribute, it can also be dynamically defined. This is especially useful in combination with `v-for`. For example:
+Como `v-ref` ya no es una directiva, sino un atributo especial, también se puede definir dinámicamente. Esto es especialmente útil en combinación con `v-for`. Por ejemplo:
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
+Anteriormente, `v-el`/`v-ref` combinado con `v-for` produciría una serie de elementos/componentes, porque no había forma de darle a cada elemento un nombre único. Usted todavía puede lograr este comportamiento si le da a cada elemento la misma `ref`:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
 ```
 
-Unlike in 1.x, these `$refs` are not reactive, because they're registered/updated during the render process itself. Making them reactive would require duplicate renders for every change.
+A diferencia de 1.x, estos `$refs` no son reactivos, porque están registrados/actualizados durante el proceso de renderización. Hacerlos reactivos requeriría renders duplicados para cada cambio.
 
-On the other hand, `$refs` are designed primarily for programmatic access in JavaScript - it is not recommended to rely on them in templates, because that would mean referring to state that does not belong to the instance itself. This would violate Vue's data-driven view model.
+Por otro lado, los `$refs` están diseñados principalmente para el acceso programático en JavaScript; no se recomienda confiar en ellos en las plantillas, porque eso significaría referirse al estado que no pertenece a la instancia en sí. Esto violaría el modelo de vista basado en datos de Vue.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>v-el</code> and <code>v-ref</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>v-el</code> y <code>v-ref</code>.
+  </p>
 </div>
 {% endraw %}
 
-### `v-else` with `v-show` <sup>removed</sup>
+### `v-else` con `v-show` <sup>eliminado</sup>
 
-`v-else` no longer works with `v-show`. Use `v-if` with a negation expression instead. For example, instead of:
+`v-else` ya no funciona con `v-show`. Utilice `v-if` con una expresión de negación en su lugar. Por ejemplo, en lugar de:
 
 ``` html
 <p v-if="foo">Foo</p>
-<p v-else v-show="bar">Not foo, but bar</p>
+<p v-else v-show="bar">No foo, pero bar</p>
 ```
 
-You can use:
+Usted puede usar:
 
 ``` html
 <p v-if="foo">Foo</p>
-<p v-if="!foo && bar">Not foo, but bar</p>
+<p v-if="!foo && bar">No foo, pero bar</p>
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-else</code> with <code>v-show</code>.</p>
+  <h4>Ruta de actualización</h4>
+  <p>
+    Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su código para encontrar ejemplos de <code>v-else</code> con <code>v-show</code>.
+  </p>
 </div>
 {% endraw %}
 
