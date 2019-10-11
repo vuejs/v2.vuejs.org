@@ -440,7 +440,7 @@ type: api
 
   Una vez creada la instancia, se puede acceder al objeto de datos original como `vm.$data`. La instancia de Vue también representa todas las propiedades encontradas en el objeto de datos, por lo que `vm.a` será equivalente a `vm.$data.a`.
 
-  Las propiedades que comienzan con `_` o `$` **no** serán representadas en la instancia de Vue porque pueden entrar en conflicto con las propiedades internas y los métodos API de Vue. Tendrá que acceder a ellos como `vm.$data._property`.
+  Las propiedades que comienzan con `_` o `$` **no** serán representadas en la instancia de Vue porque pueden entrar en conflicto con las propiedades internas y los métodos de la API de Vue. Tendrá que acceder a ellos como `vm.$data._property`.
 
   Al definir un **componente**, `data` debe declararse como una función que devuelve el objeto de datos inicial, porque se crearán muchas instancias utilizando la misma definición. Si usamos un objeto simple para `data`, ¡ese mismo objeto será **compartido por referencia** en todas las instancias creadas! Al proporcionar una función `data`, cada vez que se crea una nueva instancia podemos llamarla para devolver una copia nueva de los datos iniciales.
 
