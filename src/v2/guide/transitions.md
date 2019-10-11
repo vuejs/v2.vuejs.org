@@ -959,6 +959,7 @@ So what about for when we have a whole list of items we want to render simultane
 - Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
 - [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
 - Elements inside are **always required** to have a unique `key` attribute.
+- CSS transition classes will be applied to inner elements and not to the group/container itself.
 
 ### List Entering/Leaving Transitions
 

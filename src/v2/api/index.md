@@ -1534,7 +1534,7 @@ type: api
   // function
   vm.$watch(
     function () {
-      // everytime the expression `this.a + this.b` yields a different result,
+      // every time the expression `this.a + this.b` yields a different result,
       // the handler will be called. It's as if we were watching a computed
       // property without defining the computed property itself
       return this.a + this.b
@@ -1574,6 +1574,35 @@ type: api
     immediate: true
   })
   // `callback` is fired immediately with current value of `a`
+  ```
+
+  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
+
+  ``` js
+  // This will cause an error
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      unwatch()
+    },
+    { immediate: true }
+  )
+  ```
+
+  If you still want to call an unwatch function inside the callback, you should check its availability first:
+
+  ``` js
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      if (unwatch) {
+        unwatch()
+      }
+    },
+    { immediate: true }
+  )
   ```
 
 ### vm.$set( target, propertyName/index, value )
