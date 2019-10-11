@@ -424,41 +424,41 @@ type: api
   }
   ```
 
-## Options / Data
+## Opciones / Datos
 
 ### data
 
 - **Tipo:** `Object | Function`
 
-- **Restricción:** Sólo acepta `Function` cuando es usado en la definición del componente.
+- **Restricción:** Solo acepta `Function` cuando se usa en una definición de componente.
 
 - **Detalles:**
 
-  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getters/setters para hacerlas reactivas. **El objeto debe ser plano**: los objetos nativos como cada objeto de la API del navegador y propiedades proptotipadas son ignoradas. Una regla de oro es que estos datos solo deberían ser datos - no es recomendado observar objetos con sus propios comportamientos de estado.
+  El objeto de datos para la instancia de Vue. Vue convertirá recursivamente sus propiedades en getter/setters para hacerlas "reactivas". **El objeto debe ser simple**: los objetos nativos como los objetos API del navegador y las propiedades del prototipo se ignoran. Una regla general es que los datos deberían ser solo datos; no se recomienda observar objetos con su propio comportamiento de estado.
 
-  Una vez observado, usted puede no volver a adicionar propiedades a la raíz del objeto de datos. Se recomienda por lo tanto declarar todos las propiedades reactivas por adelantado a nivel de raíz, antes de de crear la instancia.
+  Una vez observado, ya no puede agregar propiedades reactivas al objeto de datos raíz. Por lo tanto, se recomienda declarar todas las propiedades reactivas de nivel raíz por adelantado, antes de crear la instancia.
 
-  Después que se crea la instancia se puede acceder al objeto original de los datos como `vm.$data`. La instancia de Vue también actúa como proxy a todas las propiedades encontradas en el objeto de los datos, así que `vm.a` será el equivalente a `vm.$data.a`.
+  Una vez creada la instancia, se puede acceder al objeto de datos original como `vm.$data`. La instancia de Vue también representa todas las propiedades encontradas en el objeto de datos, por lo que `vm.a` será equivalente a` vm.$data.a`.
 
-  Las propiedades que comienzan con `_` o `$` **no** serán proxiadas en la instancia de Vue debido a que pueden causar conflicto con las propiedades internas de Vue y los métodos de la API. Usted tendrá que acceder a ellas como `vm.$data._property`.
+  Las propiedades que comienzan con `_` o `$` **no** serán representadas en la instancia de Vue porque pueden entrar en conflicto con las propiedades internas y los métodos API de Vue. Tendrá que acceder a ellos como `vm.$data._property`.
 
-  Al definir un **componente**, `data` debe ser declarada como una función que devuelve los datos del objeto inicial, porque habrán muchas instancias creadas usando la misma definición. Si usamos un objeto plano para `data`, este mismo objeto será **compartido por referencia** a través de todas las instancias creadas! Al proporcionar una función `data`, cada vez que una nueva instancia es creada podemos llamarla para devolver una copia reciente de los datos iniciales.
+  Al definir un **componente**, `data` debe declararse como una función que devuelve el objeto de datos inicial, porque se crearán muchas instancias utilizando la misma definición. Si usamos un objeto simple para `data`, ¡ese mismo objeto será **compartido por referencia** en todas las instancias creadas! Al proporcionar una función `data`, cada vez que se crea una nueva instancia podemos llamarla para devolver una copia nueva de los datos iniciales.
 
-  Si fuera necesario un clon en profundidad del objeto original lo podemos obtener al pasar `vm.$data` mediante `JSON.parse(JSON.stringify(...))`.
+  Si es necesario, se puede obtener un clon profundo del objeto original pasando `vm.$data` a través de `JSON.parse(JSON.stringify(...))`.
 
 - **Ejemplo:**
 
   ``` js
   var data = { a: 1 }
 
-  // instancia directa de creación
+  // creación directa de instancia
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // debe usar la funcion cuando esta en Vue.extend()
+  // debe usar la función cuando está en Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -466,36 +466,45 @@ type: api
   })
   ```
 
-  Note que si usted usa una función flecha con la propiedad `data`, `this` no será la instancia del componente, pero usted puede seguir accediendo a la instancia por el primer argumento de la función:
+  Tenga en cuenta que si usa una _arrow function_ con la propiedad `data`, `this` no será la instancia del componente, pero aún puede acceder a la instancia como primer argumento de la función:
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **Ver también:** [Reactividad en profundidad](../guide/reactivity.html)
+- **Vea además:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### props
 
 - **Tipo:** `Array<string> | Object`
 
-- **Details:**
+- **Detalles:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Una lista/hash de atributos que están expuestos para aceptar datos del componente principal. Tiene una sintaxis simple basada en un Array y una sintaxis alternativa basada en Objetos que permite configuraciones avanzadas como verificación de tipo, validación personalizada y valores predeterminados.
 
-- **Example:**
+  Con la sintaxis basada en objetos, puede usar las siguientes opciones:
+    - `type`: puede ser uno de los siguientes constructores nativos: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, cualquier función de constructor personalizada o una variedad de esos. Verificará si una propiedad tiene un tipo dado y lanzará una advertencia si no lo tiene. [Más información](../guide/components-props.html#Prop-types) sobre tipos de propiedades.
+    - `default`: `any`
+    Especifica un valor predeterminado para la propiedad. Si no se pasa la propiedad, este valor se utilizará en su lugar. Los valores predeterminados de objeto o _array_ se deben devolver desde una función _factory_.
+    - `required`: `Boolean`
+    Define si la propiedad es requerida. En un entorno que no sea de producción, se lanzará una advertencia de consola si este valor es verdadero y no se pasa la propiedad.
+    - `validator`: `Function`
+    Función de validación personalizada que toma el valor de la propiedad como único argumento. En un entorno que no sea de producción, se lanzará una advertencia de consola si esta función devuelve un valor falso (es decir, la validación falla). Puedes leer más sobre la validación de accesorios [aquí](../guide/components-props.html#Prop-Validation).
+
+- **Ejemplo:**
 
   ``` js
-  // simple syntax
+  // sintaxis simple
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // sintaxis de objeto con validación
   Vue.component('props-demo-advanced', {
     props: {
-      // type check
+      // verificación de tipo
       height: Number,
-      // type check plus other validations
+      // verificación de tipo más otras validaciones
       age: {
         type: Number,
         default: 0,
@@ -508,19 +517,19 @@ type: api
   })
   ```
 
-- **See also:** [Props](../guide/components.html#Props)
+- **Vea además:** [Propiedades](../guide/components-props.html)
 
 ### propsData
 
 - **Tipo:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restricción:** solo se respeta en la creación de instancias mediante `new`.
 
-- **Details:**
+- **Detalles:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Pasa propiedades a una instancia durante su creación. Esto está destinado principalmente a facilitar las pruebas unitarias.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var Comp = Vue.extend({
@@ -530,7 +539,7 @@ type: api
 
   var vm = new Comp({
     propsData: {
-      msg: 'hello'
+      msg: 'hola'
     }
   })
   ```
@@ -539,11 +548,11 @@ type: api
 
 - **Tipo:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **Detalles:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Propiedades computadas a ser mezcladas dentro de la instancia de Vue. Todos los _getters_ y _setters_ tienen su contexto `this` vinculado automáticamente a la instancia de Vue.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Tenga en cuenta que si usa una _arrow function_ con una propiedad computada, `this` no será la instancia del componente, pero aún puede acceder a la instancia como primer argumento de la función:
 
   ```js
   computed: {
@@ -551,19 +560,19 @@ type: api
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Las propiedades computadas se almacenan en caché y solo se vuelven a calcular en los cambios de dependencia reactivos. Tenga en cuenta que si cierta dependencia está fuera del alcance de la instancia (es decir, no es reactiva), la propiedad computada __no__ se actualizará.
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only
+      // solo obtener
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // ambos obtener y establecer
       aPlus: {
         get: function () {
           return this.a + 1
@@ -580,19 +589,19 @@ type: api
   vm.aDouble // => 4
   ```
 
-- **See also:** [Computed Properties](../guide/computed.html)
+- **Vea además:** [Propiedades Computadas](../guide/computed.html)
 
 ### methods
 
 - **Tipo:** `{ [key: string]: Function }`
 
-- **Details:**
+- **Detalles:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Métodos para ser mezclados dentro de la instancia de Vue. Puede acceder a estos métodos directamente en la instancia VM o usarlos en expresiones directivas. Todos los métodos tendrán su contexto `this` vinculado automáticamente a la instancia de Vue.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Tenga en cuenta que __no debe usar una arrow function para definir un método__ (por ejemplo, `plus: () => this.a ++`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.a` será _undefined_.</p>
 
-- **Example:**
+- **Ejemplo:**
 
   ```js
   var vm = new Vue({
@@ -607,17 +616,17 @@ type: api
   vm.a // 2
   ```
 
-- **See also:** [Event Handling](../guide/events.html)
+- **Vea además:** [Manejo de eventos](../guide/events.html)
 
 ### watch
 
 - **Tipo:** `{ [key: string]: string | Function | Object | Array}`
 
-- **Details:**
+- **Detalles:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Un objeto donde las claves son expresiones para observar y los valores son los _callbacks_ correspondientes. El valor también puede ser una cadena texto con el nombre de un método o un Objeto que contenga opciones adicionales. La instancia de Vue llamará a `$watch()` para cada entrada en el objeto en la instanciación.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var vm = new Vue({
@@ -634,18 +643,19 @@ type: api
     },
     watch: {
       a: function (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
+        console.log('nuevo: %s, anterior: %s', val, oldVal)
       },
-      // string method name
+      // cadena de texto con el nombre del método
       b: 'someMethod',
-      // deep watcher
+      // se llamará al callback cuando alguna de las propiedades del objeto observado cambie
+      // independientemente de su profundidad anidada
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
-      // the callback will be called immediately after the start of the observation
+      // el callback se llamará inmediatamente después del inicio de la observación
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: 'someMethod',
         immediate: true
       },
       e: [
@@ -656,16 +666,17 @@ type: api
           /* ... */
         }
       ],
-      // watch vm.e.f's value: {g: 5}
+      // observar el valor de vm.e.f: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
     }
   })
-  vm.a = 2 // => new: 2, old: 1
+  vm.a = 2 // => nuevo: 2, anterior: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Tenga en cuenta que __no debe usar una arrow function para definir un observador__ (por ejemplo, `searchQuery: newValue => this.updateAutocomplete (newValue)`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.updateAutocomplete` será _undefined_.</p>
 
-- **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
+- **Vea además:** [Métodos de instancia / Datos - vm.$watch](#vm-watch)
+
 
 ## Opciones / DOM
 
