@@ -480,7 +480,7 @@ type: api
 
 - **Detalles:**
 
-  Una lista/hash de atributos que están expuestos para aceptar datos del componente principal. Tiene una sintaxis simple basada en un Array y una sintaxis alternativa basada en Objetos que permite configuraciones avanzadas como verificación de tipo, validación personalizada y valores predeterminados.
+  Una lista/hash de atributos que están expuestos para aceptar datos del componente principal. Tiene una sintaxis simple basada en un _Array_ y una sintaxis alternativa basada en Objetos que permite configuraciones avanzadas como verificación de tipo, validación personalizada y valores predeterminados.
 
   Con la sintaxis basada en objetos, puede usar las siguientes opciones:
     - `type`: puede ser uno de los siguientes constructores nativos: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, cualquier función de constructor personalizada o una variedad de esos. Verificará si una propiedad tiene un tipo dado y lanzará una advertencia si no lo tiene. [Más información](../guide/components-props.html#Prop-types) sobre tipos de propiedades.
@@ -572,7 +572,7 @@ type: api
       aDouble: function () {
         return this.a * 2
       },
-      // ambos obtener y establecer
+      // obtener y establecer
       aPlus: {
         get: function () {
           return this.a + 1
@@ -599,7 +599,7 @@ type: api
 
   Métodos para ser mezclados dentro de la instancia de Vue. Puede acceder a estos métodos directamente en la instancia VM o usarlos en expresiones directivas. Todos los métodos tendrán su contexto `this` vinculado automáticamente a la instancia de Vue.
 
-  <p class="tip">Tenga en cuenta que __no debe usar una arrow function para definir un método__ (por ejemplo, `plus: () => this.a ++`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.a` será _undefined_.</p>
+  <p class="tip">Tenga en cuenta que __no debe usar una _arrow function_ para definir un método__ (por ejemplo, `plus: () => this.a ++`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.a` será _undefined_.</p>
 
 - **Ejemplo:**
 
@@ -673,7 +673,7 @@ type: api
   vm.a = 2 // => nuevo: 2, anterior: 1
   ```
 
-  <p class="tip">Tenga en cuenta que __no debe usar una arrow function para definir un observador__ (por ejemplo, `searchQuery: newValue => this.updateAutocomplete (newValue)`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.updateAutocomplete` será _undefined_.</p>
+  <p class="tip">Tenga en cuenta que __no debe usar una _arrow function_ para definir un observador__ (por ejemplo, `searchQuery: newValue => this.updateAutocomplete (newValue)`). La razón es que las _arrow function_ vinculan el contexto principal, por lo que `this` no será la instancia de Vue como espera y `this.updateAutocomplete` será _undefined_.</p>
 
 - **Vea además:** [Métodos de instancia / Datos - vm.$watch](#vm-watch)
 
