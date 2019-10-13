@@ -8,6 +8,7 @@ platinum_sponsors_china:
 special_sponsors:
   - url: 'https://stdlib.com/'
     img: stdlib.png
+    name: Standard Library
     description: 'Build APIs you need in minutes instead of days, for free.'
 platinum_sponsors:
   - url: >-
