@@ -230,6 +230,7 @@ Note that **`v-slot` can only be added to a `<template>`** (with [one exception]
 Sometimes, it's useful for slot content to have access to data only available in the child component. For example, imagine a `<current-user>` component with the following template:
 
 ```html
+<!-- child component -->
 <span>
   <slot>{{ user.lastName }}</slot>
 </span>
@@ -238,12 +239,13 @@ Sometimes, it's useful for slot content to have access to data only available in
 We might want to replace this fallback content to display the user's first name, instead of last, like this:
 
 ``` html
+<!-- parent component -->
 <current-user>
   {{ user.firstName }}
 </current-user>
 ```
 
-That won't work, however, because only the `<current-user>` component has access to the `user` and the content we're providing is rendered in the parent.
+That won't work, however, because only the child component `<current-user>` has access to the `user` and `user.firstName` is interpolated in the parent.
 
 To make `user` available to the slot content in the parent, we can bind `user` as an attribute to the `<slot>` element:
 
