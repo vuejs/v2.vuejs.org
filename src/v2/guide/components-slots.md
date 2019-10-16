@@ -12,6 +12,19 @@ order: 104
 
 Vue implements a content distribution API inspired by the [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.
 
+When you want to pass HTML content to other components, passing through the attributes of HTML components can get messy as more HTML needs to be passed, as shown below:
+
+``` html
+   <Hello World
+         :html="['<div><p>Hello World, proving a way to pass HTML components!!</p>
+                  <p>Here's even more text</p>
+                  </div>']"
+   >
+   </Hello World>
+```
+
+We could also pass the HTML content using props, but don't serve as the best way to handle this. This is where slots come in. Slots serve as a way to pass down HTML to other components. 
+
 This allows you to compose components like this:
 
 ``` html
@@ -20,18 +33,22 @@ This allows you to compose components like this:
 </navigation-link>
 ```
 
-Then in the template for `<navigation-link>`, you might have:
+We want to pass down the 'Your profile' string to the navigation component. We can do this by inserting a `<slot>` tag into the `<navigation-link>` components template:
 
 ``` html
-<a
-  v-bind:href="url"
-  class="nav-link"
->
-  <slot></slot>
-</a>
+<template>
+  <a
+    v-bind:href="url"
+    class="nav-link"
+  >
+    <slot></slot>
+  </a>
+</template>
 ```
 
-When the component renders, `<slot></slot>` will be replaced by "Your Profile". Slots can contain any template code, including HTML:
+When the component renders, `<slot></slot>` will be replaced by "Your Profile". 
+
+Passing down HTML code can be done the same way:
 
 ``` html
 <navigation-link url="/profile">
@@ -40,8 +57,9 @@ When the component renders, `<slot></slot>` will be replaced by "Your Profile". 
   Your Profile
 </navigation-link>
 ```
+All the content inside of the `<navigation-link>` component will be rendered where the `<slot>` component was placed.
 
-Or even other components:
+Even other components can be rendered:
 
 ``` html
 <navigation-link url="/profile">
