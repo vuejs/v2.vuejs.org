@@ -319,7 +319,10 @@ Vue does not allow dynamically adding new root-level reactive properties to an a
 var vm = new Vue({
   data: {
     userProfile: {
-      name: 'Anika'
+      name: 'Anika',
+      likes: {
+        dogs: true
+      }
     }
   }
 })
@@ -335,6 +338,12 @@ You can also use the `vm.$set` instance method, which is an alias for the global
 
 ``` js
 vm.$set(vm.userProfile, 'age', 27)
+```
+
+It's also possible to create reactive properties on objects nested deeper by passing a reference to them:
+
+``` js
+vm.$set(vm.userProfile.likes, 'cats', true)
 ```
 
 Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:

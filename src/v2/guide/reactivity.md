@@ -46,6 +46,13 @@ You can also use the `vm.$set` instance method, which is an alias to the global 
 this.$set(this.someObject, 'b', 2)
 ```
 
+`Vue.set` can also be used to set properties of nested reactive objects by passing a reference to that object:
+
+``` js
+// assuming `vm.someObject` is `{ nested: { a: 1 } }`:
+Vue.set(vm.someObject.nested, 'a', 2);
+```
+
 Sometimes you may want to assign a number of properties to an existing object, for example using `Object.assign()` or `_.extend()`. However, new properties added to the object will not trigger changes. In such cases, create a fresh object with properties from both the original object and the mixin object:
 
 ``` js
