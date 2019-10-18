@@ -1003,9 +1003,9 @@ type: api
 
 - **Detail:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Tentukan _instance_ induk untuk _instance_ yang akan dibuat. Bangun hubungan induk-anak di antara keduanya. Induk dapat diakses sebagai`this.$parent` di dalam _instance_ anak, dan _instance_ anak akan dimasukkan ke dalem _array_ `$children` induknya.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Gunakan `$parent` dan `$children` secukupnya - dikarenakan mereka kebanyakan digunakan sebagai pintu darurat. Utamakan penggunaan _props_ dan _events_ untuk komunikasi induk-anak.</p>
 
 ### mixins
 
@@ -1013,11 +1013,11 @@ type: api
 
 - **Detail:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  `mixins` menerima sebuah array berisi objek _mixin_. Kumpulan objek _mixin_ ini dapat berisi opsi _instance_ seperti _instance_ objek pada umumnya, dan mereka akan digabungkan dengan opsi yang ditambah menggunakan logika penggabungan opsi yang sama seperti `Vue.extend()`. Contoh: Jika `mixin` anda mengandung _hook_ dan komponen itu sendiri juga memiliki _hook_ yang sama, maka kedua fungsi akan dipanggil.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  _hook_ mixin dipanggil sesuai dengan urutan dimana mereka disediakan, dan dipanggil sebelum _hook_ komponen itu sendiri.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var mixin = {
@@ -1039,16 +1039,16 @@ type: api
 
 - **Detail:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Secara deklaratif mengekstensi komponen lain (bisa antara objek opsi polos, atau sebuah konstruktor) tanpa menggunakan `Vue.extend`. Tujuan utama dari _extends_ adalah mempermudah ekstensi antara Komponen Berkas Tunggal.
 
-  This is similar to `mixins`.
+  Fungsi ini mirip dengan `mixins`.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // extend CompA tanpa perlu memanggil `Vue.extend` di keduanya
   var CompB = {
     extends: CompA,
     ...
@@ -1057,7 +1057,7 @@ type: api
 
 ### provide / inject
 
-> New in 2.2.0+
+> Baru di versi 2.2.0+
 
 - **Tipe:**
   - **provide:** `Object | () => Object`
@@ -1065,26 +1065,26 @@ type: api
 
 - **Detail:**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` dan `inject` khususnya disediakan untuk _plugin_ lanjutan / kasus pemakaian pustaka komponen. Fungsi ini TIDAK direkomendasikan untuk digunakan dalam kode aplikasi secara umum.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  Kedua opsi ini digunakan untuk mengizinkan komponen terdahulu sebagai penyuntik _dependencies_ ke semua keturunannya, mengesampingkan seberapa dalam komponen hirarkinya, selama mereka ada di dalam rantai komponen induk yang sama. Jika anda _familiar_ dengan React, ini sangat mirip dengan fitur konteks React.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  Tipe opsi `provide` harus sebuah objek atau sebuah fungsi yang mengembalikan sebuah object. Objek ini mengandung properti-properti yang tersedia untuk diinjeksikan ke keturunannya. Anda dapat menggunakan ES2015 Symbols sebagai _keys_ di objek ini, tapi hanya di lingkungan yang secara _native_ mendukung `Symbol` dan `Reflect.ownKeys`.
 
-  The `inject` option should be either:
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  Opsi `inject` harus di antara berikut:
+  - sebuah array berisi untai
+  - sebuah objek dimana _keys_ adalah nama _binding_ lokal dan nilainya di antara:
+    - _key_ (untai atau Symbol) untuk mencari injeksi yang tersedia, atau
+    - sebuah objek dimana:
+      - properti `from` adalah _key_ (untai atau Symbol) untuk mencari injeksi yang tersedia, dan
+      - properti `default` yang digunakan sebagai nilai pada saat terjadi kegagalan
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > Catatan: ikatan `provide` dan `inject` tidak bersifat reaktif. Hal ini disengaja. Namun, apabila anda menurunkan objek yang diobservasi, properti-properti dalam objek tersebut tetap reaktif.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  // parent component providing 'foo'
+  // komponen induk menyediakan 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1092,8 +1092,8 @@ type: api
     // ...
   }
 
-  // child component injecting 'foo'
-  var Child = {
+  // komponen anak menginjeksi 'foo'
+  var Anak = {
     inject: ['foo'],
     created () {
       console.log(this.foo) // => "bar"
@@ -1102,7 +1102,7 @@ type: api
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Dengan ES2015 Symbols, fungsi `provide` dan objek `inject`:
   ``` js
   const s = Symbol()
 
@@ -1114,17 +1114,17 @@ type: api
     }
   }
 
-  const Child = {
+  const Anak = {
     inject: { s },
     // ...
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > Dua contoh dibawah hanya bisa berjalan dengan Vue 2.2.1+. Nilai-nilai yang diinjeksi diselesaikan setelah inisialisasi `props` dan `data`.
 
-  Using an injected value as the default for a prop:
+  Menggunakan nilai yang terinjeksi sebagai nilai anggapan untuk sebuah `prop`:
   ```js
-  const Child = {
+  const Anak = {
     inject: ['foo'],
     props: {
       bar: {
@@ -1136,9 +1136,9 @@ type: api
   }
   ```
 
-  Using an injected value as data entry:
+  Menggunakan nilai yang terinjeksi sebagai data:
   ```js
-  const Child = {
+  const Anak = {
     inject: ['foo'],
     data () {
       return {
@@ -1148,20 +1148,20 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > Di versi 2.5.0+ injeksi bersifat opsional dengan nilai anggapan:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: { default: 'foo' }
     }
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  Jika komponen tersebut memerlukan injeksi dari properti dengan nama yang lain, gunakan `from` untuk menandakan sumber properti:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: {
         from: 'bar',
@@ -1171,10 +1171,10 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  Mirip dengan nilai anggapan _prop_, anda harus menggunakan fungsi pabrik untuk nilai non-primitif:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: {
         from: 'bar',
@@ -1190,13 +1190,13 @@ type: api
 
 - **Tipe:** `string`
 
-- **Batasan:** only respected when used as a component option.
+- **Batasan:** Gunakan hanya sebagai opsi komponen.
 
 - **Detail:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Mengizinkan sebuah komponen untuk memanggil dirinya sendiri di dalam templatnya sendiri secara rekursif. Catat bahwa ketika sebuah komponen terdaftar secara global dengan `Vue.component()`, ID global secara otomatis ditetapkan sebagai namanya.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Keuntungan lain dengan menspesifikasikan sebuah opsi `name` adalah _debugging_. Komponen dengan nama lebih membantu dalam pesan peringatan. Dan juga, ketika memeriksa sebuah aplikasi di dalam [vue-devtools](https://github.com/vuejs/vue-devtools), komponen tanpa nama akan muncul sebagai `<AnonymousComponent>`, dimana tidak informatif sama sekali. Dengan menambahkan opsi `name`, anda akan mendapatkan struktur komponen yang lebih informatif.
 
 ### delimiters
 
@@ -1204,11 +1204,11 @@ type: api
 
 - **Nilai Anggapan:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Batasan:** This option is only available in the full build, with in-browser compilation.
+- **Batasan:** Opsi ini hanya tersedia di _full build_, dalam kompilasi peramban.
 
 - **Detail:**
 
-  Change the plain text interpolation delimiters.
+  Mengubah pembatas interpolasi teks normal.
 
 - **Example:**
 
@@ -1217,7 +1217,7 @@ type: api
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Delimiter diubah menjadi menggunakan ES6 template string
   ```
 
 ### functional
@@ -1226,32 +1226,32 @@ type: api
 
 - **Detail:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+  Menyebabkan sebuah komponen menjadi tanpa kondisi (tanpa `data`) dan tanpa _instance_ (tanpa konteks `this`). Komponen tersebut hanya berisi fungsi `render` yang mengembalikan node virtual agar membuat komponen tersebut lebih efektif untuk _dirender_.
 
 - **Lihat juga:** [Functional Components](../guide/render-function.html#Functional-Components)
 
 ### model
 
-> New in 2.2.0
+> Baru di versi 2.2.0
 
 - **Tipe:** `{ prop?: string, event?: string }`
 
 - **Detail:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Mengizinkan sebuah komponen khusus untuk menyesuaikan _prop_ dan _event_ ketika digunakan bersama `v-model`. Secara standar, `v-model` dalam sebuah komponen menggunakan `value` sebagai _prop_ dan `input` sebagai _event_, namun beberapa tipe _input_ seperti tombol centang dan tombol radio ingin menggunakan _prop_ `value` untuk tujuan yang lain. Menggunakan opsi `model` dapat menghindari konflik dalam kasus seperti ini.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  Vue.component('my-checkbox', {
+  Vue.component('checkbox-saya', {
     model: {
       prop: 'checked',
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // mengizinkan menggunakan prop `value` untuk tujuan lain
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // menggunakan `checked` sebagai prop yang akan menimpa nilai dari `value`
       checked: {
         type: Number,
         default: 0
@@ -1262,22 +1262,22 @@ type: api
   ```
 
   ``` html
-  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  <checkbox-saya v-model="foo" value="sebuah nilai"></checkbox-saya>
   ```
 
-  The above will be equivalent to:
+  Kode di atas sama dengan:
 
   ``` html
-  <my-checkbox
+  <checkbox-saya
     :checked="foo"
-    @change="val => { foo = val }"
-    value="some value">
-  </my-checkbox>
+    @change="nilai => { foo = nilai }"
+    value="sebuah nilai">
+  </checkbox-saya>
   ```
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
 - **Tipe:** `boolean`
 
@@ -1285,23 +1285,23 @@ type: api
 
 - **Detail:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Secara standar, Ikatan atribut dalam cakupan induk yang tidak dikenali sebagai _prop_ akan "gagal" dan akan diaplikasikan ke elemen akar dari komponen anak sebagai atribut HTML normal. Ketika membuat sebuah komponen yang membungkus sebuah elemen target atau komponen lain, opsi ini tidak selalu menghasilkan hasil yang diinginkan. Dengan mengubah nilai `inheritAttrs` menjadi `false`, kejadian standar ini dapat dinonaktifkan. Atribut yang tersedia melalui properti _instance_ `$attrs` (baru di 2.4) dan bisa diikat secara eksplisit ke elemen yang bukan akar menggunakan `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Catatan: opsi ini **tidak** mempengaruhi ikatan `class` dan `style`.
 
 ### comments
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
 - **Tipe:** `boolean`
 
 - **Nilai Anggapan:** `false`
 
-- **Batasan:** This option is only available in the full build, with in-browser compilation.
+- **Batasan:** Opsi ini hanya tersedia di _full build_, dalam kompilasi peramban.
 
 - **Detail:**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Ketika nilai diubah ke `true`, akan menyimpan dan _merender_ komen HTML yang ditemukan di templat. Tindakan normal secara umum adalah dengan membuangnya.
 
 ## Instance Properties
 
