@@ -1,4 +1,7 @@
-﻿# vuejs.org
+# ua.vuejs.org
+Цей репозиторій містить переклад документації vuejs.org на українську мову.
+
+# vuejs.org
 
 This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
 
@@ -100,6 +103,10 @@ Russian translation is maintained by Translation Gang.
 - [Pablo Kz](https://github.com/pabloKz)	
 - [Leonardo Fagundez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
  
+
+### Ukrainian
+
+Ukrainian translation is maintained by [Serhii Matrunchyk](https://github.com/matruncyk).
 
 ### Vietnamese
 
