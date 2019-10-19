@@ -20,7 +20,7 @@ Vue (промовляється як в'ю) є **прогресивним фре
 
 <p class="tip">Офіційний посібник передбачає середній рівень знант HTML, CSS та JavaScript. Якщо Ви зовсім нещодавно у frontend-розробці, це може бути не найкращою ідеєю для вивчення фреймворку в якості Вашого першого кроку — опануйте основи та повертайтеся до нас! Попередній досвід з іншими фреймворками є корисним, але зовсім не обов'язковий.</p>
 
-Найлегший спосіб спробувати Vue — перегляньте [Приклад "Привіт Світ" на JSFiddle](https://jsfiddle.net/matrunchyk/rtpLkqyf/4/). Відкрийте цей приклад в новій вкладці та слідкуйте далі за тим, як ми будемо давати деякі приклади. Або ж, Ви можете <a href="https://gist.githubusercontent.com/matrunchyk/cbc973f1db9e73e036823da9452eeb9d/raw/785b612ae7879a2492553188b6aa01d9b11a77b8/My%2520first%2520Vue%2520app" target="_blank" download="index.html" rel="noopener noreferrer">створіть файл <code>index.html</code></a> та додайте Vue наступним чином:
+Найлегший спосіб спробувати Vue — переглянути [приклад "Привіт Світ" на JSFiddle](https://jsfiddle.net/matrunchyk/rtpLkqyf/4/). Відкрийте цей приклад в новій вкладці та слідкуйте далі за тим, як ми будемо давати деякі приклади. Або ж, Ви можете <a href="https://gist.githubusercontent.com/matrunchyk/cbc973f1db9e73e036823da9452eeb9d/raw/785b612ae7879a2492553188b6aa01d9b11a77b8/My%2520first%2520Vue%2520app" target="_blank" download="index.html" rel="noopener noreferrer">створіть файл <code>index.html</code></a> та додайте Vue наступним чином:
 
 ``` html
 <!-- версія для розробників, включає в себе корисні повідомлення про помилки в консолі -->
