@@ -2,8 +2,8 @@
 title: Встановлення
 type: guide
 order: 1
-vue_version: 2.5.16
-gz_size: "30.90"
+vue_version: 2.6.10
+gz_size: "33.30"
 ---
 
 ### Compatibility Note
@@ -50,7 +50,7 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 
 ``` html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
 </script>
 ```
 

@@ -4,37 +4,37 @@ type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Що таке Vue.js?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (промовляється як в'ю) є **прогресивним фреймворком** для розробки користувацьких інтерфейсів. На відміну від інших монолітних фреймворків, Vue був розроблений з нуля щоб бути постійно пристосовуваним. Основна бібліотека сфокусована лише на шарі відображення, що надає змогу легкої інтеграції з іншими бібліотеками та існуючими проектами. З іншої сторони, Vue також готовий бути основою як простих SPA, так і складних додатків в комбінації із [сучасними інструментами](single-file-components.html) та [підтримуючими бібліотеками](https://github.com/vuejs/awesome-vue#components--libraries).
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Якщо Ви бажаєте дізнатися більше про Vue перед поглибленням усередину, ми <a id="modal-player" href="#">створили відео</a>, яке розповідає про основні принципи на прикладі простенького проекту.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Якщо ж Ви frontend-розробник з досвідом та бажаєте дізнатися про Vue в порівнянні з іншими бібліотеками/фреймворками, перегляньте [Порівняння з іншими фреймворками](comparison.html).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Безкоштовний курс по Vue.js">Переглянути безкоштовний відео курс на Vue Mastery</a></div>
 
-## Getting Started
+## Починаємо
 
-<a class="button" href="installation.html">Installation</a>
+<a class="button" href="installation.html">Встановлення</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Офіційний посібник передбачає середній рівень знант HTML, CSS та JavaScript. Якщо Ви зовсім нещодавно у frontend-розробці, це може бути не найкращою ідеєю для вивчення фреймворку в якості Вашого першого кроку — опануйте основи та повертайтеся до нас! Попередній досвід з іншими фреймворками є корисним, але зовсім не обов'язковий.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Найлегший спосіб спробувати Vue — перегляньте [Приклад "Привіт Світ" на JSFiddle](https://jsfiddle.net/matrunchyk/rtpLkqyf/4/). Відкрийте цей приклад в новій вкладці та слідкуйте далі за тим, як ми будемо давати деякі приклади. Або ж, Ви можете <a href="https://gist.githubusercontent.com/matrunchyk/cbc973f1db9e73e036823da9452eeb9d/raw/785b612ae7879a2492553188b6aa01d9b11a77b8/My%2520first%2520Vue%2520app" target="_blank" download="index.html" rel="noopener noreferrer">створіть файл <code>index.html</code></a> та додайте Vue наступним чином:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- версія для розробників, включає в себе корисні повідомлення про помилки в консолі -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+або:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- продакшн-версія, оптимізована в швидкості та розмірі -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+[Сторінка по встановленню](installation.html) містить більше налаштувань по встановленню Vue. Примітка: Ми **не рекомендуємо** початківцям використовувати `vue-cli`, особливо, якщо Ви ще не познайомилися з інструментами компіляції на Node.js.
 
 If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
 
