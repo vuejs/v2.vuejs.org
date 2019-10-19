@@ -10,8 +10,8 @@ order: 804
   </section>
 
   <p>
-    Want to feature your themes here?
-    <a href="mailto:evan@vuejs.org?subject=Theme+affiliation">Contact us</a>!
+    Хочете розмістити Ваші теми тут?
+    <a href="mailto:evan@vuejs.org?subject=Theme+affiliation">Напишіть нам</a>!
   </p>
 </div>
 
