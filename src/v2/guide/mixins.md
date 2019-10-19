@@ -1,5 +1,5 @@
 ---
-title: Mixins
+title: Домішки
 type: guide
 order: 301
 ---

@@ -1,5 +1,5 @@
 ---
-title: Single File Components
+title: Однофайлові компоненти
 type: guide
 order: 401
 ---

@@ -1,5 +1,5 @@
 ---
-title: List Rendering
+title: Списки
 type: guide
 order: 8
 ---

@@ -1,5 +1,5 @@
 ---
-title: Component Registration
+title: Реєстрація компонент
 type: guide
 order: 101
 ---

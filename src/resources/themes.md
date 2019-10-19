@@ -1,5 +1,5 @@
 ---
-title: Themes
+title: Теми
 type: resources
 order: 804
 ---

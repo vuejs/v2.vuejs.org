@@ -1,5 +1,5 @@
 ---
-title: Custom Events
+title: Спеціальні події
 type: guide
 order: 103
 ---

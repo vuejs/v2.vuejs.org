@@ -1,5 +1,5 @@
 ---
-title: Event Handling
+title: Обробка подій
 type: guide
 order: 9
 ---

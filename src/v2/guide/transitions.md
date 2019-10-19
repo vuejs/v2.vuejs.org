@@ -1,5 +1,5 @@
 ---
-title: Enter/Leave & List Transitions
+title: Переходи входу/виходу та списків
 type: guide
 order: 201
 ---

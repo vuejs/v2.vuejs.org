@@ -1,7 +1,7 @@
 ---
 type: partners
 partners: true
-title: Vue Partners
+title: Партнери Vue
 proficiencies_urls:
   VueJs: https://vuejs.org
   Laravel: https://laravel.com

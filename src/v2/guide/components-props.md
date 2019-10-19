@@ -1,5 +1,5 @@
 ---
-title: Props
+title: Властивості
 type: guide
 order: 102
 ---

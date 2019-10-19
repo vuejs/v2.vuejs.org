@@ -1,5 +1,5 @@
 ---
-title: Template Syntax
+title: Синтаксис шаблону
 type: guide
 order: 4
 ---

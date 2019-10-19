@@ -1,5 +1,5 @@
 ---
-title: Components Basics
+title: Компоненти
 type: guide
 order: 11
 ---

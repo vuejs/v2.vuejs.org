@@ -1,11 +1,11 @@
 <div id="partners">
   <p>
-    Vue Partners are premium shops that provide first-class Vue consulting and development.
-    If your company is interested in being listed as a partner, please contact us at
+    Партнери Vue — це преміальні аґенції, які надають першокласну підтримку та консультації по Vue розробці.
+    Якщо Ваша компанія зацікавлена бути в переліку партнерів, будь ласка, напишіть нам на
     <a href="mailto:partners@vuejs.org">partners@vuejs.org.</a>
   </p>
 
-  <h2 id="active-partners">Active Partners</h2>
+  <h2 id="active-partners">Активні партнери</h2>
 
   <% for (let partner of page.partners_list) { %>
     <div class="partner">
@@ -33,7 +33,7 @@
 
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">Location</span>
+            <span class="sr-only">Локації</span>
           </dt>
           <dd>
             <%= partner.location %>
@@ -41,7 +41,7 @@
 
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Мови</span>
           </dt>
           <dd class="language-list">
             <ul>
@@ -53,7 +53,7 @@
             </ul>
           </dd>
 
-          <dt>Proficiencies</dt>
+          <dt>Уміння</dt>
           <dd>
             <ul>
               <% for (let proficiency of partner.proficiencies) { %>

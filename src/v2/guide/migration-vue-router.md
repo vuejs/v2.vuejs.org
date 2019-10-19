@@ -1,5 +1,5 @@
 ---
-title: Migration from Vue Router 0.7.x
+title: Міграція з Vue Router 0.7.x
 type: guide
 order: 702
 ---

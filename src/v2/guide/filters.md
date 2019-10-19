@@ -1,5 +1,5 @@
 ---
-title: Filters
+title: Фільтри
 type: guide
 order: 305
 ---

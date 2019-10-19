@@ -1,5 +1,5 @@
 ---
-title: Class and Style Bindings
+title: Класи та стилі
 type: guide
 order: 6
 ---

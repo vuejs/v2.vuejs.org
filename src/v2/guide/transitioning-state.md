@@ -1,5 +1,5 @@
 ---
-title: State Transitions
+title: Переходи станів
 type: guide
 order: 202
 ---

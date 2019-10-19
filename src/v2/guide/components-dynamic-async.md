@@ -1,5 +1,5 @@
 ---
-title: Dynamic & Async Components
+title: Динамічні та асинхронні компоненти
 type: guide
 order: 105
 ---

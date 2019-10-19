@@ -1,5 +1,5 @@
 ---
-title: Server-Side Rendering
+title: Серверне відмальовування
 type: guide
 order: 503
 ---

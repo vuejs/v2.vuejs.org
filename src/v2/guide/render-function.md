@@ -1,5 +1,5 @@
 ---
-title: Render Functions & JSX
+title: JSX та функції відмальовування
 type: guide
 order: 303
 ---

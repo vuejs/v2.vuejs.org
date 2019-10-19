@@ -1,5 +1,5 @@
 ---
-title: Reactivity in Depth
+title: Реактивність
 type: guide
 order: 601
 ---

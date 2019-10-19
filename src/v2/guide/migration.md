@@ -1,5 +1,5 @@
 ---
-title: Migration from Vue 1.x
+title: Міграція з Vue 1.x
 type: guide
 order: 701
 ---

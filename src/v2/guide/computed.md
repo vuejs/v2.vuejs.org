@@ -1,5 +1,5 @@
 ---
-title: Computed Properties and Watchers
+title: Обчислювані властивості та спостерігачі
 type: guide
 order: 5
 ---

@@ -1,5 +1,5 @@
 ---
-title: Custom Directives
+title: Спеціальні директиви
 type: guide
 order: 302
 ---

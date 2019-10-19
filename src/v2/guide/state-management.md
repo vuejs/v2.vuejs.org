@@ -1,5 +1,5 @@
 ---
-title: State Management
+title: Керування станом
 type: guide
 order: 502
 ---

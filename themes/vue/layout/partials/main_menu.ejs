@@ -1,12 +1,12 @@
 <li>
   <form id="search-form">
-    <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input" aria-label="Search">
+    <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input" aria-label="Пошук" placeholder="Пошук">
   </form>
 </li>
 <%- partial('partials/learn_dropdown') %>
 <%- partial('partials/ecosystem_dropdown') %>
 <li>
-  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Team</a>
+  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Команда</a>
 </li>
 <%- partial('partials/resources_dropdown') %>
 <!-- <li>

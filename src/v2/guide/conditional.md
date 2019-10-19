@@ -1,5 +1,5 @@
 ---
-title: Conditional Rendering
+title: Умовна відмальовка
 type: guide
 order: 7
 ---

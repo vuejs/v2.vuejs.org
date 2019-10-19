@@ -1,5 +1,5 @@
 ---
-title: Handling Edge Cases
+title: Обробка крайніх випадків
 type: guide
 order: 106
 ---

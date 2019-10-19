@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Знайомство з командою
 type: guide
 order: 803
 ---
@@ -25,7 +25,7 @@ order: 803
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>Основний фокус</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -35,7 +35,7 @@ order: 803
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Екосистема</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -47,30 +47,30 @@ order: 803
         <template v-if="profile.work">
           <dt>
             <i class="fa fa-briefcase"></i>
-            <span class="sr-only">Work</span>
+            <span class="sr-only">Робота</span>
           </dt>
           <dd v-html="workHtml"></dd>
         </template>
         <span v-if="profile.distanceInKm" class="distance">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">Distance</span>
+            <span class="sr-only">Відстань</span>
           </dt>
           <dd>
-            About
+            Про
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="profile.name + ' is close enough to commute to your location.'"
+              :title="profile.name + ' досить близько для переїзду до Вашої локації.'"
               class="user-match"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }}</span>
+            <template v-else>{{ textDistance }}</template>
+            до {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Місто</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -79,14 +79,14 @@ order: 803
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Мови</span>
           </dt>
           <dd v-html="languageListHtml" class="language-list"></dd>
         </template>
         <template v-if="profile.links">
           <dt>
             <i class="fa fa-link"></i>
-            <span class="sr-only">Links</span>
+            <span class="sr-only">Посилання</span>
           </dt>
           <dd>
             <ul>
@@ -123,7 +123,7 @@ order: 803
   <div class="team">
 
     <h2 id="active-core-team-members">
-      Active Core Team Members
+      Активні основні члени команди
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -136,21 +136,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>знайти поруч</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Помилка отримання місцезнаходження.
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Розробка Vue та екосистеми ведеться міжнародною командою, дехто з якої представлений нижче.
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      Члени основної команди відсортовні по їхньому розташуванню до Вас.
     </p>
 
     <vuer-profile
@@ -163,11 +163,11 @@ order: 803
 
   <div class="team">
     <h2 id="core-team-emeriti">
-      Core Team Emeriti
+      Заслужена основна команда
     </h2>
 
     <p>
-      Here we honor some no-longer-active core team members who have made valuable contributions in the past.
+      Тут ми вшановуємо деяких на разі не активних основних членів команди, які зробили цінний внесок в минулому.
     </p>
 
     <vuer-profile
@@ -180,7 +180,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      Партнери спільноти
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -193,21 +193,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>знайти поруч</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Помилка отримання місцезнаходження.
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Деякі члени Vue спільноти настільки її збагатили, що вони заслуговують на особливу згадку. Ми розбудували близькі взаємовідносини з цими ключовими партнерами, часто координуючись з ними по майбутніх можливостях та новинах.
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      Партнери спільноти відсортовні по їхньому розташуванню до Вас.
     </p>
 
     <vuer-profile
@@ -1297,7 +1297,7 @@ order: 803
                   'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' can give technical talks in your preferred language.' +
+                    ' може консультувати по технічних питаннях на Вашій мові.' +
                   '"' +
                 '\>' + language + '</span>'
               )

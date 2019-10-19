@@ -1,5 +1,5 @@
 ---
-title: Style Guide
+title: Посібник по стилях
 type: style-guide
 ---
 

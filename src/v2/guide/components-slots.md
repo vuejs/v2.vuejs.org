@@ -1,5 +1,5 @@
 ---
-title: Slots
+title: Слоти
 type: guide
 order: 104
 ---

@@ -3,16 +3,16 @@
     <input
       class="search-query"
       v-model="search"
-      placeholder="Search Vue.js"
-      aria-label="Search"
+      placeholder="Пошук по Vue.js"
+      aria-label="Пошук"
     >
     <div class="search-footer">
       <p>
         <template v-if="totalResults">
-          <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
+          Знайдено <strong>{{ totalResults }} результатів</strong> за {{ queryTime }}мс
         </template>
       </p>
-      <a target="_blank" rel="noopener" href="https://www.algolia.com/" aria-label="Search">
+      <a target="_blank" rel="noopener" href="https://www.algolia.com/" aria-label="Пошук">
           <img src="/images/search-by-algolia.png" height="16">
       </a>
     </div>
@@ -26,7 +26,7 @@
     ></search-result>
   </template>
 
-  <p v-else>No results were found.</p>
+  <p v-else>Жодних результатів не було знайдено.</p>
 
   <div ref="infiniteScrollAnchor"></div>
 
@@ -101,7 +101,7 @@ var searchPage = new Vue({
       this.updateSearch()
       window.history.pushState(
         {},
-        'Vue.js Search',
+        'Пошук по Vue.js',
         window.location.origin + window.location.pathname + '?q=' + encodeURIComponent(this.search)
       )
     }

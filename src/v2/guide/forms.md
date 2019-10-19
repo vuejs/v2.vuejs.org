@@ -1,5 +1,5 @@
 ---
-title: Form Input Bindings
+title: Форми
 type: guide
 order: 10
 ---

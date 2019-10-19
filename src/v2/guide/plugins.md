@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: Плагіни
 type: guide
 order: 304
 ---
