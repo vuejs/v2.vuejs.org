@@ -3,31 +3,31 @@ title: API
 type: api
 ---
 
-## Global Config
+## Глобальні налаштування
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` є об'єктом, який містить глобальні налаштування Vue. Ви можете змінювати його властивості, перелічені знизу перед стартом Вашого додатку:
 
 ### silent
 
-- **Type:** `boolean`
+- **Тип:** `boolean`
 
-- **Default:** `false`
+- **По замовчуванню:** `false`
 
-- **Usage:**
+- **Використання:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Вимикає всі попередження та логування Vue.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Тип:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **По замовчуванню:** `{}`
 
-- **Usage:**
+- **Використання:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -41,40 +41,39 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Задає власні стратегії об'єднування опцій.
+ 
+  Стратегія об'єднування отримує значення опції, яка була оголошена в батьківському та дочірньому інстансах як перший та другий аргументи відповідно. Третім аргументом передається Vue інстанс в якості контексту.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
-
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **See also:** [Власні стратегії об'єднання опцій](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Тип:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **По замовчуванню:** `true` (`false` в продакшн-білдах)
 
-- **Usage:**
+- **Використання:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // переконайтеся, що ви встановили цю властивість синхронно відразу після старту Vue
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Задає, чи дозволяти інспекцію Вашого додатку плагіном [vue-devtools](https://github.com/vuejs/vue-devtools). Значення по замовчуванню є `true` в середовищі розробника та `false` в продакшн-середовищі.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Тип:** `Function`
 
-- **Default:** `undefined`
+- **По замовчуванню:** `undefined`
 
-- **Usage:**
+- **Використання:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // управління помилкою
+    // В змінній `info` знаходиться специфічна для Vue інформація про помилку, наприклад, який хук циклу життя компоненти, в якій було знайдено помилку. Доступно лише в 2.2.0+
   }
   ```
 
