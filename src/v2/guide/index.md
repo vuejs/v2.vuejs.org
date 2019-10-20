@@ -40,7 +40,7 @@ Vue (промовляється як в'ю) є **прогресивним фре
 
 ## Декларативне промальовування
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Переглянути урок на Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Пройти урок на Scrimba</a></div>
 
 Основою Vue.js є система, яка дозволяє [декларативно](https://uk.wikipedia.org/wiki/%D0%94%D0%B5%D0%BA%D0%BB%D0%B0%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F) промальовувати дані в DOM, використовуючи зрозумілий синтаксис шаблону: 
 
@@ -113,7 +113,7 @@ var app2 = new Vue({
 
 ## Умови та цикли
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Переглянути урок на Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Пройти урок на Scrimba</a></div>
 
 Так ж легко перемикати присутність елемента:
 
@@ -199,7 +199,7 @@ var app4 = new Vue({
 
 ## Обробка користувацького введення
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Переглянути урок на Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Пройти урок на Scrimba</a></div>
 
 Щоб користувачі мали змогу взаємодіяти з додатком, ми можемо використовувати директиву `v-on` для закріплення обробників подій на нашому екземплярі Vue.  
 
@@ -277,7 +277,7 @@ var app6 = new Vue({
 
 ## Робота з компонентами
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Переглянути урок на Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Пройти урок на Scrimba</a></div>
 
 Система компонентів є іншим важливим концептом в Vue — це є абстракція, яка дозволяє нам будувати високомасштабовані додатки, організовані з маленьких, повноцінних та часто повторно використовуваних компонент. Ви лише уявіть — майже кожен тип інтерфейсу додатку може бути умовно поділений на певне дерево компонентів:
 
@@ -403,4 +403,4 @@ var app7 = new Vue({
 
 Ми коротко познайомили Вас з кількома основними можливостями Vue.js — все інше в цьому посібнику розглядає кожну з них та багато інших прогресивних можливостей в деталях, не пропустіть нічого!   
 
-<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Автор відео <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Курси по Vue.js на Vue Mastery">Vue Mastery</a>. Перегляньте безкоштовний курс <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Курс по Vue.js на Vue Mastery">Введення до Vue</a> на Vue Mastery.</div>
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Автор відео <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Курси по Vue.js на Vue Mastery">Vue Mastery</a>. Переглянути безкоштовний курс <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Курс по Vue.js на Vue Mastery">Введення до Vue</a> на Vue Mastery.</div>
