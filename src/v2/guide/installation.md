@@ -6,30 +6,30 @@ vue_version: 2.6.10
 gz_size: "33.30"
 ---
 
-### Compatibility Note
+### Сумісність
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+Vue **не** підтримує IE8 та нижче, оскільки він використовує властивості ECMAScript 5, які неможливо емулювати в IE8. Разом з тим, Vue підтримує всі [браузери, що підтримують ECMAScript 5](https://caniuse.com/#feat=es5).
 
-### Release Notes
+### Примітки щодо випуску
 
-Latest stable version: {{vue_version}}
+Остання стабільня версія: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Деталізована інформація щодо випуску кожної версії доступна на [GitHub](https://github.com/vuejs/vue/releases).
 
-## Vue Devtools
+## Інструменти Vue Devtools
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Якщо ви використовуєте Vue, ми радимо також встановити [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) у Вашому браузері, що дозволить Вам оглядати та відлагоджувати Ваші додатки на Vue за допомогою приємного інтерфейсу.
 
-## Direct `<script>` Include
+## Додавання напряму через `<script>`
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Завантажте Vue та додайте шлях до файлу через тег script. `Vue` буде доступним як глобальна змінна.
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip">Не використовуйте мінімізовану версію під час зрозробки. Ви втратите цінні попередження про найбільш поширювані помилки!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Версія для розробки</a><span class="light info">З усіма попередженнями та режимом відлагодження</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Продакшн-версія</a><span class="light info">Без попереджень, мінімізована та стиснута, {{gz_size}}KБ</span>
 </div>
 
 ### CDN
