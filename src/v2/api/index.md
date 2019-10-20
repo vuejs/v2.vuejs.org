@@ -457,41 +457,41 @@ type: api
   }
   ```
 
-## Options / Data
+## Opsi / Data
 
 ### data
 
 - **Tipe:** `Object | Function`
 
-- **Batasan:** Only accepts `Function` when used in a component definition.
+- **Batasan:** Hanya menerima `Function` saat digunakan dalam pendefinisian komponen.
 
 - **Detail:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
+  Objek data pada sebuah Vue *instance*. Vue secara rekursif akan mengkonversi properti-propertinya menjadi *getter/setter* untuk membuatnya *reaktif*. **Objeknya haruslah sederhana**: objek-objek *native* seperti objek *browser* API and properti-properti *prototype* akan diabaikan. Aturan sederhananya adalah data seharusnya hanyalah data - tidak direkomendasikan untuk melakukan observasi ke objek-objek yang memiliki perilaku *stateful* (yang memiliki bermacam variasi keadaan / *state*).
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Jika telah terobservasi, kamu tidak dapat lagi menambahkan properti-properti reaktif ke objek data *root*. Maka direkomendasikan untuk mendeklarasikan semua properti-properti reaktif tingkat *root* diawal, sebelum membuat *instance*.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Setelah *instance* terbuat, objek data original dapat diakses sebagai `vm.$data`. Vue *instance* juga menjembatani semua properti-properti yang ditemui pada objek data, sehingga `vm.a` akan ekuivalen dengan `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Properti-properti yang berawalan `_` atau `$` **tidak** akan dijembatani pada Vue *instance* karena dapat menyebabkan konflik dengan properti-properti internal Vue dan API *methods*. Kamu akan dapat mengakses mereka sebagai `vm.$data._property`.
 
   When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Jika dibutuhkan, penjiplakan mendalam (*deep clone*) daripada objek original dapat dilakukan dengan meneruskan (*passing*) `vm.$data` melalui `JSON.parse(JSON.stringify(...))`.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // pembuatan instance secara langsung
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
+  // harus menggunakan function saat berada didalam Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -499,13 +499,13 @@ type: api
   })
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Perlu dicatat bahwa jika kamu menggunkan fungsi panah (*arrow function*) pada properti `data`, `this` tidaklah menjadi *instance* dari komponen, namun kamu tetap dapat mengakses *instance* tersebut sebagai argumen pertama dari *function*:
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
+- **Lihat juga:** [Reaktivitas Secara Mendalam](../guide/reactivity.html)
 
 ### props
 
@@ -513,31 +513,31 @@ type: api
 
 - **Detail:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Sebuah daftar (*list*) /  *hash* dari attribut-attribut yang diekspos untuk menerima data dari komponen induk (*parent*). Props memiliki sebuah sintaks sederhana berbasis *Array* dan sintaks alternatif berbasis Objek yang memungkinkan konfigurasi lebih jauh (*advanced*) seperti pengecekan tipe (*type checking*), validasi khusus (*custom*) dan melakukan pemberian nilai-nilai standar (*default values*).
 
-  With Object-based syntax, you can use following options:
-    - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+  Dengan sintaks berbasis Objek, kamu dapat menggunakan opsi-opsi berikut:
+    - **type:** dapat berupa salah satu dari *native contructors* berikut: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, *constructor* khusus (*custom*) apapun atau suatu *array* dari itu semua. Akan dilakukan pengecekan apakah sebuah *prop* telah diberikan tipe, dan akan memunculkan peringatan jika belum. [Informasi lebih lanjut](../guide/components-props.html#Prop-Types) untuk tipe-tipe *prop*.
     - **default:** `any`
-    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    Menspesifikasikan nilai dasar (*default*) untuk *prop*. Jika prop tidak diberikan nilai, maka nilai ini yang akan digunakan. Objek atau *array* standar harus dikembalikan (*returned*) dari *function* yang membuatnya.
     - **required:** `Boolean`
-    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    Mendefinisikan jika *prop* ini dibutuhkan (harus ada dan memiliki nilai). Dalam lingkungan yang bukan untuk keperluan produksi (*non-production*), peringatan pada *console* akan dimunculkan jika nilainya *truthy* (`true` atau yang ekuivalen) dan *prop*-nya tidak diteruskan (*passed*).
     - **validator:** `Function`
-    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
+    Sebuah fungsi validator *custom* (bebas dan khusus) yang menerima nilai *prop* sebagai satu-satunya argumen. Dalam lingkungan yang bukan untuk keperluan produksi (*non-production*), peringatan pada *console* akan dimunculkan jika fungsi ini mengembalikan nilai yang *falsy* (`false` atau yang ekuivalen) (misal: validasi gagal). Kamu dapat membaca lebih lanjut tentang validasi *prop* [disini](../guide/components-props.html#Prop-Validation).
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  // simple syntax
+  // sintaks sederhana
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // sintaks objek dengan validasi
   Vue.component('props-demo-advanced', {
     props: {
-      // type check
+      // pengecekan tipe
       height: Number,
-      // type check plus other validations
+      // pengecekan tipe plus validasi lain
       age: {
         type: Number,
         default: 0,
@@ -556,13 +556,13 @@ type: api
 
 - **Tipe:** `{ [key: string]: any }`
 
-- **Batasan:** only respected in instance creation via `new`.
+- **Batasan:** hanya dapat ditemui / digunakan (*respected*) pada pembuatan *instance* via `new`.
 
 - **Detail:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Meneruskan *props* ke *instance* saat pembuatan *instance* tersebut. Utamanya ditujukan agar pengerjaan *unit testing* lebih mudah.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var Comp = Vue.extend({
@@ -583,9 +583,9 @@ type: api
 
 - **Detail:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Properti-properti terolah (*computed*) yang kemudian digabung kedalam Vue *instance*. Seluruh *getters* (fungsi untuk mengambil data) dan *setters* (fungsi untuk mengubah data) memiliki konteks `this` yang secara otomatis terikat dengan Vue *instance*-nya.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Perlu dicatat bahwa jika kamu menggunkan fungsi panah (*arrow function*) pada properti terolah (*computed*), `this` bukanlah *instance* dari komponen, namun kamu tetap dapat mengakses *instance* tersebut sebagai argumen pertama dari *function*:
 
   ```js
   computed: {
@@ -593,19 +593,19 @@ type: api
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Properti-properti terolah (*computed*) ini akan tersimpan sementara (*cached*), dan hanya akan diolah kembali (*re-computed*) saat ada perubahan pada dependensi reaktif. Perlu dicatat bahwa jika sebuah dependensi tertentu berada diluar cakupan (*scope*) *instance* (misal: tidak reaktif), properti terolah (*computed*) **tidak** akan diperbarui.
 
-- **Example:**
+- **Contoh:**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only
+      // hanya get
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // get dan set
       aPlus: {
         get: function () {
           return this.a + 1
@@ -630,11 +630,11 @@ type: api
 
 - **Detail:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Metode-metode yang kemudian digabung ke dalam Vue *instance*. Kamu dapat mengakses metode-metode ini secara langsung pada VM *instance*, atau menggunakannya di ekspresi-ekspresi *directive*. Semua metode ini, konteks `this`-nya akan secara otomatis terikat ke Vue *instance*.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Perlu dicatat bahwa __kamu sebaiknya tidak menggunakan fungsi panah (*arrow*) untuk mendefinisikan sebuah metode__ (contoh: `plus: () => this.a++`). Hal tersebut dikarenakan fungsi panah (*arrow*) mengikat (*bind*) konteks ke konteks induk, menyebabkan `this` bukan lagi Vue *instance* seperti yang kamu ekspektasikan dan `this.a` akan menjadi *undefined*.</p>
 
-- **Example:**
+- **Contoh:**
 
   ```js
   var vm = new Vue({
@@ -649,7 +649,7 @@ type: api
   vm.a // 2
   ```
 
-- **Lihat juga:** [Event Handling](../guide/events.html)
+- **Lihat juga:** [Penanganan Event](../guide/events.html)
 
 ### watch
 
@@ -657,9 +657,9 @@ type: api
 
 - **Detail:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Sebuah objek dimana *keys* adalah expresi-expresi untuk memantau dan *values* adalah *callback*-nya (fungsi yang dipanggil setelah suatu fungsi lain selesai dieksekusi). *Value* dapat berupa *string* dari nama sebuah metode, atau sebuah Objek yang memiliki opsi-opsi tambahan. Vue *instance* akan memanggil `$watch()` setiap key pada objek saat instansiasi (pembuatan Vue *instance*).
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var vm = new Vue({
@@ -678,14 +678,14 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // *string* dari nama metode
       b: 'someMethod',
-      // deep watcher
+      // pemantauan mendalam (deep watcher)
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
-      // the callback will be called immediately after the start of the observation
+      // callback akan dipanggil seketika setelah observasi dimulai
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
@@ -698,16 +698,16 @@ type: api
           /* ... */
         }
       ],
-      // watch vm.e.f's value: {g: 5}
+      // memantau vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Perlu dicatat bahwa __kamu sebaiknya tidak menggunakan fungsi panah (*arrow*) untuk mendefinisikan sebuah watcher__ (contoh: `searchQuery: newValue => this.updateAutocomplete(newValue)`). Hal tersebut dikarenakan fungsi panah (*arrow*) mengikat (*bind*) konteks ke konteks induk, menyebabkan `this` bukan lagi Vue *instance* seperti yang kamu ekspektasikan dan `this.updateAutocomplete` akan menjadi *undefined*.</p>
 
-- **Lihat juga:** [Instance Methods / Data - vm.$watch](#vm-watch)
+- **Lihat juga:** [Metode Instance / Data - vm.$watch](#vm-watch)
 
 ## Opsi / DOM
 
