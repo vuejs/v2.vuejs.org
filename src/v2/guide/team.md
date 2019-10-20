@@ -57,7 +57,7 @@ order: 803
             <span class="sr-only">Відстань</span>
           </dt>
           <dd>
-            Про
+            Приблизно
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' досить близько для переїзду до Вашої локації.'"
@@ -1265,7 +1265,7 @@ order: 803
       textDistance: function () {
         var distanceInKm = this.profile.distanceInKm || 0
         if (this.$root.useMiles) {
-          return roundDistance(kmToMi(distanceInKm)) + ' miles'
+          return roundDistance(kmToMi(distanceInKm)) + ' миль'
         } else {
           return roundDistance(distanceInKm) + ' km'
         }
