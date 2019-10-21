@@ -464,7 +464,7 @@ Al mover el `v-if` a un elemento contenedor, ya no estamos comprobando `shouldSh
 
 **Para las aplicaciones, los estilos, en un componente `App` de nivel superior y en los componentes de "layout" pueden ser globales, pero todos los demás componentes siempre deben ser _scoped_**
 
-Esto es relevante sólo a [componentes single-file](../guide/single-file-components.html). _No_ requiere que se use el atributo [`scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). El "scoping" podría ser a través de [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), una estrategia basada en clases como [BEM](http://getbem.com/), ú otra biblioteca/convención.
+Esto es relevante sólo a [componentes single-file](../guide/single-file-components.html). *No* requiere que se use el atributo [`scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). El "scoping" podría ser a través de [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), una estrategia basada en clases como [BEM](http://getbem.com/), ú otra biblioteca/convención.
 
 **Para las bibliotecas de componentes, sin embargo, se debería implementar una estrategia basada en clases en vez de usar el atributo `scoped`.**
 
