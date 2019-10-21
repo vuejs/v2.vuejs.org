@@ -2356,9 +2356,9 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
 
 - **Nilai Anggapan:** `number | string`
 
-  kegunaan Atribut spesial `key` adalah sebagai petunjuk bagi algoritma DOM virtual dari Vue untuk mengidentifikasi *VNodes* ketika membandingkan list yang baru terhadap list yang lama. Tanpa *keys*, Vue menggunakan algoritma yang meminimalisir pergerakan elemen dan mencoba untuk *patch/reuse* elemen di tempat dengan tipe yang sama sebanyak mungkin. Dengan *keys*, elemen-elemen akan disusun kembali berdasarkan susunan perubahan dari *keys*, dan elemen-elemen dengan *keys* yang sudah tidak ada lagi akan selalu di hapus.
+  Atribut spesial `key` umumnya dipakai sebagai penanda bagi algoritma virtual DOM milik Vue untuk mengidentifikasi *VNodes* ketika membandingkan list node yang baru dengan list yang lama. Jika atribut *key* tidak digunakan, Vue akan menggunakan algoritma untuk meminimalisir perpindahan elemen dan mencoba sebisa mungkin untuk menimpa/memakai ulang elemen yang se-tipe di tempat yang sama. Jika atribut *key* digunakan, Vue akan menyusun ulang elemen-elemen berdasarkan susunan perubahan dari *key*, dan elemen-elemen dengan *key* yang sudah tidak ada lagi akan selalu dihapus.
 
-  Anak dari induk yang sama harus mempunyai *key* yang unik. *Key* yang sama akan mengakibatkan galat pada saat render.
+  Anak dari induk yang sama harus mempunyai *key* yang unik. *Key* yang sama akan mengakibatkan kegagalan *render*.
 
   Contoh penggunaan yang paling umum adalah menggabungkan *key* dengan `v-for`:
 
@@ -2368,9 +2368,9 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   </ul>
   ```
 
-  *Key* juga dapat digunakan untuk penggantian paksa terhadap sebuah elemen/komponen alih-alih menggunakannya kembali. Ini akan berguna ketika anda ingin:
+  *Key* juga dapat digunakan untuk mengganti paksa sebuah elemen/komponen alih-alih menggunakannya kembali. Ini akan berguna ketika anda ingin:
 
-  - Memicu (*trigger*) *lifecycle hooks* dari sebuah komponen dengan tepat
+  - Memicu (*trigger*) *lifecycle hook* dari sebuah komponen dengan tepat
   - Memicu (*trigger*) transisi
 
   Sebagai contoh:
@@ -2381,33 +2381,33 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   </transition>
   ```
 
-  Ketika `text` berubah, `<span>` akan selalu diganti alih-alih di *patch*, jadi sebuah transisi akan  terpicu.
+  Ketika `text` berubah, `<span>` akan selalu diganti alih-alih di-*patch*, sehingga transisi akan terpicu.
 
 ### ref
 
 - **Nilai Anggapan:** `string`
 
-  `ref` digunakan untuk mendaftarkan referensi terhadap elemen atau komponen anak. Referensi akan didaftarkan dibawah obyek `$refs` dari komponen parent. Jika digunakan pada elemen DOM polos, referensi akan menjadi elemen itu; jika digunakan pada sebuah elemen anak, referensi akan menjadi *instance* komponen:
+  `ref` digunakan untuk mendaftarkan referensi terhadap elemen atau komponen anak. Referensi akan didaftarkan dibawah obyek `$refs` dari komponen induknya. Jika digunakan pada elemen DOM polos, referensi akan menunjuk pada elemen tersebut; jika digunakan pada elemen anak, referensi akan menunjuk pada *instance* komponen:
 
   ``` html
   <!-- vm.$refs.p akan menjadi node DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child akan menjadi *instance* komponen anak -->
+  <!-- vm.$refs.child akan menjadi instance komponen anak -->
   <child-component ref="child"></child-component>
   ```
 
-  Ketika digunakan pada elemen/komponen dengan `v-for`, referensi yang terdaftar akan menjadi sebuah Array yang berisi *DOM nodes*  atau *instances* komponen.
+  Ketika digunakan pada elemen/komponen yang mengandung `v-for`, referensi yang terdaftar akan menjadi sebuah Array yang berisi *DOM nodes* atau *instances* komponen.
 
-  Catatan penting dalam pendaftaran *ref* adalah pemilihan waktu: karena *refs* sendiri terbuat atas hasil dari *render function*, anda tidak dapat mengakses pada saat *initial render* - *refs* belum terbuat/ada! `$refs` juga tidak reaktif, untuk itu anda tidak seharusnya mencoba untuk menggunakannya pada template atau *data-binding*.
+  Catatan penting dalam penggunaan *refs* adalah pemilihan waktu: karena *refs* muncul sebagai hasil dari *render function*, anda tidak dapat mengaksesnya pada saat *initial render* - karena *refs* belum dibuat saat itu. `$refs` juga tidak reaktif, sehingga anda tidak bisa menggunakannya di template untuk melakukan *data-binding*.
 
 - **Lihat juga:** [*Child Component Refs*](../guide/components.html#Child-Component-Refs)
 
 ### is
 
-- **Nilai Anggapan:** `string | Object (Objek opsi komponen)`
+- **Nilai Anggapan:** `string | Object (Objek 'options' komponen)`
 
-  Digunakan untuk [Komponen-komponen dinamis](../guide/components.html#Dynamic-Components) dan juga sebagai solusi pada [keterbatasan dari *in-DOM templates*](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Digunakan untuk [komponen dinamis](../guide/components.html#Dynamic-Components) dan juga sebagai solusi untuk [keterbatasan dari in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
 
   Sebagai contoh:
 
@@ -2416,7 +2416,7 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
   <component v-bind:is="currentView"></component>
 
   <!-- perlu karena `<my-row>` akan menjadi tidak valid di dalam -->
-  <!-- sebuah elemen `<table>` dan sebagainya akan diangkat  -->
+  <!-- elemen `<table>` sehingga akan otomatis dihilangkan  -->
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2426,41 +2426,41 @@ Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *inst
 
 - **Lihat juga:**
   - [Komponen Dinamis](../guide/components.html#Dynamic-Components)
-  - [Peringatan *Parsing* pada *DOM template*](../guide/components.html#DOM-Template-Parsing-Caveats)
+  - [Peringatan untuk DOM template parsing](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-### slot <sup style="color:#c92222">*deprecated*</sup>
+### slot <sup style="color:#c92222">usang</sup>
 
-**Rujuk ke [v-slot](#v-slot) di 2.6.0+.**
+**Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
 
 - **Nilai Anggapan:** `string`
 
-  Digunakan pada konten yang dimasukkan pada komponen anak untuk menunjukkan slot mana yang dinamai pada konten tersebut.
+  Digunakan pada konten yang dimasukkan ke dalam komponen anak untuk menunjukkan pada slot mana konten tersebut akan ditempatkan.
 
-- **Lihat juga:** [Slot yang dinamai `slot`](../guide/components.html#Named-Slots-with-slot)
+- **Lihat juga:** [Slot Dengan Nama `slot`](../guide/components.html#Named-Slots-with-slot)
 
-### slot-scope <sup style="color:#c92222">deprecated</sup>
+### slot-scope <sup style="color:#c92222">usang</sup>
 
-**Rujuk ke [v-slot](#v-slot) di 2.6.0+.**
+**Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
 
-- **Nilai Anggapan:** `ekspresi fungsi argumen`
-
-- **Kegunaan:**
-
-  Digunakan untuk menunjukkan sebuah elemen atau komponen sebagai slot tertutup (*scoped slot*). Nilai atribut harus menjadi ekspresi Javascript yang valid yang bisa muncul pada *argument position* dari sebuah *function signature*. Ini berarti dalam *environments* yang di dukung anda juga bisa menggunakan ES2015 *destructuring* pada ekpresi Javascript. Sebagai pengganti [`scope`](#scope-replaced) pada 2.5.0+.
-
-  Attribut ini tidak mendukung *dynamic binding*.
-
-- **Lihat juga:** [Slot tertutup (*scoped slot*) dengan  `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
-
-### scope <sup style="color:#c92222">terhapus</sup>
-
-**Digantikan dengan [slot-scope](#slot-scope) pada 2.5.0+. Rujuk ke [v-slot](#v-slot) in 2.6.0+.**
-
-Digunakan untuk menunjukkan sebuah elemen `<template>` sebagai sebuah slot tertutup.
+- **Nilai Anggapan:** `ekspresi argumen fungsi`
 
 - **Kegunaan:**
 
-  Sama seperti [`slot-scope`](#slot-scope) Selain itu `scope` hanya bisa digunakan pada elemen `<template>`.
+  Digunakan untuk menunjukkan sebuah elemen atau komponen sebagai *scoped slot*. Nilai atribut harus berupa ekspresi Javascript yang valid yang bisa muncul di posisi *argument* dari *signature* sebuah *function*. Ini berarti di *environment* yang mendukung anda juga bisa menggunakan ES2015 *destructuring* di dalam ekspresi JavaScript. *Slot-scope* merupakan pengganti [`scope`](#scope-replaced) di versi 2.5.0+.
+
+  Atribut ini tidak mendukung *dynamic binding*.
+
+- **Lihat juga:** [Slot tertutup (*scoped slot*) dengan `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
+
+### scope <sup style="color:#c92222">dihapus</sup>
+
+**Digantikan dengan [slot-scope](#slot-scope) di 2.5.0+. Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
+
+Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot*.
+
+- **Kegunaan:**
+
+  Sama seperti [`slot-scope`](#slot-scope), hanya saja `scope` hanya bisa digunakan pada elemen `<template>`.
 
 ## Built-In Components
 
