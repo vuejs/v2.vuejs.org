@@ -34,19 +34,19 @@ Vue **не** підтримує IE8 та нижче, оскільки він в�
 
 ### CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Для прототипування або навчання, Ви можете використовувати найсвіжішу версію наступним чином:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Для продакшн-середовища, ми рекомендуємо зафіксуватися на певній конкретній версії, щоб уникнути раптових поломок при виході нових версій:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 ```
 
-If you are using native ES Modules, there is also an ES Modules compatible build:
+Якщо ж Ви використовуєте нативні ES модулі, в такому разі існує відповідна сумісна збірка: 
 
 ``` html
 <script type="module">
@@ -54,31 +54,30 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Ви можете переглядати джерело NPM пакунку на [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue також доступний і на [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) та [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (у випадку з cdnjs синхронізація з новими релізами може зайняти певний час).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+Перегляньте [різні збірки Vue](#Explanation-of-Different-Builds) та використовуйте **продакшн-версію** для Вашого опублікованого сайту, замінивши `vue.js` на `vue.min.js`. Це суттєво зменшена збірка, яка оптивізована на швидкість, а не на зручності для розробника.
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+Використання NPM є рекомендованим способом при розробці масштабовних додатків на Vue. Він доволі гарно працює із так званими збірниками модулів, такими як [Webpack](https://webpack.js.org/) чи [Browserify](http://browserify.org/). Vue також надає допоміжні інструменти для створення [Однофайлових компонентів](single-file-components.html).
 
 ``` bash
-# latest stable
+# остання стабільна версія
 $ npm install vue
 ```
 
 ## CLI
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Vue пропонує [офіційний інтерфейс командного рядка (CLI)](https://github.com/vuejs/vue-cli) для швидкого риштування амбітних так званих односторінкових додатків (SPA). Він забезпечує збірку додатків сучасними методами, надаючи числені варіанти налаштувань. Процес триває всього кілька хвилин для готового середовища з підтримкою "гарячого" перезавантаження, автоматичного аналізу помилок при збереженні та збірок, готових до продакшну. Перегляньте [документацію по CLI](https://cli.vuejs.org), щоб отримати більше деталей.
 
 <p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Переглянути пояснення на відео від Vue Mastery</a></div>
 
-## Explanation of Different Builds
+## Роз'яснення різних видів збірок
 
 In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
