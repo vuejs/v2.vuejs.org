@@ -187,6 +187,6 @@ Generally speaking, `v-if` has higher toggle costs while `v-show` has higher ini
 
 ## `v-if` with `v-for`
 
-<p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
+Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.
 
-When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.
+When used together with `v-if`, `v-for` has a higher priority than `v-if`. Its recommended to use computed properties and `v-for`. See the [list rendering guide](/v2/guide/list.html#v-for-with-v-if) for details.
