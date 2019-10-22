@@ -541,6 +541,7 @@ new Vue({
   },
   methods: {
     addNewTodo: function () {
+      if (this.newTodoText.length < 1) return
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText
@@ -605,6 +606,7 @@ new Vue({
   },
   methods: {
     addNewTodo: function () {
+      if (this.newTodoText.length < 1) return
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText
