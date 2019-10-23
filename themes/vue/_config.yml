@@ -110,9 +110,9 @@ gold_sponsors:
   - url: 'http://www.pullrequest.com'
     img: pullrequest.svg
     name: PullRequest
-  - url: 'https://staffaugmentation.ro/en'
-    img: staff_augmentation.png
-    name: Staff Augmentation
+  - url: 'https://unicorn.io/'
+    img: unicorn_io.svg
+    name: Unicorn.io
   - url: 'https://piratebay.ink'
     img: piratebay_proxy.png
     name: Piratebay Proxy
