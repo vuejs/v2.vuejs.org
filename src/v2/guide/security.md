@@ -118,13 +118,13 @@ Looking at this example:
 
 let's assume that `sanitizedUrl` has been sanitized, so that it's definitely a real URL and not JavaScript. With the `userProvidedStyles`, malicious users could still provide CSS to "click jack", e.g. styling the link into a transparent box over the "Log in" button. Then if `https://user-controlled-website.com/` is built to resemble the login page of your application, they might have just captured a user's real login information.
 
-You may be able to imagine how allowing user-provided content for a `<style>` element would create an greater vulnerability, giving that user full control over how to style the entire page:
+You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why prevents rendering of style tags inside templates, such as:
 
 ```html
 <style>{{ userProvidedStyles }}</style>
 ```
 
-To keep your users safe from click jacking, we recommend only allowing users full control over CSS inside a sandboxed iframe. Then when allowing control through a style binding, we recommend using its [object syntax](class-and-style.html#Object-Syntax-1) and only allowing users to provide values for the specific properties it's safe for them to control, like this:
+To keep your users fully safe from click jacking, we recommend only allowing full control over CSS inside a sandboxed iframe. Alternatively, when providing user control through a style binding, we recommend using its [object syntax](class-and-style.html#Object-Syntax-1) and only allowing users to provide values for specific properties it's safe for them to control, like this:
 
 ```html
 <a
@@ -145,6 +145,12 @@ We strongly discourage ever rendering a `<script>` element with Vue, since templ
 Every HTML element has attributes with values accepting strings of JavaScript, such as `onclick`, `onfocus`, and `onmouseenter`. Binding user-provided JavaScript to any of these event attributes is a potential security risk, so should be avoided.
 
 <p class="tip">Note that user-provided JavaScript can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that JavaScript can ever be exposed to it.</p>
+
+Sometimes we receive vulnerability reports on how it's possible to do cross-site scripting (XSS) in Vue templates. In general, we do not consider such cases to be actual vulnerabilities, because there's no practical way to protect developers from the two scenarios that would allow XSS:
+
+1. The developer is explicitly asking Vue to render user-provided, unsanitized content as Vue templates. This is inherently unsafe and there's no way for Vue to know the origin.
+
+2. The developer is mounting Vue to an entire HTML page which happens to contain server-rendered and user-provided content. This is fundamentally the same problem as \#1, but sometimes devs may do it without realizing. This can lead to possible vulnerabilities where the attacker provides HTML which is safe as plain HTML but unsafe as a Vue template. The best practice is to never mount Vue on nodes that may contain server-rendered and user-provided content.
 
 ## Best Practices
 
