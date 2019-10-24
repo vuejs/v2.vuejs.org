@@ -1,14 +1,14 @@
 ---
-title: Render Functions & JSX
+title: Fungsi *Render* % JSX
 type: guide
 order: 303
 ---
 
 ## Basics
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Pada banyak kasus, Vue menganjurkan penggunaan templat untuk membuat HTML. Tetapi, ada beberapa situasi di mana anda butuh menggunakan Javascript secara penuh. Kalian bisa menggunakan **fungsi render**, sebagai alternatif dari templat.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Mari Lihat contoh sederhana di mana fungsi 'render' terlihat praktis. Katakanlah anda ingin menghasilkan *anchored headings*:
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Dari HTML di atas, anda memutuskan untuk menggunakan komponen di atas seperti:
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+Ketika anda mulai dengan komponen yang hanya membuat *heading* berdasarkan properti `level`, hasilnya akan seperti ini:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,16 +61,17 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
+Templat di atas tidak telihat bagus, dan banyak sekali duplikasi di dalamnya seperti penggunaan `<slot></slot>` di setiap level heading dan harus melakukan hal yang sama ketika kita menambahkan elemen *anchor*.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Sementara templat bekerja dengan baik untuk sebagian besar komponen, jelas penggunaanya masih kurang tepat. Mari kita coba tulis ulang dengan menggunakan fungsi `render`:
+
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // nama tag
+      this.$slots.default // isi dari komponen
     )
   },
   props: {
@@ -82,11 +83,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Lebih sederhana! kodenya lebih pendek, tapi kita juga harus terbiasa dengan properti yang ada di dalam *Vue instance*.  Dalam kasus ini, anda harus tahu bahwa isi dari komponen yang tidak di tandai direktif `v-slot`, seperti `Hello World!` di dalam `anchored-heading`, isi tersebut disimpan di `$slots.default`. Jika anda masih belum paham, **direkomendasikan untuk membaca [instance properties API](../api/#Instance-Properties) sebelum mempelajari lebih dalam tentang fungsi render.**
 
-## Nodes, Trees, and the Virtual DOM
+## *Nodes*, *Trees*, dan *Virtual DOM*
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Sebelum kita lanjut lebih dalam tentang fungsi *render*, penting untuk sedikit mengetahui tentang bagaimana _browsers_ bekeerja. Lihat contoh HTM di bawah:
 
 ```html
 <div>
@@ -96,21 +97,21 @@ Before we dive into render functions, it’s important to know a little about ho
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+Ketika *browser* membaca kode di atas, *browser* akan membuat [pohon yang terdiri atas *DOM nodes*](https://javascript.info/dom-nodes) untuk membantu mencatat isi HTML tersebut, sama seperti jika anda membuat silsilah pohon keluarga untuk mencata isi dari keluarga anda.
 
-The tree of DOM nodes for the HTML above looks like this:
+Bentuk pohon dari *DOM nodes* untuk HTML di atas terlihat seperti:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Visualisasi pohon *DOM*](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Setiap elemen adalah *node*. Setiap teks adalah node. BAhkan komentar juga *node*!. Dan sama seperti silsilah keluarga, setiap *node* bisa memiliki anak (misalnya setiap node mengandung *node* lainnya).
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Memperbarui *node* yang banyak ini secara eisien tidaklah mudah, tapi untungnya, anda tidak harus melakukannya secara manual. Sebaliknya, gunakan Vue untuk membuat HTML yang kalian inginkan melalui templat:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+Atau fungsi *render*:
 
 ``` js
 render: function (createElement) {
@@ -118,7 +119,7 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+Dalam kedua kasus, Vue secara otomatis akan memastikan bahwa tampilannya diperbarui dengan benar, seperti ketika `blogTitle` berubah.
 
 ### The Virtual DOM
 
