@@ -123,36 +123,36 @@ Dalam kedua kasus, Vue secara otomatis akan memastikan bahwa tampilannya diperba
 
 ### The Virtual DOM
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue melakukannya dengan cara membuat **virtual DOM** untuk mencatat perubahan yang dibutuhkan untuk merekonstruksi DOM yang sebenarnya. Lihat baris kode di bawah :
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+Apa yang sebenarnya `createElement` kembalikan? hal itu bukanlah elemen DOM yang benar-benar diproses oleh browser. Secara teknis, lebih akurat jika dinamakan `createNodeDescription`, karena berisi informasi yang dibutuhkan oleh Vue, jenis node apa yang harus ditampilkan; termasuk deskripsi ini dari node tersebut. Deskripsi node ini diistilahkan dengan "virtual node", biasanya disingkat **VNode**. Sedangkan "Virtual DOM" digunakan untuk merujuk ke kumpulan dari VNode secara keseluruhan.
 
-## `createElement` Arguments
+## Argumen `createElement`
 
-The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+Untuk lebih mendalami bagaimana cara penggunaan fitur templat di fungsi `createElement`, berikut beberapa argumen yang diterima oleh `createElement`:
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or async
-  // function resolving to one of these. Required.
+  // Nama tag HTML, opsi komponen, atau fungsi asinkronus
+  // Fungsi resolving ke salah satu. Wajib.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // Objek data yang terkait dengan atribut
+  // Anda akan gunakan dalam templat. Opsional.
   {
-    // (see details in the next section below)
+    // (lihat detail di bagian selanjutnya)
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
+  // Isi VNode, bisa dengan `createElement()`,
+  // atau string sepert 'text VNodes'. Opsional.
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -167,50 +167,49 @@ createElement(
 
 ### The Data Object In-Depth
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+Penting untuk dicatat, sama halnya `v-bind:class` dan `v-bind:style` diperlakukan secara khusus di templat, mereka punya tempat tersendiri juga di objek data dari VNode. Lewat objek ini kalian juga melakukan proses *binding* ke atribut bawaan HTML juga properti DOM seperti `innerHTML` (menggantikan direktif `v-html`):
 
 ``` js
 {
-  // Same API as `v-bind:class`, accepting either
-  // a string, object, or array of strings and objects.
+  // Sama seperti `v-bind:class`, bisa diisi dengan
+  // string, objek, atau array dari string dan objek
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`, accepting either
-  // a string, object, or array of objects.
+  // Sama seperti `v-bind:style`, bisa diisi dengan
+  // string, objek, atau array dari objek
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Atribut bawaan HTML
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // properti komponen
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // properti DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under `on`, though
-  // modifiers such as in `v-on:keyup.enter` are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Event handler diletakkan di dalam `on`, meskipun
+  // modifier sepeti `v-on:keyup.enter` tidak
+  // didukung. Anda harus melakukan pemeriksaan manual
+  // untuk keyCodenya.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using `vm.$emit`.
+  // Hanya untuk komponen, digunakan untuk memperhatikan
+  // event bawaan, selain dari event yang dihasilkan oleh
+  // komponen yang menggunakan `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the `binding`'s
-  // `oldValue` cannot be set, as Vue keeps track
-  // of it for you.
+// Direktif kustom. Ingat bahwa `oldValue` tidak bisa diisi secara manual
+// Karena Vue akan mengaturnya sendiri.
   directives: [
     {
       name: 'my-custom-directive',
@@ -222,19 +221,19 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Scoped slots dalam bentuk
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
+  // Nama dari slot, jika komponen ini
+  // anak dari komponen lain
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // Properti khusus lainnya
   key: 'myKey',
   ref: 'myRef',
-  // If you are applying the same ref name to multiple
-  // elements in the render function. This will make `$refs.myRef` become an
+  // Jika kalian menggunakan nama ref yang sama
+  // di beberapa tempat, nilai dari `$refs.myRef` akan berbentuk
   // array
   refInFor: true
 }
