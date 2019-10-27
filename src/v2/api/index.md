@@ -2462,7 +2462,7 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
 
   Sama seperti [`slot-scope`](#slot-scope), hanya saja `scope` hanya bisa digunakan pada elemen `<template>`.
 
-## Built-In Components
+## Komponen Built-In
 
 ### component
 
@@ -2472,27 +2472,27 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
 
 - **Penggunaan:**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  "Komponen meta" untuk merender komponen dinamis. Komponen yang sesungguhnya yang di-render ditentukan oleh prop `is`:
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+  <!-- komponen dinamis dikendalikan oleh -->
+  <!-- properti `componentId` dalam vm -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- dapat pula merender komponen yang telah didaftarkan atau komponen dioper sebagai prop -->
   <component :is="$options.components.child"></component>
   ```
 
-- **Lihat juga:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Lihat juga:** [Komponen Dinamis](../guide/components.html#Dynamic-Components)
 
 ### transition
 
 - **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `name` - string, Digunakan untuk menghasilkan nama kelas CSS transisi secara otomatis. Sebagai contoh `name: 'fade'` akan otomatis _expand_ ke `.fade-enter`, `.fade-enter-active`, dan lain-lain. Nilai bawaan `"v"`.
+  - `appear` - boolean, Apakah akan menerapkan transisi dalam render awal. Nilai bawaan `false`.
+  - `css` - boolean, Apakah akan menerapkan _class_ transisi CSS. Nilai bawaan `true`. Jika diatur menjadi `false`, hanya akan memicu _hook_ Javascript teregistrasi via _event_ komponen.
+  - `type` - string, Menentukan tipe _event_ transisi untuk menunggu untuk memastikan waktu akhir transisi. Nilai yang tersedia adalah `"transition"` dan `"animation"`. Secara bawaan, ini akan secara otomatis mendeteksi tipe yang memiliki durasi lebih lama.
+  - `mode` - string, Mengontrol urutan waktu dari transisi pergi/masuk. Mode yang tersedia adalah `"out-in"` dan `"in-out"`; nilai bawaan serentak.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2519,20 +2519,20 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
 
 - **Penggunaan:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
+  `<transition>` disajikan sebagai efek transisi untuk elemen/komponen **tunggal**. `<transition>` hanya menerapkan tingkah laku transisi untuk konten yang terbungkus di dalam; ini tidak merender elemen DOM tambahan, atau ditampilkan dalam hirarki komponen yang terinspeksi.
 
   ```html
-  <!-- simple element -->
+  <!-- elemen sedehana -->
   <transition>
     <div v-if="ok">toggled content</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- komponen dinamis -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- pengait event -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
@@ -2552,25 +2552,25 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
   }).$mount('#transition-demo')
   ```
 
-- **Lihat juga:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Lihat juga:** [Transisi: Masuk, Pergi, dan Daftar Transisi lainnya](../guide/transitions.html)
 
 ### transition-group
 
 - **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+  - `tag` - string, nilai bawaan `span`.
+  - `move-class` - menimpa _class_ CSS yand diterapkan selama transisi berjalan.
+  - membuka _prop_ yang sama sebagai `<transition>` kecuali `mode`.
 
 - **Events:**
-  - exposes the same events as `<transition>`.
+  - membuka _event_ yang sama sebagai `<transition>`.
 
 - **Penggunaan:**
+  
+  `<transition-group>` disajikan sebagai efek transisi untuk elemen/komponen **berganda**. `<transition-group>` merender elemen DOM yang sebenarnya. Sebagai bawaan ini menernder `<span>`. dan Anda dapat mengkonfigurasi elemen apa yang harus dirender melalui atribut `tag`.
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
+  Catatan setiap _child_ dalam `<transition-group>` harus memiliki **kunci yang unik** agar animasi bekerja dengan baik.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
-
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` mendukung transisi berjalan melalui transform CSS. Ketika posisi sebuah _child_ dalam layar berganti setekah pembaruan, ini akan menerapkan _class_ CSS berjalan (otomatis dihasilkan dari atribut `name` atau terkonfigurasi dengan atribut `move-class`). Jika properti `transform` CSS adalah "transition-able" ketika _class_ berjalan diterapkan, elemen akan teranimasi dengan lancar ke destinasi menggunakan [teknik FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2580,38 +2580,38 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
   </transition-group>
   ```
 
-- **Lihat juga:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Lihat juga:** [Transisi: Masuk, Pergi, dan Daftar Transisi lainnya](../guide/transitions.html)
 
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components with matching names will be cached.
-  - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
-  - `max` - number. The maximum number of component instances to cache.
+  - `include` - string atau RegExp atau Array. Hanya komponen dengan nama yang cocok akan dimasukan _cache_.
+  - `exclude` - string atau RegExp atau Array. Komponen apapun dengan nama yang cocok tidak akan dimasukan _cache_.
+  - `max` - number. Angka maksimum dari instan komponen yang dapat masuk ke daam _cache_.
 
 - **Penggunaan:**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  Kerika membungkus komponen dinamis, _cache_ `<keep-alive` instan komponen tidak aktif tanpa menghancurkannya. Seperti `<transition>`, `<keep-alive>` adalah komponen abstrak: tidak merender elemen DOM sendiri, dan tidak tampil dalam rantai komponen _parent_.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  Ketika komponen diaktifkan dalam `<keep-alive>`, kait siklus hidup `activated` dan `deactivated` akan diminta sesuai.
 
-  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > Dalam 2.2.0+ ke atas, `activated` dan `deactivated` akan menyala untuk semua komponen bersarang di dalam pohon `<keep-alive>`.
 
-  Primarily used to preserve component state or avoid re-rendering.
+  Terutama digunakan untuk mempertahankan _state_ komponen atau menghindari merender ulang.
 
   ```html
-  <!-- basic -->
+  <!-- dasar -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- kondisional _children_ berganda -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with `<transition>` -->
+  <!-- digunakan bersama dengan `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2619,13 +2619,13 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+  Catatan, `<keep-alive>` didesain untuk kasus dimana komponen memiliki satu komponen _child_ yang sedang diaktifkan. Ini tidak bekerja jika Anda memiliki `v-for` di dalamnya. Ketika disana terdapat kondisional _children_ berganda, sebagaimana di atas, `<keep-alive>` memerlukan hanya satu _child_ dirender dalam satu waktu.
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0+
+  > Baru di 2.1.0+
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
+  _Prop_ `include` dan `exclude` mengijinkan komponen untuk secara kondisional dimasukan ke daam _cache_. Semua _prop_ dapat menjadi string _comma-delimited_, sebuah RegExp atau Array:
 
   ``` html
   <!-- comma-delimited string -->
@@ -2633,24 +2633,24 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- regex (gunakan `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- Array (gunakan `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  Kecocokan adalah yang pertama kali diperiksa pada opsi `name` komponen itu sendiri, lalu nama registrasi lokal (kunci dalam opsi komponen _parent_) jika opsi `name` tidak tersedia. Komponen anonim tidak dapat dicocokan.
 
 - **`max`**
 
   > New in 2.5.0+
 
-  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+  Angka maksimum dari instan komponen untuk dimasukan ke dalam _cache_. Saat angka ini tercapai, instan komponen dalam _cache_ yang paling sedikit diakses akan dihancurkan sebelum membuat instan baru.
 
   ``` html
   <keep-alive :max="10">
@@ -2658,22 +2658,22 @@ Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot
   </keep-alive>
   ```
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` tidak bekerja dengan komponen fungsional karena mereka tidak memiliki instan untuk dimasukan ke dalam _cache_.</p>
 
-- **Lihat juga:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Lihat juga:** [Komponen Dinamis - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
-  - `name` - string, Used for named slot.
+  - `name` - string, Digunakan untuk menamai slot.
 
 - **Penggunaan:**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` disajikan sebagai outlet distribusi konten dalam templat komponen. `<slot>` sendiri akan digantikan.
 
-  For detailed usage, see the guide section linked below.
+  Untuk detil penggunaan, lihat bagian petunjuk tautan di bawah.
 
-- **Lihat juga:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Lihat juga:** [Distribusi konten dengan Slot](../guide/components.html#Content-Distribution-with-Slots)
 
 ## VNode Interface
 
