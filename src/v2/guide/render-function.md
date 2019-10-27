@@ -239,9 +239,9 @@ Penting untuk dicatat, sama halnya `v-bind:class` dan `v-bind:style` diperlakuka
 }
 ```
 
-### Complete Example
+### Contoh Lengkap
 
-With this knowledge, we can now finish the component we started:
+Dengan informasi di atas, kita bisa melanjutkan komponen yang tadi kita buat:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -254,7 +254,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebab-case id
+    // membuat id kebab-case
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -281,11 +281,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### Keterbatasan
 
-#### VNodes Must Be Unique
+#### VNode harus unik
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Semua VNode yang ada di silsilah pohon komponen harus unik. Artinya, contoh di bawah salah:
 
 ``` js
 render: function (createElement) {
@@ -297,7 +297,7 @@ render: function (createElement) {
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Jika kalian memang ingin menduplikasi elemen/komponen yang sama beberapa kali, kalian bisa menggunakan fungsi *factory*. Di bawah ini adalah contoh yang valid untuk menampilkan 20 paragraf yang sama:
 
 ``` js
 render: function (createElement) {
@@ -309,11 +309,11 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Mengganti Fitur Templat Dengan JavaScript
 
-### `v-if` and `v-for`
+### `v-if` dan `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Jika ada hal sederhana yang bisa dicapai dengan mudah menggunakan JavaScript, fungsi render Vue tidak menyediakan cara khusus untuk melakukannya. Contohnya, penggunaan `v-if` dan `v-for` di templat:
 
 ``` html
 <ul v-if="items.length">
@@ -322,7 +322,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 <p v-else>No items found.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+Bisa ditulis dengan `if`/`else` dan `map` bawaan dari JavaScript:
 
 ``` js
 props: ['items'],
@@ -339,7 +339,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+Tidak ada fitur yang mirip `v-model` di fungsi render, kalian harus menerapkannya sendiri:
 
 ``` js
 props: ['value'],
@@ -358,11 +358,11 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+Mungkin terasa lebih susah, tapi kalian punya kendali penuh dibandingkan `v-model`.
 
-### Event & Key Modifiers
+### *Event* & *Key Modifiers*
 
-For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+Untuk modifier event seperti `.passive`, `.capture`, dan `.once`; Vue memberikan prefix yang bisa digunakan dengan `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
@@ -371,7 +371,7 @@ For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes 
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+Contoh:
 
 ```javascript
 on: {
@@ -381,7 +381,7 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
+Untuk event dan key modifier lainnya, tidak ada prefix yang dibutuhkan, cukup gunakan event method-nya di handler:
 
 | Modifier(s) | Equivalent in Handler |
 | ------ | ------ |
@@ -391,30 +391,30 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
-Here's an example with all of these modifiers used together:
+Berikut contoh untuk penggunaan modifier di atas:
 
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // Batalkan jika elemen yang menghasilkan event ini bukan
+    // elemen tempat event-nya di pasang
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // Batalkan jika key yang ditekan bukanlah tombol enter,
+    // dan tombol shift tidak ditekan
+    // di waktu yang sama
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // Hentikan propagasi event
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // Hentikan event handler dasar untuk event ini
     event.preventDefault()
     // ...
   }
 }
 ```
 
-### Slots
+### Slot
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
+Kalian bisa mengakses isi slot statik sebagai array VNode dari [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -423,7 +423,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
+Dan mengakses slot berlingkup (scoped) sebagai fungsi yang mengembalikan VNode dari [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 props: ['message'],
@@ -437,14 +437,14 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+Untuk meneruskan slot berlingkup ke komponen di dalamnya melalui fungsi render, gunakan field `scopedSlots` di data VNode:
 
 ``` js
 render: function (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass `scopedSlots` in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // teruskan `scopedSlots` di objek data
+      // dalam bentuk { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return createElement('span', props.text)
