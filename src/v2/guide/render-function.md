@@ -457,7 +457,7 @@ render: function (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+Jika kalian menulis fungsi `render` yang panjang, akan menyusahkan jika kalian harus menulis seperti di bawah:
 
 ``` js
 createElement(
@@ -472,7 +472,7 @@ createElement(
 )
 ```
 
-Especially when the template version is so simple in comparison:
+Terutama jika versi templatnya lebih sederhana:
 
 ``` html
 <anchored-heading :level="1">
@@ -480,7 +480,7 @@ Especially when the template version is so simple in comparison:
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Karena itulah ada [plugin Babel](https://github.com/vuejs/jsx) untuk menggunakan JSX dengan Vue, memberikan kita cara penulisan yang sedikit mirip templat:
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -497,61 +497,61 @@ new Vue({
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. Starting with [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) of the Babel plugin for Vue, we automatically inject `const h = this.$createElement` in any method and getter (not functions or arrow functions), declared in ES2015 syntax that has JSX, so you can drop the `(h)` parameter. With prior versions of the plugin, your app would throw an error if `h` was not available in the scope.</p>
+<p class="tip">Menamai `createElement` menjadi `h` adalah aturan umum yang akan kalian sering temukan di ekosistem Vue dan wajib dilakukan untuk menggunakan JSX. Mulai dari plugin Babel untuk Vue [versi 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection), secara otomatis diberikan baris `const h = this.$createElement` di method dan getter apa saja (selama bukan fungsi atau fungsi panah / *arrow function*), yang dideklarasikan di penulisan kode ES20155 yang berisi JSX, sehingga kalian bisa menghapus bagian parameter `(h)`. Di versi sebelumnya, akan terjadi error jika tidak ada `h` yang tersedia di lingkup tersebut.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx#installation).
+Untuk pelajari lebih lanjut tentang JSX, lihat [dokumentasi penggunaannya](https://github.com/vuejs/jsx#installation).
 
-## Functional Components
+## Komponen Fungsional
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+Komponen anchored heading yang kita buat sebelumnya relatif sederhana. Tidak ada state, watcher, dan tidak ada method lifecycle. Hanya sebuah fungsi dengan beberapa props.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
+Dalam kasus ini, kita bisa menandai komponen ini dengan `functional`, artinya mereka tidak memiliki state (tidak ada [reactive data](../api/#Options-Data)) dan tanpa instan (tidak ada konteks `this`). **Komponen fungsional** terlihat seperti ini:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // Props are optional
+  // Props bersifat opsional
   props: {
     // ...
   },
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+// Karena tidak ada instan,
+// konteks diteruskan melalui parameter kedua
   render: function (createElement, context) {
     // ...
   }
 })
 ```
 
-> Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> Catatan: di versi sebelum 2.3.0, opsi `props` harus ditulis jika kalian ingin komponen fungsional kalian menerima props. Di versi 2.3.0 ke atas, kalian tidak perlu menulis opsi `props` dan semua atribut yang ada di node komponen tersebut akan secara otomatis diambil sebagai props.
 
-In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
+Di versi 2.5.0 ke atas, jika kalian menggunakan [kopmonen satu berkas / single-file components](single-file-components.html), komponen fungsional yang menggunakan templat bisa ditulis seperti di bawah:
 
 ``` html
 <template functional>
 </template>
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+Semua yang dibutuhkan oleh komponen akan diteruskan melalui `context`, sebuah objek yang berisi:
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
-- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
-- `parent`: A reference to the parent component
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+- `props`: objek berisi props
+- `children`: Array VNode yang berisi anak dari komponen tersebut
+- `slots`: Fungsi yang mengembalikan objek slot
+- `scopedSlots`: (2.6.0+) Objek yang berisi slot berlingkup. Juga menyediakan slot normal sebagai fungsi.
+- `data`: [data objek](#The-Data-Object-In-Depth), diteruskan ke komponen sebagai argumen kedua dari `createElement`
+- `parent`: Referensi ke komponen di atasnya
+- `listeners`: (2.3.0+) Objek yang berisi event listener yang didaftarkan oleh komponen di atasnya. Juga sebagai alias untuk `data.on`
+- `injections`: (2.3.0+) jika ada opsi [`inject`](../api/#provide-inject), akan berisi injeksi yang ditemukan/diresolve.
 
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+Setelah menuliskan `functional: true`, pembaharuan fungsi render dari komponen anchored heading yang baru dibuat mengharuskan kalian menambahkan argumen `context`, merubah `this.$slots.default` menjadi `context.children`, lalu merubah `this.level` menjadi `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+Karena komponen fungsional hanya sebuah fungsi saja, mereka lebih cepat untuk dirender. Tetapi, karena tidak adanya instan yang bisa dijadikan acuan, komponen fungsional tidak akan muncul di pohon komponen [Vue devtools](https://github.com/vuejs/vue-devtools).
 
-They're also very useful as wrapper components. For example, when you need to:
+Mereka sangat bermanfaat jika digunakan sebagai komponen pembungkus. Contohnya:
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Secara program memilih beberapa komponen yang akan didelegasikan
+- Memanipulasi isi, props, dan data sebelum meneruskannya ke komponen lain di dalamnya
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Berikut adalah contoh untuk komponen `smart-list` yang akan mengembalikan komponen yang lebih spesifik, tergantung dari props yang diberikan:
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -588,25 +588,25 @@ Vue.component('smart-list', {
 })
 ```
 
-### Passing Attributes and Events to Child Elements/Components
+### Meneruskan Atribut dan Event ke Anak Komponen
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+Umumnya, atribut yang tidak didefinisikan sebagai prop akan otomatis ditambahkan ke elemen akar dari komponen tersebut, menindih atau [menggabungkan dengan seksama](class-and-style.html) atribut yang sudah ada dengan nama yang sama.
 
-Functional components, however, require you to explicitly define this behavior:
+Tetapi untuk komponen fungsional, kalian harus secara tertulis mendefinisikannya:
 
 ```js
 Vue.component('my-functional-button', {
   functional: true,
   render: function (createElement, context) {
-    // Transparently pass any attributes, event listeners, children, etc.
+    // Teruskan atribut, event listener, anak, dan sebagainya.
     return createElement('button', context.data, context.children)
   }
 })
 ```
 
-By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+Dengan meneruskan `context.data` sebagai argumen kedua dari `createElement`, kita juga meneruskan atribut dan event lain yang digunakan di `my-functional-button`. Kalian tidak butuh menambahkan modifier `.native`.
 
-If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+Jika kalian menggunakan komponen fungsional berbasis templat, kalian harus meneruskan atribut dan listener secara manual. Kalian bisa menggunakan `data.attrs` untuk meneruskan atribut HTML, dan `listeners` _(alias dari `data.on`)_ untuk meneruskan event listener.
 
 ```html
 <template functional>
@@ -622,7 +622,7 @@ If you are using template-based functional components, you will also have to man
 
 ### `slots()` vs `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Jika kalian penasaran kenapa kita butuh `slots()` dan `children`. Dan bukankah `slots().default` sama dengan `children`? Di beberapa kasus, iya - tapi bagaimana jika kita punya komponen fungsional seperti di bawah?
 
 ``` html
 <my-functional-component>
@@ -633,11 +633,11 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+Untuk komponen ini, `children` akan mengembalikan kedua paragraf; sedangkan `slots().default` akan mengembalikan yang kedua saja, dan `slots().foo` akan mengembalikan yang pertama saja. Adanya `children` dan `slots()` memberi keluasan untuk memilih apakah komponen yang kita buat tahu tentang slot yang kita gunakan, atau mungkin hanya ingin meneruskan masalah pemilihan slot tersebut ke komponen lain sembari juga meneruskan `children`.
 
-## Template Compilation
+## Kompilasi Templat
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Kalian mungkin penasaran, bagaimana caranya templat Vue bisa dirubah menjadi fungsi render. Detail implementasi ini tidak wajib untuk diketahui. Tapi jika kalian penasaran, di bawah ini adalah demo menggunakan `Vue.compile` untuk secara langsung merubah string templat menjadi fungsi render:
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
