@@ -84,4 +84,47 @@ partners_list:
                 name: YouTube
                 class: youtube
                 url: 'https://www.youtube.com/moduscreate'
+    -
+        name: Monterail
+        logo: Monterail.png
+        description:
+            "Monterail is a full-service software development company with 100+ experts on board delivering meaningful software for start-ups, SMBs and enterprises. We build for the Web with Ruby on Rails, Python, JavaScript, and Agile. We guarantee this: a product so qualitative and aligned with your vision, you’ll swear it was built in-house."
+        proficiencies:
+            - VueJs
+            - Ruby on Rails
+            - Javascript
+            - Python
+            - name: Services
+              url:  https://www.monterail.com/services
+            - name: Projects
+              url:  https://www.monterail.com/projects
+        location: Wrocław, Poland
+        languages:
+            - English
+            - Polish
+        url_text: www.monterail.com
+        url_link: www.monterail.com
+        hire_url: www.monterail.com/contact
+        email: hello@monterail.com
+        social_links:
+            -
+                name: Github
+                class: github
+                url: 'https://github.com/monterail'
+            -
+                name: Linkedin
+                class: linkedin
+                url: 'https://www.linkedin.com/company/monterail'
+            -
+                name: Facebook
+                class: facebook
+                url: 'https://www.facebook.com/monterail/'
+            -
+                name: Twitter
+                class: twitter
+                url: 'https://twitter.com/monterail'
+            -
+                name: Instagram
+                class: instagram
+                url: 'https://www.instagram.com/monterail/'
 ---
