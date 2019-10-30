@@ -12,6 +12,11 @@ order: 10
 `v-model`은 모든 form 엘리먼트의 초기 `value`와 `checked` 그리고 `selected` 속성을 무시합니다. 항상 Vue 인스턴스 데이터를 원본 소스로 취급합니다. 컴포넌트의 `data` 옵션 안에 있는 JavaScript에서 초기값을 선언해야합니다.
 </p>
 
+`v-model` internally uses different properties and emits different events for different input elements:
+- text and textarea elements use `value` property and `input` event;
+- checkboxes and radiobuttons use `checked` property and `change` event;
+- select fields use `value` as a prop and `change` as an event.
+
 <p class="tip" id="vmodel-ime-tip">[IME](https://en.wikipedia.org/wiki/Input_method) (중국어, 일본어, 한국어 등)가 필요한 언어의 경우 IME 중 `v-model`이 업데이트 되지 않습니다. 이러한 업데이트를 처리하려면 `input` 이벤트를 대신 사용하십시오.</p>
 
 ### 문자열
@@ -371,7 +376,7 @@ vm.selected.number // -> 123
 <input v-model.number="age" type="number">
 ```
 
-`type="number"`를 사용하는 경우에도 HTML 입력 엘리먼트의 값은 항상 문자열을 반환하기 때문에 이것은 종종 유용하게 사용할 수 있습니다.
+`type="number"`를 사용하는 경우에도 HTML 입력 엘리먼트의 값은 항상 문자열을 반환하기 때문에 이것은 종종 유용하게 사용할 수 있습니다. If the value cannot be parsed with `parseFloat()`, then the original value is returned.
 
 ### `.trim`
 

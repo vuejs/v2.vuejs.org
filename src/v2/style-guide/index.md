@@ -1,8 +1,9 @@
 ---
+title: Style Guide
 type: style-guide
 ---
 
-# 스타일 가이드 <sup class="beta">베타</sup>
+# 스타일 가이드
 
 이 문서는 Vue 코드에 대한 공식 스타일 가이드입니다. 만약 현재 Vue를 사용하여 프로젝트를 진행중이라면 이 문서는 에러와 바이크쉐딩(bikeshedding), 안티패턴을 피하는 좋은 참조가 될것 입니다. 그러나 무조건 이 문서에서 제시하는 스타일 가이드가 당신의 프로젝트에 적합한 것은 아닙니다. 그러므로 당신의 경험과 기술스택, 개인적 통찰력을 바탕으로 이 스타일 가이드가 적용되는 것을 권장해드립니다.
 
@@ -44,14 +45,13 @@ type: style-guide
 
 ### 컴포넌트 이름에 합성어 사용 <sup data-p="a">필수</sup>
 
-**root 컴포넌트인 `App` 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용해야한다.**
+**root 컴포넌트인 `App` 과 `<transition>`, `<component>`등 Vue에서 제공되는 빌트인 컴포넌트를 제외하고 컴포넌트의 이름은 항상 합성어를 사용해야한다.**
 
 모든 HTML 엘리먼트의 이름은 한 단어이기 때문에 합성어를 사용하는 것은 기존 그리고 향후 HTML엘리먼트와의 [충돌을 방지해줍니다](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
 
-``` js
 Vue.component('todo', {
   // ...
 })
@@ -332,7 +332,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -367,7 +367,7 @@ computed: {
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -387,7 +387,7 @@ We get similar benefits from updating:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -400,7 +400,7 @@ to:
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -419,7 +419,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -431,7 +431,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -446,7 +446,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 
@@ -457,7 +457,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
     :key="user.id"
   >
     {{ user.name }}
-  <li>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -576,7 +576,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+As for the `$` prefix, its purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
 
 Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
 
@@ -644,6 +644,25 @@ var myGreatMixin = {
   }
 }
 ```
+
+``` js
+// Even better!
+var myGreatMixin = {
+  // ...
+  methods: {
+    publicMethod() {
+      // ...
+      myPrivateFunction()
+    }
+  }
+}
+
+function myPrivateFunction() {
+  // ...
+}
+
+export default myGreatMixin
+```
 {% raw %}</div>{% endraw %}
 
 
@@ -694,7 +713,7 @@ components/
 
 **Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
@@ -740,7 +759,7 @@ components/
 These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
 
 - HTML elements,
-- other `Base`-prefixed components, and
+- other base components, and
 - 3rd-party UI components.
 
 But they'll **never** contain global state (e.g. from a Vuex store).
@@ -1216,9 +1235,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greetingText="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
@@ -1230,9 +1249,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greeting-text="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 
@@ -1415,7 +1434,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ### 축약형 디렉티브 <sup data-p="b">매우 추천함</sup>
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+**Directive shorthands (`:` for `v-bind:`, `@` for `v-on:` and `#` for `v-slot`) should be used always or never.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
@@ -1432,6 +1451,16 @@ While attribute values without any spaces are not required to have quotes in HTM
   v-on:input="onInput"
   @focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1>
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1464,6 +1493,26 @@ While attribute values without any spaces are not required to have quotes in HTM
   v-on:input="onInput"
   v-on:focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1>
+</template>
+
+<template v-slot:footer>
+  <p>Here's some contact info</p>
+</template>
+```
+
+``` html
+<template #header>
+  <h1>Here might be a page title</h1>
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1514,6 +1563,16 @@ While attribute values without any spaces are not required to have quotes in HTM
 9. **이벤트(Events)** (반응적인 이벤트에 의해 실행되는 콜백을 지정하는 옵션)
   - `watch`
   - 라이프사이클 이벤트 (호출 순서대로 정렬)
+    - `beforeCreate`
+    - `created`
+    - `beforeMount`
+    - `mounted`
+    - `beforeUpdate`
+    - `updated`
+    - `activated`
+    - `deactivated`
+    - `beforeDestroy`
+    - `destroyed`
 
 10. **비반응적 속성(Non-Reactive Properties)** (시스템의 반응성과 관계 없는 인스턴스 속성을 지정하는 옵션)
   - `methods`
@@ -1697,7 +1756,7 @@ computed: {
 
 **It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended consequences](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨
@@ -1722,19 +1781,10 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 >
   Error: {{ error }}
 </div>
-<div 
-  v-else 
+<div
+  v-else
   key="search-results"
 >
-  {{ results }}
-</div>
-```
-
-``` html
-<p v-if="error">
-  Error: {{ error }}
-</p>
-<div v-else>
   {{ results }}
 </div>
 ```
@@ -1977,7 +2027,7 @@ export default {
   var enforcementTypes = {
     none: '<span title="There is unfortunately no way to automatically enforce this rule.">self-discipline</span>',
     runtime: 'runtime error',
-    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
+    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank" rel="noopener noreferrer">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\

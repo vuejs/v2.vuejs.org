@@ -1,5 +1,5 @@
 ---
-title: 트렌지션 상태
+title: 상태 트랜지션
 type: guide
 order: 202
 ---
@@ -13,12 +13,12 @@ Vue의 트랜지션 시스템은 진입, 진출 및 목록을 애니메이션으
 
 이들 모두는 이미 원시 숫자로 저장되어 있거나 숫자로 변환 될 수 있습니다. 그렇게하면 Vue의 반응성 및 컴포넌트 시스템과 함께 써드파티 라이브러리를 사용하여 트윈 상태로 상태 변경 사항을 애니메이션으로 만들 수 있습니다.
 
-## 감시자와 애니메이션 상태
+## 감시자를 이용한 상태 애니메이션
 
-감시자를 사용하면 숫자 속성의 변경 사항을 다른 속성으로 애니메이션 할 수 있습니다. 처음에는 복잡해 보일 수도 있으므로 [Tween.js](https://github.com/tweenjs/tween.js)를 사용하여 예제를 살펴 보겠습니다.
+감시자를 사용하면 숫자 속성의 변경 사항을 다른 속성으로 애니메이션 할 수 있습니다. 처음에는 복잡해 보일 수도 있으므로 [GreenSock](https://greensock.com/)을 사용하여 예제를 살펴 보겠습니다.
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -31,33 +31,23 @@ new Vue({
   el: '#animated-number-demo',
   data: {
     number: 0,
-    animatedNumber: 0
+    tweenedNumber: 0
+  },
+  computed: {
+    animatedNumber: function() {
+      return this.tweenedNumber.toFixed(0);
+    }
   },
   watch: {
-    number: function(newValue, oldValue) {
-      var vm = this
-      function animate () {
-        if (TWEEN.update()) {
-          requestAnimationFrame(animate)
-        }
-      }
-
-      new TWEEN.Tween({ tweeningNumber: oldValue })
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .to({ tweeningNumber: newValue }, 500)
-        .onUpdate(function () {
-          vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .start()
-
-      animate()
+    number: function(newValue) {
+      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
     }
   }
 })
 ```
 
 {% raw %}
-<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -67,33 +57,23 @@ new Vue({
   el: '#animated-number-demo',
   data: {
     number: 0,
-    animatedNumber: 0
+    tweenedNumber: 0
+  },
+  computed: {
+    animatedNumber: function() {
+      return this.tweenedNumber.toFixed(0);
+    }
   },
   watch: {
-    number: function(newValue, oldValue) {
-      var vm = this
-      function animate () {
-        if (TWEEN.update()) {
-          requestAnimationFrame(animate)
-        }
-      }
-
-      new TWEEN.Tween({ tweeningNumber: oldValue })
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .to({ tweeningNumber: newValue }, 500)
-        .onUpdate(function () {
-          vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .start()
-
-      animate()
+    number: function(newValue) {
+      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
     }
   }
 })
 </script>
 {% endraw %}
 
-숫자를 갱신하면 변경 사항이 입력 아래에 애니메이션으로 표시됩니다. 이것은 멋진 멋져 보이지만, 예를 들어 유효한 CSS 색상과 같이 숫자로 직접 저장되지 않은 것은 어떻게 할까요? 다음은 [Color.js](https://github.com/brehaut/color-js)를 추가하여 이를 수행하는 방법입니다.
+숫자를 갱신하면 변경 사항이 입력 아래에 애니메이션으로 표시됩니다. 이것은 멋진 멋져 보이지만, 예를 들어 유효한 CSS 색상과 같이 숫자로 직접 저장되지 않은 것은 어떻게 할까요? 다음은 [Tween.js](https://github.com/tweenjs/tween.js)와 [Color.js](https://github.com/brehaut/color-js)를 추가하여 이를 수행하는 방법입니다.
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -444,8 +424,8 @@ Vue.component('animated-integer', {
 
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
-        .onUpdate(function (object) {
-          vm.tweeningValue = object.tweeningValue.toFixed(0)
+        .onUpdate(function () {
+          vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
 

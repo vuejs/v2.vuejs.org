@@ -24,9 +24,11 @@ React와 Vue는 많은 공통점을 공유합니다.
 
 React 팀의 Dan Abramov 덕분에 React 커뮤니티는 [이러한 균형을 이루는데 도움](https://github.com/vuejs/vuejs.org/issues/364)이 되었습니다. 그는 우리가 최종 결과에 대해 [모두 만족할 때까지](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)이 문서를 수정하는 데 도움이되는 시간과 상당한 전문성을 지극히 관대했습니다.
 
+Some of the sections below may also be slightly outdated due to recent updates in React 16+, and we are planning to work with the React community to revamp this section in the near future.
+
 ### 런타임 퍼포먼스
 
-React와 Vue 모두 비슷하게 빠르므로 속도는 선택에 있어 결정적인 요인이 되지는 않을 것입니다. 특정 측정 항목에 대해서는 매우 간단한 컴포넌트 트리를 사용하여 원시 렌더링/업데이트 성능에 초점을 맞추는 [써드파티 벤치 마크](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)를 확인하십시오.
+React와 Vue 모두 비슷하게 빠르므로 속도는 선택에 있어 결정적인 요인이 되지는 않을 것입니다. 특정 측정 항목에 대해서는 매우 간단한 컴포넌트 트리를 사용하여 원시 렌더링/업데이트 성능에 초점을 맞추는 [써드파티 벤치 마크](https://stefankrause.net/js-frameworks-benchmark8/table.html)를 확인하십시오.
 
 
 #### 렌더링 성능
@@ -153,11 +155,11 @@ CSS-in-JS의 팬이라면 유명한 CSS-in-JS 라이브러리들도 Vue를 지�
 
 또 다른 중요한 차이점은 상태 관리 및 라우팅을 위한 Vue의 기타 라이브러리 ([기타 관심사](https://github.com/vuejs) 중)는 모두 공식적으로 지원되며 핵심 라이브러리와 함께 최신 상태로 유지된다는 것입니다. 반대로 React는 커뮤니티에 이러한 결정을 맡기고 더 분열 된 생태계를 만드는 것을 선택했습니다. 그 결과 React의 생태계는 Vue보다 훨씬 풍부합니다.
 
-마지막으로 Vue는 [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify)또는 [빌드 시스템 사용안함](https://github.com/vuejs-templates/simple)을 포함하여 원하는 빌드 시스템을 사용하여 새 프로젝트를 쉽게 시작할 수있게 해주는 [CLI 프로젝트 생성기](https://github.com/vuejs/vue-cli)를 제공합니다. 영역을 "create-react-app"로 설정했지만 현재 몇 가지 제한 사항이 있습니다.
+마지막으로, Vue는 [CLI 프로젝트 생성기](https://github.com/vuejs/vue-cli)를 제공하여, 대화형식의 프로젝트 구축마법사를 이용해 새로운 프로젝트를 간단하게 시작할 수 있습니다. 또한, 컴포넌트의 [인스턴트 프로토타이핑](https://cli.vuejs.org/guide/prototyping.html#instant-prototyping) 또한 사용할 수 있습니다. 리액트에도 [create-react-app](https://github.com/facebookincubator/create-react-app)이 있고, 이 분야에서 진보를 이루고 있습니다만, 현상황에서는 몇가지 제약이 있습니다.
 
-- Vue의 프로젝트 템플릿은 [Yeoman](http://yeoman.io/)과 같은 사용자 정의를 허용하지만 프로젝트 생성 중에는 어떠한 구성도 허용하지 않습니다.
+- It does not allow any configuration during project generation, while Vue CLI runs on top of an upgradeable runtime dependency that can be extended via [plugins](https://cli.vuejs.org/guide/plugins-and-presets.html#plugins).
 - 단일 페이지 애플리케이션을 작성한다고 가정하는 단일 템플릿만 제공하며, Vue는 다양한 목적을 위해 다양한 템플릿를 제공하고 시스템을 빌드합니다.
-- 사용자 정의 템플릿에서 프로젝트를 생성할 수 없으며 사전 정의된 규칙을 사용하는 엔터프라이즈 환경에 특히 유용 할 수 있습니다.
+- 엔터프라이즈 환경에서 특히 유용하게 사용될 수 있는 사용자 정의 [프리셋](https://cli.vuejs.org/guide/plugins-and-presets.html#presets)으로부터의 프로젝트 생성을 할수 없습니다.
 
 이러한 제한 사항 중 상당수는 create-react-app 팀이 의도적으로 설계한 것입니다. 예를 들어, 프로젝트의 요구가 매우 간단하고 빌드 프로세스를 사용자 정의하기 위해 "추출"할 필요가없는 한, 이를 종속으로 업데이트 할 수 있습니다. 여기에서 [다른 철학](https://github.com/facebookincubator/create-react-app#philosophy)에 대해 더 많이 읽을 수 있습니다.
 
@@ -165,7 +167,7 @@ CSS-in-JS의 팬이라면 유명한 CSS-in-JS 라이브러리들도 Vue를 지�
 
 React는 가파른 학습 곡선으로 유명합니다. 실제로 시작하기 전에 JSX와 아마도 ES2015+에 대해 알아야합니다. 많은 예제가 React의 클래스 구문을 사용하기 때문입니다. Babel Standalone을 기술적으로 사용하여 브라우저에서 코드를 라이브 컴파일 할 수는 있지만 작성에 적합하지 않기 때문에 빌드 시스템에 대해서도 배워야합니다.
 
-Vue는 React만큼 확장성이 뛰어나지 않지만, jQuery처럼 복잡한 설정 없이 스크립트 태그를 붙이는 것으로 Vue를 사용할 수 있습니다.
+React와 동일하게, Vue는 스케일 업도 가능한 한편, jQuery처럼 스케일 다운하는것 또한 가능합니다. 맞습니다. 처음 시작하기 위해서, 단 1줄의 스크립트 태그를 삽입하는것 만으로 충분합니다.
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -191,6 +193,10 @@ MobX는 React 커뮤니티에서 꽤 유명해졌고 실제로 Vue와 거의 같
 
 React같은 라이브러리는 대개 실현 가능한 React와 API와 생태계를 공유하려고 노력합니다. 이러한 이유로, 위의 대부분의 비교도 그들에게 적용될 것입니다. 주된 차이점은 일반적으로 React에 비해 생태계가 현저히 축소되는 것입니다. 이러한 라이브러리들은 React 생태계의 모든 것과 100% 호환될 수 없으므로 일부 툴링 및 동반 라이브러리는 사용할 수 없을 수도 있습니다. 혹은 작동하는 것처럼 보여도, 당신 react계열 라이브러리가 React와 동등한 공식 지원을 받지 않는 한 언제라도 구현이 깨질 수도 있습니다.
 
+### Preact and Other React-Like Libraries
+
+React-like libraries usually try to share as much of their API and ecosystem with React as is feasible. For that reason, the vast majority of comparisons above will also apply to them. The main difference will typically be a reduced ecosystem, often significantly, compared to React. Since these libraries cannot be 100% compatible with everything in the React ecosystem, some tooling and companion libraries may not be usable. Or, even if they appear to work, they could break at any time unless your specific React-like library is officially supported on par with React.
+
 ## AngularJS (Angular 1)
 
 일부 Vue의 문법은 Angular와 매우 유사합니다 (예 :`v-if`와`ng-if`). Angular가 제대로 된 많은 것들을 가지고 있었기 때문에 이것은 개발 초기에 Vue에게 영감이 되었습니다. Angular와 함께 제공되는 많은 고통이 있었지만 Vue가 상당한 개선을 제공하려고 시도하였습니다.
@@ -203,7 +209,7 @@ Vue는 API와 디자인면에서 Angular 1보다 훨씬 간단합니다. 평범�
 
 Angular는 애플리케이션을 어떻게 구성해야 하는지에 대한 강요가 강하고 Vue는 더욱 유연하고 모듈방식의 솔루션입니다. 이로 인해 Vue는 다양한 프로젝트에보다 적합하게 적용될 수 있으며, 때로는 코딩을 시작하기 위해 의사 결정을 내리는데 유용 할 때가 있습니다.
 
-그렇기 때문에 핫 모듈 리로딩, 린트 (linting), CSS 추출과 같은 고급 기능에 대한 액세스 권한을 부여하는 동시에 빠르게 설정할 수있는 [Webpack 템플릿](https://github.com/vuejs-templates/webpack)을 제공합니다.
+그렇기 때문에 핫 모듈 리로딩, 린트 (linting), CSS 추출과 같은 고급 기능에 대한 액세스 권한을 부여하는 동시에 빠르게 설정할 수있는 [Vue CLI](https://github.com/vuejs/vue-cli)를 제공합니다.
 
 ### 데이터 바인딩
 
@@ -227,7 +233,7 @@ Angular 2는 완전히 새로운 것이기 때문에 별도의 섹션을 만들�
 
 ### TypeScript
 
-Angular는 TypeScript가 필수적입니다. 문서 또한 TypeScript 기반입니다. TypeScript를 사용하면 Java와 C#을 다루던 사용자에게 생산성을 올려주고 정적 타입 체크 등의 많은 이익이 있습니다. 그러나 모든 사람들이 TypeScript를 사용하려고 하지는 않습니다. 
+Angular는 TypeScript가 필수적입니다. 문서 또한 TypeScript 기반입니다. TypeScript를 사용하면 Java와 C#을 다루던 사용자에게 생산성을 올려주고 정적 타입 체크 등의 많은 이익이 있습니다. 그러나 모든 사람들이 TypeScript를 사용하려고 하지는 않습니다.
 
 많은 소규모 사례에서 TypeScript를 사용하면 생산성 향상보다 더 많은 오버헤드가 발생할 수 있습니다. 이 경우 TypeScript 없이 Angular를 사용하는 것이 어려울 수 있기 때문에 Vue를 사용하는 것이 좋습니다.
 

@@ -8,9 +8,15 @@ order: 2
 
 Vue(/vjuː/ 로 발음, **view** 와 발음이 같습니다.)는 사용자 인터페이스를 만들기 위한 **진보적인 프레임워크** 입니다. 다른 단일형 프레임워크와 달리 Vue는 점진적으로 채택할 수 있도록 설계하였습니다. 핵심 라이브러리는 뷰 레이어만 초점을 맞추어 다른 라이브러리나 기존 프로젝트와의 통합이 매우 쉽습니다. 그리고 Vue는 [현대적 도구](single-file-components.html) 및 [지원하는 라이브러리](https://github.com/vuejs/awesome-vue#components--libraries)와 함께 사용한다면 정교한 단일 페이지 응용프로그램을 완벽하게 지원할 수 있습니다.
 
+If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+
 숙련된 프론트엔드 개발자이고 Vue를 다른 라이브러리/프레임워크와 비교하고 싶다면 [다른 프레임워크와의 비교](comparison.html)를 확인하십시오.
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+
 ## 시작하기
+
+<a class="button" href="installation.html">Installation</a>
 
 <p class="tip">공식 가이드는 HTML, CSS 및 JavaScript에 대한 중간 수준의 지식을 전제로 합니다. 프론트 엔드 개발에 완전히 익숙하지 않다면 첫 번째 단계로 프레임워크를 시작하는 것은 좋은 생각이 아닙니다. 기본을 파악한 다음 다시 해보세요! 다른 프레임워크에 대한 사전 경험이 도움 되지만 필수는 아닙니다.</p>
 
@@ -31,7 +37,11 @@ Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World
 
 [설치](installation.html) 페이지에는 Vue 옵션이 추가로 제공됩니다. Node.js 기반 빌드 도구에 아직 익숙하지 않으면 `vue-cli`로 시작하는 것을 추천하지 **않습니다.**
 
+If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+
 ## 선언적 렌더링
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
 Vue.js의 핵심은 간단한 템플릿 구문을 사용해 선언적으로 DOM에 데이터를 렌더링하는 것입니다.
 
@@ -102,6 +112,8 @@ var app2 = new Vue({
 JavaScript 콘솔을 다시 열고 `app2.message = '새로운 메시지'`라고 입력하면 HTML(이 경우에 `title` 속성)이 업데이트되었음을 다시 한번 확인할 수 있습니다.
 
 ## 조건문과 반복문
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
 엘리먼트의 존재 여부를 토글하는 것은 아주 간단합니다.
 
@@ -187,6 +199,8 @@ var app4 = new Vue({
 
 ## 사용자 입력 핸들링
 
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+
 사용자가 앱과 상호 작용할 수 있게 하기 위해 우리는`v-on` 디렉티브를 사용하여 Vue 인스턴스에 메소드를 호출하는 이벤트 리스너를 첨부 할 수 있습니다 :
 
 ``` html
@@ -263,6 +277,8 @@ var app6 = new Vue({
 
 ## 컴포넌트를 사용한 작성방법
 
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+
 컴포넌트 시스템은 Vue의 또 다른 중요한 개념입니다. 이는 작고 그 자체로 제 기능을 하며 재사용할 수 있는 컴포넌트로 구성된 대규모 응용 프로그램을 구축할 수 있게 해주는 추상적 개념입니다. 생각해보면 거의 모든 유형의 응용 프로그램 인터페이스를 컴포넌트 트리로 추상화할 수 있습니다.
 
 ![컴포넌트 트리](/images/components.png)
@@ -274,6 +290,8 @@ Vue에서, 컴포넌트는 본질적으로 미리 정의된 옵션을 가진 Vue
 Vue.component('todo-item', {
   template: '<li>할일 항목 하나입니다.</li>'
 })
+
+var app = new Vue(...)
 ```
 
 이제 다른 컴포넌트의 템플릿에서 이 컴포넌트를 사용할 수 있습니다.
@@ -302,16 +320,16 @@ Vue.component('todo-item', {
 ``` html
 <div id="app-7">
   <ol>
-    <!-- 
+    <!--
       이제 각 todo-item 에 todo 객체를 제공합니다.
-      화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다. 
+      화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다.
       또한 각 구성 요소에 "키"를 제공해야합니다 (나중에 설명 됨).
      -->
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
-      v-bind:key="item.id">
-    </todo-item>
+      v-bind:key="item.id"
+    ></todo-item>
   </ol>
 </div>
 ```
@@ -374,10 +392,16 @@ var app7 = new Vue({
 
 Vue 컴포넌트는 [Web Components Spec](http://www.w3.org/wiki/WebComponents/)의 일부인 **사용자 지정 엘리먼트** 와 매우 유사하다는 것을 눈치 챘을 수 있습니다. Vue의 컴포넌트 구문은 스펙 이후 느슨하게 모델링 되었기 때문입니다. 예를 들어 Vue 컴포넌트는 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)와 `is` 특수 속성을 구현합니다. 그러나 몇가지 중요한 차이가 있습니다.
 
-1. Web Components Spec은 여전히 초안이며 모든 브라우저에서 기본적으로 구현되지 않습니다. 이에 비해 Vue 컴포넌트는 지원되는 모든 브라우저 (IE 9 이상)에서 폴리필을 필요로 하지 않으며 일관되게 작동합니다. 필요한 경우 Vue 컴포넌트는 기본 사용자 정의 엘리먼트 내에 래핑할 수 있습니다.
+1. Web Components Spec은 최종안이 정해졌지만 모든 브라우저들이 탑재하고 있지는 않습니다. 사파리 10.1+, 크롬 54+ 그리고 파이어폭스 63+ 기본적으로 Web Components를 지원합니다. 이에 비해 Vue 컴포넌트는 지원되는 모든 브라우저 (IE 9 이상)에서 폴리필을 필요로 하지 않으며 일관되게 작동합니다. 필요한 경우 Vue 컴포넌트는 기본 사용자 정의 엘리먼트 내에 래핑할 수 있습니다.
 
 2. Vue 컴포넌트는 일반 사용자 정의 엘리먼트에서 사용할 수 없는 중요한 기능을 제공합니다. 특히 컴포넌트 데이터 흐름, 사용자 지정 이벤트 통신 및 빌드 도구 통합이 중요합니다.
+
+Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
 
 ## 더 해야할 것은 무엇인가요?
 
 우리는 Vue.js 코어의 가장 기본적인 기능을 간략하게 소개했습니다. 이 가이드의 나머지 부분에서 더 자세한 세부 내용이 포함된 다른 고급 기능에 대해 다룰 예정이므로 꼭 읽어보시기 바랍니다.
+
+We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>

@@ -70,7 +70,7 @@ Vue에 있는 컨텐트 배포 API는 `<slot>` 요소를 컨텐트 배포 통로
   Clicking here will send you to: {{ url }}
   <!--
   `url`은 undefined로 나올 겁니다. 이 데이터는 <navigation-link>_로_
-  넘어가지만 <navigation-link> 컴포넌트 _안에_ 정의되어 있지는 
+  넘어가지만 <navigation-link> 컴포넌트 _안에_ 정의되어 있지는
   않으니까요.
   -->
 </navigation-link>

@@ -10,10 +10,15 @@ Vue의 커뮤니티는 엄청나게 빠르게 성장하고 있습니다. 이 글
 
 ## 즐길 수 있는 리소스들
 
+### 행동강령
+
+Our [Code of Conduct](/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+
 ### 지원 받기
 
 - [Forum](http://forum.vuejs.org/): Vue와 생태계에한관한 질문하고 답변을 얻는 가장 좋은 곳 입니다.
 - [Chat](https://chat.vuejs.org/): 개발자들과 대화할 수 있는 장소입니다.
+- [Meetups](https://events.vuejs.org/meetups): Want to find local Vue.js enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
 - [Github](https://github.com/vuejs): 보고 할 버그가 있거나 요청할 기능이 있다면 GitHub 이슈가 필요합니다. 또한 풀 리퀘스트 요청을 환영합니다!
 
 
@@ -50,3 +55,13 @@ Vue는 이미 전 세계로 퍼져 나갔고 코어 팀조차 적어도 6개 이
 지금 당장 당신이 선호하는 언어로 이 문장을 읽고 싶은 경우 우리를 도와 주시겠습니까?
 
 그렇다면 [이 문서](https://github.com/vuejs/vuejs.org/) 또는 기타 공식적으로 유지 관리되는 문서에 대한 저장소를 포크하여 자유롭게 번역을 시작하십시오. 진행 상황을 확인한 후 문제를 열거 나 주 저장소에서 요청을 가져 오면 더 많은 기부자에게 도움을 요청할 것입니다.
+
+### Become a Community Leader
+
+There's a lot you can do to help Vue grow in your community:
+
+- **Present at your local meetup.** Whether it's giving a talk or running a workshop, you can bring a lot of value to your community by helping both new and experienced Vue developers continue to grow.
+- **Start your own meetup.** If there's not already a Vue meetup in your area, you can start your own! Use the [resources at events.vuejs.org](https://events.vuejs.org/resources/#getting-started) to help you succeed!
+- **Help meetup organizers.** There can never be too much help when it comes to running an event, so offer a hand to help out local organizers to help make every event a success.
+
+If you have any questions on how you can get more involved with your local Vue community, reach out at [@Vuejs_Events](https://www.twitter.com/vuejs_events)!

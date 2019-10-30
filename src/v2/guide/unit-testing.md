@@ -1,12 +1,11 @@
 ---
 title: 단위 테스팅
 type: guide
-order: 403
+order: 402
 ---
 
-## 설치와 사용 도구
+> [Vue CLI](https://cli.vuejs.org/) 는 [Jest](https://github.com/facebook/jest), 혹은 [Mocha](https://mochajs.org/) 를 사용해 어려운 설정 없이 유닛테스트를 진행하기 위한 옵션이 있습니다. 커스텀 셋업의 가이드가 되는 [Vue Test Utils](https://vue-test-utils.vuejs.org/)도 있습니다.
 
-모듈 기반 빌드 시스템과 호환되는 모든 것과 잘 작동하지만 특정한 권장사항을 찾으려면 [Karma](http://karma-runner.github.io) 테스트 러너를 사용해 보십시오. [Webpack](https://github.com/webpack/karma-webpack) 과 [Browserify](https://github.com/Nikku/karma-browserify)를 포함한 많은 커뮤니티 플러그인을 가지고 있습니다. 자세한 설정은 [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js)과 [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js)에 대한 Karma 구성 예제를 통해 각 프로젝트의 관련 문서를 참조하십시오. 시작하는데 도움이 될 것입니다.
 
 ## 간단한 테스트하기
 
@@ -31,7 +30,7 @@ order: 403
 </script>
 ```
 
-해당 컴포넌트를 테스트할 때 Vue와 함께 객체를 가져와 공통된 많은 테스트를 작성하면 됩니다.
+해당 컴포넌트를 테스트할 때 Vue와 함께 options의 객체를 Import해 테스트를 실행합니다. (여기서는 예로 Jasmine/Jest스타일의 `expect`어서션을 사용하고 있습니다).
 
 ``` js
 // Vue 및 테스트할 컴포넌트 가져오기
@@ -129,3 +128,5 @@ it('updates the rendered message when vm.message updates', done => {
 ```
 
 우리는 다른 제약 조건 (예: 자식 컴포넌트를 무시하는 얕은 렌더링)을 사용하여 컴포넌트를 렌더링 하는 것이 훨씬 간단하고 결과를 나타낼 수 있는 공통 테스트 모음을 개발할 계획 입니다.
+
+Vue의 유닛 테스트에 관한 상세 정보는 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 와 쿡북 엔트리 [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html)를 확인해주세요.

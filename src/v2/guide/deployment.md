@@ -1,10 +1,13 @@
 ---
 title: 프로덕션 배포 팁
 type: guide
-order: 401
+order: 404
 ---
 
+> Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org). This section is only relevant if you are using a custom build setup.
+
 ## 프로덕션 모드를 켜세요
+
 
 개발 과정에서 Vue는 일반적인 오류 및 함정을 해결하는 데 도움이 되는 많은 경고를 제공합니다. 그러나 이러한 경고 문자열은 프로덕션에서는 쓸모 없으며 앱의 페이로드 크기를 키웁니다. 또한 이러한 경고 검사 중 일부는 프로덕션 모드에서 피할 수 있는 런타임 비용이 적습니다.
 
@@ -18,10 +21,15 @@ Webpack이나 Browserify와 같은 빌드 툴을 사용할 때, 프로덕션 모
 
 #### Webpack
 
-프로덕션 환경을 알리기 위해 Webpack의 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록 합니다.
+Webpack 4+에서는 `mode` 옵션을 사용할 수 있습니다.
 
-설정 예제:
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
 
+하지만, Webpack 3 과 그 이전 버전에서는 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)사용 이 필요합니다.
 
 ``` js
 var webpack = require('webpack')
@@ -31,9 +39,7 @@ module.exports = {
   plugins: [
     // ...
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 }
@@ -56,13 +62,36 @@ module.exports = {
   var envify = require('envify/custom')
 
   browserify(browserifyOptions)
-    .transform(vueify),
+    .transform(vueify)
     .transform(
       // node_modules 파일을 처리하기 위해 필요합니다.
       { global: true },
       envify({ NODE_ENV: 'production' })
     )
     .bundle()
+  ```
+
+- Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
+
+  ``` js
+  // Use the envify custom module to specify environment variables
+  var envify = require('envify/custom')
+
+  browserify: {
+    dist: {
+      options: {
+        // Function to deviate from grunt-browserify's default order
+        configure: b => b
+          .transform('vueify')
+          .transform(
+            // Required in order to process node_modules files
+            { global: true },
+            envify({ NODE_ENV: 'production' })
+          )
+          .bundle()
+      }
+    }
+  }
   ```
 
 #### Rollup

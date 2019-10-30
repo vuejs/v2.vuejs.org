@@ -26,7 +26,7 @@ filters: {
 }
 ```
 
-또는 다음과 같이 전역 필터를 정의할 수 있습니다.
+또는 다음과 같이 Vue 인스턴스를 생성하기 전에 전역 필터를 정의할 수 있습니다.
 
 ``` js
 Vue.filter('capitalize', function (value) {
@@ -34,7 +34,13 @@ Vue.filter('capitalize', function (value) {
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
 })
+
+new Vue({
+  // ...
+})
 ```
+
+When the global filter has the same name as the local filter, the local filter will be preferred.
 
 아래는 `capitalize`를 사용한 예제입니다.
 

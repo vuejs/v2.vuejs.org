@@ -211,9 +211,9 @@ router.alias({
 
 여러 개의 별칭이 필요한 경우 배열 구문을 사용할 수도 있습니다.
 
-``` js
+{% codeblock lang:js %}
 alias: ['/manage', '/administer', '/administrate']
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">

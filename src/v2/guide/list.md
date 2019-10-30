@@ -46,11 +46,6 @@ var example1 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-1'))
-    }
   }
 })
 </script>
@@ -96,11 +91,6 @@ var example2 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-2'))
-    }
   }
 })
 </script>
@@ -130,9 +120,9 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -151,9 +141,9 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -163,27 +153,27 @@ new Vue({
 키에 대한 두번째 전달 인자를 제공할 수도 있습니다.
 
 ``` html
-<div v-for="(value, key) in object">
-  {{ key }}: {{ value }}
+<div v-for="(value, name) in object">
+  {{ name }}: {{ value }}
 </div>
 ```
 
 결과:
 
 {% raw %}
-<div id="v-for-object-value-key" class="demo">
-  <div v-for="(value, key) in object">
-    {{ key }}: {{ value }}
+<div id="v-for-object-value-name" class="demo">
+  <div v-for="(value, name) in object">
+    {{ name }}: {{ value }}
   </div>
 </div>
 <script>
 new Vue({
-  el: '#v-for-object-value-key',
+  el: '#v-for-object-value-name',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -193,27 +183,27 @@ new Vue({
 그리고 또 인덱스도 제공합니다
 
 ``` html
-<div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }} : {{ value }}
+<div v-for="(value, name, index) in object">
+  {{ index }}. {{ name }}: {{ value }}
 </div>
 ```
 
 결과:
 
 {% raw %}
-<div id="v-for-object-value-key-index" class="demo">
-  <div v-for="(value, key, index) in object">
-    {{ index }}. {{ key }}: {{ value }}
+<div id="v-for-object-value-name-index" class="demo">
+  <div v-for="(value, name, index) in object">
+    {{ index }}. {{ name }}: {{ value }}
   </div>
 </div>
 <script>
 new Vue({
-  el: '#v-for-object-value-key-index',
+  el: '#v-for-object-value-name-index',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
+      publishedAt: '2016-04-10'
     }
   }
 })
@@ -222,7 +212,7 @@ new Vue({
 
 <p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
 
-## `key`
+## Maintaining State
 
 Vue가 `v-for`에서 렌더링된 엘리먼트 목록을 갱신할 때 기본적으로 "in-place patch" 전략을 사용합니다. 데이터 항목의 순서가 변경된 경우 항목의 순서와 일치하도록 DOM 요소를 이동하는 대신 Vue는 각 요소를 적절한 위치에 패치하고 해당 인덱스에서 렌더링할 내용을 반영하는지 확인합니다. 이것은 Vue 1.x의 `track-by=$index`의 동작과 유사합니다.
 
@@ -231,7 +221,7 @@ Vue가 `v-for`에서 렌더링된 엘리먼트 목록을 갱신할 때 기본적
 Vue에서 개별 DOM 노드들을 추적하고 기존 엘리먼트를 재사용, 재정렬하기 위해서 `v-for`의 각 항목들에 고유한 key 속성을 제공해야 합니다. `key`에 대한 이상적인 값은 각 항목을 식별할 수 있는 고유한 ID입니다. 이 특별한 속성은 1.x 버전의 `track-by`와 거의 비슷하지만 속성처럼 작동하기 때문에 `v-bind`를 사용하여 동적 값에 바인딩 해야합니다. (여기서는 약어를 이용합니다.)
 
 ``` html
-<div v-for="item in items" :key="item.id">
+<div v-for="item in items" v-bind:key="item.id">
   <!-- content -->
 </div>
 ```
@@ -277,21 +267,39 @@ JavaScript의 제한으로 인해 Vue는 배열에 대해 다음과 같은 변�
 1. 인덱스로 배열에 있는 항목을 직접 설정하는 경우, 예: `vm.items[indexOfItem] = newValue`
 2. 배열 길이를 수정하는 경우, 예: `vm.items.length = newLength`
 
+예시:
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // reactive하지 않음
+vm.items.length = 2 // reactive하지 않음
+```
+
 주의 사항 중 1번을 극복하기 위해 다음 두 경우 모두 `vm.items[indexOfItem] = newValue` 와 동일하게 수행하며, 반응형 시스템에서도 상태 변경을 트리거 합니다.
 
 ``` js
 // Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
+Vue.set(vm.items, indexOfItem, newValue)
 ```
 ``` js
 // Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
 ```
 
 주의 사항 중 2번을 극복하기 위해 `splice`를 사용해야 합니다.
 
 ``` js
-example1.items.splice(newLength)
+vm.items.splice(newLength)
 ```
 
 ## 객체 변경 감지에 관한 주의사항
@@ -310,7 +318,7 @@ vm.b = 2
 // `vm.b` 는 반응형이 아닙니다.
 ```
 
-Vue는 이미 만들어진 인스턴스에 새로운 루트레벨의 반응형 속성을 동적으로 추가하는 것을 허용하지 않습니다. 그러나 `Vue.set(object, key, value)` 메소드를 사용하여 중첩된 객체에 반응형 속성을 추가할 수 있습니다.
+Vue는 이미 만들어진 인스턴스에 새로운 루트레벨의 반응형 속성을 동적으로 추가하는 것을 허용하지 않습니다. 그러나 `Vue.set(object, propertyName, value)` 메소드를 사용하여 중첩된 객체에 반응형 속성을 추가할 수 있습니다.
 
 ``` js
 var vm = new Vue({
@@ -332,13 +340,13 @@ Vue.set(vm.userProfile, 'age', 27)
 인스턴스 메소드인 `vm.$set`를 사용할 수도 있습니다. 이는 전역 `Vue.set`의 별칭입니다.
 
 ``` js
-vm.$set(this.userProfile, 'age', 27)
+vm.$set(vm.userProfile, 'age', 27)
 ```
 
 때로는 `Object.assign()`이나 `_.extend()`를 사용해 기존의 객체에 새 속성을 할당할 수 있습니다. 이 경우 두 객체의 속성을 사용해 새 객체를 만들어야 합니다.
 
 ``` js
-Object.assign(this.userProfile, {
+Object.assign(vm.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
 })
@@ -347,7 +355,7 @@ Object.assign(this.userProfile, {
 새로운 반응형 속성을 다음과 같이 추가합니다.
 
 ``` js
-this.userProfile = Object.assign({}, this.userProfile, {
+vm.userProfile = Object.assign({}, vm.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
 })
@@ -424,12 +432,14 @@ methods: {
 <ul>
   <template v-for="item in items">
     <li>{{ item.msg }}</li>
-    <li class="divider"></li>
+    <li class="divider" role="presentation"></li>
   </template>
 </ul>
 ```
 
 ## `v-for` 와 `v-if`
+
+<p class="tip">Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
 
 동일한 노드에 두가지 모두 있다면, `v-for`가 `v-if`보다 높은 우선순위를 갖습니다. 즉, `v-if`는 루프가 반복될 때마다 실행됩니다. 이는 *일부* 항목만 렌더링 하려는 경우 유용합니다.
 
@@ -481,11 +491,15 @@ methods: {
 
 ``` html
 <div id="todo-list-example">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
+  <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Add a todo</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="E.g. Feed the cat"
+    >
+    <button>Add</button>
+  </form>
   <ul>
     <li
       is="todo-item"
@@ -505,7 +519,7 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
+      <button v-on:click="$emit(\'remove\')">Remove</button>\
     </li>\
   ',
   props: ['title']
@@ -545,11 +559,15 @@ new Vue({
 
 {% raw %}
 <div id="todo-list-example" class="demo">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
+  <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Add a todo</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="E.g. Feed the cat"
+    >
+    <button>Add</button>
+  </form>
   <ul>
     <li
       is="todo-item"
@@ -565,7 +583,7 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
+      <button v-on:click="$emit(\'remove\')">Remove</button>\
     </li>\
   ',
   props: ['title']

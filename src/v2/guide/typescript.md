@@ -1,18 +1,16 @@
 ---
 title: TypeScript 지원
 type: guide
-order: 404
+order: 403
 ---
 
-> 2.5.0+ 에서 기본 객체 기반 API로 작업하기 위해 타입 선언이 크게 향상되었습니다. 동시에 업그레이드에 필요한 몇가지 변경사항을 소개합니다. [이 블로그 포스트](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08)를 읽어보세요
-
-Vue 2.2에서 ES 모듈로 내보내진 dist파일을 webpack 2를 기본적으로 사용하기 위해 도입했습니다. 안타깝게도 TypeScript + webpack 2에서 `import Vue = require ('vue ')`가 이제는 Vue 파일 자체를 반환하지 않고 조합된 ES 모듈 객체를 반환합니다.
-
-미래에 모든 공식 선언문을 ES 스타일로 옮길 계획입니다. 미래를 위한 설정을 위해 [구성에 관한 권장사항](#Recommended-Configuration)을 참조하십시오.
+> [Vue CLI](https://cli.vuejs.org) 는 TypeScript 툴링 지원을 포함하여 제공됩니다.
 
 ## NPM 패키지 공식 선언
 
-가까운 미래에 준비된 Vue + TypeScript 프로젝트를 `vue-cli`에서 사용할 수 있게 제공할 계획입니다.
+A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also for [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) and [vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
+
+Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
 
 ## 추천 설정
 
@@ -36,6 +34,20 @@ Vue 2.2에서 ES 모듈로 내보내진 dist파일을 webpack 2를 기본적으�
 [TypeScript 컴파일러 옵션 문서](https://www.typescriptlang.org/docs/handbook/compiler-options.html)에서 자세한 내용을 확인하세요
 
 ## 개발시 도구 활용
+
+### 프로젝트 생성
+
+[Vue CLI 3](https://github.com/vuejs/vue-cli) can generate new projects that use TypeScript. To get started:
+
+```bash
+# 1. Install Vue CLI, if it's not already installed
+npm install --global @vue/cli
+
+# 2. Create a new project, then choose the "Manually select features" option
+vue create my-project-name
+```
+
+### 에디터 서포트
 
 TypeScript를 사용해 Vue를 개발하려면 [Visual Studio Code](https://code.visualstudio.com/)를 사용하세요. TypeScript에 대한 기본적인 지원이 포함되어 있습니다.
 

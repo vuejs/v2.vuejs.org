@@ -28,16 +28,39 @@ Vue를 사용할 때, 브라우저에 [Vue Devtools](https://github.com/vuejs/vu
 <p class = "tip">개발 중에는 최소화 버전을 사용하지 마십시오. 일반적인 실수에 대한 모든 훌륭한 경고를 놓치게됩니다! </p>
 
 <div id="downloads">
-<a class="button" href="/js/vue.js" download>개발용 버전</a><span class="light info">모든 경고 및 디버그 모드 포함</span>
+  <a class="button" href="/js/vue.js" download>개발용 버전</a><span class="light info">모든 경고 및 디버그 모드 포함</span>
 
-<a class="button" href="/js/vue.min.js" download>배포용 버전</a><span class="light info">경고가 제거 되고, {{gz_size}}kb min+gzip 로 압축하였습니다.</span>
+  <a class="button" href="/js/vue.min.js" download>배포용 버전</a><span class="light info">경고가 제거 되고, {{gz_size}}kb min+gzip 로 압축하였습니다.</span>
 </div>
 
 ### CDN
 
-추천 : [https://unpkg.com/vue](https://unpkg.com/vue)는 npm에 올라간 최신 버전을 반영합니다. [https://unpkg.com/vue/](https://unpkg.com/vue/)에서 npm 패키지의 원본을 찾아 볼 수도 있습니다.
+프로토타이핑이나 학습 용도라면, 아래 코드로 최신 버전을 사용할 수 있습니다.
 
-또한 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js)와 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)를 사용할 수 있으나, 두 서비스는 동기화에 시간이 걸리므로 아직 최신 버전을 사용지 못할 수 있습니다.
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+
+배표용으로는 특정 버전과 링크해 새로운 버전에서 발생 할 수 있는 예상치 못한 오류를 방지하는것을 추천합니다.
+
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+```
+
+기본 ES모듈 호환 버전도 있습니다.
+
+``` html
+<script type="module">
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+</script>
+```
+
+[cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/)에서 NPM 패키지의 소스를 둘러볼 수도 있습니다..
+
+또한 [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) 와 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 을 사용할 수도 있습니다. (cdnjs는 최신 릴리즈 버전과 동기화하는데 시간이 걸리므로 아직 최신버전을 사용하지 못할 수 있습니다).
+
+Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
+ version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
 
 ## NPM
 
@@ -56,15 +79,17 @@ Vue.js는 단일 페이지 응용 프로그램을 빠르게 스캐폴딩하기 �
 CLI는 Node.js 및 관련 빌드 도구에 대한 사전 지식을 필요로 합니다. Vue 또는 프런트엔드 빌드 도구를 처음 사용하는 경우 CLI를 사용하기 전에 빌드 도구없이 <a href="./">가이드</a>를 읽어 보시기 바랍니다.
 </p>
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+
 ## 각 다른 빌드간 차이점
 [NPM 패키지의 `dist/` 디렉터리](https://unpkg.com/vue@latest/dist/)에는 Vue.js의 다양한 빌드가 있습니다. 다음은 그 차이점에 대한 개요입니다.
 
-| | UMD | CommonJS | ES Module |
-| --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
-| **Full (production)** | vue.min.js | - | - |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - |
+| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
+| --- | --- | --- | --- | --- |
+| **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
+| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
 ### 용어
 
@@ -79,6 +104,9 @@ CLI는 Node.js 및 관련 빌드 도구에 대한 사전 지식을 필요로 합
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS 빌드는 [browserify](http://browserify.org/) 또는 [webpack 1](https://webpack.github.io)와 같은 이전 번들과 함께 사용하기 위한 것입니다. 이러한 번들(`pkg.main`)의 기본 파일은 런타임 전용 CommonJS 빌드(`vue.runtime.common.js`)입니다.
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: ES 모듈 빌드는 [webpack 2](https://webpack.js.org) 또는 [rollup](http://rollupjs.org/)과 같은 최신 번들과 함께 사용하기 위한 것입니다. 이러한 번들(`pkg.module`)의 기본 파일은 런타임 전용 ES 모듈 빌드(`vue.runtime.esm.js`)입니다.
+  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+
+  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 
 ### Runtime + Compiler vs. Runtime-only
 
@@ -123,7 +151,7 @@ rollup({
   // ...
   plugins: [
     alias({
-      'vue': 'vue/dist/vue.esm.js'
+      'vue': require.resolve('vue/dist/vue.esm.js')
     })
   ]
 })
@@ -142,6 +170,19 @@ rollup({
 }
 ```
 
+#### Parcel
+
+Add to your project's `package.json`:
+
+``` js
+{
+  // ...
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
+  }
+}
+```
+
 ### 개발 vs. 배포 모드
 
 개발/배포 모드는 UMD 빌드에 대해 하드 코딩되어 있습니다. 최소화되지 않은 파일은 개발 용이고 최소화 파일은 제작용입니다.
@@ -152,7 +193,15 @@ CommonJS 및 ES 모듈 빌드는 `process.env.NODE_ENV`에 대한 원시 검사�
 
 #### Webpack
 
-Webpack의 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)을 사용하세요
+Webpack 4+인 경우, `mode` 옵션을 사용하세요:
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+하지만, Webpack 3 혹은 이전 버전이라면, [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)을 사용하세요
 
 ``` js
 var webpack = require('webpack')
