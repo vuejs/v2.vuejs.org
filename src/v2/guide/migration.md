@@ -210,15 +210,15 @@ mounted: function () {
 
 `track-by`는 다른 속성과 마찬가지로 `key` 로 대체되었습니다. `v-bind:` 또는 `:` 접두사가 없으면 리터럴 문자열로 취급됩니다. 대부분의 경우, 키 대신 완전 표현식을 기대하는 동적 바인딩을 사용하고자 할 것입니다. 예를 들어, 대신 :
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
-```
+{% endcodeblock %}
 
 이제 이렇게 쓸 수 있습니다.
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -366,7 +366,7 @@ computed: {
 또는 컴포넌트 메소드를 사용합니다
 
 ``` js
-template: '<p>message: {{ getTimeMessage }}</p>',
+template: '<p>message: {{ getTimeMessage() }}</p>',
 methods: {
   getTimeMessage: function () {
     return Date.now() + this.message
@@ -402,9 +402,9 @@ methods: {
 
 컴포넌트에서 사용될 때,`v-on`은 그 컴포넌트에 의해 `$emit`된 사용자 지정 이벤트를 받습니다. 루트 요소에서 네이티브 DOM 이벤트를 받으려면 `.native` 한정자를 사용할 수 있습니다. 예:
 
-``` html
+{% codeblock lang:html %}
 <my-component v-on:click.native="doSomething"></my-component>
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -603,9 +603,9 @@ strings.map(function (str) {
 
 대신,`v-model`이 객체의 필드를 업데이트 할 수 있도록 __objects__ 배열을 사용해야합니다.
 
-``` html
+{% codeblock lang:html %}
 <input v-for="obj in objects" v-model="obj.str">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -711,11 +711,11 @@ You can use:
 
 예를 들어 다음을 변경 할 수 있습니다.
 
-```js
+``` html
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-이 것은 
+이 것은
 
 ```html
 <p v-my-directive="'foo bar baz'"></p>
@@ -991,9 +991,9 @@ computed: {
 
 여러개의 열을 정렬할 수도 있습니다.
 
-``` js
+{% codeblock lang:js %}
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1071,9 +1071,9 @@ function pluralizeKnife (count) {
 
 매우 조악한 구현을 위해 다음과 같이 할 수 있습니다.
 
-``` js
+{% codeblock lang:js %}
 '$' + price.toFixed(2)
-```
+{% endcodeblock %}
 
 하지만 대부분의 경우 여전히 이상한 동작을 보일 것입니다 (예 : `0.035.toFixed(2)` 는 `0.04` 까지 반올림합니다, 그러나 `0.045`는`0.04`로 반올림됩니다). 이러한 문제를 해결하기 위해 [`accounting`](http://openexchangerates.github.io/accounting.js/) 라이브러리를 사용하여 보다 안정적으로 통화를 형식화 할 수 있습니다.
 
@@ -1369,9 +1369,9 @@ methods: {
 
 기본 DOM API 사용 :
 
-``` js
+{% codeblock lang:js %}
 myElement.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1384,9 +1384,9 @@ myElement.appendChild(vm.$el)
 
 기본 DOM API 사용 :
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1399,15 +1399,15 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 기본 DOM API 사용 :
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
-```
+{% endcodeblock %}
 
 또는 `myElement`가 마지막 자식 인 경우 :
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1421,9 +1421,9 @@ myElement.parentNode.appendChild(vm.$el)
 
 기본 DOM API 사용 :
 
-``` js
+{% codeblock lang:js %}
 vm.$el.remove()
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">

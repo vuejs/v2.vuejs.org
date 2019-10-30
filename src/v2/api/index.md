@@ -80,9 +80,10 @@ type: api
   컴포넌트 렌더 함수 및 감시자 중에 잡히지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류 및 Vue 인스턴스와 함께 호출됩니다.
 
   > 2.2.0에서 이 훅은 컴포넌트 라이프사이클 훅의 오류를 캡처합니다. 또한, 이 훅이 `undefined`일 때, 캡쳐 된 에러는 어플리케이션을 실행 불능으로 만드는 대신에 `console.error` 로그를 출력 합니다.
-
-  
+ 
   > 2.4.0에서 이 훅은 Vue의 사용자 정의 이벤트 핸들러가 발생하는 에러를 감지합니다.
+
+  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
   > 오류 추적 서비스인 [Sentry](https://sentry.io/for/vue/)와 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 은 공식적으로 Vue를 지원합니다.
 
@@ -159,7 +160,6 @@ type: api
 - **사용방법:**
 
   `true`로 설정하면 브라우저 devtool의 타임라인에서 컴포넌트 초기화, 컴파일, 렌더링 및 패치 성능 추적을 활성화할 수 있습니다. 개발 모드 및 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API를 지원하는 브라우저에서만 작동합니다.
-
 
 ### productionTip
 
@@ -243,11 +243,11 @@ type: api
 
 - **참고:** [비동기 갱신 큐](../guide/reactivity.html#비동기-갱신-큐)
 
-### Vue.set( target, key, value )
+### Vue.set( target, propertyName/index, value )
 
 - **전달인자:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **반환 값:** 설정한 값.
@@ -257,15 +257,15 @@ type: api
   객체에 대한 속성을 설정합니다. 객체가 반응형이면, 속성이 반응형 속성으로 만들어지고 뷰 업데이트를 발생시킵니다.
   이는 Vue가 속성 추가를 감지하지 못하는 한계를 넘기 위해 사용합니다
 
-  **객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 객체일 수 없습니다.**
+  <p class="tip">객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 객체일 수 없습니다.**</p>
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-### Vue.delete( target, key )
+### Vue.delete( target, propertyName/index )
 
 - **전달인자:**
   - `{Object | Array} target`
-  - `{string | number} key/index`
+  - `{string | number} propertyName/index`
 
   > Only in 2.2.0+: Also works with Array + index.
 
@@ -331,6 +331,8 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
+- **See also:** [Filters](../guide/filters.html)
+
 ### Vue.component( id, [definition] )
 
 - **전달인자:**
@@ -362,6 +364,8 @@ type: api
 - **사용방법:**
 
   Vue.js 플러그인을 설치합니다. 플러그인이 Object인 경우 `install` 메소드를 가져야 합니다. 플러그인이 함수 그 자체이면 install 메소드로 처리됩니다. install 메소드는 Vue를 인자로 사용해 호출합니다.
+
+  이 메소드는 `new Vue()`를 호출하기 전에 사용되어야 합니다.
 
   이 메소드가 동일한 플러그인에서 여러번 호출되면 한번만 설치합니다.
 
@@ -401,6 +405,35 @@ type: api
 
 
 - **참고:** [렌더 함수](../guide/render-function.html)
+
+### Vue.observable( object )
+
+> New in 2.6.0+
+
+- **Arguments:**
+  - `{Object} object`
+
+- **Usage:**
+
+  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+
+  ``` js
+  const state = Vue.observable({ count: 0 })
+
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
+    }
+  }
+  ```
+
+  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+
+- **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.version
 
@@ -464,6 +497,10 @@ if (version === 2) {
 
   <p class="tip">__화살표 함수를 `data`에서 사용하면 안됩니다__ (예를 들어, `data: () => { return { a: this.myProp }}`) 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 예상과 달리 Vue 인스턴스가 아니며, `this.myProp`는 정의되지 않습니다.</p>
 
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
+
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
 ### props
@@ -473,6 +510,15 @@ if (version === 2) {
 - **상세:**
 
   부모 컴포넌트의 데이터를 받을 수 있게 노출된 속성의 리스트/해시 입니다. 단순한 배열 기반 구문과 사용자 지정 유효성 검사 및 기본값과 같은 고급 구성을 허용하는 Object 기반 구문이 있습니다.
+
+  With Object-based syntax, you can use following options:
+    - `type`: can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+    - `default`: `any`
+    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    - `required`: `Boolean`
+    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    - `validator`: `Function`
+    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
 
 - **예제:**
 
@@ -536,6 +582,12 @@ if (version === 2) {
   Vue 인스턴스에 추가되는 계산된 속성입니다. 모든 getter와 setter는 자동으로 `this` 컨텍스트를 Vue 인스턴스에 바인딩 합니다.
 
   <p class="tip">__계산된 속성을 정의 할 때 화살표 함수를 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   계산된 속성은 캐시 되며 의존하고 있는 반응형 속성이 변경되는 경우 다시 평가됩니다. 특정한 의존성이 인스턴스의 범위를 벗어나는 경우(반응형이지 않은 경우)에 계산된 속성은 갱신되지 않습니다. 그러나 여전히 반응형 속성을 갖지 않고 있기 때문에 이를 수정하는 경우 DOM 갱신을 발생시키지 않습니다.
 
@@ -634,12 +686,16 @@ if (version === 2) {
       },
       // 콜백은 관찰이 시작된 직후 호출됩니다.
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: 'someMethod',
         immediate: true
       },
       e: [
-        function handle1 (val, oldVal) { /* ... */ },
-        function handle2 (val, oldVal) { /* ... */ }
+        'handle1',
+        function handle2 (val, oldVal) { /* ... */ },
+        {
+          handler: function handle3 (val, oldVal) { /* ... */ },
+          /* ... */
+        }
       ],
       // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
@@ -656,7 +712,7 @@ if (version === 2) {
 
 ### el
 
-- **타입:** `string | HTMLElement`
+- **타입:** `string | Element`
 
 - **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
@@ -1027,6 +1083,7 @@ if (version === 2) {
 - **예제:**
 
   ``` js
+  // parent component providing 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1034,6 +1091,7 @@ if (version === 2) {
     // ...
   }
 
+  // child component injecting 'foo'
   var Child = {
     inject: ['foo'],
     created () {
@@ -1271,7 +1329,7 @@ if (version === 2) {
 
 ### vm.$el
 
-- **타입:** `HTMLElement`
+- **타입:** `Element`
 
 - **읽기 전용**
 
@@ -1335,7 +1393,9 @@ if (version === 2) {
 
 - **상세:**
 
-  프로그래밍으로 접근 가능한 [슬롯을 사용한 컨텐츠 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)에 사용합니다. 각 [명명된 슬롯](../guide/components.html#이름을-가지는-슬롯)은 고유한 속성을 가지고 있습니다. (예: `slot=foo` 는 `vm.$slots.foo`에서 찾을 수 있습니다.) `default` 속성은 명명된 슬롯에 포함되지 않은 노드를 포함합니다.
+  프로그래밍으로 접근 가능한 [슬롯을 사용한 컨텐츠 배포](../guide/components.html#슬롯을-사용한-컨텐츠-배포)에 사용합니다. 각 [명명된 슬롯](../guide/components.html#이름을-가지는-슬롯)은 고유한 속성을 가지고 있습니다. (예: `slot=foo` 는 `vm.$slots.foo`에서 찾을 수 있습니다.) `default` 속성은 명명된 슬롯에 포함되지 않은 노드, 혹은 `v-slot:default`의 컨텐츠를 포함합니다.
+
+  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
   `vm.$slots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
 
@@ -1343,15 +1403,15 @@ if (version === 2) {
 
   ```html
   <blog-post>
-    <h1 slot="header">
-      About Me
-    </h1>
+    <template v-slot:header>
+      <h1>About Me</h1>
+    </template>
 
     <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
 
-    <p slot="footer">
-      Copyright 2016 Evan You
-    </p>
+    <template v-slot:footer>
+      <p>Copyright 2016 Evan You</p>
+    </template>
 
     <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
   </blog-post>
@@ -1381,7 +1441,7 @@ if (version === 2) {
 
 > 2.1.0의 새로운 기능
 
-- **타입:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **타입:** `{ [name: string]: props => Array<VNode> | undefined }`
 
 - **읽기 전용**
 
@@ -1390,6 +1450,12 @@ if (version === 2) {
   [범위가 지정된 슬롯](../guide/components.html#범위를-가지는-슬롯)에 프로그래밍으로 액세스하는데 사용됩니다. `default`를 포함하여 각 슬롯에 대해 객체는 VNode를 반환하는 해당 함수를 포함합니다.
 
   `vm.$scopedSlots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
+
+  **Note:** since 2.6.0+, there are two notable changes to this property:
+
+  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **참고:**
   - [`<slot>` 컴포넌트](#slot-1)
@@ -1404,7 +1470,7 @@ if (version === 2) {
 
 - **상세:**
 
-  `ref`가 등록된 자식 컴포넌트를 보관하는 객체입니다.
+  [`ref` 속성](#ref)이 등록된 자식 컴포넌트와 DOM 엘리먼트 객체입니다.
 
 - **참고:**
   - [자식 컴포넌트 참조](../guide/components.html#자식-컴포넌트-참조)
@@ -1424,6 +1490,7 @@ if (version === 2) {
 
 ### vm.$attrs
 
+> New in 2.4.0+
 - **타입:** `{ [key: string]: string }`
 
 - **읽기 전용**
@@ -1433,6 +1500,8 @@ if (version === 2) {
   props로 인식(및 추출)되지 않는 부모 범위 속성 바인딩입니다. 컴포넌트에 선언된 props가 없을 때 `class`와 `style`을 제외하고 모든 부모 범위 바인딩을 기본적으로 포함하며 `v-bind="$attrs"`를 통해 내부 컴포넌트로 전달할 수 있습니다 - 하이 오더 컴포넌트(HOC)를 작성할 때 유용합니다.
 
 ### vm.$listeners
+
+> New in 2.4.0+
 
 - **타입:** `{ [key: string]: Function | Array<Function> }`
 
@@ -1472,6 +1541,9 @@ if (version === 2) {
   // function
   vm.$watch(
     function () {
+      // every time the expression `this.a + this.b` yields a different result,
+      // the handler will be called. It's as if we were watching a computed
+      // property without defining the computed property itself
       return this.a + this.b
     },
     function (newVal, oldVal) {
@@ -1512,11 +1584,40 @@ if (version === 2) {
   // 콜백은`a`의 현재 값으로 즉시 시작됩니다.
   ```
 
-### vm.$set( target, key, value )
+  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
+
+  ``` js
+  // This will cause an error
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      unwatch()
+    },
+    { immediate: true }
+  )
+  ```
+
+  If you still want to call an unwatch function inside the callback, you should check its availability first:
+
+  ``` js
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      if (unwatch) {
+        unwatch()
+      }
+    },
+    { immediate: true }
+  )
+  ```
+
+### vm.$set( target, propertyName/index, value )
 
 - **전달인자:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **반환 값:** 설정된 값
@@ -1527,11 +1628,11 @@ if (version === 2) {
 
 - **참고:** [Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+### vm.$delete( target, propertyName/index )
 
 - **전달인자:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
 
 - **사용방법:**
 
@@ -1585,13 +1686,138 @@ if (version === 2) {
   - 이벤트만 인자로 전달 받는 경우 해당 이벤트의 모든 리스너를 제거합니다.
   - 이벤트와 콜백을 전달 받으면 특정 콜백에 대한 리스너만 제거합니다.
 
-### vm.$emit( event, [...args] )
+### vm.$emit( eventName, [...args] )
 
 - **전달인자:**
   - `{string} event`
   - `[...args]`
 
   현재 인스턴스에서 이벤트를 트리거 합니다. 추가 인자는 리스너의 콜백 함수로 전달됩니다.
+
+- **예제:**
+
+  Using `$emit` with only an event name:
+
+  ```js
+  Vue.component('welcome-button', {
+    template: `
+      <button v-on:click="$emit('welcome')">
+        Click me to be welcomed
+      </button>
+    `
+  })
+  ```
+  ```html
+  <div id="emit-example-simple">
+    <welcome-button v-on:welcome="sayHi"></welcome-button>
+  </div>
+  ```
+  ```js
+  new Vue({
+    el: '#emit-example-simple',
+    methods: {
+      sayHi: function () {
+        alert('Hi!')
+      }
+    }
+  })
+  ```
+  {% raw %}
+  <div id="emit-example-simple" class="demo">
+    <welcome-button v-on:welcome="sayHi"></welcome-button>
+  </div>
+  <script>
+    Vue.component('welcome-button', {
+      template: `
+        <button v-on:click="$emit('welcome')">
+          Click me to be welcomed
+        </button>
+      `
+    })
+    new Vue({
+      el: '#emit-example-simple',
+      methods: {
+        sayHi: function () {
+          alert('Hi!')
+        }
+      }
+    })
+  </script>
+  {% endraw %}
+
+  Using `$emit` with additional arguments:
+
+  ```js
+  Vue.component('magic-eight-ball', {
+    data: function () {
+      return {
+        possibleAdvice: ['Yes', 'No', 'Maybe']
+      }
+    },
+    methods: {
+      giveAdvice: function () {
+        var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+        this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+      }
+    },
+    template: `
+      <button v-on:click="giveAdvice">
+        Click me for advice
+      </button>
+    `
+  })
+  ```
+
+  ```html
+  <div id="emit-example-argument">
+    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+  </div>
+  ```
+
+  ```js
+  new Vue({
+    el: '#emit-example-argument',
+    methods: {
+      showAdvice: function (advice) {
+        alert(advice)
+      }
+    }
+  })
+  ```
+
+  {% raw %}
+  <div id="emit-example-argument" class="demo">
+    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+  </div>
+  <script>
+    Vue.component('magic-eight-ball', {
+      data: function () {
+        return {
+          possibleAdvice: ['Yes', 'No', 'Maybe']
+        }
+      },
+      methods: {
+        giveAdvice: function () {
+          var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+          this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+        }
+      },
+      template: `
+        <button v-on:click="giveAdvice">
+          Click me for advice
+        </button>
+      `
+    })
+    new Vue({
+      el: '#emit-example-argument',
+      methods: {
+        showAdvice: function (advice) {
+          alert(advice)
+        }
+      }
+    })
+  </script>
+  {% endraw %}
 
 ## 인스턴스 메소드 / 라이프사이클
 
@@ -1805,7 +2031,7 @@ if (version === 2) {
 
 ### v-for
 
-- **예상됨:** `Array | Object | number | string`
+- **예상됨:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **사용방법:**
 
@@ -1822,7 +2048,7 @@ if (version === 2) {
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
-  <div v-for="(val, key, index) in object"></div>
+  <div v-for="(val, name, index) in object"></div>
   ```
 
   `v-for`의 기본 동작은 엘리먼트를 이동하지 않고 그 자리에서 패치를 시도합니다. 강제로 엘리먼트의 순서를 바꾸려면 특수 속성 `key`를 설정해야 합니다.
@@ -1833,9 +2059,13 @@ if (version === 2) {
   </div>
   ```
 
-<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
+  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
 
-`v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+  <p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
+
+  `v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
 
 - **참고:**
@@ -1869,24 +2099,31 @@ if (version === 2) {
 
   `2.4.0`부터 `v-on`도 인수없이 이벤트/리스너 쌍의 객체에 바인딩을 지원합니다. 객체 구문을 사용할 때는 수식어를 지원하지 않습니다.
 
-  일반 엘리먼트에 사용되면 **기본 DOM 이벤트**만 받습니다. 사용자 정의 컴포넌트에서 사용될 때 해당 하위 컴포넌트에서 생성된 **사용자 정의 이벤트**를 받습니다.
+  일반 엘리먼트에 사용되면 [**기본 DOM 이벤트**](https://developer.mozilla.org/en-US/docs/Web/Events)만 받습니다. 사용자 정의 컴포넌트에서 사용될 때 해당 하위 컴포넌트에서 생성된 **사용자 정의 이벤트**를 받습니다.
 
   네이티브 DOM 이벤트를 수신하면 메소드는 네이티브 이벤트를 유일한 전달인자로 받습니다. 인라인 구문을 사용하는 경우 명령문은 특별한 `$event` 속성에 접근할 수 있습니다: `v-on: click = "handle('ok', $event)"`
 
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+
 - **예제:**
+
+- **Example:**
 
   ```html
   <!-- 메소드 핸들러 -->
   <button v-on:click="doThis"></button>
 
-  <!-- 객체 구문 (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
+  <!-- dynamic event (2.6.0+) -->
+  <button v-on:[event]="doThis"></button>
 
   <!-- 인라인 구문 -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- 약어 -->
   <button @click="doThis"></button>
+
+  <!-- shorthand dynamic event (2.6.0+) -->
+  <button @[event]="doThis"></button>
 
   <!-- 전파 금지 -->
   <button @click.stop="doThis"></button>
@@ -1908,6 +2145,9 @@ if (version === 2) {
 
   <!-- the click event will be triggered at most once -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- 객체 구문 (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
   하위 컴포넌트에서 사용자 지정 이벤트를 수신합니다. (자식에서 "my-event"가 생성될 때 처리기가 호출 됩니다.)
@@ -1955,8 +2195,14 @@ if (version === 2) {
   <!-- 속성을 바인딩 합니다. -->
   <img v-bind:src="imageSrc">
 
+  <!-- dynamic attribute name (2.6.0+) -->
+  <button v-bind:[key]="value"></button>
+
   <!-- 약어 -->
   <img :src="imageSrc">
+
+  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <button :[key]="value"></button>
 
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
@@ -2021,6 +2267,59 @@ if (version === 2) {
 - **참고:**
   - [폼 인풋 바인딩](../guide/forms.html)
   - [컴포넌트 - 사용자 정의 이벤트를 사용하여 폼 입력 컴포넌트 만들기](../guide/components.html#사용자-정의-이벤트를-사용하여-폼-입력-컴포넌트-만들기)
+
+### v-slot
+
+- **Shorthand:** `#`
+
+- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+
+- **Argument:** slot name (optional, defaults to `default`)
+
+- **Limited to:**
+  - `<template>`
+  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+
+- **Usage:**
+
+  Denote named slots or slots that expect to receive props.
+
+- **Example:**
+
+  ```html
+  <!-- Named slots -->
+  <base-layout>
+    <template v-slot:header>
+      Header content
+    </template>
+
+    Default slot content
+
+    <template v-slot:footer>
+      Footer content
+    </template>
+  </base-layout>
+
+  <!-- Named slot that receives props -->
+  <infinite-scroll>
+    <template v-slot:item="slotProps">
+      <div class="item">
+        {{ slotProps.item.text }}
+      </div>
+    </template>
+  </infinite-scroll>
+
+  <!-- Default slot that receive props, with destructuring -->
+  <mouse-position v-slot="{ x, y }">
+    Mouse position: {{ x }}, {{ y }}
+  </mouse-position>
+  ```
+
+  For more details, see the links below.
+
+- **See also:**
+  - [Components - Slots](../guide/components-slots.html)
+  - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
@@ -2132,7 +2431,7 @@ if (version === 2) {
   <p ref="p">hello</p>
 
   <!-- vm.$refs.child는 자식 컴포넌트 인스턴스가 됩니다. -->
-  <child-comp ref="child"></child-comp>
+  <child-component ref="child"></child-component>
   ```
 
   `v-for`를 사용하여 엘리먼트 / 컴포넌트에 사용되는 경우 등록된 참조는 DOM 노드 또는 컴포넌트 인스턴스가 포함된 배열입니다.
@@ -2141,7 +2440,9 @@ if (version === 2) {
 
 - **참고:** [자식 컴포넌트 참조](../guide/components.html#자식-컴포넌트-참조)
 
-### slot
+### slot <sup style="color:#c92222">deprecated</sup>
+
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
 
 - **예상됨:** `string`
 
@@ -2151,9 +2452,9 @@ if (version === 2) {
 
 - **참고:** [명명된 슬롯](../guide/components.html#이름을-가지는-슬롯)
 
-### slot-scope
+### slot-scope <sup style="color:#c92222">deprecated</sup>
 
-> 2.5.0+ 이후 추가
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
 
 - **예상됨:** `함수 전달인자 표현식`
 
@@ -2175,7 +2476,7 @@ if (version === 2) {
 
 ### is
 
-- **예상됨:** `string`
+- **예상됨:** `string | Object (component’s options object)`
 
   [동적 컴포넌트](../guide/components.html#동적-컴포넌트) 및 [DOM 내부 템플릿의 한계](../guide/components.html#DOM-템플릿-구문-분석-경고)를 해결하는데 사용합니다.
 
@@ -2197,8 +2498,6 @@ if (version === 2) {
 - **참고:**
   - [동적 컴포넌트](../guide/components.html#동적-컴포넌트)
   - [DOM 템플릿 파싱 주의사항](../guide/components.html#DOM-템플릿-구문-분석-경고)
-
-
 
 ## 내장 컴포넌트
 
@@ -2232,6 +2531,7 @@ if (version === 2) {
   - `css` - boolean, CSS 트랜지션 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
   - `type` - string, 트랜지션 종료 타이밍을 결정하기 위해 대기할 트랜지션 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
   - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생하는 방식입니다.
+  - `duration` - number | { `enter`: number, `leave`: number }, Specifies the duration of transition. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2304,7 +2604,6 @@ if (version === 2) {
   - `<transition>`과 같은 이벤트를 노출합니다.
 
 - **사용방법:**
-
   `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 트랜지션 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
   애니메이션이 제대로 작동되게 하려면 `<transition-group>`에 있는 모든 자식이 **유일 키** 가 되어야 합니다.
 
@@ -2325,6 +2624,7 @@ if (version === 2) {
 - **Props:**
   - `include` - string 또는 RegExp 또는 Array . 일치하는 컴퍼넌트만 캐시됩니다.
   - `exclude` - string 또는 RegExp 또는 Array. 일치하는 컴퍼넌트는 캐시되지 않습니다.
+  - `max` - number. The maximum number of component instances to cache.
 
 - **사용방법:**
 
@@ -2385,6 +2685,19 @@ if (version === 2) {
   `name` 옵션을 사용할 수없는 경우, 컴포넌트 자신의`name` 옵션에서 일치하는 항목을 먼저 확인한 다음 로컬 등록 이름 (부모의`components` 옵션에서 키)을 확인합니다. 익명의 컴포넌트는 일치시킬 수 없습니다.
 
   <p class="tip">`<keep-alive>`는 캐시 될 인스턴스가 없으므로 함수형 컴포넌트에서 작동하지 않습니다.</p>
+- **`max`**
+
+  > New in 2.5.0+
+
+  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **참고:** [동적 컴포넌트 - keep-alive](../guide/components.html#keep-alive)
 

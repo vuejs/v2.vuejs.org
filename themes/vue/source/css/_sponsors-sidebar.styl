@@ -8,9 +8,9 @@
     font-weight: bold
     display block
     &:first-child
-      margin-top: 12px
+      margin-top: 18px
     &:last-child
-      margin-bottom: 14px
+      margin-bottom: 20px
   img, a
     width: 125px
 
@@ -25,12 +25,18 @@
   text-align: center
   margin-bottom: 20px
 
-#sidebar-sponsors-special
-  margin-top -10px
+#sidebar-sponsors-platinum-left
+  display block
+
+#sidebar-sponsors-platinum-right
+  display none
+  position fixed
+  z-index ($z-header - 1)
+  top 90px
+  right 20px
 
 @media screen and (min-width: 1300px)
-  #sidebar-sponsors-platinum
-    position fixed
-    z-index 99
-    top 90px
-    right 20px
+  #sidebar-sponsors-platinum-left
+    display none
+  #sidebar-sponsors-platinum-right
+    display block

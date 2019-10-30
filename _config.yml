@@ -1,6 +1,6 @@
 # Hexo Configuration
-## Docs: http://zespia.tw/hexo/docs/configuration.html
-## Source: https://github.com/tommy351/hexo/
+## Docs: https://hexo.io/docs/
+## Source: https://github.com/hexojs/hexo
 
 # Site
 title: Vue.js
@@ -39,6 +39,7 @@ highlight:
   enable: true
   line_number: false
   tab_replace:
+  hljs: true
 
 # Category & Tag
 default_category: uncategorized
@@ -77,8 +78,8 @@ pagination_dir: page
 disqus_shortname:
 
 # Extensions
-## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
-## Themes: https://github.com/tommy351/hexo/wiki/Themes
+## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
+## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: vue
 exclude_generator:
 
@@ -135,7 +136,7 @@ offline:
         origin: maxcdn.bootstrapcdn.com
 
 # Deployment
-## Docs: http://zespia.tw/hexo/docs/deployment.html
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repository: git@github.com:vuejs-kr/kr.vuejs.org.git

@@ -6,6 +6,8 @@ order: 302
 
 ## 시작
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/create-vuejs-directive?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Custom Directives lesson">Watch a free video lesson on Vue School</a></div>
+
 Vue는 코어에 포함된 기본 디렉티브 세트(`v-model`과 `v-show`) 외에도 사용자 정의 디렉티브를 등록할 수 있습니다. Vue 2.0에서 코드 재사용 및 추상화의 기본 형식은 컴포넌트 입니다. 그러나 일반 엘리먼트에 하위 수준의 DOM 액세스가 필요한 경우가 있을 수 있으며 이 경우 사용자 지정 디렉티브가 여전히 유용할 수 있습니다. 다음은 input 엘리먼트와 focusing에 대한 예제입니다.
 
 {% raw %}
@@ -63,6 +65,9 @@ directives: {
 - `bind`: 디렉티브가 처음 엘리먼트에 바인딩 될 때 한번만 호출 됩니다. 이곳에서 일회성 설정을 할 수 있습니다.
 - `inserted`: 바인딩 된 엘리먼트가 부모 노드에 삽입 되었을 때 호출 됩니다. (이것은 부모 노드 존재를 보장하며 반드시 document 내에 있는 것은 아닙니다.)
 - `update`: 포함하는 컴포넌트가 업데이트 된 후 호출됩니다. __그러나 자식이 업데이트 되기 전일 가능성이 있습니다__ 디렉티브의 값은 변경되었거나 변경되지 않았을 수 있지만 바인딩의 현재 값과 이전 값을 비교하여 불필요한 업데이트를 건너 뛸 수 있습니다. (아래의 훅 전달인자를 참조하세요)
+
+<p class="tip">We'll cover VNodes in more detail [later](./render-function.html#The-Virtual-DOM), when we discuss [render functions](./render-function.html).</p>
+
 - `componentUpdated`: 포함하고 있는 컴포넌트와 __그 자식들__ 이 업데이트 된 후에 호출됩니다.
 - `unbind`: 디렉티브가 엘리먼트로부터 언바인딩된 경우에만 한번 호출됩니다.
 
@@ -136,6 +141,72 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+### 다이나믹 디렉티브 전달인자
+
+Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument` can be updated based on data properties in our component instance! This makes our custom directives flexible for use throughout our application.
+
+Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
+
+```html
+<div id="baseexample">
+  <p>Scroll down the page</p>
+  <p v-pin="200">Stick me 200px from the top of the page</p>
+</div>
+```
+
+```js
+Vue.directive('pin', {
+  bind: function (el, binding, vnode) {
+    el.style.position = 'fixed'
+    el.style.top = binding.value + 'px'
+  }
+})
+
+new Vue({
+  el: '#baseexample'
+})
+```
+
+This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
+
+
+```html
+<div id="dynamicexample">
+  <h3>Scroll down inside this section ↓</h3>
+  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+</div>
+```
+
+```js
+Vue.directive('pin', {
+  bind: function (el, binding, vnode) {
+    el.style.position = 'fixed'
+    var s = (binding.arg == 'left' ? 'left' : 'top')
+    el.style[s] = binding.value + 'px'
+  }
+})
+
+new Vue({
+  el: '#dynamicexample',
+  data: function () {
+    return {
+      direction: 'left'
+    }
+  }
+})
+```
+
+Result:
+
+{% raw %}
+<iframe height="200" style="width: 100%;" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="//codepen.io/team/Vue/embed/rgLLzb/?height=300&theme-id=32763&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/team/Vue/pen/rgLLzb/'>Dynamic Directive Arguments</a> by Vue
+  (<a href='https://codepen.io/Vue'>@Vue</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+{% endraw %}
+
+Our custom directive is now flexible enough to support a few different use cases.
 
 ## 함수 약어
 

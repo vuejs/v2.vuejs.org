@@ -46,9 +46,9 @@ Mustache 태그는 해당 데이터 객체의 `msg` 속성 값으로 대체됩�
 new Vue({
   el: '#example1',
   data: function () {
-  	return {
-  	  rawHtml: '<span style="color: red">This should be red.</span>'
-  	}
+    return {
+      rawHtml: '<span style="color: red">This should be red.</span>'
+    }
   }
 })
 </script>
@@ -98,7 +98,7 @@ boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 �
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">템플릿 표현식은 샌드박스 처리되며 `Math`와 `Date` 같은 전역으로 사용 가능한 것에만 접근할 수 있습니다. 템플릿 표현식에서 사용자 정의 전역에 액세스 하지 마십시오.</p>
+<p class="tip">템플릿 표현식은 샌드박스 처리되며 `Math`와 `Date` 같은 [전역으로 사용 가능한 것](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9)에만 접근할 수 있습니다. 템플릿 표현식에서 사용자 정의 전역에 액세스 하지 마십시오.</p>
 
 ## 디렉티브
 
@@ -128,6 +128,55 @@ boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 �
 
 전달인자는 이벤트를 받을 이름입니다. 우리는 이벤트 핸들링에 대해 더 자세하게 살펴 볼 것입니다.
 
+### Dynamic Arguments
+
+> New in 2.6.0+
+
+Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+
+``` html
+<!--
+Note that there are some constraints to the argument expression, as explained
+in the "Dynamic Argument Expression Constraints" section below.
+-->
+<a v-bind:[attributeName]="url"> ... </a>
+```
+
+Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+
+Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+
+``` html
+<a v-on:[eventName]="doSomething"> ... </a>
+```
+
+In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+
+#### Dynamic Argument Value Constraints
+
+Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+
+#### Dynamic Argument Expression Constraints
+
+Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:
+
+``` html
+<!-- This will trigger a compiler warning. -->
+<a v-bind:['foo' + bar]="value"> ... </a>
+```
+
+The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+
+When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+
+``` html
+<!--
+This will be converted to v-bind:[someattr] in in-DOM templates.
+Unless you have a "someattr" property in your instance, your code won't work.
+-->
+<a v-bind:[someAttr]="value"> ... </a>
+```
+
 ### 수식어
 
 수식어는 점으로 표시되는 특수 접미사로, 디렉티브를 특별한 방법으로 바인딩 해야 함을 나타냅니다. 예를 들어, `.prevent` 수식어는 트리거된 이벤트에서 `event.preventDefault()`를 호출하도록 `v-on` 디렉티브에게 알려줍니다.
@@ -150,6 +199,9 @@ boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 �
 
 <!-- 약어 -->
 <a :href="url"> ... </a>
+
+<!-- shorthand with dynamic argument (2.6.0+) -->
+<a :[key]="url"> ... </a>
 ```
 
 ### `v-on` 약어
@@ -160,6 +212,9 @@ boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 �
 
 <!-- 약어 -->
 <a @click="doSomething"> ... </a>
+
+<!-- shorthand with dynamic argument (2.6.0+) -->
+<a @[event]="doSomething"> ... </a>
 ```
 
 이들은 일반적인 HTML과 조금 다르게 보일 수 있습니다. 하지만 `:`와 `@`는 속성 이름에 유효한 문자이며 Vue.js를 지원하는 모든 브라우저는 올바르게 구문 분석을 할 수 있습니다. 또한 최종 렌더링 된 마크업에는 나타나지 않습니다. 약어는 완전히 선택사항이지만 나중에 익숙해지면 편할 것 입니다.

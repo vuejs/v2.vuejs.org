@@ -6,7 +6,9 @@ order: 502
 
 ## 공식 Flux-유사 구현
 
-대규모 응용 프로그램은 여러 컴포넌트에 분산되어있는 여러 상태와 그 상호 작용으로 인해 복잡해집니다. 이 문제를 해결하기 위해 Vue는 Elm에서 영감을 얻은 상태 관리 라이브러리 인 [vuex](https://github.com/vuejs/vuex)를 제공합니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)를 사용한다면 설정에 따로 시간을 보내지 않아도 됩니다.
+대규모 응용 프로그램은 여러 컴포넌트에 분산되어있는 여러 상태와 그 상호 작용으로 인해 복잡해집니다. 이 문제를 해결하기 위해 Vue는 Elm에서 영감을 얻은 상태 관리 라이브러리 인 [vuex](https://github.com/vuejs/vuex)를 제공합니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)를 사용한다면 설정에 따로 시간을 보내지 않아도 [시간여행 디버깅](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif)을 사용할 수 있습니다.
+
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="sponsored noopener" title="Vuex Tutorial">Watch a video explanation on Vue Mastery</a></div>
 
 ### React 개발자를 위한 안내
 

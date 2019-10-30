@@ -172,6 +172,7 @@ methods: {
 - `.capture`
 - `.self`
 - `.once`
+- `.passive`
 
 ``` html
 <!-- 클릭 이벤트 전파가 중단됩니다 -->
@@ -209,6 +210,8 @@ methods: {
 
 > 2.3.0+ 이후 추가됨
 
+Vue also offers the `.passive` modifier, corresponding to [`addEventListener`'s `passive` option](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters).
+
 ``` html
 <!-- 스크롤의 기본 이벤트를 취소할 수 없습니다. -->
 <div v-on:scroll.passive="onScroll">...</div>
@@ -216,28 +219,36 @@ methods: {
 
 추가로, Vue는 `.passive` 수식어를 제공합니다. 특히 모바일 환경에서 성능향상에 도움이 됩니다. 예를 들어, 브라우저는 핸들러가 `event.preventDefault()`를 호출할지 알지 못하므로 프로세스가 완료된 후 스크롤 합니다. `.passive` 수식어는 이 이벤트가 기본 동작을 멈추지 않는다는 것을 브라우저에 알릴 수 있습니다.
 
-<p class="tip">`.passive`와 `.prevent`를 함께 사용하지 마세요. 패시브 핸들러는 기본 이벤트를 막지 않습니다.</p>
+<p class="tip">`.passive`와 `.prevent`를 함께 사용하지 마세요. because `.prevent` will be ignored and your browser will probably show you a warning. Remember, `.passive` communicates to the browser that you _don't_ want to prevent the event's default behavior.</p>
 
 ## 키 수식어
 
 키보드 이벤트를 청취할 때, 종종 공통 키 코드를 확인해야 합니다. Vue는 키 이벤트를 수신할 때 `v-on`에 대한 키 수식어를 추가할 수 있습니다.
 
 ``` html
-<!-- keyCode가 13일 때만 `vm.submit()`을 호출합니다  -->
+<!-- only call `vm.submit()` when the `key` is `Enter` -->
+<input v-on:keyup.enter="submit">
+```
+
+[`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)를 통해 노출된 유효 키 이름을 케밥 케이스로 변환하여 수식어로 사용할 수 있습니다.
+
+``` html
+<input v-on:keyup.page-down="onPageDown">
+```
+
+위의 예제에서 핸들러는 `$event.key === 'PageDown'` 일 때에만 호출됩니다.
+
+### Key Codes
+
+<p class="tip">The use of `keyCode` events [is deprecated](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) and may not be supported in new browsers.</p>
+
+Using `keyCode` attributes is also permitted:
+
+``` html
 <input v-on:keyup.13="submit">
 ```
 
-`keyCode`를 모두 기억하는 것은 힘듭니다. 그래서 Vue는 자주 사용하는 키의 별칭을 제공합니다.
-
-``` html
-<!-- 위와 같습니다 -->
-<input v-on:keyup.enter="submit">
-
-<!-- 약어 사용도 가능합니다 -->
-<input @keyup.enter="submit">
-```
-
-키 수식어 별칭의 전체 목록입니다.
+Vue provides aliases for the most commonly used key codes when necessary for legacy browser support:
 
 - `.enter`
 - `.tab`
@@ -249,27 +260,14 @@ methods: {
 - `.left`
 - `.right`
 
+<p class="tip">일부 키(`.esc`와 모든 화살표 키)는 IE9에서 일관성 없는 `key` 값을 가지고 있습니다. IE9를 지원해야하는 경우 내장 별칭이 선호됩니다.</p>
+
 또한 전역 `config.keyCodes` 객체를 통해 [사용자 지정 키 수식어 별칭을 지정할 수 있습니다.](../api/#keyCodes)
 
 ``` js
 // `v-on:keyup.f1`을 사용할 수 있습니다.
 Vue.config.keyCodes.f1 = 112
 ```
-
-### 오토매틱 키 수식어
-
-> 2.5.0+에서 추가됨
-
-[`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)를 통해 노출된 유효 키 이름을 수식어로 직접 사용할 수 있습니다.
-
-
-``` html
-<input @keyup.page-down="onPageDown">
-```
-
-위의 예제에서 핸들러는 `$event.key === 'PageDown'` 만 호출됩니다.
-
-<p class="tip">일부 키(`.esc`와 모든 화살표 키)는 IE9에서 일관성 없는 `key` 값을 가지고 있습니다. IE9를 지원해야하는 경우 내장 별칭이 선호됩니다.</p>
 
 ## 시스템 수식어 키 목록
 

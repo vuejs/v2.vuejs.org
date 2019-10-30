@@ -171,11 +171,13 @@ createElement(
 ``` js
 {
   // `v-bind:class` 와 같음
-  'class': {
+  // accepting either a string, object, or array of strings and objects.
+  class: {
     foo: true,
     bar: false
   },
   // `v-bind:style` 와 같음
+  // accepting either a string, object, or array of objects.
   style: {
     color: 'red',
     fontSize: '14px'
@@ -226,7 +228,11 @@ createElement(
   slot: 'name-of-slot',
   // 기타 최고 레벨 속성
   key: 'myKey',
-  ref: 'myRef'
+  ref: 'myRef',
+  // If you are applying the same ref name to multiple
+  // elements in the render function. This will make `$refs.myRef` become an
+  // array
+  refInFor: true
 }
 ```
 
@@ -249,7 +255,7 @@ Vue.component('anchored-heading', {
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+      .replace(/(^-|-$)/g, '')
 
     return createElement(
       'h' + this.level,
@@ -316,6 +322,7 @@ render: function (createElement) {
 이것은 render 함수에서 `if` /`else` 와 `map`을 사용하여 재 작성 될 수 있습니다.
 
 ``` js
+props: ['items'],
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -332,6 +339,7 @@ render: function (createElement) {
 렌더 함수에는 직접적으로 `v-model`에 대응되는 것이 없습니다. 직접 구현해야합니다.
 
 ``` js
+props: ['value'],
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -340,7 +348,6 @@ render: function (createElement) {
     },
     on: {
       input: function (event) {
-        self.value = event.target.value
         self.$emit('input', event.target.value)
       }
     }
@@ -367,7 +374,7 @@ render: function (createElement) {
 on: {
   '!click': this.doThisInCapturingMode,
   '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
+  '~!mouseover': this.doThisOnceInCapturingMode
 }
 ```
 
@@ -416,11 +423,12 @@ render: function (createElement) {
 또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](../api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
 
 ``` js
+props: ['message'],
 render: function (createElement) {
-  // `<div><slot :text="msg"></slot></div>`
+  // `<div><slot :text="message"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
-      text: this.msg
+      text: this.message
     })
   ])
 }
@@ -429,7 +437,7 @@ render: function (createElement) {
 범위 함수 슬롯을 렌더링 함수를 사용하여 하위 컴포넌트로 전달하려면 VNode 데이터에서 `scopedSlots` 필드를 사용하십시오.
 
 ``` js
-render (createElement) {
+render: function (createElement) {
   return createElement('div', [
     createElement('child', {
       // 데이터 객체의 `scopedSlots`를 다음 형식으로 전달합니다
@@ -476,7 +484,7 @@ import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
-  render (h) {
+  render: function (h) {
     return (
       <AnchoredHeading level={1}>
         <span>Hello</span> world!
@@ -486,9 +494,9 @@ new Vue({
 })
 ```
 
-<p class="tip">`createElement`를 별칭 `h`로 이용하는 것은 Vue 생태계에서 볼 수 있는 공통된 관습이며 실제로 JSX에 필요합니다. 사용하는 범위에서 `h`를 사용할 수 없다면, 앱은 오류를 발생시킵니다.</p>
+<p class="tip">`createElement`를 별칭 `h`로 이용하는 것은 Vue 생태계에서 볼 수 있는 공통된 관습이며 실제로 JSX에 필요합니다.  Starting with [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) of the Babel plugin for Vue, we automatically inject `const h = this.$createElement` in any method and getter (not functions or arrow functions), declared in ES2015 syntax that has JSX, so you can drop the `(h)` parameter. With prior versions of the plugin, your app would throw an error if `h` was not available in the scope. 사용하는 범위에서 `h`를 사용할 수 없다면, 앱은 오류를 발생시킵니다.</p>
 
-JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)을 확인하세요.
+JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://github.com/vuejs/jsx#installation)을 확인하세요.
 
 ## 함수형 컴포넌트
 
@@ -499,23 +507,25 @@ JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://gi
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Props는 선택사항입니다.
+  props: {
+    // ...
+  }
   // 인스턴스의 부족함을 보완하기 위해
   // 이제 2번째에 컨텍스트 인수가 제공됩니다.
   render: function (createElement, context) {
     // ...
   },
-  // Props는 선택사항입니다.
-  props: {
-    // ...
-  }
 })
 ```
 
 > 주의 : 2.3.0 이전 버전에서, 함수형 컴포넌트에서 props을 받아들이려면 `props` 옵션이 필요합니다. 2.3.0 이상에서는 `props` 옵션을 생략할 수 있으며, 컴포넌트 노드에서 발견된 모든 속성은 암시적으로 props으로 추출됩니다.
+>
+> The reference will be HTMLElement when used with functional components because they’re stateless and instanceless.
 
 2.5.0+ 이후로, [싱글 파일 컴포넌트](single-file-components.html)를 사용하는 경우, 템플릿 기반의 함수형 컴포넌트를 정의할 수 있습니다.
 
-``` js
+``` html
 <template functional>
 </template>
 ```
@@ -525,6 +535,7 @@ Vue.component('my-component', {
 - `props`: 전달받은 props에 대한 객체
 - `children`: VNode 자식의 배열
 - `slots`: 슬롯 객체를 반환하는 함수
+- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
 - `data`: 컴포넌트에 전달된 전체 데이터 객체
 - `parent`: 상위 컴포넌트에 대한 참조
 - `listeners`: (2.3.0+) 부모에게 등록된 이벤트 리스너를 가진 객체입니다. `data.on`의 알리아스입니다.
@@ -536,8 +547,6 @@ Vue.component('my-component', {
 
 또한 래퍼 컴포넌트로도 매우 유용합니다. 예를 들어,
 
-
-
 ``` js
 var EmptyList = { /* ... */ }
 var TableList = { /* ... */ }
@@ -546,6 +555,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -562,15 +578,40 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
+```
+
+### 자식 요소/컴포넌트에 속성과 이벤트 전달하기
+
+On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+
+Functional components, however, require you to explicitly define this behavior:
+
+```js
+Vue.component('my-functional-button', {
+  functional: true,
+  render: function (createElement, context) {
+    // Transparently pass any attributes, event listeners, children, etc.
+    return createElement('button', context.data, context.children)
+  }
+})
+```
+
+By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+
+If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs"
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
 ```
 
 ### `slots()` vs `children`
@@ -579,7 +620,7 @@ Vue.component('smart-list', {
 
 ``` html
 <my-functional-component>
-  <p slot="foo">
+  <p v-slot:foo>
     first
   </p>
   <p>second</p>
@@ -593,80 +634,5 @@ Vue.component('smart-list', {
 Vue의 템플릿이 실제로 함수를 렌더링 하기 위해 컴파일 되는 것을 알고 싶을 것입니다. 이는 일반적으로 알 필요가 없는 내부 구현 사항이지만 특정 템플릿 기능을 컴파일 하는 방법을 보고 싶다면 흥미로울 수 있습니다. 다음은 `Vue.compile`을 사용해 템플릿 문자열을 실시간 컴파일 하는데 사용되는 데모 입니다.
 
 {% raw %}
-<div id="vue-compile-demo" class="demo">
-  <textarea v-model="templateText" rows="10"></textarea>
-  <div v-if="typeof result === 'object'">
-    <label>render:</label>
-    <pre><code>{{ result.render }}</code></pre>
-    <label>staticRenderFns:</label>
-    <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
-    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
-  </div>
-  <div v-else>
-    <label>Compilation Error:</label>
-    <pre><code>{{ result }}</code></pre>
-  </div>
-</div>
-<script>
-new Vue({
-  el: '#vue-compile-demo',
-  data: {
-    templateText: '\
-<div>\n\
-  <header>\n\
-    <h1>I\'m a template!</h1>\n\
-  </header>\n\
-  <p v-if="message">\n\
-    {{ message }}\n\
-  </p>\n\
-  <p v-else>\n\
-    No message.\n\
-  </p>\n\
-</div>\
-    ',
-  },
-  computed: {
-    result: function () {
-      if (!this.templateText) {
-        return 'Enter a valid template above'
-      }
-      try {
-        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
-        return {
-          render: this.formatFunction(result.render),
-          staticRenderFns: result.staticRenderFns.map(this.formatFunction)
-        }
-      } catch (error) {
-        return error.message
-      }
-    }
-  },
-  methods: {
-    formatFunction: function (fn) {
-      return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
-    }
-  }
-})
-console.error = function (error) {
-  throw new Error(error)
-}
-</script>
-<style>
-#vue-compile-demo {
-  -webkit-user-select: inherit;
-  user-select: inherit;
-}
-#vue-compile-demo pre {
-  padding: 10px;
-  overflow-x: auto;
-}
-#vue-compile-demo code {
-  white-space: pre;
-  padding: 0
-}
-#vue-compile-demo textarea {
-  width: 100%;
-  font-family: monospace;
-}
-</style>
+<script async src="https://jsfiddle.net/phanan/5h0wx9np/embed/result,js,html/"></script>
 {% endraw %}

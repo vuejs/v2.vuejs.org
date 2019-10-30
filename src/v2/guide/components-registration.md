@@ -6,6 +6,8 @@ order: 101
 
 > 이 페이지는 여러분이 이미 [컴포넌트 기초](components.html)를 읽었다고 가정하고 쓴 내용입니다. 컴포넌트가 처음이라면 기초 문서를 먼저 읽으시기 바랍니다.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
+
 ## 컴포넌트 이름
 
 컴포넌트를 등록할 때는 항상 이름을 지어줘야 합니다. 예를 들어 우리가 살펴봤던 전역등록은 아래처럼 하죠.

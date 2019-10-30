@@ -578,6 +578,8 @@ new Vue({
 </transition>
 ```
 
+In the example above, either `appear` attribute or `v-on:appear` hook will cause an appear transition.
+
 ## 엘리먼트 간 트랜지션
 
 [컴포넌트 사이의 트랜지션](#Transitioning-Between-Components)에 대해서는 나중에 설명하지만 `v-if` /`v-else`를 사용하여 원본 엘리먼트 사이를 트랜지션 할 수도 있습니다. 가장 일반적인 두 엘리먼트 트랜지션 중 하나는 목록 컨테이너와 빈 목록을 설명하는 메시지 사이에 사용됩니다.
@@ -950,8 +952,11 @@ new Vue({
 - 한번에 하나만 렌더링 되는 여러 노드
 
 그렇다면`v-for`를 사용하여 동시에 렌더링 하고자 하는 항목의 전체 목록이 있는 경우는 어떨까요? 이 경우 우리는`<transition-group>` 컴포넌트를 사용합니다. 예를 들어보기 전에 이 컴포넌트에 대해 알아야 할 몇 가지 중요한 사항이 있습니다.
+
 - `<transition>` 과 달리, 실제 요소인 `<span>`을 렌더링합니다. `tag` 속성으로 렌더링 된 요소를 변경할 수 있습니다.
+- [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
 - 엘리먼트의 내부 구현은 **항상 필요합니다** 고유한 `key` 속성을 갖습니다
+- CSS transition classes will be applied to inner elements and not to the group/container itself.
 
 ### 리스트의 진입 / 진출 트랜지션
 
@@ -1473,7 +1478,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-함수형 컴포넌트는 특히 이 작업에 적합합니다.
+[함수형 컴포넌트](render-function.html#Functional-Components)는 특히 이 작업에 적합합니다.
 
 ``` js
 Vue.component('my-special-transition', {
