@@ -90,10 +90,14 @@ partners_list:
         description:
             "Monterail is a full-service software development company with 100+ experts on board delivering meaningful software for start-ups, SMBs and enterprises. We build for the Web with Ruby on Rails, Python, JavaScript, and Agile. We guarantee this: a product so qualitative and aligned with your vision, you’ll swear it was built in-house."
         proficiencies:
-            - VueJs
-            - Ruby on Rails
-            - Javascript
-            - Python
+            - name: VueJs
+              url: https://hi.monterail.co/2NqPUa6
+            - name: Ruby on Rails
+              url: https://hi.monterail.co/31RvfBm
+            - name: Javascript
+              url: https://hi.monterail.co/34cWQhR
+            - name: Python
+              url: https://hi.monterail.co/2MXHLeb
             - name: Services
               url:  https://www.monterail.com/services
             - name: Projects
@@ -103,7 +107,7 @@ partners_list:
             - English
             - Polish
         url_text: www.monterail.com
-        url_link: www.monterail.com
+        url_link: www.monterail.com/?utm_campaign=Vue.js&utm_source=partner-list
         hire_url: www.monterail.com/contact
         email: hello@monterail.com
         social_links:
