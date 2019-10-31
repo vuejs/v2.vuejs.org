@@ -36,7 +36,7 @@ or:
 
 The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/g/gvuedocs), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
 
 ## Declarative Rendering
 
