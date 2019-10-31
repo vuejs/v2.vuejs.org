@@ -32,7 +32,7 @@ o con:
 
 La [página de instalación](installation.html) proporciona más opciones de instalación de Vue. Nota: **No** recomendamos que los principiantes comiencen con `vue-cli`, especialmente si aún no están familiarizados con las herramientas de _build_ basadas en Node.js.
 
-Si prefiere algo más interactivo, también puede ver [esta serie de tutoriales en Scrimba](https://scrimba.com/playlist/pXKqta), que le ofrece una combinación de _screencast_ y _playground_ de código con los que puede pausar y jugar en cualquier momento.
+Si prefiere algo más interactivo, también puede ver [esta serie de tutoriales en Scrimba](https://scrimba.com/g/gvuedocs), que le ofrece una combinación de _screencast_ y _playground_ de código con los que puede pausar y jugar en cualquier momento.
 
 ## Renderización Declarativa
 
