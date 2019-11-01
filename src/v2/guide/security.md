@@ -56,7 +56,7 @@ then it would be escaped to the following HTML:
 &quot; onclick=&quot;alert('hi')
 ```
 
-thus preventing the close of the `title` attribute to inject new, arbitrary HTML. This escaping is done using native browser APIs, like `setAtttribute`, so a vulnerability can only exist if the browser itself is vulnerable.
+thus preventing the close of the `title` attribute to inject new, arbitrary HTML. This escaping is done using native browser APIs, like `setAttribute`, so a vulnerability can only exist if the browser itself is vulnerable.
 
 ## Potential Dangers
 
