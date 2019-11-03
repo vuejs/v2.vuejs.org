@@ -73,50 +73,50 @@ $ npm install vue
 
 Vue пропонує [офіційний інтерфейс командного рядка (CLI)](https://github.com/vuejs/vue-cli) для швидкого риштування амбітних так званих односторінкових додатків (SPA). Він забезпечує збірку додатків сучасними методами, надаючи числені варіанти налаштувань. Процес триває всього кілька хвилин для готового середовища з підтримкою "гарячого" перезавантаження, автоматичного аналізу помилок при збереженні та збірок, готових до продакшну. Перегляньте [документацію по CLI](https://cli.vuejs.org), щоб отримати більше деталей.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">Для користуванням CLI Вам потрібно володіти базовими знаннями Node.js та пов'язаних програм. Якщо Ви вперше використовуєте Vue чи програми для збірки клієнтського коду, ми настійно рекомендуємо вам використовувати <a href="./">гід</a> без жодних програм-збірників перед використанням CLI.</p>
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Переглянути пояснення на відео від Vue Mastery</a></div>
 
 ## Роз'яснення різних видів збірок
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+Якщо Ви заглянете в [теку `dist/` NPM-пакету](https://cdn.jsdelivr.net/npm/vue/dist/), то знайдете кілька різних збірок Vue.js. Різниця між ними наступна:
 
-| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
+| | UMD | CommonJS | ES модулі (для програм-збірників) | ES модулі (для браузерів) |
 | --- | --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
+| **Повна** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+| **Лише режим виконання** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
+| **Повна (продакшн)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **Лише режим виконання (продакшн)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### Поняття
 
-- **Full**: builds that contain both the compiler and the runtime.
+- **Повна**: збірка, що включає і код режиму виконання, і компілятор шаблонів.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Компілятор**: код, відповідальний за компіляцію рядкових шаблонів в так звані функції рендерингу JavaScript.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Режим виконання**: код, що відповідає за створення екземплярів Vue, промальовування та патчинг віртуальної DOM, і т. д. Іншими словами, сюди входить все, крім компілятора.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: Збірки UMD можуть використовуватися у браузері безпосередньо, наприклад через тег `<script>`. Основний файл на jsDelivr CDN розміщений на [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) та містить код режиму виконання та збірку UMD компілятора (`vue.js`).
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: Збірки CommonJS в основному використовуються у старіших програмах-збірниках [browserify](http://browserify.org/) або [webpack 1](https://webpack.github.io). Основний файл для цих збірників (`pkg.main`) містить в собі лише код режиму виконання у форматі CommonJS (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES модулі](http://exploringjs.com/es6/ch_modules.html)**: починаючи з версії 2.6 Vue надає збірки у форматі ES модулів (ESM):
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - ESM для програм-збірників: призначений для використання у сучасних збірниках, таких як [webpack 2](https://webpack.js.org) чи [Rollup](https://rollupjs.org/). Формат ESM було сторено таким, що піддається статичному аналізу, щоб збірники могли скористатися так званим "tree-shaking" механізмом та зменшити розмір збірку, не включаючи код, який не використовується. Основний файл для цих збірників (`pkg.module`) включає лише код режиму виконання у форматі ES модулів (`vue.runtime.esm.js`).
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - ESM для браузерів (2.6+ only): призначений для використання у сучасних браузерах через `<script type="module">`.
 
-### Runtime + Compiler vs. Runtime-only
+### Різниця між Повною збіркою та збіркою з лише кодом режиму виконання
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+Якщо Вам потрібно компільовувати шаблони на клієнській частині (наприклад, передаючи рядок у властивість `template`, або прикріплення до елементу, як шаблон використовуючи HTML, що вже є частиною DOM), Вам потрібний компілятор, тобто, повна збірка: 
 
 ``` js
-// this requires the compiler
+// ця дія вимагає компілятор
 new Vue({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// а ця ні
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -124,9 +124,9 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+Якщо Ви використовуєте `vue-loader` або `vueify`, шаблони всередині `*.vue` файлів є попередньо скомпільованими як так звані функції промальовування JavaScript для режиму виконання. Вам не дуже потрібен компілятор у такому випадку, у вашій фінальній збірці, тому Вам достатньо буде використовувати збірку з лише кодом режиму виконання.
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+Оскільки такі збірки є приблизно на 30% меншими, ніж повні, Ви повинні використовувати їх, наскільки це можливо. Але якщо Вам дійсно потрібно використовувати повні збірки, Вам доведеться створити наступний так званий, псевдонім шляху у вашій програмі-збірнику: 
 
 #### Webpack
 
@@ -135,7 +135,7 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' для webpack 1
     }
   }
 }
@@ -158,7 +158,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+Додайте до `package.json` Вашого проекту:
 
 ``` js
 {
@@ -171,7 +171,7 @@ Add to your project's `package.json`:
 
 #### Parcel
 
-Add to your project's `package.json`:
+Додайте до `package.json` Вашого проекту:
 
 ``` js
 {
@@ -182,17 +182,17 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### Різниця між Режимом розробки та Продакшн-режимом
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+Режими Розробки/Продакшна вбудовані у збірки UMD: не мінімізовані файли призначені для розробки, а мінімізовані та певним чином оптимізовані — для продакшна.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+Збірки CommonJS та ES Модулі необхідні для програм-збірників, тому ми не надаємо мінімізовані версії для них. Ви самі несете відповідальність за мінімізацію вашого кінцевого коду.
 
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+У збірках CommonJS та ES Модулі також зберігаються перевірки із `process.env.NODE_ENV` для визначення режиму, в якому вони мають виконуватися. Ви повинні використовувати відповідні налаштування збірника для того, щоб замінювати значення цих змінних оточення для встановлення режиму, у якому Ви бажаєте запускати Ваш Vue-додаток. Замінюючи `process.env.NODE_ENV` рядковим літералом, також дозволяє мінімізаторам коду, таким як UglifyJS, вирізати рядки коду, написаного для суто режиму розробки, тим самим зменшуючи фінальний розмір файлу Вашого додатку.
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+У Webpack 4+, використовуйте властивість `mode`:
 
 ``` js
 module.exports = {
@@ -200,7 +200,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+У Webpack 3 та попередніх версіях, Вам доведеться використовувати [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -220,7 +220,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Використовуйте [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -237,23 +237,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+Встановіть глобальну [envify](https://github.com/hughsk/envify) трансформацію для кінцевого коду Вашого додатку.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+Також дивіться поради стосовно [Публікації на продакшн-середовище](deployment.html).
 
-### CSP environments
+### Середовище з CSP
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
+Деякі середовища, такі як Google Chrome Apps, примусово включають так звану політику безпеки вмісту (Content Security Policy, CSP), що забороняє використання `new Function()` для виразів обчислення JavaScript коду. Повна збірка залежить від цієї можливості для компіляції шаблонів, тому використання такої збірки у таких середовищах неможливе.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+З іншої сторони, збірка з лише кодом режиму виконання є такою, що повністю відповідає CSP. Коли використовуєте таку збірку разом з [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) або [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), Ваші шаблони будуть попередньо компільовані у так звані функції промальовування (`render` функції), що прекрасно працює у CSP середовищах.
 
-## Dev Build
+## Збірка розробника
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Важливо**: файли збірки, розміщені на GitHub у теці `/dist` є лише зафіксованими на момент випуску відповідних версій Vue. Для використання найновішої версії GitHub, Ви повинні зібрати її власноруч!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -264,13 +264,13 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+Лише UMD збірки доступні для Bower.
 
 ``` bash
 # latest stable
 $ bower install vue
 ```
 
-## AMD Module Loaders
+## Використання як модуль AMD
 
-All UMD builds can be used directly as an AMD module.
+Усі збірки UMD можуть використовуватися як AMD модуль.
