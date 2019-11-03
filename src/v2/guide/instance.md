@@ -4,24 +4,24 @@ type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Створення екземпляру Vue
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Кожен додаток на Vue починається із створення **Vue екземпляру** через функцію `Vue`:
 
 ```js
 var vm = new Vue({
-  // options
+  // налаштування
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Хоч Vue фреймворк не суворо асоціюється з [патерном MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), він частково натхненний цим патерном. Як конвенція, ми часво використовуємо змінну `vm` (ViewModel скорочено) для звернення до екземпляру Vue.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Створюючи екземпляр Vue, Ви передаєте **об'єкт налаштувань**. Більша частина цього посібника пояснює як можна використовувати ці налаштування для створення потрібної Вам поведінки. Для довідки, Ви також можете переглянути весь список властивостей цього об'єкту у [довідці по API](../api/#Options-Data).
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Додаток Vue складається з **кореневого екземпляру Vue** створеного за допомогою конструкції `new Vue`, та необов'язково організованого як дерево вкладених, повторно використовуваних компонентів. Для прикладу, ось як може виглядати таке дерево нашого тестового додатку для керування списком справ "ToDo":
 
 ```
-Root Instance
+Кореневий екземпляр
 └─ TodoList
    ├─ TodoItem
    │  ├─ DeleteTodoButton
@@ -31,31 +31,31 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+Ми ще поговоримо про [систему компонентів](components.html) в деталях пізніше. А зараз, просто знайте, що всі компоненти Vue є також екземплярами Vue, тому вони так само можуть об'єкт налаштувань (крім деяких, що стосуються лише кореневого екземпляру).
 
-## Data and Methods
+## Властивості Data та Methods
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Коли екземпляр Vue створено, це додає всі властивості, що знаходяться в об'єкті `data` до так званої **системи реагування** Vue. Коли значення цих властивостей змінюються, вигляд "відреагує" на це, оновлюючись з новими значеннями цих властивостей.
 
 ```js
-// Our data object
+// Наш об'єкт data
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// Об'єкт додано до екземрляру Vue
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+// При отриманні властивості екземпляру,
+// повертається той, що знаходиться в початковому об'єкті data
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Встановлення значення властивості екземпляру
+// також впливає на початковий об'єкт data
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... і навпаки
 data.a = 3
 vm.a // => 3
 ```
