@@ -128,51 +128,52 @@ boolean 속성을 사용할 때 단순히 `true`인 경우 `v-bind`는 조금 �
 
 전달인자는 이벤트를 받을 이름입니다. 우리는 이벤트 핸들링에 대해 더 자세하게 살펴 볼 것입니다.
 
-### Dynamic Arguments
+### 동적 전달인자
 
-> New in 2.6.0+
+> 2.6.0+ 에서 추가됨
 
+2.6.0버전부터 Javascript 형식를 대괄호로 묶어 디렉티브 의 아규멘트로 사용하는것도 가능해졌습니다:
 Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
 
 ``` html
 <!--
-Note that there are some constraints to the argument expression, as explained
-in the "Dynamic Argument Expression Constraints" section below.
+동적 전달인자는 "동적 전달인자의 형식 제약"의 부분에서 후술되는바와 같이,
+조금의 제약이 있는 점에 주의해주세요
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+여기서 `attributeName`은 Javascript형식으로 동적 변환되어, 그 변환결과가 전달인자의 최종적인 밸류로 사용됩니다. 예를들어 당신의 Vue 인스턴스에 `"href"`라는 값을 가진 `attributeName`이라는 데이터 속성을 가진 경우, 이 바인딩은 `v-bind:href`와 동등합니다.
 
-Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+이와 유사하게, 동적인 이벤트명에 핸들러를 바인딩 할 때 동적 전달인자를 활용할 수 있습니다.
 
 ``` html
 <a v-on:[eventName]="doSomething"> ... </a>
 ```
 
-In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+이 예시에서 `eventName`의 값이 `"focus"` 라고 한다면 `v-on:[EventName]`은 `v-on:focus`와 동등합니다.
 
-#### Dynamic Argument Value Constraints
+#### 동적 전달인자의 값 제약
 
-Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+동적 전달인자는, `null`을 제외하고는 string으로 변환될 것으로 예상합니다. 특수 값인 `null`은 명시적으로 바인딩을 제거하는데 사용됩니다. 그 외의 경우, string이 아닌 값은 경고를 출력합니다.
 
-#### Dynamic Argument Expression Constraints
+#### 동적 전달인자의 형식 제약
 
-Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:
+동적 전달인자의 혁식에는 문자상의 제약이 있습니다. 스페이스와 따옴표같은 몇몇 문자는 HTML의 속성명으로서 적합하지 않은 문자이기 떄문입니다. 다음 예시는 잘못된 경우입니다:
 
 ``` html
-<!-- This will trigger a compiler warning. -->
+<!-- 컴파일러 오류를 불러옵니다 -->
 <a v-bind:['foo' + bar]="value"> ... </a>
 ```
 
-The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+이를 피하는 방법은, 스페이스나 따옴표를 포함하지 않는 형식을 사용하거나, 복잡한 표현식을 계산된 속성(Computed)로 대체하는 것입니다.
 
-When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+in-DOM 탬플릿을 사용할 떄에는 (탬플릿이 HTML파일에 직접 쓰여진 경우), 브라우저가 모든 속성명을 소문자로 만드는 관계로 대문자의 사용을 피하는것이 좋습니다:
 
 ``` html
 <!--
-This will be converted to v-bind:[someattr] in in-DOM templates.
-Unless you have a "someattr" property in your instance, your code won't work.
+in-DOM 탬플릿에서는 이 부분이 v-bind:[someattr]로 변환됩니다.
+인스턴스에 "someattr"속성이 없는 경우, 이 코드는 동작하지 않습니다.
 -->
 <a v-bind:[someAttr]="value"> ... </a>
 ```
