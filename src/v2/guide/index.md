@@ -8,15 +8,16 @@ order: 2
 
 Vue(/vjuː/ 로 발음, **view** 와 발음이 같습니다.)는 사용자 인터페이스를 만들기 위한 **진보적인 프레임워크** 입니다. 다른 단일형 프레임워크와 달리 Vue는 점진적으로 채택할 수 있도록 설계하였습니다. 핵심 라이브러리는 뷰 레이어만 초점을 맞추어 다른 라이브러리나 기존 프로젝트와의 통합이 매우 쉽습니다. 그리고 Vue는 [현대적 도구](single-file-components.html) 및 [지원하는 라이브러리](https://github.com/vuejs/awesome-vue#components--libraries)와 함께 사용한다면 정교한 단일 페이지 응용프로그램을 완벽하게 지원할 수 있습니다.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Vue를 알아보기 전에 조금 어 알아보고 싶다면 핵심 원칙과 샘플 프로젝트를 바탕으로 <a id="modal-player"  href="#">비디오</a> 설명을 만들었으니, 참고 해 주세요
+
 
 숙련된 프론트엔드 개발자이고 Vue를 다른 라이브러리/프레임워크와 비교하고 싶다면 [다른 프레임워크와의 비교](comparison.html)를 확인하십시오.
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Vue Mastery의 무료 강의 보기</a></div>
 
 ## 시작하기
 
-<a class="button" href="installation.html">Installation</a>
+<a class="button" href="installation.html">설치</a>
 
 <p class="tip">공식 가이드는 HTML, CSS 및 JavaScript에 대한 중간 수준의 지식을 전제로 합니다. 프론트 엔드 개발에 완전히 익숙하지 않다면 첫 번째 단계로 프레임워크를 시작하는 것은 좋은 생각이 아닙니다. 기본을 파악한 다음 다시 해보세요! 다른 프레임워크에 대한 사전 경험이 도움 되지만 필수는 아닙니다.</p>
 
@@ -37,11 +38,11 @@ Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World
 
 [설치](installation.html) 페이지에는 Vue 옵션이 추가로 제공됩니다. Node.js 기반 빌드 도구에 아직 익숙하지 않으면 `vue-cli`로 시작하는 것을 추천하지 **않습니다.**
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+보다 인터랙티브한 학습을 원한다면, 언제든지 중지/재생 할 수 있는 스크린캐스트와 코드 플레이그다운드를 제공해주는 [Scrimba의 튜토리얼 시리즈](https://scrimba.com/playlist/pXKqta)를 확인해보세요.
 
 ## 선언적 렌더링
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Scrimba에서 레슨 받기</a></div>
 
 Vue.js의 핵심은 간단한 템플릿 구문을 사용해 선언적으로 DOM에 데이터를 렌더링하는 것입니다.
 
@@ -113,7 +114,7 @@ JavaScript 콘솔을 다시 열고 `app2.message = '새로운 메시지'`라고 
 
 ## 조건문과 반복문
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Scrimba에서 레슨 받기</a></div>
 
 엘리먼트의 존재 여부를 토글하는 것은 아주 간단합니다.
 
@@ -199,7 +200,7 @@ var app4 = new Vue({
 
 ## 사용자 입력 핸들링
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Scrimba에서 레슨 받기</a></div>
 
 사용자가 앱과 상호 작용할 수 있게 하기 위해 우리는`v-on` 디렉티브를 사용하여 Vue 인스턴스에 메소드를 호출하는 이벤트 리스너를 첨부 할 수 있습니다 :
 
@@ -277,7 +278,7 @@ var app6 = new Vue({
 
 ## 컴포넌트를 사용한 작성방법
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Scrimba에서 레슨 받기</a></div>
 
 컴포넌트 시스템은 Vue의 또 다른 중요한 개념입니다. 이는 작고 그 자체로 제 기능을 하며 재사용할 수 있는 컴포넌트로 구성된 대규모 응용 프로그램을 구축할 수 있게 해주는 추상적 개념입니다. 생각해보면 거의 모든 유형의 응용 프로그램 인터페이스를 컴포넌트 트리로 추상화할 수 있습니다.
 
@@ -396,12 +397,10 @@ Vue 컴포넌트는 [Web Components Spec](http://www.w3.org/wiki/WebComponents/)
 
 2. Vue 컴포넌트는 일반 사용자 정의 엘리먼트에서 사용할 수 없는 중요한 기능을 제공합니다. 특히 컴포넌트 데이터 흐름, 사용자 지정 이벤트 통신 및 빌드 도구 통합이 중요합니다.
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+Vue는 내부적으로 커스텀 엘리먼트를 사용하지 않지만, 커스텀 엘리먼트로 사용 또는 배포하는 경우에는 [뛰어난 상호운용성](https://custom-elements-everywhere.com/#vue)을 가집니다. Vue CLI는 자기자신을 네이티브 커스텀 엘리먼트로서 등록하는 Vue 컴포넌트의 빌드도 지원하고 있습니다.
 
 ## 더 해야할 것은 무엇인가요?
 
 우리는 Vue.js 코어의 가장 기본적인 기능을 간략하게 소개했습니다. 이 가이드의 나머지 부분에서 더 자세한 세부 내용이 포함된 다른 고급 기능에 대해 다룰 예정이므로 꼭 읽어보시기 바랍니다.
-
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
 
 <div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
