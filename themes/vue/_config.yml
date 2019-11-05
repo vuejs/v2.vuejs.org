@@ -86,9 +86,6 @@ gold_sponsors:
   - url: 'https://www.bestvpn.co/'
     img: bestvpn_co.png
     name: BestVPN.co
-  - url: 'https://blokt.com/'
-    img: blokt_cryptocurrency_news.png
-    name: Blokt Cryptocurrency News
   - url: 'https://www.y8.com/'
     img: y8.png
     name: Y8
@@ -113,9 +110,6 @@ gold_sponsors:
   - url: 'https://unicorn.io/'
     img: unicorn_io.svg
     name: Unicorn.io
-  - url: 'https://piratebay.ink'
-    img: piratebay_proxy.png
-    name: Piratebay Proxy
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
