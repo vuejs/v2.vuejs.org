@@ -1,5 +1,89 @@
 var themeData = [
   {
+    name: "MDBootstrap",
+    description: `Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient`,
+    seeMoreUrl: "https://mdbootstrap.com/docs/vue/",
+    products: [
+      {
+        link: "https://mdbootstrap.com/products/vue-ui-kit/",
+        name: "Vue Material Bootstrap Kit",
+        description: "Premium Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 99
+      },
+      {
+        link: "https://mdbootstrap.com/docs/vue/",
+        name: "Vue Material Bootstrap Kit",
+        description: "Free Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 0
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-admin-dashboard/",
+        name: "Vue Material Bootstrap Admin",
+        description: "Premium Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 79
+      },
+      {
+        link: "https://mdbootstrap.com/freebies/vue/admin-dashboard/",
+        name: "Vue Material Bootstrap Admin",
+        description: "Free Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 0
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-wysiwyg/",
+        name: "Vue WYSIWYG",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/wysiwyg.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-table-editor/",
+        name: "Vue Table Editor",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/table-editor.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-full-calendar/",
+        name: "Vue Full Calendar",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/calendar.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-file-upload/",
+        name: "Vue File Upload",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/file-upload.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-filter/",
+        name: "Vue Filter",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/filter.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-sortable/",
+        name: "Vue Sortable",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/sortable.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-color-picker/",
+        name: "Vue Sortable",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/color-picker.jpg",
+        price: 29
+      }
+    ]
+  },
+  {
     name: 'Creative Tim',
     description: `With the examples below built by our partners from [Creative Tim](https://creative-tim.com?affiliate_id=116187) you can see how a real world application is built, the technology stack behind it and how most of the concepts you've learned so far apply in a real world application.`,
     seeMoreUrl: 'https://www.creative-tim.com/bootstrap-themes/vuejs-themes?affiliate_id=116187',
