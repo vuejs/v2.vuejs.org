@@ -34,6 +34,8 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 
 ### CDN
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/getting-started-with-vuejs?friend=vuejs" target="_blank" rel="sponsored noopener" title="Watch a free Vue.js Lesson on how to get started with Vue.js">Watch how to get started with Vue.js on Vue School</a></div>
+
 For prototyping or learning purposes, you can use the latest version with:
 
 ``` html
