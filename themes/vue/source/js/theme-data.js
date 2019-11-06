@@ -89,5 +89,89 @@ var themeData = [
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-light-bootstrap-dashboard/vue-light-bootstrap-dashboard.jpg'
       }
     ]
+  },
+  {
+    name: "MDBootstrap",
+    description: `Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient`,
+    seeMoreUrl: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
+    products: [
+      {
+        link: "https://mdbootstrap.com/products/vue-ui-kit?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Kit",
+        description: "Premium Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 99
+      },
+      {
+        link: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Kit",
+        description: "Free Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 0
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-admin-dashboard?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Admin",
+        description: "Premium Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 79
+      },
+      {
+        link: "https://mdbootstrap.com/freebies/vue/admin-dashboard?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Admin",
+        description: "Free Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 0
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-wysiwyg?utm_ref_id=82665",
+        name: "Vue WYSIWYG",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/wysiwyg.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-table-editor?utm_ref_id=82665",
+        name: "Vue Table Editor",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/table-editor.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-full-calendar?utm_ref_id=82665",
+        name: "Vue Full Calendar",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/calendar.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-file-upload?utm_ref_id=82665",
+        name: "Vue File Upload",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/file-upload.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-filter?utm_ref_id=82665",
+        name: "Vue Filter",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/filter.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-sortable?utm_ref_id=82665",
+        name: "Vue Sortable",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/sortable.jpg",
+        price: 29
+      },
+      {
+        link: "https://mdbootstrap.com/products/vue-color-picker?utm_ref_id=82665",
+        name: "Vue Sortable",
+        description: "Premium Vue.js Plugin",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/color-picker.jpg",
+        price: 29
+      }
+    ]
   }
 ]
