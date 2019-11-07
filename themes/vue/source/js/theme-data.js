@@ -92,7 +92,7 @@ var themeData = [
   },
   {
     name: "MDBootstrap",
-    description: `Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient`,
+    description: `Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient.`,
     seeMoreUrl: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
     products: [
       {
@@ -125,4 +125,5 @@ var themeData = [
       }
     ]
   }
+  
 ]
