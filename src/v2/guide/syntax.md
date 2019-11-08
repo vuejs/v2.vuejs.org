@@ -74,7 +74,7 @@ En el caso de los atributos booleanos, donde su mera existencia implica `true`, 
 
 Si `isButtonDisabled` tiene el valor de `null`, `undefined` o `false`, el atributo `desabled` ni siquiera se incluirá en el elemento `<button>` representado.
 
-### Usindo Expresiones JavaScript 
+### Usando Expresiones JavaScript 
 
 Hasta ahora solo hemos estado vinculando a simples claves de propiedad en nuestras template. Pero Vue.js realmente admite el poder completo de las expresiones de JavaScript dentro de todos los enlaces de datos:
 
