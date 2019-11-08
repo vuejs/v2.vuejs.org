@@ -155,7 +155,7 @@ Mucho mejor, ¿no?
 
 ### Setter Computado
 
-Las propiedades calculadas son, de forma predeterminada solo get, pero también puede proporcionar un set cuando lo necesite:
+Las propiedades computadas son, de forma predeterminada solo get, pero también puede proporcionar un set cuando lo necesite:
 
 ``` js
 // ...
