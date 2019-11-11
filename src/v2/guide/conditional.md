@@ -138,7 +138,6 @@ Sin embargo, esto no siempre es deseable, por lo que Vue le ofrece una manera de
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
 Ahora estas entradas se procesarán desde cero cada vez que presione alternar. Ver por ti mismo:
 
 {% raw %}
