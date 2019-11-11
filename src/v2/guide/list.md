@@ -6,7 +6,7 @@ order: 8
 
 ## Mapeando una matriz a elementos con `v-for`
 
-Podemos usar la directiva `v-for` para representar una lista de elementos basada en una matriz. La directiva `v-for` requiere una sintaxis especial en forma de `item in items`, donde los `items` son la matriz de datos de origen y el `item` es un **alias** para el elemento de matriz que se está iterando en:
+Podemos usar la directiva `v-for` para representar una lista de elementos basada en una matriz. La directiva `v-for` requiere una sintaxis especial en forma de `item in items`, donde los `items` son la matriz de datos de origen y el `item` es un **alias** para el elemento de matriz que se está iterando:
 
 ``` html
 <ul id="example-1">
@@ -59,7 +59,7 @@ Dentro de los bloques `v-for` tenemos acceso completo a las propiedades del ámb
 ``` html
 <ul id="example-2">
   <li v-for="(item, index) in items">
-    m{ MensajePadre }} - {{ index }} - {{ item.mensaje }}
+    {{ MensajePadre }} - {{ index }} - {{ item.mensaje }}
   </li>
 </ul>
 ```
@@ -235,7 +235,7 @@ Como Vue es un mecanismo genérico para identificar nodos, la `key` también tie
 
 ## Deteccion del cambios en Array
 
-### Methods de Mutacion
+### Metodos de Mutacion
 
 Vue envuelve los métodos de mutación de una matriz observada para que también activen las actualizaciones de vista. Los métodos envueltos son:
 
@@ -249,7 +249,7 @@ Vue envuelve los métodos de mutación de una matriz observada para que también
 
 Puede abrir la consola y probar con la matriz de `items` de los ejemplos anteriores llamando a sus métodos de mutación. Por ejemplo: `example1.items.push ({mensaje: 'Baz'})`.
 
-### Replacing an Array
+### Mutando un Array
 
 Los métodos de mutación, como sugiere su nombre, mutan la matriz original a la que se llama. En comparación, también hay métodos no mutantes, p. Ej. `filter()`, `concat()` y `slice()`, que no mutan la matriz original pero **siempre devuelven una nueva matriz**. Cuando trabaje con métodos no mutantes, puede reemplazar la matriz anterior por la nueva:
 
@@ -281,7 +281,7 @@ vm.items[1] = 'x' // NO es reactivo
 vm.items.length = 2 //  NO es reactivo
 ```
 
-Para superar la advertencia 1, ambos de los siguientes lograrán lo mismo que `vm.items [indexOfItem] = newValue`, pero también activarán actualizaciones de estado en el sistema de reactividad:
+Para superar la advertencia 1, ambos de los siguientes lograrán lo mismo que `vm.items[indexOfItem] = newValue`, pero también activarán actualizaciones de estado en el sistema de reactividad:
 
 ``` js
 // Vue.set
@@ -298,7 +298,7 @@ También puede usar el método de instancia [`vm.$Set`](https://vuejs.org/v2/api
 vm.$set(vm.items, indexOfItem, newValue)
 ```
 
-Para tratar con la advetencia 2, puede usar `splice`:
+Para tratar con la advertencia 2, puede usar `splice`:
 
 ``` js
 vm.items.splice(newLength)
@@ -334,14 +334,12 @@ var vm = new Vue({
 ```
 
 Podría agregar una nueva propiedad de `edad` al objeto de `userProfile` anidado con:
-You could add a new `edad` property to the nested `userProfile` object with:
 
 ``` js
 Vue.set(vm.userProfile, 'edad', 27)
 ```
 
 También puede usar el método de instancia vm. `$Set`, que es un alias para el `Vue.setz global:
-You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
 
 ``` js
 vm.$set(vm.userProfile, 'edad', 27)
@@ -366,7 +364,7 @@ vm.userProfile = Object.assign({}, vm.userProfile, {
 
 ## Mostrando Resultados Filtrados/Ordenados
 
-A veces, queremos mostrar una versión filtrada o ordenada de una matriz sin mutar o restablecer los datos originales. En este caso, puede crear una propiedad computada que devuelva la matriz filtrada o ordenada.
+A veces, queremos mostrar una versión filtrada u ordenada de una matriz sin mutar o restablecer los datos originales. En este caso, puede crear una propiedad computada que devuelva la matriz filtrada o ordenada.
 
 Por ejemplo:
 
@@ -450,7 +448,7 @@ Cuando existen en el mismo nodo, `v-for` tiene una prioridad más alta que `v-if
 </li>
 ```
 
-Lo anterior  hace que todos los que no estén completos.
+Lo anterior hace que todos los que no estén completos, se renderizen.
 
 Si, por el contrario, su intención es omitir condicionalmente la ejecución del bucle, puede colocar el `v-if` en un elemento de envoltura (o [`<plantilla>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Por ejemplo:
 
@@ -495,7 +493,7 @@ Aquí hay un ejemplo completo de una lista de porhacer simple:
   <form -on:submit.prevent="addNewTodo">
     <label for="new-porhacer">Agregar a hacer</label>
     <input
-      v-="newTodoText"
+      v-model="newTodoText"
       id="new-porhacer"
       placeholder=E.g. Feed the cat"
     >
