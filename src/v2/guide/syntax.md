@@ -33,14 +33,14 @@ Mustache 태그는 해당 데이터 객체의 `msg` 속성 값으로 대체됩�
 이중 중괄호(mustaches)는 HTML이 아닌 일반 텍스트로 데이터를 해석합니다. 실제 HTML을 출력하려면 `v-html` 디렉티브를 사용해야 합니다.
 
 ``` html
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>이중 중괄호 사용 시: {{ rawHtml }}</p>
+<p>v-html 디렉티브 사용 시: <span v-html="rawHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Using mustaches: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>이중 중괄호 사용 시: {{ rawHtml }}</p>
+  <p>v-html 디렉티브 사용 시: <span v-html="rawHtml"></span></p>
 </div>
 <script>
 new Vue({

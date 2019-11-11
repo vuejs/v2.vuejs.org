@@ -290,7 +290,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+인스턴스 메소드인 `vm.$set`를 사용할 수도 있습니다. 이는 전역 `Vue.set`의 별칭입니다:
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
@@ -439,7 +439,7 @@ methods: {
 
 ## `v-for` 와 `v-if`
 
-<p class="tip">Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for details.</p>
+<p class="tip">`v-if` 와 `v-for`를 같이 사용하는 것은 **추천하지 않습니다.** 자세한 내용은 [스타일 가이드](/v2/style-guide/#Avoid-v-if-with-v-for-essential)를 참조하세요.</p>
 
 동일한 노드에 두가지 모두 있다면, `v-for`가 `v-if`보다 높은 우선순위를 갖습니다. 즉, `v-if`는 루프가 반복될 때마다 실행됩니다. 이는 *일부* 항목만 렌더링 하려는 경우 유용합니다.
 

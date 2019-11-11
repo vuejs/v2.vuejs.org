@@ -210,16 +210,16 @@ methods: {
 
 > 2.3.0+ 이후 추가됨
 
-Vue also offers the `.passive` modifier, corresponding to [`addEventListener`'s `passive` option](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters).
+추가로, Vue는 [`addEventListener`의 `passive` 옵션](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters)에 대응되는 `.passive` 수식어를 제공합니다.
 
 ``` html
-<!-- 스크롤의 기본 이벤트를 취소할 수 없습니다. -->
+<!-- 스크롤의 기본 동작을 취소할 수 없습니다. -->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-추가로, Vue는 `.passive` 수식어를 제공합니다. 특히 모바일 환경에서 성능향상에 도움이 됩니다. 예를 들어, 브라우저는 핸들러가 `event.preventDefault()`를 호출할지 알지 못하므로 프로세스가 완료된 후 스크롤 합니다. `.passive` 수식어는 이 이벤트가 기본 동작을 멈추지 않는다는 것을 브라우저에 알릴 수 있습니다.
+이 수식어는 특히 모바일 환경에서 성능향상에 도움이 됩니다. 예를 들어, 브라우저는 핸들러가 `event.preventDefault()`를 호출할지 알지 못하므로 프로세스가 완료된 후 스크롤 합니다. `.passive` 수식어는 이 이벤트가 기본 동작을 멈추지 않는다는 것을 브라우저에 알릴 수 있습니다.
 
-<p class="tip">`.passive`와 `.prevent`를 함께 사용하지 마세요. because `.prevent` will be ignored and your browser will probably show you a warning. Remember, `.passive` communicates to the browser that you _don't_ want to prevent the event's default behavior.</p>
+<p class="tip">`.passive`와 `.prevent`를 함께 사용하지 마세요. 왜냐하면 `.prevent`는 무시되고 브라우저에서 아마도 콘솔 경고를 보여줄 것이기 때문입니다. `.passive`는 이벤트의 기본 동작을 멈추지 _않는다_는 것을  브라우저에 알린다는 것을 명심하세요.</p>
 
 ## 키 수식어
 
@@ -240,15 +240,15 @@ Vue also offers the `.passive` modifier, corresponding to [`addEventListener`'s 
 
 ### Key Codes
 
-<p class="tip">The use of `keyCode` events [is deprecated](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) and may not be supported in new browsers.</p>
+<p class="tip">`keyCode` 이벤트가 [더 이상 사용되지 않고](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) 새로운 브라우저에서 지원하지 않을 수도 있습니다.</p>
 
-Using `keyCode` attributes is also permitted:
+키 수식어 대신 `keyCode`를 사용하는 것도 가능합니다.
 
 ``` html
 <input v-on:keyup.13="submit">
 ```
 
-Vue provides aliases for the most commonly used key codes when necessary for legacy browser support:
+Vue는 기존 브라우저 지원이 필요할 때 가장 흔하게 사용되는 keyCode의 별칭을 제공합니다.
 
 - `.enter`
 - `.tab`
@@ -292,8 +292,7 @@ Vue.config.keyCodes.f1 = 112
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">
-수식어 키는 일반 키와 다르며 `keyup` 이벤트와 함께 사용되면 이벤트가 발생할 때 수식어 키가 눌려있어야 합니다. 즉,`keyup.ctrl`는 `ctrl`을 누른 상태에서 키를 놓으면 트리거됩니다. `ctrl` 키만 놓으면 트리거되지 않습니다.
+<p class="tip">수식어 키는 일반 키와 다르며 `keyup` 이벤트와 함께 사용되면 이벤트가 발생할 때 수식어 키가 눌려있어야 합니다. 즉,`keyup.ctrl`는 `ctrl`을 누른 상태에서 키를 놓으면 트리거됩니다. `ctrl` 키만 놓으면 트리거되지 않습니다.
 </p>
 
 ### `.exact` 수식어
