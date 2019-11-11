@@ -494,7 +494,7 @@ new Vue({
 })
 ```
 
-<p class="tip">`createElement`를 별칭 `h`로 이용하는 것은 Vue 생태계에서 볼 수 있는 공통된 관습이며 실제로 JSX에 필요합니다.  Starting with [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) of the Babel plugin for Vue, we automatically inject `const h = this.$createElement` in any method and getter (not functions or arrow functions), declared in ES2015 syntax that has JSX, so you can drop the `(h)` parameter. With prior versions of the plugin, your app would throw an error if `h` was not available in the scope. 사용하는 범위에서 `h`를 사용할 수 없다면, 앱은 오류를 발생시킵니다.</p>
+<p class="tip">`createElement`를 별칭 `h`로 이용하는 것은 Vue 생태계에서 볼 수 있는 공통된 관습이며 실제로 JSX에 필요합니다.  Vue를 위한 Babel 플러그인을 3.4.0버전으로 시작한다면,  JSX가 포함된 ES2015 문법으로 선언된 모든 method와 getter(함수나 화살표함수가 아니라)에 자동으로 `const h = this.$createElement`를 넣기 때문에 `(h)`매개변수를 삭제할 수 있습니다. 플러그인이 이전버전이고 사용하는 범위에서 `h`를 사용할 수 없다면, 앱은 오류를 발생시킵니다.</p>
 
 JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://github.com/vuejs/jsx#installation)을 확인하세요.
 
@@ -584,23 +584,23 @@ Vue.component('smart-list', {
 
 ### 자식 요소/컴포넌트에 속성과 이벤트 전달하기
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+평범한 컴포넌트에서 props로 정의되지 않은 속성은 같은 이름의 기존 속성으로 대체되거나 지능적으로 병합해서 컴포넌트의 루트 엘리먼트에 자동으로 추가됩니다.
 
-Functional components, however, require you to explicitly define this behavior:
+하지만 함수형 컴포넌트는 이 행동을 명시적으로 정의하는 것을 필요로 합니다.
 
 ```js
 Vue.component('my-functional-button', {
   functional: true,
   render: function (createElement, context) {
-    // Transparently pass any attributes, event listeners, children, etc.
+    // 모든 속성, 이벤트 리스너, children 등을 명백하게 전달한다.
     return createElement('button', context.data, context.children)
   }
 })
 ```
 
-By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+`createElement`의 두번째 인자로 `context.data`를 전달함으로써, `my-functional-button`에 사용된 모든 속성이나 이벤트 리스너를 전달할 수 있습니다. 사실, 이는 명백해서 이벤트도 심지어 `.native`수식어를 요구하지 않습니다.
 
-If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+만약 template 기반 함수형 컴포넌트를 사용한다면 수동으로 속성과 리스너를 추가해야 합니다. 각각의 context 내용에 접근할 수있으므로 HTML 속성을 전달하기 위해 `data.attrs`를 사용하고 이벤트 리스너를 전달하기 위해 (`data.on`의 별칭인)`listeners`를 사용할 수 있다.
 
 ```html
 <template functional>

@@ -144,9 +144,9 @@ new Vue({
 
 ### 다이나믹 디렉티브 전달인자
 
-Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument` can be updated based on data properties in our component instance! This makes our custom directives flexible for use throughout our application.
+디렉티브 인자는 동적일 수 있습니다. 예를 들어, `v-mydirective:[argument]="value"`에서 `argument`는 컴포넌트 인스턴스에 데이터 속성에 기반해서 업데이트 될 수 있습니다! 이는 사용자 정의 디렉티브를 응용프로그램 전반에 걸쳐 유연하게 사용되도록 만듭니다.
 
-Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
+고정된 위치를 사용해서 페이지에 엘리먼트를 고정하는 사용자 정의 디렉티브를 만들고 싶다고 가정해봅시다. 우리는 다음과 같이 값이 픽셀의 수직 위치를 업데이트하는 사용자 정의 디렉티브를 만들 수 있을겁니다.
 
 ```html
 <div id="baseexample">
@@ -168,7 +168,7 @@ new Vue({
 })
 ```
 
-This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
+이것은 페이지의 맨 위로부터 200px 떨어진 곳에 엘리먼트를 고정시킵니다. 하지만 위쪽이 아니라 왼쪽을 기준으로 엘리먼트를 고정해야 하는 시나리오가 발생하면 어떻게 할까요? 다음의 예에서는 컴포넌트 인스턴스별로 업데이트될 수 있는 동적 인수가 매우 편리합니다.
 
 
 ```html
@@ -197,7 +197,7 @@ new Vue({
 })
 ```
 
-Result:
+결과는 다음과 같습니다.
 
 {% raw %}
 <iframe height="200" style="width: 100%;" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="//codepen.io/team/Vue/embed/rgLLzb/?height=300&theme-id=32763&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
@@ -206,7 +206,7 @@ Result:
 </iframe>
 {% endraw %}
 
-Our custom directive is now flexible enough to support a few different use cases.
+이 사용자 정의 디렉티브는 이제 몇 가지 다른 사례를 충분히 유연하게 지원할 수 있습니다.
 
 ## 함수 약어
 

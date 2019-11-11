@@ -954,9 +954,9 @@ new Vue({
 그렇다면`v-for`를 사용하여 동시에 렌더링 하고자 하는 항목의 전체 목록이 있는 경우는 어떨까요? 이 경우 우리는`<transition-group>` 컴포넌트를 사용합니다. 예를 들어보기 전에 이 컴포넌트에 대해 알아야 할 몇 가지 중요한 사항이 있습니다.
 
 - `<transition>` 과 달리, 실제 요소인 `<span>`을 렌더링합니다. `tag` 속성으로 렌더링 된 요소를 변경할 수 있습니다.
-- [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
+- [트랜지션 모드](#트랜지션-모드)는 사용할 수 없습니다. 왜냐하면 더이상 상호 배타적인 요소가 번갈아 나오지 않기 때문입니다.
 - 엘리먼트의 내부 구현은 **항상 필요합니다** 고유한 `key` 속성을 갖습니다
-- CSS transition classes will be applied to inner elements and not to the group/container itself.
+- CSS 트랜지션 클래스들은 내부 요소들에 적용되고 그룹/container 자체에 적용되지 않습니다.
 
 ### 리스트의 진입 / 진출 트랜지션
 

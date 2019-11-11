@@ -36,7 +36,7 @@ var component = new Component() // => "hello from mixin!"
 ## 옵션 병합
 mixin과 컴포넌트 자체에 중첩 옵션이 포함되어 있으면 적절한 전략을 사용하여 "병합"됩니다.
 
-For example, data objects undergo a recursive merge, with the component's data taking priority in cases of conflicts.
+예를 들어, 데이터 객체는 충돌이 발생했을 경우 컴포넌트의 데이터를 우선적으로 재귀적으로 병합합니다.
 
 ``` js
 var mixin = {

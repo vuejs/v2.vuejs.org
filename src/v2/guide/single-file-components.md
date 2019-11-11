@@ -71,6 +71,6 @@ order: 401
 
 ### 고급 사용자를 위한 내용
 
-The CLI takes care of most of the tooling configurations for you, but also allows fine-grained customization through its own [config options](https://cli.vuejs.org/config/).
+CLI는 도구의 설정의 대부분을 관리하지만, 자체 [설정 옵션](https://cli.vuejs.org/config/)을 통해 세밀한 사용자 정의또한 허용합니다.
 
-In case you prefer setting up your own build setup from scratch, you will need to manually configure webpack with [vue-loader](https://vue-loader.vuejs.org). To learn more about webpack itself, check out [their official docs](https://webpack.js.org/configuration/) and [Webpack Academy](https://webpack.academy/p/the-core-concepts).
+처음부터 자신만의 빌드 설정을 설정하는 것을 선호한다면, [vue-loader](https://vue-loader.vuejs.org)와 Webpack을 수동적으로 구성해야 합니다.  Webpack 자체에 대해 더 배우기를 원한다면 [공식문서](https://webpack.js.org/configuration/)나 [Webpack Academy](https://webpack.academy/p/the-core-concepts)를 확인하세요.
