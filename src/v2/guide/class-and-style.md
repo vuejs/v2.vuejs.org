@@ -113,9 +113,9 @@ Sin embaro, esto puede ser un poco verboragico si usted tiene multiple clases co
 
 ### Con Componentes
 
-> Esta sección asume que usted tiene conocimientos sobre [Componentes de Vue](components.html). Siéntase libre de saltearla y volver más tarde.
+> Esta sección asume que usted tiene conocimientos sobre [Componentes de Vue](components.html). Siéntase libre de saltársela y volver más tarde.
 
-Cuando usa el atributo `class` en un componente personalziado, estas clases se agregarán al elemento raíz del componente. Las clases existentes en este elemento no serán sobreescritas.
+Cuando usa el atributo `class` en un componente personalizado, estas clases se agregarán al elemento raíz del componente. Las clases existentes en este elemento no serán sobreescritas.
 
 Por ejemplo, si declara este componente:
 
@@ -183,7 +183,7 @@ Nuevamente, la sintaxis de objeto es a menudo usada en conjunción con propiedad
 
 ### Sintaxis de Array
 
-La sintaxis de array `v-bind:style` permite aplicar multimple objetos de estilo al mimsmo elemento:
+La sintaxis de array `v-bind:style` permite aplicar múltiples objetos de estilo al mismo elemento:
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
