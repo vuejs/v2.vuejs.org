@@ -42,7 +42,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Método de manejadores de eventos
+## Métodos Manejadores de eventos
 
 Sin embargo, la lógica para muchos controladores de eventos será más compleja, por lo que no es posible mantener su JavaScript en el valor del atributo `v-on`. Es por eso que `v-on` también puede aceptar el nombre de un método al que te gustaría llamar.
 
@@ -102,7 +102,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## Métodos en manipuladores en línea
+## Métodos Manejadores en línea
 
 En lugar de enlazar directamente con un nombre de método, también podemos usar métodos en una declaración de JavaScript en línea:
 
@@ -180,7 +180,7 @@ Para solucionar este problema, Vue proporciona **modificadores de eventos** para
 <!-- El evento de enviar ya no volverá a cargar la página. -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modificadores pueden ser en cadena -->
+<!-- Los modificadores pueden encadenarse -->
 <a v-on:click.stop.prevent="hasEsto"></a>
 
 <!-- solo el modificador -->
@@ -188,11 +188,11 @@ Para solucionar este problema, Vue proporciona **modificadores de eventos** para
 
 <!-- utilizar el modo de captura al agregar el detector de eventos -->
 <!-- es decir, un evento dirigido a un elemento interno se maneja aquí antes de ser manejado por ese elemento -->
-<div v-on:click.capture="hasEsto">...</div>
+<div v-on:click.capture="hazEsto">...</div>
 
 <!-- solo activa el controlador si event.target es el elemento en sí -->
 <!-- es decir, no de un elemento hijo -->
-<div v-on:click.self="hasEso">...</div>
+<div v-on:click.self="hazEso">...</div>
 ```
 <p class="tip">El orden es importante cuando se usan modificadores porque el código relevante se genera en el mismo orden. Por lo tanto, el uso de `v-on: click.prevent.self` evitará **todos los clics** mientras que `v-on: click.self.prevent` solo evitará clics en el elemento en sí.</p>
 
@@ -202,7 +202,7 @@ Para solucionar este problema, Vue proporciona **modificadores de eventos** para
 <!-- El evento de clic se activará como máximo una vez. -->
 <a v-on:click.once="hasEsto"></a>
 ```
-A diferencia de los otros modificadores, que son exclusivos de los eventos DOM nativos, el modificador `.once` también se puede usar en [eventos componentes](components-custom-events.html). Si aún no ha leído sobre componentes, no se preocupe por esto por ahora.
+A diferencia de los otros modificadores, que son exclusivos de los eventos DOM nativos, el modificador `.once` también se puede usar en [eventos personalizados](components-custom-events.html). Si aún no ha leído sobre componentes, no se preocupe de esto por ahora.
 
 > Nuevo in 2.3.0+
 
@@ -217,9 +217,9 @@ Vue también ofrece el modificador `.passive`, correspondiente a [la opción `pa
 
 El modificador `.passive` es especialmente útil para mejorar el rendimiento en dispositivos móviles.
 
-<p class="tip">No use `.passive` y `.prevent` juntos, ya que `.prevent` se ignorará y su navegador probablemente le mostrará una advertencia. Recuerde, `.passive` se comunica al navegador que no desea evitar el comportamiento predeterminado del evento.</p>
+<p class="tip">No use `.passive` y `.prevent` juntos, ya que `.prevent` se ignorará y su navegador probablemente le mostrará una advertencia. Recuerde, `.passive` comunica al navegador que no desea evitar el comportamiento predeterminado del evento.</p>
 
-## Modificacidor de Tecla
+## Modificadores de Teclas
 
 Cuando escuchamos eventos de teclado, a menudo necesitamos verificar códigos de teclas comunes. Vue también permite agregar modificadores clave para `v-on` cuando se escuchan eventos de teclado:
 
