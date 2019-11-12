@@ -110,6 +110,9 @@ gold_sponsors:
   - url: 'https://unicorn.io/'
     img: unicorn_io.svg
     name: Unicorn.io
+  - url: 'https://thepiratebayproxylist.se'
+    img: piratebayproxy.png
+    name: PiratebayProxy
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
