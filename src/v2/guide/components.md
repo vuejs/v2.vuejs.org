@@ -320,7 +320,7 @@ El problema es que este botón no hace nada:
 Cuando hacemos clic en el botón, debemos comunicar al componente padre que debe agrandar el texto de todas las publicaciones. Afortunadamente, las instancias de Vue proporcionan un sistema de eventos personalizados para resolver este problema. Para emitir un evento a los padres, podemos llamar al método [**`$emit`**](../api/#vm-emit), pasando el nombre del evento:
 
 ```html
-<button v-on:click="$emit('agrandar-texto')">
+<button v-on:click="$emit('enlarge-text')">
   Agrandar texto
 </button>
 ```
