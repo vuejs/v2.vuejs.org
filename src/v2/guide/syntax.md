@@ -141,7 +141,7 @@ Más adelante veremos otros ejemplos de modificadores, [para `v-on`](events.html
 
 El prefijo `v-` sirve como una señal visual para identificar atributos específicos de Vue en sus templates. Esto es útil cuando está utilizando Vue.js para aplicar un comportamiento dinámico a algún marcado existente, pero puede sentirse detallado para algunas directivas de uso frecuente. Al mismo tiempo, la necesidad del prefijo `v-` es menos importante cuando se está construyendo un [SPA](https://en.wikipedia.org/wiki/Single-page_application) donde Vue.js administra cada template. Por lo tanto, Vue.js proporciona abreviaturas especiales para dos de las directivas más utilizadas, `v-bind` y `v-on`:
 
-### `v-bind` Abreciado
+### `v-bind` Abreviado
 
 ``` html
 <!-- full syntax -->
