@@ -50,7 +50,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 </div>
 ```
 ``` js
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!'
@@ -62,7 +62,7 @@ var app = new Vue({
   {{ message }}
 </div>
 <script>
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!'
@@ -84,7 +84,7 @@ In addition to text interpolation, we can also bind element attributes like this
 </div>
 ```
 ``` js
-var app2 = new Vue({
+const app2 = new Vue({
   el: '#app-2',
   data: {
     message: 'You loaded this page on ' + new Date().toLocaleString()
@@ -98,7 +98,7 @@ var app2 = new Vue({
   </span>
 </div>
 <script>
-var app2 = new Vue({
+const app2 = new Vue({
   el: '#app-2',
   data: {
     message: 'You loaded this page on ' + new Date().toLocaleString()
@@ -124,7 +124,7 @@ It's easy to toggle the presence of an element, too:
 ```
 
 ``` js
-var app3 = new Vue({
+const app3 = new Vue({
   el: '#app-3',
   data: {
     seen: true
@@ -137,7 +137,7 @@ var app3 = new Vue({
   <span v-if="seen">Now you see me</span>
 </div>
 <script>
-var app3 = new Vue({
+const app3 = new Vue({
   el: '#app-3',
   data: {
     seen: true
@@ -162,7 +162,7 @@ There are quite a few other directives, each with its own special functionality.
 </div>
 ```
 ``` js
-var app4 = new Vue({
+const app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
@@ -182,7 +182,7 @@ var app4 = new Vue({
   </ol>
 </div>
 <script>
-var app4 = new Vue({
+const app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
@@ -210,7 +210,7 @@ To let users interact with your app, we can use the `v-on` directive to attach e
 </div>
 ```
 ``` js
-var app5 = new Vue({
+const app5 = new Vue({
   el: '#app-5',
   data: {
     message: 'Hello Vue.js!'
@@ -228,7 +228,7 @@ var app5 = new Vue({
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 <script>
-var app5 = new Vue({
+const app5 = new Vue({
   el: '#app-5',
   data: {
     message: 'Hello Vue.js!'
@@ -253,7 +253,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 </div>
 ```
 ``` js
-var app6 = new Vue({
+const app6 = new Vue({
   el: '#app-6',
   data: {
     message: 'Hello Vue!'
@@ -266,7 +266,7 @@ var app6 = new Vue({
   <input v-model="message">
 </div>
 <script>
-var app6 = new Vue({
+const app6 = new Vue({
   el: '#app-6',
   data: {
     message: 'Hello Vue!'
@@ -291,7 +291,7 @@ Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 
-var app = new Vue(...)
+const app = new Vue(...)
 ```
 
 Now you can compose it in another component's template:
@@ -340,7 +340,7 @@ Vue.component('todo-item', {
   template: '<li>{{ todo.text }}</li>'
 })
 
-var app7 = new Vue({
+const app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
@@ -362,7 +362,7 @@ Vue.component('todo-item', {
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
-var app7 = new Vue({
+const app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
