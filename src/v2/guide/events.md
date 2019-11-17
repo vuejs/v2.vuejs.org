@@ -156,7 +156,9 @@ Sometimes we also need to access the original DOM event in an inline statement h
 methods: {
   warn: function (message, event) {
     // now we have access to the native event
-    if (event) event.preventDefault()
+    if (event) {
+      event.preventDefault()
+    }
     alert(message)
   }
 }
