@@ -116,6 +116,9 @@ gold_sponsors:
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
+  - url: 'https://watchcartoononline.best/'
+    img: watchcartoononline.png
+    name: Watchcartoononline
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
