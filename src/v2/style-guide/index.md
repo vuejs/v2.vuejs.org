@@ -226,7 +226,7 @@ props: {
         'synced',
         'version-conflict',
         'error'
-      ].indexOf(value) !== -1
+      ].includes(value)
     }
   }
 }
