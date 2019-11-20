@@ -278,30 +278,6 @@ For example, imagine we're using a 3rd-party `bootstrap-date-input` component wi
 
 And the `data-date-picker="activated"` attribute will automatically be added to the root element of `bootstrap-date-input`.
 
-### Replacing/Merging with Existing Attributes
-
-Imagine this is the template for `bootstrap-date-input`:
-
-``` html
-<input type="date" class="form-control">
-```
-
-To specify a theme for our date picker plugin, we might need to add a specific class, like this:
-
-``` html
-<bootstrap-date-input
-  data-date-picker="activated"
-  class="date-picker-theme-dark"
-></bootstrap-date-input>
-```
-
-In this case, two different values for `class` are defined:
-
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
-
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="text"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
-
 ### Disabling Attribute Inheritance
 
 If you do **not** want the root element of a component to inherit attributes, you can set `inheritAttrs: false` in the component's options. For example:
@@ -352,3 +328,27 @@ This pattern allows you to use base components more like raw HTML elements, with
   placeholder="Enter your username"
 ></base-input>
 ```
+
+### Replacing/Merging with Existing Attributes
+
+Imagine this is the template for `bootstrap-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+To specify a theme for our date picker plugin, we might need to add a specific class, like this:
+
+``` html
+<bootstrap-date-input
+  data-date-picker="activated"
+  class="date-picker-theme-dark"
+></bootstrap-date-input>
+```
+
+In this case, two different values for `class` are defined:
+
+- `form-control`, which is set by the component in its template
+- `date-picker-theme-dark`, which is passed to the component by its parent
+
+For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="text"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
