@@ -30,7 +30,7 @@ You can also perform one-time interpolations that do not update on data change b
 
 ### Raw HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
+The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the [`v-html` directive](../api/#v-html):
 
 ``` html
 <p>Using mustaches: {{ rawHtml }}</p>
@@ -60,7 +60,7 @@ The contents of the `span` will be replaced with the value of the `rawHtml` prop
 
 ### Attributes
 
-Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directive](../api/#v-bind):
+Mustaches cannot be used inside HTML attributes. Instead, use a [`v-bind` directive](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
