@@ -65,7 +65,7 @@ partners_list:
             - Global
         url_text: moduscreate.com
         url_link: moduscreate.com/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
-        hire_url: moduscreate.com/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
+        hire_url: https://moduscreate.com/partners/vue/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
         email: contact@moduscreate.com
         social_links:
             -
