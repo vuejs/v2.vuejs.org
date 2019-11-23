@@ -44,7 +44,8 @@ partners_list:
         description:
             "Modus Create is a digital product agency that supports clients with business and product strategy consulting, customer experience, cloud services, and Agile software delivery. Our official partnerships with Atlassian, AWS, InVision, Cloudflare, GitHub, Ionic Framework, and Vue.js reinforce our proven results with digital transformation with organizations from startups to the Fortune 100."
         proficiencies:
-            - VueJs
+            - name: Vue.js
+              url: https://moduscreate.com/partners/vue/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: AWS
               url: https://moduscreate.com/partners/aws/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
             - name: Atlassian
