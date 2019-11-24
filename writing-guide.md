@@ -51,7 +51,7 @@ Writing documentation is an exercise in empathy. We're not describing an objecti
 - **Always prefer simpler, plainer language over complex or jargony language.** For example:
   - "you can use Vue with a script element" instead of "in order to initiate the usage of Vue, one possible option is to actually inject it via a script HTML element"
   - "function that returns a function" instead of "higher order function"
-- **Avoid language that invalidate struggle**, such as "easy", "just", "obviously", etc. For reference, see [Words To Avoid in Educational Writing](Words To Avoid in Educational Writing).
+- **Avoid language that invalidate struggle**, such as "easy", "just", "obviously", etc. For reference, see [Words To Avoid in Educational Writing](https://css-tricks.com/words-avoid-educational-writing/).
 
 ### Grammar
 
