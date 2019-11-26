@@ -4,9 +4,13 @@
 
 .vueschool-banner
   display none
-  background #ffd046
+  background #0d0751
   overflow hidden
   position relative
+  background-image: url(/images/vueschool_banner_background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
   &:hover
     &:before
@@ -25,10 +29,11 @@
     display none
 
 .vueschool-banner--wrapper
+  color: #FFF
   display flex
   height 100%
   align-items center
-  background #ffd046
+  background #0d0751
   margin-left -50px
   padding-left 50px
   position relative
@@ -39,13 +44,12 @@
       &:before,
       &:after
         transform-origin 100%
-        background #0d0751
+        background #fff
 
   p
     margin -3px 50px 0 20px
     font-size 1.17rem
     font-weight 600
-    color #0d0751
     position relative
     transition-delay .15s
 
@@ -60,9 +64,9 @@
     text-transform uppercase
     padding 16px 32px
     border-radius 32px
-    background #0d0751
+    background #ff49c6
     border none
-    color #ffd046
+    color #FFF
     font-size 16px
     margin: 0 auto
 
@@ -71,9 +75,6 @@
 
 
 .vueschool-banner--logo
-  height 102%
-  margin-top: -1px
-  margin-left 125px
   position relative
   z-index 2
 
