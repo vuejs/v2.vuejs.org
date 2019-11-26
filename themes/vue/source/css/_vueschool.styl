@@ -4,21 +4,9 @@
 
 .vueschool-banner
   display none
-  background #4fc08d
-  background-image linear-gradient(to right, #35495E, #35495E 50%, #4fc08d 50%)
+  background #ffd046
   overflow hidden
   position relative
-
-  &:before
-    content ''
-    background #35495E
-    background-image linear-gradient(to right, #4fc08d, #4fc08d 80%, #35495E 100%)
-    position absolute
-    top 0
-    bottom 0
-    left 0
-    width 0
-    transition width .15s ease-out .1s
 
   &:hover
     &:before
@@ -26,11 +14,7 @@
       width 50%
     p
       transition-delay 0
-      color #fff
 
-    .vueschool-banner--wrapper::before
-      width 100vw
-      transition width .15s ease-in .10s
 
   a
     display flex
@@ -44,34 +28,24 @@
   display flex
   height 100%
   align-items center
-  background #4fc08d
+  background #ffd046
   margin-left -50px
   padding-left 50px
   position relative
 
-  &:before
-    content ''
-    pointer-events none
-    background #35495E
-    background-image linear-gradient(to right, #35495E, #35495E 80%, #4fc08d 100%)
-    position absolute
-    top 0
-    bottom 0
-    left 0
-    width 0
-    transition width .15s ease-out
 
   &:hover
     + .vueschool-banner--close
       &:before,
       &:after
         transform-origin 100%
+        background #0d0751
 
   p
     margin -3px 50px 0 20px
     font-size 1.17rem
     font-weight 600
-    color #2c3e50
+    color #0d0751
     position relative
     transition-delay .15s
 
@@ -79,6 +53,22 @@
     font-size 1rem
     display block
     color #fff
+
+  button
+    cursor pointer
+    font-weight 600
+    text-transform uppercase
+    padding 16px 32px
+    border-radius 32px
+    background #0d0751
+    border none
+    color #ffd046
+    font-size 16px
+    margin: 0 auto
+
+    &:hover
+      color white
+
 
 .vueschool-banner--logo
   height 102%
@@ -141,24 +131,32 @@
     #main.fix-sidebar .sidebar .sidebar-inner
       padding-top 110px
 
+    #sidebar-sponsors-platinum-right
+      position absolute
+      top: 170px;
+
 @media screen and (min-width: 415px) and (max-width: 900px)
   .vueschool-weekend-promo.docs:not(.vueschool-menu-fixed)
-      #main.fix-sidebar .sidebar .sidebar-inner
-        padding-top 140px
+    #main.fix-sidebar .sidebar .sidebar-inner
+      padding-top 140px
 
-      #sidebar-sponsors-platinum-right
-        position absolute
-        top: 170px;
+    #sidebar-sponsors-platinum-right
+      position absolute
+      top: 170px;
 
-    &.vueschool-menu-fixed.docs
-      .vueschool-banner
-        margin-bottom 0
+  &.vueschool-menu-fixed.docs
+    .vueschool-banner
+      margin-bottom 0
+
+  .vueschool-banner
+    button
+      display none
 
 @media screen and (max-width: 414px)
   // Docs menu
   .vueschool-weekend-promo.docs:not(.vueschool-menu-fixed)
     #main.fix-sidebar .sidebar .sidebar-inner
-     padding-top 100px
+      padding-top 100px
 
   .vueschool-banner
     .vueschool-banner--logo
@@ -182,7 +180,6 @@
 
     p, span
       font-size .8rem
-      color #fff
 
     .vueschool-banner--close
       top 0px
@@ -200,6 +197,8 @@
     p
       max-width 200px
     span
+      display none
+    button
       display none
 
 @media screen and (max-width 286px)
