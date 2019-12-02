@@ -7,13 +7,13 @@ order: 404
 
 > En Vue 2.5.0+, hemos mejorado enormemente nuestras declaraciones de tipo para trabajar con la API predeterminada basada en objetos. Al mismo tiempo, introduce algunos cambios que requieren acciones de actualización. Lea [esta publicación del blog](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08) para más detalles.
 
-## Delaracion Oficial en Packetes NPM 
+## Declaración Oficial en Packetes NPM 
 
 Un sistema de tipo estático puede ayudar a prevenir muchos errores potenciales en el tiempo de ejecución, especialmente a medida que las aplicaciones crecen. Es por eso que Vue se envía con [declaraciones oficiales de tipo](https://github.com/vuejs/vue/tree/dev/types) para [TypeScript](https://www.typescriptlang.org/) - no solo en Vue Core, sino también para [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) y [vuex](https://github.com/vuejs/vuex/tree/dev/types).
 
 Ya que estos se [publican en NPM](https://cdn.jsdelivr.net/npm/vue/types/), y el último TypeScript sabe cómo resolver las declaraciones de tipo en los paquetes de NPM, esto significa que cuando se instala a través de NPM, no necesita herramientas adicionales para usar TypeScript con Vue.
 
-## Configuracon recomendada
+## Configuración recomendada
 
 ``` js
 // tsconfig.json
@@ -36,7 +36,7 @@ Ver [documentos de opciones del compilador de TypeScript](https://www.typescript
 
 ## Herramientas de desarrollo
 
-### Creacion de Proyecto
+### Creación de Proyecto
 
 [Vue CLI 3](https://github.com/vuejs/vue-cli) puede generar nuevos proyectos que utilizan TypeScript. Para empezar:
 
@@ -50,7 +50,7 @@ vue create my-project-name
 
 ### Soporte para Editor
 
-Para desarrollar aplicaciones de Vue con TypeScript, recomendamos encarecidamente el uso de [Visual Studio Code](https://code.visualstudio.com/), que proporciona una gran compatibilidad inmediata con TypeScript. Si está utilizando [components de un archivos](./single-file-components.html) (SFC) obtgenga las impresionantes [extension Vetur](https://github.com/vuejs/vetur) que proporciona inferencia de TypeScript dentro de SFC y muchas otras características excelentes.
+Para desarrollar aplicaciones de Vue con TypeScript, recomendamos encarecidamente el uso de [Visual Studio Code](https://code.visualstudio.com/), que proporciona una gran compatibilidad inmediata con TypeScript. Si está utilizando [components de un archivos](./single-file-components.html) (SFC) obtenga la impresionante [extension Vetur](https://github.com/vuejs/vetur) que proporciona inferencia de TypeScript dentro de SFC y muchas otras características excelentes.
 
 [WebStorm](https://www.jetbrains.com/webstorm/) también ofrece compatibilidad inmediata con TypeScript y Vue.
 
@@ -95,7 +95,7 @@ export default class MyComponent extends Vue {
 }
 ```
 
-## Augmentando los Tipos para Usar con  Plugins
+## Aumentando los Tipos para Usar con Plugins
 
 Los Plugins pueden agregarse a las propiedades de instancia/global de Vue y las opciones de componentes En estos casos, se necesitan declaraciones de tipo para hacer que los complementos se compilen en TypeScript. Afortunadamente, hay una característica de TypeScript para aumentar los tipos existentes llamados [aumento de módulo](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
@@ -115,7 +115,7 @@ declare module 'vue/types/vue' {
 }
 ```
 
-Después de incluir el código anterior como un archivo de declaración (como `my-property.d.ts`) en su proyecto,puede usar `$myProperty` en una instancia de Vue.
+Después de incluir el código anterior como un archivo de declaración (como `my-property.d.ts`) en su proyecto, puede usar `$myProperty` en una instancia de Vue.
 
 ```ts
 var vm = new Vue()
