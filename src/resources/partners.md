@@ -132,4 +132,46 @@ partners_list:
                 name: Instagram
                 class: instagram
                 url: 'https://www.instagram.com/monterail/'
+    -
+        name: Rangle
+        logo: https://res.cloudinary.com/rangle/image/upload/q_auto,f_auto/vuejs.org/rangle_black_lockup_n6q48z.png
+        description:
+            "Rangle is a global digital consultancy that helps ambitious organizations outperform the competition in the most demanding markets. We work closely with our clients as one team to imagine, design, and deliver human-centered digital experiences that create lasting results and real business value. Anchored in innovation and lean startup best-practices, our unique delivery and partnership model is purposed-built to this task."
+        proficiencies:
+            - name: Building Products
+              url: https://rangle.io/#build-a-product/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+            - name: Improving Experiences
+              url: https://rangle.io/#improve-an-experience/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+            - name: Training & Coaching
+              url: https://rangle.io/#level-up-your-team/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+            - name: Agile Transformation
+              url: https://rangle.io/#adopt-agile-delivery/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+            - name: Business Transformation
+              url: https://rangle.io/#transform-your-business/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+        location: Toronto, ON, CA　Atlanta, GA, USA　Amsterdam, Netherlands　Tokyo, Japan
+        languages:
+            - English
+            - French
+            - Dutch
+        url_text: rangle.io
+        url_link: rangle.io/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+        hire_url: rangle.io/contact-us/?utm_source=referral&utm_medium=partner&utm_campaign=vue-partners
+        email: info@rangle.io
+        social_links:
+            -
+                name: GitHub
+                class: github
+                url: 'https://github.com/rangle'
+            -
+                name: LinkedIn
+                class: linkedin
+                url: 'https://www.linkedin.com/company/rangle/'
+            -
+                name: Twitter
+                class: twitter
+                url: 'https://twitter.com/rangleio'
+            -
+                name: Instagram
+                class: instagram
+                url: 'https://www.instagram.com/rangleio/?hl=en'
 ---
