@@ -1612,7 +1612,6 @@ This is the default order we recommend for component options. They're split into
 6. **Unique Attributes** (attributes that require unique values)
   - `ref`
   - `key`
-  - `slot`
 
 7. **Two-Way Binding** (combining binding and events)
   - `v-model`
