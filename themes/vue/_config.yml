@@ -116,13 +116,7 @@ gold_sponsors:
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
-  - url: 'https://watchcartoononline.best/'
-    img: watchcartoononline.png
-    name: Watchcartoononline
 silver_sponsors:
-  - url: 'https://dopamine.bg/'
-    img: dopamine.png
-    name: Dopamine
   - url: 'https://roadster.com'
     img: roadster.png
     name: Roadster
@@ -136,9 +130,3 @@ bronze_sponsors:
   - url: 'https://www.earthlink.ro'
     img: earthlink.png
     name: Earthlink
-  - url: 'https://twitter.com/philipjbasile'
-    img: philip_john_basile.gif
-    name: Philip John Basile
-  - url: 'https://writersperhour.com/'
-    img: writers_per_hour.jpg
-    name: Writers Per Hour
