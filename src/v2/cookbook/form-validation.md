@@ -333,21 +333,34 @@ We set up the total value as a computed value, and outside of that bug I ran int
 
 ## Server-side Validation
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [OpenWhisk](http://openwhisk.apache.org/) serverless action to do the validation. While it isn't terribly important, here is the logic:
+In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. While it isn't terribly important, here is the logic:
 
 ``` js
-function main(args) {
-    return new Promise((resolve, reject) => {
-        // bad product names: vista, empire, mbp
-        const badNames = ['vista', 'empire', 'mbp'];
+exports.handler = async (event, context) => {
+  
+    const badNames = ['vista', 'empire', 'mbp'];
+    let name = event.queryStringParameters.name;
 
-        if (badNames.includes(args.name)) {
-          reject({error: 'Existing product'});
-        }
+    if (badNames.includes(name)) {
+      return { 
+        statusCode: 200,         
+        headers:{
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify({error:'Invalid name passed.'}) 
+      }
+    } else {
+      return {
+        statusCode: 200,
+        headers:{
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify({ status: 'ok' })
+      }
+    }
 
-        resolve({status: 'ok'});
-    });
 }
+
 ```
 
 Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's look at the form.
