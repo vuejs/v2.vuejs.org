@@ -260,7 +260,9 @@ Vue.component('blog-post', {
   template: `
     <div class="blog-post">
       <h3>{{ post.title }}</h3>
+      <p>Published At: {{ post.publishedAt }}</p>
       <div v-html="post.content"></div>
+      <div v-html="post.comments"></div>
     </div>
   `
 })
@@ -308,10 +310,12 @@ Vue.component('blog-post', {
   template: `
     <div class="blog-post">
       <h3>{{ post.title }}</h3>
+      <p>Published At: {{ post.publishedAt }}</p>
       <button>
         Enlarge text
       </button>
       <div v-html="post.content"></div>
+      <div v-html="post.comments"></div>
     </div>
   `
 })
