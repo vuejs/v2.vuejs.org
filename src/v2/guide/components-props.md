@@ -105,7 +105,7 @@ En los dos ejemplos anteriores, pasamos valores de tipo cadena de texto, pero _c
 <blog-post v-bind:comment-ids="post.commentIds"></blog-post>
 ```
 
-### Pasando un Objecto
+### Pasando un Objeto
 
 ```html
 <!-- Aunque el objeto es estático, necesitamos v-bind para decirle a Vue que -->
