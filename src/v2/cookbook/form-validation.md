@@ -333,37 +333,7 @@ We set up the total value as a computed value, and outside of that bug I ran int
 
 ## Server-side Validation
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. While it isn't terribly important, here is the logic:
-
-``` js
-exports.handler = async (event, context) => {
-  
-    const badNames = ['vista', 'empire', 'mbp'];
-    let name = event.queryStringParameters.name;
-
-    if (badNames.includes(name)) {
-      return { 
-        statusCode: 200,         
-        headers:{
-          'Access-Control-Allow-Origin':'*'
-        },
-        body: JSON.stringify({error:'Invalid name passed.'}) 
-      }
-    } else {
-      return {
-        statusCode: 200,
-        headers:{
-          'Access-Control-Allow-Origin':'*'
-        },
-        body: JSON.stringify({ status: 'ok' })
-      }
-    }
-
-}
-
-```
-
-Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's look at the form.
+In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. That exact code of the serverless action isn't relevant, but will return an error if the name is `vista`, `empire`, or `mbp`. Here's our form.
 
 ``` html
 <form
@@ -402,7 +372,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
 There isn't anything special here. So let's go on to the JavaScript.
 
 ``` js
-const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
+const apiUrl = 'https://vuecookbook.netlify.com/.netlify/functions/product-name?name=';
 
 const app = new Vue({
   el: '#app',
