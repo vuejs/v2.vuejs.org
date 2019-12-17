@@ -14,7 +14,7 @@ This simple example tests whether some text is rendered:
 <template>
   <div>
     <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
@@ -106,7 +106,7 @@ Let's take a look at the component code first:
       {{ message }}
     </div>
     Enter your username: <input v-model="username">
-    <div 
+    <div
       v-if="error"
       class="error"
     >
@@ -150,9 +150,11 @@ import Foo from './Foo.vue'
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
     const wrapper = shallowMount(Foo, {
-      data: {
-        message: 'Hello World',
-        username: ''
+      data() {
+        return {
+          message: 'Hello World',
+          username: ''
+        }
       }
     })
 
