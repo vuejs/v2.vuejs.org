@@ -179,7 +179,7 @@ A veces querrá crear un componente con un slot reutilizable que pueda acceder a
 
 Pero en algunas partes de nuestra aplicación, queremos que los elementos individuales de la lista de `todo` realicen algo diferente al `todo.text`. Aquí es donde los slots con scope entran en juego.
 
-Para hacer que la funcionalidad sea posible, todo lo que tenemos que hacer es envolver el contenido del elemento todo en un elemento `<slot>`, luego pasar al slot cualquier dato relevante a su contexto: en este caso, el objeto `todo`:
+Para hacer que la funcionalidad sea posible, todo lo que tenemos que hacer es envolver el contenido del elemento `todo` en un elemento `<slot>`, luego pasar al slot cualquier dato relevante a su contexto: en este caso, el objeto `todo`:
 
 ```html
 <ul>
