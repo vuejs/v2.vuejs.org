@@ -333,7 +333,30 @@ We set up the total value as a computed value, and outside of that bug I ran int
 
 ## Server-side Validation
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. That exact code of the serverless action isn't relevant, but will return an error if the name is `vista`, `empire`, or `mbp`. Here's our form.
+In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. While it isn't terribly important, here is the logic:
+
+``` js
+exports.handler = async (event, context) => {
+  
+    const badNames = ['vista', 'empire', 'mbp'];
+    const name = event.queryStringParameters.name;
+
+    if (badNames.includes(name)) {
+      return { 
+        statusCode: 400,         
+        body: JSON.stringify({error:'Invalid name passed.'}) 
+      }
+    } else {
+      return {
+        statusCode: 204
+      }
+    }
+
+}
+
+```
+
+Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's look at the form.
 
 ``` html
 <form
@@ -389,16 +412,15 @@ const app = new Vue({
       if (this.name === '') {
         this.errors.push('Product name is required.');
       } else {
-        fetch(apiUrl + encodeURIComponent(this.name))
-        .then(res => res.json())
-        .then(res => {
-          if (res.error) {
-            this.errors.push(res.error);
-          } else {
-            // redirect to a new URL, or do something on success
-            alert('ok!');
+        fetch(apiUrl+encodeURIComponent(this.name))
+        .then(async res => {
+          if(res.status === 204) {
+            alert('Ok!')
+          } else if(res.status === 400) {
+            let errorResponse = await res.json();
+            this.errors.push(errorResponse.error);
           }
-        });
+        });      
       }
     }
   }
