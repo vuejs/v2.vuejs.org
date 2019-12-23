@@ -1,12 +1,12 @@
 ---
 title: Making use of the Vue Plugin API
 type: cookbook
-order: **15**
+order: 15
 ---
 
 ## Base Example
 
-Vue exposes a really nice API for creating plugins, plugins allow us to modify and add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
+Vue exposes a really nifty API for creating plugins, plugins allow us to modify and add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
 
 Let's say we want to create a simple abstraction for using Vuex within Vue components, we want to reduce the boilerplate essentially. We can first design how we want the abstraction to look.
 
@@ -204,6 +204,10 @@ new Vue({
 Creating a NPM package is a bit out of the scope of this cookbook but I believe it is a very important part of making a plugin. I would highly recommend you check out this article on how to create a package [How to make a beautiful, tiny npm package and publish it](https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/).
 
 In this case all we would need to do is export the `plugin` object in it's own JS file.
+
+## Alternative solutions
+
+In this specific case we just needed to use a mixin, so why don't we just use a mixin instead? We could do that as an alternative solution but what if we want to include `directives` or `filters` globally and make this example a helper plugin for Vue. In most cases users feel more comfortable with plugins as using custom packages is more likely to be registered with `Vue.use()`
 
 ## Wrapping up
 
