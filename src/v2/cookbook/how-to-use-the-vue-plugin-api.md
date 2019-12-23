@@ -1,7 +1,7 @@
 ---
 title: Making use of the Vue Plugin API
 type: cookbook
-order: 15
+order: **15**
 ---
 
 ## Base Example
@@ -40,7 +40,7 @@ export default {
 
 ## Let's build the plugin
 
-### Setup
+### Setting up the plugin
 
 Before we can get into the logic of the plugin, we first need to setup up the plugin in a `.js` file
 
@@ -81,7 +81,7 @@ const plugin = {
 Vue.use(plugin)
 ```
 
-### Logic
+### Writing the plugin logic
 
 Now that we have all the plugin boilerplate setup, let's have a look at actually taking our abstraction and converting it to something that Vue understands.
 
