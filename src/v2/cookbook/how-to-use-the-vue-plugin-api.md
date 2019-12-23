@@ -1,6 +1,7 @@
 ---
 title: Making use of the Vue Plugin API
 type: cookbook
+order: 15
 ---
 
 ## Base Example
