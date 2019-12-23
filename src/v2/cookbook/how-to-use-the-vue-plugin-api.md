@@ -42,7 +42,7 @@ export default {
 
 ### Setting up the plugin
 
-Before we can get into the logic of the plugin, we first need to setup up the plugin in a `.js` file
+Before we can get into the logic of the plugin, we first need to setup the plugin in a `.js` file
 
 ```js
 import Vue from 'vue'
