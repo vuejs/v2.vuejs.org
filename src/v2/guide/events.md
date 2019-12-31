@@ -290,10 +290,10 @@ For example:
 
 ```html
 <!-- Alt + C -->
-<input @keyup.alt.67="clear">
+<input v-on:keyup.alt.67="clear">
 
 <!-- Ctrl + Click -->
-<div @click.ctrl="doSomething">Do something</div>
+<div v-on:click.ctrl="doSomething">Do something</div>
 ```
 
 <p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone. If you do want such behaviour, use the `keyCode` for `ctrl` instead: `keyup.17`.</p>
@@ -306,13 +306,13 @@ The `.exact` modifier allows control of the exact combination of system modifier
 
 ``` html
 <!-- this will fire even if Alt or Shift is also pressed -->
-<button @click.ctrl="onClick">A</button>
+<button v-on:click.ctrl="onClick">A</button>
 
 <!-- this will only fire when Ctrl and no other keys are pressed -->
-<button @click.ctrl.exact="onCtrlClick">A</button>
+<button v-on:click.ctrl.exact="onCtrlClick">A</button>
 
 <!-- this will only fire when no system modifiers are pressed -->
-<button @click.exact="onClick">A</button>
+<button v-on:click.exact="onClick">A</button>
 ```
 
 ### Mouse Button Modifiers
