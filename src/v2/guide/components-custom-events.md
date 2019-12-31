@@ -4,9 +4,9 @@ type: guide
 order: 103
 ---
 
-> Esta página asume que usted ya ha leído [Conceptos Básicos de Componentes](components.html). Lea eso primero si usted es nuevo con respecto a componentes.
+> Esta página asume que usted ya ha leído [Conceptos básicos de componentes](components.html). Lea eso primero si usted es nuevo con respecto a componentes.
 
-## Nombre de Eventos
+## Nombre de eventos
 
 A diferencia de los componentes y props, los nombres de eventos no proporcionan ninguna transformación automática de cases. En su lugar, el nombre de un evento emitido debe coincidir exactamente con el nombre utilizado para escuchar ese evento. Por ejemplo, si está emitiendo un nombre de evento camelCased:
 
@@ -59,7 +59,7 @@ el valor de `lovingVue` será pasado a la prop `checked`. La propiedad `lovingVu
 
 <p class="tip">Note que aún debe declarar la prop <code>checked</code> en las opciones <code>props</code> del componente.</p>
 
-## Enlace de Eventos nativos a componentes
+## Enlace de eventos nativos a componentes
 
 Puede haber ocasiones en las que desee escuchar directamente a un event nativo en el elmento raíz de un componente. En estos casos, puede utilizar el modificador `.native` para `v-on`:
 
@@ -128,13 +128,13 @@ Vue.component('base-input', {
 })
 ```
 
-Ahora el componente `<base-input>` es un **wrapper completamente transparenter**, lo que significa que puede ser usado exactamente como un elemento `<input>` normal: todos los mismos atributos y listeners funcionaran, sin el modificador `.native`.
+Ahora el componente `<base-input>` es un **wrapper completamente transparente**, lo que significa que puede ser usado exactamente como un elemento `<input>` normal: todos los mismos atributos y listeners funcionaran, sin el modificador `.native`.
 
 ## Modificador `.sync`
 
-> New in 2.3.0+
+> Nuevo en la versión 2.3.0+
 
-En algunos casos, necesitamos "two-way binding" para una prop. Desafortunadamente, el verdadero two-way binding puede crear problemas de mantenimiento, porque los componentes hijos pueden alterar al padre sin que la fuente de esa mutation sea obvia tanto en el padre como en el niño
+En algunos casos, necesitamos "two-way binding" para una prop. Desafortunadamente, el verdadero two-way binding puede crear problemas de mantenimiento, porque los componentes hijos pueden alterar al padre sin que la fuente de esa mutation sea obvia tanto en el padre como en el hijo.
 
 Por eso en cambio, recomendamos emitir eventos en el patrón `update:myPropName`. Por ejemplo, en un hipotético componente con una prop `title`, podríamos comunicar la intención de asignar un nuevo valor con:
 
