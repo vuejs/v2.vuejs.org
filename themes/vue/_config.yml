@@ -18,13 +18,12 @@ platinum_sponsors:
   - url: 'https://vehikl.com/'
     img: vehikl.png
     name: Vehikl
-  - url: >-
-      https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
-    img: nativescript.png
-    name: NativeScript
   - url: 'https://retool.com/?utm_source=sponsor&utm_campaign=vue'
     img: retool.png
     name: Retool
+  - url: 'https://passionatepeople.io/'
+    img: passionate_people.png
+    name: Passionate People
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -68,9 +67,6 @@ gold_sponsors:
   - url: 'https://intygrate.com/'
     img: intygrate.png
     name: Intygrate
-  - url: 'https://passionatepeople.io/'
-    img: passionate_people.png
-    name: Passionate People
   - url: 'http://en.shopware.com/'
     img: shopware_ag.png
     name: shopware AG
