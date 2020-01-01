@@ -11,6 +11,9 @@ special_sponsors:
     name: Standard Library
     description: 'Build APIs you need in minutes instead of days, for free.'
 platinum_sponsors:
+  - url: 'https://passionatepeople.io/'
+    img: passionate_people.png
+    name: Passionate People
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
@@ -18,10 +21,6 @@ platinum_sponsors:
   - url: 'https://vehikl.com/'
     img: vehikl.png
     name: Vehikl
-  - url: >-
-      https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
-    img: nativescript.png
-    name: NativeScript
   - url: 'https://retool.com/?utm_source=sponsor&utm_campaign=vue'
     img: retool.png
     name: Retool
@@ -68,9 +67,6 @@ gold_sponsors:
   - url: 'https://intygrate.com/'
     img: intygrate.png
     name: Intygrate
-  - url: 'https://passionatepeople.io/'
-    img: passionate_people.png
-    name: Passionate People
   - url: 'http://en.shopware.com/'
     img: shopware_ag.png
     name: shopware AG
