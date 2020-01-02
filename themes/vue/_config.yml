@@ -104,7 +104,7 @@ gold_sponsors:
     img: pullrequest.svg
     name: PullRequest
   - url: 'https://unicorn.io/'
-    img: unicorn_io.svg
+    img: unicorn_io.png
     name: Unicorn.io
   - url: 'https://thepiratebayproxylist.se'
     img: piratebayproxy.png
