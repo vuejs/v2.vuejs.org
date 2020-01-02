@@ -216,7 +216,7 @@ Our custom directive is now flexible enough to support a few different use cases
 In many cases, you may want the same behavior on `bind` and `update`, but don't care about the other hooks. For example:
 
 ``` js
-Vue.directive('color-swatch', function (el, binding) {
+Vue.directive('color-switch', function (el, binding) {
   el.style.backgroundColor = binding.value
 })
 ```
