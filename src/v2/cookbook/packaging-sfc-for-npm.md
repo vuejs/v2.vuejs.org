@@ -24,11 +24,29 @@ export default {
 Or even used via `<script>` tag in the browser directly:
 
 ```html
-  <script src="https://unpkg.com/vue"></script>
-  <script src="https://unpkg.com/my-component"></script>
-  ...
-  <my-component></my-component>
-  ...
+  <!doctype html>
+  <html>
+
+  <head>
+    <title>Testing My Component</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/my-component"></script>
+  </head>
+
+  <body>
+    <p>Try out my component!</p>
+    <div id="vue-target">
+      <my-component></my-component>
+    </div>
+
+    <script>
+    var app = new Vue({
+      el: '#vue-target',
+    });
+    </script>
+  </body>
+
+  </html>
 ```
 
 Not only does this help you avoid copy/pasting components around, but it also allows you to give back to the Vue community!
