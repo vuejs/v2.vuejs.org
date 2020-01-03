@@ -25,11 +25,11 @@ $item-box-shadow-hover = 0 2.25rem 1.5rem -1.5rem rgba(33,37,41,.2),0 0 1.5rem .
     border-radius: .5rem
     vertical-align: middle
     border-style: none
-  .item-preview-title-container
+  .item-preview-name-container
     display flex
     justify-content space-between
     align-items center
-  h3.item-preview-title
+  h3.item-preview-name
     margin-top: .7rem
     margin-bottom: 0
     &.free::after
@@ -51,11 +51,12 @@ $item-box-shadow-hover = 0 2.25rem 1.5rem -1.5rem rgba(33,37,41,.2),0 0 1.5rem .
   .item-preview-description
     font-size: .9rem
   .see-more-container
-    display: flex
-    justify-content center
+    text-align: center;
     width: 100%
     .see-more-link
       color: $green
+      display: inline-block
+      width: auto
 
 @media screen and (max-width: $media-width)
   .themes-grid
