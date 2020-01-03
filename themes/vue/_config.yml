@@ -116,6 +116,9 @@ silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
     name: Roadster
+  - url: 'https://www.inkoop.io'
+    img: inkoop.png
+    name: Inkoop
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
