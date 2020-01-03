@@ -226,3 +226,7 @@ Riot 3.0 provides a similar component-based development model (which is called a
 
 - Better performance. Riot [traverses a DOM tree](https://v3.riotjs.now.sh/compare/#virtual-dom-vs-expressions-binding) rather than using a virtual DOM, so suffers from the same performance issues as AngularJS.
 - More mature tooling support. Vue provides official support for [webpack](https://github.com/vuejs/vue-loader) and [Browserify](https://github.com/vuejs/vueify), while Riot relies on community support for build system integration.
+
+## Svelte
+
+Svelte 3.0 has seen a surge in popularity and developer interest in 2019. A comparison will be added with the forthcoming Vue 3 guide, as it will come with features and improvements that are more up to date in comparison with Svelte.
