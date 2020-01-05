@@ -19,14 +19,14 @@ Si usted es un desarrollador frontend experimentado y desea saber cómo Vue se c
 La forma más fácil de probar Vue.js es usando [el ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo mientras analizamos algunos ejemplos básicos. O puede <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">crear un archivo <code>index.html</code></a> e incluir Vue con:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 o con:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- versión de producción, optimizada para tamaño y velocidad -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
@@ -74,7 +74,7 @@ Además de la interpolación de texto, también podemos enlazar atributos de ele
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Mueva el mouse sobre mí durante unos segundos 
+    Mueva el mouse sobre mí durante unos segundos
     para ver mi título enlazado dinámicamente.
   </span>
 </div>
@@ -282,7 +282,7 @@ El sistema de componentes es otro concepto importante en Vue, porque es una abst
 En Vue, un componente es esencialmente una instancia de Vue con opciones predefinidas. Registrar un componente en Vue es sencillo:
 
 ``` js
-// Define a new component called todo-item
+// Define un nuevo componente llamado todo-item
 Vue.component('todo-item', {
   template: '<li>Esta es una tarea.</li>'
 })
@@ -292,7 +292,7 @@ Ahora puedes incluirlo en el _template_ de otro componente:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- Crea una instancia del componente todo-item -->
   <todo-item></todo-item>
 </ol>
 ```
@@ -301,9 +301,9 @@ Pero esto supondría tener el mismo texto para cada tarea, que no es muy interes
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // El componente todo-item ahora acepta una
+  // "propiedad", que es como un atributo personalizado.
+  // Esta propiedad es llamada todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
@@ -315,10 +315,10 @@ Ahora podemos pasar la tarea a cada componente repetido usando `v-bind`:
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Ahora proporcionamos a cada todo-item con el objeto todo
+      que representa, para que su contenido pueda ser dinámico.
+      También necesitamos proporcionar a cada componente con una "clave",
+      que vamos a explicar más adelante.
     -->
     <todo-item
       v-for="item in groceryList"
