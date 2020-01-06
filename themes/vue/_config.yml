@@ -31,9 +31,6 @@ gold_sponsors:
   - url: 'https://laravel.com'
     img: laravel.png
     name: Laravel
-  - url: 'https://chaitin.cn/en/'
-    img: chaitin.png
-    name: Chaitin
   - url: 'https://htmlburger.com'
     img: html_burger.png
     name: HTML Burger
@@ -70,18 +67,12 @@ gold_sponsors:
   - url: 'http://en.shopware.com/'
     img: shopware_ag.png
     name: shopware AG
-  - url: 'https://www.vpnranks.com/'
-    img: vpnranks.png
-    name: VPNRanks
   - url: 'https://www.simplyswitch.com/'
     img: energy_comparison.png
     name: Energy Comparison
   - url: 'https://www.bacancytechnology.com'
     img: bacancy_technology.png
     name: Bacancy Technology
-  - url: 'https://www.bestvpn.co/'
-    img: bestvpn_co.png
-    name: BestVPN.co
   - url: 'https://www.y8.com/'
     img: y8.png
     name: Y8
@@ -106,9 +97,6 @@ gold_sponsors:
   - url: 'https://unicorn.io/'
     img: unicorn_io.png
     name: Unicorn.io
-  - url: 'https://thepiratebayproxylist.se'
-    img: piratebayproxy.png
-    name: PiratebayProxy
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
