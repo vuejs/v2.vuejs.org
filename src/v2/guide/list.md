@@ -252,7 +252,7 @@ Mutation methods, as the name suggests, mutate the original array they are calle
 
 ``` js
 example1.items = example1.items.filter(function (item) {
-  return item.message.match(/Foo/)
+  return /Foo/.test(item.message)
 })
 ```
 
