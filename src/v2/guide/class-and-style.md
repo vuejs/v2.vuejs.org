@@ -18,7 +18,7 @@ Podemos pasar un objeto a `v-bind:class` para la asignación dinámica de clases
 
 La sintaxis de arriba tiene como resultado la clase `active` según el valor booleano(https://developer.mozilla.org/en-US/docs/Glossary/Truthy) de la propiedad `isActive`.
 
-Puede hacer multiple asingación de clases al tener más campos en el objeto. Además, la directiva `v-bind:class` también puede ser utilizada con el atributo `class`. De modo que con la siguiente plantilla:
+Puede hacer multiple asignación de clases al tener más campos en el objeto. Además, la directiva `v-bind:class` también puede ser utilizada con el atributo `class`. De modo que con la siguiente plantilla:
 
 ``` html
 <div class="static"
@@ -43,7 +43,7 @@ Se rendizará:
 
 Cuando `isActive` o `hasError` cambien, la lista de clases se actualizará consecuentemente. Por ejemplo, si `hasError` se convierte en `true`, la lista de clases se convertirá en `"static active text-danger"`.
 
-El objecto no tiene por qué estar inline:
+El objecto no tiene por qué ser en línea:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -149,7 +149,7 @@ Cuando `isActive` es verdadero, el HTML renderizado será:
 <p class="foo bar active">Hi</p>
 ```
 
-## Enlace de Estilos inline
+## Enlace de Estilos línea
 
 ### Sintaxis de objeto
 
@@ -181,9 +181,9 @@ data: {
 
 Nuevamente, la sintaxis de objeto es a menudo usada en conjunción con propiedades computadas que retornan objetos.
 
-### Sintaxis de Array
+### Sintaxis de Matriz
 
-La sintaxis de array `v-bind:style` permite aplicar múltiples objetos de estilo al mismo elemento:
+La sintaxis de matriz `v-bind:style` permite aplicar múltiples objetos de estilo al mismo elemento:
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
@@ -191,16 +191,16 @@ La sintaxis de array `v-bind:style` permite aplicar múltiples objetos de estilo
 
 ### Auto-prefijado
 
-Cuando utilice una propiedad CSS que requiere [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `v-bind:style`, como por ejemplo `transform`, Vue detectará automaticamente y agregará los correspondientes prefijos a los estilos aplicados.
+Cuando utilice una propiedad CSS que requiera [prefijos de proveedores](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `v-bind:style`, como por ejemplo `transform`, Vue detectará automaticamente y agregará los prefijos correspondientes a los estilos aplicados.
 
 ### Valores múltiples
 
 > 2.3.0+
 
-Desde la versión 2.3.0+ usted puede proveer un array de valores múltiples (de prefijos) a una propiedad de estilo, por ejemplo:
+Desde la versión 2.3.0+ usted puede proveer una matriz de valores múltiples (de prefijos) a una propiedad de estilo, por ejemplo:
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-Esto solo renderizará el ultimo valor en el array que el navegador soporte. En este ejemplo, se renderizará `display: flex` para los navegadores que soportan la versión sin prefijo de flexbox.
+Esto solo renderizará el ultimo valor en la matriz que el navegador soporte. En este ejemplo, se renderizará `display: flex` para los navegadores que soportan la versión sin prefijo de flexbox.
