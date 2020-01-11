@@ -383,19 +383,19 @@ computed: {
 
 In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
 
-``` html
-<li v-for="n in even(numbers)">{{ n }}</li>
+```html
+<ul v-for="set in sets">
+  <li v-for="n in even(set)">{{ n }}</li>
+</ul>
 ```
 
-``` js
+```js
 data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
+  sets: [[ 1, 2, 3, 4, 5 ], [6, 7, 8, 9, 10]]
 },
 methods: {
-  even: function (numbers) {
-    return numbers.filter(function (number) {
-      return number % 2 === 0
-    })
+  even(numbers) {
+    return numbers.filter(number => number % 2 === 0)
   }
 }
 ```
