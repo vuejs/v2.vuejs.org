@@ -31,7 +31,7 @@
 <div id="special">
   <h3>Special Sponsor</h3>
   <% var specialSponsor = theme.special_sponsors[0]; %>
-  <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener">
+  <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
     <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
     <br>
     <span><%- specialSponsor.description %></span>
