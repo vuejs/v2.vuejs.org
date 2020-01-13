@@ -42,7 +42,12 @@ partners_list:
         name: Modus Create
         logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
         description:
-            "Modus Create is a digital product agency that supports clients with business and product strategy consulting, customer experience, cloud services, and Agile software delivery. Our official partnerships with Atlassian, AWS, InVision, Cloudflare, GitHub, Ionic Framework, and Vue.js reinforce our proven results with digital transformation with organizations from startups to the Fortune 100."
+            "Modus Create is a disruptive consulting firm that helps companies transform for success in the digital future. 
+            
+            Clients work with Modus to effect transformational change through a unique collaborative engagement model that focuses on strategy, product design/build, user experience, company culture, and process change to accelerate their response to digital disruption. 
+            
+            Modus is uniquely expert at executing within the new reality of global talent sourcing and globally distributed teams. Modus culture is based on recruiting only top talent regardless of their location. Modus delivers time zone-aligned, highly productive, English-speaking teams, accessibility, and a totally collaborative environment regardless of individual location. 
+"
         proficiencies:
             - name: Vue.js
               url: https://moduscreate.com/partners/vue/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
