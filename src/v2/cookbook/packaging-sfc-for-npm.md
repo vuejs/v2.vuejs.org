@@ -79,13 +79,14 @@ dist/
 
 ### How does npm know which version to serve to a browser/build process?
 
-The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`). The `.vue` file can also be included in the package for those who need access to it. A sample package.json would look like this:
+The package.json file used by npm really only requires one version (`main`), but as it turns out, we aren't limited to that. We can address the most common use cases by specifying 2 additional versions (`module` and `unpkg`), and using the `browser` property. The `.vue` file can also be included in the package for those who need access to it. A sample package.json would look like this:
 
 ```json
 {
   "name": "my-component",
   "version": "1.2.3",
   "main": "dist/my-component.ssr.js",
+  "browser": "dist/my-component.esm.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
   "files": [
@@ -96,7 +97,7 @@ The package.json file used by npm really only requires one version (`main`), but
 }
 ```
 
-When webpack 2+, Rollup, or other modern build tools are used, by default they will pick up on the `module` build. Node.js and many legacy applications would use the `main` build, and the `unpkg` build can be used directly in browsers. In fact, the [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service! By specifying the `files` property in package.json, we tell npm what files will be included in our package - in this case, the source `.vue` files are included as well as the transpiled versions for optional SSR usage.
+When webpack 2+, Rollup, or other modern build tools are used, by default they will pick up the `module` build via the `browser` property or the `module` property itself (exactly which can vary, hence the duplication). Node.js and many legacy applications would use the `main` build, and the `unpkg` build can be used directly in browsers. In fact, the [unpkg](https://unpkg.com) cdn automatically uses this when someone enters the URL for your module into their service! By specifying the `files` property in package.json, we tell npm what files will be included in our package - in this case, the source `.vue` files are included as well as the transpiled versions for optional SSR usage.
 
 ### SSR Usage
 
@@ -121,6 +122,7 @@ There is no need to write your module multiple times. It is possible to prepare 
   "name": "my-component",
   "version": "1.2.3",
   "main": "dist/my-component.ssr.js",
+  "browser": "dist/my-component.esm.js",
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
   "files": [
@@ -147,7 +149,7 @@ There is no need to write your module multiple times. It is possible to prepare 
 }
 ```
 
-<p class="tip">Remember, if you have an existing package.json file, it will likely contain a lot more than this one does. This merely illustrates a starting point. Also, the <i>packages</i> listed in devDependencies (not their versions) are the minimum requirements for rollup to create the three separate builds (umd, es, and unpkg) mentioned. As newer versions become available, they should be updated as necessary.</p>
+<p class="tip">Remember, if you have an existing package.json file, it will likely contain a lot more than this one does. This merely illustrates a starting point. Also, the <i>packages</i> listed in devDependencies (not their versions) are the minimum requirements for rollup to create the three separate builds (ssr, es, and unpkg) mentioned. As newer versions become available, they should be updated as necessary.</p>
 
 Our changes to package.json are complete. Next, we need a small wrapper to export/auto-install the actual SFC, plus a minimal Rollup configuration, and we're set!
 
@@ -160,7 +162,7 @@ Depending on how your component is being used, it needs to be exposed as either 
 import component from './my-component.vue';
 
 // Declare install function executed by Vue.use()
-export function install(Vue) {
+const install = function installMyComponent(Vue) {
 	if (install.installed) return;
 	install.installed = true;
 	Vue.component('MyComponent', component);
@@ -190,7 +192,7 @@ component.install = install;
 export default component;
 ```
 
-Notice the first line directly imports your SFC, and the last line exports it unchanged. As indicated by the comments in the rest of the code, the wrapper provides an `install` function for Vue, then attempts to detect Vue and automatically install the component. With 90% of the work done, it's time to sprint to the finish!
+Notice the first line directly imports your SFC, and the last line exports it with an `install` function attached. As indicated by the comments in the rest of the code, the wrapper simply provides that `install` function for Vue, then attempts to detect Vue and automatically install the component. With 90% of the work done, it's time to sprint to the finish!
 
 ### How do I configure the Rollup build?
 
