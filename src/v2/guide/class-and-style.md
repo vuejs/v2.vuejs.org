@@ -53,7 +53,7 @@ The bound object doesn't have to be inline:
 ``` js
 data: {
   classObject: {
-    active: true,
+    isActive: true,
     'text-danger': false
   }
 }
