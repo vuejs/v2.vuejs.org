@@ -463,6 +463,13 @@ Vue.component('custom-input', {
     >
   `
 })
+
+new Vue({
+    el: '#app',
+    data: {
+        searchText: "text"
+    }
+})
 ```
 
 Now `v-model` should work perfectly with this component:
