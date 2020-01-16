@@ -51,6 +51,9 @@ Sometimes you may want to assign a number of properties to an existing object, f
 ``` js
 // instead of `Object.assign(this.someObject, { a: 1, b: 2 })`
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
+
+// or using ES6 object spread operator
+this.someObject = { ...this.someObject, a: 1, b: 2 }
 ```
 
 There are also a few array-related caveats, which were discussed earlier in the [list rendering section](list.html#Caveats).
