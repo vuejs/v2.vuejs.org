@@ -309,26 +309,6 @@ order: 803
 
   team = team.concat(shuffle([
     {
-      name: 'Chris Fritz',
-      title: 'Good Word Putter-Togetherer',
-      city: 'Lansing, MI, USA',
-      languages: ['en', 'de'],
-      github: 'chrisvfritz',
-      twitter: 'chrisvfritz',
-      work: {
-        role: 'Educator & Consultant'
-      },
-      reposOfficial: [
-        'vuejs.org', 'vue-migration-helper'
-      ],
-      reposPersonal: [
-        'vue-2.0-simple-routing-example', 'vue-ssr-demo-simple'
-      ],
-      links: [
-        'https://www.patreon.com/chrisvuefritz'
-      ]
-    },
-    {
       name: 'Eduardo',
       title: 'Real-Time Rerouter',
       city: 'Paris, France',
@@ -671,6 +651,20 @@ order: 803
   ]))
 
   var emeriti = shuffle([
+     {
+      name: 'Chris Fritz',
+      title: 'Good Word Putter-Togetherer',
+      city: 'Durham, NC, USA',
+      languages: ['en', 'de'],
+      github: 'chrisvfritz',
+      twitter: 'chrisvfritz',
+      work: {
+        role: 'Educator & Consultant'
+      },
+      reposPersonal: [
+        'vue-enterprise-boilerplate'
+      ]
+    },
     {
       name: 'Blake Newman',
       title: 'Performance Specializer & Code Deleter',
