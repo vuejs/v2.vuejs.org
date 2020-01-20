@@ -10,6 +10,19 @@ When a vulnerability is reported, it immediately becomes our top concern, with a
 
 While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
 
+## Rule No.1: Never Use Non-trusted Templates
+
+The most fundamental security rule when using Vue is **never use non-trusted content as your component template**. Doing so is equivalent to allowing arbitrary JavaScript execution in your application - and worse, could lead to server breaches if the code is executed during server-side rendering. An example of such usage:
+
+``` js
+new Vue({
+  el: '#app',
+  template: `<div>` + userProvidedString + `</div>` // NEVER DO THIS
+})
+```
+
+Vue templates are compiled into JavaScript, and expressions inside templates will be executed as part of the rendering process. Although the expressions are evaluated against a specific rendering context, due to the complexity of potential global execution environments, it is impractical for a framework like Vue to completely shield you from potential malicious code execution without incurring unrealistic performance overhead. The most straightforward way to avoid this category of problems altogether is to make sure the contents of your Vue templates are always trusted and entirely controlled by you.
+
 ## What Vue Does to Protect You
 
 ### HTML content
