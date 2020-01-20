@@ -19,8 +19,8 @@ Vue.component('button-counter', {
   template: '<button v-on:click="count++">Me ha pulsado {{ count }} veces.</button>'
 })
 ```
-Los componentes son instancias reutilizables de Vue con un nombre: en este caso, `<button-counter>`.
-Podemos usar este componente como un elemento personalizado dentro de una instancia de Vue raíz creada con `new Vue`:
+
+Los componentes son instancias reutilizables de Vue con un nombre: en este caso, `<button-counter>`. Podemos usar este componente como un elemento personalizado dentro de una instancia de Vue raíz creada con `new Vue`:
 
 ```html
 <div id="components-demo">
@@ -49,8 +49,7 @@ new Vue({ el: '#components-demo' })
 </script>
 {% endraw %}
 
-Dado que los componentes son instancias reutilizables de Vue, aceptan las mismas opciones como `new Vue`, como `data`, `computed`, `watch`, `methods`, y *hooks* de ciclo de vida.
-Las únicas excepciones son algunas opciones específicas de la raíz como `el`.
+Dado que los componentes son instancias reutilizables de Vue, aceptan las mismas opciones que `new Vue`, como `data`, `computed`, `watch`, `methods`, y *hooks* de ciclo de vida. Las únicas excepciones son algunas opciones específicas de la raíz como `el`.
 
 ## Reutilizando Componentes
 
@@ -75,8 +74,7 @@ new Vue({ el: '#components-demo2' })
 </script>
 {% endraw %}
 
-Tenga en cuenta que al hacer clic en los botones, cada uno mantiene su propio `count` por separado.
-Esto se debe a que cada vez que utiliza un componente, se  crea una nueva **instancia** del mismo.
+Tenga en cuenta que al hacer clic en los botones, cada uno mantiene su propio `count` por separado. Esto se debe a que cada vez que utiliza un componente, se crea una nueva **instancia** del mismo.
 
 ### `data` Debe ser una función
 
@@ -97,6 +95,7 @@ data: function () {
   }
 }
 ```
+
 Si Vue no tuviera esta regla, hacer clic en un botón afectaría los datos de _todas las demás instancias_, como a continuación:
 
 {% raw %}
@@ -134,6 +133,7 @@ Vue.component('my-component-name', {
   // ... opciones ...
 })
 ```
+
 Los componentes registrados globalmente se pueden usar en el *template* de cualquier instancia de Vue raíz (`new Vue`) creada posteriormente, e incluso dentro de todos los subcomponentes del árbol de componentes de esa instancia de Vue.
 
 Eso es todo lo que necesita saber sobre el registro por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa de [Registro de Componentes](components-registration.html).
@@ -176,7 +176,7 @@ new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-En una aplicación típica, sin embargo, es probable que tenga un *array* de *post* en `data`:
+En una aplicación típica, sin embargo, es probable que tenga una *matriz* de *post* en `data`:
 
 ```js
 new Vue({
@@ -190,6 +190,7 @@ new Vue({
   }
 })
 ```
+
 Entonces querrá renderizar un componente para cada uno:
 
 ```html
@@ -200,24 +201,26 @@ Entonces querrá renderizar un componente para cada uno:
 ></blog-post>
 ```
 
-Arriba, verá que podemos usar `v-bind` para pasar *props* dinámicamente. Esto es especialmente útil cuando no se conoce el contenido exacto que se va a renderizar con anticipación, como cuando [se obtienen posts de una API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
+Arriba, verá que podemos usar `v-bind` para pasar *propiedades* dinámicamente. Esto es especialmente útil cuando no se conoce el contenido exacto que se va a renderizar con anticipación, como cuando [se obtienen posts de una API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
 
-Esto es todo lo que necesita saber sobre *props* por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa de [Props](components-props.html).
+Esto es todo lo que necesita saber sobre *propiedades* por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa de [Propiedades](components-props.html).
 
 ## Un elemento de una sola raíz
 
-Al crear un componente `<blog-post>`, su *template* eventualmente contendrá más que solo el título:
+Al crear un componente `<blog-post>`, su *plantilla* eventualmente no contendrá más que solo el título:
 
 ```html
 <h3>{{ title }}</h3>
 ```
+
 Como mínimo, querrá incluir el contenido del post:
 
 ```html
 <h3>{{ title }}</h3>
 <div v-html="content"></div>
 ```
-Sin embargo, si intenta esto en su plantilla, Vue mostrará un error, explicando que **cada componente debe tener un solo elemento raíz**. Puede corregir este error envolviendo el *template* en un elemento principal de la siguiente manera:
+
+Sin embargo, si intenta esto en su plantilla, Vue mostrará un error, explicando que **cada componente debe tener un solo elemento raíz**. Puede corregir este error envolviendo la *plantilla* en un elemento principal de la siguiente manera:
 
 ```html
 <div class="blog-post">
@@ -226,7 +229,7 @@ Sin embargo, si intenta esto en su plantilla, Vue mostrará un error, explicando
 </div>
 ```
 
-A medida que nuestro componente crezca, es probable que no solo necesitemos el título y el contenido de una publicación, sino también la fecha de publicación, los comentarios y más. Definir una *prop* para cada pieza de información relacionada podría volverse muy molesto:
+A medida que nuestro componente crezca, es probable que no solo necesitemos el título y el contenido de una publicación, sino también la fecha de publicación, los comentarios y más. Definir una *propiedad* para cada pieza de información relacionada podría volverse muy molesto:
 
 ```html
 <blog-post
@@ -239,7 +242,7 @@ A medida que nuestro componente crezca, es probable que no solo necesitemos el t
 ></blog-post>
 ```
 
-Por lo tanto, este podría ser un buen momento para refactorizar el componente `<blog-post>` para que acepte una única `prop` post:
+Por lo tanto, este podría ser un buen momento para refactorizar el componente `<blog-post>` para que acepte una única `propiedad` post:
 
 ```html
 <blog-post
@@ -260,7 +263,8 @@ Vue.component('blog-post', {
   `
 })
 ```
-<p class="tip">El ejemplo anterior y algunos que veremos más adelante, utilizan [*template literals*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) de JavaScript para hacer que los *templates* multilínea sean más legibles. Internet Explorer (IE) no los admite, por lo tanto, si debe ser compatible con IE y no está transpilando (por ejemplo, con Babel o TypeScript), usa [escapes de nueva línea](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) en su lugar</p>.
+
+<p class="tip">El ejemplo anterior y algunos que veremos más adelante, utilizan [*Plantillas de cadena de texto*](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings) de JavaScript para hacer que las *plantillas* multilínea sean más legibles. Internet Explorer (IE) no las admite, por lo tanto, si debe ser compatible con IE y no está transpilando (por ejemplo, con Babel o TypeScript), usa [escapes de nueva línea](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) en su lugar</p>.
 
 Ahora, cada vez que se agreguen nuevas propiedadaes al objeto `post`, estarán automáticamente disponible dentro de `<blog-post>`.
 
@@ -279,7 +283,8 @@ new Vue({
   }
 })
 ```
-Esta propiedad puede ser usada en el *template* para controlar el tamaño de la fuente de todas las publicaciones del blog:
+
+Esta propiedad puede ser usada en la *plantilla* para controlar el tamaño de la fuente de todas las publicaciones del blog:
 
 ```html
 <div id="blog-posts-events-demo">
@@ -309,6 +314,7 @@ Vue.component('blog-post', {
   `
 })
 ```
+
 El problema es que este botón no hace nada:
 
 ```html
@@ -390,6 +396,7 @@ Luego, cuando escuchamos el evento en el componente padre, podemos acceder al va
   v-on:enlarge-text="postFontSize += $event"
 ></blog-post>
 ```
+
 O, si el controlador de eventos es un método:
 
 ```html
@@ -398,6 +405,7 @@ O, si el controlador de eventos es un método:
   v-on:enlarge-text="onEnlargeText"
 ></blog-post>
 ```
+
 Entonces el valor se pasará como el primer parámetro de ese método:
 
 ```js
@@ -407,6 +415,7 @@ methods: {
   }
 }
 ```
+
 ### Usando `v-model` en Componentes
 
 Los eventos personalizados también se pueden usar para crear *inputs* personalizados que funcionan con `v-model`. Recuerde que:
@@ -414,6 +423,7 @@ Los eventos personalizados también se pueden usar para crear *inputs* personali
 ```html
 <input v-model="searchText">
 ```
+
 hace lo mismo que:
 
 ```html
@@ -422,6 +432,7 @@ hace lo mismo que:
   v-on:input="searchText = $event.target.value"
 >
 ```
+
 Cuando se usa en un componente, `v-model` en su lugar hace esto:
 
 ``` html
@@ -430,9 +441,10 @@ Cuando se usa en un componente, `v-model` en su lugar hace esto:
   v-on:input="searchText = $event"
 ></custom-input>
 ```
+
 Para que esto realmente funcione, el `<input>` dentro del componente debe:
 
-- Enlazar el atributo `value` a un `value` prop
+- Enlazar el atributo `value` a una propiedad `value`
 - En el `input`, emitir su propio evento `input` personalizado con el nuevo valor
 
 Aquí está en acción:
@@ -448,13 +460,14 @@ Vue.component('custom-input', {
   `
 })
 ```
+
 Ahora `v-model` debería funcionar perfectamente con este componente:
 
 ```html
 <custom-input v-model="searchText"></custom-input>
 ```
 
-Eso es todo lo que necesita saber sobre los eventos de componentes personalizados por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa sobre [Eventos Personalizados](components-custom-events.html).
+Por ahora, eso es todo lo que necesita saber sobre los eventos de componentes personalizados, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa sobre [Eventos Personalizados](components-custom-events.html).
 
 ## Distribución de contenido con Slots
 
@@ -465,7 +478,8 @@ Al igual que con los elementos HTML, a menudo es útil poder pasar contenido a u
   Algo ha ocurrido mal.
 </alert-box>
 ```
-Lo cual podría renderizar algo como:
+
+Lo que podría renderizar algo como:
 
 {% raw %}
 <div id="slots-demo" class="demo">
@@ -505,6 +519,7 @@ Vue.component('alert-box', {
   `
 })
 ```
+
 Como verá más arriba, solo agregamos la ranura a la que queremos que el contenido vaya -- y eso es todo. Hemos terminado!
 
 Eso es todo lo que necesita saber acerca de slots por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos que regrese más tarde para leer la guía completa de [Slots](components-slots.html).
@@ -576,6 +591,7 @@ Lo anterior es posible gracias al elemento `<component>` de Vue con el atributo 
 <!-- El componente cambia cuando currentTabComponent cambia -->
 <component v-bind:is="currentTabComponent"></component>
 ```
+
 En el ejemplo anterior, `currentTabComponent` puede contener:
 
 - el nombre de un componente registrado, o
@@ -585,9 +601,9 @@ Vea [este fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) para experimentar 
 
 Eso es todo lo que necesita saber sobre los componentes dinámicos por ahora, pero una vez que haya terminado de leer esta página y se sienta cómodo con su contenido, le recomendamos volver más tarde para leer la guía completa sobre [Componentes Dinámicos y Asíncronos](components-dynamic-async.html).
 
-## Casos especiales de análisis de templates DOM.
+## Casos especiales de análisis de plantillas DOM.
 
-Algunos elementos HTML, como `<ul>`, `<ol>`, `<table>` y `<select>` tienen restricciones sobre qué elementos pueden aparecer dentro de ellos, y algunos elementos como `<li>`, `<tr>` y `<option>` solo pueden Aparecen dentro de ciertos otros elementos.
+Algunos elementos HTML, como `<ul>`, `<ol>`, `<table>` y `<select>` tienen restricciones sobre qué elementos pueden aparecer dentro de ellos, y algunos elementos como `<li>`, `<tr>` y `<option>` solo pueden aparecer dentro de ciertos otros elementos.
 
 Esto conducirá a problemas cuando se utilizan componentes con elementos que tienen tales restricciones. Por ejemplo:
 
@@ -604,12 +620,13 @@ El componente personalizado `<blog-post-row>` se colocará como contenido no vá
   <tr is="blog-post-row"></tr>
 </table>
 ```
-Debe tenerse en cuenta que **esta limitación no se aplica si está utilizando template strings de una de las siguientes fuentes**:
 
-- *Template Strings* (ej: `template: '...'`)
-- [Componentes Single-file](single-file-components.html) (`.vue`)
+Debe tenerse en cuenta que **esta limitación no se aplica si está utilizando plantillas de cadenas de texto de una de las siguientes fuentes**:
+
+- *Plantillas de cadenas de texto* (ej: `template: '...'`)
+- [Componentes de un solo archivo](single-file-components.html) (`.vue`)
 - [`<script type="text/x-template">`](components-edge-cases.html#X-Templates)
 
-Eso es todo lo que necesita saber sobre los casos especiales de análisis de templates DOM por ahora, y en realidad, el final de los aspectos _esenciales_ de Vue. ¡Felicidades! Todavía hay más que aprender, pero primero, recomendamos tomar un descanso para practicar con Vue usted mismo y construir algo divertido.
+Eso es todo lo que necesita saber sobre los casos especiales de análisis de plantillas DOM por ahora, y en realidad, el final de los aspectos _esenciales_ de Vue. ¡Felicidades! Todavía hay más que aprender, pero primero, recomendamos tomar un descanso para practicar con Vue usted mismo y construir algo divertido.
 
 Una vez que se sienta cómodo con el conocimiento que acaba de digerir, le recomendamos que regrese para leer la guía completa de [Componentes Dinámicos y Asíncronos](components-dynamic-async.html), así como las otras páginas en la sección *Componentes en Profundidad* de la barra lateral.
