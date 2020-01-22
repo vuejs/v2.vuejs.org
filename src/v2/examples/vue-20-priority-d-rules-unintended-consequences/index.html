@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Priority D Rules Unintended Consequences</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      .v-enter-active,
+      .v-leave-active {
+        transition: all 1s;
+      }
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .v-leave-active {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <transition>
+        <button v-if="isEditing" v-on:click="isEditing = false">
+          Save
+        </button>
+        <button v-else v-on:click="isEditing = true">
+          Edit
+        </button>
+      </transition>
+
+      <p>
+        When clicking on the <code>&lt;button&gt;</code> above, the transition
+        is never applied because Vue is reusing the same element for render
+        efficiency. To force Vue to treat these as separate elements, a
+        <a
+          href="https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-priority-d-rules-correct-example"
+          target="_blank"
+          >unique <code>key</code> must be added</a
+        >
+        to each conditional element.
+      </p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          isEditing: false
+        }
+      });
+    </script>
+  </body>
+</html>
