@@ -650,7 +650,7 @@ order: 803
     },
     {
       name: 'Ben Hong',
-      title: 'Proud Ravenclaw Dragon'
+      title: 'Proud Ravenclaw Dragon',
       city: 'Washington, DC, USA',
       languages: ['en', 'zh'],
       work: {
