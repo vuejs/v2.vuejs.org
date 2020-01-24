@@ -5,6 +5,7 @@ order: 803
 ---
 
 {% raw %}
+
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -159,6 +160,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -176,6 +178,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -216,6 +219,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 </div>
 
@@ -647,6 +651,26 @@ order: 803
       reposOfficial: [
         'eslint-plugin-vue'
       ],
+    },
+    {
+      name: 'Ben Hong',
+      title: 'Proud Ravenclaw Dragon'
+      city: 'Washington, DC, USA',
+      languages: ['en', 'zh'],
+      work: {
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab (Meltano)',
+      },
+      reposOfficial: [
+        'vuejs.org',
+        'vuepress',
+        'vuejs/events'
+      ],
+      github: 'bencodezen',
+      twitter: 'bencodezen',
+      links: [
+        'https://bencodezen.io/'
+      ]
     },
   ]))
 
@@ -1091,24 +1115,6 @@ order: 803
       ]
     },
     {
-      name: 'Ben Hong',
-      title: '',
-      city: 'Washington, DC, USA',
-      languages: ['en', 'zh'],
-      work: {
-        role: 'Senior Frontend Engineer',
-        org: 'GitLab (Meltano)',
-      },
-      reposOfficial: [
-        'vuejs/events'
-      ],
-      github: 'bencodezen',
-      twitter: 'bencodezen',
-      links: [
-        'https://bencodezen.io/'
-      ]
-    },
-    {
       name: 'EGOIST',
       title: 'Build Tool Simplificator',
       city: 'Chengdu, China',
@@ -1502,4 +1508,5 @@ order: 803
   }
 })()
 </script>
+
 {% endraw %}
