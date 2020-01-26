@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-component-blog-post-example",
+  "version": "1.0.0",
+  "description": "Dynamically passing props, like when fetching posts from an API.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}
