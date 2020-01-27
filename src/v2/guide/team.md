@@ -825,21 +825,6 @@ order: 803
       ]
     },
     {
-      name: 'James McGlasson',
-      title: 'Head of Marketing Communications',
-      city: 'Amsterdam, Netherlands',
-      languages: ['en', 'nl', 'de'],
-      work: {
-        role: 'Head Of Marketing Communications',
-        org: 'Vue.js Amsterdam'
-      },
-      twitter: 'jamesvuejs',
-      linkedin: 'jdog',
-      links: [
-        'https://vuejs.amsterdam'
-      ]
-    },
-    {
       name: 'Jen Looper',
       title: 'Queen Fox',
       city: 'Boston, MA, USA',
