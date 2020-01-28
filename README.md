@@ -107,6 +107,8 @@ Russian translation is maintained by Translation Gang.
 
 Український переклад здійснюється [Serhii Matrunchyk](https://github.com/matruncyk).
 
+Для швидкої комунікації використовуйте Телеграм канал [Vue.JS Ukraine](https://t.me/vuejs_ukraine).
+
 ### Vietnamese
 
 Vietnamese translation is maintained by [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
