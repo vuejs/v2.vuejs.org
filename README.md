@@ -16,7 +16,7 @@ $ npm start # сервер запущений як http://localhost:4000
 
 Сайт автоматично розгортається по мірі створення нових комітів у гілці `master`, через [Netlify](https://www.netlify.com/).
 
-Якщо Ви — мейнтейнер склонованого репозиторію для спільного перекладу та бажаєте розгортати сайт через Netlify замість GitHub сторінок, будь ласка, повідомте @yyx990803, створивши новий Github issue для отримання доступу до команди проекту в Netlify та оновлення DNS.
+Якщо ви — мейнтейнер склонованого репозиторію для спільного перекладу та бажаєте розгортати сайт через Netlify замість GitHub сторінок, будь ласка, повідомте @yyx990803, створивши новий Github issue для отримання доступу до команди проекту в Netlify та оновлення DNS.
 
 ## В перекладі
 
@@ -84,25 +84,25 @@ Russian translation is maintained by Translation Gang.
 
 ### Spanish
 
-* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)	
+* Translation Repo - [/1950Labs/vuejs.org](https://github.com/1950Labs/vuejs.org)
 * Spanish translation is maintained by:
 
-[1950Labs](https://1950labs.com) & [Vue.js Montevideo](https://www.meetup.com/Montevideo-Vue-JS-Meetup/):	
+[1950Labs](https://1950labs.com) & [Vue.js Montevideo](https://www.meetup.com/Montevideo-Vue-JS-Meetup/):
 
 - [Leonel More](https://github.com/leonelmore) | [Twitter](https://twitter.com/leonelmore)
-- [Sebastián Camacho](https://github.com/sxcamacho) | [Twitter](https://twitter.com/sxcamacho)	
-- [Diana Rodríguez](https://github.com/alphacentauri82) | [Twitter](https://twitter.com/cotufa82)	
+- [Sebastián Camacho](https://github.com/sxcamacho) | [Twitter](https://twitter.com/sxcamacho)
+- [Diana Rodríguez](https://github.com/alphacentauri82) | [Twitter](https://twitter.com/cotufa82)
 - [Alejandro Parada](https://github.com/alejandro8605)
-- [José Javier Señaris](https://github.com/pepesenaris) | [Twitter](https://twitter.com/pepesenaris)	
-- [Federico Kauffman](https://github.com/fedekau) | [Twitter](https://twitter.com/fedekauffman)	
+- [José Javier Señaris](https://github.com/pepesenaris) | [Twitter](https://twitter.com/pepesenaris)
+- [Federico Kauffman](https://github.com/fedekau) | [Twitter](https://twitter.com/fedekauffman)
 - [Fabián Larrañaga](https://github.com/FLarra) | [Twitter](https://twitter.com/FLarraa)
 - [Pablo Marcano](https://github.com/Pablosky12) | [Twitter](https://twitter.com/stiv_ml)
 - [Nicolás Tinte](https://github.com/Tintef) | [Twitter](https://twitter.com/NicoTinte)
 - [Diego Barreiro](https://github.com/faliure)
-- [Matías Verdier](https://github.com/MatiasVerdier) | [Twitter](https://twitter.com/matiasvj)	
-- [Pablo Kz](https://github.com/pabloKz)	
+- [Matías Verdier](https://github.com/MatiasVerdier) | [Twitter](https://twitter.com/matiasvj)
+- [Pablo Kz](https://github.com/pabloKz)
 - [Leonardo Fagundez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
- 
+
 ### Українська
 
 Український переклад здійснюється [Serhii Matrunchyk](https://github.com/matruncyk).
@@ -116,6 +116,6 @@ Vietnamese translation is maintained by [Vue.js Vietnam User group](https://gith
 
 ### Бажаєте допомогти з перекладом?
 
-Якщо Ви бажаєте долучитися до перекладу цієї документації, [напишіть нам](https://github.com/matrunchyk/ua.vuejs.org/issues) про це! Ми будемо дуже раді допомозі в цьому!
+Якщо ви бажаєте долучитися до перекладу цієї документації, [напишіть нам](https://github.com/matrunchyk/ua.vuejs.org/issues) про це! Ми будемо дуже раді допомозі в цьому!
 
 Дякуємо заздалегідь! ;)

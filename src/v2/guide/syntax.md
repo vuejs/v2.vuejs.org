@@ -4,84 +4,84 @@ type: guide
 order: 4
 ---
 
-Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+Vue.js використовує синтаксис на основі HTML-шаблону, що дозволяє декларативно зв'язувати промальовування об'єктної моделі документу (DOM) за даними, закріпленими з екземпляром Vue. Усі шаблони Vue.js є валідним HTML, придатним для парсингу браузерам відповідно до специфікацій, а також парсерами HTML.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Під капотом, Vue компілює шаблони в так звані функції промальовування віртуальної об'єктної моделі документу (Virtual DOM). В комбінації із системою реактивності, Vue здатний розумно визначати мінімальне число компонентів для перемальовування та застосовувати мінімальну кількість маніпуляцій з DOM по мірі змін даних додатку.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
+Якщо ви знайомі з концепцією Virtual DOM і надаєте перевагу можливостям чистого JavaScript, ви також можете [відразу писати функції промальовування](render-function.html) замість шаблонів, з використанням JSX при бажанні.
 
-## Interpolations
+## Інтерполяція
 
-### Text
+### Текст
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+Найбільш простою формою зв'язування даних — це текстова інтерполяція з використанням синтаксису "Mustache" (подвійні фігурні дужки)
 
 ``` html
-<span>Message: {{ msg }}</span>
+<span>Повідомлення: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+Дужки Mustache будуть замінені значенням властивості `msg` відповідного об'єкту даних. Воно буде автоматично змінюватися по мірі змін цієї властивості.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any other bindings on the same node:
+Ви також можете застосовувати одноразову інтерполяцію, яка не буде оновлюватися наступні рази, використовуючи [директиву v-once](../api/#v-once), але майте на увазі, що це вплине також на будь-які інші зв'язані дані того ж вузла:
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span v-once>Це ніколи не зміниться: {{ msg }}</span>
 ```
 
-### Raw HTML
+### Чистий HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
+Подвійні фігурні дужки розуміють дані як звичайний текст, а не HTML. Для того, щоб відображати реальний HTML, вам потрібно використовувати директиву `v-html`:
 
 ``` html
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>Використання mustache: {{ rawHtml }}</p>
+<p>Використання v-html: <span v-html="rawHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Using mustaches: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>Використання mustache: {{ rawHtml }}</p>
+  <p>Використання v-html: <span v-html="rawHtml"></span></p>
 </div>
 <script>
 new Vue({
   el: '#example1',
   data: function () {
     return {
-      rawHtml: '<span style="color: red">This should be red.</span>'
-    }
+      rawHtml: '<span style="color: red">Це має бути червоним.</span>'
+    };
   }
-})
+});
 </script>
 {% endraw %}
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+Вміст тегу `span` буде замінено значенням властивості `rawHtml`, інтерпретовану як звичайний HTML — зв'язування даних ігнорується. Зауважте, що ви не можете використовувати `v-html` для створення частин шаблонів, тому що Vue не є рядковим шаблонізатором. Замість цього краще використовувати компоненти як базову одиницю UI для повторного використання та композиції.
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">Динамічне промальовування довільного HTML на вашому сайті може бути дуже небезпечним, оскільки може легко призвести до [XSS вразливостей](https://uk.wikipedia.org/wiki/%D0%9C%D1%96%D0%B6%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%D0%B8%D0%B9_%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B8%D0%BD%D0%B3). Використовуйте інтерполяцію HTML лише з довіреним вмістом та **ніколи** не використовуйте на вмісті, що вводиться користувачем.</p>
 
-### Attributes
+### Атрибути
 
-Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directive](../api/#v-bind):
+Mustache-дужки не можуть використовуватися всередині HTML-атрибутів. Замість цього використовуйте [директиву v-bind directive](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example:
+У випадку з булевими атрибутами, існування яких базується на значенні `true`, `v-bind` працює дещо по-іншому. Для прикладу:
 
 ``` html
-<button v-bind:disabled="isButtonDisabled">Button</button>
+<button v-bind:disabled="isButtonDisabled">Кнопка</button>
 ```
 
-If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
+Якщо `isButtonDisabled` має значення `null`, `undefined`, або `false`, атрибут `disabled` навіть не буде промальовано в елементі `<button>`.
 
-### Using JavaScript Expressions
+### Використання JavaScript виразів
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+До цього часу ми використовували зв'язування даних до звичайних властивостей в наших шаблонах. Але насправді Vue.js підтримує всю силу виразів JavaScript всередині зв'язаних даних:
 
 ``` html
 {{ number + 1 }}
 
-{{ ok ? 'YES' : 'NO' }}
+{{ ok ? 'ТАК' : 'НІ' }}
 
 {{ message.split('').reverse().join('') }}
 
