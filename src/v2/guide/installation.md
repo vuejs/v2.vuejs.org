@@ -2,7 +2,7 @@
 title: Встановлення
 type: guide
 order: 1
-vue_version: 2.6.10
+vue_version: 2.6.11
 gz_size: "33.30"
 ---
 
@@ -50,7 +50,7 @@ Vue **не** підтримує IE8 та нижче, оскільки він в�
 
 ``` html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
 </script>
 ```
 

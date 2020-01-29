@@ -88,50 +88,51 @@ Mustache-дужки не можуть використовуватися все�
 <div v-bind:id="'list-' + id"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Ці вирази будуть обчистені як JavaScript в контексті даних у Vue екземплярі. Єдиним обмеженням є те, що кожне зв'язування даних повинно містити **один-єдиний вираз**, тому ось цей код **НЕ** працюватиме:
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- це твердження, а не вираз: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
+<!-- управління потоком теж не працюватиме, використовуйте тернарні вирази -->
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a [whitelist of globals](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+<p class="tip">Вирази в шаблонах ізольовані і можуть мати доступ до [чітко визначеного списку глобальних змінних](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9), таких як `Math` та `Date`. Не намагайтеся звернутися до глобальних змінних, визначених користувачем з шаблону.</p>
 
-## Directives
+## Директиви
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception of `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+Директиви є спеціальними атрибутами, які мають префікс `v-`. Очікуваним значенням такого атрибуту є **єдиний JavaScript вираз** (виключенням є `v-for`, про який ми поговоримо пізніше). Завданням директиви є реактивне додавання побічних ефектів до DOM, коли значення або вираз атрибуту змінюється. Переглянемо той самий приклад, який ми бачити у вступі:
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">Тепер ти мене бачиш</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `seen`.
+Тут директива `v-if` видаляє або додає елемент `<p>` залежно від того, чи вираз `seen` є правдивим.
 
-### Arguments
+### Аргументи
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Деякі директиви можуть приймати певний аргумент, відділений двокрапкою після імені директиви. Для прикладу, директива `v-bind` використовується для реактивного оновлення HTML атрибутів:
 
 ``` html
 <a v-bind:href="url"> ... </a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
+Тут `href` є її аргументом, що вказує директиві `v-bind` зв'язати атрибут елемента `href` із значенням в значенні виразу, в даному випадку `url`.
 
-Another example is the `v-on` directive, which listens to DOM events:
+Іншим зразком є директива `v-on`, яка "слухає" події DOM:
 
 ``` html
 <a v-on:click="doSomething"> ... </a>
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
+Тут аргументом є назва події, яку потрібно прослуховувати. Ми поговоримо детальніше про обробку подій теж.
 
-### Dynamic Arguments
+### Динамічні аргументи
 
-> New in 2.6.0+
+> Нове в 2.6.0+
 
+Починаючи з версії 2.6.0, також стало можливим використовув
 Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
 
 ``` html
