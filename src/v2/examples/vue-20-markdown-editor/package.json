@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-markdown-editor",
+  "version": "1.0.0",
+  "description": "Dead simple Markdown editor.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}
