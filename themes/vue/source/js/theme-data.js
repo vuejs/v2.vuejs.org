@@ -127,8 +127,8 @@ var themeData = [
   },
   {
     name: 'PrimeVue',
-    description: `The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue?af_id=4218) offers over 50 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look&feel that suits you best.`,
-    seeMoreUrl: 'https://www.primefaces.org/primevue?af_id=4218',
+    description: `The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) offers over 50 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look&feel that suits you best.`,
+    seeMoreUrl: 'https://www.primefaces.org/primevue/#/?af_id=4218',
     products: [
       {
         name: 'Sapphire',
