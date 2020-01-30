@@ -161,7 +161,7 @@ var themeData = [
       {
         name: 'Babylon',
         price: 79,
-        description: 'Admin Template with Extensive Customization Options',
+        description: 'Admin Template with Extensive Options',
         url: 'https://www.primefaces.org/layouts/babylon-vue?af_id=4218',
         image: 'https://www.primefaces.org/vue-templates/babylon.jpg'
       },
@@ -171,6 +171,13 @@ var themeData = [
         description: 'Admin Template with a Clean Design System',
         url: 'https://www.primefaces.org/layouts/roma-vue?af_id=4218',
         image: 'https://www.primefaces.org/vue-templates/roma.jpg'
+      },
+      {
+        name: 'Sigma',
+        price: 0,
+        description: 'Free Admin Template',
+        url: 'https://www.primefaces.org/sigma-vue/#/?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/sigma.jpg'
       }
     ]
   }
