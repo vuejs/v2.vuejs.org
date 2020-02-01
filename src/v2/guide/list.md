@@ -440,6 +440,10 @@ De forma similar a la plantilla `v-if`, también puede usar una etiqueta `<templ
 
 ## `v-for` con `v-if`
 
+nota: Tenga en cuenta que no se recomienda usar v-if y v-for juntos. Consulte la [guía de estilo](https://vuejs.org/v2/style-guide/#Avoid-v-if-with-v-for-essential) para más detalles.
+
+
+
 Cuando existen en el mismo nodo, `v-for` tiene una prioridad más alta que `v-if`. Eso significa que el `v-if` se ejecutará en cada iteración del bucle por separado. Esto puede ser útil cuando desea representar nodos solo para _algunos_ elementos, como a continuación:
 
 ``` html
