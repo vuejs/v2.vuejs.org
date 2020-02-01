@@ -2423,7 +2423,26 @@ type: api
 
   When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Warning re "created" and "computed". Because the refs themselves are created as a result of the render function, they do not yet exist at the time of the "created" hook. A workaround to allow use in computed properties is to ensure the evaluation is not attempted until $refs exists, for example:
+  
+  ``` html
+  <img src="https://vuejs.org/images/logo.png" ref="logo">
+
+  ```
+
+  ``` js
+  computed: {
+      imageHeight(){
+          if (this && this.$refs && this.$refs.logo){
+            return this.$refs.logo.height
+          } else {
+            return undefined
+          }
+      }
+  }
+  ```
+
+  Moroever, `$refs` is non-reactive, so do not attempt to use it in templates for data binding.
 
 - **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
