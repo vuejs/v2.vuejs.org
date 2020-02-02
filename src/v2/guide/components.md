@@ -442,7 +442,7 @@ When used on a component, `v-model` instead does this:
 ``` html
 <custom-input
   v-bind:value="searchText"
-  v-on:input="searchText = $event"
+  v-on:input="searchText = $event.target.value"
 ></custom-input>
 ```
 
