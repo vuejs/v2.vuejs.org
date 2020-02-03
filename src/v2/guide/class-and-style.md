@@ -149,7 +149,7 @@ Cuando `isActive` es verdadero, el HTML renderizado será:
 <p class="foo bar active">Hi</p>
 ```
 
-## Enlace de Estilos línea
+## Enlace de estilos en línea
 
 ### Sintaxis de objeto
 
@@ -181,9 +181,9 @@ data: {
 
 Nuevamente, la sintaxis de objeto es a menudo usada en conjunción con propiedades computadas que retornan objetos.
 
-### Sintaxis de Matriz
+### Sintaxis de Array
 
-La sintaxis de matriz `v-bind:style` permite aplicar múltiples objetos de estilo al mismo elemento:
+La sintaxis de array `v-bind:style` permite aplicar múltiples objetos de estilo al mismo elemento:
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
@@ -197,10 +197,10 @@ Cuando utilice una propiedad CSS que requiera [prefijos de proveedores](https://
 
 > 2.3.0+
 
-Desde la versión 2.3.0+ usted puede proveer una matriz de valores múltiples (de prefijos) a una propiedad de estilo, por ejemplo:
+Desde la versión 2.3.0+ usted puede proveer un array de valores múltiples (de prefijos) a una propiedad de estilo, por ejemplo:
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-Esto solo renderizará el ultimo valor en la matriz que el navegador soporte. En este ejemplo, se renderizará `display: flex` para los navegadores que soportan la versión sin prefijo de flexbox.
+Esto solo renderizará el ultimo valor en el array que el navegador soporte. En este ejemplo, se renderizará `display: flex` para los navegadores que soportan la versión sin prefijo de flexbox.

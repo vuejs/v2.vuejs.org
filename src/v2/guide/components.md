@@ -176,7 +176,7 @@ new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-En una aplicación típica, sin embargo, es probable que tenga una *matriz* de *post* en `data`:
+En una aplicación típica, sin embargo, es probable que tenga un *array* de *post* en `data`:
 
 ```js
 new Vue({
