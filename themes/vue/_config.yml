@@ -100,6 +100,9 @@ gold_sponsors:
   - url: 'https://www.programmers.io'
     img: programmers_io.png
     name: Programmers.io
+  - url: 'https://www.primefaces.org/primevue'
+    img: primevue.png
+    name: PrimeVue
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
