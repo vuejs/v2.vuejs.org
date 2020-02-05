@@ -18,7 +18,7 @@ Podemos pasar un objeto a `v-bind:class` para la asignación dinámica de clases
 
 La sintaxis de arriba tiene como resultado la clase `active` según el valor booleano(https://developer.mozilla.org/en-US/docs/Glossary/Truthy) de la propiedad `isActive`.
 
-Puede hacer multiple asingación de clases al tener más campos en el objeto. Además, la directiva `v-bind:class` también puede ser utilizada con el atributo `class`. De modo que con la siguiente plantilla:
+Puede hacer multiple asignación de clases al tener más campos en el objeto. Además, la directiva `v-bind:class` también puede ser utilizada con el atributo `class`. De modo que con la siguiente plantilla:
 
 ``` html
 <div class="static"
@@ -43,7 +43,7 @@ Se rendizará:
 
 Cuando `isActive` o `hasError` cambien, la lista de clases se actualizará consecuentemente. Por ejemplo, si `hasError` se convierte en `true`, la lista de clases se convertirá en `"static active text-danger"`.
 
-El objecto no tiene por qué estar inline:
+El objecto no tiene por qué ser en línea:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -149,7 +149,7 @@ Cuando `isActive` es verdadero, el HTML renderizado será:
 <p class="foo bar active">Hi</p>
 ```
 
-## Enlace de Estilos inline
+## Enlace de estilos en línea
 
 ### Sintaxis de objeto
 
@@ -191,7 +191,7 @@ La sintaxis de array `v-bind:style` permite aplicar múltiples objetos de estilo
 
 ### Auto-prefijado
 
-Cuando utilice una propiedad CSS que requiere [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `v-bind:style`, como por ejemplo `transform`, Vue detectará automaticamente y agregará los correspondientes prefijos a los estilos aplicados.
+Cuando utilice una propiedad CSS que requiera [prefijos de proveedores](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) en `v-bind:style`, como por ejemplo `transform`, Vue detectará automaticamente y agregará los prefijos correspondientes a los estilos aplicados.
 
 ### Valores múltiples
 
