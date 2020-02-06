@@ -29,15 +29,18 @@ You don't have to do anything special in your components to make them testable. 
 </script>
 ```
 
-Then import the component options along with Vue, and you can make many common assertions (here we are using Jasmine/Jest style `expect` assertions just as an example):
+Then import the component along with [Vue Test Utils](https://vue-test-utils.vuejs.org/), and you can make many common assertions (here we are using Jest-style `expect` assertions just as an example):
 
 ``` js
-// Import Vue and the component being tested
-import Vue from 'vue'
-import MyComponent from 'path/to/MyComponent.vue'
+// Import `shallowMount` from Vue Test Utils and the component being tested
+import { shallowMount } from '@vue/test-utils'
+import MyComponent from './MyComponent.vue'
 
-// Here are some Jasmine 2.0 tests, though you can
-// use any test runner / assertion library combo you prefer
+// Mount the component
+const wrapper = shallowMount(MyComponent)
+
+// Here are some Jest tests, though you can
+// use any test runner/assertion library combo you prefer
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
@@ -54,15 +57,12 @@ describe('MyComponent', () => {
 
   // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
-    const vm = new Vue(MyComponent).$mount()
-    expect(vm.message).toBe('bye!')
+    expect(wrapper.vm.$data.message).toBe('bye!')
   })
 
   // Mount an instance and inspect the render output
   it('renders the correct message', () => {
-    const Constructor = Vue.extend(MyComponent)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.textContent).toBe('bye!')
+    expect(wrapper.text()).toBe('bye!')
   })
 })
 ```
