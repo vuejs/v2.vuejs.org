@@ -119,13 +119,13 @@ Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Que
 
 ``` js
 // Inspect the generated HTML after a state update
-it('updates the rendered message when vm.message updates', async () => {
-  const vm = shallowMount(MyComponent)
-  vm.setData({ message: 'foo' })
+it('updates the rendered message when wrapper.message updates', async () => {
+  const wrapper = shallowMount(MyComponent)
+  wrapper.setData({ message: 'foo' })
 
   // Wait a "tick" after state change before asserting DOM updates
-  await Vue.nextTick()
-  expect(vm.text()).toBe('foo')
+  await wrapper.vm.$nextTick()
+  expect(wrapper.text()).toBe('foo')
 })
 ```
 
