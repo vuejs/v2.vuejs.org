@@ -22,7 +22,7 @@ You don't have to do anything special in your components to make them testable. 
         message: 'hello!'
       }
     },
-    mounted () {
+    created () {
       this.message = 'bye!'
     }
   }
@@ -43,8 +43,8 @@ const wrapper = shallowMount(MyComponent)
 // use any test runner/assertion library combo you prefer
 describe('MyComponent', () => {
   // Inspect the raw component options
-  it('has a mounted hook', () => {
-    expect(typeof MyComponent.mounted).toBe('function')
+  it('has a created hook', () => {
+    expect(typeof MyComponent.created).toBe('function')
   })
 
   // Evaluate the results of functions in
