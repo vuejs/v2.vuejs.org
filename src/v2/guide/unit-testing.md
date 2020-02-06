@@ -83,47 +83,49 @@ A component's render output is primarily determined by the props it receives. If
 </script>
 ```
 
-You can assert its render output with different props using the `propsData` option:
+You can assert its render output with different props using [Vue Test Utils](https://vue-test-utils.vuejs.org/):
 
 ``` js
-import Vue from 'vue'
+import { shallowMount } from '@vue/test-utils'
 import MyComponent from './MyComponent.vue'
 
-// helper function that mounts and returns the rendered text
-function getRenderedText (Component, propsData) {
-  const Constructor = Vue.extend(Component)
-  const vm = new Constructor({ propsData: propsData }).$mount()
-  return vm.$el.textContent
+// helper function that mounts and returns the rendered component
+function getMountedComponent(Component, propsData) {
+  return shallowMount(MyComponent, {
+    propsData
+  })
 }
 
 describe('MyComponent', () => {
   it('renders correctly with different props', () => {
-    expect(getRenderedText(MyComponent, {
-      msg: 'Hello'
-    })).toBe('Hello')
+    expect(
+      getMountedComponent(MyComponent, {
+        msg: 'Hello'
+      }).text()
+    ).toBe('Hello')
 
-    expect(getRenderedText(MyComponent, {
-      msg: 'Bye'
-    })).toBe('Bye')
+    expect(
+      getMountedComponent(MyComponent, {
+        msg: 'Bye'
+      }).text()
+    ).toBe('Bye')
   })
 })
 ```
 
 ## Asserting Asynchronous Updates
 
-Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
+Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made after `vm.$nextTick()` has resolved:
 
 ``` js
 // Inspect the generated HTML after a state update
-it('updates the rendered message when vm.message updates', done => {
-  const vm = new Vue(MyComponent).$mount()
-  vm.message = 'foo'
+it('updates the rendered message when wrapper.message updates', async () => {
+  const wrapper = shallowMount(MyComponent)
+  wrapper.setData({ message: 'foo' })
 
-  // wait a "tick" after state change before asserting DOM updates
-  Vue.nextTick(() => {
-    expect(vm.$el.textContent).toBe('foo')
-    done()
-  })
+  // Wait a "tick" after state change before asserting DOM updates
+  await wrapper.vm.$nextTick()
+  expect(wrapper.text()).toBe('foo')
 })
 ```
 
