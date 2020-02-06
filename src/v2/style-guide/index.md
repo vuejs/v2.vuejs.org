@@ -1454,7 +1454,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ``` html
 <template v-slot:header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template #footer>
@@ -1496,7 +1496,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ``` html
 <template v-slot:header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template v-slot:footer>
@@ -1506,7 +1506,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ``` html
 <template #header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template #footer>
@@ -1941,7 +1941,9 @@ Vue.component('TodoItem', {
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but it is not appropriate for most applications.
+
+Vuex is the [official flux-like implementation](https://vuejs.org/v2/guide/state-management.html#Official-Flux-Like-Implementation) for Vue, and offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes. It integrates well in the Vue ecosystem (including full [Vue DevTools](https://vuejs.org/v2/guide/installation.html#Vue-Devtools) support).
 
 {% raw %}</details>{% endraw %}
 
