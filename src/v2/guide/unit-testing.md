@@ -91,7 +91,7 @@ import MyComponent from './MyComponent.vue'
 
 // helper function that mounts and returns the rendered component
 function getMountedComponent(Component, propsData) {
-  return shallowMount(MyComponent, {
+  return shallowMount(Component, {
     propsData
   })
 }
