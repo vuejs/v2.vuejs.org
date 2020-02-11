@@ -1,21 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My first Vue app</title>
-  <script src="https://unpkg.com/vue"></script>
-</head>
-<body>
-  <div id="app">
-    {{ message }}
-  </div>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ul>
+      <br />
+      <label>Click on button and add +1: {{counter}}</label>
+      <br />
+      <button v-on:click="add">Add</button>
+      <button v-on:click="incremenet">Add 1</button>
+      <a v-on:click.Once="doThis">Call Once</a>
+      <input v-model="message" placeholder="edit me" />
+      <p>Message is: {{ message }}</p>
 
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue!'
-      }
-    })
-  </script>
-</body>
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          todos: [
+            { text: "Learn JavaScript" },
+            { text: "Learn Vue" },
+            { text: "Build something awesome" }
+          ],
+          counter: 0,
+          message: "",
+          checked: false
+        },
+        methods: {
+          add: function() {
+            app.todos.push({ text: "Mohsin Azam" });
+          },
+          incremenet: function() {
+            app.counter += 1;
+          },
+          doThis: function() {
+            alert("Only call once.");
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
