@@ -6,10 +6,10 @@ platinum_sponsors_china:
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
 special_sponsors:
-  - url: 'https://stdlib.com/'
-    img: stdlib.png
-    name: Standard Library
-    description: 'Build APIs you need in minutes instead of days, for free.'
+  - url: 'https://www.producthunt.com/posts/autocode'
+    img: autocode.svg
+    name: Autocode
+    description: 'Build app-to-app workflows and connect APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
