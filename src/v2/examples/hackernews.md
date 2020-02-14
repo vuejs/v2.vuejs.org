@@ -4,7 +4,7 @@ type: examples
 order: 12
 ---
 
-> This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + Vue Router + Vuex, with server-side rendering.
+> Berikut adalah tiruan HackerNews yang dibuat berdasarkan Firebase APi resmi dari HackerNews, Vue 2.0 + Vue Router + Vuex, dengan server-side rendering.
 
 {% raw %}
 <div style="max-width: 600px;">
@@ -15,21 +15,21 @@ order: 12
 {% endraw %}
 
 > [Live Demo](https://vue-hn.herokuapp.com/)
-> Note: the demo may need some spin up time if nobody has accessed it for a certain period.
+> Catatan: demo mungkin akan membutuhkan waktu muat ketika tidak seorangpun mengaksesnya dalam beberapa jangka waktu.
 >
-> [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
+> [[Kode sumber](https://github.com/vuejs/vue-hackernews-2.0)]
 
-## Features
+## Fitur
 
 - Server Side Rendering
-  - Vue + Vue Router + Vuex working together
+  - Vue + Vue Router + Vuex bekerja bersama
   - Server-side data pre-fetching
   - Client-side state & DOM hydration
 - Single-file Vue Components
-  - Hot-reload in development
-  - CSS extraction for production
-- Real-time List Updates with FLIP Animation
+  - Hot-reload dalam pembangunan
+  - Ekstaksi CSS untuk produksi
+- Perbaruan secara waktu nyata dengan animasi FLIP
 
-## Architecture Overview
+## Ikhtisar Arsitektur
 
 <img width="973" alt="Hackernew clone architecture overview" src="../../images/hn-architecture.png">

@@ -2,6 +2,13 @@
 
 📚 Kamus perbendaharaan kata asing yang akan sering ditemukan ketikan menerjemahkan dokumentasi resmi Vue.js.
 
+## Sumber yang akan membantu Anda menerjemahkan
+
+- [PUEBI](https://puebi.readthedocs.io/en/latest/)
+- [KBBI Kemdigbud](https://kbbi.kemdikbud.go.id/)
+- [Kateglo.com](http://kateglo.com/)
+- [Hukum Diterangkan Menerangkan](https://rubrikbahasa.wordpress.com/2003/09/01/hukum-dm-dalam-bahasa-indonesia/)
+
 ## Navigasi Berdasarkan Abjad
 
 + [A](#a), [B](#b), [C](#c), [D](#d), [E](#e), [F](#f),
@@ -12,6 +19,7 @@
 
 ## A
 
+- Analyze: Analisis
 - Argument: Argumen
 - Attribute: Atribut
 
@@ -30,15 +38,20 @@
 - Chain: Rantai (atau bisa dengan tetap *Chain*)
 - Child: Anak
 - Component: Komponen
+- Compile: Menyusun/Menghimpun
 - Console: Konsol
 - Constructor: Konstruktor
+- Custom: Khusus
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## D
 
+- Default Value: Nilai Anggapan
 - Define: Mendefinisikan
 - Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
+- Deploy: Menggelar (Tetap diikuti dengan bahasa inggris asli italic dan dalam kurung)
+- Deployment: Penggelaran (Tetap diikuti dengan bahasa inggris asli italic dan dalam kurung)
 - Directive: Direktif
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -47,7 +60,9 @@
 
 - E.g. (exempli gratia / for example): Sebagai Contoh
 - Element: Elemen
+- Error: Galat
 - Event: *Event*
+- Extracted: Diekstraksi
 - Export: Ekspor
 - Expression: Ekspresi
 
@@ -63,6 +78,7 @@
 
 ## G
 
+- Gotcha: Rintangan / Halangan
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -76,9 +92,11 @@
 
 - I.e. (id est / in other words): Dengan kata lain
 - Import: Impor
+- Inception: Permulaan
 - Index: Indeks
 - Inheritance: Pewarisan
 - Instance: *Instance*
+- Instantiate: *Instantiate*
 - Interpolation: Interpolasi
 
 [⬆️](#navigasi-berdasarkan-abjad)
@@ -125,8 +143,10 @@
 
 ## P
 
-- Passing: Mengoper
 - Parent: Induk
+- Passing: Mengoper
+- Path: Jalur
+- Piece-by-piece: Sepotong-sepotong
 - Project: Proyek
 - Property: Properti
 - Props: Props
@@ -140,6 +160,7 @@
 
 ## R
 
+- Refactor: *Refactor*
 - Render: *Render*
 - Return: Mengembalikan
 - Router: *Router*
@@ -149,6 +170,10 @@
 
 ## S
 
+- Section: Bagian/Seksi
+- Set: Menetapkan
+- Shorthand: Tulisan cepat (tambahkan imbuhan sesuai dengan konteks jika diperlukan)
+- String: Untai
 - Style: Gaya
 - Style Guide: Panduan Gaya
 - Single Page Application:	Aplikasi *Single-Page*
@@ -162,12 +187,13 @@
 ## T
 
 - Template: Templat
+- Trigger: Picu (memicu/dipicu)
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
 ## U
 
-- Update:	Pembaruan
+- Update:	Pembaruan - Updated: Diperbarui
 
 [⬆️](#navigasi-berdasarkan-abjad)
 
@@ -175,7 +201,7 @@
 
 - Value: Nilai
 - Virtual DOM: DOM Virtual
-- 
+-
 
 [⬆️](#navigasi-berdasarkan-abjad)
 

@@ -1,14 +1,14 @@
 ---
-title: Unit Testing Vue Components
+title: Unit Tes Komponen Vue
 type: cookbook
 order: 6
 ---
 
-## Base Example
+## Contoh Dasar
 
-Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](../guide/single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
+Unit testing merupakan bagian dasar dalam pengembangan perangkat lunak. Unit tests menjalankan unit terkecil pada sebuah kode dalam kondisi terisolasi, bertujuan untuk meningkatkan kemudahan di dalam penambahan fitur-fitur baru dan melacak _bug_. [Single-file components](../guide/single-file-components.html) Vue memudahkan untuk menulis unit tests komponen dalam kondisi terisolasi. Hal ini membuat anda percaya diri dalam mengembangakan fitur-fitur baru tanpa menggangu kode yang ada dan membantu pengembang lainnya memahami apa yang komponen anda lakukan.
 
-This simple example tests whether some text is rendered:
+Ini contoh tes sederhana apakah beberapa text di-_render_:
 
 ```html
 <template>
@@ -65,39 +65,39 @@ test('Hello', () => {
 })
 ```
 
-The above code snippet shows how to test whether an error message is rendered based on the length of the username. It demonstrates the general idea of unit testing Vue components: render the component, and assert that the markup matches the state of the component.
+Cuplikan kode diatas menunjukan bagaimana melakukan tes apakah pesan galat di-_render_ berdasarkan panjang dari username. Itu menampilkan ide umum dari unit tes pada komponen Vue: me-_render_ komponen dan menegaskan bahwa markup cocok dengan kondisi komponen.
 
-## Why test?
+## Kenapa melakukan tes?
 
-Component unit tests have lots of benefits:
+Komponen unit test memiliki banyak keuntungan:
 
-- Provide documentation on how the component should behave
-- Save time over testing manually
-- Reduce bugs in new features
-- Improve design
-- Facilitate refactoring
+- Menyediakan dokumentasi bagaimana perilaku komponen seharusnya
+- Menghemat waktu terhadap test secara manual
+- Mengurangi _bug_ pada fitur-fitur baru
+- Meningkatkan rancangan
+- Memfasilitasi refaktor kode
 
-Automated testing allows large teams of developers to maintain complex codebases.
+Tes terautomasi mengizinkan tim pengembang memelihara basis kode yang komplek.
 
-#### Getting started
+#### Panduan memulai
 
-[Vue Test Utils](https://github.com/vuejs/vue-test-utils) is the official library for unit testing Vue components. The [vue-cli](https://github.com/vuejs/vue-cli) `webpack` template comes with either Karma or Jest, both well supported test runners, and there are some [guides](https://vue-test-utils.vuejs.org/guides/) in the Vue Test Utils documentation.
+[Vue Test Utils](https://github.com/vuejs/vue-test-utils) merupakan _library_ resmi untuk unit tes pada komponen Vue. [Vue-cli](https://github.com/vuejs/vue-cli) `webpack` templat hadir baik dengan Karma atau Jest, keduanya mendukung _test runners_ dan ada beberapa [panduan](https://vue-test-utils.vuejs.org/guides/) pada dokumentasi Utilitas Vue Tes.
 
-## Real-World Example
+## Contoh Nyata 
 
-Unit tests should be:
+Unit tes seharusnya:
 
-- Fast to run
-- Easy to understand
-- Only test a _single unit of work_
+- Cepat saat dijalankan
+- Mudah dipahami
+- Hanya melakukan tes _single unit of work_
 
-Let's continue building on the previous example, while introducing the idea of a <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">factory function</a> to make our test more compact and readable. The component should:
+Mari kita lanjutkan pengembangan pada contoh sebelumnya, disamping memperkenalkan ide dari <a href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">factory function</a> untuk membuat tes kita lebih tersusun rapat dan mudah dibaca. Komponen tersebut seharusnya:
 
-- show a 'Welcome to the Vue.js cookbook' greeting.
-- prompt the user to enter their username
-- display an error if the entered username is less than seven letters
+- Menampilkan salam 'Welcome to the Vue.js cookbook'.
+- Meminta pengguna memasukan username mereka.
+- Menampilkan sebuah pesan galat jika username yang dimasukkan kurang dari tujuh kata.
 
-Let's take a look at the component code first:
+Mari kita lihat kode komponen dibawah:
 
 ```html
 <template>
@@ -135,13 +135,13 @@ export default {
 </script>
 ```
 
-The things that we should test are:
+Hal-hal yang seharusnya kita tes adalah:
 
-- is the `message` rendered?
-- if `error` is `true`, `<div class="error">` should be present
-- if `error` is `false`, `<div class="error">` should not be present
+- Apakah variabel message di-_render_?
+- Jika `error` bernilai `true`, `<div class="error">` harusnya muncul
+- Jika `error` bernilai `false`, `<div class="error">` harusnya tidak muncul
 
-And our first attempt at test:
+Dan percobaan pertama pada tes:
 
 ```js
 import { shallowMount } from '@vue/test-utils'
@@ -169,19 +169,19 @@ describe('Foo', () => {
 })
 ```
 
-There are some problems with the above:
+Ada beberapa masalah dengan code di atas:
 
-- a single test is making assertions about different things
-- difficult to tell the different states the component can be in, and what should be rendered
+- Sebuah tes tunggal membuat _assertions_ tentang banyak hal berbeda
+- Sulit menunjukkan perbedaan kondisi komponen yang dapat masuk serta apa yang seharusnya di-_render_
 
-The below example improves the test by:
+Contoh di bawah ini memperbaiki tes dengan cara:
 
-- only making one assertion per `it` block
-- having short, clear test descriptions
-- providing only the minimum data required for the test
-- refactoring duplicated logic (creating the `wrapper` and setting the `username` variable) into a factory function
+- Hanya membuat satu _assertion_ tiap blok `it`
+- Memiliki deskripsi tes yang singkat dan jelas
+- Menyediakan hanya data minimal yang diperlukan untuk tes
+- Merefaktor logika ganda (membuat  `wrapper` dan menata variabel `username`) kedalam _factory function_
 
-*Updated test*:
+*tes terbaru*:
 ```js
 import { shallowMount } from '@vue/test-utils'
 import Foo from './Foo'
@@ -219,32 +219,32 @@ describe('Foo', () => {
 })
 ```
 
-Points to note:
+poin-poin catatan:
 
-At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallowMount(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once.
+Pada contoh di atas, kita mendeklarasikan factory function yang mengabungkan objek `values` ke dalam `data` dan mengembalikan `wrapper` _instance_ baru. Dengan cara ini, kita tidak perlu menduplikasi `const wrapper = shallowMount(Foo)` pada tiap tes. Keuntungan besar lainnya ialah saat komplek komponen dengan metode atau _computed property_ yang ingin Anda _mock_ atau _stub_ dalam tiap tes, Anda hanya perlu mendeklarasikannya satu kali.
 
-## Additional Context
+## Konteks Tambahan
 
-The above test is fairly simple, but in practice Vue components often have other behaviors you want to test, such as:
+Tes di atas cukup sederhana, namun dalam parkteknya komponen Vue sering memiliki perilaku berbeda yang ingin Anda tes, seperti:
 
-- making API calls
-- committing or dispatching mutations or actions with a `Vuex` store
-- testing interaction
+- Membuat pemanggilang API
+- _Committing_ atau _dispatching mutations_ atau _actions_ dengan `Vuex` store
+- Tes interaksi
 
-There are more complete examples showing such tests in the Vue Test Utils [guides](https://vue-test-utils.vuejs.org/guides/).
+Ada contoh lebih lengkap yang menampilkan tes tersebut dalam Utilitas Vue Tes [panduan](https://vue-test-utils.vuejs.org/guides/).
 
-Vue Test Utils and the enormous JavaScript ecosystem provides plenty of tooling to facilitate almost 100% test coverage. Unit tests are only one part of the testing pyramid, though. Some other types of tests include e2e (end to end) tests, and snapshot tests. Unit tests are the smallest and most simple of tests - they make assertions on the smallest units of work, isolating each part of a single component.
+Utilitas Vue Tes dan ekosistem JavaScript yang sangat besar menyediakan banyak perkakas untuk memfasilitasi hampir 100% cakupan tes. Bagaimanapun Unit tes hanya merupakan salah satu bagian dari piramida tes. Beberapa tipe tes lainnya mencakup e2e (end to end) tes, dan _snapshot_ tes. Unit tes merupakan test paling kecil dan paling simpel - Unit tes membuat _assertions_ di dalam unit terkecil pada kerja kode, mengisolasi tiap bagian komponen tunggal.
 
-Snapshot tests save the markup of your Vue component, and compare to the new one generated each time the test runs. If something changes, the developer is notified, and can decide if the change was intentional (the component was updated) or accidental (the component is behaving incorrectly).
+_Snapshot_ tes menyimpan markup dari komponen Vue Anda, dan membandingkan dengan yang baru dibuat tiap tes dijalankan. Jika sesuatu berubah, pengembang diinformasikan, dan dapat memutuskan jika perubahan memang diperlukan (komponen diperbarui) atau secara sengaja (komponen berperilaku tidak semestinya).
 
-End to end tests ensure a number of components interact well together. They are more high level. Some examples might be testing if a user can sign up, log in, and update their username. These are slower to run than unit tests or snapshot tests.
+End to end tes memastikan beberapa komponen berinteraksi dengan semestinya secara bersama-sama. End to end tes merupakan tingkat yang lebih tinggi. Beberapa contoh mungkin melakukan tes apakah pengguna dapat _sign up_, _login_, dan memperbarui username mereka. Hal itu lebih lambat dijalankan daripada unit tes atau _snapshot_ tes.
 
-Unit tests are most useful during development, either to help a developer think about how to design a component, or refactor an existing component, and are often run every time code is changed.
+Unit tes merupakan yang paling berguna saat pengembangan, baik membantu pengembang berfikit bagaimana merancang komponen atau merefaktor komponen yang ada, dan sering dijalankan setiap terdapat perubahan kode.
 
-Higher level tests, such as end to end tests, run much slower. These usually run pre-deploy, to ensure each part of the system is working together correctly.
+Tes dengan tingkat yang lebih tinggi, seperti end to end tes, berjalan lebih lambat. Hal ini biasanya berjalan saat _pre-deploy_ untuk memastikan tiap bagian dari sistem berkerja dengan semestinya bersama-sama.
 
-More information about testing Vue components can be found in [Testing Vue.js Applications](https://www.manning.com/books/testing-vuejs-applications) by core team member [Edd Yerburgh](https://eddyerburgh.me/).
+Informasi lebih lanjut tentang tes komponen Vue dapat ditemukan pada [Tes Aplikasi Vue.js](https://www.manning.com/books/testing-vuejs-applications) dibuat oleh anggota tim inti [Edd Yerburgh](https://eddyerburgh.me/).
 
-## When To Avoid This Pattern
+## Kapan Menghidari Pola ini
 
-Unit testing is an important part of any serious application. At first, when the vision of an application is not clear, unit testing might slow down development, but once a vision is established and real users will be interacting with the application, unit tests (and other types of automated tests) are absolutely essential to ensure the codebase is maintainable and scalable.
+Unit tes merupakan bagian penting dari aplikasi serius. Awalnya, saat visi aplikasi tidak jelas, unit tes mungkin saja meperlambat pengembangan, namun sekali visi dibangun dan pengguna nyata akan berinteraksi dengan aplikasi tersebut, unit tes (dan tipe automasi tes lainnya) sangatlah penting untuk memastikan basis kode terpelihara dan _scalable_.

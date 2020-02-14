@@ -3,31 +3,31 @@ title: API
 type: api
 ---
 
-## Global Config
+## Konfigurasi Global
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` adalah objek yang berisi konfigurasi global Vue. Anda dapat memodifikasi propertinya yang terdaftar di bawah ini sebelum mem-*bootstrap* aplikasi Anda:
 
 ### silent
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `false`
+- **Nilai Anggapan:** `false`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Memunculkan semua log dan peringatan Vue.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipe:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Nilai Anggapan:** `{}`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -41,106 +41,106 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Menetapkan strategi penggabungan kustom untuk opsi.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  Strategi penggabungan menerima nilai dari opsi yang didefinisikan pada *instance* induk dan anak sebagai argumen pertama dan kedua. Konteks dari Vue *instance* dioper sebagai argumen ketiga.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Lihat juga:** [Strategi Penggabungan pada Opsi Khusus](../guide/mixins.html#Strategi-Penggabungan-pada-Opsi-Khusus)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Nilai Anggapan:** `true` (`false` pada _build_ produksi)
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // pastikan untuk mengatur ini secara synchronous segera setelah memuat Vue
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Konfigurasi untuk mengizinkan [vue-devtools](https://github.com/vuejs/vue-devtools) untuk melakukan inspeksi pada aplikasi kita. Nilai anggapan dari opsi ini adalah `true` dalam _build_ pengembangan dan `false` di _build_ produksi. Anda dapat mengaturnya ke `true` untuk mengaktifkan inspeksi pada produksi.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Default:** `undefined`
+- **Nilai Anggapan:** `undefined`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // penanganan galat
+    // `info` adalah informasi galat yang spesifik pada Vue, seperti pada kait siklus hidup
+    // galat ditemukan di. Hanya tersedia di 2.2.0+
   }
   ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  Tetapkan _handler_ untuk kesalahan yang tidak tertangkap selama fungsi render komponen dan pengamat _(watcher)_. Fungsi _handler_ akan dipanggil dengan galat dan _instance_ Vue sebagai parameter.
 
-  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > Di 2.2.0+, kait ini juga menangkap galat pada kait siklus hidup komponen. Begitu juga ketika kait ini `undefined`, galat tetap akan dicatat dengan `console.error`, alih-alih membuat aplikasi menjadi tidak bisa digunakan.
 
-  > In 2.4.0+, this hook also captures errors thrown inside Vue custom event handlers.
+  > Di 2.4.0+, kait ini juga menangkap galat yang dilempar dari dalam _event handler_ khusus.
 
-  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
+  > Di 2.6.0+, kait ini juga menangkap galat yang dilempar dari pemantau _(listener)_ DOM `v-on`. Sebagai tambahan, jika ada kait atau _handler_ yang mengembalikan rantai Promise (misalnya fungsi _async_), maka galat dari rantai Promise tersebut juga akan ditangani.
 
-  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > Servis pelacak galat [Sentry](https://sentry.io/for/vue/) dan [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) menyediakan integrasi resmi dengan opsi ini.
 
 ### warnHandler
 
-> New in 2.4.0+
+> Baru di 2.4.0+
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Default:** `undefined`
+- **Nilai Anggapan:** `undefined`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` is the component hierarchy trace
+    // `trace` adalah jejak hierarki komponen
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Menetapkan handler khusus untuk peringatan pada *runtime Vue*. Untuk catatan, ini hanya berfungsi selama mode pengembangan dan diabaikan dalam produksi.
 
 ### ignoredElements
 
-- **Type:** `Array<string | RegExp>`
+- **Tipe:** `Array<string | RegExp>`
 
-- **Default:** `[]`
+- **Nilai Anggapan:** `[]`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.ignoredElements = [
     'my-custom-web-component',
     'another-web-component',
-    // Use a `RegExp` to ignore all elements that start with "ion-"
-    // 2.5+ only
+    // Gunakan `RegExp` untuk mengabaikan semua elemen yang dimulai dengan "ion-"
+    // hanya 2.5+
     /^ion-/
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Membuat Vue mengabaikan elemen khusus yang didefinisikan di luar Vue (mis., Menggunakan Web Components APIs). Jika tidak, itu akan memunculkan peringatan tentang `Unknown custom element`, dengan asumsi Anda lupa mendaftarkan komponen global atau salah mengeja nama komponen.
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **Tipe:** `{ [key: string]: number | Array<number> }`
 
-- **Default:** `{}`
+- **Nilai Anggapan:** `{}`
 
-- **Usage:**
+- **Penggunaan:**
 
   ``` js
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase tidak akan bekerja
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // tapi gunakan kebab-case dengan tanda kutip ganda
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -150,51 +150,51 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for `v-on`.
+  Menetapkan alias key kustom untuk `v-on`.
 
 ### performance
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `false (from 2.2.3+)`
+- **Nilai Anggapan:** `false (from 2.2.3+)`
 
-- **Usage**:
+- **Penggunaan**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Setel ini menjadi `true` untuk mengaktifkan pelacakan inisialisasi komponen, kompilasi, render, dan palacakan performa patch pada alat pengembang peramban di bagian performance/timeline. Hanya berfungsi dalam mode pengembangan dan  peramban yang mendukung API [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 ### productionTip
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `true`
+- **Nilai Anggapan:** `true`
 
-- **Usage**:
+- **Penggunaan**:
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Setel ini menjadi `false` untuk mencegah tip produksi pada memulai Vue.
 
-## Global API
+## API Global
 
 ### Vue.extend( options )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} options`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Membuat sebuah "subclass" dari konstruktor. Argumen harus berisi objek yang berisi opsi komponen.
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  Kasus spesial untuk dicatat disini adalah opsi `data` - ini harus berupa fungsi ketika digunakan dengan `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create constructor
+  // buat konstruktor
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -205,89 +205,89 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // buat sebuah instance dari profil dan pasang ke dalam elemen
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  Akan menghasilkan:
 
   ``` html
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Lihat juga:** [Components](../guide/components.html)
 
 ### Vue.nextTick( [callback, context] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Function} [callback]`
   - `{Object} [context]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Menangguhkan panggilan balik untuk dieksekusi setelah siklus pembaruan DOM selanjutnya. Gunakan ini segera setelah Anda mengubah beberapa data untuk menunggu untuk pembaruan DOM.
 
   ``` js
-  // modify data
+  // modifikasi data
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM belum diperbarui
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM telah diperbarui
   })
 
-  // usage as a promise (2.1.0+, see note below)
+  // gunakan sebagai promise (2.1.0+, lihat catatan di bawah)
   Vue.nextTick()
     .then(function () {
-      // DOM updated
+      // DOM telah diperbarui
     })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Baru di 2.1.0+: mengembalikan sebuah _Promise_ jika tidak tersedia panggilan balikdan _Promise_ didukung di lingkungan eksekusi. Tolong catat bahwa Vue tidak datang dengan _Promise_ _polyfill_, jadi jika Anda menargetkan peramban yang tidak mendukung _Promise_ secara bawaan (melihat Anda, IE). Anda harus menyediakan _polyfill_ Anda sendiri.
 
-- **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **Lihat juga:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
 ### Vue.set( target, key, value )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Mengembalikan:** nilai yang diset.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
+  Menambahkan properti ke dalam objek reaktif, menjamin properti baru untuk reaktif juga, jadi memicu pembaruan _view_. Ini harus digunakan untuk menambah properti baru untuk objek reaktif, karena Vue tidak dapat mendeteksi penambahan properti normal (sebagai contoh `this.myObject.newProperty = 'hi'`).
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">Objek target tidak dapat menjadi _instance_ Vue, atau objek data root dari _instance_ Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.delete( target, key )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only in 2.2.0+: Also works with Array + index.
+  > Hanya di 2.2.0+: Juga bekerja dengan Array + index.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Menghapus properti dalam objek. Jika objek reaktif, menjamin pembaruan pemicu penghapusan _view_. Ini terutama digunakan untuk mengatasi batasan dimana Vue tidak dapat mendeteksi penghapusan properti, tapi Anda jarang harus menggunakannya.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">Objek target tidak dapat menjadi _instance_ Vue, atau objek data root dari _instance_ Vue.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Register or retrieve a global directive.
+  Mendaftarkan atau mengambil directif global.
 
   ``` js
   // register
@@ -301,24 +301,24 @@ type: api
 
   // register (function directive)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // ini akan dipanggil sebagai `bind` dan `update`
   })
 
-  // getter, return the directive definition if registered
+  // getter, mengembalikan definisi direktif jika terdaftar
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Lihat juga:** [Custom Directives](../guide/custom-directive.html)
 
 ### Vue.filter( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function} [definition]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Register or retrieve a global filter.
+  Mendaftarkan atau mengambil filter global.
 
   ``` js
   // register
@@ -326,69 +326,69 @@ type: api
     // return processed value
   })
 
-  // getter, return the filter if registered
+  // getter, mengembalikan filter jika terdaftar
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **See also:** [Filters](../guide/filters.html)
+- **Lihat juga:** [Filters](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Mendaftarkan atau mengambil komponen global. Pendaftaran juga secara otomatis menset komponen `name` dengan `id` yang diberikan.
 
   ``` js
-  // register an extended constructor
+  // mendaftarkan sebuah perpanjangan konstruktor
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // mendaftarkan opsi objek (secara otomatis memanggil Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // mengambil komponen yang telah terdaftar (selalu mengembalikan konstruktor)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **Lihat juga:** [Components](../guide/components.html)
 
 ### Vue.use( plugin )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Function} plugin`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Memasang plugin Vue.js. Jika plugin adalah sebuah objek, objek tersebut harus membuka metode `install`. Jika ini adalah fungsinya sendiri, ini akan diperlukan sebagai metode pemasangan. Metode pemasangan akan dipanggil dengan Vue sebagai argumen.
 
-  This method has to be called before calling `new Vue()`
+  Metode ini harus dipanggil sebelum memanggil `new Vue()`
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Ketika metode ini dipanggil dalam plugin yang sama beberapa kali, plugin hanya akan dipasang sekali.
 
-- **See also:** [Plugins](../guide/plugins.html)
+- **Lihat juga:** [Plugins](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} mixin`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Menerapkan _mixin_ secara global, akan berpengaruh ke setiap _instance_ Vue yang tercipta setelah itu. Ini dapat digunakan oleh pembuat plugin untuk menginjeksi perilaku khusus ke dalam komponen. **Tidak direkomendasikan dalam kode aplikasi**.
 
-- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **Lihat juga:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
 ### Vue.compile( template )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} template`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  Menghimpun untai templat kedalam fungsi render. **Hanya tersedia dalam build penuh.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -402,20 +402,20 @@ type: api
   })
   ```
 
-- **See also:** [Render Functions](../guide/render-function.html)
+- **Lihat juga:** [Render Functions](../guide/render-function.html)
 
 ### Vue.observable( object )
 
-> New in 2.6.0+
+> Baru di 2.6.0+
 
-- **Arguments:**
+- **Argumen:**
   - `{Object} object`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+  Membuat sebuah reaktif objek. Secara internal, Vue menggunakan ini dalam objek yang dikembalikan oleh fungsi `data`.
 
-  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+  Objek yang dikembalikan dapat digunakan secara langsung dalam [fungsi render](../guide/render-function.html) dan [properti computed](../guide/computed.html), dan akan memicu pembaruan yang sesuai ketika bermutasi. Ini juga dapat digunakan secara minimal, menyimpan _state_ lintas komponen untuk skenario sederhana:
 
   ``` js
   const state = Vue.observable({ count: 0 })
@@ -429,15 +429,15 @@ type: api
   }
   ```
 
-  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+  <p class="tip">Dalam Vue 2.x, `Vue.observable` secara langsung memutasikan objek yang dioper ke dalamnya, jadi ini sama dengan pengembalian objek, [didemonstrasikan disini](../guide/instance.html#Data-and-Methods). Dalam Vue 3.x, proksi reaktif akan kembali sebagai gantinya, meninggalkan objek nonreaktif aslinya jika bermutasi secara langsung. Karena itu, untuk kompatibilitas di masa yang akan datang, kami selalu merekomendasikan bekerja dengan objek yang dikembalikan oleh `Vue.observable`, dari pada objek asli yang dioper ke dalamnya.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Lihat juga:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.version
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **Detil**: Menyediakan versi yang terpasang dari Vue sebagai untai. Terutama beguna untuk plugin dan komponen dari komunitas, dimana Anda mungkin menggunakan stretegi berbeda untuk versi yang berbeda.
 
-- **Usage**:
+- **Penggunaan**:
 
   ```js
   var version = Number(Vue.version.split('.')[0])
@@ -451,41 +451,41 @@ type: api
   }
   ```
 
-## Options / Data
+## Opsi / Data
 
 ### data
 
-- **Type:** `Object | Function`
+- **Tipe:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Batasan:** Hanya menerima `Function` saat digunakan dalam pendefinisian komponen.
 
-- **Details:**
+- **Detil:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
+  Objek data pada sebuah Vue *instance*. Vue secara rekursif akan mengkonversi properti-propertinya menjadi *getter/setter* untuk membuatnya *reaktif*. **Objeknya haruslah sederhana**: objek-objek *native* seperti objek *browser* API and properti-properti *prototype* akan diabaikan. Aturan sederhananya adalah data seharusnya hanyalah data - tidak direkomendasikan untuk melakukan observasi ke objek-objek yang memiliki perilaku *stateful* (yang memiliki bermacam variasi keadaan / *state*).
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Jika telah terobservasi, kamu tidak dapat lagi menambahkan properti-properti reaktif ke objek data *root*. Maka direkomendasikan untuk mendeklarasikan semua properti-properti reaktif tingkat *root* diawal, sebelum membuat *instance*.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Setelah *instance* terbuat, objek data original dapat diakses sebagai `vm.$data`. Vue *instance* juga menjembatani semua properti-properti yang ditemui pada objek data, sehingga `vm.a` akan ekuivalen dengan `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Properti-properti yang berawalan `_` atau `$` **tidak** akan dijembatani pada Vue *instance* karena dapat menyebabkan konflik dengan properti-properti internal Vue dan API *methods*. Kamu akan dapat mengakses mereka sebagai `vm.$data._property`.
 
   When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Jika dibutuhkan, penjiplakan mendalam (*deep clone*) daripada objek original dapat dilakukan dengan meneruskan (*passing*) `vm.$data` melalui `JSON.parse(JSON.stringify(...))`.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // pembuatan instance secara langsung
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
+  // harus menggunakan function saat berada didalam Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -493,45 +493,45 @@ type: api
   })
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Perlu dicatat bahwa jika kamu menggunkan fungsi panah (*arrow function*) pada properti `data`, `this` tidaklah menjadi *instance* dari komponen, namun kamu tetap dapat mengakses *instance* tersebut sebagai argumen pertama dari *function*:
 
   ```js
   data: vm => ({ a: vm.myProp })
   ```
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **Lihat juga:** [Reaktivitas Secara Mendalam](../guide/reactivity.html)
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **Tipe:** `Array<string> | Object`
 
-- **Details:**
+- **Detil:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Sebuah daftar (*list*) /  *hash* dari attribut-attribut yang diekspos untuk menerima data dari komponen induk (*parent*). Props memiliki sebuah sintaks sederhana berbasis *Array* dan sintaks alternatif berbasis Objek yang memungkinkan konfigurasi lebih jauh (*advanced*) seperti pengecekan tipe (*type checking*), validasi khusus (*custom*) dan melakukan pemberian nilai-nilai standar (*default values*).
 
-  With Object-based syntax, you can use following options:
-    - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+  Dengan sintaks berbasis Objek, kamu dapat menggunakan opsi-opsi berikut:
+    - **type:** dapat berupa salah satu dari *native contructors* berikut: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, *constructor* khusus (*custom*) apapun atau suatu *array* dari itu semua. Akan dilakukan pengecekan apakah sebuah *prop* telah diberikan tipe, dan akan memunculkan peringatan jika belum. [Informasi lebih lanjut](../guide/components-props.html#Prop-Types) untuk tipe-tipe *prop*.
     - **default:** `any`
-    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    Menspesifikasikan nilai dasar (*default*) untuk *prop*. Jika prop tidak diberikan nilai, maka nilai ini yang akan digunakan. Objek atau *array* standar harus dikembalikan (*returned*) dari *function* yang membuatnya.
     - **required:** `Boolean`
-    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    Mendefinisikan jika *prop* ini dibutuhkan (harus ada dan memiliki nilai). Dalam lingkungan yang bukan untuk keperluan produksi (*non-production*), peringatan pada *console* akan dimunculkan jika nilainya *truthy* (`true` atau yang ekuivalen) dan *prop*-nya tidak diteruskan (*passed*).
     - **validator:** `Function`
-    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
+    Sebuah fungsi validator *custom* (bebas dan khusus) yang menerima nilai *prop* sebagai satu-satunya argumen. Dalam lingkungan yang bukan untuk keperluan produksi (*non-production*), peringatan pada *console* akan dimunculkan jika fungsi ini mengembalikan nilai yang *falsy* (`false` atau yang ekuivalen) (misal: validasi gagal). Kamu dapat membaca lebih lanjut tentang validasi *prop* [disini](../guide/components-props.html#Prop-Validation).
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  // simple syntax
+  // sintaks sederhana
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // sintaks objek dengan validasi
   Vue.component('props-demo-advanced', {
     props: {
-      // type check
+      // pengecekan tipe
       height: Number,
-      // type check plus other validations
+      // pengecekan tipe plus validasi lain
       age: {
         type: Number,
         default: 0,
@@ -544,19 +544,19 @@ type: api
   })
   ```
 
-- **See also:** [Props](../guide/components-props.html)
+- **Lihat juga:** [Props](../guide/components-props.html)
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **Tipe:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Batasan:** hanya dapat ditemui / digunakan (*respected*) pada pembuatan *instance* via `new`.
 
-- **Details:**
+- **Detil:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Meneruskan *props* ke *instance* saat pembuatan *instance* tersebut. Utamanya ditujukan agar pengerjaan *unit testing* lebih mudah.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var Comp = Vue.extend({
@@ -573,13 +573,13 @@ type: api
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Tipe:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **Detil:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Properti-properti terolah (*computed*) yang kemudian digabung kedalam Vue *instance*. Seluruh *getters* (fungsi untuk mengambil data) dan *setters* (fungsi untuk mengubah data) memiliki konteks `this` yang secara otomatis terikat dengan Vue *instance*-nya.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Perlu dicatat bahwa jika kamu menggunkan fungsi panah (*arrow function*) pada properti terolah (*computed*), `this` bukanlah *instance* dari komponen, namun kamu tetap dapat mengakses *instance* tersebut sebagai argumen pertama dari *function*:
 
   ```js
   computed: {
@@ -587,19 +587,19 @@ type: api
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Properti-properti terolah (*computed*) ini akan tersimpan sementara (*cached*), dan hanya akan diolah kembali (*re-computed*) saat ada perubahan pada dependensi reaktif. Perlu dicatat bahwa jika sebuah dependensi tertentu berada diluar cakupan (*scope*) *instance* (misal: tidak reaktif), properti terolah (*computed*) **tidak** akan diperbarui.
 
-- **Example:**
+- **Contoh:**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only
+      // hanya get
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // get dan set
       aPlus: {
         get: function () {
           return this.a + 1
@@ -616,19 +616,19 @@ type: api
   vm.aDouble // => 4
   ```
 
-- **See also:** [Computed Properties](../guide/computed.html)
+- **Lihat juga:** [Computed Properties](../guide/computed.html)
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipe:** `{ [key: string]: Function }`
 
-- **Details:**
+- **Detil:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Metode-metode yang kemudian digabung ke dalam Vue *instance*. Kamu dapat mengakses metode-metode ini secara langsung pada VM *instance*, atau menggunakannya di ekspresi-ekspresi *directive*. Semua metode ini, konteks `this`-nya akan secara otomatis terikat ke Vue *instance*.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Perlu dicatat bahwa __kamu sebaiknya tidak menggunakan fungsi panah (*arrow*) untuk mendefinisikan sebuah metode__ (contoh: `plus: () => this.a++`). Hal tersebut dikarenakan fungsi panah (*arrow*) mengikat (*bind*) konteks ke konteks induk, menyebabkan `this` bukan lagi Vue *instance* seperti yang kamu ekspektasikan dan `this.a` akan menjadi *undefined*.</p>
 
-- **Example:**
+- **Contoh:**
 
   ```js
   var vm = new Vue({
@@ -643,17 +643,17 @@ type: api
   vm.a // 2
   ```
 
-- **See also:** [Event Handling](../guide/events.html)
+- **Lihat juga:** [Penanganan Event](../guide/events.html)
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object | Array}`
+- **Tipe:** `{ [key: string]: string | Function | Object | Array}`
 
-- **Details:**
+- **Detil:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Sebuah objek dimana *keys* adalah expresi-expresi untuk memantau dan *values* adalah *callback*-nya (fungsi yang dipanggil setelah suatu fungsi lain selesai dieksekusi). *Value* dapat berupa *string* dari nama sebuah metode, atau sebuah Objek yang memiliki opsi-opsi tambahan. Vue *instance* akan memanggil `$watch()` setiap key pada objek saat instansiasi (pembuatan Vue *instance*).
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var vm = new Vue({
@@ -672,14 +672,14 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // *string* dari nama metode
       b: 'someMethod',
-      // deep watcher
+      // pemantauan mendalam (deep watcher)
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
-      // the callback will be called immediately after the start of the observation
+      // callback akan dipanggil seketika setelah observasi dimulai
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
@@ -692,86 +692,86 @@ type: api
           /* ... */
         }
       ],
-      // watch vm.e.f's value: {g: 5}
+      // memantau vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Perlu dicatat bahwa __kamu sebaiknya tidak menggunakan fungsi panah (*arrow*) untuk mendefinisikan sebuah watcher__ (contoh: `searchQuery: newValue => this.updateAutocomplete(newValue)`). Hal tersebut dikarenakan fungsi panah (*arrow*) mengikat (*bind*) konteks ke konteks induk, menyebabkan `this` bukan lagi Vue *instance* seperti yang kamu ekspektasikan dan `this.updateAutocomplete` akan menjadi *undefined*.</p>
 
-- **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
+- **Lihat juga:** [Metode Instance / Data - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Opsi / DOM
 
 ### el
 
-- **Type:** `string | Element`
+- **Tipe:** `string | Element`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Batasan:** hanya berlaku pada pembuatan _instance_ melalui `new`.
 
-- **Details:**
+- **Detil:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Berikan _instance_ Vue sebuah elemen DOM yang sudah ada untuk dipasangkan. Ini bisa berupa kata pemilih CSS atau sebuah HTMLElement sesungguhnya.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Setelah _instance_ sudah dipasangkan, elemen akan dapat diakses sebagai `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Jika opsi ini ada saat pembuatan _instance_, _instance_ akan langsung menjalankan kompilasi; jika tidak, pengguna harus memanggil `vm.$mount()` secara eksplisit untuk menjalankan kompilasi secara manual.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">Elemen yang diberikan hanya menjadi titik pemasangan. Tidak seperti Vue 1.x, elemen yang dipasangkan akan digantikan dengan DOM yang dihasilkan oleh Vue dalam semua kasus. Karena itu tidak disarankan untuk memasangkan instance akar ke `<html>` atau `<body>`.</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">Jika  fungsi `render` maupun opsi `template` tidak diberikan, DOM HTML yang di dalam dari elemen DOM yang dipasangkan akan diekstrak sebagai template. Dalam kasus ini, Runtime + Compiler build Vue harus digunakan.</p>
 
-- **See also:**
+- **Lihat juga:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
-- **Type:** `string`
+- **Tipe:** `string`
 
-- **Details:**
+- **Detil:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Templat string yang akan digunakan sebagai markup untuk _instance_ Vue. Template akan **menggantikan** elemen yang dipasang. Markup apa pun yang ada di dalam elemen yang dipasang akan diabaikan, kecuali jika slot distribusi konten ada dalam template.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Jika kata dimulai dengan `#` itu akan digunakan sebagai querySelector dan menggunakan innerHTML elemen yang dipilih sebagai string template. Ini memungkinkan penggunaan trik umum `<script type =" x-template ">` untuk menyertakan templat.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">Dari perspektif keamanan, Anda hanya boleh menggunakan templat Vue yang dapat Anda percayai. Jangan pernah menggunakan konten yang dibuat pengguna sebagai templat Anda.</p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Jika fungsi _render_ ada dalam opsi Vue, _template_ akan diabaikan.</p>
 
-- **See also:**
+- **Lihat juga:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `(createElement: () => VNode) => VNode`
+  - **Tipe:** `(createElement: () => VNode) => VNode`
 
-  - **Details:**
+  - **Detil:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Alternatif untuk templat string yang memungkinkan Anda memanfaatkan kekuatan penuh program JavaScript. Fungsi render menerima sebuah metode `createElement` sebagai argumen pertama yang digunakan untuk membuat `VNode`.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Jika komponen merupakan sebuah komponen fungsional, fungsi render juga menerima ekstra argumen `context`, yang memberikan aksesk pada data kontekstual karena komponen fungsional tidak memiliki _instance_.
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">Fungsi `render` memiliki prioritas di atas fungsi render yang dikompilasi dari opsi `template` atau templat HTML dalam DOM dari elemen pemasangan yang ditentukan oleh opsi` el`..</p>
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Lihat juga:** [Render Functions](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **Tipe:** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **Detil:**
 
-    **Only works in development mode.**
+    **Hanya bekerja pada mode pengembangan.**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    Memberikan sebuah keluaran _render_ alternatif ketika fungsi `render` standar menemukan kesalahan. Kesalahan akan diteruskan ke `renderError` sebagai argumen kedua. Ini sangat berguna saat digunakan bersama dengan _hot-reload_.
 
-  - **Example:**
+  - **Contoh:**
 
     ``` js
     new Vue({
@@ -784,233 +784,234 @@ type: api
     }).$mount('#app')
     ```
 
-  - **See also:** [Render Functions](../guide/render-function.html)
+  - **Lihat juga:** [Render Functions](../guide/render-function.html)
 
-## Options / Lifecycle Hooks
+## Opsi / Kait Siklus hidup
 
-<p class="tip">All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.</p>
+<p class="tip">Semua kait siklus hidup secara otomatis terikat konteks `this` dengan *instance*, sehingga Anda bisa mengakses data, computed properties, dan methods. Ini berarti __Anda seharusnya tidak menggunakan *arrow function* saat mendefinisikan metode siklus hidup__ (e.g. `created: () => this.fetchTodos()`). Alasannya adalah *arrow function* mengikat konteks induk, jadi `this` tidak akan menjadi *instance* Vue seperti yang Anda harapkan dan `this.fetchTodos` akan undefined.</p>
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  Dipanggil secara sinkron segera setelah *instance* diinisialisasi, sebelum pengaturan data observasi dan *event/watcher*.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Dipanggil secara sinkron setelah *instance* dibuat. Pada tahap ini, *instance* telah selesai memproses opsi yang berarti yang berikut telah diatur: data observasi, *computed properties*, *methods*, *watch/event callbacks*. Namun, tahap pemasangan belum dimulai, dan properti `$el` belum tersedia.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Dipanggil tepat sebelum pemasangan dimulai: fungsi `render` akan dipanggil untuk pertama kalinya
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Dipanggil setelah *instance* telah terpasang, dimana `el` digantikan oleh `vm.$el` yang baru dibuat. Jika root instance sudah terpasang ke sebuah elemen pada dokumen, `vm.$el` juga akan di dokumen ketika `mounted` dipanggil.
 
-  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
+  Perhatikan bahwa `mounted` tidak menjamin bahwa semua komponen turunannya telah terpasang. Jika Anda ingin menunggu hingga seluruh tampilan telah di-*rander*,  anda dapat menggunakan [vm.$nextTick](#vm-nextTick) di dalam `mounted`
+
 
   ``` js
   mounted: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
+      // Kode yang hanya akan berjalan setelah
+      // seluruh tampilan telah di-render
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
+  Dipanggil ketika data berubah sebelum DOM di-*patched*. Ini adalah tempat yang baik untuk mengakses DOM yang ada sebelum pembaruan, misalnya untuk menghapus *event listeners* yang ditambahkan secara manual.
 
-  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server, karena hanya render awal yang dilakukan di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Dipanggil setelah perubahan data menyebabkan *virtual DOM*  diubah dan *patched*.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  *DOM* komponen akan diperbarui ketika kait ini dipanggil, sehingga Anda dapat melakukan operasi yang bergantung pada *DOM* di sini. Namun, dalam sebagian besar kasus, Anda harus menghindari perubahan *state* di dalam kait. Untuk bereaksi terhadap perubahan *state*, biasanya lebih baik menggunakan [computed property](#computed) atau [watcher](#watch).
 
-  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `updated`:
+  Perhatikan bahwa `updated` tidak menjamin bahawa semua komponen turunannya telah terpasang. Jika Anda ingin menunggu hingga seluruh tampilan telah di-*render*,  anda dapat menggunakan [vm.$nextTick](#vm-nextTick) di dalam `mounted`
 
   ``` js
   updated: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
+      // Kode yang hanya akan berjalan setelah
+      // seluruh tampilan telah di-render
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called when a kept-alive component is activated.
+  Dipanggil ketika komponen *kept-alive* diaktifkan.
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:**
+- **Lihat juga:**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called when a kept-alive component is deactivated.
+  Dipanggil ketika komponen *kept-alive* dinonaktifkan.
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:**
+- **Lihat juga:**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Dipanggil tepat sebelum *instance* Vue dihancurkan. Pada tahap ini *instance* masih berfungsi penuh.
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
-- **Type:** `Function`
+- **Tipe:** `Function`
 
-- **Details:**
+- **Detil:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Dipanggil setelah *instance* Vue dihancurkan. Ketika kait ini dipanggil, semua *directives* dari *instance* Vue *unbound*, semua *event listeners* telah dihapus, dan semua turunan *instance* Vue juga telah dihancurkan.
 
-  **This hook is not called during server-side rendering.**
+  **Kait ini tidak dipanggil selama *rendering* di sisi server.**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### errorCaptured
 
-> New in 2.5.0+
+> Baru di 2.5.0+
 
-- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+- **Tipe:** `(err: Error, vm: Component, info: string) => ?boolean`
 
-- **Details:**
+- **Detil:**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  Dipanggil ketika galat dari komponen turunan ditangkap. Kait menerima tiga argumen: Galatnya, *instance* komponen yang memicu galat, dan *string* yang memuat informasi dimana galat itu tertangkap. Kait dapat mengembalikan `false` untuk menghentikan galat agar tidak menyebar lebih lanjut.
 
-  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+  <p class="tip">Anda dapat mengubah state komponen dalam kait ini. Namun, penting untuk memiliki persyaratan dalam templat Anda atau fungsi *render* yang memiliki sirkuit pendek konten lain ketika galat telah ditangkap; jika tidak, komponen akan dilemparkan ke *loop render* yang tak terbatas.</p>
 
-  **Error Propagation Rules**
+  **Aturan Propagasi Galat**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - Secara *default*, semua kesalahan masih dikirim ke `config.errorHandler` global jika sudah didefinisikan, sehingga galat ini masih dapat dilaporkan ke layanan analitik di satu tempat.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - Jika ada beberapa kait `errorCaptured` pada rantai pewarisan atau rantai induk komponen, semuanya akan dipanggil pada kesalahan yang sama.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - Jika kait `errorCaptured` itu sendiri melempar kesalahan, kesalahan ini dan kesalahan yang ditangkap asli dikirim ke `config.errorHandler` global.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - Kait `errorCaptured` dapat mengembalikan `false` untuk mencegah kesalahan agar tidak menyebar lebih lanjut. Ini pada dasarnya mengatakan "kesalahan ini telah ditangani dan harus diabaikan." Ini akan mencegah kait `errorCaptured` tambahan atau `global config.errorHandler` global agar tidak dipanggil untuk kesalahan ini.
 
-## Options / Assets
+## Opsi / Assets
 
 ### directives
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Details:**
+- **Detil:**
 
-  A hash of directives to be made available to the Vue instance.
+  Sejumlah directive yang harus disediakan untuk _instance_ Vue.
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **Lihat juga:** [Custom Directives](../guide/custom-directive.html)
 
 ### filters
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Details:**
+- **Detil:**
 
-  A hash of filters to be made available to the Vue instance.
+  Sejumlah filter yang harus disediakan untuk _instance_ Vue.
 
-- **See also:** [`Vue.filter`](#Vue-filter)
+- **Lihat juga:** [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Details:**
+- **Detil:**
 
-  A hash of components to be made available to the Vue instance.
+  Sejumlah komponen yang harus disediakan untuk _instance_ Vue.
 
-- **See also:** [Components](../guide/components.html)
+- **Lihat juga:** [Components](../guide/components.html)
 
-## Options / Composition
+## Opsi / Composition
 
 ### parent
 
-- **Type:** `Vue instance`
+- **Tipe:** `Vue instance`
 
-- **Details:**
+- **Detil:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Tentukan _instance_ induk untuk _instance_ yang akan dibuat. Bangun hubungan induk-anak di antara keduanya. Induk dapat diakses sebagai`this.$parent` di dalam _instance_ anak, dan _instance_ anak akan dimasukkan ke dalem _array_ `$children` induknya.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Gunakan `$parent` dan `$children` secukupnya - dikarenakan mereka kebanyakan digunakan sebagai pintu darurat. Utamakan penggunaan _props_ dan _events_ untuk komunikasi induk-anak.</p>
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **Tipe:** `Array<Object>`
 
-- **Details:**
+- **Detil:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  `mixins` menerima sebuah array berisi objek _mixin_. Kumpulan objek _mixin_ ini dapat berisi opsi _instance_ seperti _instance_ objek pada umumnya, dan mereka akan digabungkan dengan opsi yang ditambah menggunakan logika penggabungan opsi yang sama seperti `Vue.extend()`. Contoh: Jika `mixin` anda mengandung _hook_ dan komponen itu sendiri juga memiliki _hook_ yang sama, maka kedua fungsi akan dipanggil.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  _hook_ mixin dipanggil sesuai dengan urutan dimana mereka disediakan, dan dipanggil sebelum _hook_ komponen itu sendiri.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var mixin = {
@@ -1024,24 +1025,24 @@ type: api
   // => 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **Lihat juga:** [Mixins](../guide/mixins.html)
 
 ### extends
 
-- **Type:** `Object | Function`
+- **Tipe:** `Object | Function`
 
-- **Details:**
+- **Detil:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Secara deklaratif mengekstensi komponen lain (bisa antara objek opsi polos, atau sebuah konstruktor) tanpa menggunakan `Vue.extend`. Tujuan utama dari _extends_ adalah mempermudah ekstensi antara Komponen Berkas Tunggal.
 
-  This is similar to `mixins`.
+  Fungsi ini mirip dengan `mixins`.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // extend CompA tanpa perlu memanggil `Vue.extend` di keduanya
   var CompB = {
     extends: CompA,
     ...
@@ -1050,34 +1051,34 @@ type: api
 
 ### provide / inject
 
-> New in 2.2.0+
+> Baru di versi 2.2.0+
 
-- **Type:**
+- **Tipe:**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
-- **Details:**
+- **Detil:**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` dan `inject` khususnya disediakan untuk _plugin_ lanjutan / kasus pemakaian pustaka komponen. Fungsi ini TIDAK direkomendasikan untuk digunakan dalam kode aplikasi secara umum.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  Kedua opsi ini digunakan untuk mengizinkan komponen terdahulu sebagai penyuntik _dependencies_ ke semua keturunannya, mengesampingkan seberapa dalam komponen hirarkinya, selama mereka ada di dalam rantai komponen induk yang sama. Jika anda _familiar_ dengan React, ini sangat mirip dengan fitur konteks React.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  Tipe opsi `provide` harus sebuah objek atau sebuah fungsi yang mengembalikan sebuah object. Objek ini mengandung properti-properti yang tersedia untuk diinjeksikan ke keturunannya. Anda dapat menggunakan ES2015 Symbols sebagai _keys_ di objek ini, tapi hanya di lingkungan yang secara _native_ mendukung `Symbol` dan `Reflect.ownKeys`.
 
-  The `inject` option should be either:
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  Opsi `inject` harus di antara berikut:
+  - sebuah array berisi untai
+  - sebuah objek dimana _keys_ adalah nama _binding_ lokal dan nilainya di antara:
+    - _key_ (untai atau Symbol) untuk mencari injeksi yang tersedia, atau
+    - sebuah objek dimana:
+      - properti `from` adalah _key_ (untai atau Symbol) untuk mencari injeksi yang tersedia, dan
+      - properti `default` yang digunakan sebagai nilai pada saat terjadi kegagalan
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > Catatan: ikatan `provide` dan `inject` tidak bersifat reaktif. Hal ini disengaja. Namun, apabila anda menurunkan objek yang diobservasi, properti-properti dalam objek tersebut tetap reaktif.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  // parent component providing 'foo'
+  // komponen induk menyediakan 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1085,8 +1086,8 @@ type: api
     // ...
   }
 
-  // child component injecting 'foo'
-  var Child = {
+  // komponen anak menginjeksi 'foo'
+  var Anak = {
     inject: ['foo'],
     created () {
       console.log(this.foo) // => "bar"
@@ -1095,7 +1096,7 @@ type: api
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Dengan ES2015 Symbols, fungsi `provide` dan objek `inject`:
   ``` js
   const s = Symbol()
 
@@ -1107,17 +1108,17 @@ type: api
     }
   }
 
-  const Child = {
+  const Anak = {
     inject: { s },
     // ...
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > Dua contoh dibawah hanya bisa berjalan dengan Vue 2.2.1+. Nilai-nilai yang diinjeksi diselesaikan setelah inisialisasi `props` dan `data`.
 
-  Using an injected value as the default for a prop:
+  Menggunakan nilai yang terinjeksi sebagai nilai anggapan untuk sebuah `prop`:
   ```js
-  const Child = {
+  const Anak = {
     inject: ['foo'],
     props: {
       bar: {
@@ -1129,9 +1130,9 @@ type: api
   }
   ```
 
-  Using an injected value as data entry:
+  Menggunakan nilai yang terinjeksi sebagai data:
   ```js
-  const Child = {
+  const Anak = {
     inject: ['foo'],
     data () {
       return {
@@ -1141,20 +1142,20 @@ type: api
   }
   ```
 
-  > In 2.5.0+ injections can be optional with default value:
+  > Di versi 2.5.0+ injeksi bersifat opsional dengan nilai anggapan:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: { default: 'foo' }
     }
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  Jika komponen tersebut memerlukan injeksi dari properti dengan nama yang lain, gunakan `from` untuk menandakan sumber properti:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: {
         from: 'bar',
@@ -1164,10 +1165,10 @@ type: api
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non primitive values:
+  Mirip dengan nilai anggapan _prop_, anda harus menggunakan fungsi pabrik untuk nilai non-primitif:
 
   ``` js
-  const Child = {
+  const Anak = {
     inject: {
       foo: {
         from: 'bar',
@@ -1177,74 +1178,74 @@ type: api
   }
   ```
 
-## Options / Misc
+## Opsi / Lain-lain
 
 ### name
 
-- **Type:** `string`
+- **Tipe:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Batasan:** Gunakan hanya sebagai opsi komponen.
 
-- **Details:**
+- **Detil:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Mengizinkan sebuah komponen untuk memanggil dirinya sendiri di dalam templatnya sendiri secara rekursif. Catat bahwa ketika sebuah komponen terdaftar secara global dengan `Vue.component()`, ID global secara otomatis ditetapkan sebagai namanya.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Keuntungan lain dengan menspesifikasikan sebuah opsi `name` adalah _debugging_. Komponen dengan nama lebih membantu dalam pesan peringatan. Dan juga, ketika memeriksa sebuah aplikasi di dalam [vue-devtools](https://github.com/vuejs/vue-devtools), komponen tanpa nama akan muncul sebagai `<AnonymousComponent>`, dimana tidak informatif sama sekali. Dengan menambahkan opsi `name`, anda akan mendapatkan struktur komponen yang lebih informatif.
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Tipe:** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Nilai Anggapan:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Batasan:** Opsi ini hanya tersedia di _full build_, dalam kompilasi peramban.
 
-- **Details:**
+- **Detil:**
 
-  Change the plain text interpolation delimiters.
+  Mengubah pembatas interpolasi teks normal.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Delimiter diubah menjadi menggunakan ES6 template string
   ```
 
 ### functional
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Details:**
+- **Detil:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+  Menyebabkan sebuah komponen menjadi tanpa kondisi (tanpa `data`) dan tanpa _instance_ (tanpa konteks `this`). Komponen tersebut hanya berisi fungsi `render` yang mengembalikan node virtual agar membuat komponen tersebut lebih efektif untuk _dirender_.
 
-- **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Lihat juga:** [Functional Components](../guide/render-function.html#Functional-Components)
 
 ### model
 
-> New in 2.2.0
+> Baru di versi 2.2.0
 
-- **Type:** `{ prop?: string, event?: string }`
+- **Tipe:** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **Detil:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Mengizinkan sebuah komponen khusus untuk menyesuaikan _prop_ dan _event_ ketika digunakan bersama `v-model`. Secara standar, `v-model` dalam sebuah komponen menggunakan `value` sebagai _prop_ dan `input` sebagai _event_, namun beberapa tipe _input_ seperti tombol centang dan tombol radio ingin menggunakan _prop_ `value` untuk tujuan yang lain. Menggunakan opsi `model` dapat menghindari konflik dalam kasus seperti ini.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
-  Vue.component('my-checkbox', {
+  Vue.component('checkbox-saya', {
     model: {
       prop: 'checked',
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // mengizinkan menggunakan prop `value` untuk tujuan lain
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // menggunakan `checked` sebagai prop yang akan menimpa nilai dari `value`
       checked: {
         type: Number,
         default: 0
@@ -1255,88 +1256,88 @@ type: api
   ```
 
   ``` html
-  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  <checkbox-saya v-model="foo" value="sebuah nilai"></checkbox-saya>
   ```
 
-  The above will be equivalent to:
+  Kode di atas sama dengan:
 
   ``` html
-  <my-checkbox
+  <checkbox-saya
     :checked="foo"
-    @change="val => { foo = val }"
-    value="some value">
-  </my-checkbox>
+    @change="nilai => { foo = nilai }"
+    value="sebuah nilai">
+  </checkbox-saya>
   ```
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `true`
+- **Nilai Anggapan:** `true`
 
-- **Details:**
+- **Detil:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Secara standar, Ikatan atribut dalam cakupan induk yang tidak dikenali sebagai _prop_ akan "gagal" dan akan diaplikasikan ke elemen akar dari komponen anak sebagai atribut HTML normal. Ketika membuat sebuah komponen yang membungkus sebuah elemen target atau komponen lain, opsi ini tidak selalu menghasilkan hasil yang diinginkan. Dengan mengubah nilai `inheritAttrs` menjadi `false`, kejadian standar ini dapat dinonaktifkan. Atribut yang tersedia melalui properti _instance_ `$attrs` (baru di 2.4) dan bisa diikat secara eksplisit ke elemen yang bukan akar menggunakan `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Catatan: opsi ini **tidak** mempengaruhi ikatan `class` dan `style`.
 
 ### comments
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Default:** `false`
+- **Nilai Anggapan:** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Batasan:** Opsi ini hanya tersedia di _full build_, dalam kompilasi peramban.
 
-- **Details:**
+- **Detil:**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Ketika nilai diubah ke `true`, akan menyimpan dan _merender_ komen HTML yang ditemukan di templat. Tindakan normal secara umum adalah dengan membuangnya.
 
-## Instance Properties
+## Properti Instance
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Details:**
+- **Detil:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  Objek data yang dipantau oleh *Vue instance*. *Vue instance* menjembatani akses ke properti-properti yang ada di objek data *instance* tersebut.
 
-- **See also:** [Options / Data - data](#data)
+- **Lihat juga:** [Options / Data - data](#data)
 
 ### vm.$props
 
-> New in 2.2.0+
+> Baru di versi 2.2.0+
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Details:**
+- **Detil:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  Sebuah objek yang merepresentasikan *props* terkini yang diterima sebuah komponen. *Vue instance* menjembatani akses ke properti-properti yang ada di objek *props* *instance* tersebut.
 
 ### vm.$el
 
-- **Type:** `Element`
+- **Tipe:** `Element`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  The root DOM element that the Vue instance is managing.
+  Elemen pangkal (root) DOM yang dikelola oleh *Vue instance*.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Opsi-opsi pembuatan (*instantiation*) yang digunakan untuk *Vue instance* tersebut. Properti ini berguna saat kamu ingin memasukkan properti khusus di dalam opsi:
 
   ``` js
   new Vue({
@@ -1349,61 +1350,61 @@ type: api
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Tipe:** `Vue instance`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  The parent instance, if the current instance has one.
+  *Instance* induk (*parent*), jika *instance* tersebut mempunyainya.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Tipe:** `Vue instance`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  *Vue instance* pangkal (root) dari pohon komponen yang ada. Jika *instance* tersebut tidak mempunyai induk (*parent*), maka nilai dari properti ini adalah *instance* itu sendiri.
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Tipe:** `Array<Vue instance>`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Komponen-komponen anakan (child) yang langsung berada dibawah *instance* tersebut. **Sebagai catatan, tidak ada jaminan akan urutan `$children`, dan mereka tidak bersifat reaktif.** Jika kamu ingin mencoba menggunakan `$children` untuk mengikat data (binding), pertimbangkan untuk menggunakan *Array* dan `v-for` untuk membuat (*generate*) komponen anakan (*child*), dan gunakan *Array* tersebut sebagai sumber validitas.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Tipe:** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Digunakan untuk secara terprogram mengakses konten [yang didistribusi dengan slots](../guide/components.html#Content-Distribution-with-Slots). Tiap [slot yang memiliki nama (*named slot*)](../guide/components-slots.html#Slot-yang-Memiliki-Nama-Named-Slot) mempunyai properti terkait sendiri (misal: konten `slot="foo"` akan ditemukan pada `vm.$slots.foo`). Properti `default` berisi titik-titik (*nodes*) yang tidak masuk di dalam slot yang memiliki nama (*named slot*).
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Pengaksesan `vm.$slots` paling berguna saat menulis sebuah komponen dengan [fungsi *render*](.../guide/render-function.html).
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <blog-post>
     <h1 slot="header">
-      About Me
+      Tentang Saya
     </h1>
 
-    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+    <p>Disini beberapa konten halaman, yang akan masuk di dalam vm.$slots.default, karena tidak masuk di slot yang memiliki nama (named slot).</p>
 
     <p slot="footer">
       Copyright 2016 Evan You
     </p>
 
-    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+    <p>Jika saya memiliki beberapa konten disini, itu juga akan masuk di dalam vm.$slots.default.</p>.
   </blog-post>
   ```
 
@@ -1422,310 +1423,310 @@ type: api
   })
   ```
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+- **Lihat juga:**
+  - [Komponen `<slot>`](#slot-1)
+  - [Distribusi Konten dengan Slots](../guide/components.html#Content-Distribution-with-Slots)
+  - [Fungsi Render - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0+
+> Baru di versi 2.1.0+
 
-- **Type:** `{ [name: string]: props => Array<VNode> | undefined }`
+- **Tipe:** `{ [name: string]: props => Array<VNode> | undefined }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Digunakan untuk secara terprogram mengakses [scoped slots](../guide/components.html#Scoped-Slots). Tiap slot, termasuk `default`, objeknya memiliki fungsi terkait yang mengembalikan *VNodes*.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Pengaksesan `vm.$scopedSlots` sangat berguna saat menulis komponen dengan [fungsi render](../guide/render-function.html).
 
-  **Note:** since 2.6.0+, there are two notable changes to this property:
+  **Catatan:** sejak versi 2.6.0+, ada dua perubahan di properti ini yg perlu diperhatikan:
 
-  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+  1. Fungsi *scoped slot* saat ini menjamin akan mengembalikan *array* dari *VNodes*, kecuali jika nilai yang dikembalikan tidak valid, yang berarti fungsi tersebut akan mengembalikan `undefined`.
 
-  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
+  2. Semua `$slots` saat ini juga akan terekspos di `$scopedSlots` sebagai fungsi. Jika kamu berurusan dengan fungsi render, saat ini direkomendasikan untuk selalu mengakses *slots* via `$scopedSlots`, entah saat ini mereka menggunakan *scope* atau tidak. Hal ini tidak hanya akan membuat *refactors* mendatang semakin mudah dalam menambahkan sebuah *scope*, tapi juga akan memudahkan migrasi nantinya ke Vue 3, yang dimana semua *slots* adalah fungsi-fungsi.
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
+- **Lihat juga:**
+  - [Komponen `<slot>`](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions - Slots](../guide/render-function.html#Slots)
+  - [Fungsi Render - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Tipe:** `Object`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
+  Sebuah objek dari elemen-elemen DOM dan *instances* komponen, didaftarkan dengan [attribut `ref`](#ref).
 
-- **See also:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Lihat juga:**
+  - [*Refs* pada Komponen Anakan (*Child*)](../guide/components.html#Child-Component-Refs)
   - [Special Attributes - ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Tipe:** `boolean`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  Whether the current Vue instance is running on the server.
+  Menyatakan apakah *Vue instance* tersebut berjalan di server.
 
-- **See also:** [Server-Side Rendering](../guide/ssr.html)
+- **Lihat juga:** [Server-Side Rendering](../guide/ssr.html)
 
 ### vm.$attrs
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
-- **Type:** `{ [key: string]: string }`
+- **Tipe:** `{ [key: string]: string }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Berisi ikatan (bindings) attribut yang berada di cakupan induk (*parent*) (kecuali untuk `class` dan `style`) yang tidak dianggap (dan diekstrak) sebagai *props*. Saat sebuah komponen tidak memiliki deklarasi *props*, properti ini pada dasarnya berisi semua ikatan (bindings) yang berada di cakupan induk (*parent*) (kecuali untuk `class` dan `style`), dan dapat diteruskan kebawah ke komponen *inner* via `v-bind="$attrs"` - berguna saat membuat komponen *higher-order* (HOC).
 
 ### vm.$listeners
 
-> New in 2.4.0+
+> Baru di versi 2.4.0+
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **Tipe:** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Hanya dapat dibaca**
 
-- **Details:**
+- **Detil:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating transparent wrapper components.
+  Berisi pemantau (*listeners*) *events* `v-on` yang berada di cakupan induk (parent) (tanpa pengubah (*modifiers*) `.native`). Properti ini dapat diteruskan kebawah ke komponen *inner* via `v-on="$listeners"` - berguna saat membuat komponen-komponen penyelubung (wrapper) yang bersifat transparan.
 
-## Instance Methods / Data
+## Metode Instance / Data
 
 ### vm.$watch( expOrFn, callback, [options] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string | Function} expOrFn`
   - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Mengembalikan:** `{Function} unwatch`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
+Mengawasi suatu ekspresi atau fungsi penghitung (*computed function*) pada *instance* Vue untuk perubahan. *Callback* dipanggil dengan nilai baru dan nilai lama. Ekspresi hanya menerima jalur *dot-delimited*. Untuk ekspresi yang lebih kompleks, gunakan fungsi.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Catatan: ketika memutasi (alih-alih mengganti) suatu Objek atau Array, nilai lama akan sama dengan nilai baru karena mereka mereferensikan Objek/Array yang sama. Vue tidak menyimpan salinan dari nilai pra-mutasi.</p>
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   // keypath
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // lakukan sesuatu
   })
 
   // function
   vm.$watch(
     function () {
-      // everytime the expression `this.a + this.b` yields a different result,
-      // the handler will be called. It's as if we were watching a computed
-      // property without defining the computed property itself
+      // setiap kali ekspresi `this.a + this.b` menghasilkan hasil yang berbeda,
+      // handler akan dipanggil. Seolah-olah kita sedang mengawasi properti
+      // penghitung (computed property) tanpa mendefinisikan properti penghitung itu sendiri
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // lakukan sesuatu
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` mengembalikan fungsi yang tidak diamati yang berhenti menembakkan *callback*:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // nanti, runtuhkan pengamat
   unwatch()
   ```
 
-- **Option: deep**
+- **Opsi: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Untuk mendeteksi perubahan nilai bersarang (*nested value*) di dalam Objek, anda harus mengoper `deep: true` dalam argumen opsi. Perhatikan bahwa anda tidak perlu mendengarkan (*listen*) untuk mutasi Array.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback dieksekusi
   ```
 
-- **Option: immediate**
+- **Opsi: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Mengoper `immediate: true` dalam opsi akan segera memicu *callback* dengan nilai ekspresi saat ini:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // `callback` segera dieksekusi dengan nilai `a` saat ini
   ```
 
 ### vm.$set( target, key, value )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Mengembalikan:** set nilai.
 
-- **Usage:**
+- **Penggunaan:**
 
-  This is the **alias** of the global `Vue.set`.
+  Ini adalah **alias** dari global `Vue.set`.
 
-- **See also:** [Vue.set](#Vue-set)
+- **Lihat juga:** [Vue.set](#Vue-set)
 
 ### vm.$delete( target, key )
 
-- **Arguments:**
+- **Argumen:**
   - `{Object | Array} target`
   - `{string | number} key`
 
-- **Usage:**
+- **Penggunaan:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Ini adalah **alias** dari global `Vue.delete`.
 
-- **See also:** [Vue.delete](#Vue-delete)
+- **Lihat juga:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Metode Instance / Events
 
 ### vm.$on( event, callback )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+- **Argumen:**
+  - `{string | Array<string>} event` (_array_ hanya didukung pada versi 2.2.0+)
   - `{Function} callback`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Digunakan untuk memantau _event_ khusus pada _instance_ di sebuah _instance_. _Event_ dapat dipicu dengan metode `vm.$emit`. _Callback_ akan menerima seluruh argumen tambahan yang diberikan pada metode pemicu _event_ tersebut.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   vm.$on('test', function (msg) {
     console.log(msg)
   })
-  vm.$emit('test', 'hi')
-  // => "hi"
+  vm.$emit('test', 'halo')
+  // => "halo"
   ```
 
 ### vm.$once( event, callback )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} event`
   - `{Function} callback`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Digunakan untuk memantau _event_ khusus, tapi hanya sekali saja. Pemantau ini akan diabaikan setelah dijalankan untuk pertama kali.
 
 ### vm.$off( [event, callback] )
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+- **Argumen:**
+  - `{string | Array<string>} event` (_array_ hanya didukung pada versi 2.2.2+)
   - `{Function} [callback]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Remove custom event listener(s).
+  Menghapus pemantau (_listener_) untuk _event_ khusus.
 
-  - If no arguments are provided, remove all event listeners;
+  - Jika tidak disertai argumen satupun, maka semua pemantau akan dihapus;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Jika hanya disertai argumen `event`, maka hanya pemantau untuk _event_ tersebut yang akan dihapus;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Jika kedua argumen `event` dan `callback` disertakan, maka hanya pemantau spesifik untuk _callback_ tersebut yang akan dihapus.
 
 ### vm.$emit( eventName, [...args] )
 
-- **Arguments:**
+- **Argumen:**
   - `{string} eventName`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Digunakan untuk memicu (_trigger_) sebuah _event_ pada _instance_ ini. Seluruh argumen yang ditambahkan akan diteruskan ke fungsi _callback_ pada pemantau (_listener_).
 
-- **Examples:**
+- **Contoh:**
 
-  Using `$emit` with only an event name:
+  Menggunakan `$emit` hanya dengan nama _event_:
 
   ```js
   Vue.component('welcome-button', {
     template: `
-      <button v-on:click="$emit('welcome')">
-        Click me to be welcomed
+      <button v-on:click="$emit('kenalan')">
+        Klik di sini agar disapa
       </button>
     `
   })
   ```
   ```html
   <div id="emit-example-simple">
-    <welcome-button v-on:welcome="sayHi"></welcome-button>
+    <welcome-button v-on:kenalan="katakanHalo"></welcome-button>
   </div>
   ```
   ```js
   new Vue({
     el: '#emit-example-simple',
     methods: {
-      sayHi: function () {
-        alert('Hi!')
+      katakanHalo: function () {
+        alert('Haloo!')
       }
     }
   })
   ```
   {% raw %}
   <div id="emit-example-simple" class="demo">
-    <welcome-button v-on:welcome="sayHi"></welcome-button>
+    <welcome-button v-on:kenalan="katakanHalo"></welcome-button>
   </div>
   <script>
     Vue.component('welcome-button', {
       template: `
-        <button v-on:click="$emit('welcome')">
-          Click me to be welcomed
+        <button v-on:click="$emit('kenalan')">
+          Klik di sini agar disapa
         </button>
       `
     })
     new Vue({
       el: '#emit-example-simple',
       methods: {
-        sayHi: function () {
-          alert('Hi!')
+        katakanHalo: function () {
+          alert('Haloo!')
         }
       }
     })
   </script>
   {% endraw %}
 
-  Using `$emit` with additional arguments:
+  Menggunakan `$emit` dengan argumen tambahan:
 
   ```js
-  Vue.component('magic-eight-ball', {
+  Vue.component('pemberi-saran', {
     data: function () {
       return {
-        possibleAdvice: ['Yes', 'No', 'Maybe']
+        opsiSaran: ['Ya', 'Tidak', 'Mungkin']
       }
     },
     methods: {
-      giveAdvice: function () {
-        var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-        this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+      beriSaran: function () {
+        var indeksSaranAcak = Math.floor(Math.random() * this.opsiSaran.length)
+        this.$emit('beri-saran', this.opsiSaran[indeksSaranAcak])
       }
     },
     template: `
-      <button v-on:click="giveAdvice">
-        Click me for advice
+      <button v-on:click="beriSaran">
+        Klik di sini untuk meminta saran
       </button>
     `
   })
@@ -1733,7 +1734,7 @@ type: api
 
   ```html
   <div id="emit-example-argument">
-    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    <pemberi-saran v-on:beri-saran="tampilkanSaran"></pemberi-saran>
   </div>
   ```
 
@@ -1741,8 +1742,8 @@ type: api
   new Vue({
     el: '#emit-example-argument',
     methods: {
-      showAdvice: function (advice) {
-        alert(advice)
+      tampilkanSaran: function (saran) {
+        alert(saran)
       }
     }
   })
@@ -1750,96 +1751,96 @@ type: api
 
   {% raw %}
   <div id="emit-example-argument" class="demo">
-    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    <pemberi-saran v-on:beri-saran="tampilkanSaran"></pemberi-saran>
   </div>
   <script>
-    Vue.component('magic-eight-ball', {
+    Vue.component('pemberi-saran', {
       data: function () {
         return {
-          possibleAdvice: ['Yes', 'No', 'Maybe']
+          opsiSaran: ['Ya', 'Tidak', 'Mungkin']
         }
       },
       methods: {
-        giveAdvice: function () {
-          var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
-          this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+        beriSaran: function () {
+          var indeksSaranAcak = Math.floor(Math.random() * this.opsiSaran.length)
+          this.$emit('beri-saran', this.opsiSaran[indeksSaranAcak])
         }
       },
       template: `
-        <button v-on:click="giveAdvice">
-          Click me for advice
+        <button v-on:click="beriSaran">
+          Klik di sini untuk meminta saran
         </button>
       `
     })
     new Vue({
       el: '#emit-example-argument',
       methods: {
-        showAdvice: function (advice) {
-          alert(advice)
+        tampilkanSaran: function (saran) {
+          alert(saran)
         }
       }
     })
   </script>
   {% endraw %}
 
-## Instance Methods / Lifecycle
+## Metode Instance / Siklus Hidup
 
 ### vm.$mount( [elementOrSelector] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Mengembalikan:** `vm` - instansiasi dari dirinya sendiri
 
-- **Usage:**
+- **Penggunaan:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Jika *instance* vue tidak mencantumkan opsi `el` saat instansiasi, maka *instance* tersebut akan masuk kedalam keadaan "tidak terpasang/*unmounted*", tanpa terasosiasi dengan elemen *DOM* manapun. `vm.$mount()` dapat digunakan untuk menjalankan proses pemasangan/*mount* secara manual dari sebuah *instance* vue yang tak terpasang sebelumnya.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Jika argumen `elementOrSelector` tidak disediakan, maka templat akan di*render* sebagai dokumen mati atau *off-document element*, dan anda dapat menggunakan *native DOM API* untuk memasukannya elemen kedalam dokumen anda.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  *method* ini akan mengembalikan *instance*nya sendiri, oleh sebab itu anda dapat mengaitkannya ke method-method yang lain setelah pemanggilannya.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // instansiasi dan pemasangan kedalam elemen #app (akan menggantikan #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // kode diatas serupa dengan ini:
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // atau, me*render* dokumen mati dan menambahkan setelahnya:
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **Lihat juga:**
+  - [Siklus Hidup Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Proses Render Pada Sisi Server](../guide/ssr.html)
 
 ### vm.$forceUpdate()
 
-- **Usage:**
+- **Penggunaan:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Memaksa *instance* Vue untuk melakukan proses *render* ulang. Catatan hal ini tidak akan berpengaruh kepada semua anak dari komponen, hanya berpengaruh pada *instance*nya sendiri dan anak komponen yang disertai sisipan konten *slot*.
 
 ### vm.$nextTick( [callback] )
 
-- **Arguments:**
+- **Argumen:**
   - `{Function} [callback]`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Menunda eksekusi dari *callback* setelah siklus pembaharuan DOM berikutnya. Gunakan method ini sesegera mungkin setelah anda melakukan perubahan data untuk menunggu pembaharuan *DOM*. Ini sama halnya dengan global `Vue.nextTick`, kecuali dalam konteks `this` pada *callback* yang akan otomatis tertuju kepada *instance* vue pemanggil.
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Baru di 2.1.0+: mengembalikan *Promise* jika tidak disediakan *callback* dan *Promise* ini telah mendukung eksekusi lingkungan/*environtment*. Mohon dicatat *promise* yang disediakan oleh *Vue* tidak menyertakan *polyfill*, oleh sebab itu jika target browser anda tidak mendukung *promise* (seperti IE), anda sendiri yang memiliki kewajiban untuk menyediakannya.
 
-- **Example:**
+- **Contoh:**
 
   ``` js
   new Vue({
@@ -1847,12 +1848,12 @@ type: api
     methods: {
       // ...
       example: function () {
-        // modify data
+        // mengubah data
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM belum diperbaharui
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM telah diperbaharui
+          // `this` tertuju pada yang menginstansiasi
           this.doSomethingElse()
         })
       }
@@ -1860,97 +1861,97 @@ type: api
   })
   ```
 
-- **See also:**
+- **Lihat juga:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [Pembaharuan Antrian Async](../guide/reactivity.html#Async-Update-Queue)
 
 ### vm.$destroy()
 
-- **Usage:**
+- **Kegunaan:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Menuntaskan pemusnahan sebuah vm. Membersihkan koneksi-koneksi terhadap vm-vm aktif yang lain, melepaskan keterikatan terhadap semua direktifnya, dan menonaktifkan semua *event listener*nya.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Memicu `beforeDestroy` dan `destroyed` *hooks*.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">Dalam situasi normal anda diharapkan tidak menggunakan method ini. Dalam pengontrolan siklus hidup komponen anak pada *data-driven*, Lebih disarankan untuk menggunakan `v-if` and `v-for`.</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Lihat juga:** [Siklus Hidup Diagram](../guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## Direktif
 
 ### v-text
 
-- **Expects:** `string`
+- **Nilai Anggapan:** `string`
 
-- **Details:**
+- **Rincian:**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  Mengubah `textContent` dari elemen. Jika Anda perlu mengubah bagian `textContent`, Anda harus menggunakan interpolasi `{% raw %}{{ Mustache }}{% endraw %}`.
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- sama seperti -->
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Text)
+- **Lihat juga:** [Sintaksis Data Binding - Interpolasi](../guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **Nilai Anggapan:** `string`
 
-- **Details:**
+- **Rincian:**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  Mengubah `innerHTML` dari elemen. **Catat bahwa konten disisipkan sebagai HTML biasa - mereka tidak akan dikompilasi sebagai templat Vue**. Jika anda mencoba membuat templat menggunakan `v-html`, sebaiknya anda memikirkian ulang solusinya dengan menggunakan komponen.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">Me-render sembarang HTML secara dinamis pada website anda bisa sangat berbahaya karena bisa dengan mudah mendapatkan [serangan XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Gunakan `v-html` hanya pada konten yang dapat dipercaya dan **jangan pernah** pada konten  yang disediakan pengguna.</p>
 
-  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
+  <p class="tip">Pada [Komponen Berkas Tungal](../guide/single-file-components.html), `scoped` styles tidak akan berlaku pada konten di dalam `v-html`, karena HTML tersebut tidak diproses oleh kompiler templat Vue. Jika anda ingin menggunakan *scoped CSS* pada konten `v-html`, sebaiknya anda menggunakan [module CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) atau tambahan, elemen `<style>` global dengan startegi *scoping* manual seperti BEM.</p>
 
-- **Example:**
+- **Contoh:**
 
   ```html
   <div v-html="html"></div>
   ```
 
-- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
+- **Lihat juga:** [Sintaksis Data Binding - Interpolasi](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
-- **Expects:** `any`
+- **Nilai Anggapan:** `any`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
+  Mengalihkan properti CSS `display` dari elemen berdasarkan pada syarat yang dianggap benar dari nilai sebuah ekspresi.
 
-  This directive triggers transitions when its condition changes.
+  Direktif ini memicu transisi ketika syaratnya berubah.
 
-- **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Lihat juga:** [Rendering Bersyarat - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **Expects:** `any`
+- **Nilai Anggapan:** `any`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Me-render elemen sesuai kondisi berdasarkan pada syarat yang dianggap benar dari nilai sebuah ekspresi. Elemen beserta direktif / komponen yang ada di dalamnya dihancurkan dan dibuat ulang saat peralihan. Jika elemen merupakan sebuah elemen `<template>`, Kontennya akan diekstrak sebagai blok bersyarat.
 
-  This directive triggers transitions when its condition changes.
+  Direktif ini memicu transisi ketika syaratnya berubah.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Saat digunakan bersamaan dengan v-if, v-for memiliki prioritas yang lebih tinggi dari v-if. Lihat <a href="../guide/list.html#v-for-with-v-if">petunjuk me-render daftar</a> untuk rinciannya.</p>
 
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Lihat juga:** [Rendering Bersyarat - v-if](../guide/conditional.html)
 
 ### v-else
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
+  Menandai "blok else" untuk `v-if` atau rantai `v-if`/`v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1961,19 +1962,19 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **Lihat juga:** [Rendering Bersyarat - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
-> New in 2.1.0+
+> Baru pada 2.1.0+
 
-- **Expects:** `any`
+- **Nilai Anggapan:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Pembatasan:** elemen sejajar sebelumnya harus memiliki `v-if` atau `v-else-if`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  Menandai "blok else if" untuk `v-if`. Dapat digunakan berantai.
 
   ```html
   <div v-if="type === 'A'">
@@ -1990,15 +1991,15 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Lihat juga:** [Rendering Bersyarat - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string | Iterable (since 2.6)`
+- **Nilai Anggapan:** `Array | Object | number | string | Iterable (since 2.6)`
 
-- **Usage:**
+- **Penggunaan:**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  Me-render elemen atau blok templat berulang kali berdasarkan sumber data. Nilai direktif harus menggunakan sintaksis khusus `alias in expression` untuk menyediakan alias pada elemen yang sedang diiterasi:
 
   ``` html
   <div v-for="item in items">
@@ -2006,7 +2007,7 @@ type: api
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  Cara lainnya, anda juga dapat menentukan alias untuk *index* (atau *key* jika digunakan pada objek):
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -2014,7 +2015,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  Prilaku standar `v-for` akan mencoba mengubah/menambal elemen pada tempatnya tanpa menggerakkan mereka. Agar bisa memaksanya untuk mengurutkan elemennya kembali, Anda perlu menyediakan petunjuk pengurutan dengan atribut khusus `key`:
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -2022,228 +2023,228 @@ type: api
   </div>
   ```
 
-  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
+  Pada 2.6+, `v-for` bisa juga bekerja pada nilai yang mengimplementasi [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), termasuk `Map` dan `Set` *native*. Akan tetapi, perlu dicatat bahwa Vue 2.x saat ini tidak mendukung reactivity pada nilai `Map` dan `Set`, jadi tidak bisa secara otomatis mendeteksi perubahan.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Saat digunakan bersama v-if, v-for memiliki prioritas yang lebih tinggi dari v-if. Lihat <a href="../guide/list.html#v-for-with-v-if">petunjuk me-render daftar</a> untuk rinciannya.</p>
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  Rincian penggunaan `v-for` dijelaskan dalam bagian petunjuk pada tautan dibawah.
 
-- **See also:**
-  - [List Rendering](../guide/list.html)
+- **Lihat juga:**
+  - [Me-render Daftar](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Penulisan Singkat:** `@`
 
-- **Expects:** `Function | Inline Statement | Object`
+- **Nilai Anggapan:** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **Argumen:** `event`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+- **Modifier:**
+  - `.stop` - memanggil `event.stopPropagation()`.
+  - `.prevent` - memanggil `event.preventDefault()`.
+  - `.capture` - menambahkan pendengar event (*event listener*) pada mode tangkap (*capture*).
+  - `.self` - hanya memicu *handler* jika event dikirimkan dari elemen ini.
+  - `.{keyCode | keyAlias}` - hanya memicu *handler* pada kunci tertentu.
+  - `.native` - mendengarkan event native elemen *root* dari komponen.
+  - `.once` - memicu *handler* paling banyak satu kali.
+  - `.left` - (2.2.0+) hanya memicu *handler* untuk event tombol kiri mouse.
+  - `.right` - (2.2.0+) hanya memicu *handler* untuk event tombol kanan mouse.
+  - `.middle` - (2.2.0+) hanya memicu *handler* untuk event tombol tengah mouse.
+  - `.passive` - (2.3.0+) meletakkan event DOM dengan `{ passive: true }`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+  meletakkan sebuah pendengar event pada elemen. Tipe event ditandai dengan argumen. Ekspresi dapat berupa nama method, suatu pernyataan sebaris, atau  dihilangkan jika terdapat modifier.
 
-  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
+  Saat digunakan pada elemen normal, Ia hanya akan mendengarkan [**even DOM native**](https://developer.mozilla.org/en-US/docs/Web/Events). Jika digunakan pada elemen komponen kustom, Ia akan mendengarkan **event kustom** yang dipancarkan pada komponen anak.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  Saat mendengarkan event DOM native, method menerima event native sebagai satu-satunya argumen. Jika menggunakan pernyataan sebaris, pernyataan tersebut memiliki akses pada properti khusus `$event`: `v-on:click="handle('ok', $event)"`.
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Mulai pada 2.4.0+, `v-on` juga mendukung *binding* pada pasangan objek event/listener tanpa argumen. Catatan ketika menggunakan sintaksis objek, tidak mendukung modifier apapun.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- method handler -->
+  <!-- handler method -->
   <button v-on:click="doThis"></button>
 
-  <!-- dynamic event (2.6.0+) -->
+  <!-- event dinamis (2.6.0+) -->
   <button v-on:[event]="doThis"></button>
 
-  <!-- inline statement -->
+  <!-- pernyataan sebaris -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- penulisan singkat -->
   <button @click="doThis"></button>
 
-  <!-- shorthand dynamic event (2.6.0+) -->
+  <!-- penulisan singkat event dinamis (2.6.0+) -->
   <button @[event]="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- stop perambatan -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- mencegah default -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- mencegah default tanpa ekspresi -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!-- modifier berantai -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- modifier key menggunakan keyAlias -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- modifier key menggunakan keyCode -->
   <input @keyup.13="onEnter">
 
-  <!-- the click event will be triggered at most once -->
+  <!-- event klik akan dipicu paling banyak satu kali -->
   <button v-on:click.once="doThis"></button>
 
-  <!-- object syntax (2.4.0+) -->
+  <!-- sintaksis objek (2.4.0+) -->
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  Mendengarkan event kustom pada komponen anak (handler dipanggil ketika "my-event" dipancarkan pada komponen anak):
 
   ```html
   <my-component @my-event="handleThis"></my-component>
 
-  <!-- inline statement -->
+  <!-- pernyataan sebaris -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
 
-  <!-- native event on component -->
+  <!-- event native pada komponen -->
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **See also:**
-  - [Event Handling](../guide/events.html)
-  - [Components - Custom Events](../guide/components.html#Custom-Events)
+- **Lihat juga:**
+  - [Penanganan Event](../guide/events.html)
+  - [Komponen - Event Kustom](../guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Penulisan Singkat:** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Nilai Anggapan:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Argumen:** `attrOrProp (optional)`
 
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+- **Modifier:**
+  - `.prop` - Mengaitkan sebagai sebuah properti DOM debanding sebuah atribut ([apa bedanya??](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Jika tag adalah sebuah komponen maka `.prop` akan mengatur properti pada `$el` komponen.
+  - `.camel` - (2.1.0+) menguba nama atribut dengan penulisan kebab-case menjadi camelCase.
+  - `.sync` - (2.3.0+) sintaksis pemanis yang memperbolehkan *handler* `v-on` untuk mengubah nilai yang terkait.
 
-- **Usage:**
+- **Penggunaan:**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Secara dinamis mengaitkan satu atau lebih atribut, atau sebuah prop komponen pada sebuah ekspresi.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  Ketika digunakan untuk mengaitkan atribut `class` atau `style`, mendukung tipe atribut tambahan seperti Array atau Object. Lihat tautan bagian petunjuk di bawah untuk lebih banyak rincian.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  Ketika digunakan untuk mengaitkan prop, prop harus dideklarasikan pada komponen anak dengan benar.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  Ketika digunakan tanpa argumen, dapat digunakan untuk mengaitkan object yang berisi pasangan atribut nama-nilai. Catatan pada mode ini `class` dan `style` tidak mendukung Array atau Object.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- mengaitkan sebuah atribut -->
   <img v-bind:src="imageSrc">
 
-  <!-- dynamic attribute name (2.6.0+) -->
+  <!-- nama atribut dinamis (2.6.0+) -->
   <button v-bind:[key]="value"></button>
 
-  <!-- shorthand -->
+  <!-- cara penulisan singkat -->
   <img :src="imageSrc">
 
-  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <!-- cara penulisan singkat dengan nama atribut dinamis (2.6.0+) -->
   <button :[key]="value"></button>
 
-  <!-- with inline string concatenation -->
+  <!-- dengan penggabungan string sebaris -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- class binding -->
+  <!-- mengaitkan dengan class -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- mengaitkan dengan style -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- mengaitkan dengan atribut objek -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- mengaitkan atribut DOM dengan modifier prop -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- mengaitkan prop. "prop" harus dideklarasikan pada my-component. -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- mengirimkan props dari induk kepada anak yang memiliki props serupa -->
   <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  Modifier `.camel` akan melakukan konversi penulisan nama atribut `v-bind` menjadi gaya camelCase ketika digunakan pada DOM templates, mis. atribut `viewBox` pada SVG:
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  `.camel` tidak diperlukan jika anda menggunakan templat string, atau melakukan kompilasi dengan `vue-loader`/`vueify`.
 
-- **See also:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+- **Lihat juga:**
+  - [Kelas dan Binding Gaya](../guide/class-and-style.html)
+  - [Komponen - Props](../guide/components.html#Props)
+  - [Komponen - Modifier `.sync`](../guide/components.html#sync-Modifier)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Nilai Anggapan:** beragam berdasarkan pada nilai elemen input form atau output dari komponen
 
-- **Limited to:**
+- **Terbatas pada:**
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
-- **Modifiers:**
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
+- **Modifier:**
+  - [`.lazy`](../guide/forms.html#lazy) - mendengarkan event `change` dibanding `input`
+  - [`.number`](../guide/forms.html#number) - mengganti input string menjadi angka
   - [`.trim`](../guide/forms.html#trim) - trim input
 
-- **Usage:**
+- **Penggunaan:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  Membuat kait dua arah pada elemen input form atau komponen. Untuk rincian penggunaan dan catatan lainnya, lihat bagian Petunjuk yang ditautkan di bawah.
 
-- **See also:**
+- **Lihat juga:**
   - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Komponen - Form Input Komponen menggunakan Event Kustom](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-slot
 
-- **Shorthand:** `#`
+- **Penulisan Singkat:** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+- **Nilai Anggapan:** Ekspersi JavaScript yang valid pada posisi argumen fungsi (mendukung destrukturisasi pada [lingkungan yang didukung](../guide/components-slots.html#Slot-Props-Destructuring)). Opsional - hanya dibutuhkan jika mengharapkan props dikirimkan ke dalam slot.
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **Argumen:** nama slot (opsional, default untuk `default`)
 
-- **Limited to:**
+- **Terbatas pada:**
   - `<template>`
-  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+  - [komponen](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (untuk default slot dengan props)
 
-- **Usage:**
+- **Penggunaan:**
 
-  Denote named slots or slots that expect to receive props.
+  Menandai slot bernama atau slot yang mengharapkan untuk menerima prop.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <!-- Named slots -->
+  <!-- Slot bernama -->
   <base-layout>
     <template v-slot:header>
       Header content
@@ -2256,7 +2257,7 @@ type: api
     </template>
   </base-layout>
 
-  <!-- Named slot that receives props -->
+  <!-- Slot bernama yang menerima prop -->
   <infinite-scroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -2265,41 +2266,41 @@ type: api
     </template>
   </infinite-scroll>
 
-  <!-- Default slot that receive props, with destructuring -->
+  <!-- Default slot yang menerima prop, dengan destrukturisasi -->
   <mouse-position v-slot="{ x, y }">
     Mouse position: {{ x }}, {{ y }}
   </mouse-position>
   ```
 
-  For more details, see the links below.
+  Untuk lebih banyak rincian, lihat tautan di bawah.
 
-- **See also:**
-  - [Components - Slots](../guide/components-slots.html)
+- **Lihat juga:**
+  - [Komponen - Slots](../guide/components-slots.html)
   - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Usage:**
+- **Penggunaan:**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  Melewatkan kompilasi untuk elemen dan seluruh anaknya. Anda dapat menggunakan ini untuk menampilkan tag moustache mentah. Melewatkan banyak node yang tidak memiliki direktif juga bisa mempercepat kompilasi.
 
-- **Example:**
+- **Contoh:**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ ini tidak akan dikompilasi }}</span>
    ```
 
 ### v-cloak
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Usage:**
+- **Penggunaan:**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  Direktif ini akan tetap pada elemen sampai Vue Instance selesai dikompilasi. Dikombinasikan dengan aturan CSS seperti `[v-cloak] { display: none }`, Direktif ini bisa digunakan untuk menyembunyikan kaitan mustache yang belum dikompilasi sampai Vue instance siap.
 
-- **Example:**
+- **Contoh:**
 
   ```css
   [v-cloak] {
@@ -2313,47 +2314,47 @@ type: api
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  `<div>` tidak akan bisa dilihat sampai kompilasi selesai
 
 ### v-once
 
-- **Does not expect expression**
+- **Tidak mengharapkan ekspresi**
 
-- **Details:**
+- **Rincian:**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  Me-render elemen dan komponen hanya **sekali**. Pada render ulang selanjutnya, elemen/komponen dan semua anaknya akan diperlakukan seperti konten statis dan dilewatkan. Ini dapat digunakan untuk mengoptimasi performa update.
 
   ```html
-  <!-- single element -->
+  <!-- elemen tunggal -->
   <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- elemen yang memiliki anak -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- komponen -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- `v-for` directive -->
+  <!-- direktif `v-for` -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-- **See also:**
-  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
+- **Lihat juga:**
+  - [Sintaksis Data Binding - interpolasi](../guide/syntax.html#Text)
+  - [Komponen - Komponen Statis Murah dengan `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Atribut Spesial
 
 ### key
 
-- **Expects:** `number | string`
+- **Nilai Anggapan:** `number | string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  Atribut spesial `key` umumnya dipakai sebagai penanda bagi algoritma virtual DOM milik Vue untuk mengidentifikasi *VNodes* ketika membandingkan list node yang baru dengan list yang lama. Jika atribut *key* tidak digunakan, Vue akan menggunakan algoritma untuk meminimalisir perpindahan elemen dan mencoba sebisa mungkin untuk menimpa/memakai ulang elemen yang se-tipe di tempat yang sama. Jika atribut *key* digunakan, Vue akan menyusun ulang elemen-elemen berdasarkan susunan perubahan dari *key*, dan elemen-elemen dengan *key* yang sudah tidak ada lagi akan selalu dihapus.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Anak dari induk yang sama harus mempunyai *key* yang unik. *Key* yang sama akan mengakibatkan kegagalan *render*.
 
-  The most common use case is combined with `v-for`:
+  Contoh penggunaan yang paling umum adalah menggabungkan *key* dengan `v-for`:
 
   ``` html
   <ul>
@@ -2361,12 +2362,12 @@ type: api
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  *Key* juga dapat digunakan untuk mengganti paksa sebuah elemen/komponen alih-alih menggunakannya kembali. Ini akan berguna ketika anda ingin:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Memicu (*trigger*) *lifecycle hook* dari sebuah komponen dengan tepat
+  - Memicu (*trigger*) transisi
 
-  For example:
+  Sebagai contoh:
 
   ``` html
   <transition>
@@ -2374,88 +2375,88 @@ type: api
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Ketika `text` berubah, `<span>` akan selalu diganti alih-alih di-*patch*, sehingga transisi akan terpicu.
 
 ### ref
 
-- **Expects:** `string`
+- **Nilai Anggapan:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` digunakan untuk mendaftarkan referensi terhadap elemen atau komponen anak. Referensi akan didaftarkan dibawah obyek `$refs` dari komponen induknya. Jika digunakan pada elemen DOM polos, referensi akan menunjuk pada elemen tersebut; jika digunakan pada elemen anak, referensi akan menunjuk pada *instance* komponen:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p akan menjadi node DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child component instance -->
+  <!-- vm.$refs.child akan menjadi instance komponen anak -->
   <child-component ref="child"></child-component>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Ketika digunakan pada elemen/komponen yang mengandung `v-for`, referensi yang terdaftar akan menjadi sebuah Array yang berisi *DOM nodes* atau *instances* komponen.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Catatan penting dalam penggunaan *refs* adalah pemilihan waktu: karena *refs* muncul sebagai hasil dari *render function*, anda tidak dapat mengaksesnya pada saat *initial render* - karena *refs* belum dibuat saat itu. `$refs` juga tidak reaktif, sehingga anda tidak bisa menggunakannya di template untuk melakukan *data-binding*.
 
-- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Lihat juga:** [*Child Component Refs*](../guide/components.html#Child-Component-Refs)
 
 ### is
 
-- **Expects:** `string | Object (component’s options object)`
+- **Nilai Anggapan:** `string | Object (Objek 'options' komponen)`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Digunakan untuk [komponen dinamis](../guide/components.html#Dynamic-Components) dan juga sebagai solusi untuk [keterbatasan dari in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
 
-  For example:
+  Sebagai contoh:
 
   ``` html
-  <!-- component changes when currentView changes -->
+  <!-- komponen berubah ketika currentView berubah -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because `<my-row>` would be invalid inside -->
-  <!-- a `<table>` element and so would be hoisted out      -->
+  <!-- perlu karena `<my-row>` akan menjadi tidak valid di dalam -->
+  <!-- elemen `<table>` sehingga akan otomatis dihilangkan  -->
   <table>
     <tr is="my-row"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  Untuk kegunaan lebih lanjut, ikuti tautan dalam deskripsi diatas.
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **Lihat juga:**
+  - [Komponen Dinamis](../guide/components.html#Dynamic-Components)
+  - [Peringatan untuk DOM template parsing](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-### slot <sup style="color:#c92222">deprecated</sup>
+### slot <sup style="color:#c92222">usang</sup>
 
-**Prefer [v-slot](#v-slot) in 2.6.0+.**
+**Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
 
-- **Expects:** `string`
+- **Nilai Anggapan:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Digunakan pada konten yang dimasukkan ke dalam komponen anak untuk menunjukkan pada slot mana konten tersebut akan ditempatkan.
 
-- **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
+- **Lihat juga:** [Slot Dengan Nama `slot`](../guide/components.html#Named-Slots-with-slot)
 
-### slot-scope <sup style="color:#c92222">deprecated</sup>
+### slot-scope <sup style="color:#c92222">usang</sup>
 
-**Prefer [v-slot](#v-slot) in 2.6.0+.**
+**Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
 
-- **Expects:** `function argument expression`
+- **Nilai Anggapan:** `ekspresi argumen fungsi`
 
-- **Usage:**
+- **Kegunaan:**
 
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+  Digunakan untuk menunjukkan sebuah elemen atau komponen sebagai *scoped slot*. Nilai atribut harus berupa ekspresi Javascript yang valid yang bisa muncul di posisi *argument* dari *signature* sebuah *function*. Ini berarti di *environment* yang mendukung anda juga bisa menggunakan ES2015 *destructuring* di dalam ekspresi JavaScript. *Slot-scope* merupakan pengganti [`scope`](#scope-replaced) di versi 2.5.0+.
 
-  This attribute does not support dynamic binding.
+  Atribut ini tidak mendukung *dynamic binding*.
 
-- **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
+- **Lihat juga:** [Slot tertutup (*scoped slot*) dengan `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
 
-### scope <sup style="color:#c92222">removed</sup>
+### scope <sup style="color:#c92222">dihapus</sup>
 
-**Replaced by [slot-scope](#slot-scope) in 2.5.0+. Prefer [v-slot](#v-slot) in 2.6.0+.**
+**Digantikan dengan [slot-scope](#slot-scope) di 2.5.0+. Lebih disarankan menggunakan [v-slot](#v-slot) di 2.6.0+.**
 
-Used to denote a `<template>` element as a scoped slot.
+Digunakan untuk menunjukkan bahwa sebuah elemen `<template>` adalah *scoped slot*.
 
-- **Usage:**
+- **Kegunaan:**
 
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+  Sama seperti [`slot-scope`](#slot-scope), hanya saja `scope` hanya bisa digunakan pada elemen `<template>`.
 
-## Built-In Components
+## Komponen Built-In
 
 ### component
 
@@ -2463,29 +2464,29 @@ Used to denote a `<template>` element as a scoped slot.
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
-- **Usage:**
+- **Penggunaan:**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  "Komponen meta" untuk merender komponen dinamis. Komponen yang sesungguhnya yang di-render ditentukan oleh prop `is`:
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+  <!-- komponen dinamis dikendalikan oleh -->
+  <!-- properti `componentId` dalam vm -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- dapat pula merender komponen yang telah didaftarkan atau komponen dioper sebagai prop -->
   <component :is="$options.components.child"></component>
   ```
 
-- **See also:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Lihat juga:** [Komponen Dinamis](../guide/components.html#Dynamic-Components)
 
 ### transition
 
 - **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `name` - string, Digunakan untuk menghasilkan nama kelas CSS transisi secara otomatis. Sebagai contoh `name: 'fade'` akan otomatis _expand_ ke `.fade-enter`, `.fade-enter-active`, dan lain-lain. Nilai bawaan `"v"`.
+  - `appear` - boolean, Apakah akan menerapkan transisi dalam render awal. Nilai bawaan `false`.
+  - `css` - boolean, Apakah akan menerapkan _class_ transisi CSS. Nilai bawaan `true`. Jika diatur menjadi `false`, hanya akan memicu _hook_ Javascript teregistrasi via _event_ komponen.
+  - `type` - string, Menentukan tipe _event_ transisi untuk menunggu untuk memastikan waktu akhir transisi. Nilai yang tersedia adalah `"transition"` dan `"animation"`. Secara bawaan, ini akan secara otomatis mendeteksi tipe yang memiliki durasi lebih lama.
+  - `mode` - string, Mengontrol urutan waktu dari transisi pergi/masuk. Mode yang tersedia adalah `"out-in"` dan `"in-out"`; nilai bawaan serentak.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2510,22 +2511,22 @@ Used to denote a `<template>` element as a scoped slot.
   - `leave-cancelled` (`v-show` only)
   - `appear-cancelled`
 
-- **Usage:**
+- **Penggunaan:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
+  `<transition>` disajikan sebagai efek transisi untuk elemen/komponen **tunggal**. `<transition>` hanya menerapkan tingkah laku transisi untuk konten yang terbungkus di dalam; ini tidak merender elemen DOM tambahan, atau ditampilkan dalam hirarki komponen yang terinspeksi.
 
   ```html
-  <!-- simple element -->
+  <!-- elemen sedehana -->
   <transition>
     <div v-if="ok">toggled content</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- komponen dinamis -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- pengait event -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
@@ -2545,25 +2546,25 @@ Used to denote a `<template>` element as a scoped slot.
   }).$mount('#transition-demo')
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Lihat juga:** [Transisi: Masuk, Pergi, dan Daftar Transisi lainnya](../guide/transitions.html)
 
 ### transition-group
 
 - **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+  - `tag` - string, nilai bawaan `span`.
+  - `move-class` - menimpa _class_ CSS yand diterapkan selama transisi berjalan.
+  - membuka _prop_ yang sama sebagai `<transition>` kecuali `mode`.
 
 - **Events:**
-  - exposes the same events as `<transition>`.
+  - membuka _event_ yang sama sebagai `<transition>`.
 
-- **Usage:**
+- **Penggunaan:**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
+  `<transition-group>` disajikan sebagai efek transisi untuk elemen/komponen **berganda**. `<transition-group>` merender elemen DOM yang sebenarnya. Sebagai bawaan ini menernder `<span>`. dan Anda dapat mengkonfigurasi elemen apa yang harus dirender melalui atribut `tag`.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Catatan setiap _child_ dalam `<transition-group>` harus memiliki **kunci yang unik** agar animasi bekerja dengan baik.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` mendukung transisi berjalan melalui transform CSS. Ketika posisi sebuah _child_ dalam layar berganti setekah pembaruan, ini akan menerapkan _class_ CSS berjalan (otomatis dihasilkan dari atribut `name` atau terkonfigurasi dengan atribut `move-class`). Jika properti `transform` CSS adalah "transition-able" ketika _class_ berjalan diterapkan, elemen akan teranimasi dengan lancar ke destinasi menggunakan [teknik FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2573,38 +2574,38 @@ Used to denote a `<template>` element as a scoped slot.
   </transition-group>
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Lihat juga:** [Transisi: Masuk, Pergi, dan Daftar Transisi lainnya](../guide/transitions.html)
 
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components with matching names will be cached.
-  - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
-  - `max` - number. The maximum number of component instances to cache.
+  - `include` - string atau RegExp atau Array. Hanya komponen dengan nama yang cocok akan dimasukan _cache_.
+  - `exclude` - string atau RegExp atau Array. Komponen apapun dengan nama yang cocok tidak akan dimasukan _cache_.
+  - `max` - number. Angka maksimum dari instan komponen yang dapat masuk ke daam _cache_.
 
-- **Usage:**
+- **Penggunaan:**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  Kerika membungkus komponen dinamis, _cache_ `<keep-alive` instan komponen tidak aktif tanpa menghancurkannya. Seperti `<transition>`, `<keep-alive>` adalah komponen abstrak: tidak merender elemen DOM sendiri, dan tidak tampil dalam rantai komponen _parent_.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  Ketika komponen diaktifkan dalam `<keep-alive>`, kait siklus hidup `activated` dan `deactivated` akan diminta sesuai.
 
-  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > Dalam 2.2.0+ ke atas, `activated` dan `deactivated` akan menyala untuk semua komponen bersarang di dalam pohon `<keep-alive>`.
 
-  Primarily used to preserve component state or avoid re-rendering.
+  Terutama digunakan untuk mempertahankan _state_ komponen atau menghindari merender ulang.
 
   ```html
-  <!-- basic -->
+  <!-- dasar -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- kondisional _children_ berganda -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with `<transition>` -->
+  <!-- digunakan bersama dengan `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2612,13 +2613,13 @@ Used to denote a `<template>` element as a scoped slot.
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+  Catatan, `<keep-alive>` didesain untuk kasus dimana komponen memiliki satu komponen _child_ yang sedang diaktifkan. Ini tidak bekerja jika Anda memiliki `v-for` di dalamnya. Ketika disana terdapat kondisional _children_ berganda, sebagaimana di atas, `<keep-alive>` memerlukan hanya satu _child_ dirender dalam satu waktu.
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0+
+  > Baru di 2.1.0+
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
+  _Prop_ `include` dan `exclude` mengijinkan komponen untuk secara kondisional dimasukan ke daam _cache_. Semua _prop_ dapat menjadi string _comma-delimited_, sebuah RegExp atau Array:
 
   ``` html
   <!-- comma-delimited string -->
@@ -2626,24 +2627,24 @@ Used to denote a `<template>` element as a scoped slot.
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- regex (gunakan `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- Array (gunakan `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  Kecocokan adalah yang pertama kali diperiksa pada opsi `name` komponen itu sendiri, lalu nama registrasi lokal (kunci dalam opsi komponen _parent_) jika opsi `name` tidak tersedia. Komponen anonim tidak dapat dicocokan.
 
 - **`max`**
 
   > New in 2.5.0+
 
-  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+  Angka maksimum dari instan komponen untuk dimasukan ke dalam _cache_. Saat angka ini tercapai, instan komponen dalam _cache_ yang paling sedikit diakses akan dihancurkan sebelum membuat instan baru.
 
   ``` html
   <keep-alive :max="10">
@@ -2651,27 +2652,27 @@ Used to denote a `<template>` element as a scoped slot.
   </keep-alive>
   ```
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` tidak bekerja dengan komponen fungsional karena mereka tidak memiliki instan untuk dimasukan ke dalam _cache_.</p>
 
-- **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Lihat juga:** [Komponen Dinamis - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
-  - `name` - string, Used for named slot.
+  - `name` - string, Digunakan untuk menamai slot.
 
-- **Usage:**
+- **Penggunaan:**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` disajikan sebagai outlet distribusi konten dalam templat komponen. `<slot>` sendiri akan digantikan.
 
-  For detailed usage, see the guide section linked below.
+  Untuk detil penggunaan, lihat bagian petunjuk tautan di bawah.
 
-- **See also:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Lihat juga:** [Distribusi konten dengan Slot](../guide/components.html#Content-Distribution-with-Slots)
 
 ## VNode Interface
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- Silakan merujuk ke [deklarasi class VNode](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
 ## Server-Side Rendering
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- Silakan merujuk ke [dokumentasi paket vue-server-renderer](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).

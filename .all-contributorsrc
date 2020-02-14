@@ -1,0 +1,59 @@
+{
+  "projectName": "docs",
+  "projectOwner": "vuejs-id",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mul14",
+      "name": "Mulia Nasution",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/113989?v=4",
+      "profile": "http://nasution.id",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "mazipan",
+      "name": "Irfan Maulana",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7221389?v=4",
+      "profile": "https://www.mazipan.xyz/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "isatrio",
+      "name": "Yudhi Satrio",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1897570?v=4",
+      "profile": "http://me.linkaran.com",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "nusendra",
+      "name": "Nusendra Hanggarawan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8466308?v=4",
+      "profile": "https://nusendra.com/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "mandaputtra",
+      "name": "protokol0",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/23342943?v=4",
+      "profile": "http://mandaputtra.github.io",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

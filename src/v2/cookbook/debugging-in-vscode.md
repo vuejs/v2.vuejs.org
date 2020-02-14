@@ -1,35 +1,35 @@
 ---
-title: Debugging in VS Code
+title: Debug menggunakan VS Code
 type: cookbook
 order: 8
 ---
 
-Every application reaches a point where it's necessary to understand failures, small to large. In this recipe, we explore a few workflows for VS Code users who would like to debug their application in the browser.
+Setiap aplikasi akan mencapai titik di mana perlu untuk memahami galat, kecil atau besar. Di resep ini, kita mengeksplorasi beberapa alur kerja untuk pengguna VS Code yang ingin men-debug aplikasinya di browser.
 
-This recipe shows how to to debug [Vue CLI](https://github.com/vuejs/vue-cli) applications in VS Code as they run in the browser.
+Resep ini menunjukkan cara untuk men-debug aplikasi [Vue CLI](https://github.com/vuejs/vue-cli) di VS Code saat dijalankan di browser.
 
-<p class="tip">Note: This recipe covers Chrome and Firefox. If you know how to setup VS Code debugging with other browsers, please consider sharing your insights (see bottom of the page).</p>
+<p class="tip">Catatan: Resep ini mencakup peramban Chrome dan Firefox. Jika anda tahu cara mengatur <i>debugger</i> VS Code untuk bekerja diperamban lain, silahkan pertimbangkan untuk berbagi (lihat bagian bawah halaman)</p>
 
-## Prerequisites
+## Prasyarat
 
-Make sure you have VS Code and the browser of your choice installed, and the latest version of the corresponding Debugger extension installed and enabled:
+Pastikan anda sudah menginstal VS Code dan peramban pilihan anda, juga ekstensi _debugger_-nya sudah dipasang dan diaktifkan.
 
-* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-* [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
+- [_Debugger_ untuk Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+- [_Debugger_ untuk Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
 
-Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli), following the instructions in the [Vue CLI Guide](https://cli.vuejs.org/). Change into the newly created application directory and open VS Code.
+Pasang dan buat proyek dengan [vue-cli](https://github.com/vuejs/vue-cli), ikut instruksi [Panduan Vue CLI](https://cli.vuejs.org/). Lalu masuk ke folder proyek yang baru dibuat dan buka di VS Code.
 
-### Displaying Source Code in the Browser
+### Menampilkan kode di Browser
 
-Before you can debug your Vue components from VS Code, you need to update the generated Webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by Webpack.
+Sebelum anda bisa mendebug komponen Vue dari VS Code, anda harus memperbarui konfigurasi Webpack yang barusan dibuat untuk membangun `sourcemaps`. Kita melakukan ini agar _debugger_ yang dipakai bisa memetakan kode didalam berkas yang terkompresi kembali ke berkas aslinya. Ini memastikan bahwa anda dapat men-debug aplikasi bahkan setelah aset atau kode anda sudah di optimisasi oleh Webpack.
 
-If you use Vue CLI 2, set or update the `devtool` property inside `config/index.js`:
+Jika anda menggunakan Vue CLI 2, atur atau ubah properti `devtool` didalam berkas `config/index.js`:
 
 ```json
 devtool: 'source-map',
 ```
 
-If you use Vue CLI 3, set or update the `devtool` property inside `vue.config.js`:
+Jika anda menggunakan Vue CLI 3, atur atau ubah properti `devtool` didalam berkas `vue.config.js`:
 
 ```js
 module.exports = {
@@ -39,11 +39,13 @@ module.exports = {
 }
 ```
 
-### Launching the Application from VS Code
+### Menjalankan aplikasi dari VS Code
 
 Click on the Debugging icon in the Activity Bar to bring up the Debug view, then click on the gear icon to configure a launch.json file, selecting **Chrome/Firefox: Launch** as the environment. Replace content of the generated launch.json with the corresponding configuration:
 
-![Add Chrome Configuration](/images/config_add.png)
+Klik ikon _debugging_ di _Activity Bar_ VS Code untuk memunculkan tampilan Debug, lalu klik pada ikon roda gigi untuk mengonfigurasi berkas `launch.json`, pilih **Chrome/Firefox: _Launch_**
+
+![Menambahkan konfigurasi Chrome](/images/config_add.png)
 
 ```json
 {
@@ -72,37 +74,37 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 }
 ```
 
-## Setting a Breakpoint
+## Mengatur _Breakpoint_
 
-1.  Set a breakpoint in **src/components/HelloWorld.vue** on `line 90` where the `data` function returns a string.
+1.  Atur _breakpoint_ di **src/components/HelloWorld.vue** pada `baris 90` dimana _function_ `data` mengembalikan untaian.
 
-  ![Breakpoint Renderer](/images/breakpoint_set.png)
+![_Renderer Breakpoint_](/images/breakpoint_set.png)
 
-2.  Open your favorite terminal at the root folder and serve the app using Vue CLI:
+2.  Buka konsol favorit anda di folder utama aplikasi dan sajikan aplikasi menggunakan Vue CLI:
 
-  ```
-  npm start
-  ```
+```
+npm start
+```
 
-3.  Go to the Debug view, select the **'vuejs: chrome/firefox'** configuration, then press F5 or click the green play button.
+3.  Buka tampilan Debug, pilih konfigurasi **'vuejs: chrome/firefox'**, lalu tekan F5 atau klik tombol mainkan yang berwarna hijau.
 
-4.  Your breakpoint should now be hit as a new browser instance opens `http://localhost:8080`.
+4.  _Breakpoint_ anda akan terkena ketika peramban anda membuka `http://localhost:8080`.
 
-  ![Breakpoint Hit](/images/breakpoint_hit.png)
+![_Breakpoint_ Yang Terkena](/images/breakpoint_hit.png)
 
-## Alternative Patterns
+## Pola Alternatif
 
-### Vue Devtools
+### Menggunakan alat pengembang Vue
 
-There are other methods of debugging, varying in complexity. The most popular and simple of which is to use the excellent Vue.js devtools [for Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) and [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/). Some of the benefits of working with the devtools are that they enable you to live-edit data properties and see the changes reflected immediately. The other major benefit is the ability to do time travel debugging for Vuex.
+Ada cara lain untuk men-debug, kompleksitasnya beragam. Yang paling populer dan mudah adalah menggunakan alat pengembang Vue.js (_Vue.js Devtools_) yang bekerja sangat baik, silahkan pasang di peramban pilihan anda: [Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) atau [Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/). Beberapa manfaat bekerja dengan alat pengembang adalah memungkinkan anda untuk menyunting langsung properti data dan melihat perubahan yang secara otomatis langsung ditampilkan. Manfaat lain adalah memungkinkan anda untuk melakukan _Time travel debugging_ untuk Vuex.
 
-![Devtools Timetravel Debugger](/images/devtools-timetravel.gif)
+![_Time Travel Debugger_ Pada Alat Pengembang](/images/devtools-timetravel.gif)
 
-<p class="tip">Please note that if the page uses a production/minified build of Vue.js (such as the standard link from a CDN), devtools inspection is disabled by default so the Vue pane won't show up. If you switch to an unminified version, you may have to give the page a hard refresh to see them.</p>
+<p class="tip">Harap perhatikan bahwa jika halaman menggunakan paket Vue.js yang disusun untuk dijalankan pada aplikasi produksi atau yang sudah di perkecil (seperti menggunakan tautan dari CDN), inspeksi alat pengembang dinonaktifkan secara standar sehingga panel alat pengembang Vue.js tidak akan muncul. Jika anda beralih ke versi yang tidak diperkecil, anda mungkin harus memuat ulang halaman dengan keras, pada peramban Chrome/Firefox, bisa dengan menekan CTRL/CMD+SHIFT+R.</p>
 
-### Simple Debugger Statement
+### Kode _Debugger_ Sederhana
 
-The example above has a great workflow. However, there is an alternative option where you can use the [native debugger statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) directly in your code. If you choose to work this way, it's important that you remember to remove the statements when you're done.
+Contoh diatas memiliki alur kerja yang bagus. Namun, ada opsi alternatif di mana anda dapat menggunakan [kode _debugger_ bawaan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) secara langsung. Jika anda memilih untuk bekerja menggunakan cara ini, sangat penting untuk mengingat untuk menghapus kode _debugger_ bawaannya saat anda sudah selesai.
 
 ```js
 <script>
@@ -121,6 +123,6 @@ export default {
 </script>
 ```
 
-## Acknowledgements
+## Ucapan Terima Kasih
 
-This recipe was based on a contribution from [Kenneth Auchenberg](https://twitter.com/auchenberg), [available here](https://github.com/Microsoft/VSCode-recipes/tree/master/vuejs-cli).
+Resep ini berdasar pada kontribusi dari [Kenneth Auchenberg](https://twitter.com/auchenberg), [tersedia disini](https://github.com/Microsoft/VSCode-recipes/tree/master/vuejs-cli).

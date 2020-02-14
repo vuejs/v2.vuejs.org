@@ -1,30 +1,30 @@
 ---
-title: Enter/Leave & List Transitions
+title: Transisi Masuk/Keluar & Daftar Transisi
 type: guide
 order: 201
 ---
 
-## Overview
+## Ikhtisar
 
-Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
+Vue menyediakan berbagai cara untuk menerapkan efek transisi ketika ada item yang dimasukan, diubah, atau dikeluarkan dari DOM. Hal ini termasuk alat untuk:
 
-- automatically apply classes for CSS transitions and animations
-- integrate 3rd-party CSS animation libraries, such as Animate.css
-- use JavaScript to directly manipulate the DOM during transition hooks
-- integrate 3rd-party JavaScript animation libraries, such as Velocity.js
+- secara otomatis menerapkan kelas untuk transisi dan animasi CSS
+- Mengintegrasikan pustaka (*library*) CSS untuk animasi yang berasal dari pihak-ketiga, seperti Animate.css
+- menggunakan JavaScript untuk memanipulasi DOM pada waktu transisi *hook* secara langsung
+- Mengintegrasikan pustaka (*library*) JavaScript untuk animasi yang berasal dari pihak-ketiga, seperti Velocity.js
 
-On this page, we'll only cover entering, leaving, and list transitions, but you can see the next section for [managing state transitions](transitioning-state.html).
+Pada halaman ini, kita hanya akan membahas tentang transisi masuk, keluar, dan daftar, tetapi Anda bisa melihat bagian berikutnya untuk [mengatur transisi dari state](transitioning-state.html).
 
-## Transitioning Single Elements/Components
+## Transisi Elemen/Komponen Tunggal
 
-Vue provides a `transition` wrapper component, allowing you to add entering/leaving transitions for any element or component in the following contexts:
+Vue menyediakan komponen pembungkus transisi (*transition wrapper component*), yang memperbolehkan Anda untuk menambahkan transisi masuk/keluar di setiap elemen atau komponen dalam konteks berikut:
 
-- Conditional rendering (using `v-if`)
-- Conditional display (using `v-show`)
-- Dynamic components
-- Component root nodes
+- Me-*render* sesuai kondisi (menggunakan `v-if`)
+- Menampilkan sesuai dengan kondisi (menggunakan `v-show`)
+- Komponen dinamis (Dynamic components)
+- komponen pada *root nodes*
 
-This is what an example looks like in action:
+Berikut ini adalah sebuah contoh transisi:
 
 ``` html
 <div id="demo">
@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active di bawah versi 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -82,39 +82,39 @@ new Vue({
 </style>
 {% endraw %}
 
-When an element wrapped in a `transition` component is inserted or removed, this is what happens:
+Ketika sebuah elemen yang dibungkus di dalam komponen transisi dimasukkan atau dikeluarkan, inilah yang akan terjadi:
 
-1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
+1. Vue akan secara otomatis memeriksa apakah elemen sasaran telah menerapkan transisi atau animasi CSS.
 
-2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), these hooks will be called at appropriate timings.
+2. Jika komponen transisi menyediakan [*hook* JavaScript](#JavaScript-Hooks), *hook* ini akan dipanggil pada waktu yang telah ditentukan.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
+3. Jika tidak ada transisi/animasi CSS yang terdeteksi dan tidak ada *hook* JavaScript yang tersedia, maka operasi DOM untuk memasukan dan/atau mengeluarkan akan dieksekusi secepatnya pada *frame* berikutnya. (Catatan: ini adalah *frame* animasi dari browser, berbeda dengan konsep `nextTick` pada Vue).
 
-### Transition Classes
+### Kelas-kelas Transisi
 
-There are six classes applied for enter/leave transitions.
+Ada enam kelas yang diterapkan untuk transisi masuk/keluar.
 
-1. `v-enter`: Starting state for enter. Added before element is inserted, removed one frame after element is inserted.
+1. `v-enter`: *State* (keadaan) awal untuk proses masuk. Ditambahkan sebelum elemen dimasukkan, dilepaskan satu *frame* setelah elemen dimasukkan.
 
-2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before element is inserted, removed when transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
+2. `v-enter-active`: *State* aktif untuk proses masuk. Diaplikasikan ketika seluruh fase proses transisi masuk. Ditambahkan sebelum elemen dimasukkan, dilepaskan ketika transisi/animasi selesai. Kelas ini dapat digunakan untuk menentukan durasi, penundaan (*delay*) dan kurva pelonggaran (*easing curve*) untuk transisi masuk.
 
-3. `v-enter-to`: **Only available in versions 2.1.8+.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
+3. `v-enter-to`: **Hanya tersedia pada versi 2.1.8+.** *State* akhir untuk proses masuk. Ditambahkan satu *frame* setelah elemen dimasukkan (pada saat yang sama `v-enter` dilepaskan), dilepaskan ketika transisi/animasi selesai.
 
-4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
+4. `v-leave`: *State* awal untuk proses keluar. Ditambahkan secepatnya ketika transisi keluar dipicu, dilepaskan setelah satu *frame*.
 
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`: *State* aktif untuk proses keluar. Diaplikasikan ketika seluruh proses transisi keluar. Ditambahkan secepatnya ketika transisi keluar dipicu, dilepaskan ketika transisi/animasi selesai. Kelas ini dapat digunakan untuk menentukan durasi, penundaan (*delay*) dan kurva pelonggaran (*easing curve*) untuk transisi kaluar.
 
-6. `v-leave-to`: **Only available in versions 2.1.8+.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`: **Hanya tersedia pada versi 2.1.8+.** *State* akhir untuk proses keluar. Ditambahkan satu frame setelah transisi keluar dipicu (pada saat yang sama `v-leave` dilepaskan), dilepaskan ketika transisi/animasi selesai.
 
 ![Transition Diagram](/images/transition.png)
 
-Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
+Setiap kelas ini akan diawali dengan nama transisi. Di sini awalan `v-` adalah default jika Anda menggunakan elemen `<transition>` tanpa nama. Sebagai contoh jika Anda menggunakan `<transition name="my-transition">`, maka sebagai gantinya kelas `v-enter` akan menjadi `my-transition-enter`.
 
-`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+`v-enter-active` dan `v-leave-active` memberikan Anda kemampuan untuk menentukan kurva pelonggaran yang berbeda untuk transisi masuk/keluar, yang mana akan dapat Anda lihat contohnya pada bagian berikutnya.
 
-### CSS Transitions
+### Transisi CSS
 
-One of the most common transition types uses CSS transitions. Here's an example:
+Salah satu dari banyak tipe transisi yang umum menggunakan transisi CSS. Inilah salah satu contohnya:
 
 ``` html
 <div id="example-1">
@@ -137,8 +137,8 @@ new Vue({
 ```
 
 ``` css
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+/* Animasi Masuk dan Keluar bisa menggunakan fungsi */
+/* durasi dan pengaturan waktu yang berbeda.        */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -146,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+/* .slide-fade-leave-active di bawah versi 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -183,11 +183,11 @@ new Vue({
 </style>
 {% endraw %}
 
-### CSS Animations
+### Animasi CSS
 
-CSS animations are applied in the same way as CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` event.
+Animasi CSS diaplikasikan dengan cara yang sama seperti transisi CSS, perbedaannya adalah bahwa `v-enter` tidak dilepaskan secepatnya setelah elemen dimasukkan, tetapi pada sebuah event `animationend`.
 
-Here's an example, omitting prefixed CSS rules for the sake of brevity:
+Berikut ini adalah sebuah contoh, menghilangkan aturan prefix CSS supaya ringkas:
 
 ``` html
 <div id="example-2">
@@ -283,9 +283,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### Custom Transition Classes
+### Kelas Transisi Kustom
 
-You can also specify custom transition classes by providing the following attributes:
+Anda juga bisa menentukan kelas transisi kustom dengan cara menyediakan atribut-atribut berikut:
 
 - `enter-class`
 - `enter-active-class`
@@ -294,9 +294,9 @@ You can also specify custom transition classes by providing the following attrib
 - `leave-active-class`
 - `leave-to-class` (2.1.8+)
 
-These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
+Atribut-atribut ini akan mengabaikan nama kelas konvensional. Hal ini berguna ketika Anda ingin mengkombinasikan sistem transisi Vue dengan sebuah pustaka animasi CSS yang sudah ada, seperti [Animate.css](https://daneden.github.io/animate.css/).
 
-Here's an example:
+Berikut contohnya:
 
 ``` html
 <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
@@ -348,33 +348,33 @@ new Vue({
 </script>
 {% endraw %}
 
-### Using Transitions and Animations Together
+### Menggunakan Transisi dan Animasi Bersama
 
-Vue needs to attach event listeners in order to know when a transition has ended. It can either be `transitionend` or `animationend`, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.
+Vue perlu melampirkan pendengar event (*event listener*) agar bisa mengetahui ketika ada sebuah *event* yang telah selesai. Hal ini dapat berupa salah satu di antara `transitionend` atau `animationend`, tergantung dari tipe aturan css yang diterapkan. Jika Anda hanya menggunakan salah satu atau yang lain, Vue dapat secara otomatis mendeteksi tipe yang tepat.
 
-However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a `type` attribute, with a value of either `animation` or `transition`.
+Bagaimanapun, dalam beberapa kasus Anda mungkin ingin menggunakan keduanya ke dalam elemen yang sama, sebagai contoh sebuah animasi CSS yang dipicu oleh Vue, bersamaan dengan efek transisi CSS saat *event* *hover*. Pada kasus ini, Anda harus secara eksplisit mendeklarasikan tipe yang Anda inginkan agar dapat dipantau oleh Vue pada attribut `type`, dengan nilai antara `animation` atau `transition`.
 
-### Explicit Transition Durations
+### Durasi Transisi yang Eksplisit
 
-> New in 2.2.0+
+> Baru di 2.2.0+
 
-In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+Di banyak kasus, Vue secara otomatis bisa mengetahui apakah transisi telah selesai. Secara default, Vue menunggu *event* `transitionend` atau `animationend` yang pertama pada elemen transisi *root*. Namun, hal ini mungkin tidak selalu diharapkan - sebagai contoh, kita mungkin memiliki urutan koreografi transisi dimana beberapa elemen bersarang memiliki transisi yang tertunda atau durasi transisi yang lebih lama dibanding elemen transisi *root*.
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+Pada kasus seperti itu Anda bisa menentukan durasi transisi yang eksplisit (dalam milliseconds) menggunakan prop `duration` pada komponen `<transition>`:
 
 ``` html
 <transition :duration="1000">...</transition>
 ```
 
-You can also specify separate values for enter and leave durations:
+Anda juga bisa menentukan nilai terpisah antara durasi masuk dan keluar:
 
 ``` html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### JavaScript Hooks
+### Hook JavaScript
 
-You can also define JavaScript hooks in attributes:
+Anda juga bisa mendefinisikan *hook* JavaScript pada atribut:
 
 ``` html
 <transition
@@ -396,14 +396,14 @@ You can also define JavaScript hooks in attributes:
 // ...
 methods: {
   // --------
-  // ENTERING
+  // KETIKA MASUK
   // --------
 
   beforeEnter: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // *callback done* opsional ketika
+  // digunakan ketika dikombinasikan dengan CSS
   enter: function (el, done) {
     // ...
     done()
@@ -416,14 +416,14 @@ methods: {
   },
 
   // --------
-  // LEAVING
+  // KETIKA KELUAR
   // --------
 
   beforeLeave: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // *callback done* opsional ketika
+  // digunakan ketika dikombinasikan dengan CSS
   leave: function (el, done) {
     // ...
     done()
@@ -431,25 +431,25 @@ methods: {
   afterLeave: function (el) {
     // ...
   },
-  // leaveCancelled only available with v-show
+  // leaveCancelled hanya tersedia dengan v-show
   leaveCancelled: function (el) {
     // ...
   }
 }
 ```
 
-These hooks can be used in combination with CSS transitions/animations or on their own.
+Hook-hook ini dapat dikombinasikan dengan transisi/animasi CSS atau digunakan sendiri.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, the hooks will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">Ketika hanya menggunakan transisi dari JavaScript, **callback `done` diwajibkan untuk hook `enter` dan `leave`**. Jika tidak, hook akan dipanggil secara sinkronis dan transisi akan selesai secepatnya.</p>
 
-<p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
+<p class="tip">Salah satu ide yang bagus untuk secara eksplisit menambahkan `v-bind:css="false"` untuk transisi yang dibuat hanya dengan JavaScript sehingga Vue dapat melewati proses  pendeteksian CSS. Hal ini juga bisa menghindari aturan CSS yang secara tidak sengaja ikut tercampur ke dalam transisi.</p>
 
-Now let's dive into an example. Here's a JavaScript transition using Velocity.js:
+Sekarang mari belajar lebih dalam melalui sebuah contoh. Ini adalah sebuah transisi JavaScript yang menggunakan Velocity.js:
 
 ``` html
 <!--
-Velocity works very much like jQuery.animate and is
-a great option for JavaScript animations
+Velocity bekerja hampir seperti jQuery.animate dan merupakan
+opsi yang bagus untuk animasi menggunakan JavaScript
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
@@ -544,9 +544,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Transitions on Initial Render
+## Transisi pada Render Awal
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
+Jika Anda juga ingin menerapkan transisi pada *render* awal pada sebuah node, Anda bisa menambahkan atribut `appear`:
 
 ``` html
 <transition appear>
@@ -554,7 +554,7 @@ If you also want to apply a transition on the initial render of a node, you can 
 </transition>
 ```
 
-By default, this will use the transitions specified for entering and leaving. If you'd like however, you can also specify custom CSS classes:
+Secara default, ini akan menggunakan transisi yang telah ditentukan untuk masuk dan keluar. Namun jika Anda mau, Anda juga bisa menentukan kelas CSS kustom:
 
 ``` html
 <transition
@@ -567,7 +567,7 @@ By default, this will use the transitions specified for entering and leaving. If
 </transition>
 ```
 
-and custom JavaScript hooks:
+dan hook JavaScript kustom:
 
 ``` html
 <transition
@@ -581,9 +581,9 @@ and custom JavaScript hooks:
 </transition>
 ```
 
-## Transitioning Between Elements
+## Transisi Antar Elemen
 
-We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+Kita membahas [transisi antar komponen](#Transitioning-Between-Components) nanti, tetapi Anda juga bisa melakukan transisi antar elemen mentah menggunakan `v-if`/`v-else`. Satu dari banyak transisi antara dua-elemen yang umum adalah antara penampung daftar (*list container*) dan pesan yang menjelaskan daftar kosong:
 
 ``` html
 <transition>
@@ -594,11 +594,11 @@ We discuss [transitioning between components](#Transitioning-Between-Components)
 </transition>
 ```
 
-This works well, but there's one caveat to be aware of:
+Ini bekerja dengan baik, tetapi ada satu peringatan yang harus kita perhatikan:
 
-<p class="tip">When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**</p>
+<p class="tip">Ketika berpindah antar elemen yang memiliki **nama tag yang sama**, Anda harus memberi tahu Vue bahwa mereka adalah elemen yang berbeda dengan memberikan mereka atribut `key` yang unik. Jika tidak, kompiler Vue hanya mengganti isi dari elemen. Meskipun secara teknis tidak perlu, **dianggap sebagai praktek yang baik untuk selalu memberikan kunci (key) pada banyak item di dalam komponen `<transition>`.**</p>
 
-For example:
+Sebagai contoh:
 
 ``` html
 <transition>
@@ -611,7 +611,7 @@ For example:
 </transition>
 ```
 
-In these cases, you can also use the `key` attribute to transition between different states of the same element. Instead of using `v-if` and `v-else`, the above example could be rewritten as:
+Dalam Kasus ini, Anda juga bisa menggunakan atribut `key` untuk bertransisi antara state yang berbeda pada elemen yang sama. Daripada menggunakan `v-if` dan `v-else`, contoh di atas bisa ditulis ulang menjadi:
 
 ``` html
 <transition>
@@ -621,7 +621,7 @@ In these cases, you can also use the `key` attribute to transition between diffe
 </transition>
 ```
 
-It's actually possible to transition between any number of elements, either by using multiple `v-if`s or binding a single element to a dynamic property. For example:
+Sebenarnya sangat memungkinkan untuk melakukan transisi antara elemen berapapun jumlahnya, baik dengan menggunakan banyak `v-if` atau menautkan elemen tunggal pada properti dinamis. Sebagai contoh:
 
 ``` html
 <transition>
@@ -637,7 +637,7 @@ It's actually possible to transition between any number of elements, either by u
 </transition>
 ```
 
-Which could also be written as:
+Yang bisa ditulis ulang menjadi:
 
 ``` html
 <transition>
@@ -660,9 +660,9 @@ computed: {
 }
 ```
 
-### Transition Modes
+### Mode Transisi
 
-There's still one problem though. Try clicking the button below:
+Meskipun demikian masih ada satu masalah. Coba tekan (click) tombol di bawah:
 
 {% raw %}
 <div id="no-mode-demo" class="demo">
@@ -693,9 +693,9 @@ new Vue({
 </style>
 {% endraw %}
 
-As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
+Selama proses transisi antara tombol "on" dan tombol "off", kedua tombol di-render - satu bertransisi keluar sementara yang lain bertransisi ke dalam. ini merupakan perilaku default dari `<transition>` - masuk dan keluar terjadi secara bersamaan.
 
-Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
+Kadang ini bekerja dengan baik, Seperti ketika item yang bertransisi benar-benar diposisikan satu di atas yang lain:
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -735,7 +735,7 @@ new Vue({
 </style>
 {% endraw %}
 
-And then maybe also translated so that they look like slide transitions:
+Dan nanti mungkin juga ditranslasikan sehingga mereka terlihat seperti transisi *slide*.
 
 {% raw %}
 <div id="no-mode-translate-demo" class="demo">
@@ -781,13 +781,13 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
+Meskipun demikian transisi masuk dan keluar tidak selalu dibutuhkan, sehingga vue hanya menawarkan **mode transisi** sebagai alternatif:
 
-- `in-out`: New element transitions in first, then when complete, the current element transitions out.
+- `in-out`: Elemen baru melakukan transisi masuk terlebih dahulu, lalu ketika selesai, elemen ini melakukan transisi keluar.
 
-- `out-in`: Current element transitions out first, then when complete, the new element transitions in.
+- `out-in`: Elemen ini melakukan transisi keluar terlebih dahulu, lalu ketika selesai, elemen baru melakukan transisi masuk.
 
-Now let's update the transition for our on/off buttons with `out-in`:
+Sekarang mari ubah transisi untuk tombol on/off kita dengan `out-in`:
 
 ``` html
 <transition name="fade" mode="out-in">
@@ -824,9 +824,9 @@ new Vue({
 </style>
 {% endraw %}
 
-With one attribute addition, we've fixed that original transition without having to add any special styling.
+Dengan satu tambahan atribut, kita memperbaiki transisi asli tanpa harus menambahkan suatu gaya (styling) khusus.
 
-The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
+Mode `in-out` tidak sering digunakan, namun kadan dapat berguna untuk efek transisi yang sedikit berbeda. Mari kita coba untuk mengkombinasikannya dengan transisi slide-fade yang kita kerjakan sebelumnya:
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -872,11 +872,11 @@ new Vue({
 </style>
 {% endraw %}
 
-Pretty cool, right?
+Cukup keren, bukan?
 
-## Transitioning Between Components
+## Transisi Antar Komponen 
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](components.html#Dynamic-Components):
+Transisi antar komponen bahkan lebih sederhana - kita bahkan tidak membutuhkan atribut `key`. Sebagai gantinya, kita membungkusnya dengan sebuah [komponen dinamis](components.html#Dynamic-Components):
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -906,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
+/* .component-fade-leave-active di bawah versi 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -945,22 +945,23 @@ new Vue({
 </script>
 {% endraw %}
 
-## List Transitions
+## Transisi Daftar
 
-So far, we've managed transitions for:
+Sejauh ini, kita menangani transisi untuk:
 
-- Individual nodes
-- Multiple nodes where only 1 is rendered at a time
+- Node individual
+- Banyak node dimana hanya 1 yang di-render dalam suatu waktu
 
-So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
+Jadi bagaimana ketika kita memiliki keselurahan daftar item yang ingin kita render secara bersamaan, sebagai contoh dengan `v-for`? Dalam kasus ini, kita akan menggunakan komponen `<transition-group>`. 
+Sebelum kita masuk pada sebuah contoh, ada beberapa hal yang penting untuk diketahui mengenai komponen ini:
 
-- Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
-- [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
-- Elements inside are **always required** to have a unique `key` attribute.
+- Tidak seperti `<transition>`, komponen ini me-render elemen yang nyata: secara default elemen `<span>`. Anda bisa mengganti elemen yang di-render dengan atribut `tag`.
+- [Mode transisi](#Transition-Modes) tidak tersedia, karena kita sedang melakukan transisi antar elemen yang bertransisi secara eksklusif.
+- Elemen-elemen di dalamnya **selalu diwajibkan** untuk memiliki atribut `key` yang unik.
 
-### List Entering/Leaving Transitions
+### Transisi Masuk/Keluar dan Daftar
 
-Now let's dive into an example, transitioning entering and leaving using the same CSS classes we've used previously:
+Sekarang mari masuk pada sebuah contoh, bertransisi masuk dan keluar menggunakan kelas CSS yang sama seperti yang kita gunakan sebelumnya:
 
 ``` html
 <div id="list-demo">
@@ -1003,7 +1004,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active di bawah versi 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1054,13 +1055,13 @@ new Vue({
 </style>
 {% endraw %}
 
-There's one problem with this example. When you add or remove an item, the ones around it instantly snap into their new place instead of smoothly transitioning. We'll fix that later.
+Ada satu masalah dengan contoh ini. Ketika Anda menambahkan atau menghapus item, item disekitarnya malah secara instan bergerak langsung ke tempatnya yang baru dan tidak bertransisi secara mulus. Kita akan memperbaikinya nanti.
 
-### List Move Transitions
+### Transisi Daftar Bergerak
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+Komponen `<transition-group>` memiliki trik lainnya. Ia tidak hanya menganimasi masuk dan keluar, tetapi juga mengganti posisi. Satu-satunya konsep baru yang perlu Anda ketahui untuk menggunakan fitur ini adalah tambahan **kelas `v-move`**, yang mana ditambahkan ketika item berganti posisi. Seperti kelas yang lainnya, Prefixnya akan disesuaikan dengan nilai dari atribut `name` yang disediakan dan Anda juga bisa secara manual menentukan kelas dengan atribut `move-class`.
 
-This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
+Kelas ini berguna terutama untuk memnentukan pengaturan waktu transisi dan kurva pelonggaran, seperti yang akan Anda lihat di bawah:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1125,9 +1126,9 @@ new Vue({
 </style>
 {% endraw %}
 
-This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+Ini mungkin terlihat seperti sihir, tetapi dengan kemampuannya, Vue menggunakan teknik animasi yang disebut [FLIP](https://aerotwist.com/blog/flip-your-animations/) agar secara halus melakukan transisi elemen dari posisi lama ke posisi baru menggunakan perubahan bentuk.
 
-We can combine this technique with our previous implementation to animate every possible change to our list!
+Kita dapat mengkombinasikan teknik ini dengan implementasi kita sebelumnya untuk menganimasikan setiap perubahan yang terjadi pada daftar kita!
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1239,14 +1240,14 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
+<p class="tip">Satu catatatn penting, bahwa transisi FLIP ini tidak bekerja dengan elemen-elemen yang diatur pada `display: inline`. Sebagai alternatif, Anda bisa menggunakan `display: inline-block` atau menempatkan elemen di dalam  konteks *flex*.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+Animasi FLIP ini juga tidak terbatas pada sumbu tunggal. Item-item dalam *grid* multidimensi bisa [ditransisikan juga](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
   <strong>Lazy Sudoku</strong>
-  <p>Keep hitting the shuffle button until you win.</p>
+  <p>Terus tekan tombol shuffle sampai Anda menang.</p>
   <button @click="shuffle">
     Shuffle
   </button>
@@ -1304,9 +1305,9 @@ new Vue({
 </style>
 {% endraw %}
 
-### Staggering List Transitions
+### Menggoyangkan Transisi Daftar
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
+Dengan berkomunikasi dengan transisi JavaScript, melalui atribut-atribut data, memungkinkan juga untuk menggoyang transisi dalam sebuah daftar:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1450,11 +1451,11 @@ new Vue({
 </script>
 {% endraw %}
 
-## Reusable Transitions
+## Transisi yang Dapat Digunakan Kembali (Reusable)
 
-Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+Transisi dapat digunakan kembali melalui sistem komponen Vue. Untuk membuat transisi yang dapat digunakan kembali, semua yang perlu Anda lakukan adalah menempatkan komponen `<transition>` atau `<transition-group>` pada root, lalu mengirimkan anak manapun ke dalam komponen transisi.
 
-Here's an example using a template component:
+Berikut sebuah contoh menggunakan komponen templat:
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1479,7 +1480,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And [functional components](render-function.html#Functional-Components) are especially well-suited to this task:
+Dan [komponen fungsional](render-function.html#Functional-Components) adalah yang paling cocok untuk tugas ini:
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1504,9 +1505,9 @@ Vue.component('my-special-transition', {
 })
 ```
 
-## Dynamic Transitions
+## Transisi Dinamis
 
-Yes, even transitions in Vue are data-driven! The most basic example of a dynamic transition binds the `name` attribute to a dynamic property.
+Ya, bahkan transisi pada Vue digerakkan oleh data (data-driven)! Contoh paling dasar dari sebuah transisi dinamis adalah menautkan atribut `name` pada suatu properti dinamis.
 
 ```html
 <transition v-bind:name="transitionName">
@@ -1514,9 +1515,9 @@ Yes, even transitions in Vue are data-driven! The most basic example of a dynami
 </transition>
 ```
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and want to switch between them.
+Hal ini sangat berguna ketika Anda telah mendefinisikan transisi/animasi CSS menggunakan konvensi kelas transisi Vue dan ingin bertukar dengan mereka.
 
-Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+Setiap atribut transisi dapat terikat secara dinamis. Dan tidak hanya atribut. karena *hook* adalah sebuah *method*, mereka memiliki akses pada data apapun di dalam konteks. Itu berarti tergantung pada *state* komponen Anda, transisi JavaScript Anda bisa berperilaku berbeda.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1660,5 +1661,5 @@ new Vue({
 </script>
 {% endraw %}
 
-Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
+Akhirnya, cara paling pamungkas untuk membuat transisi dinamis adalah melalui komponen yang menerima *props* untuk mengubah sifat alami dari transisi-transisi yang digunakan. Mungkin terdengar berlebihan, tetapi satu-satunya pembatas yang sesungguhnya hanyalah imajinasi Anda.
 

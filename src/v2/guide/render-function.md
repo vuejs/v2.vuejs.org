@@ -1,14 +1,14 @@
 ---
-title: Render Functions & JSX
+title: Fungsi *Render* % JSX
 type: guide
 order: 303
 ---
 
 ## Basics
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Pada banyak kasus, Vue menganjurkan penggunaan templat untuk membuat HTML. Tetapi, ada beberapa situasi di mana anda butuh menggunakan Javascript secara penuh. Anda bisa menggunakan **fungsi render**, sebagai alternatif dari templat.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Mari Lihat contoh sederhana di mana fungsi 'render' terlihat praktis. Katakanlah anda ingin menghasilkan *anchored headings*:
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Dari HTML di atas, anda memutuskan untuk menggunakan komponen di atas seperti:
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+Ketika anda mulai dengan komponen yang hanya membuat *heading* berdasarkan properti `level`, hasilnya akan seperti ini:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,16 +61,17 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
+Templat di atas tidak telihat bagus, dan banyak sekali duplikasi di dalamnya seperti penggunaan `<slot></slot>` di setiap level heading dan harus melakukan hal yang sama ketika kita menambahkan elemen *anchor*.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Sementara templat bekerja dengan baik untuk sebagian besar komponen, jelas penggunaanya masih kurang tepat. Mari kita coba tulis ulang dengan menggunakan fungsi `render`:
+
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // nama tag
+      this.$slots.default // isi dari komponen
     )
   },
   props: {
@@ -82,11 +83,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Lebih sederhana! kodenya lebih pendek, tapi kita juga harus terbiasa dengan properti yang ada di dalam *Vue instance*.  Dalam kasus ini, anda harus tahu bahwa isi dari komponen yang tidak di tandai direktif `v-slot`, seperti `Hello World!` di dalam `anchored-heading`, isi tersebut disimpan di `$slots.default`. Jika anda masih belum paham, **direkomendasikan untuk membaca [instance properties API](../api/#Instance-Properties) sebelum mempelajari lebih dalam tentang fungsi render.**
 
-## Nodes, Trees, and the Virtual DOM
+## *Nodes*, *Trees*, dan *Virtual DOM*
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Sebelum kita lanjut lebih dalam tentang fungsi *render*, penting untuk sedikit mengetahui tentang bagaimana _browsers_ bekeerja. Lihat contoh HTM di bawah:
 
 ```html
 <div>
@@ -96,21 +97,21 @@ Before we dive into render functions, it’s important to know a little about ho
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+Ketika *browser* membaca kode di atas, *browser* akan membuat [pohon yang terdiri atas *DOM nodes*](https://javascript.info/dom-nodes) untuk membantu mencatat isi HTML tersebut, sama seperti jika anda membuat silsilah pohon keluarga untuk mencata isi dari keluarga anda.
 
-The tree of DOM nodes for the HTML above looks like this:
+Bentuk pohon dari *DOM nodes* untuk HTML di atas terlihat seperti:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Visualisasi pohon *DOM*](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Setiap elemen adalah *node*. Setiap teks adalah *node*. BAhkan komentar juga *node*!. Dan sama seperti silsilah keluarga, setiap *node* bisa memiliki anak (misalnya setiap *node* mengandung *node* lainnya).
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Memperbarui *node* yang banyak ini secara eisien tidaklah mudah, tapi untungnya, anda tidak harus melakukannya secara manual. Sebaliknya, gunakan Vue untuk membuat HTML yang Anda inginkan melalui templat:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+Atau fungsi *render*:
 
 ``` js
 render: function (createElement) {
@@ -118,40 +119,40 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+Dalam kedua kasus, Vue secara otomatis akan memastikan bahwa tampilannya diperbarui dengan benar, seperti ketika `blogTitle` berubah.
 
 ### The Virtual DOM
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue melakukannya dengan cara membuat **virtual DOM** untuk mencatat perubahan yang dibutuhkan untuk merekonstruksi DOM yang sebenarnya. Lihat baris kode di bawah :
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+Apa yang sebenarnya `createElement` kembalikan? hal itu bukanlah elemen DOM yang benar-benar diproses oleh browser. Secara teknis, lebih akurat jika dinamakan `createNodeDescription`, karena berisi informasi yang dibutuhkan oleh Vue, jenis *node* apa yang harus ditampilkan; termasuk deskripsi ini dari *node* tersebut. Deskripsi *node* ini diistilahkan dengan "virtual *node*", biasanya disingkat **VNode**. Sedangkan "Virtual DOM" digunakan untuk merujuk ke kumpulan dari VNode secara keseluruhan.
 
-## `createElement` Arguments
+## Argumen `createElement`
 
-The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+Untuk lebih mendalami bagaimana cara penggunaan fitur templat di fungsi `createElement`, berikut beberapa argumen yang diterima oleh `createElement`:
 
 ``` js
 // @returns {VNode}
 createElement(
-  // {String | Object | Function}
-  // An HTML tag name, component options, or async
-  // function resolving to one of these. Required.
+  // {String | Obyek | Function}
+  // Nama tag HTML, opsi komponen, atau fungsi asinkronus
+  // Fungsi resolving ke salah satu. Wajib.
   'div',
 
-  // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // {Obyek}
+  // Objek data yang terkait dengan atribut
+  // Anda akan gunakan dalam templat. Opsional.
   {
-    // (see details in the next section below)
+    // (lihat detil di bagian selanjutnya)
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
+  // Isi VNode, bisa dengan `createElement()`,
+  // atau string sepert 'text VNodes'. Opsional.
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -164,52 +165,51 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### Obyek Data Secara Mendalam
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+Penting untuk dicatat, sama halnya `v-bind:class` dan `v-bind:style` diperlakukan secara khusus di templat, mereka punya tempat tersendiri juga di objek data dari VNode. Lewat objek ini Anda juga melakukan proses *binding* ke atribut bawaan HTML juga properti DOM seperti `innerHTML` (menggantikan direktif `v-html`):
 
 ``` js
 {
-  // Same API as `v-bind:class`, accepting either
-  // a string, object, or array of strings and objects.
+  // Sama seperti `v-bind:class`, bisa diisi dengan
+  // string, objek, atau array dari string dan objek
   class: {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`, accepting either
-  // a string, object, or array of objects.
+  // Sama seperti `v-bind:style`, bisa diisi dengan
+  // string, objek, atau array dari objek
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Atribut bawaan HTML
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // properti komponen
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // properti DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under `on`, though
-  // modifiers such as in `v-on:keyup.enter` are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Event handler diletakkan di dalam `on`, meskipun
+  // modifier sepeti `v-on:keyup.enter` tidak
+  // didukung. Anda harus melakukan pemeriksaan manual
+  // untuk keyCodenya.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using `vm.$emit`.
+  // Hanya untuk komponen, digunakan untuk memperhatikan
+  // event bawaan, selain dari event yang dihasilkan oleh
+  // komponen yang menggunakan `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the `binding`'s
-  // `oldValue` cannot be set, as Vue keeps track
-  // of it for you.
+// Direktif kustom. Ingat bahwa `oldValue` tidak bisa diisi secara manual
+// Karena Vue akan mengaturnya sendiri.
   directives: [
     {
       name: 'my-custom-directive',
@@ -221,27 +221,27 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Scoped slots dalam bentuk
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
+  // Nama dari slot, jika komponen ini
+  // anak dari komponen lain
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // Properti khusus lainnya
   key: 'myKey',
   ref: 'myRef',
-  // If you are applying the same ref name to multiple
-  // elements in the render function. This will make `$refs.myRef` become an
+  // Jika Anda menggunakan nama ref yang sama
+  // di beberapa tempat, nilai dari `$refs.myRef` akan berbentuk
   // array
   refInFor: true
 }
 ```
 
-### Complete Example
+### Contoh Lengkap
 
-With this knowledge, we can now finish the component we started:
+Dengan informasi di atas, kita bisa melanjutkan komponen yang tadi kita buat:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -254,7 +254,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebab-case id
+    // membuat id kebab-case
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -281,11 +281,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### Keterbatasan
 
-#### VNodes Must Be Unique
+#### VNode harus unik
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Semua VNode yang ada di silsilah pohon komponen harus unik. Artinya, contoh di bawah salah:
 
 ``` js
 render: function (createElement) {
@@ -297,7 +297,7 @@ render: function (createElement) {
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Jika Anda memang ingin menduplikasi elemen/komponen yang sama beberapa kali, Anda bisa menggunakan fungsi *factory*. Di bawah ini adalah contoh yang valid untuk menampilkan 20 paragraf yang sama:
 
 ``` js
 render: function (createElement) {
@@ -309,11 +309,11 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Mengganti Fitur Templat Dengan JavaScript
 
-### `v-if` and `v-for`
+### `v-if` dan `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Jika ada hal sederhana yang bisa dicapai dengan mudah menggunakan JavaScript, fungsi render Vue tidak menyediakan cara khusus untuk melakukannya. Contohnya, penggunaan `v-if` dan `v-for` di templat:
 
 ``` html
 <ul v-if="items.length">
@@ -322,7 +322,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 <p v-else>No items found.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+Bisa ditulis dengan `if`/`else` dan `map` bawaan dari JavaScript:
 
 ``` js
 props: ['items'],
@@ -339,7 +339,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+Tidak ada fitur yang mirip `v-model` di fungsi render, Anda harus menerapkannya sendiri:
 
 ``` js
 props: ['value'],
@@ -358,11 +358,11 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+Mungkin terasa lebih susah, tapi Anda punya kendali penuh dibandingkan `v-model`.
 
-### Event & Key Modifiers
+### *Event* & *Key Modifiers*
 
-For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+Untuk modifier event seperti `.passive`, `.capture`, dan `.once`; Vue memberikan prefix yang bisa digunakan dengan `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
@@ -371,7 +371,7 @@ For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes 
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+Contoh:
 
 ```javascript
 on: {
@@ -381,7 +381,7 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
+Untuk event dan key modifier lainnya, tidak ada prefix yang dibutuhkan, cukup gunakan event metode-nya di handler:
 
 | Modifier(s) | Equivalent in Handler |
 | ------ | ------ |
@@ -391,30 +391,30 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
-Here's an example with all of these modifiers used together:
+Berikut contoh untuk penggunaan modifier di atas:
 
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // Batalkan jika elemen yang menghasilkan event ini bukan
+    // elemen tempat event-nya di pasang
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // Batalkan jika key yang ditekan bukanlah tombol enter,
+    // dan tombol shift tidak ditekan
+    // di waktu yang sama
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // Hentikan propagasi event
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // Hentikan event handler dasar untuk event ini
     event.preventDefault()
     // ...
   }
 }
 ```
 
-### Slots
+### Slot
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
+Anda bisa mengakses isi slot statik sebagai array VNode dari [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -423,7 +423,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
+Dan mengakses slot berlingkup (scoped) sebagai fungsi yang mengembalikan VNode dari [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 props: ['message'],
@@ -437,14 +437,14 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+Untuk meneruskan slot berlingkup ke komponen di dalamnya melalui fungsi render, gunakan field `scopedSlots` di data VNode:
 
 ``` js
 render: function (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass `scopedSlots` in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // teruskan `scopedSlots` di objek data
+      // dalam bentuk { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return createElement('span', props.text)
@@ -457,7 +457,7 @@ render: function (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+Jika Anda menulis fungsi `render` yang panjang, akan menyusahkan jika Anda harus menulis seperti di bawah:
 
 ``` js
 createElement(
@@ -472,7 +472,7 @@ createElement(
 )
 ```
 
-Especially when the template version is so simple in comparison:
+Terutama jika versi templatnya lebih sederhana:
 
 ``` html
 <anchored-heading :level="1">
@@ -480,7 +480,7 @@ Especially when the template version is so simple in comparison:
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Karena itulah ada [plugin Babel](https://github.com/vuejs/jsx) untuk menggunakan JSX dengan Vue, memberikan kita cara penulisan yang sedikit mirip templat:
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -497,61 +497,61 @@ new Vue({
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. Starting with [version 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection) of the Babel plugin for Vue, we automatically inject `const h = this.$createElement` in any method and getter (not functions or arrow functions), declared in ES2015 syntax that has JSX, so you can drop the `(h)` parameter. With prior versions of the plugin, your app would throw an error if `h` was not available in the scope.</p>
+<p class="tip">Menamai `createElement` menjadi `h` adalah aturan umum yang akan Anda sering temukan di ekosistem Vue dan wajib dilakukan untuk menggunakan JSX. Mulai dari plugin Babel untuk Vue [versi 3.4.0](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection), secara otomatis diberikan baris `const h = this.$createElement` di *method* dan *getter* apa saja (selama bukan fungsi atau fungsi panah / *arrow function*), yang dideklarasikan di penulisan kode ES2015 yang berisi JSX, sehingga Anda bisa menghapus bagian parameter `(h)`. Di versi sebelumnya, akan terjadi galat jika tidak ada `h` yang tersedia di lingkup tersebut.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx#installation).
+Untuk pelajari lebih lanjut tentang JSX, lihat [dokumentasi penggunaannya](https://github.com/vuejs/jsx#installation).
 
-## Functional Components
+## Komponen Fungsional
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+Komponen *anchored heading* yang kita buat sebelumnya relatif sederhana. Tidak ada *state*, *watcher*, dan tidak ada method siklus hidup. Hanya sebuah fungsi dengan beberapa *props*.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no [reactive data](../api/#Options-Data)) and instanceless (no `this` context). A **functional component** looks like this:
+Dalam kasus ini, kita bisa menandai komponen ini dengan `functional`, artinya mereka tidak memiliki *state* (tidak ada [reactive data](../api/#Options-Data)) dan tanpa instan (tidak ada konteks `this`). **Komponen fungsional** terlihat seperti ini:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // Props are optional
+  // Props bersifat opsional
   props: {
     // ...
   },
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+// Karena tidak ada instan,
+// konteks diteruskan melalui parameter kedua
   render: function (createElement, context) {
     // ...
   }
 })
 ```
 
-> Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> Catatan: di versi sebelum 2.3.0, opsi `props` harus ditulis jika Anda ingin komponen fungsional Anda menerima props. Di versi 2.3.0 ke atas, Anda tidak perlu menulis opsi `props` dan semua atribut yang ada di *node* komponen tersebut akan secara otomatis diambil sebagai *props*.
 
-In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
+Di versi 2.5.0 ke atas, jika Anda menggunakan [kopmonen satu berkas / single-file components](single-file-components.html), komponen fungsional yang menggunakan templat bisa ditulis seperti di bawah:
 
 ``` html
 <template functional>
 </template>
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+Semua yang dibutuhkan oleh komponen akan diteruskan melalui `context`, sebuah objek yang berisi:
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
-- `data`: The entire [data object](#The-Data-Object-In-Depth), passed to the component as the 2nd argument of `createElement`
-- `parent`: A reference to the parent component
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+- `props`: objek berisi *props*
+- `children`: *Array VNode* yang berisi anak dari komponen tersebut
+- `slots`: Fungsi yang mengembalikan objek slot
+- `scopedSlots`: (2.6.0+) Objek yang berisi slot berlingkup. Juga menyediakan slot normal sebagai fungsi.
+- `data`: [data objek](#The-Data-Object-In-Depth), diteruskan ke komponen sebagai argumen kedua dari `createElement`
+- `parent`: Referensi ke komponen di atasnya
+- `listeners`: (2.3.0+) Objek yang berisi event listener yang didaftarkan oleh komponen di atasnya. Juga sebagai alias untuk `data.on`
+- `injections`: (2.3.0+) jika ada opsi [`inject`](../api/#provide-inject), akan berisi injeksi yang ditemukan/diresolve.
 
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+Setelah menuliskan `functional: true`, pembaharuan fungsi render dari komponen *anchored heading* yang baru dibuat mengharuskan Anda menambahkan argumen `context`, mengubah `this.$slots.default` menjadi `context.children`, lalu mengubah `this.level` menjadi `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+Karena komponen fungsional hanya sebuah fungsi saja, mereka lebih cepat untuk dirender. Tetapi, karena tidak adanya instan yang bisa dijadikan acuan, komponen fungsional tidak akan muncul di pohon komponen [Vue devtools](https://github.com/vuejs/vue-devtools).
 
-They're also very useful as wrapper components. For example, when you need to:
+Mereka sangat bermanfaat jika digunakan sebagai komponen pembungkus. Contohnya:
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Secara program memilih beberapa komponen yang akan didelegasikan
+- Memanipulasi isi, *props*, dan data sebelum meneruskannya ke komponen lain di dalamnya
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Berikut adalah contoh untuk komponen `smart-list` yang akan mengembalikan komponen yang lebih spesifik, tergantung dari *props* yang diberikan:
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -588,25 +588,25 @@ Vue.component('smart-list', {
 })
 ```
 
-### Passing Attributes and Events to Child Elements/Components
+### Meneruskan Atribut dan Event ke Anak Komponen
 
-On normal components, attributes not defined as props are automatically added to the root element of the component, replacing or [intelligently merging with](class-and-style.html) any existing attributes of the same name.
+Umumnya, atribut yang tidak didefinisikan sebagai prop akan otomatis ditambahkan ke elemen akar dari komponen tersebut, menindih atau [menggabungkan dengan seksama](class-and-style.html) atribut yang sudah ada dengan nama yang sama.
 
-Functional components, however, require you to explicitly define this behavior:
+Tetapi untuk komponen fungsional, Anda harus secara tertulis mendefinisikannya:
 
 ```js
 Vue.component('my-functional-button', {
   functional: true,
   render: function (createElement, context) {
-    // Transparently pass any attributes, event listeners, children, etc.
+    // Teruskan atribut, event listener, anak, dan sebagainya.
     return createElement('button', context.data, context.children)
   }
 })
 ```
 
-By passing `context.data` as the second argument to `createElement`, we are passing down any attributes or event listeners used on `my-functional-button`. It's so transparent, in fact, that events don't even require the `.native` modifier.
+Dengan meneruskan `context.data` sebagai argumen kedua dari `createElement`, kita juga meneruskan atribut dan event lain yang digunakan di `my-functional-button`. Anda tidak butuh menambahkan modifier `.native`.
 
-If you are using template-based functional components, you will also have to manually add attributes and listeners. Since we have access to the individual context contents, we can use `data.attrs` to pass along any HTML attributes and `listeners` _(the alias for `data.on`)_ to pass along any event listeners.
+Jika Anda menggunakan komponen fungsional berbasis templat, Anda harus meneruskan atribut dan listener secara manual. Anda bisa menggunakan `data.attrs` untuk meneruskan atribut HTML, dan `listeners` _(alias dari `data.on`)_ untuk meneruskan event listener.
 
 ```html
 <template functional>
@@ -622,7 +622,7 @@ If you are using template-based functional components, you will also have to man
 
 ### `slots()` vs `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Jika Anda penasaran kenapa kita butuh `slots()` dan `children`. Bukankah `slots().default` sama dengan `children`? Di beberapa kasus, iya - tapi bagaimana jika kita punya komponen fungsional seperti di bawah?
 
 ``` html
 <my-functional-component>
@@ -633,11 +633,11 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+Untuk komponen ini, `children` akan mengembalikan kedua paragraf; sedangkan `slots().default` akan mengembalikan yang kedua saja, dan `slots().foo` akan mengembalikan yang pertama saja. Adanya `children` dan `slots()` memungkinkan Anda untuk memilih apakah komponen tahu tentang sistem slot, atau mungkin hanya ingin mendelegasikan tanggung jawab itu ke komponen lain dengan meneruskan `children`.
 
-## Template Compilation
+## Kompilasi Templat
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Anda mungkin penasaran, bagaimana caranya templat Vue bisa diubah menjadi fungsi render. Detil implementasi ini tidak wajib untuk diketahui. Tapi jika Anda penasaran, di bawah ini adalah demo menggunakan `Vue.compile` untuk secara langsung mengubah string templat menjadi fungsi render:
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">

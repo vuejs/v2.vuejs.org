@@ -4,7 +4,7 @@ type: examples
 is_new: true
 order: 13
 ---
-> With the examples below built by our partners from [Creative Tim](https://creative-tim.com?affiliate_id=116187) you can see how a real world application is built, the technology stack behind it and how most of the concepts you've learned so far apply in a real world application. 
+> Dengan contoh yang dibuat oleh mitra kami dari  [Creative Tim](https://creative-tim.com?affiliate_id=116187) Anda bisa melihat bagaimana aplikasi pada dunia nyata dibuat, teknologi stack dibelakangnya dan bagaimana sebagian besar konsep yang telah kalian pelajari selama ini diaplikasikan pada aplikasi dunia nyata.
 
 {% raw %}
 <div id="themes-example" class="themes-grid">

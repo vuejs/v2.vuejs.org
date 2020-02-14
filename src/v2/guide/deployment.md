@@ -1,44 +1,44 @@
 ---
-title: Production Deployment
+title: Penempatan Produksi
 type: guide
 order: 404
 ---
 
-> Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org). This section is only relevant if you are using a custom build setup.
+> Sebagian besar tips di bawah ini sudah ada secara standar jika Anda menggunakan [Vue CLI](https://cli.vuejs.org). Bagian ini hanya relevan jika Anda menggunakan penyiapan _build_ khusus.
 
-## Turn on Production Mode
+## Mengaktifkan Mode Produksi
 
-During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
+Selama proses pengembangan, Vue memberikan banyak peringatan untuk membantu Anda terhadap kesalahan umum dan perangkap. Namun, dalam mode produksi peringatan ini tidak muncul dan mencegah pembengkakan ukuran muatan aplikasi Anda. Selain itu, beberapa pemeriksaan peringatan ini memiliki biaya runtime yang kecil.
 
-### Without Build Tools
+### Tanpa Alat Build
 
-If you are using the full build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production. Both versions can be found in the [Installation guide](installation.html#Direct-lt-script-gt-Include).
+Jika Anda menggunakan _build_ lengkap, misal, langsung memasukkan Vue melalui tag skrip tanpa alat _build_, pastikan untuk menggunakan versi _minified_ (`vue.min.js`) untuk produksi. Kedua versi dapat ditemukan di [Panduan Instalasi](installation.html#Direct-lt-script-gt-Include).
 
-### With Build Tools
+### Dengan Alat Build
 
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
+Ketika menggunakan alat _build_ seperti Webpack atau Browserify, mode produksi akan ditentukan oleh `process.env.NODE_ENV` di dalam kode sumber Vue, dan itu akan berada dalam mode pengembangan secara standar. Kedua alat _build_ tersebut menyediakan cara untuk menimpa variabel ini untuk mengaktifkan mode produksi Vue, dan peringatan akan dihapus oleh _minifiers_ selama _build_. Semua templat `vue-cli` memiliki pra-konfigurasi ini untuk Anda, tetapi akan bermanfaat jika mengetahui cara melakukannya:
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+Di Webpack 4+, Anda dapat menggunakan opsi `mode`:
 
-``` js
+```js
 module.exports = {
-  mode: 'production'
+  mode: "production"
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Tetapi di Webpack 3 dan sebelumnya, Anda harus menggunakan [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
-``` js
-var webpack = require('webpack')
+```js
+var webpack = require("webpack")
 
 module.exports = {
   // ...
   plugins: [
     // ...
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      "process.env.NODE_ENV": JSON.stringify("production")
     })
   ]
 }
@@ -46,48 +46,49 @@ module.exports = {
 
 #### Browserify
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+- Jalankan perintah _bundling_ Anda dengan variabel lingkungan `NODE_ENV` aktual yang disetel ke `"production"`. Ini memberitahu `vueify` untuk menghindari hot-reload dan pengembangan kode terkait.
 
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- Terapkan transformasi global [envify](https://github.com/hughsk/envify) ke bundel Anda. Ini memungkinkan minifier untuk menghapus semua peringatan dalam kode sumber Vue yang dibungkus dengan blok bersyarat variabel env. Sebagai contoh:
 
-  ``` bash
+  ```bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Gulp:
+- Atau, menggunakan [envify](https://github.com/hughsk/envify) dengan Gulp:
 
-  ``` js
-  // Use the envify custom module to specify environment variables
-  var envify = require('envify/custom')
+  ```js
+  // Gunakan modul envify/custom untuk menentukan variabel lingkungan
+  var envify = require("envify/custom")
 
   browserify(browserifyOptions)
     .transform(vueify)
     .transform(
-      // Required in order to process node_modules files
+      // Diperlukan untuk memproses file node_modules
       { global: true },
-      envify({ NODE_ENV: 'production' })
+      envify({ NODE_ENV: "production" })
     )
     .bundle()
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
+- Atau, menggunakan [envify](https://github.com/hughsk/envify) dengan Grunt dan [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
 
-  ``` js
-  // Use the envify custom module to specify environment variables
-  var envify = require('envify/custom')
+  ```js
+  // Gunakan modul envify/custom untuk menentukan variabel lingkungan
+  var envify = require("envify/custom")
 
   browserify: {
     dist: {
       options: {
-        // Function to deviate from grunt-browserify's default order
-        configure: b => b
-          .transform('vueify')
-          .transform(
-            // Required in order to process node_modules files
-            { global: true },
-            envify({ NODE_ENV: 'production' })
-          )
-          .bundle()
+        // Berfungsi untuk menyimpang dari urutan standar grunt-browserify
+        configure: b =>
+          b
+            .transform("vueify")
+            .transform(
+              // Diperlukan untuk memproses file node_modules
+              { global: true },
+              envify({ NODE_ENV: "production" })
+            )
+            .bundle()
       }
     }
   }
@@ -95,9 +96,9 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Gunakan [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
-``` js
+```js
 const replace = require('rollup-plugin-replace')
 
 rollup({
@@ -110,24 +111,24 @@ rollup({
 }).then(...)
 ```
 
-## Pre-Compiling Templates
+## Templat Pra-Kompilasi
 
-When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive.
+Ketika menggunakan templat in-DOM atau string templat dalam JavaScript, kompilasi template-to-render-function dilakukan dengan cepat. Ini biasanya cukup cepat dalam banyak kasus, tetapi sebaiknya dihindari jika aplikasi Anda sensitif terhadap kinerja.
 
-The easiest way to pre-compile templates is using [Single-File Components](single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
+Cara termudah untuk melakukan pra-kompilasi templat menggunakan [Single-File Components](single-file-components.html) - setup _build_ yang terkait secara otomatis melakukan pra-kompilasi untuk Anda, sehingga kode yang dibangun berisi fungsi render yang sudah dikompilasi alih-alih string templat mentah.
 
-If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+Jika Anda menggunakan Webpack, dan lebih suka memisahkan file JavaScript dan templat, Anda dapat menggunakan [vue-template-loader](https://github.com/ktsn/vue-template-loader), yang juga mengubah file template menjadi fungsi render JavaScript selama _build_ berlangsung.
 
-## Extracting Component CSS
+## Mengekstraksi Komponen CSS
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
+Ketika menggunakan Komponen File Tunggal (Single-File Components), komponen di dalam CSS disuntikkan secara dinamis sebagai tag `<style>` melalui JavaScript. Ini memiliki biaya runtime yang kecil, dan jika Anda menggunakan rendering sisi-server, hal itu akan menyebabkan "flash of unstyled content" atau konten tanpa gaya. Mengekstrak CSS di semua komponen ke dalam file yang sama akan menghindari masalah ini, dan juga menghasilkan minifikasi dan caching CSS yang lebih baik.
 
-Refer to the respective build tool documentations to see how it's done:
+Rujuk ke dokumentasi alat _build_ terkait untuk melihat bagaimana melakukannya:
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (templat webpack `vue-cli` memiliki pra-konfigurasi ini)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 
-## Tracking Runtime Errors
+## Melacak Kesalahan Runtime
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+Jika kesalahan runtime terjadi selama render komponen, ini akan diteruskan ke fungsi konfigurasi global `Vue.config.errorHandler` jika telah ditetapkan. Mungkin ide yang bagus untuk meningkatkan kaitan ini bersama dengan servis error-tracking seperti [Sentry](https://sentry.io), yang menyediakan [integrasi resmi](https://sentry.io/for/vue/) untuk Vue.

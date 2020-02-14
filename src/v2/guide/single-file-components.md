@@ -1,43 +1,43 @@
 ---
-title: Single File Components
+title: Komponen Berkas Tunggal
 type: guide
 order: 401
 ---
 
-## Introduction
+## Pengantar
 
-In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
+Pada kebanyakan proyek Vue, komponen global akan didefinisikan menggunakan `Vue.component`, diikuti dengan `new Vue({ el: '#container' })` untuk mengarahkan ke elemen kontainer dalam *body* setiap halaman.
 
-This can work very well for small to medium-sized projects, where JavaScript is only used to enhance certain views. In more complex projects however, or when your frontend is entirely driven by JavaScript, these disadvantages become apparent:
+Ini dapat bekerja dengan sangat baik untuk proyek skala kecil hingga menengah, dimana JavaScript hanya digunakan untuk meningkatkan tampilan bagian tertentu saja. Namun di proyek yang lebih komplek, atau ketika *frontend* anda diatur sepenuhnya oleh JavaScript, kekurangan - kekurangan berikut akan muncul:
 
-- **Global definitions** force unique names for every component
-- **String templates** lack syntax highlighting and require ugly slashes for multiline HTML
-- **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
-- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
+- **Definisi Global** memaksa setiap komponen mempunyai nama yang unik
+- **Templat String** kurangnya *syntax highlighting* dan membutuhkan karakter garis miring (slash) yang jelek untuk HTML multi-baris (*multiline HTML*)
+- **Tidak ada dukungan CSS** HTML and JavaScript dapat di-modularisasi-kan ke komponen, namun tidak dengan CSS
+- **Tidak ada build step** membatasi kita hanya menggunakan HTML dan JavaScript ES5, *preprocessor* seperti Pug (dulunya Jade) dan Babel tidak bisa kita gunakan
 
-All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
+Semua masalah tersebut dapat teratasi dengan **komponen berkas tunggal** (***single-file components***) ber-ektensi `.vue`, memungkinkan kita menggunakan *build tool* seperti Webpack atau Browserify.
 
-Here's an example of a file we'll call `Hello.vue`:
+Berikut ini contoh dari file `Hello.vue`:
 
-<a href="https://gist.github.com/chrisvfritz/e2b6a6110e0829d78fa4aedf7cf6b235" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="Single-file component example (click for code as text)" style="display: block; margin: 30px auto;"></a>
+<a href="https://gist.github.com/chrisvfritz/e2b6a6110e0829d78fa4aedf7cf6b235" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="contoh Komponen Berkas Tunggal (klik untuk code berupa text)" style="display: block; margin: 30px auto;"></a>
 
-Now we get:
+Sekarang kita mendapatkan:
 
 - [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Component-scoped CSS](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
-As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
+Sesuai yang dijanjikan, kita juga dapat menggunakan *preprocessor* seperti Pug, Babel (dengan modul ES2015), dan Stylus untuk komponen yang lebih rapi dan lebih kaya akan fitur.
 
-<a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component-with-preprocessors.png" alt="Single-file component example with preprocessors (click for code as text)" style="display: block; margin: 30px auto;"></a>
+<a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component-with-preprocessors.png" alt="Contoh Komponen Berkas Tunggal dengan preprocessors (klik untuk code berupa text)" style="display: block; margin: 30px auto;"></a>
 
-These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+Bahasa tersebut hanya sebagai contoh. Anda dapat menggunakan Bublé, TypeScript, SCSS, PostCSS - atau *preprocessor* lainnya yang membantu produktifitas Anda. Jika menggunakan Webpack dengan `vue-loader`, juga akan mendapatkan dukungan terbaik untuk Modul CSS.
 
-### What About Separation of Concerns?
+### Bagaimana dengan Pembagian Kepentingan (*Separation of Concerns*)?
 
-One important thing to note is that **separation of concerns is not equal to separation of file types.** In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweave with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic and styles are inherently coupled, and collocating them actually makes the component more cohesive and maintainable.
+Satu hal yang perlu dicatat adalah **pembagian kepentingan (*separation of concerns*) tidak sama dengan pembagian tipe file (*separation of file types*).** Di pengembangan UI modern, kami temukan bahwa daripada membagi basis kode menjadi 3 layer raksasa yang saling terikat satu sama lain, lebih masuk akal membaginya ke dalam satu komponen yang terikat longgar (*loosely-coupled*) dan menyusunnya. Di dalam sebuah komponen, templat, logika, dan *style*-nya  digabungkan secara inheren, dan ditempatkan dalam satu tempat membuat komponen lebih kohesif dan *maintainable*.
 
-Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
+Jika anda tidak suka dengan konsep dari Komponen Berkas Tunggal, anda masih bisa memanfaatkan fitur *hot-reloading* dan *pre-compilation* dengan memisahkan JavaScript and CSS kedalam file terpisah:
 
 ``` html
 <!-- my-component.vue -->
@@ -48,24 +48,24 @@ Even if you don't like the idea of Single-File Components, you can still leverag
 <style src="./my-component.css"></style>
 ```
 
-## Getting Started
+## Memulai
 
-### Example Sandbox
+### Sandbox Contoh
 
-If you want to dive right in and start playing with single-file components, check out [this simple todo app](https://codesandbox.io/s/o29j95wx9) on CodeSandbox.
+Jika Anda ingin langsung terjun dan mulai mencoba Komponen Berkas Tunggal, silahkan lihat [simple todo app](https://codesandbox.io/s/o29j95wx9) di CodeSandbox.
 
-### For Users New to Module Build Systems in JavaScript
+### Untuk Pengguna Baru Module Build Systems di JavaScript
 
-With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
+Dengan komponen `.vue`, kita memasuki dunia Aplikasi JavaScript tingkat lanjut. Yang berarti Anda harus memperlajari beberapa *tool* jika Anda belum siap:
 
-- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+- **Node Package Manager (NPM)**: Baca [Panduan Memulai](https://docs.npmjs.com/getting-started/what-is-npm) bab _10: Uninstalling global packages_.
 
-- **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
+- **JavaScript Modern dengan ES2015/16**: Baca [Panduan Belajar ES2015](https://babeljs.io/docs/learn-es2015/) Babel. Untuk saat ini Anda tidak harus menghafal semua fitur yang ada disana, namun simpan halaman tersebut sebagai referensi kedepannya.
 
-After you've taken a day to dive into these resources, we recommend checking out [Vue CLI 3](https://cli.vuejs.org/). Follow the instructions and you should have a Vue project with `.vue` components, ES2015, Webpack and hot-reloading in no time!
+Setelah Anda memperlajari beberapa *resource* tersebut, kami merekomendasi untuk melihat [Vue CLI 3](https://cli.vuejs.org/). Ikuti instruksinya dan anda sudah bisa langsung memulai sebuah Proyek Vue dengan komponen `.vue`, ES2015, Webpack dan *hot-reloading*!
 
-### For Advanced Users
+### Untuk Pengguna Tingkat Lanjut
 
-The CLI takes care of most of the tooling configurations for you, but also allows fine-grained customization through its own [config options](https://cli.vuejs.org/config/).
+Vue CLI menangani sebagian besar konfigurasi *tool* yang Anda butuhkan, namun tetap bisa dikonstumisasi lewat [opsi konfigurasi](https://cli.vuejs.org/config/).
 
-In case you prefer setting up your own build setup from scratch, you will need to manually configure webpack with [vue-loader](https://vue-loader.vuejs.org). To learn more about webpack itself, check out [their official docs](https://webpack.js.org/configuration/) and [Webpack Academy](https://webpack.academy/p/the-core-concepts).
+Namun jika Anda lebih suka membuat *build setup* dari awal, Anda perlu konfigurasi [vue-loader](https://vue-loader.vuejs.org) webpack secara manual. Untuk memperlajari tentang webpack itu sendiri, Silahkan lihat [Dokumentasi Resmi Webpack](https://webpack.js.org/configuration/) dan [Webpack Academy](https://webpack.academy/p/the-core-concepts).

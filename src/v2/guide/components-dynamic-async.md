@@ -4,11 +4,11 @@ type: guide
 order: 105
 ---
 
-> Sebelum lanjut membaca halaman ini, kami berasumsi bahwa Anda telah membaca [Dasar-Dasar Komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti tentang komponen.
+> Sebelum mulai membaca halaman ini, kami berasumsi bahwa Anda telah membaca [Dasar-Dasar Komponen](components.html). Baca halaman itu terlebih dahulu bila Anda belum mengerti tentang komponen.
 
 ## `keep-alive` dengan Komponen yang Dinamis
 
-Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen didalam antarmuka tab:
+Sebelumnya, kami menggunakan atribut `is` untuk berpindah antar komponen di dalam antarmuka tab:
 
 {% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
@@ -214,7 +214,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-Seperti yang Anda lihat, *factory function* akan menerima `resolve` *callback*, yang harus dipanggil saat Anda telah mengambil definisi komponen Anda dari server. Anda juga bisa memanggil `reject(reason)` untuk menunjukkan bahwa pemuatan komponen Anda telah gagal. `setTimeout` disini hanya untuk demonstrasi; bagaimana cara mengambil komponen, itu terserah Anda. Salah satu opsi yang kami sarankan adalah menggunakan komponen *async* dengan [Fitur *code-splitting* Webpack](https://webpack.js.org/guides/code-splitting/):
+Seperti yang Anda lihat, *factory function* akan menerima `resolve` *callback*, yang harus dipanggil saat Anda telah mengambil definisi komponen Anda dari server. Anda juga bisa memanggil `reject(reason)` untuk menunjukkan bahwa pemuatan komponen Anda telah gagal. `setTimeout` di sini hanya untuk demonstrasi; bagaimana cara mengambil komponen, itu terserah Anda. Salah satu opsi yang kami sarankan adalah menggunakan komponen *async* dengan [Fitur *code-splitting* Webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -250,7 +250,7 @@ new Vue({
 
 ### Menangani Pemuatan State
 
-> Baru di 2.3.0+
+> Baru di versi 2.3.0+
 
 *Async component factory* juga bisa mengembalikan objek dengan menggunakan format berikut:
 

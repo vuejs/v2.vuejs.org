@@ -1,38 +1,37 @@
 ---
-title: Common Beginner Gotchas
-date: 2016-02-06 10:00:00
+judul: Rintangan Umum Bagi Pemula
+tanggal: 2016-02-06 10:00:00
 ---
 
-There are few types of questions that we frequently see from users who are new to Vue.js. Although they are all mentioned somewhere in the guide, they are easy to miss and can be hard to find when you do get bitten by the gotchas. Therefore we are aggregating them in this post and hopefully it can save you some time!
-
+Ada beragam pertanyaan yang sering dijumpai oleh pengguna yang baru mengenal Vue.js. Sekalipun semua itu telah dijelaskan pada panduan, itu mudah terlewati dan menjadi sulit untuk dicari ketika anda sudah berhadapan dengan rintangan. Oleh karena itu kami mengumpulkan semuanya dalam pembahasan ini dan semoga dapat mempersingkat waktu anda.
 <!-- more -->
 
-### Why isn't the DOM updating?
+### Kenapa DOM tidak berubah?
 
-Most of the time, when you change a Vue instance's data, the view updates. But there are two edge cases:
+Sebagian besar, ketika anda merubah data pada sebuah Vue instance, tampilan akan diperbaharui. Tetapi ada dua kasus berbeda:
 
-1. When you are **adding a new property** that wasn't present when the data was observed. Due to the limitation of ES5 and to ensure consistent behavior across browsers, Vue.js cannot detect property addition/deletions. The best practice is to always declare properties that need to be reactive upfront. In cases where you absolutely need to add or delete properties at runtime, use the global [`Vue.set`](/api/#Vue-set) or [`Vue.delete`](/api/#Vue-delete) methods.
+1. Saat anda **menambahkan properti baru** lalu tidak tersedia ketika data diamati. Disebabkan keterbatasan pada ES5 dan untuk memastikan agar perilaku konsisten disemua browser, Vue.js tidak dapat mendeteksi penambahan/penghapusan properti. Cara terbaik adalah selalu mendeklarasikan properti yang dibutuhkan agar reaktif diawal. Pada beberapa kejadian ketika benar-benar perlu menambah atau menghapus properti saat runtime, gunakan global method [`Vue.set`](/api/#Vue-set) atau [`Vue.delete`](/api/#Vue-delete).
 
-2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `arr.$set(index, value)` which is syntax sugar for `arr.splice(index, 1, value)`.
+2. Saat anda mengubah sebuah Array secara langsung menggunakan sebuah index (contoh `arr[0] = val`) atau mengubah dengan properti `length`. Demikian pula, Vue.js tidak akan melakukan perubahan. Selalu lakukan perubahan array menggunakan Array instance method, atau ganti seluruhnya. Vue menyediakan convenience method `arr.$set(index, value)` yang merupakan syntax sugar dari `arr.splice(index, 1, value)`.
 
-Further reading: [Reactivity in Depth](/guide/reactivity.html) and [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
+Baca lebih lanjut: [Reactivity in Depth](/guide/reactivity.html) dan [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
 
-### When is the DOM updated?
+### Kapan DOM diperbaharui?
 
-Vue.js uses an asynchronous queue to batch DOM updates. This means when you modify some data, the DOM updates do not happen instantly: they are applied asynchronously when the queue is flushed. So how do you know when the DOM has been updated? Use `Vue.nextTick` right after you modify the data. The callback function you pass to it will be called once the queue has been flushed.
+Vue.js menggunakan antrian asinkron untuk mengumpulkan perubahan DOM. Ini berarti saat anda memperbaharui beberapa data, Dom tidak diperbaharui secara langsung: mereka diterapkan secara tidak sinkron ketika antriannya diproses. Jadi, bagaimana anda tahu kapan DOM telah diperbaharui? Gunakan `Vue.nextTick` tepat setelah anda memperbaharui data. Callback function yang diberikan akan dipanggil sekali setelah antrian diproses.
 
-Further reading: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue).
+Baca lebih lanjut: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue).
 
-### Why does `data` need to be a function?
+### Kenapa `data` harus sebuah function?
 
-In the basic examples, we declare the `data` directly as a plain object. This is because we are creating only a single instance with `new Vue()`. However, when defining a **component**, `data` must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instance created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
+Dalam contoh dasar, kita mendeklarasikan `data` secara langsung sebagai sebuah plain objek. Ini dikarenakan kita hanya membuat sebuah instance tungal dengan `new Vue()`. Namun, ketika mendefinisikan sebuah **komponen**, `data` harus dideklarasikan sebagai sebuah function yang mengembalikan data objek awal. Kenapa? Karena akan banyak instance yang dibuat menggunakan definisi yang sama. Jika kita tetap menggunakan sebuah plain objek untuk `data`, itu objek sama yang akan menjadi **shared by reference** disemua instance yang dibuat! Dengan menyediakan sebuah `data` function, setiap kali sebuah instance baru dibuat kita dapat memanggilnya untuk mengembalikan salinan baru dari data awal.
 
-Further reading: [Component Option Caveats](/guide/components.html#Component-Option-Caveats).
+Baca lebih lanjut: [Component Option Caveats](/guide/components.html#Component-Option-Caveats).
 
 ### HTML case insensitivity
 
-All Vue.js templates are valid, parsable HTML markup, and Vue.js relies on spec-compliant parsers to process its templates. However, as specified in the standard, HTML is case-insensitive when matching tag and attribute names. This means camelCase attributes like `:myProp="123"` will be matched as `:myprop="123"`. As a rule of thumb, you should use camelCase in JavaScript and kebab-case in templates. For example a prop defined in JavaScript as `myProp` should be bound in templates as `:my-prop`.
+Semua templat Vue.js valid, HTML markup dapat diparse, dan Vue.js bergantung pada parser yang memenuhi spesifikasi untuk memproses templatnya. Namun, seperti yang telah ditentukan dalam standar, HTML case-insensitive ketika mencocokan tag dan nama attribut. Ini berarti attribut camelCase seperti `:myProp="123"` akan cocok dengan `:myprop="123"`. Sebagai aturan praktis, anda harus menggunakan camelCase di JavaScript dan kebab-case di templat. Sebagai contoh sebuah prop didefinisikan di JavaScript sebagai `myProp` dan dihubungkan di templat sebagai `:my-prop`. 
 
-Further reading: [camelCase vs. kebab-case](http://vuejs.org/guide/components.html#camelCase-vs-kebab-case).
+Baca lebih lanjut: [camelCase vs. kebab-case](http://vuejs.org/guide/components.html#camelCase-vs-kebab-case).
 
-We are also discussing the possibility of eliminating this inconsistency by resolving props and components in a case-insensitive manner. Join the conversation [here](https://github.com/vuejs/vue/issues/2308).
+Kita juga mendiskusikan kemungkinan menghilangkan ketidakkonsistenan ini dengan memperbaiki props dan komponen dengan cara case-insensitive. Gabung dengan percakapannya [disini](https://github.com/vuejs/vue/issues/2308).

@@ -1,23 +1,24 @@
 ---
-title: Handling Edge Cases
+title: Menangani Kasus Langka
 type: guide
 order: 106
 ---
 
-> This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
+> Halaman ini menganggap Anda sudah membaca [Dasar Komponen](components.html). Baca dulu jika Anda baru mengenal komponen.
 
-<p class="tip">All the features on this page document the handling of edge cases, meaning unusual situations that sometimes require bending Vue's rules a little. Note however, that they all have disadvantages or situations where they could be dangerous. These are noted in each case, so keep them in mind when deciding to use each feature.</p>
+<p class="tip">Semua fitur pada halaman ini mendokumentasikan penanganan kasus langka, berarti situasi yang tidak biasa yang kadang-kadang membutuhkan sedikit mengubah aturan Vue. Namun perhatikan, bahwa semua fitur memiliki kelemahan atau situasi di mana mereka bisa berbahaya. Semua itu dicatat dalam setiap kasus, jadi ingatlah ketika memutuskan untuk menggunakan setiap fitur.</p>
 
-## Element & Component Access
 
-In most cases, it's best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.
+## Akses Elemen & Komponen
 
-### Accessing the Root Instance
+Dalam kebanyakan kasus, yang terbaik adalah menghindari menjangkau ke instance komponen lainnya atau memanipulasi elemen DOM secara manual. Namun, ada kasus-kasus di mana itu harus dilakukan.
 
-In every subcomponent of a `new Vue` instance, this root instance can be accessed with the `$root` property. For example, in this root instance:
+### Mengakses Instance Root
+
+Dalam setiap subkomponen dari *instance* `new Vue`, *instance* *root* ini dapat diakses dengan properti `$root`. Misalnya, dalam *instance* *root* ini:
 
 ```js
-// The root Vue instance
+// Contoh root Vue
 new Vue({
   data: {
     foo: 1
@@ -31,31 +32,31 @@ new Vue({
 })
 ```
 
-All subcomponents will now be able to access this instance and use it as a global store:
+Semua subkomponen sekarang dapat mengakses instance ini dan menggunakannya sebagai *store* global:
 
 ```js
-// Get root data
+// Mendapatkan data root
 this.$root.foo
 
-// Set root data
+// Menetapkan data root
 this.$root.foo = 2
 
-// Access root computed properties
+// Akses root computed properties
 this.$root.bar
 
-// Call root methods
+// Memanggil root methods
 this.$root.baz()
 ```
 
-<p class="tip">This can be convenient for demos or very small apps with a handful of components. However, the pattern does not scale well to medium or large-scale applications, so we strongly recommend using <a href="https://github.com/vuejs/vuex">Vuex</a> to manage state in most cases.</p>
+<p class="tip">Ini dapat memudahkan untuk demo atau aplikasi yang sangat kecil dengan beberapa komponen. Namun cara ini tidak berskala dengan baik ke aplikasi skala menengah atau besar, jadi kami sangat menyarankan menggunakan <a href="https://github.com/vuejs/vuex">Vuex</a> Untuk mengelola state pada umumnya.</p>
 
-### Accessing the Parent Component Instance
+### Mengakses *instance* induk komponen
 
-Similar to `$root`, the `$parent` property can be used to access the parent instance from a child. This can be tempting to reach for as a lazy alternative to passing data with a prop.
+Mirip dengan `$root`, properti `$parent` dapat digunakan untuk mengakses *instance* induk dari anak. Sebagai alternatif untuk yang malas mengoper data dengan props.
 
-<p class="tip">In most cases, reaching into the parent makes your application more difficult to debug and understand, especially if you mutate data in the parent. When looking at that component later, it will be very difficult to figure out where that mutation came from.</p>
+<p class="tip">Dalam kebanyakan kasus, menjangkau komponen induk membuat aplikasi Anda lebih sulit untuk di-<i>debug</i> dan dipahami, terlebih jika Anda mutasi data dalam induk. Saat melihat komponen itu nanti, akan sangat sulit untuk mencari tahu dari mana asal mutasi itu.</p>
 
-There are cases however, particularly shared component libraries, when this _might_ be appropriate. For example, in abstract components that interact with JavaScript APIs instead of rendering HTML, like these hypothetical Google Maps components:
+Namun ada beberapa kasus, khususnya pustaka komponen yang dibagikan, saat ini _mungkin_ tepat. Misalnya, dalam komponen abstrak yang berinteraksi dengan API JavaScript alih-alih merender HTML, seperti komponen Google Maps untuk hipotetis ini:
 
 ```html
 <google-map>
@@ -63,9 +64,9 @@ There are cases however, particularly shared component libraries, when this _mig
 </google-map>
 ```
 
-The `<google-map>` component might define a `map` property that all subcomponents need access to. In this case `<google-map-markers>` might want to access that map with something like `this.$parent.getMap`, in order to add a set of markers to it. You can see this pattern [in action here](https://jsfiddle.net/chrisvfritz/ttzutdxh/).
+Komponen `<google-map>` mungkin mendefinisikan properti `map` yang aksesnya diperlukan oleh semua subkomponen. Dalam kasus ini `<google-map-markers>` mungkin ingin mengakses `map` itu dengan sesuatu seperti `this.$parent.getMap`, untuk menambahkan satu set *markers* ke dalamnya. Anda dapat melihat pola ini [beraksi di sini](https://jsfiddle.net/chrisvfritz/ttzutdxh/).
 
-Keep in mind, however, that components built with this pattern are still inherently fragile. For example, imagine we add a new `<google-map-region>` component and when `<google-map-markers>` appears within that, it should only render markers that fall within that region:
+Ingatlah, komponen yang dibangun dengan pola ini masih rapuh. Sebagai contoh, bayangkan kita menambahkan komponen `<google-map-region>` baru dan ketika `<google-map-markers>` muncul di dalamnya, komponen tersebut seharusnya hanya *render* *markers* yang terdapat di wilayah tersebut.
 
 ```html
 <google-map>
@@ -75,58 +76,57 @@ Keep in mind, however, that components built with this pattern are still inheren
 </google-map>
 ```
 
-Then inside `<google-map-markers>` you might find yourself reaching for a hack like this:
+Kemudian di dalam `<google-map-markers>` Anda mungkin akan melakukan hack seperti ini:
 
 ```js
 var map = this.$parent.map || this.$parent.$parent.map
 ```
 
-This has quickly gotten out of hand. That's why to provide context information to descendent components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
+Hal ini dengan cepat tak terkendali. Oleh sebab itu untuk menyediakan konteks informasi yang diturunkan ke komponen semaunya, kami menawarkan [*dependency injection*](#Dependency-Injection).
 
-### Accessing Child Component Instances & Child Elements
+### Mengakses *Instance* Komponen Anak & Elemen Anak
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you can assign a reference ID to the child component using the `ref` attribute. For example:
+Meskipun ada *props* dan *events*, terkadang Anda mungkin masih perlu mengakses langsung komponen anak dalam JavaScript. Untuk mencapai ini, Anda dapat menetapkan ID referensi ke komponen anak menggunakan atribut `ref`. Sebagai contoh:
 
 ```html
 <base-input ref="usernameInput"></base-input>
 ```
 
-Now in the component where you've defined this `ref`, you can use:
+Sekarang di komponen tempat Anda mendefinisikan `ref`, Anda dapat menggunakannya:
 
 ```js
 this.$refs.usernameInput
 ```
 
-to access the `<base-input>` instance. This may be useful when you want to, for example, programmatically focus this input from a parent. In that case, the `<base-input>` component may similarly use a `ref` to provide access to specific elements inside it, such as:
+Untuk mengakses instance `<base-input>`. Hal ini mungkin berguna saat Anda mau, sebagai contoh, secara terprogram memfokuskan input dari induk. Dalam kasus ini, komponen `<base-input>` juga dapat menggunakan `ref` untuk menyediakan akses ke elemen tertentu di dalamnya, seperti:
 
 ```html
 <input ref="input">
 ```
 
-And even define methods for use by the parent:
+Dan bahkan mendefinisikan metode untuk digunakan oleh induk:
 
 ```js
 methods: {
-  // Used to focus the input from the parent
+  // Digunakan untuk memfokuskan input dari induk
   focus: function () {
     this.$refs.input.focus()
   }
 }
 ```
 
-Thus allowing the parent component to focus the input inside `<base-input>` with:
+Dengan demikian memungkinkan komponen induk untuk memfokuskan input di dalam `<base-input>` dengan:
 
 ```js
 this.$refs.usernameInput.focus()
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
-
-<p class="tip"><code>$refs</code> are only populated after the component has been rendered, and they are not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
+Ketika `ref` digunakan bersama dengan `v-for`, referensi yang Anda dapatkan akan berupa array yang mengandung komponen turunan yang mencerminkan sumber data.
+<p class="tip"><code>$refs</code> hanya diisi setelah komponen telah di-render, dan mereka tidak reaktif. Ini hanya dimaksudkan sebagai jalan keluar untuk manipulasi komponen anak secara langsung - Anda harus menghindari mengakses <code>$refs</code> dari dalam templat dan properti computed.</p>
 
 ### Dependency Injection
 
-Earlier, when we described [Accessing the Parent Component Instance](#Accessing-the-Parent-Component-Instance), we showed an example like this:
+Sebelumnya, ketika kami jelaskan [Mengakses *instance* induk komponen](#Mengakses-*instance*-induk-komponen), kami menunjukkan contoh seperti ini:
 
 ```html
 <google-map>
@@ -136,9 +136,9 @@ Earlier, when we described [Accessing the Parent Component Instance](#Accessing-
 </google-map>
 ```
 
-In this component, all descendants of `<google-map>` needed access to a `getMap` method, in order to know which map to interact with. Unfortunately, using the `$parent` property didn't scale well to more deeply nested components. That's where dependency injection can be useful, using two new instance options: `provide` and `inject`.
+Dalam komponen ini, semua keturunan dari `<google-map>` membutuhkan akses ke metode `getMap`, untuk mengetahui peta mana yang harus berinteraksi. Sayangnya, menggunakan properti `$parent` tidak berskala dengan baik untuk komponen yang bersarang lebih dalam. Di situlah *dependency injection* dapat bermanfaat, menggunakan dua opsi baru *instance*: `provide` dan` inject`.
 
-The `provide` options allows us to specify the data/methods we want to **provide** to descendent components. In this case, that's the `getMap` method inside `<google-map>`:
+Opsi `provide` memungkinkan kita untuk menentukan data/metode yang ingin kita **berikan** untuk komponen turunan. Dalam kasus ini, itulah metode `getMap` di dalam` <google-map> `:
 
 ```js
 provide: function () {
@@ -148,56 +148,56 @@ provide: function () {
 }
 ```
 
-Then in any descendants, we can use the `inject` option to receive specific properties we'd like to add to that instance:
+Kemudian pada keturunannya, kita bisa menggunakan opsi `inject` untuk menerima properti tertentu yang ingin kita tambahkan ke *instance* tersebut:
 
 ```js
 inject: ['getMap']
 ```
 
-You can see the [full example here](https://jsfiddle.net/chrisvfritz/tdv8dt3s/). The advantage over using `$parent` is that we can access `getMap` in _any_ descendant component, without exposing the entire instance of `<google-map>`. This allows us to more safely keep developing that component, without fear that we might change/remove something that a child component is relying on. The interface between these components remains clearly defined, just as with `props`.
+Anda dapat melihat [contoh lengkap disini](https://jsfiddle.net/chrisvfritz/tdv8dt3s/). Keuntungan dibanding menggunakan `$parent` adalah bahwa kita dapat mengakses `getMap` dalam _semua_ komponen turunan, tanpa memaparkan seluruh instance dari `<google-map>`. Ini memungkinkan kita lebih aman untuk terus mengembangkan komponen tersebut, tanpa ada rasa takut kita dapat mengubah/menghapus sesuatu yang digunakan komponen anak. Antarmuka antara komponen ini tetap jelas, sama seperti dengan `props`.
 
-In fact, you can think of dependency injection as sort of "long-range props", except:
+Bahkan, Anda bisa menganggap *dependency injection* sebagai semacam *"props jarak jauh"*, kecuali:
 
-* ancestor components don't need to know which descendants use the properties it provides
-* descendant components don't need to know where injected properties are coming from
+* komponen leluhur tidak perlu tahu keturunan mana yang menggunakan properti yang disediakannya
+* komponen turunan tidak perlu tahu dari mana properti yang dioper berasal
 
-<p class="tip">However, there are downsides to dependency injection. It couples components in your application to the way they're currently organized, making refactoring more difficult. Provided properties are also not reactive. This is by design, because using them to create a central data store scales just as poorly as <a href="#Accessing-the-Root-Instance">using <code>$root</code></a> for the same purpose. If the properties you want to share are specific to your app, rather than generic, or if you ever want to update provided data inside ancestors, then that's a good sign that you probably need a real state management solution like <a href="https://github.com/vuejs/vuex">Vuex</a> instead.</p>
+<p class="tip">Namun, ada kelemahan untuk <i>dependency injection</i>. <i>Dependency injection</i> memasangkan komponen dalam aplikasi Anda dengan cara mereka saat diatur, membuat <i>refactoring</i> menjadi lebih sulit. Properti yang disediakan juga tidak reaktif. Hal ini dengan sengaja dilakukan, karena perkembangan menggunakan mereka untuk membuat data <i>store</i> terpusat sama buruknya dengan <a href="#Mengakses-Instance-Root">menggunakan <code>$root</code></a> untuk tujuan yang sama. Jika properti yang ingin Anda bagikan spesifik untuk applikasi Anda, atau jika Anda ingin memperbarui data yang disediakan di dalam leluhur, maka itu pertanda baik bahwa Anda mungkin membutuhkan solusi manajemen <i>state</i> seperti <a href="https://github.com/vuejs/vuex">Vuex</a> sebagai gantinya.</p>
 
-Learn more about dependency injection in [the API doc](https://vuejs.org/v2/api/#provide-inject).
+Belajar lebih tentang *dependency injection* di [the API doc](https://vuejs.org/v2/api/#provide-inject).
 
-## Programmatic Event Listeners
+## *Event Listeners* Terprogram
 
-So far, you've seen uses of `$emit`, listened to with `v-on`, but Vue instances also offer other methods in its events interface. We can:
+Sejauh ini, Anda telah melihat penggunaan `$emit`, dipantau dengan `v-on`, tetapi *instance* Vue juga menawarkan metode lain di antarmuka *event*. Kita dapat:
 
-- Listen for an event with `$on(eventName, eventHandler)`
-- Listen for an event only once with `$once(eventName, eventHandler)`
-- Stop listening for an event with `$off(eventName, eventHandler)`
+- Pantau sebuah *event* dengan `$on(eventName, eventHandler)`
+- Pantau sekali *event* dengan`$once(eventName, eventHandler)`
+- Berhenti pantau *event* dengan `$off(eventName, eventHandler)`
 
-You normally won't have to use these, but they're available for cases when you need to manually listen for events on a component instance. They can also be useful as a code organization tool. For example, you may often see this pattern for integrating a 3rd-party library:
+Anda biasanya tidak harus menggunakan ini, tetapi mereka tersedia untuk kasus-kasus ketika Anda perlu secara manual mendengarkan *event* pada instance komponen. Mereka juga dapat berguna sebagai alat organisasi kode. Sebagai contoh, Anda mungkin sering melihat pola ini untuk diintegrasikan dengan pustaka pihak ke-3:
 
 ```js
-// Attach the datepicker to an input once
-// it's mounted to the DOM.
+// Pasang datepicker ke input sekali
+// pasang ke DOM.
 mounted: function () {
-  // Pikaday is a 3rd-party datepicker library
+  // Pikaday adalah pustaka data pihak ketiga
   this.picker = new Pikaday({
     field: this.$refs.input,
     format: 'YYYY-MM-DD'
   })
 },
-// Right before the component is destroyed,
-// also destroy the datepicker.
+// Tepat sebelum komponen dihancurkan,
+// juga menghancurkan datepicker.
 beforeDestroy: function () {
   this.picker.destroy()
 }
 ```
 
-This has two potential issues:
+Ini memiliki dua masalah potensial:
 
-- It requires saving the `picker` to the component instance, when it's possible that only lifecycle hooks need access to it. This isn't terrible, but it could be considered clutter.
-- Our setup code is kept separate from our cleanup code, making it more difficult to programmatically clean up anything we set up.
+- Membutuhkan penyimpanan `picker` ke instance komponen, bila memungkinkan, hanya kait siklus hidup [(lifecycle hooks)](https://docs.vuejs.id/v2/api/#Options-Lifecycle-Hooks) yang memerlukan akses ke sana. Ini tidak buruk, tetapi bisa dianggap berantakan.
+- Kode pengaturan kita disimpan terpisah dari kode pembersihan kita, membuatnya lebih sulit untuk secara terprogram membersihkan apa pun yang kita atur.
 
-You could resolve both issues with a programmatic listener:
+Anda bisa menyelesaikan kedua masalah dengan *Event Listeners* Terprogram:
 
 ```js
 mounted: function () {
@@ -212,7 +212,7 @@ mounted: function () {
 }
 ```
 
-Using this strategy, we could even use Pikaday with several input elements, with each new instance automatically cleaning up after itself:
+Dengan menggunakan strategi ini, kita bahkan dapat menggunakan Pikaday dengan beberapa elemen input, dengan setiap instance baru secara otomatis membersihkannya sendiri:
 
 ```js
 mounted: function () {
@@ -233,23 +233,23 @@ methods: {
 }
 ```
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/1Leb7up8/) for the full code. Note, however, that if you find yourself having to do a lot of setup and cleanup within a single component, the best solution will usually be to create more modular components. In this case, we'd recommend creating a reusable `<input-datepicker>` component.
+Lihat [fiddle ini](https://jsfiddle.net/chrisvfritz/1Leb7up8/) untuk kode lengkap. Perhatikan, namun, bahwa jika Anda harus melakukan banyak pengaturan dan pembersihan dalam satu komponen, solusi terbaik biasanya adalah membuat lebih banyak komponen modular. Dalam hal ini, kami sarankan untuk membuat komponen `<input-datepicker>` yang dapat digunakan kembali.
 
-To learn more about programmatic listeners, check out the API for [Events Instance Methods](https://vuejs.org/v2/api/#Instance-Methods-Events).
+Untuk mempelajari lebih lanjut tentang *Listeners* Terprogram, lihat API untuk [Metode *Events Instance*](https://vuejs.org/v2/api/#Instance-Methods-Events).
 
-<p class="tip">Note that Vue's event system is different from the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget API</a>. Though they work similarly, <code>$emit</code>, <code>$on</code>, and <code>$off</code> are <strong>not</strong> aliases for <code>dispatchEvent</code>, <code>addEventListener</code>, and <code>removeEventListener</code>.</p>
+<p class="tip">Perhatikan bahwa sistem <i>event</i> Vue berbeda dari <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">API EventTarget browser</a>. Walaupun mereka bekerja dengan cara yang sama, <code>$emit</code>, <code>$on</code>, dan <code>$off</code> <strong>bukan</strong> alias untuk <code>dispatchEvent</code>, <code>addEventListener</code>, dan <code>removeEventListener</code>.</p>
 
-## Circular References
+## Komponen Sirkuler (Circular Component)
 
-### Recursive Components
+### Komponen Rekursif (Recursive Component)
 
-Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
+Komponen dapat secara rekursif memanggil dirinya sendiri dalam templatnya sendiri. Namun, mereka hanya dapat melakukannya dengan opsi `name`:
 
 ``` js
 name: 'unique-name-of-my-component'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+Ketika Anda mendaftarkan komponen secara global menggunakan `Vue.component`, ID global secara otomatis ditetapkan sebagai opsi `nama` komponen.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -257,18 +257,18 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+Jika Anda tidak hati-hati, komponen rekursif juga dapat menyebabkan loop tak terbatas:
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
+Komponen seperti di atas akan menghasilkan kesalahan ["max stack size exceeded"](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack), jadi pastikan pemanggilan rekursif bersifat kondisional (yaitu menggunakan `v-if` yang akhirnya akan menjadi `false`).
 
-### Circular References Between Components
+### *Circular References* Antara Komponen
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+Katakanlah Anda sedang membangun pohon direktori file, seperti di *Finder* atau File *Explorer*. Anda mungkin memiliki komponen `tree-folder` dengan templat ini:
 
 ``` html
 <p>
@@ -277,7 +277,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+Kemudian komponen `tree-folder-content` dengan templat ini:
 
 ``` html
 <ul>
@@ -288,17 +288,17 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+Ketika Anda teliti, Anda akan melihat bahwa komponen ini sebenarnya akan menjadi keturunan _dan_ leluhur satu sama lain di pohon *render* - sebuah paradoks! Saat mendaftarkan komponen secara global dengan `Vue.component`, Paradoks ini secara otomatis deselesaikan untuk anda. Jika itu Anda, maka Anda bisa berhenti membaca disini
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+Namun, jika Anda melakukan *requiring/importing* komponen menggunakan __sistem modul__, misalnya melalui *Webpack* atau *Browserify*, Anda akan mendapatkan kesalahan:
 
 ```
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+Untuk menjelaskan apa yang terjadi, sebut saja komponen kita A dan B. Sistem modul melihat bahwa ia membutuhkan A, tetapi pertama A membutuhkan B, tetapi B membutuhkan A, tetapi A membutuhkan B, dan seterusnya. komponen tersebut terjebak dalam satu lingkaran, tidak tahu bagaimana menyelesaikan kedua komponen tanpa terlebih dahulu menyelesaikan yang lain. Untuk memperbaikinya, kita perlu memberikan sistem modul titik di mana ia dapat mengatakan, "_Pada akhirnya_ A membutuhkan B, tapi kita tidak perlu menyelesaikan B dulu."
 
-In our case, let's make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+Dalam kasus kita, mari kita buat titk itu menjadi komponen `tree-folder`. Kita tahu anak yang menciptakan paradoks adalah komponen `tree-folder-contents`, jadi kita akan menunggu sampai kait siklus hidup *(lifecycle hooks)* `beforeCreate` untuk mendaftarkannya:
 
 ``` js
 beforeCreate: function () {
@@ -306,7 +306,7 @@ beforeCreate: function () {
 }
 ```
 
-Or alternatively, you could use Webpack's asynchronous `import` when you register the component locally:
+Atau sebagai alternatif, Anda bisa menggunakan `Import` asinkron *Webpack* ketika Anda mendaftarkan komponen secara lokal:
 
 ``` js
 components: {
@@ -314,13 +314,13 @@ components: {
 }
 ```
 
-Problem solved!
+Masalah terpecahkan!
 
-## Alternate Template Definitions
+## Definisi Templat Alternatif
 
-### Inline Templates
+### Templat *Inline*
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+Ketika atribut khusus `inline-template` ada pada komponen turunan, komponen akan menggunakan konten dalamnya sebagai templatnya, dari pada memperlakukannya sebagai konten yang didistribusikan. Ini memungkinkan pembuatan template yang lebih fleksibel.
 
 ``` html
 <my-component inline-template>
@@ -331,13 +331,13 @@ When the `inline-template` special attribute is present on a child component, th
 </my-component>
 ```
 
-Your inline template needs to be defined inside the DOM element to which Vue is attached.
+Template *inline* Anda harus didefinisikan di dalam elemen DOM yang dilampirkan Vue.
 
-<p class="tip">However, <code>inline-template</code> makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the <code>template</code> option or in a <code>&lt;template&gt;</code> element in a <code>.vue</code> file.</p>
+<p class="tip">Namun, <code>inline-template</code> membuat cakupan template Anda lebih sulit untuk dipikirkan. Sebagai praktik terbaik, kita lebih suka mendefinisikan templat di dalam komponen menggunakan opsi <code>template</code> atau dalam <code>&lt;elemen templat&gt;</code> dalam file <code>.vue</code>.</p>
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+Cara lain untuk mendefinisikan template adalah di dalam elemen skrip dengan tipe `text/x-template`, lalu merujuk template dengan id. Sebagai contoh:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -351,25 +351,25 @@ Vue.component('hello-world', {
 })
 ```
 
-Your x-template needs to be defined outside the DOM element to which Vue is attached.
+*x-template* Anda harus didefinisikan di luar elemen DOM yang dilampirkan Vue.
 
-<p class="tip">These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
+<p class="tip">Ini dapat berguna untuk demo dengan template besar atau dalam aplikasi yang sangat kecil, tetapi sebaliknya harus dihindari, karena mereka memisahkan templat dari sisa definisi komponen.</p>
 
-## Controlling Updates
+## Mengontrol Pembaruan
 
-Thanks to Vue's Reactivity system, it always knows when to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.
+Berkat sistem Reaktivitas Vue, Vue selalu tahu kapan harus memperbarui (jika Anda menggunakannya dengan benar). Namun ada kasus langka, ketika Anda mungkin ingin memaksakan pembaruan, meskipun faktanya tidak ada data reaktif yang berubah. Lalu ada kasus lain ketika Anda mungkin ingin mencegah pembaruan yang tidak perlu.
 
-### Forcing an Update
+### Memaksa Pembaruan
 
-<p class="tip">If you find yourself needing to force an update in Vue, in 99.99% of cases, you've made a mistake somewhere.</p>
+<p class="tip">Jika Anda merasa perlu memaksakan pembaruan di Vue, dalam 99,99% kasus, Anda membuat kesalahan di suatu tempat.</p>
 
-You may not have accounted for change detection caveats [with arrays](https://vuejs.org/v2/guide/list.html#Caveats) or [objects](https://vuejs.org/v2/guide/list.html#Object-Change-Detection-Caveats), or you may be relying on state that isn't tracked by Vue's reactivity system, e.g. with `data`.
+Anda mungkin tidak memperhitungkan perubahan peringatan [dengan array](https://vuejs.org/v2/guide/list.html#Caveats) atau [objek](https://vuejs.org/v2/guide/list.html#Object-Change-Detection-Caveats), atau Anda mungkin mengandalkan *state* yang tidak dilacak oleh sistem reaktivitas Vue, misalnya dengan `data`.
 
-However, if you've ruled out the above and find yourself in this extremely rare situation of having to manually force an update, you can do so with [`$forceUpdate`](../api/#vm-forceUpdate).
+Namun, jika Anda telah mengesampingkan hal di atas dan menemukan diri Anda dalam situasi yang sangat langka karena harus memaksa pembaruan secara manual, Anda dapat melakukannya dengan [`$forceUpdate`](../api/#vm-forceUpdate).
 
-### Cheap Static Components with `v-once`
+### Komponen Statis Murah dengan `v-once`
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+*Rendering* elemen HTML biasa sangat cepat di Vue, tetapi terkadang Anda mungkin memiliki komponen yang mengandung **banyak** konten statis. Dalam kasus ini, Anda dapat memastikan bahwa itu hanya dievaluasi sekali dan kemudian di-*cache* dengan menambahkan direktif `v-once` ke elemen root, seperti ini:
 
 ``` js
 Vue.component('terms-of-service', {
@@ -382,4 +382,4 @@ Vue.component('terms-of-service', {
 })
 ```
 
-<p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering -- plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>
+<p class="tip">Sekali lagi, cobalah untuk tidak terlalu sering menggunakan pola ini. Meskipun nyaman dalam kasus-kasus langka ketika Anda harus membuat banyak konten statis, hal ini tidak perlu kecuali Anda benar-benar melihat rendering lambat -- ditambah, itu bisa menyebabkan banyak kebingungan nantinya. Sebagai contoh, bayangkan pengembang lain yang tidak terbiasa dengan <code>v-once</code> atau hanya melewatkannya di templat. Mereka mungkin menghabiskan waktu berjam-jam untuk mencari tahu mengapa templat tidak diperbarui dengan benar.</p>

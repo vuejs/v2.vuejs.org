@@ -1,93 +1,99 @@
 ---
-title: Migration from Vuex 0.6.x to 1.0
+title: Migrasi dari Vuex 0.6.x ke 1.0
 type: guide
 order: 703
 ---
 
-> Vuex 2.0 is released, but this guide only covers the migration to 1.0? Is that a typo? Also, it looks like Vuex 1.0 and 2.0 were released simultaneously. What's going on? Which one should I use and what's compatible with Vue 2.0?
 
-Both Vuex 1.0 and 2.0:
+> Vuex 2.0 sudah di-release, tapi kenapa petunjuk ini hanya mencakup migrasi ke 1.0? Apakah itu typo? Dan sepertinya Vuex 1.0 dan 2.0 di-release bersamaan. Apa yang terjadi? Yang mana yang harus saya pakai dan apa saja yang cocok dengan Vue 2.0?
 
-- fully support both Vue 1.0 and 2.0
-- will be maintained for the foreseeable future
+Baik Vuex 1.0 atau 2.0 sama-sama:
 
-They have slightly different target users however.
+- secara penuh mendukung Vue 1.0 dan 2.0
+- akan dimaintain untuk waktu yang terjangkau
 
-__Vuex 2.0__ is a radical redesign and simplification of the API, for those who are starting new projects or want to be on the cutting edge of client-side state management. __It is not covered by this migration guide__, so you should check out [the Vuex 2.0 docs](https://vuex.vuejs.org/en/index.html) if you'd like to learn more about it.
+Namun keduanya memiliki sedikit perbedaan pada target pengguna.
 
-__Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+__Vuex 2.0__ berisi perubahan radikal terhadap desain dan simplifikasi API, untuk mereka yang memulai proyek baru atau ingin performa yang lebih baik dalam manajemen *state* di sisi client. __ Hal tersebut tidak dibahas dalam petunjuk migrasi ini__, jadi Anda harus mengecek [the Vuex 2.0 docs](https://vuex.vuejs.org/en/index.html) jika Anda ingin mempelajarinya lebih lanjut.
 
-## `store.watch` with String Property Path <sup>replaced</sup>
 
-`store.watch` now only accept functions. So for example, you would have to replace:
+Kebanyakan API __Vuex 1.0__  sudah kompatibel kebelakang, jadi hanya butuh sedkit perubahan untuk melakukan *upgrade*. __Vuex 1.0__ direkomendasikan untuk mereka yang memiliki basis kode yang besar atau mereka yang ingin -*upgrade* ke Vue 2.0 dengan proses yang lebih mulus. Petunjuk ini didedikasikan untuk memfasilitasi proses tersebut, namun hanya mencantumkan catatan migrasi. Untuk petunjuk penggunaan yang lebih lengkap, lihat [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+
+
+## `store.watch` dengan Properti String Path <sup>diganti</sup>
+
+`store.watch` sekarang hanya menerima fungsi. Sebagai contoh, Anda harus mengganti:
 
 ``` js
 store.watch('user.notifications', callback)
 ```
 
-with:
+dengan:
 
 ``` js
 store.watch(
-  // When the returned result changes...
+  // Saat hasil yang dikembalikan berganti...
   function (state) {
     return state.user.notifications
   },
-  // Run this callback
+  // Jalankan callback ini
   callback
 )
 ```
 
-This gives you more complete control over the reactive properties you'd like to watch.
+Hal ini memberikan Anda kontrol yang lebih lengkap terhapdap properti yang reaktif yang ingin Anda amati (*watch*):
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
+  <h4>Jalan *Upgrade*</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>store.watch</code> with a string as the first argument.</p>
 </div>
 {% endraw %}
 
-## Store's Event Emitter <sup>removed</sup>
+## Emiter Event Store <sup>dihapus</sup>
 
-The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](migration.html#dispatch-and-broadcast-removed) for migration instructions.
 
-Instead of using this interface to watch events emitted by the store itself (e.g. `store.on('mutation', callback)`), a new method `store.subscribe` is introduced. Typical usage inside a plugin would be:
+*Instance* dari store tidak lagi mengekspos interface "event emitter" (`on`, `off`, `emit`). Jika Anda menggunakan store sebagai *global event bus*, [lihat bagian ini](migration.html#dispatch-and-broadcast-removed)  untuk instruksi migrasi.
+
+Ketimbang menggunakan interface ini untuk memantau even yang dikeluarkan oleh store (contoh: `store.on('mutation', callback)`), Vue menganalkan sebuah method baru `store.subscribe`. Penggunaan umum dalam sebuah plugin akan seperti:
 
 ``` js
 var myPlugin = store => {
   store.subscribe(function (mutation, state) {
-    // Do something...
+    // Lakukan sesuatu...
   })
 }
 
 ```
 
-See example [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md) for more info.
+Lihat contoh [dokumentasi plugins](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md) untuk info lebih lanjut.
+
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>store.on</code>, <code>store.off</code>, and <code>store.emit</code>.</p>
+  <h4>Jalur *Upgrade*</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> dalam basis kode anda untuk menemukan contoh dari <code>store.on</code>, <code>store.off</code>, dan <code>store.emit</code>.</p>
 </div>
 {% endraw %}
 
-## Middlewares <sup>replaced</sup>
+## Middlewares <sup>diganti</sup>
 
-Middlewares are replaced by plugins. A plugin is a function that receives the store as the only argument, and can listen to the mutation event on the store:
+*Middlewares* digantikan dengan plugins. Sebuah plugin adalah fungsi yang menerima store sebagai satu-satunya argumen, dan dapat mendengarkan perubahan *event* yang terjadi dalam store.
 
 ``` js
 const myPlugins = store => {
   store.subscribe('mutation', (mutation, state) => {
-    // Do something...
+    // Lakukan sesuatu...
   })
 }
 ```
 
-For more details, see [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md).
+Untuk detail yang lebih jelas, lihat [dokumentasi plugins](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md).
+
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>middlewares</code> option on a store.</p>
+  <h4>Jalur Upgrade</h4>
+  <p>Jalankan <a href="https://github.com/vuejs/vue-migration-helper">pembantu migrasi</a> dalam basis kode Anda untuk menemukan contoh dari opsi <code>middlewares</code> di atas "store".</p>
 </div>
 {% endraw %}
