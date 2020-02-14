@@ -163,7 +163,7 @@ export default {
 ```
 
 ``` js
-// Tidak masalah menggunakan objek langsung di 
+// Tidak masalah menggunakan objek langsung di
 // _instance_ root Vue, karena hanya akan ada
 // satu _instance_.
 new Vue({
@@ -1237,7 +1237,7 @@ props: {
 
 
 
-### ### Elemen multi-atribut <sup data-p="b">sangat dianjurkan</sup>
+### Elemen multi-atribut <sup data-p="b">sangat dianjurkan</sup>
 
 **Elemen dengan banyak atribut harus menjangkau beberapa baris, dengan satu atribut per baris.**
 
