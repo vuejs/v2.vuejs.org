@@ -6,7 +6,7 @@ platinum_sponsors_china:
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
 special_sponsors:
-  - url: 'https://www.producthunt.com/posts/autocode'
+  - url: 'https://autocode.com'
     img: autocode.svg
     name: Autocode
     description: 'Build app-to-app workflows and connect APIs'
