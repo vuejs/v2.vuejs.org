@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two-way Currency Filter</title>
+    <script src="https://unpkg.com/vue@1.0/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <currency-input label="Price" v-bind:value.sync="price"></currency-input>
+      <currency-input
+        label="Shipping"
+        v-bind:value.sync="shipping"
+      ></currency-input>
+      <currency-input
+        label="Handling"
+        v-bind:value.sync="handling"
+      ></currency-input>
+      <currency-input
+        label="Discount"
+        v-bind:value.sync="discount"
+      ></currency-input>
+
+      <p>Total: ${{ total }}</p>
+    </div>
+
+    <script>
+      Vue.component("currency-input", {
+        template:
+          '\
+            <div>\
+              <label v-if="label">{{ label }}</label>\
+              <input\
+                v-model="value | currency"\
+                v-on:focus="selectAll"\
+              >\
+            </div>\
+          ',
+        props: {
+          value: {
+            type: Number,
+            default: 0,
+            twoWay: true
+          },
+          label: {
+            type: String,
+            default: ""
+          }
+        },
+        filters: {
+          currency: {
+            read: function(value) {
+              return "$" + value.toFixed(2);
+            },
+            write: function(value) {
+              var number = +value.replace(/[^\d.]/g, "");
+              return isNaN(number) ? 0 : number;
+            }
+          }
+        },
+        methods: {
+          selectAll: function(event) {
+            // Workaround for Safari bug
+            // http://stackoverflow.com/questions/1269722/selecting-text-on-focus-using-jquery-not-working-in-safari-and-chrome
+            setTimeout(function() {
+              event.target.select();
+            }, 0);
+          }
+        }
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          price: 0,
+          shipping: 0,
+          handling: 0,
+          discount: 0
+        },
+        computed: {
+          total: function() {
+            return this.price + this.shipping + this.handling - this.discount;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

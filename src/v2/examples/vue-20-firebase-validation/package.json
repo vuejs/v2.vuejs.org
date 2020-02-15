@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-firebase-validation",
+  "version": "1.0.0",
+  "description": "This example uses Firebase as the data persistence backend and syncs between clients in real time (you can try opening it in multiple browser tabs). In addition, it performs instant validation using computed properties and triggers CSS transitions when adding/removing items.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}
