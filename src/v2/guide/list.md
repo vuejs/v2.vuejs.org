@@ -294,11 +294,7 @@ You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance meth
 vm.$set(vm.items, indexOfItem, newValue)
 ```
 
-To deal with caveat 2, you can use `splice`:
-
-``` js
-vm.items.splice(newLength)
-```
+To deal with caveat 2: TODO:
 
 ## Object Change Detection Caveats
 
