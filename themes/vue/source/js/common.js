@@ -368,12 +368,13 @@
       var headers = content.querySelectorAll('h2')
       if (headers.length) {
         each.call(headers, function (h) {
-          sectionContainer.appendChild(makeLink(h))
+          var listItem = makeLink(h)
+          sectionContainer.appendChild(listItem)
           var h3s = collectH3s(h)
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
+            listItem.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {

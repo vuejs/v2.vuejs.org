@@ -6,7 +6,7 @@ order: 401
 
 ## Introduction
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/introduction-to-single-file-components?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Single File Components lesson">Watch a free video lesson on Vue School</a></div>
+<div class="vueschool"><a href="https://vueschool.io/lessons/introduction-to-single-file-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Single File Components lesson">Watch a free video lesson on Vue School</a></div>
 
 In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
 
@@ -21,7 +21,7 @@ All of these are solved by **single-file components** with a `.vue` extension, m
 
 Here's an example of a file we'll call `Hello.vue`:
 
-<a href="https://gist.github.com/chrisvfritz/e2b6a6110e0829d78fa4aedf7cf6b235" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="Single-file component example (click for code as text)" style="display: block; margin: 30px auto;"></a>
+<a href="https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-single-file-components" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="Single-file component example (click for code as text)" style="display: block; margin: 30px auto;"></a>
 
 Now we get:
 

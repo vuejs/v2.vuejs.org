@@ -4,6 +4,9 @@ type: guide
 order: 8
 ---
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-loops?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how to render lists on Vue School">Learn how to render list with a free Vue School lesson</a></div>
+
+
 ## Mapping an Array to Elements with `v-for`
 
 We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
@@ -380,13 +383,15 @@ computed: {
 
 In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
 
-``` html
-<li v-for="n in even(numbers)">{{ n }}</li>
+```html
+<ul v-for="set in sets">
+  <li v-for="n in even(set)">{{ n }}</li>
+</ul>
 ```
 
-``` js
+```js
 data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
+  sets: [[ 1, 2, 3, 4, 5 ], [6, 7, 8, 9, 10]]
 },
 methods: {
   even: function (numbers) {

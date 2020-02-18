@@ -684,6 +684,7 @@ type: api
         handler: 'someMethod',
         immediate: true
       },
+      // you can pass array of callbacks, they will be called one-by-one
       e: [
         'handle1',
         function handle2 (val, oldVal) { /* ... */ },

@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-programmatic-event-listeners",
+  "version": "1.0.0",
+  "description": "Vue.js Programmatic Event Listeners example using Pikaday",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

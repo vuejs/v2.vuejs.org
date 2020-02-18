@@ -1,7 +1,8 @@
 <div id="partners">
   <p>
     Vue Partners are premium shops that provide first-class Vue consulting and development.
-    If your company is interested in being listed as a partner, please contact us at <a href="mailto:partners@vuejs.org">partners@vuejs.org.</a>
+    If your company is interested in being listed as a partner, please contact us at
+    <a href="mailto:partners@vuejs.org">partners@vuejs.org.</a>
   </p>
 
   <h2 id="active-partners">Active Partners</h2>
@@ -9,8 +10,11 @@
   <% for (let partner of page.partners_list) { %>
     <div class="partner">
       <div class="logo">
-        <a href="https://<%- partner.url_link %>" target="_blank">
-          <img src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>" alt="<%= partner.name %>">
+        <a href="https://<%- partner.url_link %>" target="_blank" rel="sponsored noopener">
+          <img
+            alt="<%= partner.name %>"
+            src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>"
+          >
         </a>
       </div>
       <div class="profile">
@@ -22,7 +26,9 @@
               <span class="sr-only">Link</span>
             </dt>
             <dd>
-              <a href="https://<%- partner.url_link %>" target=_blank><%- partner.url_text %></a>
+              <a href="https://<%- partner.url_link %>" target="_blank" rel="sponsored noopener">
+                <%- partner.url_text %>
+              </a>
             </dd>
 
           <dt>
@@ -52,7 +58,13 @@
             <ul>
               <% for (let proficiency of partner.proficiencies) { %>
                 <li>
-                  <a href="<%- proficiency.url || page.proficiencies_urls[proficiency] %>" target=_blank rel="noopener"> <%= proficiency.name || proficiency %></a>
+                  <a
+                    href="<%- proficiency.url || page.proficiencies_urls[proficiency] %>"
+                    target="_blank"
+                    rel="sponsored noopener"
+                  >
+                    <%= proficiency.name || proficiency %>
+                  </a>
                 </li>
               <% } %>
             </ul>
@@ -66,7 +78,7 @@
               </a>
             <% } %>
             <% for( let link of partner.social_links) { %>
-              <a class="<%= link.class %>" href="<%- link.url %>">
+              <a class="<%= link.class %>" href="<%- link.url %>" target="_blank" rel="noopener">
                 <i class="fa fa-<%= link.class %>"></i>
                 <span class="sr-only"><%= link.name %></span>
               </a>

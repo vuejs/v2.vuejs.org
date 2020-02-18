@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two-way Currency Filter</title>
+    <script src="https://unpkg.com/vue@1.0/dist/vue.js"></script>
+    <script src="currency-validator.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <currency-input label="Price" v-bind:value.sync="price"></currency-input>
+      <currency-input
+        label="Shipping"
+        v-bind:value.sync="shipping"
+      ></currency-input>
+      <currency-input
+        label="Handling"
+        v-bind:value.sync="handling"
+      ></currency-input>
+      <currency-input
+        label="Discount"
+        v-bind:value.sync="discount"
+      ></currency-input>
+
+      <p>Total: ${{ total }}</p>
+    </div>
+
+    <script>
+      Vue.component("currency-input", {
+        template:
+          '\
+          <div>\
+            <label v-if="label">{{ label }}</label>\
+            $\
+            <input\
+              v-el:input\
+              v-model="value | currency"\
+              v-on:focus="selectAll"\
+            >\
+          </div>\
+        ',
+        props: {
+          value: {
+            type: Number,
+            default: 0,
+            twoWay: true
+          },
+          label: {
+            type: String,
+            default: ""
+          }
+        },
+        filters: {
+          currency: {
+            read: currencyValidator.format,
+            write: function(newValue, oldValue) {
+              var result = currencyValidator.parse(newValue, Number(oldValue));
+              if (result.warning) {
+                this.$els.input.value = result.value;
+              }
+              return result.value;
+            }
+          }
+        },
+        methods: {
+          selectAll: function(event) {
+            // Workaround for Safari bug
+            // http://stackoverflow.com/questions/1269722/selecting-text-on-focus-using-jquery-not-working-in-safari-and-chrome
+            setTimeout(function() {
+              event.target.select();
+            }, 0);
+          }
+        }
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          price: 0,
+          shipping: 0,
+          handling: 0,
+          discount: 0
+        },
+        computed: {
+          total: function() {
+            return (
+              (this.price * 100 +
+                this.shipping * 100 +
+                this.handling * 100 -
+                this.discount * 100) /
+              100
+            ).toFixed(2);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

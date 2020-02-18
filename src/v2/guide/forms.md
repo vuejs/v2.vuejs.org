@@ -362,7 +362,7 @@ By default, `v-model` syncs the input with the data after each `input` event (wi
 
 ``` html
 <!-- synced after "change" instead of "input" -->
-<input v-model.lazy="msg" >
+<input v-model.lazy="msg">
 ```
 
 ### `.number`

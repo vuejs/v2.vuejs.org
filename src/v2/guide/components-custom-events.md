@@ -6,6 +6,8 @@ order: 103
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/communication-between-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how to work with custom events on Vue School">Learn how to work with custom events in a free Vue School lesson</a></div>
+
 ## Event Names
 
 Unlike components and props, event names don't provide any automatic case transformation. Instead, the name of an emitted event must exactly match the name used to listen to that event. For example, if emitting a camelCased event name:
@@ -58,7 +60,7 @@ Now when using `v-model` on this component:
 
 the value of `lovingVue` will be passed to the `checked` prop. The `lovingVue` property will then be updated when `<base-checkbox>` emits a `change` event with a new value.
 
-<p class="tip">Note that you still have to declare the <code>checked</code> prop in component's <code>props</code> option.</p>
+<p class="tip">Note that you still have to declare the <code>checked</code> prop in the component's <code>props</code> option.</p>
 
 ## Binding Native Events to Components
 
