@@ -1,108 +1,110 @@
-<div class="sidebar">
-  <div class="sidebar-inner-index">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
+<main role="main">
+  <div class="sidebar">
+    <div class="sidebar-inner-index">
+      <ul class="main-menu">
+        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
-    </div><div class="right">
-      <h2 class="vue">Vue.js</h2>
-      <h1>
-        The Progressive<br>JavaScript Framework
-      </h1>
+  <div id="hero">
+    <div class="inner">
+      <div class="left">
+        <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
+      </div><div class="right">
+        <h2 class="vue">Vue.js</h2>
+        <h1>
+          The Progressive<br>JavaScript Framework
+        </h1>
+        <p>
+          <a id="modal-player" class="button has-icon" href="javascript:;">
+            <%- partial('icons/play') %>
+            WHY VUE.JS?</a>
+          <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+          <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
+            <%- partial('icons/github-dark') %>
+            GITHUB</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="special">
+    <h3>Special Sponsor</h3>
+    <% var specialSponsor = theme.special_sponsors[0]; %>
+    <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
+      <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
+      <br>
+      <span><%- specialSponsor.description %></span>
+    </a>
+  </div>
+
+  <div id="highlights">
+    <div class="inner">
+      <div class="point">
+        <h2>Approachable</h2>
+        <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+      </div>
+
+      <div class="point">
+        <h2>Versatile</h2>
+        <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
+      </div>
+
+      <div class="point">
+        <h2>Performant</h2>
+        <p>
+          20KB min+gzip Runtime<br>
+          Blazing Fast Virtual DOM<br>
+          Minimal Optimization Efforts
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="sponsors">
+    <div class="inner">
+      <%- partial('partials/sponsors') %>
+    </div>
+  </div>
+
+  <div id="news">
+    <div class="inner">
+      <h3><label for="member_email">Subscribe to our Weekly Newsletter</label></h3>
+      <form
+        class="newsletter-form"
+        id="revue-form"
+        name="revue-form"
+        target="_blank"
+        rel="noopener"
+        action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
+        method="post"
+        @submit="subscribe"
+      >
+        <input
+          class="newsletter-input"
+          type="email"
+          name="member[email]"
+          id="member_email"
+          required
+          placeholder="Email address"
+        >
+        <input
+          class="button newsletter-button"
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        >
+      </form>
       <p>
-        <a id="modal-player" class="button has-icon" href="javascript:;">
-          <%- partial('icons/play') %>
-          WHY VUE.JS?</a>
-        <a class="button white" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
-        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
-          <%- partial('icons/github-dark') %>
-          GITHUB</a>
+        You can read the previous issues and listen to our podcast at <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
       </p>
     </div>
   </div>
-</div>
+</main>
 
-<div id="special">
-  <h3>Special Sponsor</h3>
-  <% var specialSponsor = theme.special_sponsors[0]; %>
-  <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
-    <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
-    <br>
-    <span><%- specialSponsor.description %></span>
-  </a>
-</div>
-
-<div id="highlights">
-  <div class="inner">
-    <div class="point">
-      <h2>Approachable</h2>
-      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
-    </div>
-
-    <div class="point">
-      <h2>Versatile</h2>
-      <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
-    </div>
-
-    <div class="point">
-      <h2>Performant</h2>
-      <p>
-        20KB min+gzip Runtime<br>
-        Blazing Fast Virtual DOM<br>
-        Minimal Optimization Efforts
-      </p>
-    </div>
-  </div>
-</div>
-
-<div id="sponsors">
-  <div class="inner">
-    <%- partial('partials/sponsors') %>
-  </div>
-</div>
-
-<div id="news">
-  <div class="inner">
-    <h3><label for="member_email">Subscribe to our Weekly Newsletter</label></h3>
-    <form
-      class="newsletter-form"
-      id="revue-form"
-      name="revue-form"
-      target="_blank"
-      rel="noopener"
-      action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
-      method="post"
-      @submit="subscribe"
-    >
-      <input
-        class="newsletter-input"
-        type="email"
-        name="member[email]"
-        id="member_email"
-        required
-        placeholder="Email address"
-      >
-      <input
-        class="button newsletter-button"
-        type="submit"
-        value="Subscribe"
-        name="member[subscribe]"
-        id="member_submit"
-      >
-    </form>
-    <p>
-      You can read the previous issues and listen to our podcast at <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
-    </p>
-  </div>
-</div>
-
-<div id="footer">
+<footer id="footer" role="contentinfo">
   <p>
     <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
       <%- partial('icons/github') %>
@@ -116,7 +118,7 @@
   </p>
   <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
-</div>
+</footer>
 
 <div id="video-modal" class="modal">
   <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;">
