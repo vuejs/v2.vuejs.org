@@ -35,7 +35,7 @@ Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their 
 To help solve this problem, we can adopt a **store pattern**:
 
 ``` js
-var store = {
+const store = {
   debug: true,
   state: {
     message: 'Hello!'
@@ -56,14 +56,14 @@ Notice all actions that mutate the store's state are put inside the store itself
 In addition, each instance/component can still own and manage its own private state:
 
 ``` js
-var vmA = new Vue({
+const vmA = new Vue({
   data: {
     privateState: {},
     sharedState: store.state
   }
 })
 
-var vmB = new Vue({
+const vmB = new Vue({
   data: {
     privateState: {},
     sharedState: store.state
