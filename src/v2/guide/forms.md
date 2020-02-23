@@ -8,14 +8,14 @@ order: 10
 
 You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+<p class="tip">`v-model` will ignore the initial `value`, `checked`, or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
 
 `v-model` internally uses different properties and emits different events for different input elements:
 - text and textarea elements use `value` property and `input` event;
 - checkboxes and radiobuttons use `checked` property and `change` event;
 - select fields use `value` as a prop and `change` as an event.
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean, etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater to these updates as well, use the `input` event instead.</p>
 
 ### Text
 
@@ -209,7 +209,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS, this will prevent the user from being able to select the first item, because iOS does not fire a `change` event in this case. It is therefore recommended to provide a `disabled` option with an empty value, as demonstrated in the example above.</p>
 
 Multiple select (bound to Array):
 
@@ -291,7 +291,7 @@ new Vue({
 
 ## Value Bindings
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkboxes):
 
 ``` html
 <!-- `picked` is a string "a" when checked -->
@@ -306,7 +306,7 @@ For radio, checkbox and select options, the `v-model` binding values are usually
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+But sometimes, we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
 
 ### Checkbox
 
@@ -326,7 +326,7 @@ vm.toggle === 'yes'
 vm.toggle === 'no'
 ```
 
-<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
+<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (i.e. "yes" or "no"), use radio inputs instead.</p>
 
 ### Radio
 
@@ -358,7 +358,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
+By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition, as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync _after_ `change` events:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
@@ -367,7 +367,7 @@ By default, `v-model` syncs the input with the data after each `input` event (wi
 
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+If you want user input to be automatically typecast as a Number, you can add the `number` modifier to your `v-model` managed inputs:
 
 ``` html
 <input v-model.number="age" type="number">
@@ -387,4 +387,6 @@ If you want whitespace from user input to be trimmed automatically, you can add 
 
 > If you're not yet familiar with Vue's components, you can skip this for now.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.
+HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! 
+
+To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.
