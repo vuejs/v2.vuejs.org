@@ -151,7 +151,7 @@ new Vue({
 
 You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+Recreating dynamic components is normally useful behavior, but in this case, those tab component instances would ideally be cached once they're created for the first time. To solve this problem, you can wrap our dynamic component with a `<keep-alive>` element:
 
 ``` html
 <!-- Inactive components will be cached! -->
@@ -203,7 +203,7 @@ Check out more details on `<keep-alive>` in the [API reference](../api/#keep-ali
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/dynamically-load-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Async Components lesson">Watch a free video lesson on Vue School</a></div>
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
+In large applications, you may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders. For example:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {

@@ -225,7 +225,7 @@ describe('Foo', () => {
 })
 ```
 
-Points to note:
+### Points to note
 
 At the top, we declare the factory function which merges the `values` object into `data` and returns a new `wrapper` instance. This way, we don't need to duplicate `const wrapper = shallowMount(Foo)` in every test. Another great benefit to this is when more complex components with a method or computed property you might want to mock or stub in every test, you only need to declare it once.
 

@@ -30,7 +30,7 @@ You may be wondering:
 
 > "Why does `appName` start with `$`? Is that important? What does it do?
 
-No magic is happening here. `$` is a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
+No magic is happening here. `$` is just a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
 
 > "Conflicts? What do you mean?"
 
@@ -148,7 +148,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 As long as you're vigilant in scoping prototype properties, using this pattern is quite safe - as in, unlikely to produce bugs.
 
-However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
+However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is `undefined`. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
 
 **The convenience comes at the cost of explicitness.** When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
 
@@ -158,7 +158,7 @@ So what are the alternatives?
 
 ### When Not Using a Module System
 
-In applications with **no** module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+In applications with **no** module system (e.g., via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
 
 If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
 

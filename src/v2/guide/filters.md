@@ -4,7 +4,9 @@ type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations** and **`v-bind` expressions**. (The latter since Vue 2.1.0+.)
+
+Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol ("`|`"):
 
 ``` html
 <!-- in mustaches -->
@@ -26,7 +28,7 @@ filters: {
 }
 ```
 
-or define a filter globally before creating the Vue instance:
+Or you can define a filter globally before creating the Vue instance:
 
 ``` js
 Vue.filter('capitalize', function (value) {
@@ -40,7 +42,7 @@ new Vue({
 })
 ```
 
-When the global filter has the same name as the local filter, the local filter will be preferred.
+When a global filter has the same name as a local filter, the local filter will be preferred.
 
 Below is an example of our `capitalize` filter being used:
 
@@ -78,10 +80,10 @@ Filters can be chained:
 
 In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
 
-Filters are JavaScript functions, therefore they can take arguments:
+Filters are JavaScript functions. Therefore, they can accept arguments:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Here, `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into `filterA` as the second argument, and the value of the expression `arg2` will be evaluated and passed in as the third argument.
