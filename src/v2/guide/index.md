@@ -73,6 +73,8 @@ var app = new Vue({
 
 We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
 
+Note that we no longer have to interact with the HTML directly. A Vue app attaches itself to a single DOM element (`#app` in our case) then fully controls it. The HTML is our entry point, but everything else happens within the newly created Vue instance.
+
 In addition to text interpolation, we can also bind element attributes like this:
 
 ``` html
