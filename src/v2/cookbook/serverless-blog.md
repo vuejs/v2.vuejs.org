@@ -12,7 +12,7 @@ We're going to quickly build a CMS-powered blog with Vue.js. It uses [ButterCMS]
 
 ## Install
 
-Run this in your commandline:
+Run this in your command line:
 
 ```bash
 npm install buttercms --save
@@ -48,7 +48,9 @@ Using CDN:
 </script>
 ```
 
-Import this file into any component you want to use ButterCMS. Then from the console run:
+Import this file into any component you want to use ButterCMS.
+
+Then, from the console, run:
 
 ```javascript
 butter.post.list({page: 1, page_size: 10}).then(function(response) {
@@ -56,7 +58,7 @@ butter.post.list({page: 1, page_size: 10}).then(function(response) {
 })
 ```
 
-This API request fetches your blog posts. Your account comes with one example post which you'll see in the response.
+This API request fetches your blog posts. Your account comes with one example post, which you'll see in the response.
 
 ## Display posts
 
@@ -91,7 +93,7 @@ export default new Router({
 })
 ```
 
-Then create `components/BlogHome.vue` which will be your blog homepage that lists your most recent posts.
+Then create `components/BlogHome.vue`, which will be your blog homepage with a list of your most recent posts.
 
 ```html
 <script>
@@ -153,7 +155,7 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
 </template>
 ```
 
-Here's what it looks like (note we added CSS from https://bulma.io/ for quick styling):
+Here's what it looks like (note we added CSS from https://bulma.io for quick styling):
 
 ![buttercms-bloglist](https://user-images.githubusercontent.com/160873/36868500-1b22e374-1d5e-11e8-82a0-20c8dc312716.png)
 
@@ -298,7 +300,7 @@ created() {
 
 ## Alternative Patterns
 
-An alternative pattern to consider, especially if you prefer writing only in Markdown, is using something like [Nuxtent](https://nuxtent-module.netlify.com/guide/writing/#async-components). Nuxtent allows you to use `Vue Component` inside of Markdown files. This approach would be akin to a static site approach (i.e. Jekyll) where you compose your blog posts in Markdown files. Nuxtent adds a nice integration between Vue.js and Markdown allowing you to live in a 100% Vue.js world.
+An alternative pattern to consider (especially if you prefer writing only in Markdown) is using something like [Nuxtent](https://nuxtent-module.netlify.com/guide/writing/#async-components). Nuxtent allows you to use `Vue Component` inside of Markdown files. This approach would be akin to a static site approach (such as Jekyll), where you write blog posts as Markdown files. Nuxtent adds a nice integration between Vue.js and Markdown, allowing you to live in a 100% Vue.js world.
 
 ## Wrap up
 

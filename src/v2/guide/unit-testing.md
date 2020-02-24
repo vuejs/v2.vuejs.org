@@ -4,7 +4,7 @@ type: guide
 order: 402
 ---
 
-> [Vue CLI](https://cli.vuejs.org/) has built-in options for unit testing with [Jest](https://github.com/facebook/jest) or [Mocha](https://mochajs.org/) that works out of the box. We also have the official [Vue Test Utils](https://vue-test-utils.vuejs.org/) which provides more detailed guidance for custom setups.
+> [Vue CLI](https://cli.vuejs.org) has built-in options for unit testing with [Jest](https://github.com/facebook/jest) or [Mocha](https://mochajs.org) that works out of the box. We also have the official [Vue Test Utils](https://vue-test-utils.vuejs.org) which provides more detailed guidance for custom setups.
 
 ## Simple Assertions
 
@@ -29,7 +29,7 @@ You don't have to do anything special in your components to make them testable. 
 </script>
 ```
 
-Then import the component along with [Vue Test Utils](https://vue-test-utils.vuejs.org/), and you can make many common assertions (here we are using Jest-style `expect` assertions just as an example):
+Then import the component along with [Vue Test Utils](https://vue-test-utils.vuejs.org), and you can make many common assertions. (Here, we are using Jest-style `expect` assertions, just as an example.):
 
 ``` js
 // Import `shallowMount` from Vue Test Utils and the component being tested
@@ -83,7 +83,7 @@ A component's render output is primarily determined by the props it receives. If
 </script>
 ```
 
-You can assert its render output with different props using [Vue Test Utils](https://vue-test-utils.vuejs.org/):
+You can assert its render output with different props using [Vue Test Utils](https://vue-test-utils.vuejs.org):
 
 ``` js
 import { shallowMount } from '@vue/test-utils'
@@ -129,4 +129,4 @@ it('updates the rendered message when wrapper.message updates', async () => {
 })
 ```
 
-For more in-depth information on unit testing in Vue, check out [Vue Test Utils](https://vue-test-utils.vuejs.org/) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).
+For more in-depth information on unit testing in Vue, check out [Vue Test Utils](https://vue-test-utils.vuejs.org) and our cookbook entry about [unit testing vue components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html).

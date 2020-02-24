@@ -4,14 +4,16 @@ type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, you can use `v-bind` to handle them. All you need to calculate is a final string with our expressions.
+
+However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
 
 ## Binding HTML Classes
 <div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-dynamic-classes?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Dynamic Classes Lesson">Watch a free video lesson on Vue School</a></div>
 
 ### Object Syntax
 
-We can pass an object to `v-bind:class` to dynamically toggle classes:
+You can pass an object to `v-bind:class` to dynamically toggle classes:
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
@@ -59,7 +61,9 @@ data: {
 }
 ```
 
-This will render the same result. We can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
+This will render the same result.
+
+You can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -81,7 +85,7 @@ computed: {
 
 ### Array Syntax
 
-We can pass an array to `v-bind:class` to apply a list of classes:
+You can pass an array to `v-bind:class` to apply a list of classes:
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]"></div>
@@ -155,7 +159,7 @@ When `isActive` is truthy, the rendered HTML will be:
 
 ### Object Syntax
 
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+The object syntax for `v-bind:style` is pretty straightforward. It looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -167,7 +171,7 @@ data: {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+It is often a good idea to bind to a style object directly, so that the template is cleaner:
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -199,7 +203,7 @@ When you use a CSS property that requires [vendor prefixes](https://developer.mo
 
 > 2.3.0+
 
-Starting in 2.3.0+ you can provide an array of multiple (prefixed) values to a style property, for example:
+Starting in 2.3.0+, you can provide an array of multiple (prefixed) values to `v-bind:style`. For example:
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>

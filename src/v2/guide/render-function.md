@@ -6,7 +6,7 @@ order: 303
 
 ## Basics
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **`render()` function**, a closer-to-the-compiler alternative to templates.
 
 Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
@@ -63,7 +63,7 @@ Vue.component('anchored-heading', {
 
 That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render()` function:
 
 ``` js
 Vue.component('anchored-heading', {
@@ -82,11 +82,15 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `v-slot` directive into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Much simpler! ...Sort of. The _code_ is shorter. But it also requires greater familiarity with Vue instance properties.
+
+In this case, you have to know that when you pass children without a `v-slot` directive into a component (like the `Hello world!` inside of `anchored-heading`), those children are stored on the component instance at `$slots.default`.
+
+If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
 
 ## Nodes, Trees, and the Virtual DOM
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Before the dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
 
 ```html
 <div>
@@ -102,9 +106,9 @@ The tree of DOM nodes for the HTML above looks like this:
 
 ![DOM Tree Visualization](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children. (That is, each piece can contain other pieces.)
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Updating all these nodes efficiently can be difficult. But thankfully, you never have to do it manually! Instead, you simply tell Vue the desired HTML in a template:
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -523,7 +527,7 @@ Vue.component('my-component', {
 ```
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
-> 
+>
 > The reference will be HTMLElement when used with functional components because they’re stateless and instanceless.
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:

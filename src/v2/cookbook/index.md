@@ -52,7 +52,7 @@ _required_
 
 _required_
 
-1.  Address common questions that one might have while looking at the example. (Blockquotes are great for this)
+1.  Address common questions that one might have while looking at the example. (Blockquotes are great for this.)
 2.  Show examples of common missteps and how they can be avoided.
 3.  Show very simple code samples of good and bad patterns.
 4.  Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
@@ -64,7 +64,7 @@ _required_
 Demonstrate the code that would power a common or interesting use case, either by:
 
 1.  Walking through a few terse examples of setup, or
-2.  Embedding a codepen/jsfiddle example
+2.  Embedding a CodePen/JSfiddle example
 
 If you choose to do the latter, you should still talk through what it is and does.
 

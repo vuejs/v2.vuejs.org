@@ -64,7 +64,7 @@ new Vue({
 })
 ```
 
-Hook functions with the same name are merged into an array so that all of them will be called. Mixin hooks will be called **before** the component's own hooks.
+Hook functions with the same name are merged into an array, so that all of them will be called. Mixin hooks are called **before** the component's own hooks.
 
 ``` js
 var mixin = {
@@ -84,7 +84,7 @@ new Vue({
 // => "component hook called"
 ```
 
-Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
+Options that expect object values&mdash;for example `methods`, `components` and `directives`&mdash;will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
 
 ``` js
 var mixin = {
@@ -119,7 +119,11 @@ Note that the same merge strategies are used in `Vue.extend()`.
 
 ## Global Mixin
 
-You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+You can also apply a mixin globally.
+
+<p class="tip">**Use with caution!** Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. </p>
+
+When used properly, this can be used to inject processing logic for custom options:
 
 ``` js
 // inject a handler for `myOption` custom option
@@ -138,7 +142,7 @@ new Vue({
 // => "hello!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>
+<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created&mdash;_including third party components_. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>
 
 ## Custom Option Merge Strategies
 

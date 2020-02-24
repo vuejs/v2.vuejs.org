@@ -4,18 +4,18 @@ type: guide
 order: 202
 ---
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+Vue's transition system offers many simple ways to animate entering, leaving, and lists. But what about animating your data itself? For example:
 
 - numbers and calculations
 - colors displayed
 - the positions of SVG nodes
 - the sizes and other properties of elements
 
-All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
+All of these are either already stored as raw numbers, or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
 
 ## Animating State with Watchers
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [GreenSock](https://greensock.com/):
+Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [GreenSock](https://greensock.com):
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
@@ -73,7 +73,9 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with [Tween.js](https://github.com/tweenjs/tween.js) and [Color.js](https://github.com/brehaut/color-js):
+When you update the number, the change is animated below the input. This makes for a nice demo.
+
+But what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with [Tween.js](https://github.com/tweenjs/tween.js) and [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -523,9 +525,9 @@ Within child components, we can use any combination of transition strategies tha
 
 ## Bringing Designs to Life
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+To _animate_, by one definition, means “to bring to life”. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states...making your welcome pages, loading indicators, and notifications more emotionally compelling.
 
 Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
 

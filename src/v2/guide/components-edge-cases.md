@@ -65,7 +65,7 @@ There are cases however, particularly shared component libraries, when this _mig
 
 The `<google-map>` component might define a `map` property that all subcomponents need access to. In this case `<google-map-markers>` might want to access that map with something like `this.$parent.getMap`, in order to add a set of markers to it. You can see this pattern [in action here](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-accessing-parent-component-instance).
 
-Keep in mind, however, that components built with this pattern are still inherently fragile. For example, imagine we add a new `<google-map-region>` component and when `<google-map-markers>` appears within that, it should only render markers that fall within that region:
+Keep in mind, however, that components built with this pattern are still inherently fragile. For example, imagine you've added a new `<google-map-region>` component, and when `<google-map-markers>` appears within that, it should only render markers that fall within that region:
 
 ```html
 <google-map>
@@ -81,7 +81,7 @@ Then inside `<google-map-markers>` you might find yourself reaching for a hack l
 var map = this.$parent.map || this.$parent.$parent.map
 ```
 
-This has quickly gotten out of hand. That's why to provide context information to descendent components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
+This has quickly gotten out of hand. That's why, to provide context information to descendent components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
 
 ### Accessing Child Component Instances & Child Elements
 
@@ -195,7 +195,7 @@ beforeDestroy: function () {
 This has two potential issues:
 
 - It requires saving the `picker` to the component instance, when it's possible that only lifecycle hooks need access to it. This isn't terrible, but it could be considered clutter.
-- Our setup code is kept separate from our cleanup code, making it more difficult to programmatically clean up anything we set up.
+- The setup code is kept separate from our cleanup code, making it more difficult to programmatically clean up anything you set up.
 
 You could resolve both issues with a programmatic listener:
 
@@ -212,7 +212,7 @@ mounted: function () {
 }
 ```
 
-Using this strategy, we could even use Pikaday with several input elements, with each new instance automatically cleaning up after itself:
+Using this strategy, you could even use Pikaday with several `<input>` elements, with each new instance automatically cleaning up after itself:
 
 ```js
 mounted: function () {
@@ -288,7 +288,7 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree&mdash;a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
 
 However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
 
@@ -296,7 +296,7 @@ However, if you're requiring/importing components using a __module system__, e.g
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+To explain what's happening, let's call our components **A** and **B**. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, you need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
 
 In our case, let's make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
 
@@ -337,7 +337,7 @@ Your inline template needs to be defined inside the DOM element to which Vue is 
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+Another way to define templates is inside of a `<script>` element with the type `text/x-template`, then referencing the template by an id. For example:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -351,9 +351,9 @@ Vue.component('hello-world', {
 })
 ```
 
-Your x-template needs to be defined outside the DOM element to which Vue is attached.
+Your `x-template` needs to be defined outside the DOM element to which Vue is attached.
 
-<p class="tip">These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
+<p class="tip">These can be useful for demos with large templates, or in extremely small applications&mdash;but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
 
 ## Controlling Updates
 
@@ -382,4 +382,4 @@ Vue.component('terms-of-service', {
 })
 ```
 
-<p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering -- plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>
+<p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering&mdash;plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>

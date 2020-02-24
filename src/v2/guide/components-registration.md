@@ -10,7 +10,9 @@ order: 101
 
 ## Component Names
 
-When registering a component, it will always be given a name. For example, in the global registration we've seen so far:
+When registering a component, it will always be given a name.
+
+For example, in the global registration we've seen so far:
 
 ```js
 Vue.component('my-component-name', { /* ... */ })
@@ -126,7 +128,7 @@ export default {
 
 Note that in ES2015+, placing a variable name like `ComponentA` inside an object is shorthand for `ComponentA: ComponentA`, meaning the name of the variable is both:
 
-- the custom element name to use in the template, and
+- the custom element name to use in the template, _and_
 - the name of the variable containing the component options
 
 ## Module Systems
@@ -186,7 +188,9 @@ Just to support relatively little markup in a template:
 </BaseButton>
 ```
 
-Fortunately, if you're using Webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses Webpack internally), you can use `require.context` to globally register only these very common base components. Here's an example of the code you might use to globally import base components in your app's entry file (e.g. `src/main.js`):
+Fortunately, if you're using Webpack (or [Vue CLI 3+](https://github.com/vuejs/vue-cli), which uses Webpack internally), you can use `require.context` to globally register only these very common base components.
+
+Here's an example of the code you might use to globally import base components in your app's entry file (e.g., `src/main.js`):
 
 ```js
 import Vue from 'vue'

@@ -8,7 +8,7 @@ order: 9
 
 ## Listening to Events
 
-We can use the `v-on` directive to listen to DOM events and run some JavaScript when they're triggered.
+You can use the `v-on` directive to listen to DOM events and run JavaScript when they're triggered.
 
 For example:
 
@@ -143,7 +143,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
+Sometimes you also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
 
 ``` html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
@@ -166,7 +166,7 @@ methods: {
 
 ## Event Modifiers
 
-It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although you can easily do this inside methods, it would be better if the methods would focus purely on data logic rather than having to deal with DOM event details.
 
 To address this problem, Vue provides **event modifiers** for `v-on`. Recall that modifiers are directive postfixes denoted by a dot.
 
@@ -227,7 +227,7 @@ The `.passive` modifier is especially useful for improving performance on mobile
 
 ## Key Modifiers
 
-When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` when listening for key events:
+When listening for keyboard events, you probably need to check for specific keys. Vue allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
 <!-- only call `vm.submit()` when the `key` is `Enter` -->
@@ -284,7 +284,15 @@ You can use the following modifiers to trigger mouse or keyboard event listeners
 - `.shift`
 - `.meta`
 
-> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the Windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+<p class="tip">**Note:**
+  <ul>
+    <li>On Macintosh keyboards, meta is the command key (<kbd>⌘</kbd>). </li>
+    <li>On Windows keyboards, meta is the Windows key (<kbd>⊞</kbd>). </li>
+    <li>On Sun Microsystems keyboards, meta is marked as a solid diamond (<kbd>◆</kbd>). </li>
+    <li>On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled <kbd>META</kbd>. </li>
+    <li>On Symbolics keyboards, meta is labeled <kbd>META</kbd> or <kbd>Meta</kbd>.</li>
+  </ul>
+</p>
 
 For example:
 
@@ -296,7 +304,7 @@ For example:
 <div v-on:click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone. If you do want such behaviour, use the `keyCode` for `ctrl` instead: `keyup.17`.</p>
+<p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down <kbd>ctrl</kbd>. It won't trigger if you release the <kbd>ctrl</kbd> key alone. If you do want such behaviour, use the `keyCode` for <kbd>ctrl</kbd> instead: `keyup.17`.</p>
 
 ### `.exact` Modifier
 
@@ -327,7 +335,7 @@ These modifiers restrict the handler to events triggered by a specific mouse but
 
 ## Why Listeners in HTML?
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
+You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured: since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
 
 1. It's easier to locate the handler function implementations within your JS code by skimming the HTML template.
 

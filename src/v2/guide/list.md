@@ -9,7 +9,7 @@ order: 8
 
 ## Mapping an Array to Elements with `v-for`
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+You can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of <code><var>item</var> in <var>items</var></code>, where <code><var>items</var></code> is the source data array and <code><var>item</var></code> is an **alias** for the current array element of the iteration:
 
 ``` html
 <ul id="example-1">
@@ -52,7 +52,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+Inside `v-for` blocks you have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
 
 ``` html
 <ul id="example-2">
@@ -150,7 +150,7 @@ new Vue({
 </script>
 {% endraw %}
 
-You can also provide a second argument for the property's name (a.k.a. key):
+You can also provide a second argument for the property's name (or “_key_”):
 
 ``` html
 <div v-for="(value, name) in object">
@@ -178,7 +178,7 @@ new Vue({
 </script>
 {% endraw %}
 
-And another for the index:
+And optionally, a third argument for the index:
 
 ``` html
 <div v-for="(value, name, index) in object">
@@ -210,7 +210,7 @@ new Vue({
 
 ## Maintaining State
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue patches each element _in-place_ and ensures that the element reflects what should be rendered at that particular index. (This is similar to the behavior of `track-by="$index"` in Vue 1.x.)
 
 This default mode is efficient, but **only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
 
@@ -222,7 +222,7 @@ To give Vue a hint so that it can track each node's identity, and thus reuse and
 </div>
 ```
 
-It is recommended to provide a `key` attribute with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+It is recommended to provide a `key` attribute with `v-for` whenever possible (unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains).
 
 Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
 
@@ -248,7 +248,9 @@ You can open the console and play with the previous examples' `items` array by c
 
 ### Replacing an Array
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
+Mutation methods, as the name suggests, _mutate_ the original array they are called on. In contrast, there are also non-mutating methods (e.g., `filter()`, `concat()` and `slice()`), which do not mutate the original array but **always return a new array**.
+
+When working with non-mutating methods, you can replace the old array with the new one:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -256,14 +258,14 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+You might think this will cause Vue to throw away the existing DOM and re-render the entire list. Luckily, that is not the case! Vue uses some clever heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
 ### Caveats
 
 Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
 
-1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
-2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+1. When you directly set an item with the index (e.g., `vm.items[indexOfItem] = newValue`)
+2. When you modify the `length` of the array (e.g., `vm.items.length = newLength`)
 
 For example:
 
@@ -288,7 +290,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method (which is an alias for the global `Vue.set` method):
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
@@ -302,7 +304,7 @@ vm.items.splice(newLength)
 
 ## Object Change Detection Caveats
 
-Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
+Again, due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
 
 ``` js
 var vm = new Vue({
@@ -316,7 +318,9 @@ vm.b = 2
 // `vm.b` is NOT reactive
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, propertyName, value)` method. For example, given:
+Vue does not allow dynamically adding new root-level reactive properties to an already-created instance.
+
+However, it _is_ possible to add reactive properties to a nested object using the `Vue.set(object, propertyName, value)` method. For example, given this:
 
 ``` js
 var vm = new Vue({
@@ -328,19 +332,21 @@ var vm = new Vue({
 })
 ```
 
-You could add a new `age` property to the nested `userProfile` object with:
+You could add a new `age` property to the nested `userProfile` object like so:
 
 ``` js
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
-You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
+You can also use the `vm.$set` instance method (which is an alias for the global `Vue.set` method):
 
 ``` js
 vm.$set(vm.userProfile, 'age', 27)
 ```
 
-Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+Sometimes you may want to assign several new properties to an existing object&mdash;for example, using `Object.assign()` or `_.extend()`. In these cases, you should create a fresh object with properties from both objects.
+
+So, instead of:
 
 ``` js
 Object.assign(vm.userProfile, {
@@ -349,7 +355,7 @@ Object.assign(vm.userProfile, {
 })
 ```
 
-You would add new, reactive properties with:
+You should add new, reactive properties with:
 
 ``` js
 vm.userProfile = Object.assign({}, vm.userProfile, {
@@ -360,7 +366,7 @@ vm.userProfile = Object.assign({}, vm.userProfile, {
 
 ## Displaying Filtered/Sorted Results
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a `computed` property that returns the filtered or sorted array.
 
 For example:
 
@@ -381,7 +387,7 @@ computed: {
 }
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+In situations where `computed` properties are not feasible (e.g., within nested `v-for` loops), you can use a method:
 
 ```html
 <ul v-for="set in sets">
@@ -473,7 +479,7 @@ You can directly use `v-for` on a custom component, like any normal element:
 
 > In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, you should also use `props`:
 
 ``` html
 <my-component
@@ -484,7 +490,7 @@ However, this won't automatically pass any data to the component, because compon
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in different situations.
 
 Here's a complete example of a simple todo list:
 
@@ -511,7 +517,7 @@ Here's a complete example of a simple todo list:
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only the `<li>` element is valid within a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
 
 ``` js
 Vue.component('todo-item', {

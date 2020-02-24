@@ -16,8 +16,8 @@ Our [Code of Conduct](/coc) is a guide to make it easier to enrich all of us and
 
 ### Get Support
 
-- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
+- [Forum](https://forum.vuejs.org): The best place to ask questions and get answers about Vue and its ecosystem.
+- [Chat](https://chat.vuejs.org): A place for Vue devs to meet and chat in real time.
 - [Meetups](https://events.vuejs.org/meetups): Want to find local Vue.js enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
 - [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
 
@@ -36,7 +36,7 @@ After that, you'll be ready to contribute to Vue's core repositories:
 
 - [vue](https://github.com/vuejs/vue): the core library
 - [vuex](https://github.com/vuejs/vuex): Flux-inspired state management
-- [vue-router](https://github.com/vuejs/vue-router): a routing system for SPAs
+- [vue-router](https://github.com/vuejs/vue-router): a routing system for <abbr title="Single Page Application">SPA</abbr>s
 
 ...as well as many smaller official [companion libraries](https://github.com/vuejs).
 
@@ -49,7 +49,7 @@ Apart from answering questions and sharing resources in the forum and chat, ther
 
 ### Translate Docs
 
-Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](https://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&q=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
+Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](https://forum.vuejs.org) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&q=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
 
 I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
 

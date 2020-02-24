@@ -14,7 +14,7 @@ Memory leaks in Vue applications do not typically come from Vue itself, rather t
 
 The following example shows a memory leak caused by using the [Choices.js](https://github.com/jshjohnson/Choices) library in a Vue component and not properly cleaning it up. Later, we will show how to remove the Choices.js footprint and avoid the memory leak.
 
-In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak.
+In the example below, we load up a select with a lot of options and then we use a show/hide button with a [`v-if`](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak.
 
 ```html
 <link rel='stylesheet prefetch' href='https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3'>
@@ -76,7 +76,9 @@ new Vue({
 })
 ```
 
-To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on Mac, choose Chrome Top Navigation > Window > Task Manager or on Windows, use the Shift+Esc shortcut. Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
+To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on macOS, choose Chrome Top Navigation ▶︎ Window ▶︎ Task Manager. To open the Chrome Task Manager on Windows, use the <kbd>Shift</kbd>+<kbd>Esc</kbd> shortcut.
+
+Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
 
 ![Memory Leak Example](/images/memory-leak-example.png)
 
@@ -132,7 +134,7 @@ new Vue({
 
 ## Details about the Value
 
-Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience.
+Memory management and performance testing can easily be neglected in the excitement of shipping quickly. However, keeping a small memory footprint is still important to your overall user experience.
 
 Consider the types of devices your users may be using and what their normal flow will be. Could they use memory constrained laptops or mobile devices? Do your users typically do lots of in-application navigation? If either of these are true, then good memory management practices can help you avoid the worst case scenario of crashing a user’s browser. Even if neither of these are true, you can still potentially have degradation of performance over extended usage of your app if you are not careful.
 
@@ -154,7 +156,7 @@ beforeDestroy: function () {
 
 We have discussed managing memory when removing elements, but what if you intentionally want to preserve state and keep elements in memory? In this case, you can use the built-in component [keep-alive](/v2/api/#keep-alive).
 
-When you wrap a component with `keep-alive`, its state will be preserved and therefore kept in memory.
+When you wrap a component with `keep-alive`, its state will be preserved, and therefore kept in memory.
 
 ```html
 <button @click="show = false">Hide</button>
@@ -165,7 +167,7 @@ When you wrap a component with `keep-alive`, its state will be preserved and the
 ```
 This technique can be useful to improve user experience. For example, imagine a user starts entering comments into a text input and then decides to navigate away. If the user then navigated back, their comments would still be preserved.
 
-Once you use keep-alive, then you have access to two more lifecycle hooks: `activated` and `deactivated`. If you do want to clean up or change data when a keep-alive component is removed, you can do so in the `deactivated` hook.
+Once you use `<keep-alive>`, then you have access to two more lifecycle hooks: `activated` and `deactivated`. If you do want to clean up or change data when a `<keep-alive>` component is removed, you can do so in the `deactivated` hook.
 
 ```js
 deactivated: function () {

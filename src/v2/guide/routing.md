@@ -6,11 +6,11 @@ order: 501
 
 ## Official Router
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org).
 
 ## Simple Routing From Scratch
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+If you only need very simple routing and prefer not to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }

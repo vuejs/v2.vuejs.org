@@ -23,7 +23,9 @@ It is also possible to add an "else block" with `v-else`:
 
 ### Conditional Groups with `v-if` on `<template>`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Because `v-if` is a directive, it has to be attached to a single element. But what if you want to toggle more than one element?
+
+In this case you can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
 
 ``` html
 <template v-if="ok">
@@ -46,7 +48,7 @@ You can use the `v-else` directive to indicate an "else block" for `v-if`:
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+A `v-else` element must immediately follow a `v-if` or a `v-else-if` element; otherwise, it will not be recognized.
 
 ### `v-else-if`
 
@@ -73,7 +75,9 @@ Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a
 
 ### Controlling Reusable Elements with `key`
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch.
+
+Besides helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -86,7 +90,7 @@ Vue tries to render elements as efficiently as possible, often re-using them ins
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced&mdash;just its `placeholder`.
 
 Check it out for yourself by entering some text in the input, then pressing the toggle button:
 
@@ -119,7 +123,9 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Add a `key` attribute with unique values:
+This isn't always desirable, though. That's why Vue offers a way for you to say, "These two elements are completely separate - don't re-use them."
+
+Add a `key` attribute with unique values:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -132,7 +138,7 @@ This isn't always desirable though, so Vue offers a way for you to say, "These t
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+Now these `<input>`s will be rendered from scratch each time you toggle. See for yourself:
 
 {% raw %}
 <div id="key-example" class="demo">
@@ -163,7 +169,9 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+<p class="tip">
+Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.</p>
+
 
 ## `v-show`
 
@@ -181,11 +189,11 @@ The difference is that an element with `v-show` will always be rendered and rema
 
 `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything&mdash;the conditional block won't be rendered until the condition becomes true for the first time.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+In comparison, `v-show` is much simpler. The element is always rendered regardless of initial condition, with CSS-based toggling.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+Generally speaking, `v-if` has higher _toggle costs_, while `v-show` has higher _initial render costs_. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
 
 ## `v-if` with `v-for`
 
