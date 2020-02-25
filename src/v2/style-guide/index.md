@@ -1949,14 +1949,21 @@ It's recommended to use the [method syntax](https://developer.mozilla.org/en-US/
 #### Bad
 
 ``` js
+props: {
+  price: {
+    type: Number
+  }
+},
 data: () => {
   return {
-    price: 150
+    // `this` is `undefined` because it's bound to the lexical scope of the exported function
+    initialPrice: this.price
   }
 },
 computed: {
   priceWithTip: () => {
-    return this.price + (this.price * 0.2)
+    // `this` is `undefined` here as well
+    return this.initialPrice + (this.initialPrice * 0.2)
   }
 }
 ```
@@ -1966,14 +1973,19 @@ computed: {
 #### Good
 
 ``` js
+props: {
+  price: {
+    type: Number
+  }
+},
 data() {
   return {
-    price: 150
+    initialPrice: this.price
   }
 },
 computed: {
   priceWithTip() {
-    return this.price + (this.price * 0.2)
+    return this.initialPrice + (this.initialPrice * 0.2)
   }
 }
 ```
