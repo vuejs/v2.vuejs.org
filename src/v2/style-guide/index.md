@@ -1956,7 +1956,8 @@ props: {
 },
 data: () => {
   return {
-    // `this` is `undefined` because it's bound to the lexical scope of the exported function
+    // `this` is `undefined` because
+    // it's bound to the lexical scope of the exported object
     initialPrice: this.price
   }
 },
