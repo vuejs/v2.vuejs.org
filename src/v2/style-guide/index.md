@@ -1937,6 +1937,50 @@ Vue.component('TodoItem', {
 
 
 
+### Arrow functions for component option values <sup data-p="d">use with caution</sup>
+
+**Arrow functions should be avoided for component option values.**
+
+When using ES6 arrow functions, the value of `this` is lexically bound. Using arrow functions for option values can result in errors, as `this` might be `undefined` instead of referring to the current instance.
+
+It's recommended to use the [method syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions) instead, or a regular [function expression](https://developer.mozilla.org/en-US/docs/web/JavaScript/Reference/Operators/function).
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+data: () => {
+  return {
+    price: 150
+  }
+},
+computed: {
+  priceWithTip: () => {
+    return this.price + (this.price * 0.2)
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+data() {
+  return {
+    price: 150
+  }
+},
+computed: {
+  priceWithTip() {
+    return this.price + (this.price * 0.2)
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Non-flux state management <sup data-p="d">use with caution</sup>
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
