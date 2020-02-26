@@ -78,7 +78,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 
 One of the greatest capabilities of Vue is its extensive [devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd).  By default, Chrome debugger will create a new user profile for each debugging session and persists until your computer is rebooted.  While useful for testing your code in a clean environment, this also removes your extensions, including the Vue.js devtools if it's installed.  Setting `userDataDir` to `false` in the `"chrome"` section of your `launch.json` will stop this behavior but you lose the benefits of working in a clean environment.  Instead, if you wish to use the Vue.js devtools with the VS Code debugger, set the `userDataDir` property to a path in your `.vscode` directory.  This will create a user profile that persists indefinitely.  For example,
 ```
-            "userDataDir": "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir",
+"userDataDir": "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir",
 ```
 
 ## Setting a Breakpoint
