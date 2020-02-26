@@ -6,7 +6,7 @@ order: 504
 
 ## Reporting Vulnerabilities
 
-When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [vuejs.org@gmail.com](mailto:vuejs.org@gmail.com).
+When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [security@vuejs.org](security@vuejs.org).
 
 While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
 
