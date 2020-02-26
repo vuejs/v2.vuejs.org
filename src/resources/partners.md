@@ -42,11 +42,11 @@ partners_list:
         name: Modus Create
         logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
         description:
-            "Modus Create is a disruptive consulting firm that helps companies transform for success in the digital future. 
-            
-            Clients work with Modus to effect transformational change through a unique collaborative engagement model that focuses on strategy, product design/build, user experience, company culture, and process change to accelerate their response to digital disruption. 
-            
-            Modus is uniquely expert at executing within the new reality of global talent sourcing and globally distributed teams. Modus culture is based on recruiting only top talent regardless of their location. Modus delivers time zone-aligned, highly productive, English-speaking teams, accessibility, and a totally collaborative environment regardless of individual location. 
+            "Modus Create is a disruptive consulting firm that helps companies transform for success in the digital future.
+
+            Clients work with Modus to effect transformational change through a unique collaborative engagement model that focuses on strategy, product design/build, user experience, company culture, and process change to accelerate their response to digital disruption.
+
+            Modus is uniquely expert at executing within the new reality of global talent sourcing and globally distributed teams. Modus culture is based on recruiting only top talent regardless of their location. Modus delivers time zone-aligned, highly productive, English-speaking teams, accessibility, and a totally collaborative environment regardless of individual location.
 "
         proficiencies:
             - name: Vue.js
@@ -94,7 +94,7 @@ partners_list:
         name: Monterail
         logo: Monterail.png
         description:
-            "Monterail is a full-service software development company with 100+ experts on board delivering meaningful software for start-ups, SMBs and enterprises. We build for the Web with Ruby on Rails, Python, JavaScript, and Agile. We guarantee this: a product so qualitative and aligned with your vision, you’ll swear it was built in-house."
+            "Monterail is a full-service software development company with 110+ experts on board delivering meaningful software for start-ups, SMBs and enterprises. We are organizers of the first official Vue-related conference in the world and authors of the State of Vue.js report (2017&2019). Our experts delivered 30 Vue.js-based projects so far."
         proficiencies:
             - name: VueJs
               url: https://hi.monterail.co/2NqPUa6
@@ -113,7 +113,7 @@ partners_list:
             - English
             - Polish
         url_text: www.monterail.com
-        url_link: www.monterail.com/?utm_campaign=Vue.js&utm_source=partner-list
+        url_link: https://www.monterail.com/services/vue-development?utm_campaign=Vue.js&utm_source=partner-list
         hire_url: www.monterail.com/contact
         email: hello@monterail.com
         social_links:
