@@ -22,9 +22,9 @@ Every component instance has a corresponding **watcher** instance, which records
 
 Due to limitations in JavaScript, there are types of changes that Vue **cannot detect**. However, there are ways to circumvent them to preserve reactivity.
 
-### With Objects
+### For Objects
 
-Vue **cannot detect property addition or deletion**. Since Vue performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue to convert it and make it reactive. For example:
+Vue cannot detect property addition or deletion. Since Vue performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue to convert it and make it reactive. For example:
 
 ``` js
 var vm = new Vue({
@@ -57,9 +57,9 @@ Sometimes you may want to assign a number of properties to an existing object, f
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-### With Arrays
+### For Arrays
 
-Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
+Vue cannot detect the following changes to an array:
 
 1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
 2. When you modify the length of the array, e.g. `vm.items.length = newLength`
