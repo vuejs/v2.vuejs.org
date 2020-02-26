@@ -154,12 +154,15 @@ Use the new `beforeCreate` hook instead, which is essentially the same thing. It
 
 ### `ready` <sup>replaced</sup>
 
-Use the new `mounted` hook instead. It should be noted though that with `mounted`, there's no guarantee to be in-document. For that, also include `Vue.nextTick`/`vm.$nextTick`. For example:
+Use the new `mounted` hook instead.
+
+Note that `mounted` does not guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use `Vue.nextTick` or `vm.$nextTick` inside of `mounted`:
 
 ``` js
 mounted: function () {
   this.$nextTick(function () {
-    // code that assumes this.$el is in-document
+    // Code that will run only after the
+    // entire view has been rendered
   })
 }
 ```
