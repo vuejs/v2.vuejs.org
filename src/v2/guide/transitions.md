@@ -479,6 +479,7 @@ new Vue({
   methods: {
     beforeEnter: function (el) {
       el.style.opacity = 0
+      el.style.transformOrigin = 'left'
     },
     enter: function (el, done) {
       Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
