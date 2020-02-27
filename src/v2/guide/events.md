@@ -110,8 +110,8 @@ Instead of binding directly to a method name, we can also use methods in an inli
 
 ``` html
 <div id="example-3">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
+  <button v-on:click="say('yes')">Say yes</button>
+  <button v-on:click="say('no')">Say no</button>
 </div>
 ```
 ``` js
@@ -128,8 +128,8 @@ new Vue({
 Result:
 {% raw %}
 <div id="example-3" class="demo">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
+  <button v-on:click="say('yes')">Say yes</button>
+  <button v-on:click="say('no')">Say no</button>
 </div>
 <script>
 new Vue({
