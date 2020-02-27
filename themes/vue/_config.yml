@@ -9,7 +9,7 @@ special_sponsors:
   - url: 'https://autocode.com'
     img: autocode.svg
     name: Autocode
-    description: 'Build app-to-app workflows and connect APIs'
+    description: Build app-to-app workflows and connect APIs
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -24,6 +24,9 @@ platinum_sponsors:
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
+  - url: 'https://www.storyblok.com'
+    img: storyblok.png
+    name: Storyblok
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -97,7 +100,7 @@ gold_sponsors:
   - url: 'https://unicorn.io/'
     img: unicorn_io.png
     name: Unicorn.io
-  - url: 'https://www.programmers.io/vuejs/'
+  - url: ' https://programmers.io/vuejs/'
     img: programmers_io.png
     name: Programmers.io
   - url: 'https://www.vuescreencasts.com/'
