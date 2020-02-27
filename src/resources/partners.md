@@ -105,9 +105,9 @@ partners_list:
             - name: Python
               url: https://hi.monterail.co/2MXHLeb
             - name: Services
-              url:  https://www.monterail.com/services
+              url:  https://www.monterail.com/services?utm_medium=referral&utm_source=partner-list&utm_campaign=vue.js
             - name: Projects
-              url:  https://www.monterail.com/projects
+              url:  https://www.monterail.com/projects?utm_medium=referral&utm_source=partner-list&utm_campaign=vue.js
         location: Wrocław, Poland
         languages:
             - English
