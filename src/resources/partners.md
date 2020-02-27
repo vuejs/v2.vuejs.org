@@ -113,7 +113,7 @@ partners_list:
             - English
             - Polish
         url_text: www.monterail.com
-        url_link: https://www.monterail.com/services/vue-development?utm_campaign=Vue.js&utm_source=partner-list
+        url_link: www.monterail.com/services/vue-development?utm_campaign=Vue.js&utm_source=partner-list
         hire_url: www.monterail.com/contact
         email: hello@monterail.com
         social_links:
