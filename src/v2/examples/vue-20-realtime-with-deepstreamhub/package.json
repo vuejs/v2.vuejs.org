@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-realtime-with-deepstreamhub",
+  "version": "1.0.0",
+  "description": "This example uses deepstreamHub to synchronize realtime data, send events and make remote procedure calls between clients (you can try opening it in multiple browser windows).",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

@@ -49,7 +49,7 @@ Apart from answering questions and sharing resources in the forum and chat, ther
 
 ### Translate Docs
 
-Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](https://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
+Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](https://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&q=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
 
 I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
 

@@ -76,7 +76,7 @@ input.button
 
 #main
   position: relative
-  z-index: 1
+  z-index: $z-base
   padding: 0 60px 30px
   overflow-x: hidden
 
@@ -90,8 +90,6 @@ input.button
     &:hover
       .nav-dropdown
         display: block
-    &.language, &.ecosystem
-      margin-left: 20px
     .arrow
       pointer-events: none
   .nav-dropdown

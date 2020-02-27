@@ -1,0 +1,14 @@
+{
+  "name": "vue-10-two-way-currency-filter",
+  "version": "1.0.0",
+  "description": "Showing how delayed state updates can cause strange behavior.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

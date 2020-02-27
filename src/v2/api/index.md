@@ -684,6 +684,7 @@ type: api
         handler: 'someMethod',
         immediate: true
       },
+      // you can pass array of callbacks, they will be called one-by-one
       e: [
         'handle1',
         function handle2 (val, oldVal) { /* ... */ },
@@ -1534,7 +1535,7 @@ type: api
   // function
   vm.$watch(
     function () {
-      // everytime the expression `this.a + this.b` yields a different result,
+      // every time the expression `this.a + this.b` yields a different result,
       // the handler will be called. It's as if we were watching a computed
       // property without defining the computed property itself
       return this.a + this.b
@@ -1576,7 +1577,7 @@ type: api
   // `callback` is fired immediately with current value of `a`
   ```
 
-  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call. 
+  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
 
   ``` js
   // This will cause an error
@@ -1589,7 +1590,7 @@ type: api
     { immediate: true }
   )
   ```
-  
+
   If you still want to call an unwatch function inside the callback, you should check its availability first:
 
   ``` js

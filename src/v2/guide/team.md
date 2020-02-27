@@ -29,7 +29,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank rel="noopener noreferrer">{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -39,7 +39,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank rel="noopener noreferrer">{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -263,7 +263,9 @@ order: 803
     'Boston, MA, USA': [42.360081, -71.058884],
     'Kyiv, Ukraine': [50.450100, 30.523399],
     'Washington, DC, USA': [38.8935755,-77.0846156,12],
-    'Kraków, Poland': [50.064650, 19.936579]
+    'Kraków, Poland': [50.064650, 19.936579],
+    'Oslo, Norway': [59.911491, 10.757933],
+    'Kanagawa, Japan': [35.44778, 139.6425]
   }
   var languageNameFor = {
     en: 'English',
@@ -282,7 +284,8 @@ order: 803
     fa: 'فارسی',
     ko: '한국어',
     ro: 'Română',
-    uk: 'Українська'
+    uk: 'Українська',
+    no: 'Norwegian'
   }
 
   var team = [{
@@ -305,26 +308,6 @@ order: 803
   }]
 
   team = team.concat(shuffle([
-    {
-      name: 'Chris Fritz',
-      title: 'Good Word Putter-Togetherer',
-      city: 'Lansing, MI, USA',
-      languages: ['en', 'de'],
-      github: 'chrisvfritz',
-      twitter: 'chrisvfritz',
-      work: {
-        role: 'Educator & Consultant'
-      },
-      reposOfficial: [
-        'vuejs.org', 'vue-migration-helper'
-      ],
-      reposPersonal: [
-        'vue-2.0-simple-routing-example', 'vue-ssr-demo-simple'
-      ],
-      links: [
-        'https://www.patreon.com/chrisvuefritz'
-      ]
-    },
     {
       name: 'Eduardo',
       title: 'Real-Time Rerouter',
@@ -491,26 +474,6 @@ order: 803
       ]
     },
     {
-      name: 'Edd Yerburgh',
-      title: 'Testatron Alpha 9000',
-      city: 'London, UK',
-      languages: ['en'],
-      github: 'eddyerburgh',
-      twitter: 'EddYerburgh',
-      work: {
-        role: 'Full Stack Developer'
-      },
-      reposOfficial: [
-        'vue-test-utils'
-      ],
-      reposPersonal: [
-        'avoriaz'
-      ],
-      links: [
-        'https://www.eddyerburgh.me'
-      ]
-    },
-    {
       name: 'Sarah Drasner',
       city: 'Denver, CO, USA',
       languages: ['en'],
@@ -649,10 +612,59 @@ order: 803
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
-    }
+    },
+    {
+      name: 'Yosuke Ota',
+      city: 'Kanagawa, Japan',
+      languages: ['jp'],
+      github: 'ota-meshi',
+      twitter: 'omoteota',
+      work: {
+        role: 'Lead Web Engineer',
+        org: 'Future Corporation',
+        orgUrl: 'https://www.future.co.jp/'
+      },
+      reposOfficial: [
+        'eslint-plugin-vue'
+      ],
+    },
+    {
+      name: 'Ben Hong',
+      title: 'Proud Ravenclaw Dragon',
+      city: 'Washington, DC, USA',
+      languages: ['en', 'zh'],
+      work: {
+        role: 'Senior Frontend Engineer',
+        org: 'GitLab (Meltano)',
+      },
+      reposOfficial: [
+        'vuejs.org',
+        'vuepress',
+        'vuejs/events'
+      ],
+      github: 'bencodezen',
+      twitter: 'bencodezen',
+      links: [
+        'https://bencodezen.io/'
+      ]
+    },
   ]))
 
   var emeriti = shuffle([
+     {
+      name: 'Chris Fritz',
+      title: 'Good Word Putter-Togetherer',
+      city: 'Durham, NC, USA',
+      languages: ['en', 'de'],
+      github: 'chrisvfritz',
+      twitter: 'chrisvfritz',
+      work: {
+        role: 'Educator & Consultant'
+      },
+      reposPersonal: [
+        'vue-enterprise-boilerplate'
+      ]
+    },
     {
       name: 'Blake Newman',
       title: 'Performance Specializer & Code Deleter',
@@ -731,6 +743,26 @@ order: 803
         orgUrl: 'http://neolant.ru/'
       }
     },
+    {
+      name: 'Edd Yerburgh',
+      title: 'Testatron Alpha 9000',
+      city: 'London, UK',
+      languages: ['en'],
+      github: 'eddyerburgh',
+      twitter: 'EddYerburgh',
+      work: {
+        role: 'Full Stack Developer'
+      },
+      reposOfficial: [
+        'vue-test-utils'
+      ],
+      reposPersonal: [
+        'avoriaz'
+      ],
+      links: [
+        'https://www.eddyerburgh.me'
+      ]
+    }
   ])
 
   var partners = [
@@ -793,21 +825,6 @@ order: 803
       ]
     },
     {
-      name: 'James McGlasson',
-      title: 'Head of Marketing Communications',
-      city: 'Amsterdam, Netherlands',
-      languages: ['en', 'nl', 'de'],
-      work: {
-        role: 'Head Of Marketing Communications',
-        org: 'Vue.js Amsterdam'
-      },
-      twitter: 'jamesvuejs',
-      linkedin: 'jdog',
-      links: [
-        'https://vuejs.amsterdam'
-      ]
-    },
-    {
       name: 'Jen Looper',
       title: 'Queen Fox',
       city: 'Boston, MA, USA',
@@ -844,13 +861,13 @@ order: 803
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Paris, France',
+      city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'Atinux',
       twitter: 'Atinux',
       work: {
-        org: 'Orion',
-        orgUrl: 'https://orion.sh'
+        org: 'NuxtJS',
+        orgUrl: 'https://nuxtjs.org'
       },
       reposPersonal: [
         'nuxt/*', 'nuxt-community/*', 'nuxt/vue-meta'
@@ -862,10 +879,10 @@ order: 803
       city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
-      twitter: '_achopin',
+      twitter: 'iamnuxt',
       work: {
-        org: 'Orion',
-        orgUrl: 'https://orion.sh'
+        org: 'NuxtJS',
+        orgUrl: 'https://nuxtjs.org'
       },
       reposPersonal: [
         'nuxt/*', 'nuxt-community/*', 'vue-flexboxgrid'
@@ -1079,24 +1096,6 @@ order: 803
       ]
     },
     {
-      name: 'Ben Hong',
-      title: '',
-      city: 'Washington, DC, USA',
-      languages: ['en', 'zh'],
-      work: {
-        role: 'Senior Frontend Engineer',
-        org: 'GitLab (Meltano)',
-      },
-      reposOfficial: [
-        'vuejs/events'
-      ],
-      github: 'bencodezen',
-      twitter: 'bencodezen',
-      links: [
-        'https://bencodezen.io/'
-      ]
-    },
-    {
       name: 'EGOIST',
       title: 'Build Tool Simplificator',
       city: 'Chengdu, China',
@@ -1122,6 +1121,22 @@ order: 803
       ],
       links: [
         'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
+    },
+    {
+      name: 'Rolf Haug',
+      title: 'Educator & Consultant',
+      city: 'Oslo, Norway',
+      languages: ['en', 'no'],
+      github: 'rahaug',
+      twitter: 'rahaug',
+      work: {
+        role: 'Educator & Co-founder',
+        org: 'Vue School',
+        orgUrl: 'https://vueschool.io/'
+      },
+      links: [
+        'https://vueschool.io/', 'https://rah.no'
       ]
     },
     {

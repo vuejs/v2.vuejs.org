@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Programmatic Event Listeners using Pikaday</title>
+    <script src="https://unpkg.com/pikaday@1.7.0"></script>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input ref="dateInput" v-model="date" type="date" />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          date: null
+        },
+        mounted: function() {
+          var picker = new Pikaday({
+            field: this.$refs.dateInput,
+            format: "YYYY-MM-DD"
+          });
+
+          this.$once("hook:beforeDestroy", function() {
+            picker.destroy();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
