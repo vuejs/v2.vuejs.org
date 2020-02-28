@@ -339,7 +339,7 @@ Podría agregar una nueva propiedad de `edad` al objeto de `userProfile` anidado
 Vue.set(vm.userProfile, 'edad', 27)
 ```
 
-También puede usar el método de instancia vm. `$Set`, que es un alias para el `Vue.setz global:
+También puede usar el método de instancia vm. `$Set`, que es un alias para el `Vue.set` global:
 
 ``` js
 vm.$set(vm.userProfile, 'edad', 27)
