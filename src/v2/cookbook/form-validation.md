@@ -68,7 +68,7 @@ Dado un formulario con tres campos, haremos dos obligatorios. Veremos el HTML pr
 </form>
 ```
 
-Comencemos desde el inicio. La _tag_ `<form>` tiene un ID que usaremos para la componente Vue. Hay un botón de envío, del cual hablaremos en un momento y la `action` del formulario que es una URL temporal que apuntaría a algo real en un servidor (donde habrá una copia de la validación en el lado del servidor, por supuesto).
+Comencemos desde el inicio. El _tag_ `<form>` tiene un ID que usaremos para el componente Vue. Hay un botón de envío, del cual hablaremos en un momento y la `action` del formulario que es una URL temporal que apuntaría a algo real en un servidor (donde habrá una copia de la validación en el lado del servidor, por supuesto).
 
 Debajo del formulario, hay un párrafo que se mostrará o esconderá basado en el estado del error. Esto renderizará una lista de errores arriba del formulario. Además, note que la validación se lanza en el evento de envío del formulario, en vez de hacerlo cada vez que un campo es modificado.
 
