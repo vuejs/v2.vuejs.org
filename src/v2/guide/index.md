@@ -14,6 +14,40 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
 
+## Getting Hands Wet
+
+Before we start, let's try a complete demo in your web brower.
+
+```html
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app-2">
+	  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+    </span>
+	</div>
+
+
+	<script>
+	var app2 = new Vue({
+	  el: '#app-2',
+	  data: {
+      message: 'You loaded this page on ' + new Date().toLocaleString()
+	  }
+	})
+	</script>
+
+</body>
+<html>
+```
+
+
 ## Getting Started
 
 <a class="button" href="installation.html">Installation</a>
