@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My first Vue app</title>
-  <script src="https://unpkg.com/vue"></script>
-</head>
-<body>
-  <div id="app">
-    {{ message }}
-  </div>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}<br />
+      <!-- <h1>{{ message2 }}</h1> -->
+      <h3>my age is {{age3}}</h3>
+      <span v-bind:title="message2">
+        Hover your mouse over me for a few seconds to see my dynamically bound
+        title! </span
+      <button v-on:dblclick="add(10)">click me</button>
+      ><br />
+      <button v-on:click="add(1)">aAdd a year</button>
+      <button v-on:click="sub(2)">asub a year</button>
+      <p>my age is {{age3}}</p>
+      <span v-if="seen">Now you see me</span><br />
+      <div id="canvas" v-on:mousemove="updatexy">{{x}},{{y}}</div>
+      <!-- <button v-on:click="greet">Reverse Message</button> -->
+      <input type="text" v-model="name" />
+      <span>{{name}}</span>
+    </div>
 
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue!'
-      }
-    })
-  </script>
-</body>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          name: "Michelle",
+          message: "Hello Vue!",
+          message2: "You loaded this page on " + new Date().toLocaleString(),
+          one: "yes",
+          age3: 30,
+          seen: true,
+          x: 0,
+          y: 0
+          // todos: [
+          //   { text: "Learn JavaScript" },
+          //   { text: "Learn Vue" },
+          //   { text: "Build something awesome" }
+          // ]
+        },
+        methods: {
+          add: function(inc) {
+            this.age3 += inc;
+          },
+          sub: function(dec) {
+            this.age -= dec;
+          },
+          greet: function() {
+            this.age3 = "working";
+          },
+          updatexy: function(event) {
+            this.x = event.offsetX;
+            this.y = event.offsetY;
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
