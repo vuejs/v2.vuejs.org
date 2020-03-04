@@ -412,11 +412,11 @@ const app = new Vue({
       if (this.name === '') {
         this.errors.push('Product name is required.');
       } else {
-        fetch(apiUrl+encodeURIComponent(this.name))
+        fetch(apiUrl + encodeURIComponent(this.name))
         .then(async res => {
-          if(res.status === 204) {
-            alert('Ok!')
-          } else if(res.status === 400) {
+          if (res.status === 204) {
+            alert('OK')
+          } else if (res.status === 400) {
             let errorResponse = await res.json();
             this.errors.push(errorResponse.error);
           }
