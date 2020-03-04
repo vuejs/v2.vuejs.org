@@ -366,7 +366,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+See [this example](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-dynamic-state-transitions) for the complete code behind the above demo.
 
 ## Organizing Transitions into Components
 
@@ -425,8 +425,8 @@ Vue.component('animated-integer', {
 
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
-        .onUpdate(function (object) {
-          vm.tweeningValue = object.tweeningValue.toFixed(0)
+        .onUpdate(function () {
+          vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
 

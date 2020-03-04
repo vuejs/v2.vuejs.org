@@ -2,6 +2,7 @@
   initHashLevelRedirects()
   initMobileMenu()
   initVideoModal()
+  initNewNavLinks()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -19,6 +20,9 @@
   // moved to a perhaps differently-named section on
   // another page, we need this.
   function initHashLevelRedirects() {
+    checkForHashRedirect(/list\.html$/, {
+      key: '/v2/guide/list.html#Maintaining-State'
+    })
     checkForHashRedirect(/components\.html$/, {
       'What-are-Components': '/v2/guide/components.html',
       'Using-Components': '/v2/guide/components-registration.html',
@@ -118,7 +122,7 @@
         if (ulNode.tagName === 'UL') {
           var specNode = document.createElement('li')
           var specLink = createSourceSearchPath(titleNode.textContent)
-          specNode.innerHTML = '<a href="' + specLink + '" target="_blank">Source</a>'
+          specNode.innerHTML = '<a href="' + specLink + '" target="_blank" rel="noopener">Source</a>'
           ulNode.appendChild(specNode)
         }
       })
@@ -153,6 +157,12 @@
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
+      var edgeCases = {
+        'vue-set-target-key-value': 'vue-set'
+      }
+      if (edgeCases.hasOwnProperty(normalizedHash)) {
+        normalizedHash = edgeCases[normalizedHash];
+      }
       var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
         .map(function (el) { return el.id })
       possibleHashes.sort(function (hashA, hashB) {
@@ -187,6 +197,46 @@
       }
       return m[b.length][a.length]
     }
+  }
+
+  /**
+   * Initializes a list of links to mark as "updated" by adding a red dot next to them
+   */
+
+  function initNewNavLinks() {
+    var linkExpirePeriod = 60 * 24 * 3600 * 1000 // 2 months
+    var links = [
+      {
+        title: 'Resources',
+        updatedOn: new Date("Mon Sep 9 2019")
+      }
+    ]
+    var today = new Date().getTime()
+    var updatedLinks = links
+      .filter(function (link) {
+        return link.updatedOn.getTime() + linkExpirePeriod > today
+      })
+      .map(function (link) {
+        return link.title
+      })
+
+    var navLinks = document.querySelectorAll('#nav a.nav-link')
+    var newLinks = []
+    navLinks.forEach(function (link) {
+      if (updatedLinks.indexOf(link.textContent) !== -1) {
+        newLinks.push(link)
+      }
+    })
+    newLinks.forEach(function (link) {
+      var classes = link.classList
+      var linkKey = `visited-${link.textContent}`
+      if (localStorage.getItem(linkKey) || classes.contains('current')) {
+        classes.remove('updated-link')
+        localStorage.setItem(linkKey, 'true')
+      } else {
+        classes.add('new')
+      }
+    })
   }
 
   /**
@@ -318,18 +368,18 @@
       var headers = content.querySelectorAll('h2')
       if (headers.length) {
         each.call(headers, function (h) {
-          sectionContainer.appendChild(makeLink(h))
+          var listItem = makeLink(h)
+          sectionContainer.appendChild(listItem)
           var h3s = collectH3s(h)
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
+            listItem.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
         headers = content.querySelectorAll('h3')
         each.call(headers, function (h) {
-          console.log(h)
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
@@ -364,9 +414,16 @@
         })
         .forEach(makeHeaderClickable)
 
-      smoothScroll.init({
+      new SmoothScroll('a[href*="#"]', {
         speed: 400,
-        offset: 0
+        speedAsDuration: true,
+        offset: function (anchor, toggle) {
+          let dataTypeAttr = anchor.attributes['data-type']
+          if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
+            return 300
+          }
+          return 0
+        }
       })
     }
 

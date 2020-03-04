@@ -4,28 +4,21 @@ type: guide
 order: 7
 ---
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-conditionals?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how conditional rendering works with Vue School">Learn how conditional rendering works with a free lesson on Vue School</a></div>
+
 ## `v-if`
 
-In string templates, for example [Handlebars](https://handlebarsjs.com/), we would write a conditional block like this:
+The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
 
 ``` html
-<!-- Handlebars template -->
-{{#if ok}}
-  <h1>Yes</h1>
-{{/if}}
-```
-
-In Vue, we use the `v-if` directive to achieve the same:
-
-``` html
-<h1 v-if="ok">Yes</h1>
+<h1 v-if="awesome">Vue is awesome!</h1>
 ```
 
 It is also possible to add an "else block" with `v-else`:
 
 ``` html
-<h1 v-if="ok">Yes</h1>
-<h1 v-else>No</h1>
+<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-else>Oh no 😢</h1>
 ```
 
 ### Conditional Groups with `v-if` on `<template>`
@@ -198,4 +191,4 @@ Generally speaking, `v-if` has higher toggle costs while `v-show` has higher ini
 
 <p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
 
-When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.

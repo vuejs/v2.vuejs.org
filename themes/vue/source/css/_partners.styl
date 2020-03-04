@@ -1,0 +1,77 @@
+@import "_settings"
+#partners
+  .partner
+    display: flex
+    padding: 25px 0
+    border-bottom: 1px dotted #ddd
+    &:first-of-type
+      margin-top: 15px
+    &:last-of-type
+      border-bottom: none
+    .logo
+      flex: 0 0 125px
+    .profile
+      padding: 0 26px
+      flex: 1
+      h3
+        margin: 0
+        font-size: 1.3em
+      p
+        margin-top: 0
+      dl
+        margin: .6em 0 0
+      dt, dd, ul, li
+        display: inline
+        padding: 0
+        margin: 0
+        line-height: 1.3
+      dt
+        text-transform: uppercase
+        font-size: .84em
+        font-weight: 600
+        &::after
+          content: ""
+          margin-right: 7px
+        i
+          width: 14px
+          text-align: center
+          &.fa-map-marker
+            font-size: 1.15em
+          &.fa-globe
+            font-size: 1.2em
+          &.fa-link
+            font-size: 1.05em
+      dd
+        font-weight: 600
+        &::after
+          display: block
+          content: ""
+          margin-top: .6em
+      li
+        display: inline-block
+        &::after
+          display: inline-block
+          content: "·"
+          margin: 0 8px
+        &:last-child::after
+          content: ""
+      .social
+        a
+          color: #000
+          display: inline-block
+          line-height: 1
+          vertical-align: middle
+          margin-right: 4px
+          &.github
+            color: #000
+          &.twitter
+            color: #1da1f3
+          &.linkedin
+            color: #0077B5
+          &.instagram
+            color: #C13584
+          &.youtube
+            color: #f00
+        i
+          vertical-align: text-bottom
+          font-size: 1.3em

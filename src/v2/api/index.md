@@ -246,11 +246,11 @@ type: api
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-### Vue.set( target, key, value )
+### Vue.set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -263,11 +263,11 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-### Vue.delete( target, key )
+### Vue.delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key/index`
+  - `{string | number} propertyName/index`
 
   > Only in 2.2.0+: Also works with Array + index.
 
@@ -509,6 +509,15 @@ type: api
 
   A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
+  With Object-based syntax, you can use following options:
+    - `type`: can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+    - `default`: `any`
+    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    - `required`: `Boolean`
+    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    - `validator`: `Function`
+    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
+
 - **Example:**
 
   ``` js
@@ -535,7 +544,7 @@ type: api
   })
   ```
 
-- **See also:** [Props](../guide/components.html#Props)
+- **See also:** [Props](../guide/components-props.html)
 
 ### propsData
 
@@ -665,16 +674,17 @@ type: api
       },
       // string method name
       b: 'someMethod',
-      // deep watcher
+      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
       // the callback will be called immediately after the start of the observation
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: 'someMethod',
         immediate: true
       },
+      // you can pass array of callbacks, they will be called one-by-one
       e: [
         'handle1',
         function handle2 (val, oldVal) { /* ... */ },
@@ -698,7 +708,7 @@ type: api
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Type:** `string | Element`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -1311,7 +1321,7 @@ type: api
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Type:** `Element`
 
 - **Read only**
 
@@ -1376,7 +1386,9 @@ type: api
 
 - **Details:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `vm.$slots.foo`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
+
+  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
@@ -1384,15 +1396,15 @@ type: api
 
   ```html
   <blog-post>
-    <h1 slot="header">
-      About Me
-    </h1>
+    <template v-slot:header>
+      <h1>About Me</h1>
+    </template>
 
     <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
 
-    <p slot="footer">
-      Copyright 2016 Evan You
-    </p>
+    <template v-slot:footer>
+      <p>Copyright 2016 Evan You</p>
+    </template>
 
     <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
   </blog-post>
@@ -1414,7 +1426,7 @@ type: api
   ```
 
 - **See also:**
-  - [`<slot>` Component](#slot-1)
+  - [`<slot>` Component](#slot)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
 
@@ -1439,7 +1451,7 @@ type: api
   2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **See also:**
-  - [`<slot>` Component](#slot-1)
+  - [`<slot>` Component](#slot)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
 
@@ -1523,7 +1535,7 @@ type: api
   // function
   vm.$watch(
     function () {
-      // everytime the expression `this.a + this.b` yields a different result,
+      // every time the expression `this.a + this.b` yields a different result,
       // the handler will be called. It's as if we were watching a computed
       // property without defining the computed property itself
       return this.a + this.b
@@ -1565,11 +1577,40 @@ type: api
   // `callback` is fired immediately with current value of `a`
   ```
 
-### vm.$set( target, key, value )
+  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
+
+  ``` js
+  // This will cause an error
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      unwatch()
+    },
+    { immediate: true }
+  )
+  ```
+
+  If you still want to call an unwatch function inside the callback, you should check its availability first:
+
+  ``` js
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      if (unwatch) {
+        unwatch()
+      }
+    },
+    { immediate: true }
+  )
+  ```
+
+### vm.$set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -1580,11 +1621,11 @@ type: api
 
 - **See also:** [Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+### vm.$delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
 
 - **Usage:**
 
@@ -2002,7 +2043,7 @@ type: api
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
-  <div v-for="(val, key, index) in object"></div>
+  <div v-for="(val, name, index) in object"></div>
   ```
 
   The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
@@ -2475,8 +2516,9 @@ Used to denote a `<template>` element as a scoped slot.
   - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
   - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
   - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
+  - `type` - string, Specifies the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `duration` - number | { `enter`: number, `leave`: number }, Specifies the duration of transition. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2642,7 +2684,7 @@ Used to denote a `<template>` element as a scoped slot.
   </keep-alive>
   ```
 
-<p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 

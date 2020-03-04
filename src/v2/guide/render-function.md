@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `v-slot` directive into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
 
 ## Nodes, Trees, and the Virtual DOM
 
@@ -523,6 +523,8 @@ Vue.component('my-component', {
 ```
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> 
+> The reference will be HTMLElement when used with functional components because they’re stateless and instanceless.
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 
@@ -544,7 +546,7 @@ Everything the component needs is passed through `context`, which is an object c
 
 After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+Since functional components are just functions, they're much cheaper to render.
 
 They're also very useful as wrapper components. For example, when you need to:
 
@@ -626,7 +628,7 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 
 ``` html
 <my-functional-component>
-  <p slot="foo">
+  <p v-slot:foo>
     first
   </p>
   <p>second</p>
@@ -639,81 +641,4 @@ For this component, `children` will give you both paragraphs, `slots().default` 
 
 You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 
-{% raw %}
-<div id="vue-compile-demo" class="demo">
-  <textarea v-model="templateText" rows="10"></textarea>
-  <div v-if="typeof result === 'object'">
-    <label>render:</label>
-    <pre><code>{{ result.render }}</code></pre>
-    <label>staticRenderFns:</label>
-    <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
-    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
-  </div>
-  <div v-else>
-    <label>Compilation Error:</label>
-    <pre><code>{{ result }}</code></pre>
-  </div>
-</div>
-<script>
-new Vue({
-  el: '#vue-compile-demo',
-  data: {
-    templateText: '\
-<div>\n\
-  <header>\n\
-    <h1>I\'m a template!</h1>\n\
-  </header>\n\
-  <p v-if="message">\n\
-    {{ message }}\n\
-  </p>\n\
-  <p v-else>\n\
-    No message.\n\
-  </p>\n\
-</div>\
-    ',
-  },
-  computed: {
-    result: function () {
-      if (!this.templateText) {
-        return 'Enter a valid template above'
-      }
-      try {
-        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
-        return {
-          render: this.formatFunction(result.render),
-          staticRenderFns: result.staticRenderFns.map(this.formatFunction)
-        }
-      } catch (error) {
-        return error.message
-      }
-    }
-  },
-  methods: {
-    formatFunction: function (fn) {
-      return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
-    }
-  }
-})
-console.error = function (error) {
-  throw new Error(error)
-}
-</script>
-<style>
-#vue-compile-demo {
-  -webkit-user-select: inherit;
-  user-select: inherit;
-}
-#vue-compile-demo pre {
-  padding: 10px;
-  overflow-x: auto;
-}
-#vue-compile-demo code {
-  white-space: pre;
-  padding: 0
-}
-#vue-compile-demo textarea {
-  width: 100%;
-  font-family: monospace;
-}
-</style>
-{% endraw %}
+<iframe src="https://codesandbox.io/embed/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-template-compilation?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>

@@ -73,7 +73,7 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same property order across browsers.
 
 {% raw %}
 <div class="upgrade-path">
@@ -211,9 +211,9 @@ to a definition like below in your `routes` configuration:
 
 If you need multiple aliases, you can also use an array syntax:
 
-``` js
+{% codeblock lang:js %}
 alias: ['/manage', '/administer', '/administrate']
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -487,7 +487,7 @@ Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>activate</code> hook.</p>
 </div>
 {% endraw %}
 

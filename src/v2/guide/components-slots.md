@@ -82,7 +82,7 @@ As a rule, remember that:
 
 ## Fallback Content
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be be rendered only when no content is provided. For example, in a `<submit-button>` component:
+There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be rendered only when no content is provided. For example, in a `<submit-button>` component:
 
 ```html
 <button type="submit">
@@ -225,7 +225,7 @@ Note that **`v-slot` can only be added to a `<template>`** (with [one exception]
 
 ## Scoped Slots
 
-> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-props` attribute.
+> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-scope` attribute.
 
 Sometimes, it's useful for slot content to have access to data only available in the child component. For example, imagine a `<current-user>` component with the following template:
 
@@ -332,7 +332,7 @@ That means the value of `v-slot` can actually accept any valid JavaScript expres
 This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props, e.g. `user` to `person`:
 
 ``` html
-<current-user v-slot="{ user: person }">>
+<current-user v-slot="{ user: person }">
   {{ person.firstName }}
 </current-user>
 ```
@@ -340,7 +340,7 @@ This can make the template much cleaner, especially when the slot provides many 
 You can even define fallbacks, to be used in case a slot prop is undefined:
 
 ``` html
-<current-user v-slot="{ user = { firstName: 'Guest' } }">>
+<current-user v-slot="{ user = { firstName: 'Guest' } }">
   {{ user.firstName }}
 </current-user>
 ```
@@ -363,7 +363,7 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 
 > New in 2.6.0+
 
-Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` and be rewritten as `#header`:
+Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` can be rewritten as `#header`:
 
 ```html
 <base-layout>

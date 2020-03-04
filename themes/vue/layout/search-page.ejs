@@ -4,6 +4,7 @@
       class="search-query"
       v-model="search"
       placeholder="Search Vue.js"
+      aria-label="Search"
     >
     <div class="search-footer">
       <p>
@@ -11,7 +12,7 @@
           <strong>{{ totalResults }} results</strong> found in {{ queryTime }}ms
         </template>
       </p>
-      <a target="_blank" href="https://www.algolia.com/">
+      <a target="_blank" rel="noopener" href="https://www.algolia.com/" aria-label="Search">
           <img src="/images/search-by-algolia.png" height="16">
       </a>
     </div>

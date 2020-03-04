@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-github-commits",
+  "version": "1.0.0",
+  "description": "This example fetches latest Vue.js commits data from GitHub's API and displays them as a list. You can switch between the master and dev branches.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

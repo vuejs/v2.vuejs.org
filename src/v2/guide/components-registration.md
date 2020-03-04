@@ -6,6 +6,8 @@ order: 101
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
+
 ## Component Names
 
 When registering a component, it will always be given a name. For example, in the global registration we've seen so far:
@@ -207,10 +209,14 @@ requireComponent.keys().forEach(fileName => {
   // Get PascalCase name of component
   const componentName = upperFirst(
     camelCase(
-      // Strip the leading `./` and extension from the filename
-      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+      // Gets the file name regardless of folder depth
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
     )
   )
+
 
   // Register component globally
   Vue.component(

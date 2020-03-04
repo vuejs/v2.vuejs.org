@@ -6,6 +6,8 @@ order: 102
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/reusable-components-with-props?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how component props work with Vue School">Learn how component props work with a free lesson on Vue School</a></div>
+
 ## Prop Casing (camelCase vs kebab-case)
 
 HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
@@ -41,7 +43,9 @@ props: {
   likes: Number,
   isPublished: Boolean,
   commentIds: Array,
-  author: Object
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
 }
 ```
 
@@ -181,14 +185,14 @@ There are usually two cases where it's tempting to mutate a prop:
 
 ## Prop Validation
 
-Components can specify requirements for its props, such as the types you've already seen. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
+Components can specify requirements for their props, such as the types you've already seen. If a requirement isn't met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that's intended to be used by others.
 
 To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
 
 ``` js
 Vue.component('my-component', {
   props: {
-    // Basic type check (`null` matches any type)
+    // Basic type check (`null` and `undefined` values will pass any type validation)
     propA: Number,
     // Multiple possible types
     propB: [String, Number],
