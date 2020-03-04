@@ -415,7 +415,7 @@ const app = new Vue({
         fetch(apiUrl + encodeURIComponent(this.name))
         .then(async res => {
           if (res.status === 204) {
-            alert('OK')
+            alert('OK');
           } else if (res.status === 400) {
             let errorResponse = await res.json();
             this.errors.push(errorResponse.error);
