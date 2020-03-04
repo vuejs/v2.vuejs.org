@@ -420,7 +420,7 @@ const app = new Vue({
             let errorResponse = await res.json();
             this.errors.push(errorResponse.error);
           }
-        });      
+        });
       }
     }
   }
