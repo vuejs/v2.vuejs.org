@@ -344,12 +344,12 @@ exports.handler = async (event, context) => {
     if (badNames.includes(name)) {
       return { 
         statusCode: 400,         
-        body: JSON.stringify({error:'Invalid name passed.'}) 
+        body: JSON.stringify({error: 'Invalid name passed.'}) 
       }
-    } else {
-      return {
-        statusCode: 204
-      }
+    }
+
+    return {
+      statusCode: 204
     }
 
 }
