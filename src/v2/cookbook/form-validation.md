@@ -333,21 +333,27 @@ We set up the total value as a computed value, and outside of that bug I ran int
 
 ## Server-side Validation
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [OpenWhisk](http://openwhisk.apache.org/) serverless action to do the validation. While it isn't terribly important, here is the logic:
+In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [Netlify](https://netlify.com/) serverless action to do the validation. While it isn't terribly important, here is the logic:
 
 ``` js
-function main(args) {
-    return new Promise((resolve, reject) => {
-        // bad product names: vista, empire, mbp
-        const badNames = ['vista', 'empire', 'mbp'];
+exports.handler = async (event, context) => {
+  
+    const badNames = ['vista', 'empire', 'mbp'];
+    const name = event.queryStringParameters.name;
 
-        if (badNames.includes(args.name)) {
-          reject({error: 'Existing product'});
-        }
+    if (badNames.includes(name)) {
+      return { 
+        statusCode: 400,         
+        body: JSON.stringify({error: 'Invalid name passed.'}) 
+      }
+    }
 
-        resolve({status: 'ok'});
-    });
+    return {
+      statusCode: 204
+    }
+
 }
+
 ```
 
 Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's look at the form.
@@ -389,7 +395,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
 There isn't anything special here. So let's go on to the JavaScript.
 
 ``` js
-const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
+const apiUrl = 'https://vuecookbook.netlify.com/.netlify/functions/product-name?name=';
 
 const app = new Vue({
   el: '#app',
@@ -407,13 +413,12 @@ const app = new Vue({
         this.errors.push('Product name is required.');
       } else {
         fetch(apiUrl + encodeURIComponent(this.name))
-        .then(res => res.json())
-        .then(res => {
-          if (res.error) {
-            this.errors.push(res.error);
-          } else {
-            // redirect to a new URL, or do something on success
-            alert('ok!');
+        .then(async res => {
+          if (res.status === 204) {
+            alert('OK');
+          } else if (res.status === 400) {
+            let errorResponse = await res.json();
+            this.errors.push(errorResponse.error);
           }
         });
       }
