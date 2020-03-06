@@ -2,8 +2,8 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.5.16
-gz_size: "30.90"
+vue_version: 2.6.11
+gz_size: "33.30"
 ---
 
 ### Compatibility Note
@@ -47,14 +47,14 @@ For prototyping or learning purposes, you can use the latest version with:
 For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 ```
 
 If you are using native ES Modules, there is also an ES Modules compatible build:
 
 ``` html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
 </script>
 ```
 

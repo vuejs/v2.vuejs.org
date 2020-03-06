@@ -1,8 +1,8 @@
-// udpate to latest built files of Vue
+// update to latest built files of Vue
 
 const fs = require('fs')
 const zlib = require('zlib')
-const request = require('request')
+const fetch = require('node-fetch')
 const execSync = require('child_process').execSync
 
 const themeconfPath = 'themes/vue/_config.yml'
@@ -49,26 +49,27 @@ Promise.all([
 
 function download (file) {
   return new Promise((resolve, reject) => {
-    request({
-      url: `http://unpkg.com/vue@${version}/dist/${file}`,
-      encoding: null
-    }, (err, res, body) => {
-      if (err) {
-        return reject(err)
-      }
-      if (res.statusCode != 200) {
-        return reject(
-          `unexpected response code when downloading from unpkg: ${res.statusCode}` +
-          `\n${body.toString()}`
-        )
-      }
-      fs.writeFile(`themes/vue/source/js/${file}`, body, err => {
-        if (err) return reject(err)
-        zlib.gzip(body, (err, zipped) => {
+    fetch(`http://unpkg.com/vue@${version}/dist/${file}`)
+      .then(function(res) {
+        if (res.status != 200) {
+          return reject(
+            `unexpected response code when downloading from unpkg: ${res.status}` +
+            `\n${res.text()}`
+          )
+        }
+        return res.text()
+      })
+      .then(function(body) {
+        fs.writeFile(`themes/vue/source/js/${file}`, body, err => {
           if (err) return reject(err)
-          resolve((zipped.length / 1024).toFixed(2))
+          zlib.gzip(body, (err, zipped) => {
+            if (err) return reject(err)
+            resolve((zipped.length / 1024).toFixed(2))
+          })
         })
       })
-    })
+      .catch(function(err) {
+        return reject(err.statusText)
+      })
   })
 }
