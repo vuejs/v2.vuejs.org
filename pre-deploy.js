@@ -5,14 +5,14 @@ const zlib = require('zlib')
 const fetch = require('node-fetch')
 const execSync = require('child_process').execSync
 
-const themeconfPath = 'themes/vue/_config.yml'
+const themeConfigPath = 'themes/vue/_config.yml'
 const installPath = 'src/v2/guide/installation.md'
-const themeconfig = fs.readFileSync(themeconfPath, 'utf-8')
+const themeConfig = fs.readFileSync(themeConfigPath, 'utf-8')
 const installation = fs.readFileSync(installPath, 'utf-8')
 
 // get latest Vue version
 console.log(`Checking latest Vue version...`)
-const localVersion = themeconfig.match(/vue_version: (.*)/)[1]
+const localVersion = themeConfig.match(/vue_version: (.*)/)[1]
 const version = execSync('npm view vue version').toString().trim()
 
 if (localVersion === version) {
@@ -24,8 +24,8 @@ console.log(`Latest version: ${version}. Downloading dist files...`)
 
 // replace version in theme config
 fs.writeFileSync(
-  themeconfPath,
-  themeconfig.replace(/vue_version: .*/, 'vue_version: ' + version)
+  themeConfigPath,
+  themeConfig.replace(/vue_version: .*/, 'vue_version: ' + version)
 )
 
 // grab it from unpkg
@@ -49,9 +49,9 @@ Promise.all([
 
 function download (file) {
   return new Promise((resolve, reject) => {
-    fetch(`http://unpkg.com/vue@${version}/dist/${file}`)
-      .then(function(res) {
-        if (res.status != 200) {
+    fetch(`https://unpkg.com/vue@${version}/dist/${file}`)
+      .then(res => {
+        if (res.status !== 200) {
           return reject(
             `unexpected response code when downloading from unpkg: ${res.status}` +
             `\n${res.text()}`
@@ -59,7 +59,7 @@ function download (file) {
         }
         return res.text()
       })
-      .then(function(body) {
+      .then(body => {
         fs.writeFile(`themes/vue/source/js/${file}`, body, err => {
           if (err) return reject(err)
           zlib.gzip(body, (err, zipped) => {
@@ -68,8 +68,6 @@ function download (file) {
           })
         })
       })
-      .catch(function(err) {
-        return reject(err.statusText)
-      })
+      .catch(err => reject(err.statusText))
   })
 }
