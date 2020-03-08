@@ -1717,7 +1717,7 @@ type: api
     }
   })
   ```
-  {% raw %}
+
   <div id="emit-example-simple" class="demo">
     <welcome-button v-on:welcome="sayHi"></welcome-button>
   </div>
@@ -1738,7 +1738,6 @@ type: api
       }
     })
   </script>
-  {% endraw %}
 
   Using `$emit` with additional arguments:
 

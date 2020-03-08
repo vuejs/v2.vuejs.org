@@ -1242,9 +1242,10 @@ props: {
 }
 ```
 
-{% codeblock lang:html %}
+``` html
 <WelcomeMessage greetingText="hi"/>
-{% endcodeblock %}
+```
+
 </div>
 
 <div class="style-example example-good">
@@ -1257,9 +1258,10 @@ props: {
 }
 ```
 
-{% codeblock lang:html %}
+``` html
 <WelcomeMessage greeting-text="hi"/>
-{% endcodeblock %}
+```
+
 </div>
 
 ### Multi-attribute elements <sup data-p="b">strongly recommended</sup>

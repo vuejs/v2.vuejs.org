@@ -353,7 +353,7 @@ var app7 = new Vue({
   }
 })
 ```
-{% raw %}
+
 <div id="app-7" class="demo">
   <ol>
     <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
@@ -375,7 +375,6 @@ var app7 = new Vue({
   }
 })
 </script>
-{% endraw %}
 
 This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
 
