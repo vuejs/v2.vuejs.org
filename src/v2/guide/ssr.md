@@ -15,3 +15,7 @@ Properly configuring all the discussed aspects of a production-ready server-rend
 ## Quasar Framework SSR + PWA
 
 [Quasar Framework](https://quasar.dev) will generate an SSR app (with optional PWA handoff) that leverages its best-in-class build system, sensible configuration and developer extensibility to make designing and building your idea a breeze. With over one hundred specific "Material Design 2.0"-compliant components, you can decide which ones to execute on the server, which are available in the browser - and even manage the `<meta>` tags of your site. Quasar is a node.js and webpack based development environment that supercharges and streamlines rapid development of SPA, PWA, SSR, Electron and Cordova apps - all from one codebase.
+
+## Factor CMS Platform
+
+[Factor JS - A CMS and eCommerce Platform](https://factor.dev) is a extension-focused platform for Vue apps that need an CMS and eCommerce functionality similar to WordPress. In additional to server-rendered content, you can also use the active server to power dynamic functionality associated with endpoints like user management/auth, form-handling, image handling, etc.. 
