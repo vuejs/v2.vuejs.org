@@ -96,7 +96,7 @@ new Vue({
 
 Para cada propiedad del objeto `components`, la clave será el nombre del elemento personalizado, mientras que el valor contendrá el objeto de opciones del componente.
 
-Note que los **componentes registrados localmente _no_ están tampoco disponibles en los subcomponentes**. Por ejemplo, si quisieras que el `ComponentA` estuviera disponible en el `ComponentB`, tendrías que usar:
+Note que los **componentes registrados localmente _no_ están tampoco disponibles en los subcomponentes**. Por ejemplo, si quisiera que el `ComponentA` estuviera disponible en el `ComponentB`, tendría que usar:
 
 ```js
 var ComponentA = { /* ... */ }
