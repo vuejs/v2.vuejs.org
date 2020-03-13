@@ -82,7 +82,7 @@ var ComponentB = { /* ... */ }
 var ComponentC = { /* ... */ }
 ```
 
-Entonces define los componentes que te gustaría usar en una opción de `components`:
+Entonces, defina los componentes que le gustaría usar en una opción de `components`:
 
 ```js
 new Vue({
