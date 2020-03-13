@@ -67,7 +67,7 @@ Puede haber ocasiones en las que desee escuchar directamente a un event nativo e
 <base-input v-on:focus.native="onFocus"></base-input>
 ```
 
-Esto puede ser util a veces, pero no es una buena idea cuando está probando escuchar un elemento muy específico, como un `<input>`. Por ejemplo, el componente `<base-input>` de arriba podría ser refactoriado de modo tal que el elemento raíz sea en realidad un elemento `<label>`:
+Esto puede ser útil a veces, pero no es una buena idea cuando está probando escuchar un elemento muy específico, como un `<input>`. Por ejemplo, el componente `<base-input>` de arriba podría ser refactorizado de modo tal que el elemento raíz sea en realidad un elemento `<label>`:
 
 ```html
 <label>
