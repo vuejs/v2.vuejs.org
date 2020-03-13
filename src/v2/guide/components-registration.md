@@ -109,7 +109,7 @@ var ComponentB = {
 }
 ```
 
-O si estás usando módulos ES2015, como por ejemplo a través de Babel y Webpack, podría parecerse más a:
+O si está usando módulos ES2015, como por ejemplo a través de Babel y Webpack, podría parecerse más a:
 
 ```js
 import ComponentA from './ComponentA.vue'
