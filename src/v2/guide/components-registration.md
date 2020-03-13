@@ -129,7 +129,7 @@ Note que en ES2015+, colocar un nombre de variable como `ComponentA` dentro de u
 
 ## Sistemas de módulos
 
-Si no estás usando un sistema de módulos con `importar` o `requerir`, probablemente puedes saltarte esta sección por ahora. Si lo estás, tenemos algunas instrucciones y consejos especiales sólo para ti.
+Si no está usando un sistema de módulos con `import` o `require`, probablemente pueda saltearse esta sección por ahora. Si lo está, tenemos algunas instrucciones y consejos especiales solo para ti.
 
 ### Registro local en un Sistema de Módulos
 
