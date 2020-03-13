@@ -184,7 +184,7 @@ Sólo para soportar relativamente poco markup en una plantilla:
 </BaseButton>
 ```
 
-Afortunadamente, si usas Webpack (o [Vue CLI 3+](https://github.com/vuejs/vue-cli), que usa Webpack internamente), puedes usar `require.context` para registrar globalmente sólo estos componentes base muy comunes. Aquí tienes un ejemplo del código que puedes usar para importar globalmente los componentes base en el archivo de entrada de tu aplicación (por ejemplo, `src/main.js`):
+Afortunadamente, si usa Webpack (o [Vue CLI 3+](https://github.com/vuejs/vue-cli), que usa Webpack internamente), puede usar `require.context` para registrar globalmente sólo estos componentes base muy comunes. Aquí tiene un ejemplo del código que puede usar para importar globalmente los componentes base en el archivo de entrada de su aplicación (por ejemplo, `src/main.js`):
 
 ```js
 import Vue from 'vue'
