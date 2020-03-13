@@ -72,7 +72,7 @@ Esto se aplica incluso a todos los subcomponentes, lo que significa que los tres
 
 ## Registro local
 
-El registro global a menudo no es ideal. Por ejemplo, si estás usando un sistema de compilación como Webpack, el registro global de todos los componentes significa que, incluso si dejas de usar un componente, podría ser incluido en tu compilación final. Esto aumenta innecesariamente la cantidad de JavaScript que sus usuarios tienen que descargar
+El registro global a menudo no es ideal. Por ejemplo, si estás usando un empaquetador de módulos como Webpack, el registro global de todos los componentes significa que, incluso si dejas de usar un componente, podría ser incluido en tu compilación final. Esto aumenta innecesariamente la cantidad de JavaScript que sus usuarios tienen que descargar
 
 En estos casos, puede definir sus componentes como objetos JavaScript simples:
 
