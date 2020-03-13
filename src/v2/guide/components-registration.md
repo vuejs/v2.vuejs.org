@@ -223,4 +223,4 @@ requireComponent.keys().forEach(fileName => {
 })
 ```
 
-Recuerda que **el registro global debe tener lugar antes de que se cree la instancia raíz de Vue (con `new Vue`)**. [Aquí hay un ejemplo](https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js) de este patrón en un contexto de proyecto real.
+Recuerde que **el registro global debe tener lugar antes de que se cree la instancia raíz de Vue (con `new Vue`)**. [Aquí hay un ejemplo](https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js) de este patrón en el contexto de un proyecto real.
