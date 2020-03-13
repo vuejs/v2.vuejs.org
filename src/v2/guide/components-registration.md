@@ -125,7 +125,7 @@ export default {
 Note que en ES2015+, colocar un nombre de variable como `ComponentA` dentro de un objeto es la abreviatura de `ComponentA: ComponentA`, lo que significa que el nombre de la variable es ambos:
 
 - el nombre del elemento personalizado para usar en la plantilla, y
-- el nombre de la variable que contiene las opciones de componentes
+- el nombre de la variable que contiene las opciones de componente
 
 ## Sistemas de módulos
 
