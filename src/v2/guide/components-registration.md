@@ -14,7 +14,7 @@ Cuando registramos un componente, siempre se le asignará un nombre. Por ejemplo
 Vue.component('my-component-name', { /* ... */ })
 ```
 
-El nombre del componentes es el primer argumento de `Vue.component`.
+El nombre del componente es el primer argumento de `Vue.component`.
 
 El nombre que le dé a un componente puede depender de dónde pretenda utilizarlo. Cuando use un componente directamente en el DOM (a diferencia de en una string template o [componente de un solo archivo](single-file-components.html)), recomendamos encarecidamente seguir las [reglas de W3C](https://www.w3.org/TR/custom-elements/#concepts) para nombres de tags personalizados (todo en minúsculas, debe contener un guión). Esto le ayuda a evitar conflictos con los elementos HTML actuales y futuros.
 
@@ -129,7 +129,7 @@ Note que en ES2015+, colocar un nombre de variable como `ComponentA` dentro de u
 
 ## Sistemas de módulos
 
-Si no está usando un sistema de módulos con `import` o `require`, probablemente pueda saltearse esta sección por ahora. Si lo está, tenemos algunas instrucciones y consejos especiales solo para ti.
+Si no está usando un sistema de módulos con `import` o `require`, probablemente pueda saltarse esta sección por ahora. Si lo está, tenemos algunas instrucciones y consejos especiales solo para ti.
 
 ### Registro local en un Sistema de Módulos
 
@@ -172,7 +172,7 @@ export default {
 }
 ```
 
-Sólo para soportar relativamente poco markup en una plantilla:
+Solo para soportar relativamente poco markup en una plantilla:
 
 ```html
 <BaseInput
@@ -184,7 +184,7 @@ Sólo para soportar relativamente poco markup en una plantilla:
 </BaseButton>
 ```
 
-Afortunadamente, si usa Webpack (o [Vue CLI 3+](https://github.com/vuejs/vue-cli), que usa Webpack internamente), puede usar `require.context` para registrar globalmente sólo estos componentes base muy comunes. Aquí tiene un ejemplo del código que puede usar para importar globalmente los componentes base en el archivo de entrada de su aplicación (por ejemplo, `src/main.js`):
+Afortunadamente, si usa Webpack (o [Vue CLI 3+](https://github.com/vuejs/vue-cli), que usa Webpack internamente), puede usar `require.context` para registrar globalmente solo estos componentes base muy comunes. Aquí tiene un ejemplo del código que puede usar para importar globalmente los componentes base en el archivo de entrada de su aplicación (por ejemplo, `src/main.js`):
 
 ```js
 import Vue from 'vue'
@@ -207,7 +207,7 @@ requireComponent.keys().forEach(fileName => {
   // Obtener el nombre PascalCase del componente
   const componentName = upperFirst(
     camelCase(
-      // Strip the leading `./` and extension from the filename
+      // Quitar el `./`en el comienzo y la extensión del nombre del archivo 
       fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
   )
