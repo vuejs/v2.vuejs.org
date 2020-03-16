@@ -18,7 +18,7 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <a class="button" href="installation.html">Installation</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step&mdash;grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
 The easiest way to try out Vue.js is using the [Hello World example](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
 
@@ -34,7 +34,9 @@ or:
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+The [Installation](installation.html) page provides more options of installing Vue.
+
+<p class="tip">**Note:** We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.</p>
 
 If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/g/gvuedocs), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
 
@@ -42,7 +44,7 @@ If you prefer something more interactive, you can also check out [this tutorial 
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+At the core of Vue.js is a system that enables you to _declaratively_ render data to the DOM, using a straightforward template syntax:
 
 ``` html
 <div id="app">
@@ -71,11 +73,13 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+We have already created our very first Vue app!
 
-Note that we no longer have to interact with the HTML directly. A Vue app attaches itself to a single DOM element (`#app` in our case) then fully controls it. The HTML is our entry point, but everything else happens within the newly created Vue instance.
+This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**.
 
-In addition to text interpolation, we can also bind element attributes like this:
+How can you tell? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+
+In addition to text interpolation, you can also bind element attributes like this:
 
 ``` html
 <div id="app-2">
@@ -109,9 +113,11 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Here we are encountering something new. The `v-bind` attribute you see above is called a **<dfn>directive</dfn>**.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue. And as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+
+If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML&mdash;in this case the `title` attribute&mdash;has been updated.
 
 ## Conditionals and Loops
 
@@ -150,9 +156,9 @@ var app3 = new Vue({
 
 Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+This example demonstrates that you can bind data not just to text and attributes, but also to the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+There are quite a few other directives, each with their own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
 
 ``` html
 <div id="app-4">
@@ -203,7 +209,7 @@ In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a 
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+To let users interact with your app, you can use the `v-on` directive to attach event listeners that invoke methods on your Vue instances:
 
 ``` html
 <div id="app-5">
@@ -244,9 +250,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Note that in this method, we've updated the state of the app _without touching the DOM_. All DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue also provides the `v-model` directive that makes two-way binding between `<form>` input and app state a breeze:
 
 ``` html
 <div id="app-6">
@@ -281,7 +287,7 @@ var app6 = new Vue({
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If you think about it, almost any type of application interface can be abstracted into a tree of components:
 
 ![Component Tree](/images/components.png)
 
@@ -305,7 +311,9 @@ Now you can compose it in another component's template:
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+...But, this will render the same text for every todo, which is not really useful.
+
+You should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
 
 ``` js
 Vue.component('todo-item', {
@@ -317,7 +325,7 @@ Vue.component('todo-item', {
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Now you can pass the todo into each repeated component using `v-bind`:
 
 ``` html
 <div id="app-7">
@@ -377,9 +385,9 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+This is a contrived example, but it demonstrates how to separate an app into two smaller units, and the child is reasonably well-decoupled from the parent via the `props` interface. At this point, you can continue to improve the `<todo-item>` component with more complex template and logic without affecting the parent app.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+In a large application, it is necessary to divide the whole app into components to keep development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
 
 ``` html
 <div id="app">
@@ -393,16 +401,18 @@ In a large application, it is necessary to divide the whole app into components 
 
 ### Relation to Custom Elements
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec.
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills, and work consistently in all supported browsers (IE9 and above). If you ever need to, you can also wrap a Vue component inside a native custom element.
+
+2. Vue components provide important features that are not available in plain custom elements&mdash;most notably, cross-component data flow, custom event communication, and build tool integrations.
 
 Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
 
 ## Ready for More?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+We've briefly introduced the most basic features of Vue.js core. The rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
 
 <div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>

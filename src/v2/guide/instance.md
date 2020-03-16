@@ -14,11 +14,13 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Although not strictly associated with the [<abbr title="Model View ViewModel">MVVM</abbr> pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for _ViewModel_) to refer to our Vue instance.
 
 When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components.
+
+For example, a todo app's component tree might look like this:
 
 ```
 Root Instance
@@ -31,7 +33,7 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, so they accept the same options object (except for a few root-specific options).
 
 ## Data and Methods
 
@@ -60,13 +62,17 @@ data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+When this data changes, the view will re-render.
+
+It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
 
 ```js
 vm.b = 'hi'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+Then changes to `b` will not trigger any view updates.
+
+If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
 
 ```js
 data: {
@@ -101,7 +107,7 @@ new Vue({
 </div>
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from user-defined properties. For example:
 
 ```js
 var data = { a: 1 }
@@ -125,7 +131,7 @@ In the future, you can consult the [API reference](../api/#Instance-Properties) 
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/understanding-the-vuejs-lifecycle-hooks?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Lifecycle Hooks Lesson">Watch a free lesson on Vue School</a></div>
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+Each Vue instance goes through a series of initialization steps when it's created&mdash;for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
 
 For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
 
