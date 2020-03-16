@@ -10,7 +10,7 @@ order: 102
 
 ## Prop Casing (camelCase vs kebab-case)
 
-HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:
+HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, *camelCased* prop names need to use their *kebab-cased* (hyphen-delimited) equivalents:
 
 ``` js
 Vue.component('blog-post', {
@@ -49,7 +49,7 @@ props: {
 }
 ```
 
-This not only documents your component, but will also warn users in the browser's JavaScript console if they pass the wrong type. You'll learn much more about [type checks and other prop validations](#Prop-Validation) further down this page.
+This not only documents your component, but will also warn users in the browser's JavaScript console if they pass the wrong type. You'll learn much more about [type checks and other prop validations](#Prop-Validation) further below.
 
 ## Passing Static or Dynamic Props
 
@@ -153,13 +153,15 @@ Will be equivalent to:
 
 ## One-Way Data Flow
 
-All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around.
+
+This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
 
 In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
 
 There are usually two cases where it's tempting to mutate a prop:
 
-1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local data property that uses the prop as its initial value:
+1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local `data` property that uses the prop as its initial value:
 
   ``` js
   props: ['initialCounter'],
@@ -170,7 +172,7 @@ There are usually two cases where it's tempting to mutate a prop:
   }
   ```
 
-2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a computed property using the prop's value:
+2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a `computed` property using the prop's value:
 
   ``` js
   props: ['size'],
@@ -181,7 +183,7 @@ There are usually two cases where it's tempting to mutate a prop:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child component **will** affect parent state.</p>
+<p class="tip">**Note:** Objects and Arrays in JavaScript are passed by reference. So, if the prop is an array or object, mutating the object or array itself in the child component **will** affect parent state.</p>
 
 ## Prop Validation
 
@@ -228,7 +230,7 @@ Vue.component('my-component', {
 
 When prop validation fails, Vue will produce a console warning (if using the development build).
 
-<p class="tip">Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.</p>
+<p class="tip">Note that props are validated **before** a component instance is created, so instance properties (e.g., `data`, `computed`, etc.) will not be available inside `default` or `validator` functions.</p>
 
 ### Type Checks
 
@@ -243,7 +245,9 @@ The `type` can be one of the following native constructors:
 - Function
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check. For example, given the following constructor function exists:
+In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
+
+For example, given the following constructor function exists:
 
 ```js
 function Person (firstName, lastName) {
@@ -252,7 +256,7 @@ function Person (firstName, lastName) {
 }
 ```
 
-You could use:
+You could validate that the `author` prop's value was created with `new Person`, like this:
 
 ```js
 Vue.component('blog-post', {
@@ -262,7 +266,6 @@ Vue.component('blog-post', {
 })
 ```
 
-to validate that the value of the `author` prop was created with `new Person`.
 
 ## Non-Prop Attributes
 
@@ -270,7 +273,7 @@ A non-prop attribute is an attribute that is passed to a component, but does not
 
 While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
 
-For example, imagine we're using a 3rd-party `bootstrap-date-input` component with a Bootstrap plugin that requires a `data-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+For example, imagine you're using a 3rd-party `bootstrap-date-input` component with a Bootstrap plugin that requires a `data-date-picker` attribute on the `<input>`. You can add this attribute to your component instance:
 
 ``` html
 <bootstrap-date-input data-date-picker="activated"></bootstrap-date-input>
@@ -286,7 +289,7 @@ Imagine this is the template for `bootstrap-date-input`:
 <input type="date" class="form-control">
 ```
 
-To specify a theme for our date picker plugin, we might need to add a specific class, like this:
+To specify a theme for your date picker plugin, you might need to add a specific `class`, like this:
 
 ``` html
 <bootstrap-date-input
@@ -300,7 +303,9 @@ In this case, two different values for `class` are defined:
 - `form-control`, which is set by the component in its template
 - `date-picker-theme-dark`, which is passed to the component by its parent
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="text"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+For _most_ attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="text"` will replace `type="date"` and probably break it!
+
+Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
 
 ### Disabling Attribute Inheritance
 
@@ -322,7 +327,8 @@ This can be especially useful in combination with the `$attrs` instance property
 }
 ```
 
-With `inheritAttrs: false` and `$attrs`, you can manually decide which element you want to forward attributes to, which is often desirable for [base components](../style-guide/#Base-component-names-strongly-recommended):
+With `inheritAttrs: false` and `$attrs`, you can _manually_ choose which element to forward attributes to. This is often desirable for [base components](../style-guide/#Base-component-names-strongly-recommended).
+
 
 ```js
 Vue.component('base-input', {

@@ -83,7 +83,7 @@ This can be useful sometimes, but it's not a good idea when you're trying to lis
 </label>
 ```
 
-In that case, the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when we expected it to.
+In that case, the `.native` listener in the parent would silently break. There would be no errors, but the `onFocus` handler wouldn't be called when you expect.
 
 To solve this problem, Vue provides a `$listeners` property containing an object of listeners being used on the component. For example:
 
@@ -137,9 +137,9 @@ Now the `<base-input>` component is a **fully transparent wrapper**, meaning it 
 
 > New in 2.3.0+
 
-In some cases, we may need "two-way binding" for a prop. Unfortunately, true two-way binding can create maintenance issues, because child components can mutate the parent without the source of that mutation being obvious in both the parent and the child.
+In some cases, you may need "two-way binding" for a prop. Unfortunately, true two-way binding can create maintenance issues, because child components can mutate the parent without the source of that mutation being obvious in both the parent and the child.
 
-That's why instead, we recommend emitting events in the pattern of `update:myPropName`. For example, in a hypothetical component with a `title` prop, we could communicate the intent of assigning a new value with:
+This is why we recommend emitting events in the pattern `update:myPropName`. For example, in a hypothetical component with a `title` prop, you can communicate the intent of assigning a new value with:
 
 ```js
 this.$emit('update:title', newTitle)
@@ -154,7 +154,7 @@ Then the parent can listen to that event and update a local data property, if it
 ></text-document>
 ```
 
-For convenience, we offer a shorthand for this pattern with the `.sync` modifier:
+For convenience, Vue offers a shorthand for this pattern with the `.sync` modifier:
 
 ```html
 <text-document v-bind:title.sync="doc.title"></text-document>

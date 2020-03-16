@@ -63,7 +63,9 @@ When you want to use data inside a slot, such as in:
 </navigation-link>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work:
+That slot has access to the same instance properties&mdash;that is, the same "scope"&mdash;as the rest of the template.
+
+The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work:
 
 ``` html
 <navigation-link url="/profile">
@@ -82,7 +84,7 @@ As a rule, remember that:
 
 ## Fallback Content
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be rendered only when no content is provided. For example, in a `<submit-button>` component:
+There are cases when it's useful to specify fallback (or "default") content for a slot, to be rendered only when no content is provided. For example, in a `<submit-button>` component:
 
 ```html
 <button type="submit">
@@ -104,7 +106,7 @@ Now when we use `<submit-button>` in a parent component, providing no content fo
 <submit-button></submit-button>
 ```
 
-will render the fallback content, "Submit":
+It will render the fallback content, "Submit":
 
 ```html
 <button type="submit">
@@ -221,7 +223,7 @@ Either way, the rendered HTML will be:
 </div>
 ```
 
-Note that **`v-slot` can only be added to a `<template>`** (with [one exception](#Abbreviated-Syntax-for-Lone-Default-Slots)), unlike the deprecated [`slot` attribute](#Deprecated-Syntax).
+<p class="tip">Note that <code>v-slot</code> can only be added to a <code>&lt;template&gt;</code> (with <a href="#Abbreviated-Syntax-for-Lone-Default-Slots">one exception</a>), unlike the deprecated <a href="#Deprecated-Syntax"><code>slot</code> attribute</a>).</p>
 
 ## Scoped Slots
 
@@ -235,7 +237,7 @@ Sometimes, it's useful for slot content to have access to data only available in
 </span>
 ```
 
-We might want to replace this fallback content to display the user's first name, instead of last, like this:
+You might want to replace this fallback content to display the user's first name, instead of last, like this:
 
 ``` html
 <current-user>
@@ -243,9 +245,9 @@ We might want to replace this fallback content to display the user's first name,
 </current-user>
 ```
 
-That won't work, however, because only the `<current-user>` component has access to the `user` and the content we're providing is rendered in the parent.
+That won't work, however, because only the `<current-user>` component has access to the `user`, and the content provided is rendered in the parent.
 
-To make `user` available to the slot content in the parent, we can bind `user` as an attribute to the `<slot>` element:
+To make `user` available to the slot content in the parent, you can bind `user` as an attribute to the `<slot>` element:
 
 ``` html
 <span>
@@ -329,7 +331,7 @@ That means the value of `v-slot` can actually accept any valid JavaScript expres
 </current-user>
 ```
 
-This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props, e.g. `user` to `person`:
+This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props (like renaming `user` to `person`):
 
 ``` html
 <current-user v-slot="{ user: person }">
@@ -337,7 +339,7 @@ This can make the template much cleaner, especially when the slot provides many 
 </current-user>
 ```
 
-You can even define fallbacks, to be used in case a slot prop is undefined:
+You can even define fallbacks, to be used in case a slot prop is `undefined`:
 
 ``` html
 <current-user v-slot="{ user = { firstName: 'Guest' } }">
@@ -363,7 +365,9 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 
 > New in 2.6.0+
 
-Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` can be rewritten as `#header`:
+Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`.
+
+For example, `v-slot:header` can be rewritten as `#header`:
 
 ```html
 <base-layout>
@@ -434,7 +438,7 @@ Instead of hard-coding the content for each todo, we can let the parent componen
 </ul>
 ```
 
-Now when we use the `<todo-list>` component, we can optionally define an alternative `<template>` for todo items, but with access to data from the child:
+Now when you use the `<todo-list>` component, you can optionally define an alternative `<template>` for todo items, but with access to data from the child:
 
 ```html
 <todo-list v-bind:todos="todos">
@@ -447,7 +451,7 @@ Now when we use the `<todo-list>` component, we can optionally define an alterna
 
 However, even this barely scratches the surface of what scoped slots are capable of. For real-life, powerful examples of scoped slot usage, we recommend browsing libraries such as [Vue Virtual Scroller](https://github.com/Akryum/vue-virtual-scroller), [Vue Promised](https://github.com/posva/vue-promised), and [Portal Vue](https://github.com/LinusBorg/portal-vue).
 
-## Deprecated Syntax
+## Deprecated Syntax (`slot`)
 
 > The `v-slot` directive was introduced in Vue 2.6.0, offering an improved, alternative API to the still-supported `slot` and `slot-scope` attributes. The full rationale for introducing `v-slot` is described in this [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md). The `slot` and `slot-scope` attributes will continue to be supported in all future 2.x releases, but are officially deprecated and will eventually be removed in Vue 3.
 
