@@ -441,6 +441,7 @@ To pass scoped slots to a child component using render functions, use the `scope
 
 ``` js
 render: function (createElement) {
+  // `<div><child v-slot="props"><span>{{ props.text }}</span></child></div>`
   return createElement('div', [
     createElement('child', {
       // pass `scopedSlots` in the data object
