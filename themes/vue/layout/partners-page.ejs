@@ -1,0 +1,91 @@
+<div id="partners">
+  <p>
+    Vue Partners are premium shops that provide first-class Vue consulting and development.
+    If your company is interested in being listed as a partner, please contact us at
+    <a href="mailto:partners@vuejs.org">partners@vuejs.org.</a>
+  </p>
+
+  <h2 id="active-partners">Active Partners</h2>
+
+  <% for (let partner of page.partners_list) { %>
+    <div class="partner">
+      <div class="logo">
+        <a href="https://<%- partner.url_link %>" target="_blank" rel="sponsored noopener">
+          <img
+            alt="<%= partner.name %>"
+            src="<%- partner.logo.startsWith(`http`) ? partner.logo : url_for(`/images/${partner.logo}`) %>"
+          >
+        </a>
+      </div>
+      <div class="profile">
+        <!-- <h3> <%= partner.name %> </h3> -->
+        <p class="description"><%= partner.description %></p>
+        <dl>
+          <dt>
+              <i class="fa fa-link"></i>
+              <span class="sr-only">Link</span>
+            </dt>
+            <dd>
+              <a href="https://<%- partner.url_link %>" target="_blank" rel="sponsored noopener">
+                <%- partner.url_text %>
+              </a>
+            </dd>
+
+          <dt>
+            <i class="fa fa-map-marker"></i>
+            <span class="sr-only">Location</span>
+          </dt>
+          <dd>
+            <%= partner.location %>
+          </dd>
+
+          <dt>
+            <i class="fa fa-globe"></i>
+            <span class="sr-only">Languages</span>
+          </dt>
+          <dd class="language-list">
+            <ul>
+              <% for (let language of partner.languages) { %>
+                <li>
+                  <%= language %>
+                </li>
+              <% } %>
+            </ul>
+          </dd>
+
+          <dt>Proficiencies</dt>
+          <dd>
+            <ul>
+              <% for (let proficiency of partner.proficiencies) { %>
+                <li>
+                  <a
+                    href="<%- proficiency.url || page.proficiencies_urls[proficiency] %>"
+                    target="_blank"
+                    rel="sponsored noopener"
+                  >
+                    <%= proficiency.name || proficiency %>
+                  </a>
+                </li>
+              <% } %>
+            </ul>
+          </dd>
+
+          <dd class="social">
+            <% if (partner.email) { %>
+              <a href="mailto:<%- partner.email %>?subject=Hire <%- partner.name %>">
+                <i class="fa fa-envelope"></i>
+                <span class="sr-only">Email</span>
+              </a>
+            <% } %>
+            <% for( let link of partner.social_links) { %>
+              <a class="<%= link.class %>" href="<%- link.url %>" target="_blank" rel="noopener">
+                <i class="fa fa-<%= link.class %>"></i>
+                <span class="sr-only"><%= link.name %></span>
+              </a>
+            <% } %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  <% } %>
+</div>

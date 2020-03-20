@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-elastic-header",
+  "version": "1.0.0",
+  "description": "Elastic Draggable SVG Header",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

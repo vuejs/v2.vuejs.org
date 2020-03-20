@@ -1,70 +1,67 @@
 // main ad placement (bottom right)
 #ad
-  width: 125px
-  // text-align: center
-  position: fixed
-  z-index: 99
-  bottom: 10px
-  right: 10px
-  padding: 10px
-  background-color: #fff
-  border-radius: 3px
-  font-size: 13px
+  width 125px
+  position fixed
+  z-index ($z-header - 1)
+  bottom 10px
+  right 10px
+  padding 10px
+  background-color #fff
+  border-radius 3px
+  font-size 13px
   a
-    display: inline-block
-    color: $light
-    font-weight: normal
+    display inline-block
+    color $light
+    font-weight normal
   span
-    color: $light
-    display: inline-block
-    margin-bottom: 5px
-  img
-    width: 125px
-  .carbon-img, .carbon-text
-    display: block
-    margin-bottom: 6px
-    font-weight: normal
-    color: $medium
-  .carbon-poweredby
-    color: #aaa
-    font-weight: normal
-
-// text ad (below page title)
-.bsa-cpc
-  font-size 1em
-  background-color #f8f8f8
-  a._default_
-    text-align left
+    color $light
     display block
-    padding 10px 15px 12px
-    margin-bottom 20px
-    color #666
-    font-weight 400
-    line-height 18px
-    .default-image, .default-title, .default-description
-      display inline
-      vertical-align middle
-      margin-right 6px
-    .default-image
-      img
-        height 20px
-        border-radius 3px
-        vertical-align middle
-        position relative
-        top -1px
-    .default-title
+  img
+    width 125px
+  .carbon-img, .carbon-text
+    display block
+    margin-bottom 4px
+    font-weight normal
+    color $medium
+  .carbon-poweredby
+    color #aaa
+    font-size 10px
+    letter-spacing .8px
+    text-transform uppercase
+    font-weight normal
+
+// text ad (end of the documentation)
+#bsa-native
+  .native-box
+    box-shadow inset 0 0 0 1px hsla(0, 0%, 0%, .075)
+    background-color #f8f8f8;
+    color $medium
+    display flex
+    border-radius 3px;
+    padding .65em 1em
+    align-items center
+    margin-bottom 1.2em
+    .native-link
+      text-decoration none
+      display flex
+      align-items center
+      padding 10px 14px
+    .native-sponsor
+      background-color #41b983
+      color #fff
+      font-size 12px
+      border-radius 2px
+      margin-right 1em
+      line-height 1
+      padding 6px 10px
       font-weight 600
-    .default-description:after
-      font-size .85em
-      content "Sponsored"
-      color $info
-      border 1px solid $info
-      border-radius 3px
-      padding 0 4px 1px
-      margin-left 6px
-  .default-ad
-    display none
+      text-transform uppercase
+    .native-text
+      font-weight normal
+      line-height 1.35
+      text-align left
+
 
 @media print
   #ad
-    display: none
+    display none

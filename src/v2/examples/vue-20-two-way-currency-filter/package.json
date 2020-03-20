@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-two-way-currency-filter",
+  "version": "1.0.0",
+  "description": "Using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

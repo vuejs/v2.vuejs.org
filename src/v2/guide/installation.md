@@ -10,6 +10,10 @@ gz_size: "30.90"
 
 Vue **nie** obsługuje IE8 i starszych, ponieważ korzysta z funkcji ECMAScript 5 niemożliwych do odtworzenia w IE8. Obsługuje jednak wszystkie [przeglądarki zgodne z ECMAScript 5](https://caniuse.com/#feat=es5).
 
+### Semantic Versioning
+
+Vue follows [Semantic Versioning](https://semver.org/) in all its official projects for documented features and behavior. For undocumented behavior or exposed internals, changes are described in [release notes](https://github.com/vuejs/vue/releases).
+
 ### Informacje o wydaniu
 
 Najnowsza stabilna wersja: {{vue_version}}
@@ -29,28 +33,29 @@ Pobierz i uwzględnij tag script. `Vue` zostanie zarejestrowane jako zmienna glo
 <div id="downloads">
   <a class="button" href="/js/vue.js" download>Wersja deweloperska</a><span class="light info">Ze wszystkimi ostrzeżeniami i trybem debugowania</span>
 
-  <a class="button" href="/js/vue.min.js" download>Wersja produkcyjna</a><span class="light info">Ostrzeżenia nie są uwzględniane, {{gz_size}}KB min+gzip</span>
+<a class="button" href="/js/vue.min.js" download>Wersja produkcyjna</a><span class="light info">Ostrzeżenia nie są uwzględniane, {{gz_size}}KB min+gzip</span>
+
 </div>
 
 ### CDN
 
 Aby zacząć prototypowanie lub naukę, możesz skorzystać z najnowszej wersji za pomocą:
 
-``` html
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
 W produkcji, zalecamy użycie określonego numeru wersji i kompilacji, aby uniknąć niespodziewanych błędów spowodowanych nowszą wersją:
 
-``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 ```
 
 Jeżeli korzystasz z natywnych modułów ES, istnieje kompatybilna z nimi kompilacja:
 
-``` html
+```html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+  import Vue from "https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js";
 </script>
 ```
 
@@ -64,7 +69,7 @@ Pamiętaj o przeczytaniu o [różnicach pomiędzy różnymi kompilacjami Vue](#O
 
 NPM jest zalecaną metodą instalacji podczas tworzenia aplikacji na większą skalę z użyciem Vue. Działa ona dobrze z bundlerami takimi jak [Webpack](https://webpack.js.org/) czy [Browserify](http://browserify.org/). Vue dostarcza również narzędzia pozwalające na korzystanie z [jednoplikowych komponentów](single-file-components.html).
 
-``` bash
+```bash
 # latest stable
 $ npm install vue
 ```
@@ -81,12 +86,12 @@ Vue dostarcza również [oficjalne CLI](https://github.com/vuejs/vue-cli) przezn
 
 W [katalogu `dist/` pakietu NPM](https://cdn.jsdelivr.net/npm/vue/dist/) znajdziesz wiele kompilacji Vue.js. Oto omówienie różnic między nimi:
 
-| | UMD | CommonJS | Moduły ES (dla bundlerów) | moduły ES (dla przeglądarek) |
-| --- | --- | --- | --- | --- |
-| **Pełna** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-| **Tylko środowisko uruchomieniowe** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Pełna (produkcyjna)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Tylko środowisko uruchomieniowe (produkcja)** | vue.runtime.min.js | - | - | - |
+|                                                 | UMD                | CommonJS              | Moduły ES (dla bundlerów) | moduły ES (dla przeglądarek) |
+| ----------------------------------------------- | ------------------ | --------------------- | ------------------------- | ---------------------------- |
+| **Pełna**                                       | vue.js             | vue.common.js         | vue.esm.js                | vue.esm.browser.js           |
+| **Tylko środowisko uruchomieniowe**             | vue.runtime.js     | vue.runtime.common.js | vue.runtime.esm.js        | -                            |
+| **Pełna (produkcyjna)**                         | vue.min.js         | -                     | -                         | vue.esm.browser.min.js       |
+| **Tylko środowisko uruchomieniowe (produkcja)** | vue.runtime.min.js | -                     | -                         | -                            |
 
 ### Terminy
 
@@ -110,18 +115,18 @@ W [katalogu `dist/` pakietu NPM](https://cdn.jsdelivr.net/npm/vue/dist/) znajdzi
 
 Jeżeli potrzebujesz kompilować szablony po stronie klienta (np. przekazując ciąg znaków w opcji `template` lub montując do elementu używając jego HTML w DOM jako szablonu), będziesz potrzebować kompilatora, więc również pełnej kompilacji:
 
-``` js
+```js
 // to wymaga użycia kompilatora
 new Vue({
-  template: '<div>{{ hi }}</div>'
-})
+  template: "<div>{{ hi }}</div>"
+});
 
 // a to nie
 new Vue({
-  render (h) {
-    return h('div', this.hi)
+  render(h) {
+    return h("div", this.hi);
   }
-})
+});
 ```
 
 Jeżeli korzystasz z `vue-loader` lub `vueify`, szablony wewnątrz plików `*.vue` są kompilowane do JavaScript w procesie budowania. Nie potrzebujesz wtedy kompilatora w końcowym zestawie, więc możesz używać kompilacji zawierającej samo środowisko uruchomieniowe.
@@ -130,37 +135,37 @@ Ponieważ kompilacje zawierające tylko środowisko uruchomieniowe są ok. 30% l
 
 #### Webpack
 
-``` js
+```js
 module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' dla webpack 1
+      vue$: "vue/dist/vue.esm.js" // 'vue/dist/vue.common.js' dla webpack 1
     }
   }
-}
+};
 ```
 
 #### Rollup
 
-``` js
-const alias = require('rollup-plugin-alias')
+```js
+const alias = require("rollup-plugin-alias");
 
 rollup({
   // ...
   plugins: [
     alias({
-      'vue': require.resolve('vue/dist/vue.esm.js')
+      vue: require.resolve("vue/dist/vue.esm.js")
     })
   ]
-})
+});
 ```
 
 #### Browserify
 
 Dodaj do `package.json` projektu:
 
-``` js
+```js
 {
   // ...
   "browser": {
@@ -173,7 +178,7 @@ Dodaj do `package.json` projektu:
 
 Dodaj do `package.json` projektu:
 
-``` js
+```js
 {
   // ...
   "alias": {
@@ -194,35 +199,35 @@ Kompilacje CommonJS i modułów ES sprawdzają również `process.env.NODE_ENV`,
 
 W Webpacku 4+, możesz użyć opcji `mode`:
 
-``` js
+```js
 module.exports = {
-  mode: 'production'
-}
+  mode: "production"
+};
 ```
 
 W Webpacku 3 i starszych, musisz użyć [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
-``` js
-var webpack = require('webpack')
+```js
+var webpack = require("webpack");
 
 module.exports = {
   // ...
   plugins: [
     // ...
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
       }
     })
   ]
-}
+};
 ```
 
 #### Rollup
 
 Użyj [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
-``` js
+```js
 const replace = require('rollup-plugin-replace')
 
 rollup({
@@ -239,7 +244,7 @@ rollup({
 
 Zastosuj globalną transformację [envify](https://github.com/hughsk/envify) w swojej paczce.
 
-``` bash
+```bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
@@ -247,7 +252,7 @@ Przeczytaj także [Wskazówki dotyczące wdrażania wersji produkcyjnej](deploym
 
 ### Środowiska CSP
 
-Niektóre środowiska, takie jak aplikacje Google Chrome, wymuszają Politykę Bezpieczeństwa Treści (ang. *Content Security Policy*, **CSP), uniemożliwiającą wykorzystywanie `new Function()` do wykonywania wyrażeń. Pełna kompilacja używa tej funkcji, aby kompilować szablony, więc nie może być użyta w takich środowiskach.
+Niektóre środowiska, takie jak aplikacje Google Chrome, wymuszają Politykę Bezpieczeństwa Treści (ang. _Content Security Policy_, \*\*CSP), uniemożliwiającą wykorzystywanie `new Function()` do wykonywania wyrażeń. Pełna kompilacja używa tej funkcji, aby kompilować szablony, więc nie może być użyta w takich środowiskach.
 
 Z drugiej strony, kompilacja zawierającą tylko środowisko uruchomieniowe jest w pełni zgodna z CSP. Jeżeli używasz tej kompilacji z [Webpackiem + vue-loader](https://github.com/vuejs-templates/webpack-simple) lub [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), szablony zostaną wcześniej skompilowane do funkcji `render`, która działa bez problemów w środowisku CSP.
 
@@ -255,7 +260,7 @@ Z drugiej strony, kompilacja zawierającą tylko środowisko uruchomieniowe jest
 
 **Ważne** — pliki kompilacji z katalogu `/dist` na GitHubie są aktualizowane tylko przy wydaniach. Aby używać Vue z najnowszego kodu z GitHuba, musisz skompilować je samodzielnie.
 
-``` bash
+```bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
 npm install
@@ -266,7 +271,7 @@ npm run build
 
 Tylko kompilacje UMD są dostępne z Bowera.
 
-``` bash
+```bash
 # latest stable
 $ bower install vue
 ```

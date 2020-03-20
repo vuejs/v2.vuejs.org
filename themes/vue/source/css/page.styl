@@ -10,11 +10,12 @@
 @import "_sidebar"
 @import "_offline-menu"
 @import "_team"
+@import "_partners"
 @import "_style-guide"
 @import "_modal"
 @import "_scrimba"
 @import "_vue-mastery"
-@import "_themes-example"
+@import "_themes"
 
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
@@ -22,7 +23,7 @@
 
 .content
   position: relative
-  padding: 2.2em 0
+  padding: $content-padding-vertical 0
   max-width: 700px
   margin: 0 auto
   padding-left: 50px
@@ -96,7 +97,7 @@
     margin: 1.2em 0 -1.2em
     padding-bottom: 1.2em
     position: relative
-    z-index: 1
+    z-index: $z-base
   ul, ol
     padding-left: 1.5em
     // FIX: Some link click targets are covered without this
@@ -200,7 +201,7 @@
   .content.with-sidebar
     margin-left: 290px
   #ad
-    z-index: 1
+    z-index: $z-base
     position: relative
     padding: 0
     bottom: 0

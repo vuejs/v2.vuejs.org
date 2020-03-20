@@ -441,6 +441,7 @@ To pass scoped slots to a child component using render functions, use the `scope
 
 ``` js
 render: function (createElement) {
+  // `<div><child v-slot="props"><span>{{ props.text }}</span></child></div>`
   return createElement('div', [
     createElement('child', {
       // pass `scopedSlots` in the data object
@@ -523,6 +524,8 @@ Vue.component('my-component', {
 ```
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> 
+> The reference will be HTMLElement when used with functional components because they’re stateless and instanceless.
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 
@@ -639,6 +642,4 @@ For this component, `children` will give you both paragraphs, `slots().default` 
 
 You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 
-{% raw %}
-<script async src="https://jsfiddle.net/phanan/5h0wx9np/embed/result,js,html/"></script>
-{% endraw %}
+<iframe src="https://codesandbox.io/embed/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-template-compilation?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>

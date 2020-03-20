@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Priority D Rules Correct Example</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      .v-enter-active,
+      .v-leave-active {
+        transition: all 1s;
+      }
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .v-leave-active {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <transition>
+        <button v-if="isEditing" key="save" v-on:click="isEditing = false">
+          Save
+        </button>
+        <button v-else key="edit" v-on:click="isEditing = true">
+          Edit
+        </button>
+      </transition>
+
+      <p>
+        With a unique <code>key</code> on each conditional element, the
+        transition is now applied.
+      </p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          isEditing: false
+        }
+      });
+    </script>
+  </body>
+</html>
