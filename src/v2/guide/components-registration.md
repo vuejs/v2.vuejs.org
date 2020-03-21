@@ -133,7 +133,7 @@ Si no está usando un sistema de módulos con `import` o `require`, probablement
 
 ### Registro local en un Sistema de Módulos
 
-Si todavía estás aquí, es probable que estés usando un sistema de módulos, como con Babel y Webpack. En estos casos, recomendamos crear un directorio de `components`, con cada componente en su propio archivo.
+Si todavía está aquí, es probable que esté usando un sistema de módulos, tales como Babel y Webpack. En estos casos, recomendamos crear un directorio de `components`, con cada componente en su propio archivo.
 
 Entonces tendrá que importar cada componente que quiera usar, antes de registrarlo localmente. Por ejemplo, en un hipotético archivo `ComponentB.js` o `ComponentB.vue`:
 
