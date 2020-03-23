@@ -89,5 +89,97 @@ var themeData = [
         image: 'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-light-bootstrap-dashboard/vue-light-bootstrap-dashboard.jpg'
       }
     ]
+  },
+  {
+    name: "MDBootstrap",
+    description: `Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient.`,
+    seeMoreUrl: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
+    products: [
+      {
+        url: "https://mdbootstrap.com/products/vue-ui-kit?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Pro",
+        description: "Premium Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 99
+      },
+      {
+        url: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
+        name: "Vue Material Bootstrap Kit",
+        description: "Free Vue.js UI Kit",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
+        price: 0
+      },
+      {
+        url: "https://mdbootstrap.com/products/vue-admin-dashboard?utm_ref_id=82665",
+        name: " Vue Admin Bootstrap Pro",
+        description: "Premium Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 79
+      },
+      {
+        url: "https://mdbootstrap.com/freebies/vue/admin-dashboard?utm_ref_id=82665",
+        name: "Vue Admin Bootstrap",
+        description: "Free Vue.js Templates Pack",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
+        price: 0
+      }
+    ]
+  },
+  {
+    name: 'PrimeVue',
+    description: `The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) offers over 50 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look&feel that suits you best.`,
+    seeMoreUrl: 'https://www.primefaces.org/primevue/#/?af_id=4218',
+    products: [
+      {
+        name: 'Sapphire',
+        price: 79,
+        description: 'Material Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/sapphire-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/sapphire.jpg'
+      },
+      {
+        name: 'Avalon',
+        price: 79,
+        description: 'Bootstrap Inspired Admin Template',
+        url: 'https://www.primefaces.org/layouts/avalon-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/avalon.jpg'
+      },
+      {
+        name: 'Serenity',
+        price: 79,
+        description: 'Material Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/serenity-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/serenity.jpg'
+      },
+      {
+        name: 'Apollo',
+        price: 79,
+        description: 'Admin Template with a Dark Mode',
+        url: 'https://www.primefaces.org/layouts/apollo-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/apollo.jpg'
+      },
+      {
+        name: 'Babylon',
+        price: 79,
+        description: 'Admin Template with Extensive Options',
+        url: 'https://www.primefaces.org/layouts/babylon-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/babylon.jpg'
+      },
+      {
+        name: 'Roma',
+        price: 59,
+        description: 'Admin Template with a Clean Design System',
+        url: 'https://www.primefaces.org/layouts/roma-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/roma.jpg'
+      },
+      {
+        name: 'Sigma',
+        price: 0,
+        description: 'Free Admin Template',
+        url: 'https://www.primefaces.org/sigma-vue/#/?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/sigma.jpg'
+      }
+    ]
   }
+  
 ]

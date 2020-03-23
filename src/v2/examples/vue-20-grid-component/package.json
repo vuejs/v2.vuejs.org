@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-grid-component",
+  "version": "1.0.0",
+  "description": "This is an example of creating a reusable grid component and using it with external data.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

@@ -6,7 +6,7 @@ order: 601
 
 Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="noopener" title="Vue Reactivity">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="sponsored noopener" title="Vue Reactivity">Watch a video explanation on Vue Mastery</a></div>
 
 ## How Changes Are Tracked
 
@@ -20,7 +20,11 @@ Every component instance has a corresponding **watcher** instance, which records
 
 ## Change Detection Caveats
 
-Due to the limitations of modern JavaScript (and the abandonment of `Object.observe`), Vue **cannot detect property addition or deletion**. Since Vue performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue to convert it and make it reactive. For example:
+Due to limitations in JavaScript, there are types of changes that Vue **cannot detect**. However, there are ways to circumvent them to preserve reactivity.
+
+### For Objects
+
+Vue cannot detect property addition or deletion. Since Vue performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue to convert it and make it reactive. For example:
 
 ``` js
 var vm = new Vue({
@@ -53,7 +57,47 @@ Sometimes you may want to assign a number of properties to an existing object, f
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-There are also a few array-related caveats, which were discussed earlier in the [list rendering section](list.html#Caveats).
+### For Arrays
+
+Vue cannot detect the following changes to an array:
+
+1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
+2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+
+For example:
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // is NOT reactive
+vm.items.length = 2 // is NOT reactive
+```
+
+To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
+
+``` js
+// Vue.set
+Vue.set(vm.items, indexOfItem, newValue)
+```
+``` js
+// Array.prototype.splice
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+You can also use the [`vm.$set`](https://vuejs.org/v2/api/#vm-set) instance method, which is an alias for the global `Vue.set`:
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
+```
+
+To deal with caveat 2, you can use `splice`:
+
+``` js
+vm.items.splice(newLength)
+```
 
 ## Declaring Reactive Properties
 

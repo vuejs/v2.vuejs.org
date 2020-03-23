@@ -3,7 +3,7 @@
     <span>Platinum Sponsors</span>
     <div>
     <%_ for (const sponsor of theme.platinum_sponsors) {_%>
-    <a href="<%- sponsor.url %>" target="_blank" rel="noopener" class="logo">
+    <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo">
       <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>

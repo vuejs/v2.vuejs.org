@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two-way Currency Filter</title>
+    <script src="https://unpkg.com/vue@1.0/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label>Price</label>
+        <input v-model="price | currency" />
+      </div>
+      <div>
+        <label>Shipping</label>
+        <input v-model="shipping | currency" />
+      </div>
+      <div>
+        <label>Handling</label>
+        <input v-model="handling | currency" />
+      </div>
+      <div>
+        <label>Discount</label>
+        <input v-model="discount | currency" />
+      </div>
+
+      <p>Total: ${{ total }}</p>
+    </div>
+
+    <script>
+      Vue.filter("currency", {
+        read: function(value) {
+          return "$" + value.toFixed(2);
+        },
+        write: function(value) {
+          var number = +value.replace(/[^\d.]/g, "");
+          return isNaN(number) ? 0 : number;
+        }
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          price: 0,
+          shipping: 0,
+          handling: 0,
+          discount: 0
+        },
+        computed: {
+          total: function() {
+            return this.price + this.shipping + this.handling - this.discount;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
