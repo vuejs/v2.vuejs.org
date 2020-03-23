@@ -173,6 +173,13 @@ var themeData = [
         image: 'https://www.primefaces.org/vue-templates/roma.jpg'
       },
       {
+        name: 'Ultima',
+        price: 79,
+        description: 'Materal Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/ultima-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/ultima.jpg'
+      },
+      {
         name: 'Sigma',
         price: 0,
         description: 'Free Admin Template',
