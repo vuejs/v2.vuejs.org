@@ -6,7 +6,7 @@ order: 15
 
 ## Base Example
 
-Vue exposes a really nifty API for creating plugins, plugins allow us to modify and add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
+Vue exposes a really nifty API for creating plugins, which allow us to modify existing features or add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
 
 Let's say we want to create a simple abstraction for using Vuex within Vue components, we want to reduce the boilerplate essentially. We can first design how we want the abstraction to look.
 
@@ -49,7 +49,7 @@ import Vue from 'vue'
 
 const plugin = {
   install(LocalVue) {
-    
+    // LocalVue is a reference to the Vue constructor
   }
 }
 
@@ -198,6 +198,10 @@ new Vue({
   // options
 }).$mount('#app')
 ```
+
+## Real-world example
+
+Let's say you work on a team that manages multiple front-end projects that use Vue, so you want to reuse code or maybe build a custom API on top of Vue to help speed up development. Creating a Vue plugin and hosting it on NPM or any other package registry makes a lot of sense for this use case, this way the team can install the plugin and use it across all Vue-based projects.
 
 ## Creating a NPM package
 
