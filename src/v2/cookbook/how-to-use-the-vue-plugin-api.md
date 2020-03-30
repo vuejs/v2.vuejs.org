@@ -201,7 +201,72 @@ new Vue({
 
 ## Real-world example
 
-Let's say you work on a team that manages multiple front-end projects that use Vue, so you want to reuse code or maybe build a custom API on top of Vue to help speed up development. Creating a Vue plugin and hosting it on NPM or any other package registry makes a lot of sense for this use case, this way the team can install the plugin and use it across all Vue-based projects.
+Let's say that you work on a team that manages multiple Vue-based frontend projects and you have noticed that the way you handle global event listeners in Vue contains too much boilerplate.
+
+You decide to build a Vue plugin that can help reduce the boilerplate and make it open-source for all those who are maybe experiencing the same issue as you. This is where building a Vue plugin makes a lot of sense.
+
+### The problem
+
+This is how you usually handle global events in a Vue component but you are not happy with the boilerplate.
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      displaySomething: false,
+    }
+  },
+  methods: {
+    onContextMenu(e) { // e: MouseEvent
+      this.displaySomething = true
+    }
+  },
+  mounted() {
+    window.addEventListener('contextmenu', this.onContextMenu)
+  },
+  destroyed() {
+    window.removeEventListener('contextmenu', this.onContextMenu)
+  }
+}
+</script>
+```
+
+### The solution
+
+We can create a wrapper around the adding/removing of global event listeners and make this process feel more *"Vue-like"*. The proposed API would look something like this:
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      displaySomething: false,
+    }
+  },
+  events: {
+    window: {
+      contextmenu(e) {
+        this.displaySomething = true // You can access the component instance
+      }
+    }
+  }
+}
+</script>
+```
+
+The idea is that we can add a property to the *Vue Options* called `events` then we can add a property for `window` or `document` to the `events` object. We can define what event we want to listen to on window or document by creating a function named after the event.
+
+The above solution would handle removing the global events for you under the hood or you can expose methods to remove the events for you like `this.$events.remove.window.contextmenu()`
+
+The below Codepen contains an implementation of the plugin and how it can be used:
+
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="Naidoo" data-slug-hash="poJxdBy" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Vue Plugin">
+  <span>See the Pen <a href="https://codepen.io/Naidoo/pen/poJxdBy">
+  Vue Plugin</a> by Shailen (<a href="https://codepen.io/Naidoo">@Naidoo</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ## Creating a NPM package
 
