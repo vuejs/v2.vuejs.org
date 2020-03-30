@@ -268,6 +268,8 @@ The below Codepen contains an implementation of the plugin and how it can be use
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
+I ended up creating the Vue plugin and called it [Vuevent](https://vuevent.netlify.com/), the source code is available on [GitHub](https://github.com/ShailenNaidoo/vuevent) if you want to get a bit deeper into building plugins
+
 ## Creating a NPM package
 
 Creating a NPM package is a bit out of the scope of this cookbook but I believe it is a very important part of making a plugin. I would highly recommend you check out this article on how to create a package [How to make a beautiful, tiny npm package and publish it](https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/).
