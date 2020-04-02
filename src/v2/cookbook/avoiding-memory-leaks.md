@@ -138,7 +138,7 @@ Considere los tipos de dispositivos que pueden estar usando sus usuarios y cuál
 
 ## Ejemplo en la vida real
 
-En el ejemplo anterior, se usó una directiva `v-if` para ilustrar la fuga de memoria, sin embargo, un escenario muy común en la vida real es cuando se usa [vue-router](https://router.vuejs.org/en/)para rutear a componentes en una aplicación de una sola página (SPA).
+En el ejemplo anterior, se usó una directiva `v-if` para ilustrar la fuga de memoria, sin embargo, un escenario muy común en la vida real es cuando se usa [vue-router](https://router.vuejs.org/en/) para rutear a componentes en una aplicación de una sola página (SPA).
 
 Al igual que la directiva `v-if`, `vue-router` remueve elementos del DOM virtual y los reemplaza con nuevos elementos cuando el usuario navega a través de la aplicación. El hook de Vue `beforeDestroy()` [lifecycle hook](/v2/guide/instance.html#Lifecycle-Diagram) es un buen lugar para resolver el mismo tipo de fuga cuando la aplicación usa `vue-router`.
 
