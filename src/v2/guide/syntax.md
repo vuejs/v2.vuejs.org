@@ -54,7 +54,7 @@ new Vue({
 </script>
 {% endraw %}
 
-El contenido del `span` se reemplazará con el valor de la propiedad `rawHtml`, interpretado como HTML simple: se ignoran los enlaces de datos. Tenga en cuenta que no puede utilizar `v-html` para componer pantillas parciales, porque Vue no es un motor de plantillas basado en cadenas. En cambio, se prefieren los componentes como la unidad fundamental para la reutilización y la composición de la interfaz de usuario.
+El contenido del `span` se reemplazará con el valor de la propiedad `rawHtml`, interpretado como HTML simple: se ignoran los enlaces de datos. Tenga en cuenta que no puede utilizar `v-html` para componer plantillas parciales, porque Vue no es un motor de plantillas basado en cadenas. En cambio, se prefieren los componentes como la unidad fundamental para la reutilización y la composición de la interfaz de usuario.
 
 <p class="tip">La ejecución dinámica de HTML arbitrario en su sitio web puede ser muy peligrosa porque puede conducir fácilmente a [vulnerabilidades de XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilice solo la interpolación HTML en contenido de confianza y **nunca** en contenido proporcionado por usuario.</p>
 
