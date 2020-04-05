@@ -110,7 +110,7 @@ También puede usar `of` como delimitador en lugar de `in`, de modo que esté m�
 <div v-for="item of items"></div>
 ```
 
-## `v-for` con un Objecto
+## `v-for` con un Objeto
 
 También puede usar `v-for` para iterar a través de las propiedades de un objeto.
 
@@ -261,7 +261,7 @@ example1.items = example1.items.filter(function (item) {
 
 Podría pensar que esto hará que Vue elimine el DOM existente y vuelva a renderizar la lista completa; afortunadamente, ese no es el caso. Vue implementa algunas heurísticas inteligentes para maximizar la reutilización de elementos DOM, por lo tanto, reemplazar una matriz con otra matriz que contenga objetos superpuestos es una operación muy eficiente.
 
-### Cuidados
+### Advertencias
 
 Debido a las limitaciones en JavaScript, Vue **no puede** detectar los siguientes cambios en una matriz:
 
@@ -304,7 +304,7 @@ Para tratar con la advertencia 2, puede usar `splice`:
 vm.items.splice(newLength)
 ```
 
-## Cuidados con la Deteccion de Cambios en Objectos 
+## Advertencias con la Deteccion de Cambios en Objetos 
 
 Una vez más, debido a las limitaciones del JavaScript moderno, **Vue no puede detectar la adición o eliminación de propiedades**. Por ejemplo:
 
