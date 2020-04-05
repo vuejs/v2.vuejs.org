@@ -10,7 +10,7 @@ Bajo el capó, Vue compila las templates en funciones de renderizado del DOM vir
 
 Si está familiarizado con los conceptos de DOM virtual y prefiere la potencia bruta de JavaScript, también puede [escribir directamente funciones de procesamiento](render-function.html) en lugar de plantillas, con soporte opcional de JSX.
 
-## Interpolationes
+## Interpolaciones
 
 ### Texto
 
@@ -58,7 +58,7 @@ El contenido del `span` se reemplazará con el valor de la propiedad `rawHtml`, 
 
 <p class="tip">La ejecución dinámica de HTML arbitrario en su sitio web puede ser muy peligrosa porque puede conducir fácilmente a [vulnerabilidades de XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilice solo la interpolación HTML en contenido de confianza y **nunca** en contenido proporcionado por usuario.</p>
 
-### Attributos
+### Atributos
 
 Los bigotes no se pueden utilizar dentro de los atributos HTML. En su lugar, use una [directiva v-bind](../api/#v-bind):
 
@@ -129,7 +129,7 @@ Aquí el argumento es el nombre del evento a escuchar. Hablaremos sobre el manej
 
 ### Modificadores
 
-Los modificadores son postfijos especiales indicados por un punto, que indican que una directiva debe estar vinculada de alguna manera especial. Por ejemplo, el modificador `.prevent` le dice a la directiva `v-on` que llame a `event.preventDefault()` en el evento activado:
+Los modificadores son sufijos especiales indicados por un punto, que indican que una directiva debe estar vinculada de alguna manera especial. Por ejemplo, el modificador `.prevent` le dice a la directiva `v-on` que llame a `event.preventDefault()` en el evento activado:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"> ... </form>
