@@ -14,13 +14,13 @@ Si está familiarizado con los conceptos de DOM virtual y prefiere la potencia b
 
 ### Texto
 
-La forma más básica de enlace de datos es la interpolación de texto usando la sintaxis de "Bigote" (llaves dobles):
+La forma más básica de enlace de datos es la interpolación de texto usando la sintaxis de _mustaches_ (llaves doble):
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-La etiqueta del bigote se reemplazará con el valor de la propiedad `msg` en el objeto de datos correspondiente. También se actualizará cada vez que cambie la propiedad `msg` del objeto de datos.
+La etiqueta del _mustache_ se reemplazará con el valor de la propiedad `msg` en el objeto de datos correspondiente. También se actualizará cada vez que cambie la propiedad `msg` del objeto de datos.
 
 También puede realizar interpolaciones únicas que no se actualizan en el cambio de datos usando la [directiva v-once](../api/#v-once), pero tenga en cuenta que esto también afectará a cualquier otro enlace en el mismo nodo:
 
@@ -30,7 +30,7 @@ También puede realizar interpolaciones únicas que no se actualizan en el cambi
 
 ### HTML Puro
 
-Los bigotes dobles interpretan los datos como texto plano, no HTML. Para generar HTML real, deberá utilizar la directiva `v-html`:
+Los _mustaches_ (llaves doble) interpretan los datos como texto plano, no HTML. Para generar HTML real, deberá utilizar la directiva `v-html`:
 
 ``` html
 <p>Using mustaches: {{ rawHtml }}</p>
