@@ -6,7 +6,7 @@ order: 15
 
 ## Base Example
 
-Vue exposes a really nifty API for creating plugins, which allow us to modify existing features or add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
+Vue exposes a really nifty API for creating plugins, which allows us to modify existing features or add features to Vue. This cookbook is aimed at showing you how to take a simple idea and turn it into a full-fledged Vue plugin.
 
 Let's say we want to create a simple abstraction for using Vuex within Vue components, we want to reduce the boilerplate essentially. We can first design how we want the abstraction to look.
 
