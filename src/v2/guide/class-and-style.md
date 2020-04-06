@@ -35,7 +35,7 @@ data: {
 }
 ```
 
-Se rendizará:
+Se renderizará:
 
 ``` html
 <div class="static active"></div>
@@ -43,7 +43,7 @@ Se rendizará:
 
 Cuando `isActive` o `hasError` cambien, la lista de clases se actualizará consecuentemente. Por ejemplo, si `hasError` se convierte en `true`, la lista de clases se convertirá en `"static active text-danger"`.
 
-El objecto no tiene por qué ser en línea:
+El objeto no tiene por qué estar en la misma línea:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -77,9 +77,9 @@ computed: {
 }
 ```
 
-### Sintaxis de colección
+### Sintaxis de Array
 
-Pasamos una colección a `v-bind:class` para aplicar una lista de clases:
+Pasamos un array a `v-bind:class` para aplicar una lista de clases:
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]"></div>
@@ -105,7 +105,7 @@ Si le gustaría activar una clase en la lista de manera condicional, usted puede
 
 Esto siempre aplicará `errorClass`, pero solo aplicará `activeClass` cuando `isActive` sea verdadero.
 
-Sin embaro, esto puede ser un poco verboragico si usted tiene multiple clases condicionales. Por eso también es posible utilizar la sintaxis de objeto dentro de la sintaxis de colección:
+Sin embargo, esto puede ser un poco verboragico si usted tiene multiple clases condicionales. Por eso también es posible utilizar la sintaxis de objeto dentro de la sintaxis de colección:
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
@@ -151,7 +151,7 @@ Cuando `isActive` es verdadero, el HTML renderizado será:
 
 ## Enlace de estilos en línea
 
-### Sintaxis de objeto
+### Sintaxis de Objeto
 
 La sintaxis de objeto para `v-bind:style` es muy sencilla - es similar a CSS, excepto que es un objecto JavaScript. Puede usar tanto camelCase como kebab-case (use comillas con kebab-case) para los nombres de propiedades CSS:
 
