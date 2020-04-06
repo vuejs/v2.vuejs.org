@@ -60,7 +60,7 @@ El contenido del `span` se reemplazará con el valor de la propiedad `rawHtml`, 
 
 ### Atributos
 
-Los bigotes no se pueden utilizar dentro de los atributos HTML. En su lugar, use una [directiva v-bind](../api/#v-bind):
+Los _mustaches_ (llaves doble) no se pueden utilizar dentro de los atributos HTML. En su lugar, use una [directiva v-bind](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
