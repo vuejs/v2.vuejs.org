@@ -209,7 +209,7 @@ var watchExampleVM = new Vue({
     answer: 'No puedo darte una respuesta hasta que hagas una pregunta!'
   },
   watch: {
-    // whenever question changes, this function will run
+    // cada vez que la pregunta cambie, esta función será ejecutada
     question: function (newQuestion, oldQuestion) {
       this.answer = 'Esperando que deje de escribir...'
       this.debouncedGetAnswer()
@@ -218,10 +218,10 @@ var watchExampleVM = new Vue({
   created: function () {
     // _.debounce es una función proporcionada por lodash para limitar cuan
     // a menudo se puede ejecutar una operación particularmente costosa.
-    // En este caso, queremos limitar la frecuencia con la que accedemos.
-    // yesno.wtf/api, esperando hasta que el usuario tenga completamente
-    // Terminé de escribir antes de realizar la solicitud ajax. Aprender
-    // más sobre la función _.debounce (y su primo
+    // En este caso, queremos limitar la frecuencia con la que accedemos a
+    // yesno.wtf/api, esperando hasta que el usuario haya terminado
+    // de escribir antes de realizar la solicitud ajax.
+    // Para aprender más sobre la función _.debounce (y su primo
     // _.throttle), visite: https://lodash.com/docs#debounce
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
