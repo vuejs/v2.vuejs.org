@@ -55,6 +55,8 @@ Sometimes you may want to assign a number of properties to an existing object, f
 ``` js
 // instead of `Object.assign(this.someObject, { a: 1, b: 2 })`
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
+// or use the object spread syntax (ECMAScript 2018)
+this.someObject = { ...this.someObject, a: 1, b: 2 };
 ```
 
 ### For Arrays
