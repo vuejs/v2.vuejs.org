@@ -442,6 +442,8 @@ These hooks can be used in combination with CSS transitions/animations or on the
 
 <p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, the hooks will be called synchronously and the transition will finish immediately.</p>
 
+<p class="tip">When using CSS transitions, **the `enter` and `leave` functions should not accept the `done` parameter if they do not use it**. Including the `done` parameter in the function definition signals to Vue that you want to have control over the transition, so not calling it can cause unexpected behavior.</p>
+
 <p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
 
 Now let's dive into an example. Here's a JavaScript transition using Velocity.js:
