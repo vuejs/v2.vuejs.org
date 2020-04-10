@@ -105,7 +105,7 @@ Si le gustaría activar una clase en la lista de manera condicional, usted puede
 
 Esto siempre aplicará `errorClass`, pero solo aplicará `activeClass` cuando `isActive` sea verdadero.
 
-Sin embargo, esto puede ser un poco verboragico si usted tiene multiple clases condicionales. Por eso también es posible utilizar la sintaxis de objeto dentro de la sintaxis de colección:
+Sin embargo, esto puede ser un poco verborrágico si usted tiene multiple clases condicionales. Por eso también es posible utilizar la sintaxis de objeto dentro de la sintaxis de colección:
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
