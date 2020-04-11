@@ -536,7 +536,7 @@ Todo lo que necesita el componente se pasa a través de `contexto`, que es un ob
 - `props`: Un objeto de las propiedades proporcionadas
 - `children`: Un arreglo de los VNode hijos
 - `slots`: Una función retornando un objeto slots
-- `data`: El objeto entero [objecto data](#The-Data-Object-In-Depth), pasado al  componente como segundo argumento de `createElement`
+- `data`: El objeto entero [objeto data](#The-Data-Object-In-Depth), pasado al componente como segundo argumento de `createElement`
 - `parent`: Una referencia al componente padre
 - `listeners`: (2.3.0+) Un objeto que contiene listeners de eventos registrados por los padres. Este es un alias de `data.on`
 - `injections`: (2.3.0+) si está usando la opción [`inject`](../api/#provide-inject) esto contendrá inyecciones resueltas.

@@ -178,7 +178,7 @@ Normalmente no tendrá que usarlos, pero están disponibles para los casos en lo
 //  que está montado en el DOM.
 
 mounted: function () {
-  // Pikaday es una libreria de terceros para Datepickers
+  // Pikaday es una librería de terceros para Datepickers
   this.picker = new Pikaday({
     field: this.$refs.input,
     format: 'YYYY-MM-DD'

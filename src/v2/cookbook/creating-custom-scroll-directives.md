@@ -150,6 +150,6 @@ Podemos entonces usar esta animación en nuestro template, en este caso estamos 
 
 ## Patrones Alternativos
 
-Las directivas personalizadas son extremandamente útiles, pero podrá encontrar algunas situaciones en donde necesite algo muy especifico que ya existe en librerias de Desplazamiento que no quisiera rehacer desde cero usted mismo.
+Las directivas personalizadas son extremandamente útiles, pero podrá encontrar algunas situaciones en donde necesite algo muy especifico que ya existe en librerías de Desplazamiento que no quisiera rehacer desde cero usted mismo.
 
 [Scrollmagic](http://scrollmagic.io/) tiene un ecosistema rico en opciones con las que trabajar, al igual que buena documentación y demos para explorar. Esto icluye, pero no está limitado a cosas como [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [pineado en cascada](http://scrollmagic.io/examples/expert/cascading_pins.html), [limpieza de secciones](http://scrollmagic.io/examples/basic/section_wipes_natural.html), y [duración responsiva](http://scrollmagic.io/examples/basic/responsive_duration.html).
