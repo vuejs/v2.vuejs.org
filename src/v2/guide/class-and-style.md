@@ -153,7 +153,7 @@ Cuando `isActive` es verdadero, el HTML renderizado será:
 
 ### Sintaxis de Objeto
 
-La sintaxis de objeto para `v-bind:style` es muy sencilla - es similar a CSS, excepto que es un objecto JavaScript. Puede usar tanto camelCase como kebab-case (use comillas con kebab-case) para los nombres de propiedades CSS:
+La sintaxis de objeto para `v-bind:style` es muy sencilla - es similar a CSS, excepto que es un objeto JavaScript. Puede usar tanto camelCase como kebab-case (use comillas con kebab-case) para los nombres de propiedades CSS:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>

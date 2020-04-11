@@ -92,7 +92,7 @@ el contenido del archivo `launch.json` generado con la configuración correspond
 
 ## Poniendo un Breakpoint
 
-1. Ponga un breakpoint en **src/components/HolaMundo.vue** en la `linea 90` donde
+1. Ponga un breakpoint en **src/components/HolaMundo.vue** en la `línea 90` donde
 la función `data` devuelve una cadena de texto.
 
   ![Renderizador de Breakpoint](/images/breakpoint_set.png)

@@ -408,7 +408,7 @@ type: api
 
 ### Vue.version
 
-- **Detalles**: Provee la version instalada de Vue como una cadena. Esto es especialmente util para plugins y componentes creados por la comunidad, donde usted puede usar diferentes estrategias para diferentes versiones.
+- **Detalles**: Provee la versión instalada de Vue como una cadena. Esto es especialmente util para plugins y componentes creados por la comunidad, donde usted puede usar diferentes estrategias para diferentes versiones.
 
 - **Uso**:
 

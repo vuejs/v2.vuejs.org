@@ -37,7 +37,7 @@ import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
 // Aquí hay algunas pruebas de Jasmine 2.0, aunque puede
-// usar cualquier libreria que prefiera
+// usar cualquier librería que prefiera
 describe('MyComponent', () => {
   // Inspeccionar las opciones de componentes en bruto
   it('tiene un hook creado', () => {

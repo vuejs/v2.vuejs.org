@@ -7,7 +7,7 @@ order: 404
 
 > En Vue 2.5.0+, hemos mejorado enormemente nuestras declaraciones de tipo para trabajar con la API predeterminada basada en objetos. Al mismo tiempo, introduce algunos cambios que requieren acciones de actualización. Lea [esta publicación del blog](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08) para más detalles.
 
-## Declaración Oficial en Packetes NPM 
+## Declaración Oficial en Packetes NPM
 
 Un sistema de tipo estático puede ayudar a prevenir muchos errores potenciales en el tiempo de ejecución, especialmente a medida que las aplicaciones crecen. Es por eso que Vue se envía con [declaraciones oficiales de tipo](https://github.com/vuejs/vue/tree/dev/types) para [TypeScript](https://www.typescriptlang.org/) - no solo en Vue Core, sino también para [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) y [vuex](https://github.com/vuejs/vuex/tree/dev/types).
 
@@ -18,10 +18,10 @@ Ya que estos se [publican en NPM](https://cdn.jsdelivr.net/npm/vue/types/), y el
 ``` js
 // tsconfig.json
 {
-  "compilerOptions": {    
-    // esto se alinea con el soporte del navegador de Vue    
+  "compilerOptions": {
+    // esto se alinea con el soporte del navegador de Vue
     "target": "es5",
-    // esto permite una inferencia más estricta para las propiedades de datos en `this`    
+    // esto permite una inferencia más estricta para las propiedades de datos en `this`
     "strict": true,
     // si usa webpack 2+ o rollup, para aprovechar la agitación del árbol:
     "module": "es2015",
@@ -54,7 +54,7 @@ Para desarrollar aplicaciones de Vue con TypeScript, recomendamos encarecidament
 
 [WebStorm](https://www.jetbrains.com/webstorm/) también ofrece compatibilidad inmediata con TypeScript y Vue.
 
-## Uso Basico
+## Uso Básico
 
 Para permitir que TypeScript infiera correctamente los tipos dentro de las opciones de componentes de Vue, debe definir los componentes con `Vue.component` o `Vue.extend`:
 
@@ -62,12 +62,12 @@ Para permitir que TypeScript infiera correctamente los tipos dentro de las opcio
 import Vue from 'vue'
 
 const Component = Vue.extend({
-  // tipo inferencia habilitada  
+  // tipo inferencia habilitada
 })
 
 const Component = {
-  // esto NO tendrá inferencia de tipo,  
-  // porque TypeScript no puede decir que esto es opcion para un componente de Vue.  
+  // esto NO tendrá inferencia de tipo,
+  // porque TypeScript no puede decir que esto es opcion para un componente de Vue.
 }
 ```
 
@@ -85,7 +85,7 @@ import Component from 'vue-class-component'
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // Los datos iniciales pueden ser declarados como propiedades de instancia  
+  // Los datos iniciales pueden ser declarados como propiedades de instancia
   message: string = 'Hola!'
 
   // Los métodos de componente se pueden declarar como métodos de instancia
@@ -146,7 +146,7 @@ declare module 'vue/types/options' {
 Las declaraciones anteriores permiten compilar el siguiente código:
 
 ```ts
-// Propiedad Global 
+// Propiedad Global
 console.log(Vue.$myGlobal)
 
 // Opción componente adicional
@@ -169,7 +169,7 @@ const Component = Vue.extend({
     }
   },
   methods: {
-    // necesita anotación debido a `this` en el tipo de retorno    
+    // necesita anotación debido a `this` en el tipo de retorno
     greet (): string {
       return this.msg + ' world'
     }
@@ -180,7 +180,7 @@ const Component = Vue.extend({
       return this.greet() + '!'
     }
   },
-  // `createElement` se deduce, pero `render` necesita un tipo de retorno  
+  // `createElement` se deduce, pero `render` necesita un tipo de retorno
   render (createElement): VNode {
     return createElement('div', this.greeting)
   }
