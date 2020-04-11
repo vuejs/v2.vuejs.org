@@ -176,6 +176,13 @@ Another option for conditionally displaying an element is the `v-show` directive
 The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
 
 <p class="tip">Note that `v-show` doesn't support the `<template>` element, nor does it work with `v-else`.</p>
+  
+However, you can use v-for to conditionally render two elements.
+  
+``` html
+<h1 v-show="inStock">Available</h1>
+<h1 v-show="!inStock">Unavailable</h1>
+```
 
 ## `v-if` vs `v-show`
 
@@ -192,3 +199,5 @@ Generally speaking, `v-if` has higher toggle costs while `v-show` has higher ini
 <p class="tip">Using `v-if` and `v-for` together is **not recommended**. See the [style guide](/v2/style-guide/#Avoid-v-if-with-v-for-essential) for further information.</p>
 
 When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.
+
+
