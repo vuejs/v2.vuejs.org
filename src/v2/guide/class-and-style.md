@@ -54,7 +54,7 @@ The bound object doesn't have to be inline:
 data: {
   classObject: {
     active: true,
-    'text-danger': false
+    text-danger: false
   }
 }
 ```
@@ -73,7 +73,7 @@ computed: {
   classObject: function () {
     return {
       active: this.isActive && !this.error,
-      'text-danger': this.error && this.error.type === 'fatal'
+      text-danger: this.error && this.error.type === 'fatal'
     }
   }
 }
