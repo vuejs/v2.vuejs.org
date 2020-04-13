@@ -445,7 +445,7 @@ De forma similar a la plantilla `v-if`, también puede usar una etiqueta `<templ
 Cuando existen en el mismo nodo, `v-for` tiene una prioridad más alta que `v-if`. Eso significa que el `v-if` se ejecutará en cada iteración del bucle por separado. Esto puede ser útil cuando desea representar nodos solo para _algunos_ elementos, como a continuación:
 
 ``` html
-<li v-for="todo in todos" v-if="!porhacer.isComplete">
+<li v-for="todo in todos" v-if="!todo.isComplete">
   {{ todo }}
 </li>
 ```
@@ -456,8 +456,8 @@ Si, por el contrario, su intención es omitir condicionalmente la ejecución del
 
 ``` html
 <ul v-if="todos.length">
-  <li v-for="porhacer in todos">
-    {{ porhacer }}
+  <li v-for="todo in todos">
+    {{ todo }}
   </li>
 </ul>
 <p v-else>No quedan todos !</p>
@@ -488,34 +488,34 @@ Sin embargo, esto no pasará automáticamente ningún dato al componente, porque
 
 La razón para no inyectar automáticamente el `item` en el componente es porque hace que el componente esté estrechamente acoplado a cómo funciona `v-for`. Ser explícito acerca de dónde provienen sus datos hace que el componente sea reutilizable en otras situaciones.
 
-Aquí hay un ejemplo completo de una lista de porhacer simple:
+Aquí hay un ejemplo completo de una lista de tareas simple:
 
 ``` html
-<div id="porhacer-list-example">
+<div id="todo-list-example">
   <form -on:submit.prevent="addNewTodo">
-    <label for="new-porhacer">Agregar a hacer</label>
+    <label for="new-todo">Agregar tarea</label>
     <input
       v-model="newTodoText"
-      id="new-porhacer"
+      id="new-todo"
       placeholder=E.g. Feed the cat"
     >
     <button>Agregar</button>
   </form>
   <ul>
     <li
-      is="porhacer-item"
-      v-for="(porhacer, index) in todos"
-      v-bind:key="porhacer.id"
-      v-bind:title="porhacer."
-      v-on:remove="todos.splice(, 1)"
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul></div>
   ```
 
-<p class="tip">Note el atributo `is = "porhacer-item"`. Esto es necesario en las plantillas DOM, porque solo un elemento `<li>` es válido dentro de un `<ul>`. Hace lo mismo que `<porhacer-item>`, pero funciona alrededor de un error potencial de análisis del navegador. Ver las [advertencias de análisis de plantillas DOM](components.html#Cuidados-en-Parseo-de-Plantillas-DOM) aprender más.</p>
+<p class="tip">Note el atributo `is = "todo-item"`. Esto es necesario en las plantillas DOM, porque solo un elemento `<li>` es válido dentro de un `<ul>`. Hace lo mismo que `<todo-item>`, pero funciona alrededor de un error potencial de análisis del navegador. Ver las [advertencias de análisis de plantillas DOM](components.html#Cuidados-en-Parseo-de-Plantillas-DOM) aprender más.</p>
 
 ``` js
-.component('porhacer-item', {
+.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
@@ -526,7 +526,7 @@ Aquí hay un ejemplo completo de una lista de porhacer simple:
 })
 
 new Vue({
-  el: '#porhacer-list-example',
+  el: '#todo-list-example',
   data: {
     newTodoText: '',
     todos: [
@@ -558,27 +558,27 @@ new Vue({
 ```
 
 {% raw %}
-<div id="porhacer-list-example" class="demo">
+<div id="todo-list-example" class="demo">
   <form v-on:submit.prevent="addNewTodo">
-    <label for="new-porhacer">Agregar a porhacer</label>
+    <label for="new-todo">Agregar una tarea</label>
     <input
       v-="newTodoText"
-      id="new-porhacer"
+      id="new-todo"
       placeholder="E.g. Feed the cat"
     >
     <button>Agregar</button>
   </form>
   <ul>
     <li
-      is="porhacer-item"
-      v-for="(porhacer, index) in todos"
-      v-bind:key="porhacer.id"
-      v-bind:title="porhacer.title"
-      v-on:remove="todos.splice(, 1)"
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul></div>
 <script>
-.component('porhacer-item', {
+.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
@@ -589,7 +589,7 @@ new Vue({
 })
 
 new Vue({
-  el: '#porhacer-list-example',
+  el: '#todo-list-example',
   data: {
     newTodoText: '',
     todos: [
