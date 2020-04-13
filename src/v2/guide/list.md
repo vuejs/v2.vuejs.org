@@ -304,7 +304,7 @@ Para tratar con la advertencia 2, puede usar `splice`:
 vm.items.splice(newLength)
 ```
 
-## Advertencias con la Deteccion de Cambios en Objetos 
+## Advertencias con la Deteccion de Cambios en Objetos
 
 Una vez más, debido a las limitaciones del JavaScript moderno, **Vue no puede detectar la adición o eliminación de propiedades**. Por ejemplo:
 
@@ -425,7 +425,7 @@ Resultado:
 </script>
 {% endraw %}
 
-## `v-for` en una `<template>`
+## `v-for` en un `<template>`
 
 De forma similar a la plantilla `v-if`, también puede usar una etiqueta `<template>` con `v-for` para renderizar un bloque de varios elementos. Por ejemplo:
 
@@ -440,21 +440,19 @@ De forma similar a la plantilla `v-if`, también puede usar una etiqueta `<templ
 
 ## `v-for` con `v-if`
 
-nota: Tenga en cuenta que no se recomienda usar v-if y v-for juntos. Consulte la [guía de estilo](https://vuejs.org/v2/style-guide/#Avoid-v-if-with-v-for-essential) para más detalles.
-
-
+<p class="tip">Tenga en cuenta que **no se recomienda** usar `v-if` y `v-for` juntos. Consulte la [guía de estilo](https://vuejs.org/v2/style-guide/#Avoid-v-if-with-v-for-essential) para más detalles.</p>
 
 Cuando existen en el mismo nodo, `v-for` tiene una prioridad más alta que `v-if`. Eso significa que el `v-if` se ejecutará en cada iteración del bucle por separado. Esto puede ser útil cuando desea representar nodos solo para _algunos_ elementos, como a continuación:
 
 ``` html
-<li v-for="porhacer in todos" v-if="!porhacer.isComplete">
-  {{ porhacer }}
+<li v-for="todo in todos" v-if="!porhacer.isComplete">
+  {{ todo }}
 </li>
 ```
 
 Lo anterior hace que todos los que no estén completos, se renderizen.
 
-Si, por el contrario, su intención es omitir condicionalmente la ejecución del bucle, puede colocar el `v-if` en un elemento de envoltura (o [`<plantilla>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Por ejemplo:
+Si, por el contrario, su intención es omitir condicionalmente la ejecución del bucle, puede colocar el `v-if` en un elemento de envoltura (o [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Por ejemplo:
 
 ``` html
 <ul v-if="todos.length">
