@@ -596,7 +596,7 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Limpiear los platos',
+        title: 'Lavar los platos',
       },
       {
         id: 2,
