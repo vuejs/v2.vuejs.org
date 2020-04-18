@@ -562,9 +562,9 @@ new Vue({
   <form v-on:submit.prevent="addNewTodo">
     <label for="new-todo">Agregar una tarea</label>
     <input
-      v-="newTodoText"
+      v-model="newTodoText"
       id="new-todo"
-      placeholder="E.g. Feed the cat"
+      placeholder="E.g. Alimentar al gato"
     >
     <button>Agregar</button>
   </form>
@@ -576,13 +576,14 @@ new Vue({
       v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
-  </ul></div>
+  </ul>
+</div>
 <script>
-.component('todo-item', {
+Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button -on:click="$emit(\'remove\')">Remove</button>\
+      <button v-on:click="$emit(\'remove\')">Eliminar</button>\
     </li>\
   ',
   props: ['title']
@@ -595,15 +596,15 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Do the dishes'
+        title: 'Limpiear los platos',
       },
       {
         id: 2,
-        title: 'Take out the trash'
+        title: 'Sacar la basura',
       },
       {
         id: 3,
-        title: 'Mow the lawn'
+        title: 'Cortar el césped'
       }
     ],
     nextTodoId: 4
