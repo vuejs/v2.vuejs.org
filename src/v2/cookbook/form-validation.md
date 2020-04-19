@@ -428,7 +428,8 @@ Comenzamos con una variable que respresenta la URL de la API que está ejecutand
 
 ## Patrones Alternativos
 
-Mientras este libro de recetas se basa en realizar la validación de formularios "a mano", existen, por supuesto, algunas librerías Vue que manejarán muchos de estos detalles por usted. Cambiar a una librería existente puede impactar en el tamaño final de su aplicación, pero los beneficios pueden ser tremendos. Tendrá código probado (probablemente) y también regularmente actualizado. Algunos ejemplos de librerías de validación de formularios para Vue incluyen:
+Mientras este libro de recetas se basa en realizar la validación de formularios "a mano", existen, por supuesto, algunas librerías Vue que manejarán muchos de estos detalles por usted. Cambiar a una librería existente puede impactar en el tamaño final de su aplicación, pero los beneficios pueden ser tremendos. Tendrá código testeado (probablemente) y también regularmente actualizado. Algunos ejemplos de librerías de validación de formularios para Vue incluyen:
+
 
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
