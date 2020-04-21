@@ -1520,7 +1520,7 @@ Este es el orden que recomendamos para las opciones de los componentes. Estas es
     - `beforeDestroy`
     - `destroyed`
 
-10. **Propiedades no reactivas** (propiedades de isntancia independientes del sistema de reactividad)
+10. **Propiedades no reactivas** (propiedades de instancia independientes del sistema de reactividad)
   - `methods`
 
 11. **Renderización** (la descripción declarativa de la salida del componente)
