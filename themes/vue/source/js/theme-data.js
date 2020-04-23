@@ -180,6 +180,13 @@ var themeData = [
         image: 'https://www.primefaces.org/vue-templates/ultima.jpg'
       },
       {
+        name: 'Prestige',
+        price: 59,
+        description: 'Highly Customizable Admin Template',
+        url: 'https://www.primefaces.org/layouts/prestige-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/prestige.jpg'
+      },
+      {
         name: 'Sigma',
         price: 0,
         description: 'Free Admin Template',
