@@ -353,20 +353,15 @@ order: 803
     },
     {
       name: 'Jinjiang',
-      title: 'Mobile Extrapolator',
-      city: 'Hangzhou, China',
+      city: 'Singapore',
       languages: ['zh', 'en'],
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
-      work: {
-        org: 'Alibaba',
-        orgUrl: 'https://www.alibaba.com/'
-      },
       reposOfficial: [
-        'cn.vuejs.org'
+        'cn.vuejs.org', 'vue-docs-zh-cn'
       ],
       reposPersonal: [
-        'apache/incubator-weex'
+        'vue-a11y-utils', 'vue-mark-display', 'mark2slides', 'vue-keyboard-over'
       ]
     },
     {
