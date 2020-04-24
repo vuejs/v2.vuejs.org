@@ -362,7 +362,7 @@ order: 803
       ],
       reposPersonal: [
         'vue-a11y-utils', 'vue-mark-display', 'mark2slides', 'vue-keyboard-over'
-      ],
+      ]
     },
     {
       name: 'Katashin',
