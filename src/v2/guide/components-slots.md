@@ -63,7 +63,7 @@ Cuando desee utilizar datos dentro de un slot, como en:
 </navigation-link>
 ```
 
-Ese slot tiene acceso a las mismas propiedades de instancia (es decir, el mismo `scope`) que el resto de la plantilla. El slot _no_ tiene acceso al "scope" de `<navigation-link>`. Por ejemplo, intentar acceder a `url` no funcionaría:
+Ese slot tiene acceso a las mismas propiedades de instancia (es decir, el mismo `scope`) que el resto de la plantilla. El slot _no_ tiene acceso al _scope_ de `<navigation-link>`. Por ejemplo, intentar acceder a `url` no funcionaría:
 
 ```html
 <navigation-link url="/profile">
