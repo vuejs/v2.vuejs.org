@@ -411,7 +411,7 @@ Por ejemplo, estamos implementando un componente `<todo-list>` que contiene la l
 </ul>
 ```
 
-En lugar de hard-code cada "todo", podemos dejar que el componente padre tome el control haciendo de cada "todo" un slot, y luego vincular `todo` como una propiedad del slot:
+En lugar de _hard-code_ cada _todo_, podemos dejar que el componente padre tome el control haciendo de cada _todo_ un slot, y luego vincular `todo` como una propiedad del slot:
 
 ```html
 <ul>
