@@ -89,7 +89,7 @@ Hay casos en que es útil especificar el contenido alternativo (es decir, por de
 </button>
 ```
 
-Podríamos querer que el texto "Enviar" se muestre la mayor parte del tiempo dentro del `<botón>` . Para hacer que "Enviar" sea el contenido alternativo, podemos colocarlo entre las etiquetas `<slot>`:
+Podríamos querer que el texto "Enviar" se muestre la mayor parte del tiempo dentro del `<button>` . Para hacer que "Enviar" sea el contenido alternativo, podemos colocarlo entre las etiquetas `<slot>`:
 
 ```html
 <button type="submit">
