@@ -212,7 +212,7 @@ De cualquier manera, el HTML renderizado será:
   </header>
   <main>
     <p>Un párrafo para el contenido principal.</p>
-    <p>Y otra más.</p>
+    <p>Y otro más.</p>
   </main>
   <footer>
     <p>Aquí va alguna información de contacto</p>
