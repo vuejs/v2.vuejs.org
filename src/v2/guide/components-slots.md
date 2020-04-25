@@ -284,7 +284,7 @@ Esto puede acortarse aún más. Así como se asume que el contenido no especific
 </current-user>
 ```
 
-Obsérvese que la sintaxis abreviada del slot por defecto **no** puede mezclarse con los slots con nombre, ya que ello daría lugar a una ambigüedad en el slot:
+Observe que la sintaxis abreviada del slot por defecto **no** puede mezclarse con los slots con nombre, ya que ello daría lugar a una ambigüedad en el slot:
 
 ``` html
 <!-- INVÁLIDO, resultará en una advertencia -->
