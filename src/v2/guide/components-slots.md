@@ -69,7 +69,7 @@ Ese slot tiene acceso a las mismas propiedades de instancia (es decir, el mismo 
 <navigation-link url="/profile">
   Haciendo clic aquí te enviará a: {{ url }}
   <!--
-  La `url` será indefinida, porque este contenido se pasa _a_ <navigation-link>, 
+  La `url` estará _undefined_, porque este contenido se pasa _a_ <navigation-link>, 
   en lugar de definirlo _dentro_ del componente <navigation-link>.
   -->
 </navigation-link>
