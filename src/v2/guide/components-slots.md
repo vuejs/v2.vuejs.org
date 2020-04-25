@@ -1,7 +1,7 @@
 ---
-título: Slots
-tipo: guía
-orden: 104
+title: Slots
+type: guide
+order: 104
 ---
 
 > Esta página asume que ya ha leído [Conceptos Básicos de Componentes](components.html). Léalo primero si es nuevo con respecto a componentes.
