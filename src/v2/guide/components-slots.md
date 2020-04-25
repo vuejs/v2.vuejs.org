@@ -431,7 +431,7 @@ En lugar de _hard-code_ cada _todo_, podemos dejar que el componente padre tome 
 </ul>
 ```
 
-Ahora, cuando usamos el componente `<todo-list>`, podemos opcionalmente definir una `<template>` alternativa para cada elemento "todo", pero con acceso a los datos del hijo:
+Ahora, cuando usamos el componente `<todo-list>`, podemos opcionalmente definir un `<template>` alternativa para cada elemento _todo_, pero con acceso a los datos del hijo:
 
 ```html
 <todo-list v-bind:todos="todos">
