@@ -220,7 +220,7 @@ De cualquier manera, el HTML renderizado será:
 </div>
 ```
 
-Note que **`v-slot` sólo puede ser agregado a un `<template>`** (con [una excepción](#Abbreviated-Syntax-for-Lone-Default-Slots)), a diferencia del atributo depreciado [`slot`](#Deprecated-Syntax).
+Note que **`v-slot` sólo puede ser agregado a un `<template>`** (con [una excepción](#Abbreviated-Syntax-for-Lone-Default-Slots)), a diferencia del atributo obsoleto [`slot`](#Deprecated-Syntax).
 
 ## Slots con Scope
 
