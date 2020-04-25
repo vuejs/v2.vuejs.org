@@ -4,7 +4,7 @@ tipo: guía
 orden: 104
 ---
 
-> Esta página asume que ya ha leído [Conceptos Básicos de componentes](components.html). Léalo primero si es nuevo en los componentes.
+> Esta página asume que ya ha leído [Conceptos Básicos de Componentes](components.html). Léalo primero si es nuevo con respecto a componentes.
 
 > En la 2.6.0 introdujimos una nueva sintaxis unificada (la directiva `v-slot`) para los slots con nombre y scope. Este sustituye los atributos "slot" y "slot-scope", que ahora están obsoletos, pero que _no_ han sido eliminados y todavía están documentados [aquí](#Sintaxis obsoleta). La razón para introducir la nueva sintaxis se describe en este [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md).
 
