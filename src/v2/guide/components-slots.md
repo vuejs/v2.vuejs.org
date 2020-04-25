@@ -536,7 +536,7 @@ El atributo `slot-scope` también puede ser usado directamente en un elemento no
 </slot-example>
 ```
 
-El valor del `slot-scope` puede aceptar cualquier expresión JavaScript válida que pueda aparecer en la posición del argumento de una definición de función. Esto significa que en los entornos soportados ([single-file components](single-file-components.html) o [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) también se puede utilizar [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) en la expresión, de la siguiente forma:
+El valor del `slot-scope` puede aceptar cualquier expresión JavaScript válida que pueda aparecer en la posición del argumento de una definición de función. Esto significa que en los entornos soportados ([componentes de un solo archivo](single-file-components.html) o [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) también se puede utilizar [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) en la expresión, de la siguiente forma:
 
 ``` html
 <slot-example>
