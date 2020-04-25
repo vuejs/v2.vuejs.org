@@ -514,7 +514,7 @@ Para recibir propiedades pasadas a un slot, el componente padre puede usar `<tem
 </slot-example>
 ```
 
-Aquí, `Slot-scope` declara el objeto de propiedades recibido como la variable `SlotProps`, y lo hace disponible dentro del scope del `<template>`. Puedes nombrar "SlotProps" como quieras, de forma similar a como se nombran los argumentos de las funciones en JavaScript.
+Aquí, `slot-scope` declara el objeto de propiedades recibido como la variable `slotProps`, y lo hace disponible dentro del scope del `<template>`. Puedes nombrar `slotProps` como quieras, de forma similar a como se nombran los argumentos de las funciones en JavaScript.
 
 Aquí `slot="default"` puede ser omitido al estar implícito:
 
