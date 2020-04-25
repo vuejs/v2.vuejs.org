@@ -254,7 +254,7 @@ Para hacer que `user` esté disponible para el contenido del slot en el padre, p
 </span>
 ```
 
-Las propiedades ligadas a un elemento `<slot>` se llaman "**slots props**. Ahora, en el scope del padre, podemos usar `v-slot` con un valor para definir un nombre para las propiedades del slot que nos han proporcionado:
+Las propiedades ligadas a un elemento `<slot>` se llaman **slots props**. Ahora, en el scope del padre, podemos usar `v-slot` con un valor para definir un nombre para las propiedades del slot que nos han proporcionado:
 
 ``` html
 <current-user>
