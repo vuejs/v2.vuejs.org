@@ -194,7 +194,7 @@ Sin embargo, todavía puede envolver el contenido del slot por defecto en un `<t
 
   <template v-slot:por defecto>
     <p>Un párrafo para el contenido principal.</p>
-    <p>Y otra más. </p>
+    <p>Y otro más.</p>
   </template>
 
   <template v-slot:footer>
