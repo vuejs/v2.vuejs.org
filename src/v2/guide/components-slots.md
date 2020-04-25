@@ -473,7 +473,7 @@ O, el atributo `slot` también puede ser usado directamente en un elemento norma
 
 ```html
 <base-layout>
-    <h1 slot="header">Aquí podría ir un título de página</h1>
+  <h1 slot="header">Aquí podría ir un título de página</h1>
   
   <p>Un párrafo para el contenido principal.</p>
   <p>Y otro más.</p>
