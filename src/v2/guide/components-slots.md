@@ -264,7 +264,7 @@ Las propiedades ligadas a un elemento `<slot>` se llaman **slots props**. Ahora,
 </current-user>
 ```
 
-En este ejemplo, hemos elegido nombrar al objeto que contiene todos nuestras propiedades del slot "SlotProps", pero puede usar el nombre que prefiera.
+En este ejemplo, hemos elegido nombrar al objeto que contiene todos nuestras propiedades del slot "slotProps", pero puede usar el nombre que prefiera.
 
 ### Sintaxis abreviada para los Slots Solitarios por Defecto
 
