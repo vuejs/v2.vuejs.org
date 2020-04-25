@@ -320,7 +320,7 @@ function (slotProps) {
 }
 ```
 
-Esto significa que el valor de `v-slot` puede aceptar cualquier expresión JavaScript válida que pueda aparecer en la posición del argumento de una definición de función. Así que en los entornos compatibles ([componentes single-file](single-file-components.html) o [navegadores modernos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)), también se puede utilizar [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) para sacar propiedades específicos del slot , tales como:
+Esto significa que el valor de `v-slot` puede aceptar cualquier expresión JavaScript válida que pueda aparecer en la posición del argumento de una definición de función. Así que en los entornos compatibles ([componentes de un solo archivo](single-file-components.html) o [navegadores modernos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)), también se puede utilizar [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) para sacar propiedades específicas del slot , tales como:
 
 ``` html
 <current-user v-slot="{ user }">
