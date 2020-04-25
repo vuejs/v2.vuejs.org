@@ -97,7 +97,7 @@ Podríamos querer que el texto "Enviar" se muestre la mayor parte del tiempo den
 </button>
 ```
 
-Ahora, cuando usamos el `<submit-button>` en un componente padre, sin incluir contenido en el slot:
+Ahora, cuando usamos `<submit-button>` en un componente padre, sin incluir contenido en el slot:
 
 ```html
 <submit-button></submit-button>
