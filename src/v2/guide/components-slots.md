@@ -77,7 +77,7 @@ Ese slot tiene acceso a las mismas propiedades de instancia (es decir, el mismo 
 
 Como regla, recuerde esto:
 
-> Todo en la plantilla de los padres está compilado en el scope de los padres; todo en la plantilla de los hijos está compilado en el scope de los hijos.
+> Todo en la plantilla de los padres está compilado en el _scope_ de los padres; todo en la plantilla de los hijos está compilado en el _scope_ de los hijos.
 
 ## Contenido alternativo
 
