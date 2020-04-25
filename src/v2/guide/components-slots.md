@@ -174,7 +174,7 @@ Para proporcionar contenido a los slots con nombre, podemos usar la directiva `v
   </template>
 
   <p>Un párrafo para el contenido principal.</p>
-  <p>Y otra más. </p>
+  <p>Y otro más.</p>
 
   <template v-slot:footer>
     <p>Aquí va alguna información de contacto</p>
