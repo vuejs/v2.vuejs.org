@@ -526,7 +526,7 @@ Aquí `slot="default"` puede ser omitido al estar implícito:
 </slot-example>
 ```
 
-El atributo `slot-scope` también puede ser usado directamente en un elemento no-`<template>` (incluyendo componentes):
+El atributo `slot-scope` también puede ser usado directamente en un elemento sin `<template>` (incluyendo componentes):
 
 ``` html
 <slot-example>
