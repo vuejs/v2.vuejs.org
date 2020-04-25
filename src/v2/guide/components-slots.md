@@ -483,7 +483,7 @@ O, el atributo `slot` también puede ser usado directamente en un elemento norma
 </base-layout>
 ```
 
-Todavía puede haber un slot sin nombre, que es el **slot por defecto** que sirve como un comodín para cualquier contenido sin igual. En los dos ejemplos anteriores, el HTML renderizado sería:
+Todavía puede haber un slot sin nombre, que es el **slot por defecto** que sirve como un comodín para cualquier contenido sin slot. En los dos ejemplos anteriores, el HTML renderizado sería:
 
 ``` html
 <div class="container">
