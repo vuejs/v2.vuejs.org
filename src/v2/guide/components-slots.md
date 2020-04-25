@@ -446,7 +446,7 @@ Sin embargo, incluso esto apenas roza la superficie de lo que los slots con scop
 
 ## Sintaxis obsoleta
 
-> La directiva `v-slot` fue introducida en la versión 2.6.0, ofreciendo una API alternativa y mejorada a los, aún soportados, atributos  `slot` y `slot-scope`. El fundamento completo de la introducción del `v-slot` se describe en este [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md). Los atributos `slot` y `slot-scope` continuarán siendo soportados en todas las futuras versiones 2.x, pero están oficialmente obsoletos y serán eventualmente retirados en la versión 3.
+> La directiva `v-slot` fue introducida en la versión 2.6.0, ofreciendo una API alternativa y mejorada a los, aún soportados, atributos `slot` y `slot-scope`. El fundamento completo de la introducción del `v-slot` se describe en este [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md). Los atributos `slot` y `slot-scope` continuarán siendo soportados en todas las futuras versiones 2.x, pero están oficialmente obsoletos y serán eventualmente retirados en la versión 3.
 
 ### Slots con nombre con el atributo `slot`
 
