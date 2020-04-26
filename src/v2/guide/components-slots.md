@@ -81,7 +81,7 @@ Como regla, recuerde esto:
 
 ## Contenido alternativo
 
-Hay casos en que es útil especificar el contenido alternativo (es decir, por defecto) para un slot, que se renderizará sólo cuando no se proporcione ningún contenido. Por ejemplo, en un componente `<submit-button>`:
+Hay casos en que es útil especificar el contenido alternativo (es decir, por defecto) para un slot, que se renderizará solo cuando no se proporcione ningún contenido. Por ejemplo, en un componente `<submit-button>`:
 
 ```html
 <button type="submit">
@@ -220,13 +220,13 @@ De cualquier manera, el HTML renderizado será:
 </div>
 ```
 
-Note que **`v-slot` sólo puede ser agregado a un `<template>`** (con [una excepción](#Abbreviated-Syntax-for-Lone-Default-Slots)), a diferencia del atributo obsoleto [`slot`](#Deprecated-Syntax).
+Note que **`v-slot` solo puede ser agregado a un `<template>`** (con [una excepción](#Abbreviated-Syntax-for-Lone-Default-Slots)), a diferencia del atributo obsoleto [`slot`](#Deprecated-Syntax).
 
 ## Slots con Scope
 
 > Actualizado en 2.6.0+. [Ver aquí](#Sintaxis-Obsoleta) para la sintaxis obsoleta usando el atributo "slot-scope".
 
-A veces, es útil para el contenido del slot tener acceso a los datos sólo disponibles en el componente hijo. Por ejemplo, imagine un componente `<current-user>` con la siguiente plantilla:
+A veces, es útil para el contenido del slot tener acceso a los datos solo disponibles en el componente hijo. Por ejemplo, imagine un componente `<current-user>` con la siguiente plantilla:
 
 ```html
 <span>
@@ -242,9 +242,9 @@ Podríamos querer reemplazar este contenido alternativo para mostrar el nombre d
 </current-user>
 ```
 
-Eso no funcionará, sin embargo, porque solo el componente `<current-user>` tiene acceso al `user` y el contenido que estamos proporcionando se ha renderizado en el padre.
+No obstante eso no funcionará, porque solo el componente <current-user> tiene acceso a _user_  y el contenido que estamos proporcionando se renderiza en el padre.
 
-Para hacer que `user` esté disponible para el contenido del slot en el padre, podemos vincular `user` como un atributo al elemento `<slot>`:
+Para hacer que _user_ esté disponible para el contenido del slot en el padre, podemos vincularlo como un atributo al elemento `<slot>`:
 
 ``` html
 <span>
@@ -377,7 +377,7 @@ Similar a `v-on` y `v-bind`, `v-slot` también tiene una abreviatura, reemplazan
 </base-layout>
 ```
 
-Sin embargo, al igual que con otras directivas, la abreviatura sólo está disponible cuando se proporciona un argumento. Eso significa que la siguiente sintaxis es inválida:
+Sin embargo, al igual que con otras directivas, la abreviatura solo está disponible cuando se proporciona un argumento. Eso significa que la siguiente sintaxis es inválida:
 
 ``` html
 <!-- Esto activará una advertencia -->
