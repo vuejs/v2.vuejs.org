@@ -672,18 +672,22 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
+      
       // string method name
       b: 'someMethod',
+      
       // the callback will be called whenever any of the watched object properties change regardless of their nested depth
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
+      
       // the callback will be called immediately after the start of the observation
       d: {
         handler: 'someMethod',
         immediate: true
       },
+      
       // you can pass array of callbacks, they will be called one-by-one
       e: [
         'handle1',
@@ -693,6 +697,7 @@ type: api
           /* ... */
         }
       ],
+      
       // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
     }
