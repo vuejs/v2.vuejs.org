@@ -192,7 +192,7 @@ Sin embargo, todavía puede envolver el contenido del slot por defecto en un `<t
     <h1>Aquí podría ir un título de página</h1>
   </template>
 
-  <template v-slot:por defecto>
+  <template v-slot:default>
     <p>Un párrafo para el contenido principal.</p>
     <p>Y otro más.</p>
   </template>
