@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-jexia-todomvc",
+  "version": "1.0.0",
+  "description": "This is a fully spec-compliant TodoMVC implementation, build on top of jexia.com platform.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

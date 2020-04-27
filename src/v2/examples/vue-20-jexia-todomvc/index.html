@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TodoMVC</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/jexia-sdk-js@4.10.0/bundle/browser.umd.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/todomvc-app-css@2.2.0/index.css" />
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo"
+        @keyup.enter="addTodo" />
+    </header>
+    <section class="main" v-show="todos.length" v-cloak>
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
+      <label for="toggle-all"></label>
+      <ul class="todo-list">
+        <li v-for="todo in filteredTodos" class="todo" :key="todo.id"
+          :class="{ completed: todo.done, editing: todo == editedTodo }">
+          <div class="view">
+            <input class="toggle" type="checkbox" v-model="todo.done" @change="change(todo.id, todo.done)" />
+            <label @dblclick="editTodo(todo)">{{ todo.text }}</label>
+            <button class="destroy" @click="removeTodo(todo)"></button>
+          </div>
+          <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)"
+            @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" />
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+      <span class="todo-count">
+        <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
+      </span>
+      <ul class="filters">
+        <li>
+          <a href="#/all" :class="{ selected: visibility == 'all' }">All</a>
+        </li>
+        <li>
+          <a href="#/active" :class="{ selected: visibility == 'active' }">Active</a>
+        </li>
+        <li>
+          <a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a>
+        </li>
+      </ul>
+      <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        Clear completed
+      </button>
+    </footer>
+  </section>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="http://evanyou.me">Evan You</a> & Mikhail Bilokon</p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
+
+  <script>
+    // Full spec-compliant TodoMVC with jexia.com persistence
+    // and hash-based routing.
+    const dataModule = jexia.dataOperations();
+    // Jexia Dataset - persistence cloud storage
+    // Below is a test credentials.
+    let jexiaAPI = {
+      projectID: "4debe611-fb9b-4734-949c-6d39bb9ec4ae", // Your Project ID at Jexia
+      key: "b8876695-2a25-4b12-99eb-d30ef6af8fd6", // Your API key at Jexia
+      secret: "0ZyHP8RqClSx8DP3Wed0N44YfHPU02mffFsKBsLOkM0Hag+ds3uZpdn1Egkdc0XUgVfQ3kJetZjJqxfJJq494w==" // Your API secret at JEXIA
+    };
+    jexia.jexiaClient().init(jexiaAPI, dataModule);
+    let jxTodo = dataModule.dataset("todo")
+
+    // visibility filters
+    let filters = {
+      all: function (todos) {
+        return todos;
+      },
+      active: function (todos) {
+        return todos.filter(function (todo) {
+          return !todo.done;
+        });
+      },
+      completed: function (todos) {
+        return todos.filter(function (todo) {
+          return todo.done;
+        });
+      }
+    };
+
+    // app Vue instance
+    let app = new Vue({
+      // app initial state
+      data: {
+        todos: [],
+        newTodo: "",
+        editedTodo: null,
+        visibility: "all"
+      },
+
+      mounted() {
+        // Fetch ToDo list from Jexia
+        jxTodo
+          .select()
+          .sortAsc("created_at")
+          .subscribe(
+            data => {
+              this.todos = data
+            },
+            error => console.log(error)
+          )
+      },
+
+      // computed properties
+      // http://vuejs.org/guide/computed.html
+      computed: {
+        filteredTodos: function () {
+          return filters[this.visibility](this.todos);
+        },
+        remaining: function () {
+          return filters.active(this.todos).length;
+        },
+        allDone: {
+          get: function () {
+            return this.remaining === 0;
+          },
+          set: function (value) {
+            this.todos.forEach(function (todo) {
+              todo.completed = value;
+            });
+          }
+        }
+      },
+
+      filters: {
+        pluralize: function (n) {
+          return n === 1 ? "item" : "items";
+        }
+      },
+
+      // methods that implement data logic.
+      // note there's no DOM manipulation here at all.
+      methods: {
+        change: function (id, done) {
+          // if id in object Jexia will find record automatically
+          jxTodo
+            .update({
+              "id": id,
+              "done": done
+            })
+            .subscribe(
+              data => { },
+              error => console.log(error)
+            )
+        },
+        addTodo: function () {
+          let value = this.newTodo && this.newTodo.trim();
+          if (!value) {
+            return;
+          }
+          jxTodo
+            .insert({
+              text: value,
+              done: false
+            })
+            .subscribe(
+              data => {
+                this.todos.push(data[0]); //data[0] - as Jexia is support butchs and always back array
+                this.newTodo = "";
+              },
+              error => console.log(error)
+            )
+        },
+
+        removeTodo: function (todo) {
+          jxTodo
+            .delete()
+            .where(field => field("id").isEqualTo(todo.id))
+            .subscribe(
+              data => {
+                this.todos.splice(this.todos.indexOf(todo), 1);
+              },
+              error => console.log(error)
+            )
+        },
+
+        editTodo: function (todo) {
+          this.beforeEditCache = todo.title;
+          this.editedTodo = todo;
+        },
+
+        doneEdit: function (todo) {
+          if (!this.editedTodo) {
+            return;
+          }
+          this.editedTodo = null;
+          todo.text = todo.text.trim();
+          if (!todo.text) {
+            this.removeTodo(todo);
+          } else {
+            jxTodo
+            .update({
+              "id": todo.id,
+              "text":todo.text
+            })
+            .subscribe(
+              data => { },
+              error => console.log(error)
+            )
+          }
+        },
+
+        cancelEdit: function (todo) {
+          this.editedTodo = null;
+          todo.title = this.beforeEditCache;
+        },
+
+        removeCompleted: function () {
+          this.todos = filters.active(this.todos);
+        }
+      },
+
+      // a custom directive to wait for the DOM to be updated
+      // before focusing on the input field.
+      // http://vuejs.org/guide/custom-directive.html
+      directives: {
+        "todo-focus": function (el, binding) {
+          if (binding.value) {
+            el.focus();
+          }
+        }
+      }
+    });
+
+    // handle routing
+    function onHashChange() {
+      let visibility = window.location.hash.replace(/#\/?/, "");
+      if (filters[visibility]) {
+        app.visibility = visibility;
+      } else {
+        window.location.hash = "";
+        app.visibility = "all";
+      }
+    }
+
+    window.addEventListener("hashchange", onHashChange);
+    onHashChange();
+
+    // mount
+    app.$mount(".todoapp");
+  </script>
+</body>
+
+</html>

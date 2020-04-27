@@ -1,7 +1,7 @@
 ---
 title: HackerNews Clone
 type: examples
-order: 12
+order: 13
 ---
 
 > This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + Vue Router + Vuex, with server-side rendering.
