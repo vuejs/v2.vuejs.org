@@ -781,6 +781,21 @@ order: 803
 
   var partners = [
     {
+      name: 'Maria Lamardo',
+      title: 'Front End Engineer at Pendo',
+      city: 'Raleigh, NC, USA',
+      languages: ['en', 'es'],
+      work: {
+        role: 'Front End Engineer',
+        org: 'Pendo'
+      },
+      github: 'mlama007',
+      twitter: 'MariaLamardo',
+      reposPersonal: [
+        'vuejs/events'
+      ]
+    },
+    {
       name: 'Pratik Patel',
       title: 'Organizer of VueConf US',
       city: 'Atlanta, GA, USA',
