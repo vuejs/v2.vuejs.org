@@ -94,6 +94,9 @@ gold_sponsors:
   - url: 'https://www.primefaces.org/primevue'
     img: primevue.png
     name: PrimeVue
+  - url: 'https://cooltechzone.com/netflix-vpn'
+    img: netflix_vpn.png
+    name: Netflix VPN
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
