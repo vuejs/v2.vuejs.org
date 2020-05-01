@@ -6,6 +6,8 @@ order: 102
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/reusable-components-with-props?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how component props work with Vue School">Learn how component props work with a free lesson on Vue School</a></div>
+
 ## Prop Casing (camelCase vs kebab-case)
 
 HTML attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you're using in-DOM templates, camelCased prop names need to use their kebab-cased (hyphen-delimited) equivalents:

@@ -1,108 +1,110 @@
-<div class="sidebar">
-  <div class="sidebar-inner-index">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
+<main role="main">
+  <div class="sidebar">
+    <div class="sidebar-inner-index">
+      <ul class="main-menu">
+        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
-    </div><div class="right">
-      <h2 class="vue">Vue.js</h2>
-      <h1>
+  <div id="hero">
+    <div class="inner">
+      <div class="left">
+        <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
+      </div><div class="right">
+        <h2 class="vue">Vue.js</h2>
+        <h1>
         Прогресивний<br>JavaScript фреймворк
-      </h1>
-      <p>
-        <a id="modal-player" class="button has-icon" href="javascript:;">
-          <%- partial('icons/play') %>
+        </h1>
+        <p>
+          <a id="modal-player" class="button has-icon" href="javascript:;">
+            <%- partial('icons/play') %>
           ЧОМУ VUE.JS?</a>
         <a class="button white" href="<%- url_for("/v2/guide/") %>">РОЗПОЧАТИ</a>
-        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
-          <%- partial('icons/github-dark') %>
-          GITHUB</a>
-      </p>
+          <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
+            <%- partial('icons/github-dark') %>
+            GITHUB</a>
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="special">
+  <div id="special">
   <h3>Спеціальний спонсор</h3>
-  <% var specialSponsor = theme.special_sponsors[0]; %>
-  <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
-    <br>
-    <span><%- specialSponsor.description %></span>
-  </a>
-</div>
+    <% var specialSponsor = theme.special_sponsors[0]; %>
+    <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
+      <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
+      <br>
+      <span><%- specialSponsor.description %></span>
+    </a>
+  </div>
 
-<div id="highlights">
-  <div class="inner">
-    <div class="point">
+  <div id="highlights">
+    <div class="inner">
+      <div class="point">
       <h2>Доступний</h2>
       <p>Вже знайомі з HTML, CSS та JavaScript? Прочитайте посібник та почніть створювати новий веб без вагань!</p>
-    </div>
+      </div>
 
-    <div class="point">
+      <div class="point">
       <h2>Універсальний</h2>
       <p>Постійно пристосовувана екосистема, яка здатна масштабовуватися між простою бібліотекою та повнофункціональним фреймворком.</p>
-    </div>
+      </div>
 
-    <div class="point">
+      <div class="point">
       <h2>Продуктивний</h2>
-      <p>
+        <p>
         20КБ min+gzip<br>
         Надшвидка віртуальна DOM<br>
         Мінімальні зусилля по оптимізації
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="sponsors">
+    <div class="inner">
+      <%- partial('partials/sponsors') %>
+    </div>
+  </div>
+
+  <div id="news">
+    <div class="inner">
+    <h3><label for="member_email">Підпишіться на нашу щотижневу розсилку</label></h3>
+      <form
+        class="newsletter-form"
+        id="revue-form"
+        name="revue-form"
+        target="_blank"
+        rel="noopener"
+        action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
+        method="post"
+        @submit="subscribe"
+      >
+        <input
+          class="newsletter-input"
+          type="email"
+          name="member[email]"
+          id="member_email"
+          required
+        placeholder="Email адреса"
+        >
+        <input
+          class="button newsletter-button"
+          type="submit"
+        value="Підписатися"
+          name="member[subscribe]"
+          id="member_submit"
+        >
+      </form>
+      <p>
+      Читайте попередні випуски та прослуховуйте наш подкаст на сайті <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
       </p>
     </div>
   </div>
-</div>
+</main>
 
-<div id="sponsors">
-  <div class="inner">
-    <%- partial('partials/sponsors') %>
-  </div>
-</div>
-
-<div id="news">
-  <div class="inner">
-    <h3><label for="member_email">Підпишіться на нашу щотижневу розсилку</label></h3>
-    <form
-      class="newsletter-form"
-      id="revue-form"
-      name="revue-form"
-      target="_blank"
-      rel="noopener"
-      action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
-      method="post"
-      @submit="subscribe"
-    >
-      <input
-        class="newsletter-input"
-        type="email"
-        name="member[email]"
-        id="member_email"
-        required
-        placeholder="Email адреса"
-      >
-      <input
-        class="button newsletter-button"
-        type="submit"
-        value="Підписатися"
-        name="member[subscribe]"
-        id="member_submit"
-      >
-    </form>
-    <p>
-      Читайте попередні випуски та прослуховуйте наш подкаст на сайті <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
-    </p>
-  </div>
-</div>
-
-<div id="footer">
+<footer id="footer" role="contentinfo">
   <p>
     <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
       <%- partial('icons/github') %>

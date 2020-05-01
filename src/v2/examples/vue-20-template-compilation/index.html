@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template Compilation</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <textarea v-model="templateText" rows="7"></textarea>
+      <div v-if="typeof result === 'object'">
+        <label>render:</label>
+        <pre><code>{{ result.render }}</code></pre>
+        <label>staticRenderFns:</label>
+        <pre
+          v-for="(fn, index) in result.staticRenderFns"
+        ><code>_m({{ index }}): {{ fn }}</code></pre>
+        <pre
+          v-if="!result.staticRenderFns.length"
+        ><code>{{ result.staticRenderFns }}</code></pre>
+      </div>
+      <div v-else>
+        <label>Compilation Error:</label>
+        <pre><code>{{ result }}</code></pre>
+      </div>
+    </div>
+
+    <script type="text/template" id="defaultTemplateText">
+      <div>
+        <header>
+          <h1>I'm a template!</h1>
+        </header>
+        <p v-if="message">{{ message }}</p>
+        <p v-else>No message.</p>
+      </div>
+    </script>
+
+    <script>
+      new Vue({
+        el: "#app",
+
+        data: function() {
+          return {
+            templateText: document
+              .querySelector("#defaultTemplateText")
+              .innerHTML.trim()
+          };
+        },
+
+        computed: {
+          result: function() {
+            if (!this.templateText) {
+              return "Enter a valid template above";
+            }
+
+            try {
+              var result = Vue.compile(
+                this.templateText.replace(/\s{2,}/g, "")
+              );
+
+              return {
+                render: this.formatFunction(result.render),
+                staticRenderFns: result.staticRenderFns.map(this.formatFunction)
+              };
+            } catch (error) {
+              return error.message;
+            }
+          }
+        },
+
+        methods: {
+          formatFunction: function(fn) {
+            return fn.toString().replace(/(\{\n)(\S)/, "$1  $2");
+          }
+        }
+      });
+
+      console.error = function(error) {
+        throw new Error(error);
+      };
+    </script>
+  </body>
+</html>

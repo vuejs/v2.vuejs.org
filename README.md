@@ -5,6 +5,11 @@
 
 Цей сайт збудовано за допомогою [hexo](http://hexo.io/). Вміст написаний у форматі Markdown, розміщенрму у теці `src`. Pull-реквести вітаються!
 
+## Написання документації
+
+Перегляньте [Посібник з написання документації до Vue](https://github.com/vuejs/vuejs.org/blob/master
+/writing-guide.md) та ознайомтесь з нашими правилами та рекомендаціями з написання та ведення документації..
+
 ## Розробка
 
 ``` bash
@@ -103,11 +108,12 @@ Russian translation is maintained by Translation Gang.
 - [Pablo Kz](https://github.com/pabloKz)
 - [Leonardo Fagundez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
 
-### Українська
+### Ukrainian
 
-Український переклад здійснюється [Serhii Matrunchyk](https://github.com/matruncyk).
+Ukrainian translation is maintained by:
+- [Serhii Matrunchyk](https://github.com/matruncyk)
 
-Для швидкої комунікації використовуйте Телеграм канал [Vue.JS Ukraine](https://t.me/vuejs_ukraine).
+Please join a Telegram channel [Vue.JS Ukraine](https://t.me/vuejs_ukraine) in order to join to UA translators team.
 
 ### Vietnamese
 

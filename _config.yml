@@ -77,6 +77,11 @@ pagination_dir: page
 # Disqus
 disqus_shortname:
 
+# Include/Exclude Files/Folders
+exclude:
+## Exclude example code from Nunjucks
+  - "v2/examples/vue-20-*/*"
+
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes

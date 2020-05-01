@@ -170,7 +170,7 @@ const app = new Vue({
 
 In this application, we've switched to use the Local Storage APIs versus "direct" access. Both work but the API method is generally preferred. `mounted` now has to grab the value and parse the JSON value. If anything goes wrong here we assume the data is corrupt and delete it. (Remember, any time your web application uses client-side storage, the user has access to it and can modify it at will.)
 
-We have three methods now to handle working with cat. Both `addCat` and `removeCat` handle updating the "live" Vue data stored in `this.cats`. They then run `saveCats` which handles serializing and persisting the data. You can play with this version below:
+We have three methods now to handle working with cats. Both `addCat` and `removeCat` handle updating the "live" Vue data stored in `this.cats`. They then run `saveCats` which handles serializing and persisting the data. You can play with this version below:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="qoYbyW" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="localstorage, complex" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/qoYbyW/">localstorage, complex</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>

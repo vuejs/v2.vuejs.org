@@ -6,6 +6,8 @@ order: 103
 
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/communication-between-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how to work with custom events on Vue School">Learn how to work with custom events in a free Vue School lesson</a></div>
+
 ## Event Names
 
 Unlike components and props, event names don't provide any automatic case transformation. Instead, the name of an emitted event must exactly match the name used to listen to that event. For example, if emitting a camelCased event name:

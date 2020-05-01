@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-hello-world",
+  "version": "1.0.0",
+  "description": "The easiest way to try out Vue.js, edit this Hello World example",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

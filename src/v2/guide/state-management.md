@@ -12,20 +12,20 @@ Large applications can often grow in complexity, due to multiple pieces of state
 
 ### Information for React Developers
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://classic.yarnpkg.com/en/packages?q=redux%20vue&p=1). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
 
 ## Simple State Management from Scratch
 
 It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
 
 ``` js
-const sourceOfTruth = {}
+var sourceOfTruth = {}
 
-const vmA = new Vue({
+var vmA = new Vue({
   data: sourceOfTruth
 })
 
-const vmB = new Vue({
+var vmB = new Vue({
   data: sourceOfTruth
 })
 ```

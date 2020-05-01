@@ -20,7 +20,7 @@ order: 804
     <h2 :id="partner.name">{{partner.name}}</h2>
     <blockquote class="theme-partner-description" v-html="partnerDescription"></blockquote>
     <div class="themes-grid">
-      <div v-for="product in partner.products" :key="product.name" class="item-preview">
+      <div v-for="product in partner.products" :key="product.url" class="item-preview">
         <a class="item-preview-img" :href="product.url" rel="sponsored">
           <img :src="product.image" :alt="`${product.name} - ${product.description}`" loading="lazy">
         </a>

@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-modal-component",
+  "version": "1.0.0",
+  "description": "Features used: component, prop passing, content insertion, transitions.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}
