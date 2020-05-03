@@ -188,7 +188,7 @@ export default {
 };
 ```
 
-Este archivo de ejemplo contiene la congiguración mínima para empaquetar tu SFC para npm. Hay un espacio para la personalización, como extraer CSS para un archivo aparte, usando un preprocesador de CSS, uglificando la salida JS, etc. 
+Este archivo de ejemplo contiene la configuración mínima para empaquetar tu SFC para npm. Hay un espacio para la personalización, como extraer CSS para un archivo aparte, usando un preprocesador de CSS, uglificando la salida JS, etc. 
 
 Además, vale la pena señalar el `name` dado al componente aquí. Es un nombre en PascalCase que se dará al componente, y debería corresponder con el nombre kebab-case usado en otros lugares a lo largo de esta receta.
 
@@ -206,7 +206,7 @@ En otras palabras, haz todos tus desarrollos de la forma que te sientas cómodo.
 
 Los empaquetados de SFC en esta forma pueden no ser una buena idea en ciertos escenarios. Esta receta no va al detalle sobre como los componentes deben ser escritos en sí. Algunos componentes pueden proporcionar efectos colaterales como directivas, o extender de otras librerías con funcionalidades adicionales. En esos casos necesitarás evaluar si los cambios necesarios para esta receta son muy extensos.
 
-Además, presta atención a cualquier dependencia que tu SFC pueda tener. Por ejemplo, si necesitas una librería de terceros para ordenamiento o comunicación con una API, Rollup puede hacer funcionar esos paquetes dentro del código final sin estar bien configurados. Para continuar usando esta receta, necesitarías Rollup para excluir esos archivos desde la salida, entonces actualizar tu documantación para informar a tus usuarios acerca de esas dependencias. 
+Además, presta atención a cualquier dependencia que tu SFC pueda tener. Por ejemplo, si necesitas una librería de terceros para ordenamiento o comunicación con una API, Rollup puede hacer funcionar esos paquetes dentro del código final sin estar bien configurados. Para continuar usando esta receta, necesitarías Rollup para excluir esos archivos desde la salida, entonces actualizar tu documentación para informar a tus usuarios acerca de esas dependencias. 
 
 ## Patrones Alternativos
 
