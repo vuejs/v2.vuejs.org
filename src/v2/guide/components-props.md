@@ -194,8 +194,8 @@ Vue.component('my-component', {
   props: {
     // Basic type check (`null` and `undefined` values will pass any type validation)
     propA: Number,
-    // Multiple possible types
-    propB: [String, Number],
+    // Multiple possible types, order matters
+    propB: [String, Boolean],
     // Required string
     propC: {
       type: String,
@@ -229,6 +229,8 @@ Vue.component('my-component', {
 When prop validation fails, Vue will produce a console warning (if using the development build).
 
 <p class="tip">Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc) will not be available inside `default` or `validator` functions.</p>
+
+<p class="tip">When you validate Boolean and String types at the same time, **String must be mentioned before Boolean**. Otherwise, empty String value will be converted into Boolean `true` due to [logic of HTML attributes](migration.html#Built-In-Directives). That's why example above puts String first, Boolean second: `propB: [String, Boolean]`.</p>
 
 ### Type Checks
 
