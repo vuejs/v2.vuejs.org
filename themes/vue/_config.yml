@@ -11,10 +11,6 @@ special_sponsors:
     name: Autocode
     description: Build app-to-app workflows and connect APIs
 platinum_sponsors:
-  - url: >-
-      https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
-    img: vueschool.png
-    name: VueSchool
   - url: 'https://vehikl.com/'
     img: vehikl.png
     name: Vehikl
@@ -85,9 +81,6 @@ gold_sponsors:
   - url: 'http://www.pullrequest.com'
     img: pullrequest.svg
     name: PullRequest
-  - url: 'https://unicorn.io/'
-    img: unicorn_io.png
-    name: Unicorn.io
   - url: 'https://www.vuescreencasts.com/'
     img: happy_programmer_llc.png
     name: Happy Programmer LLC
