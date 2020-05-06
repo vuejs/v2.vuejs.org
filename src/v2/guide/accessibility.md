@@ -63,7 +63,7 @@ It's better to make content display on click instead of on hover - or both. For 
 
 ### Extended input elements
 
-Standard input elements such as text inputs (<input type="text" placeholder="Example text input">) and checkboxes (<input type="checkbox">) often don't look great, so it's fairly common to want to change the appearance of them.
+Standard input elements such as text inputs (`<input type="text" placeholder="Example text input">`) and checkboxes (`<input type="checkbox">`) often don't look great, so it's fairly common to want to change the appearance of them.
 
 For example, maybe you want to change a checkbox to look like this:
 
