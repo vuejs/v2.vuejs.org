@@ -340,12 +340,12 @@ order: 803
     },
     {
       name: 'Pine Wu',
+      city: 'Shanghai, China',
       languages: ['zh', 'en', 'jp'],
       github: 'octref',
       twitter: 'octref',
       work: {
-        role: 'Engineer on VSCode',
-        org: 'Microsoft'
+        role: 'Nomad'
       },
       reposOfficial: [
         'vetur'
