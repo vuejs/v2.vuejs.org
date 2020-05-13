@@ -95,21 +95,19 @@ new Vue({
 Multiple checkboxes, bound to the same Array:
 
 ``` html
-<div id='example-3'>
-  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-  <label for="jack">Jack</label>
-  <input type="checkbox" id="john" value="John" v-model="checkedNames">
-  <label for="john">John</label>
-  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-  <label for="mike">Mike</label>
-  <br>
-  <span>Checked names: {{ checkedNames }}</span>
-</div>
+<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+<label for="jack">Jack</label>
+<input type="checkbox" id="john" value="John" v-model="checkedNames">
+<label for="john">John</label>
+<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+<label for="mike">Mike</label>
+<br>
+<span>Checked names: {{ checkedNames }}</span>
 ```
 
 ``` js
 new Vue({
-  el: '#example-3',
+  el: '...',
   data: {
     checkedNames: []
   }
@@ -387,6 +385,6 @@ If you want whitespace from user input to be trimmed automatically, you can add 
 
 > If you're not yet familiar with Vue's components, you can skip this for now.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! 
+HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`!
 
 To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.
