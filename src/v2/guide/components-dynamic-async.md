@@ -227,12 +227,12 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can do:
+You can also return a `Promise` in the factory function, so with Webpack 2 and ES2015 syntax you can make use of dynamic imports:
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  // The `import` function returns a Promise.
+  // A dynamic import returns a Promise.
   () => import('./my-async-component')
 )
 ```
