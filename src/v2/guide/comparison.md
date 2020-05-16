@@ -12,6 +12,8 @@ We'd also like **your** help keeping this document up-to-date because the JavaSc
 
 ## React
 
+Let start by saying for someone who fully understand javascript and es2015 , class inheritence ReactJS could be easier to learn , but for a new dev who don't know a lot in javascript vue make it super simple , 
+
 React and Vue share many similarities. They both:
 
 - utilize a virtual DOM
