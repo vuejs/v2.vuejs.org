@@ -6,7 +6,7 @@ order: 13
 
 ## Simple Example
 
-So you built your first Vue.js app using the amazing [Vue.js webpack template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run it in a Docker container.
+So you built your first Vue.js app using the amazing [Vue.js webpack template](https://github.com/vuejs-templates/webpack) and now you really want to show off with your colleagues by demonstrating that you can also run a development server in a Docker container.
 
 Let's start by creating a `Dockerfile` in the root folder of our project:
 
@@ -25,14 +25,14 @@ COPY package*.json ./
 # install project dependencies
 RUN npm install
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
+# allows instant reload on browser when source code is changed
+VOLUME ["/source"]
 
-# build app for production with minification
-RUN npm run build
+# dev server must accept connections from out of the container
+ENV HOST 0.0.0.0
 
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD [ "npm", "run", "dev" ]
 ```
 
 It may seem redundant to first copy `package.json` and `package-lock.json` and then all project files and folders in two separate steps but there is actually [a very good reason for that](http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/) (spoiler: it allows us to take advantage of cached Docker layers).
@@ -46,10 +46,10 @@ docker build -t vuejs-cookbook/dockerize-vuejs-app .
 Finally, let's run our Vue.js app in a Docker container:
 
 ```bash
-docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
+docker run -it -p 8080:8080 -v "$(pwd):/source" --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
 ```
 
-We should be able to access our Vue.js app on `localhost:8080`.
+We should be able to access our Vue.js app on `localhost:8080`. Any change in the source code should immediatly be reflected in the browser.
 
 ## Real-World Example
 
