@@ -124,11 +124,11 @@ This isn't always desirable though, so Vue offers a way for you to say, "These t
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+  <input placeholder="Enter your username" :key="username-input">
 </template>
 <template v-else>
   <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <input placeholder="Enter your email address" :key="email-input">
 </template>
 ```
 
@@ -139,11 +139,11 @@ Now those inputs will be rendered from scratch each time you toggle. See for you
   <div>
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <input placeholder="Enter your username" :key="username-input">
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <input placeholder="Enter your email address" :key="email-input">
     </template>
   </div>
   <button @click="toggleLoginType">Toggle login type</button>
