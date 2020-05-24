@@ -1353,7 +1353,7 @@ Simpler, well-named computed properties are:
 
 - __Easier to read__
 
-  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus on the code they care about and figure out what's going on.
 
 - __More adaptable to changing requirements__
 
