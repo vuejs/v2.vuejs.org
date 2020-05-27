@@ -40,7 +40,7 @@ When defining a component with kebab-case, you must also use kebab-case when ref
 Vue.component('MyComponentName', { /* ... */ })
 ```
 
-When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `<my-component-name>` and `<MyComponentName>` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
+When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `'MyComponentName'` and `'MyComponentName'` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
 
 ## Global Registration
 
