@@ -157,7 +157,7 @@ There are quite a few other directives, each with its own special functionality.
 ``` html
 <div id="app-4">
   <ol>
-    <li v-for="todo in todos">
+    <li v-for="(todo, index) in todos" :key="index">
       {{ todo.text }}
     </li>
   </ol>
