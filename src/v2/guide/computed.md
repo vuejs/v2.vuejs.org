@@ -281,8 +281,8 @@ var watchExampleVM = new Vue({
   },
   methods: {
     getAnswer: function () {
-      if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+      if (this.question[this.question.length -1] != '?') {
+        this.answer = 'Questions usually end with a question mark. ;-)'
         return
       }
       this.answer = 'Thinking...'
