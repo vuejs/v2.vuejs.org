@@ -561,14 +561,6 @@ order: 803
       ]
     },
     {
-      name: 'Darek Gusto Wędrychowski',
-      title: 'Google Search Virtuoso',
-      city: 'Kraków, Poland',
-      languages: ['pl', 'en'],
-      github: 'gustojs',
-      twitter: 'gustojs'
-    },
-    {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
       city: 'Munich, Germany',
