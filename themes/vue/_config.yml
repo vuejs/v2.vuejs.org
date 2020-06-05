@@ -85,9 +85,6 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'http://www.pullrequest.com'
-    img: pullrequest.svg
-    name: PullRequest
   - url: 'https://www.vuescreencasts.com/'
     img: happy_programmer_llc.png
     name: Happy Programmer LLC
