@@ -18,12 +18,13 @@ red-dot-before(leftPos = -8px)
   z-index: $z-header
 
 #blm
-  background-color: #fff
-  height: $blm-height
+  background-color: #000
+  min-height: $blm-height
   padding: $heading-padding-vertical 60px
   z-index: $z-header - 1
   box-sizing: border-box
   text-align: center
+  color: #fff
 
 #blm-hashtag
   font-weight: bold
@@ -39,12 +40,6 @@ red-dot-before(leftPos = -8px)
 #blm-link
   color: $green
   white-space: nowrap
-
-@media screen and (min-width: 901px)
-  #blm
-    background-color: #000
-  #blm-hashtag
-    color: #fff
 
 body.docs
   #blm
@@ -176,6 +171,9 @@ body.docs
     left: 12px
     background: url(../images/menu.png) center center no-repeat
     background-size: 24px
+    &.blm
+      background: url(../images/menu-blm.png) center center no-repeat
+      background-size: 24px
   .logo
     position: absolute
     width: 30px
