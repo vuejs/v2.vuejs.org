@@ -617,12 +617,11 @@ order: 803
     },
     {
       name: 'Ben Hong',
-      title: 'Proud Ravenclaw Dragon',
       city: 'Washington, DC, USA',
       languages: ['en', 'zh'],
       work: {
-        role: 'Senior Frontend Engineer',
-        org: 'GitLab (Meltano)',
+        role: 'Developer Experience (DX) Engineer',
+        org: 'Cypress.io',
       },
       reposOfficial: [
         'vuejs.org',
