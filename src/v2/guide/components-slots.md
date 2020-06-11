@@ -129,7 +129,7 @@ Entonces el contenido proporcionado será presentado en su lugar:
 
 ## Slots con nombre
 
-> Actualizado en 2.6.0+. [Ver aquí](#Sintaxis-Obsoleta) para la sintaxis obsoleta usando el atributo "slot".
+> Actualizado en 2.6.0+. [Ver aquí](#Sintaxis-obsoleta) para la sintaxis obsoleta usando el atributo "slot".
 
 Hay ocasiones en que es útil tener múltiples slots. Por ejemplo, en un componente hipotético `<base-layout>` con la siguiente plantilla:
 
@@ -224,7 +224,7 @@ Note que **`v-slot` solo puede ser agregado a un `<template>`** (con [una excepc
 
 ## Slots con Scope
 
-> Actualizado en 2.6.0+. [Ver aquí](#Sintaxis-Obsoleta) para la sintaxis obsoleta usando el atributo "slot-scope".
+> Actualizado en 2.6.0+. [Ver aquí](#Sintaxis-obsoleta) para la sintaxis obsoleta usando el atributo "slot-scope".
 
 A veces, es útil para el contenido del slot tener acceso a los datos solo disponibles en el componente hijo. Por ejemplo, imagine un componente `<current-user>` con la siguiente plantilla:
 
