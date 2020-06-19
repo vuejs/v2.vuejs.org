@@ -90,10 +90,12 @@
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
+    <%- partial('partials/vuemastery_banner.ejs') %>
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button blm"></a>
+      <!-- <a class="menu-button blm"></a> -->
+      <a class="menu-button"></a>
       <a class="logo" href="/"></a>
-      <a class="blm-mobile" href="/#">#BlackLivesMatter</a>
+      <!-- <a class="blm-mobile" href="https://support.eji.org/give/153413/#!/donation/checkout" rel="noreferrer" target="_blank">#BlackLivesMatter</a> -->
     </div>
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
