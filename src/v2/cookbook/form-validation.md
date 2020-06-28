@@ -23,7 +23,7 @@ Given a form of three fields, make two required. Let's look at the HTML first:
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
-      <li v-for="error in errors">{{ error }}</li>
+      <li :key="index" v-for="(error, index) in errors">{{ error }}</li>
     </ul>
   </p>
 
