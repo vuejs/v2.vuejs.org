@@ -1,5 +1,5 @@
 ---
-title: Fungsi *Render* % JSX
+title: Fungsi Render & JSX
 type: guide
 order: 303
 ---
@@ -85,9 +85,9 @@ Vue.component('anchored-heading', {
 
 Lebih sederhana! kodenya lebih pendek, tapi kita juga harus terbiasa dengan properti yang ada di dalam *Vue instance*.  Dalam kasus ini, anda harus tahu bahwa isi dari komponen yang tidak di tandai direktif `v-slot`, seperti `Hello World!` di dalam `anchored-heading`, isi tersebut disimpan di `$slots.default`. Jika anda masih belum paham, **direkomendasikan untuk membaca [instance properties API](../api/#Instance-Properties) sebelum mempelajari lebih dalam tentang fungsi render.**
 
-## *Nodes*, *Trees*, dan *Virtual DOM*
+## Nodes, Trees, dan Virtual DOM
 
-Sebelum kita lanjut lebih dalam tentang fungsi *render*, penting untuk sedikit mengetahui tentang bagaimana _browsers_ bekeerja. Lihat contoh HTM di bawah:
+Sebelum kita lanjut lebih dalam tentang fungsi *render*, penting untuk sedikit mengetahui tentang bagaimana _browsers_ bekerja. Lihat contoh HTML di bawah ini:
 
 ```html
 <div>
