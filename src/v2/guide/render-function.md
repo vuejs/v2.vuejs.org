@@ -97,15 +97,15 @@ Sebelum kita lanjut lebih dalam tentang fungsi *render*, penting untuk sedikit m
 </div>
 ```
 
-Ketika *browser* membaca kode di atas, *browser* akan membuat [pohon yang terdiri atas *DOM nodes*](https://javascript.info/dom-nodes) untuk membantu mencatat isi HTML tersebut, sama seperti jika anda membuat silsilah pohon keluarga untuk mencata isi dari keluarga anda.
+Ketika *browser* membaca kode di atas, *browser* akan membuat [pohon yang terdiri atas *DOM nodes*](https://javascript.info/dom-nodes) untuk membantu mencatat isi HTML tersebut, sama seperti jika anda membuat silsilah pohon keluarga untuk mencatat isi dari keluarga anda.
 
 Bentuk pohon dari *DOM nodes* untuk HTML di atas terlihat seperti:
 
 ![Visualisasi pohon *DOM*](/images/dom-tree.png)
 
-Setiap elemen adalah *node*. Setiap teks adalah *node*. BAhkan komentar juga *node*!. Dan sama seperti silsilah keluarga, setiap *node* bisa memiliki anak (misalnya setiap *node* mengandung *node* lainnya).
+Setiap elemen adalah *node*. Setiap teks adalah *node*. Bahkan komentar juga *node*!. Dan sama seperti silsilah keluarga, setiap *node* bisa memiliki anak (misalnya setiap *node* mengandung *node* lainnya).
 
-Memperbarui *node* yang banyak ini secara eisien tidaklah mudah, tapi untungnya, anda tidak harus melakukannya secara manual. Sebaliknya, gunakan Vue untuk membuat HTML yang Anda inginkan melalui templat:
+Memperbarui *node* yang banyak ini secara efisien tidaklah mudah, tapi untungnya, anda tidak harus melakukannya secara manual. Sebaliknya, gunakan Vue untuk membuat HTML yang Anda inginkan melalui templat:
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -119,9 +119,9 @@ render: function (createElement) {
 }
 ```
 
-Dalam kedua kasus, Vue secara otomatis akan memastikan bahwa tampilannya diperbarui dengan benar, seperti ketika `blogTitle` berubah.
+Dalam kedua kasus di atas, Vue secara otomatis akan memastikan bahwa tampilannya diperbarui dengan benar, seperti ketika `blogTitle` berubah.
 
-### The Virtual DOM
+### Virtual DOM
 
 Vue melakukannya dengan cara membuat **virtual DOM** untuk mencatat perubahan yang dibutuhkan untuk merekonstruksi DOM yang sebenarnya. Lihat baris kode di bawah :
 
@@ -133,7 +133,7 @@ Apa yang sebenarnya `createElement` kembalikan? hal itu bukanlah elemen DOM yang
 
 ## Argumen `createElement`
 
-Untuk lebih mendalami bagaimana cara penggunaan fitur templat di fungsi `createElement`, berikut beberapa argumen yang diterima oleh `createElement`:
+Untuk lebih mendalami bagaimana cara penggunaan fitur templat di fungsi `createElement`, berikut beberapa argumen yang dapat diterima oleh `createElement`:
 
 ``` js
 // @returns {VNode}
@@ -360,7 +360,7 @@ render: function (createElement) {
 
 Mungkin terasa lebih susah, tapi Anda punya kendali penuh dibandingkan `v-model`.
 
-### *Event* & *Key Modifiers*
+### Event & Key Modifiers
 
 Untuk modifier event seperti `.passive`, `.capture`, dan `.once`; Vue memberikan prefix yang bisa digunakan dengan `on`:
 
@@ -524,7 +524,7 @@ Vue.component('my-component', {
 
 > Catatan: di versi sebelum 2.3.0, opsi `props` harus ditulis jika Anda ingin komponen fungsional Anda menerima props. Di versi 2.3.0 ke atas, Anda tidak perlu menulis opsi `props` dan semua atribut yang ada di *node* komponen tersebut akan secara otomatis diambil sebagai *props*.
 
-Di versi 2.5.0 ke atas, jika Anda menggunakan [kopmonen satu berkas / single-file components](single-file-components.html), komponen fungsional yang menggunakan templat bisa ditulis seperti di bawah:
+Di versi 2.5.0 ke atas, jika Anda menggunakan [komponen satu berkas / single-file components](single-file-components.html), komponen fungsional yang menggunakan templat bisa ditulis seperti di bawah:
 
 ``` html
 <template functional>
@@ -542,11 +542,11 @@ Semua yang dibutuhkan oleh komponen akan diteruskan melalui `context`, sebuah ob
 - `listeners`: (2.3.0+) Objek yang berisi event listener yang didaftarkan oleh komponen di atasnya. Juga sebagai alias untuk `data.on`
 - `injections`: (2.3.0+) jika ada opsi [`inject`](../api/#provide-inject), akan berisi injeksi yang ditemukan/diresolve.
 
-Setelah menuliskan `functional: true`, pembaharuan fungsi render dari komponen *anchored heading* yang baru dibuat mengharuskan Anda menambahkan argumen `context`, mengubah `this.$slots.default` menjadi `context.children`, lalu mengubah `this.level` menjadi `context.props.level`.
+Setelah menuliskan `functional: true`, pembaruan fungsi render dari komponen *anchored heading* yang baru dibuat mengharuskan Anda menambahkan argumen `context`, mengubah `this.$slots.default` menjadi `context.children`, lalu mengubah `this.level` menjadi `context.props.level`.
 
 Karena komponen fungsional hanya sebuah fungsi saja, mereka lebih cepat untuk dirender. Tetapi, karena tidak adanya instan yang bisa dijadikan acuan, komponen fungsional tidak akan muncul di pohon komponen [Vue devtools](https://github.com/vuejs/vue-devtools).
 
-Mereka sangat bermanfaat jika digunakan sebagai komponen pembungkus. Contohnya:
+Komponen fungsional sangat bermanfaat jika digunakan sebagai komponen pembungkus. Contohnya:
 
 - Secara program memilih beberapa komponen yang akan didelegasikan
 - Memanipulasi isi, *props*, dan data sebelum meneruskannya ke komponen lain di dalamnya
