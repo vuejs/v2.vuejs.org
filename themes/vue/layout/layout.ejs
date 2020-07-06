@@ -91,9 +91,11 @@
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button blm"></a>
+      <a class="menu-button<%- isIndex ? ' blm' : '' %>"></a>
       <a class="logo" href="/"></a>
+      <% if (isIndex) { %>
       <a class="blm-mobile" href="/#">#BlackLivesMatter</a>
+      <% } %>
     </div>
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
