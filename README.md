@@ -112,6 +112,12 @@ Vietnamese translation is maintained by [Vue.js Vietnam User group](https://gith
 * Translation Repo: [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
 * Primary maintainer - [phanan](https://github.com/phanan)
 
+### Bahasa Indonesia
+
+Bahasa Indonesia translation is maintained by [Vue.js Indonesia](https://github.com/vuejs-id/).
+
+* Translation Repo: [/vuejs-id/docs](https://github.com/vuejs-id/docs)
+
 ### Want to help with the translation?
 
 If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/vuejs.org/issues/2015) issue page to inform others that you're doing the translation and go for it.
