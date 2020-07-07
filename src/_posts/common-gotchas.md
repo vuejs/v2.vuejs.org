@@ -13,7 +13,7 @@ Most of the time, when you change a Vue instance's data, the view updates. But t
 
 1. When you are **adding a new property** that wasn't present when the data was observed. Due to the limitation of ES5 and to ensure consistent behavior across browsers, Vue.js cannot detect property addition/deletions. The best practice is to always declare properties that need to be reactive upfront. In cases where you absolutely need to add or delete properties at runtime, use the global [`Vue.set`](/api/#Vue-set) or [`Vue.delete`](/api/#Vue-delete) methods.
 
-2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `arr.$set(index, value)` which is syntax sugar for `arr.splice(index, 1, value)`.
+2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `this.$set(arr, index, value)` which is syntax sugar for `arr.splice(index, 1, value)`.
 
 Further reading: [Reactivity in Depth](/guide/reactivity.html) and [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
 
