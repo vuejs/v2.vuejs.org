@@ -72,7 +72,7 @@ En el caso de los atributos booleanos, donde su mera existencia implica `true`, 
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
-Si `isButtonDisabled` tiene el valor de `null`, `undefined` o `false`, el atributo `desabled` ni siquiera se incluirá en el elemento `<button>` representado.
+Si `isButtonDisabled` tiene el valor de `null`, `undefined` o `false`, el atributo `disabled` ni siquiera se incluirá en el elemento `<button>` representado.
 
 ### Usando Expresiones JavaScript 
 
