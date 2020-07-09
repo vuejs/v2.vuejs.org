@@ -293,6 +293,8 @@ Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 
+// The component must be registered before creating a Vue instance,
+// otherwise the instance will not have access to it.
 var app = new Vue(...)
 ```
 
