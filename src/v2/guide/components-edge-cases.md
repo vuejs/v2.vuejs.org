@@ -271,21 +271,21 @@ A component like the above will result in a "max stack size exceeded" error, so 
 Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
 
 ``` html
-<p>
-  <span>{{ folder.name }}</span>
-  <tree-folder-contents :children="folder.children"/>
-</p>
-```
-
-Then a `tree-folder-contents` component with this template:
-
-``` html
 <ul>
   <li v-for="child in children">
     <tree-folder v-if="child.children" :folder="child"/>
     <span v-else>{{ child.name }}</span>
   </li>
 </ul>
+```
+
+Then a `tree-folder-contents` component with this template:
+
+``` html
+<p>
+  <span>{{ folder.name }}</span>
+  <tree-folder-contents :children="folder.children"/>
+</p>
 ```
 
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
