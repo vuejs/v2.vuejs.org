@@ -24,11 +24,11 @@ A diferencia de los componentes y props, los nombres de eventos nunca serán usa
 
 Por estas razones, recomendamos **usar siempre kebab-case para nombres de eventos**.
 
-## Perzonalización de componente `v-model`
+## Personalización de componente `v-model`
 
 > Nuevo en la versión 2.2.0+
 
-Por defecto, `v-model` en un componente usa `value` como una prop e `input` como el evento, pero algunos tipos de entrada como los checkboxes y radio buttons puden querer usar el atributo `value` para un [propósito diferente](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value). Usando la opción `model` puede evitar conflictos en estos casos:
+Por defecto, `v-model` en un componente usa `value` como una prop e `input` como el evento, pero algunos tipos de entrada como los checkboxes y radio buttons pueden querer usar el atributo `value` para un [propósito diferente](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value). Usando la opción `model` puede evitar conflictos en estos casos:
 
 ```js
 Vue.component('base-checkbox', {
@@ -61,7 +61,7 @@ el valor de `lovingVue` será pasado a la prop `checked`. La propiedad `lovingVu
 
 ## Enlace de eventos nativos a componentes
 
-Puede haber ocasiones en las que desee escuchar directamente a un event nativo en el elmento raíz de un componente. En estos casos, puede utilizar el modificador `.native` para `v-on`:
+Puede haber ocasiones en las que desee escuchar directamente a un event nativo en el elemento raíz de un componente. En estos casos, puede utilizar el modificador `.native` para `v-on`:
 
 ```html
 <base-input v-on:focus.native="onFocus"></base-input>
