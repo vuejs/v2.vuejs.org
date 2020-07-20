@@ -32,7 +32,7 @@ vm.b = 2
 // `vm.b` NO es reactivo
 ```
 
-Vue no permite añadir dinámicamente en el nivel raiz nuevas propiedades reactivas a una instancia ya creada. Sim embargo, se pueden añadir propiedades reactivas a un objeto anidado usando el método `Vue.set(object, key, value)`:
+Vue no permite añadir dinámicamente en el nivel raiz nuevas propiedades reactivas a una instancia ya creada. Sin embargo, se pueden añadir propiedades reactivas a un objeto anidado usando el método `Vue.set(object, key, value)`:
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
