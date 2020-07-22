@@ -118,6 +118,12 @@ Bahasa Indonesia translation is maintained by [Vue.js Indonesia](https://github.
 
 * Translation Repo: [/vuejs-id/docs](https://github.com/vuejs-id/docs)
 
+### Traditional Chinese
+
+* Translation Repo - [/gcaaa31928/tw.vuejs.org](https://github.com/gcaaa31928/tw.vuejs.org)
+* Primary maintainer - [Red Huang](https://github.com/gcaaa31928)
+
+
 ### Want to help with the translation?
 
 If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/vuejs.org/issues/2015) issue page to inform others that you're doing the translation and go for it.
