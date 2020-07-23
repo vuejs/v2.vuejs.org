@@ -15,7 +15,7 @@ order: 803
         :src="'https://github.com/' + profile.github + '.png'"
         :alt="profile.name" width=80 height=80>
       <img v-else-if="profile.twitter"
-        :src="'https://avatars.io/twitter/' + profile.twitter"
+        :src="'https://unavatar.now.sh/twitter/' + profile.twitter"
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
