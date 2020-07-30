@@ -183,6 +183,32 @@ computed: {
 
 Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
 
+#### Caveats
+When it comes to reactive properties (the data option), Vue wraps some array functions to detect array mutations and invoke dependencies. That is not the case with computed properties, which are not following the same reactivity path. When a computed property returns an array, the setter will only be invoked when assigning a new array reference. Mutation won't work here.
+
+For example:
+
+``` js
+// ...
+computed: {
+  groceriesList: {
+    // getter
+    get: function () {
+      return this.groceries.map(item => item.toLocaleUpperCase());
+    },
+    // setter
+    set: function (newValue) {
+      this.groceries = newValue;
+    }
+  }
+}
+// ...
+```
+
+If you would run `vm.groceriesList.splice(0, 0, 'apples')`, the setter won't be invoked
+
+But when you run `vm.groceriesList = ['apples', ...this.groceriesList]`, the setter will be invoked, and the `vm.groceries` collection will be updated accordingly.
+
 ## Watchers
 
 While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
