@@ -82,19 +82,12 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'https://www.vuetraining.net/'
-    img: >-
-      vuetraining_net__note__since_i_m_not_sure_where_else_to_put_it____this_is_replacing_vuescreencasts___they_re_both_run_by_me__i_m_just_switching_where_i_want_my_sponsorship_to_point_.png
-    name: >-
-      VueTraining.net (note, since I'm not sure where else to put it... this is
-      replacing VueScreencasts.  They're both run by me, I'm just switching
-      where I want my sponsorship to point)
-  - url: 'https://www.primefaces.org/primevue'
-    img: primevue.png
-    name: PrimeVue
   - url: 'https://www.foo.software'
     img: foo.png
     name: Foo
+  - url: 'https://flatlogic.com/templates'
+    img: flatlogic_templates.svg
+    name: Flatlogic Templates
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
