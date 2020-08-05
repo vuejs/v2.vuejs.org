@@ -46,6 +46,9 @@ gold_sponsors:
   - url: 'https://neds.com.au/'
     img: neds.png
     name: Neds
+  - url: 'https://vuejobs.com/?ref=vuejs'	
+    img: vuejobs.png	
+    name: VueJobs
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
