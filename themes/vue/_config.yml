@@ -88,6 +88,9 @@ gold_sponsors:
   - url: 'https://flatlogic.com/templates'
     img: flatlogic_templates.svg
     name: Flatlogic Templates
+  - url: 'http://moovweb.com/'
+    img: moovweb.png
+    name: Moovweb
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
