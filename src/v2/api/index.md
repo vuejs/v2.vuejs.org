@@ -1384,9 +1384,13 @@ type: api
 
 - **Read only**
 
+- **Reactive?** No
+
 - **Details:**
 
   Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `vm.$slots.foo`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
+
+  Please note that slots are **not** reactive. If you need a component to re-render based on changes to data passed to a slot, we suggest considering a different strategy that relies on a reactive instance option, such as `props` or `data`.
 
   **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
@@ -2379,7 +2383,7 @@ type: api
 
 ### key
 
-- **Expects:** `number | string | boolean (since 2.4.2) | symbol (since 2.5.12)`
+- **Expects:** `number | string`
 
   The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
 
