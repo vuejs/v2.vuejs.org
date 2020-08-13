@@ -106,6 +106,12 @@ Perskie tłumaczenie utrzymywane jest przez VueJS-fa.
 - Repozytorium tłumaczenia - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
 - Główny opiekun - [Pooya Parsa](https://github.com/pi0)
 
+### Indonezyjski
+
+Indonezyjskie tłumaczenie utrzymywane jest przez [Vue.js Indonesia](https://github.com/vuejs-id/).
+
+* Repozytorium tłumaczenia: [/vuejs-id/docs](https://github.com/vuejs-id/docs)
+
 ### Chcesz pomóc w tłumaczeniu?
 
 Jeśli czujesz się na siłach do samodzielego tłumaczenia, możesz zrobić fork repozytorium, utworzyć issue „work-in-progress” by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.

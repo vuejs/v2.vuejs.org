@@ -113,8 +113,8 @@ There is no need to write your module multiple times. It is possible to prepare 
   },
   "devDependencies": {
     "rollup": "^1.17.0",
-    "rollup-plugin-buble": "^0.19.8",
-    "rollup-plugin-commonjs": "^10.0.1",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
     "rollup-plugin-vue": "^5.0.1",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
@@ -170,9 +170,9 @@ Notice the first line directly imports your SFC, and the last line exports it un
 With the package.json `scripts` section ready and the SFC wrapper in place, all that is left is to ensure Rollup is properly configured. Fortunately, this can be done with a small 16 line rollup.config.js file:
 
 ```js
-import commonjs from 'rollup-plugin-commonjs'; // Convert CommonJS modules to ES6
+import commonjs from '@rollup/plugin-commonjs'; // Convert CommonJS modules to ES6
 import vue from 'rollup-plugin-vue'; // Handle .vue SFC files
-import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable browser support
+import buble from '@rollup/plugin-buble'; // Transpile/polyfill with reasonable browser support
 export default {
     input: 'src/wrapper.js', // Path relative to package.json
     output: {

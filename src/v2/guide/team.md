@@ -340,12 +340,12 @@ order: 803
     },
     {
       name: 'Pine Wu',
+      city: 'Shanghai, China',
       languages: ['zh', 'en', 'jp'],
       github: 'octref',
       twitter: 'octref',
       work: {
-        role: 'Engineer on VSCode',
-        org: 'Microsoft'
+        role: 'Nomad'
       },
       reposOfficial: [
         'vetur'
@@ -353,20 +353,15 @@ order: 803
     },
     {
       name: 'Jinjiang',
-      title: 'Mobile Extrapolator',
-      city: 'Hangzhou, China',
+      city: 'Singapore',
       languages: ['zh', 'en'],
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
-      work: {
-        org: 'Alibaba',
-        orgUrl: 'https://www.alibaba.com/'
-      },
       reposOfficial: [
-        'cn.vuejs.org'
+        'cn.vuejs.org', 'vue-docs-zh-cn'
       ],
       reposPersonal: [
-        'apache/incubator-weex'
+        'vue-a11y-utils', 'vue-mark-display', 'mark2slides', 'vue-keyboard-over'
       ]
     },
     {
@@ -566,14 +561,6 @@ order: 803
       ]
     },
     {
-      name: 'Darek Gusto Wędrychowski',
-      title: 'Google Search Virtuoso',
-      city: 'Kraków, Poland',
-      languages: ['pl', 'en'],
-      github: 'gustojs',
-      twitter: 'gustojs'
-    },
-    {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
       city: 'Munich, Germany',
@@ -630,12 +617,11 @@ order: 803
     },
     {
       name: 'Ben Hong',
-      title: 'Proud Ravenclaw Dragon',
       city: 'Washington, DC, USA',
       languages: ['en', 'zh'],
       work: {
-        role: 'Senior Frontend Engineer',
-        org: 'GitLab (Meltano)',
+        role: 'Developer Experience (DX) Engineer',
+        org: 'Cypress.io',
       },
       reposOfficial: [
         'vuejs.org',
@@ -785,6 +771,21 @@ order: 803
   ])
 
   var partners = [
+    {
+      name: 'Maria Lamardo',
+      title: 'Front End Engineer at Pendo',
+      city: 'Raleigh, NC, USA',
+      languages: ['en', 'es'],
+      work: {
+        role: 'Front End Engineer',
+        org: 'Pendo'
+      },
+      github: 'mlama007',
+      twitter: 'MariaLamardo',
+      reposPersonal: [
+        'vuejs/events'
+      ]
+    },
     {
       name: 'Pratik Patel',
       title: 'Organizer of VueConf US',

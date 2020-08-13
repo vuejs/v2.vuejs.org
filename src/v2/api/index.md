@@ -2379,7 +2379,7 @@ type: api
 
 ### key
 
-- **Expects:** `number | string`
+- **Expects:** `number | string | boolean (since 2.4.2) | symbol (since 2.5.12)`
 
   The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
 
@@ -2594,7 +2594,7 @@ Used to denote a `<template>` element as a scoped slot.
 
   `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Note that every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
 
   `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
