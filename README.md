@@ -1,6 +1,6 @@
 ﻿# vuejs.org
 
-Niniejsza strona została zbudowana w oparciu o [hexo](http://hexo.io/). Zawartość strony zapisywana jest w formacie Markdown w plikach umieszczonych w `src`. Prośby o ściągnięcie są mile widziane!
+Niniejsza strona została zbudowana w oparciu o [hexo](http://hexo.io/). Zawartość strony zapisywana jest w formacie Markdown w plikach umieszczonych w `src`. Pull requesty są mile widziane!
 
 ## Pisanie
 
@@ -108,7 +108,7 @@ Perskie tłumaczenie utrzymywane jest przez VueJS-fa.
 
 ### Chcesz pomóc w tłumaczeniu?
 
-Jeśli czujesz się na siłach do samodzielego tłumaczenia, możesz zrobić fork repozytorium, utworzyć problem „work-in-progress” by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.
+Jeśli czujesz się na siłach do samodzielego tłumaczenia, możesz zrobić fork repozytorium, utworzyć issue „work-in-progress” by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.
 
 Jeśli dalej nie jesteś pewien(-na), lub masz jakieś inne pytania skontaktuj się z [Jakubem Grzywaczem](https://github.com/JakeTvvv), lub innym członkiem organizacji [vuejs-pl](https://github.com/vuejs-pl)
 
