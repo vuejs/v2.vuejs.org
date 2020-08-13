@@ -116,6 +116,6 @@ Indonezyjskie tłumaczenie utrzymywane jest przez [Vue.js Indonesia](https://git
 
 Jeśli czujesz się na siłach do samodzielego tłumaczenia, możesz zrobić fork repozytorium, utworzyć issue „work-in-progress” by poinformować innych o tym, że robisz tłumaczenie, i rozpocząć pracę.
 
-Jeśli dalej nie jesteś pewien(-na), lub masz jakieś inne pytania skontaktuj się z [Jakubem Grzywaczem](https://github.com/JakeTvvv), lub innym członkiem organizacji [vuejs-pl](https://github.com/vuejs-pl)
+Jeśli dalej nie jesteś pewien(-na), lub masz jakieś inne pytania skontaktuj się z [Jakubem Grzywaczem](https://github.com/jakex7), lub innym członkiem organizacji [vuejs-pl](https://github.com/vuejs-pl)
 
 I z góry dziękujemy ;)
