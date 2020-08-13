@@ -6,10 +6,10 @@ platinum_sponsors_china:
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
 special_sponsors:
-  - url: 'https://autocode.com'
+  - url: 'https://autocode.com/'
     img: autocode.svg
     name: Autocode
-    description: Build app-to-app workflows and connect APIs
+    description: 'Instant Webhooks, Scripts and APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -46,18 +46,12 @@ gold_sponsors:
   - url: 'https://neds.com.au/'
     img: neds.png
     name: Neds
-  - url: 'https://icons8.com/'
-    img: icons_8.png
-    name: Icons 8
   - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
     name: VueJobs
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
-  - url: 'https://devsquad.com/'
-    img: devsquad.png
-    name: DevSquad
   - url: 'https://www.firesticktricks.com/'
     img: firestick_tricks.png
     name: Firestick Tricks
@@ -70,7 +64,7 @@ gold_sponsors:
   - url: 'https://www.vpnranks.com/'
     img: vpnranks.png
     name: VPNRanks
-  - url: 'https://www.bacancytechnology.com'
+  - url: 'https://www.bacancytechnology.com/hire-vuejs-developer'
     img: bacancy_technology.png
     name: Bacancy Technology
   - url: 'https://www.bestvpn.co/'
@@ -88,18 +82,15 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'http://www.pullrequest.com'
-    img: pullrequest.svg
-    name: PullRequest
-  - url: 'https://unicorn.io/'
-    img: unicorn_io.png
-    name: Unicorn.io
-  - url: 'https://www.vuescreencasts.com/'
-    img: happy_programmer_llc.png
-    name: Happy Programmer LLC
-  - url: 'https://www.primefaces.org/primevue'
-    img: primevue.png
-    name: PrimeVue
+  - url: 'https://www.foo.software'
+    img: foo.png
+    name: Foo
+  - url: 'https://flatlogic.com/templates'
+    img: flatlogic_templates.svg
+    name: Flatlogic Templates
+  - url: 'http://moovweb.com/'
+    img: moovweb.png
+    name: Moovweb
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -107,6 +98,9 @@ silver_sponsors:
   - url: 'https://www.inkoop.io'
     img: inkoop.png
     name: Inkoop
+  - url: 'https://www.thecasinodb.com'
+    img: isolutions_uk_limited.png
+    name: iSolutions UK Limited
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png

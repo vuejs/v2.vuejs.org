@@ -40,14 +40,16 @@
   </div>
   <% } %>
   <div class="footer">
-    <%_ if (!page.sponsors) { _%> <%- partial('partials/ad-text') %> <%_ } _%>
+    <%_ if (!page.sponsors) { _%>
+      <%- partial('partials/ad-text') %>
+    <%_ } _%>
     Znalazłeś błąd lub chcesz przyczynić się do rozwoju dokumentacji?
-    <a
-      href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>"
-      rel="noopener"
-      target="_blank"
-    >
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" rel="noopener" target="_blank">
       Edytuj tą stronę na GitHub!
     </a>
+    Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>.
   </div>
 </div>
