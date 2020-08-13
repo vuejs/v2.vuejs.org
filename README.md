@@ -123,6 +123,7 @@ Bahasa Indonesia translation is maintained by [Vue.js Indonesia](https://github.
 Polish translation is maintained by [Vuejs-pl](https://github.com/vuejs-pl/pl.vuejs.org).
 
 * Translation Repo - [/vuejs-pl/pl.vuejs.org](https://github.com/vuejs-pl/pl.vuejs.org)
+* Primary maintainer - [Jakub Grzywacz (jakex7)](https://github.com/jakex7)
 
 ### Want to help with the translation?
 
