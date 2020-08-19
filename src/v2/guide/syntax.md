@@ -167,7 +167,7 @@ Dynamic argument expressions have some syntax constraints because certain charac
 
 The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
 
-When using in-DOM templates (templates are directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+When using in-DOM templates (i.e., templates written directly in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
 
 ``` html
 <!--
