@@ -98,7 +98,7 @@ These expressions will be evaluated as JavaScript in the data scope of the owner
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a [whitelist of globals](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+<p class="tip">Template expressions are sandboxed and only have access to a [whitelist of globals](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) such as `Math` and `Date`. You should not attempt to access user-defined globals in template expressions.</p>
 
 ## Directives
 
@@ -167,7 +167,7 @@ Dynamic argument expressions have some syntax constraints because certain charac
 
 The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
 
-When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+When using in-DOM templates (i.e., templates written directly in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
 
 ``` html
 <!--
