@@ -147,10 +147,10 @@ Here `attribute` will be dynamically evaluated as a JavaScript expression, and i
 Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-on:[event]="doSomething"> ... </a>
 ```
 
-In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+In this example, when `event`'s value is `"focus"`, `v-on:[event]` will be equivalent to `v-on:focus`.
 
 #### Dynamic Argument Value Constraints
 
