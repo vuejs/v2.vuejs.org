@@ -543,10 +543,12 @@ Sometimes, it's useful to dynamically switch between components, like in a tabbe
   >
     {{ tab }}
   </button>
-  <component
-    v-bind:is="currentTabComponent"
-    class="dynamic-component-demo-tab"
-  ></component>
+  <div>
+    <component
+      v-bind:is="currentTabComponent"
+      class="dynamic-component-demo-tab"
+    ></component>
+  </div>
 </div>
 <script>
 Vue.component('tab-home', { template: '<div>Home component</div>' })

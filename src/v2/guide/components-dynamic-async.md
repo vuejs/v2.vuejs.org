@@ -24,10 +24,12 @@ When switching between these components though, you'll sometimes want to maintai
     v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
     v-on:click="currentTab = tab"
   >{{ tab }}</button>
-  <component
-    v-bind:is="currentTabComponent"
-    class="dynamic-component-demo-tab"
-  ></component>
+  <div>
+    <component
+      v-bind:is="currentTabComponent"
+      class="dynamic-component-demo-tab"
+    ></component>
+  </div>
 </div>
 <script>
 Vue.component('tab-posts', {
@@ -170,12 +172,14 @@ Check out the result below:
     v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
     v-on:click="currentTab = tab"
   >{{ tab }}</button>
-  <keep-alive>
-    <component
-      v-bind:is="currentTabComponent"
-      class="dynamic-component-demo-tab"
-    ></component>
-  </keep-alive>
+  <div>
+    <keep-alive>
+      <component
+        v-bind:is="currentTabComponent"
+        class="dynamic-component-demo-tab"
+      ></component>
+    </keep-alive>
+  </div>
 </div>
 <script>
 new Vue({
