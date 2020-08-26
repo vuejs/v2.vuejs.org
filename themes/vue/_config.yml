@@ -67,7 +67,7 @@ gold_sponsors:
   - url: 'https://www.bacancytechnology.com/hire-vuejs-developer'
     img: bacancy_technology.png
     name: Bacancy Technology
-  - url: 'https://www.bestvpn.co/'
+  - url: 'https://vpn-review.com/netflix-vpn'
     img: bestvpn_co.png
     name: BestVPN.co
   - url: 'https://www.y8.com/'
@@ -91,6 +91,9 @@ gold_sponsors:
   - url: 'http://moovweb.com/'
     img: moovweb.png
     name: Moovweb
+  - url: 'https://vpn-review.com/netflix-vpn'
+    img: vpn_review.png
+    name: VPN Review
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
