@@ -91,6 +91,9 @@ gold_sponsors:
   - url: 'http://moovweb.com/'
     img: moovweb.png
     name: Moovweb
+  - url: 'https://vpn-review.com/netflix-vpn'
+    img: vpn_review.png
+    name: VPN Review
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
