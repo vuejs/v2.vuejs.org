@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dependency Injection Google Maps Demo</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHbknPTCvUSgWwU0jJ68m4h6b7vpyP6hM"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      .map {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <google-map>
+        <google-map-marker v-bind:places="vueConfCities"></google-map-marker>
+      </google-map>
+    </div>
+
+    <script>
+      Vue.component("google-map", {
+        provide: function() {
+          return {
+            getMap: this.getMap
+          };
+        },
+        data: function() {
+          return {
+            map: null
+          };
+        },
+        mounted: function() {
+          this.map = new google.maps.Map(this.$el, {
+            center: { lat: 0, lng: 0 },
+            zoom: 1
+          });
+        },
+        methods: {
+          getMap: function(found) {
+            var vm = this;
+            function checkForMap() {
+              if (vm.map) {
+                found(vm.map);
+              } else {
+                setTimeout(checkForMap, 50);
+              }
+            }
+            checkForMap();
+          }
+        },
+        template: '<div class="map"><slot></slot></div>'
+      });
+
+      Vue.component("google-map-marker", {
+        inject: ["getMap"],
+        props: ["places"],
+        created: function() {
+          var vm = this;
+          vm.getMap(function(map) {
+            vm.places.forEach(function(place) {
+              new google.maps.Marker({
+                position: place.position,
+                map: map
+              });
+            });
+          });
+        },
+        render(h) {
+          return null;
+        }
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          vueConfCities: [
+            {
+              name: "Wrocław",
+              position: {
+                lat: 51.107885,
+                lng: 17.038538
+              }
+            },
+            {
+              name: "New Orleans",
+              position: {
+                lat: 29.951066,
+                lng: -90.071532
+              }
+            }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

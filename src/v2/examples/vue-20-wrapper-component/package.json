@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-wrapper-component",
+  "version": "1.0.0",
+  "description": "In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom component.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

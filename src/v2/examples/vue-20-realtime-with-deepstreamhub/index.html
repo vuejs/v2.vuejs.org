@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Realtime with deepstreamHub</title>
+    <!-- this example requires a modern browser that supports ES2015 natively -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/2.1.1/deepstream.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="group connectionState">
+        Connection-State is: <em id="connection-state">{{connectionState}}</em>
+      </div>
+      <my-record :ds="ds"></my-record>
+      <my-events :ds="ds"></my-events>
+      <my-rpc :ds="ds"></my-rpc>
+    </div>
+
+    <template id="record-template">
+      <div class="group realtimedb">
+        <h2>Realtime Datastore</h2>
+        <div class="input-group half left">
+          <label>Firstname</label>
+          <input
+            type="text"
+            v-model="firstname"
+            @input="handleFirstNameUpdate()"
+          />
+        </div>
+        <div class="input-group half">
+          <label>Lastname</label>
+          <input
+            type="text"
+            v-model="lastname"
+            @input="handleLastNameUpdate()"
+          />
+        </div>
+      </div>
+    </template>
+
+    <template id="events-template">
+      <div class="group pubsub">
+        <div class="half left">
+          <h2>Publish</h2>
+          <button class="half left" id="send-event" @click="handleClick()">
+            Send test-event with
+          </button>
+          <input type="text" class="half" id="event-data" v-model="value" />
+        </div>
+        <div class="half">
+          <h2>Subscribe</h2>
+          <ul id="events-received">
+            <template v-for="event in eventsReceived">
+              <li>{{event}}</li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </template>
+
+    <template id="rpc-template">
+      <div class="group reqres">
+        <div class="half left">
+          <h2>Request</h2>
+          <button class="half left" @click="handleClick()">
+            Make multiply request
+          </button>
+          <div class="half">
+            <input type="text" v-model="requestValue" class="half left" />
+            <span class="response half item"> {{displayResponse}} </span>
+          </div>
+        </div>
+        <div class="half">
+          <h2>Response</h2>
+          <div class="half left item">Multiply number with:</div>
+          <input type="text" class="half" v-model="responseValue" />
+        </div>
+      </div>
+    </template>
+
+    <script>
+      const Record = {
+        template: "#record-template",
+        props: ["ds"],
+        data() {
+          return {
+            firstname: "",
+            lastname: ""
+          };
+        },
+        created() {
+          this.record = this.ds.record.getRecord("test/johndoe");
+
+          this.record.subscribe(values => {
+            this.firstname = values.firstname;
+            this.lastname = values.lastname;
+          });
+        },
+        methods: {
+          handleFirstNameUpdate() {
+            this.record.set("firstname", this.firstname);
+          },
+          handleLastNameUpdate() {
+            this.record.set("lastname", this.lastname);
+          }
+        }
+      };
+
+      const Events = {
+        template: "#events-template",
+        props: ["ds"],
+        data() {
+          return {
+            eventsReceived: [],
+            value: ""
+          };
+        },
+        created() {
+          this.event = this.ds.event;
+          this.event.subscribe("test-event", value => {
+            this.eventsReceived.push(value);
+          });
+        },
+        methods: {
+          handleClick() {
+            this.event.emit("test-event", this.value);
+          }
+        }
+      };
+
+      const RPC = {
+        template: "#rpc-template",
+        props: ["ds"],
+        data() {
+          return {
+            responseValue: "7",
+            requestValue: "3",
+            displayResponse: "-"
+          };
+        },
+        created() {
+          this.rpc = this.ds.rpc;
+          this.rpc.provide("multiply-number", (data, response) => {
+            response.send(data.value * parseFloat(this.responseValue));
+          });
+        },
+        methods: {
+          handleClick() {
+            const data = {
+              value: parseFloat(this.requestValue)
+            };
+
+            this.rpc.make("multiply-number", data, (err, resp) => {
+              this.displayResponse = resp || err.toString();
+            });
+          }
+        }
+      };
+
+      new Vue({
+        el: "#app",
+        components: {
+          "my-record": Record,
+          "my-events": Events,
+          "my-rpc": RPC
+        },
+        data: {
+          connectionState: "INITIAL"
+        },
+        created() {
+          this.ds = deepstream(
+            "wss://154.deepstreamhub.com?apiKey=97a397bd-ccd2-498f-a520-aacc9f67373c"
+          )
+            .login()
+            .on("connectionStateChanged", connectionState => {
+              this.$data.connectionState = connectionState;
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

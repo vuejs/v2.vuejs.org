@@ -6,9 +6,22 @@ order: 504
 
 ## Reporting Vulnerabilities
 
-When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [vuejs.org@gmail.com](mailto:vuejs.org@gmail.com).
+When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [security@vuejs.org](mailto:security@vuejs.org).
 
 While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
+
+## Rule No.1: Never Use Non-trusted Templates
+
+The most fundamental security rule when using Vue is **never use non-trusted content as your component template**. Doing so is equivalent to allowing arbitrary JavaScript execution in your application - and worse, could lead to server breaches if the code is executed during server-side rendering. An example of such usage:
+
+``` js
+new Vue({
+  el: '#app',
+  template: `<div>` + userProvidedString + `</div>` // NEVER DO THIS
+})
+```
+
+Vue templates are compiled into JavaScript, and expressions inside templates will be executed as part of the rendering process. Although the expressions are evaluated against a specific rendering context, due to the complexity of potential global execution environments, it is impractical for a framework like Vue to completely shield you from potential malicious code execution without incurring unrealistic performance overhead. The most straightforward way to avoid this category of problems altogether is to make sure the contents of your Vue templates are always trusted and entirely controlled by you.
 
 ## What Vue Does to Protect You
 
@@ -118,7 +131,7 @@ Looking at this example:
 
 let's assume that `sanitizedUrl` has been sanitized, so that it's definitely a real URL and not JavaScript. With the `userProvidedStyles`, malicious users could still provide CSS to "click jack", e.g. styling the link into a transparent box over the "Log in" button. Then if `https://user-controlled-website.com/` is built to resemble the login page of your application, they might have just captured a user's real login information.
 
-You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why prevents rendering of style tags inside templates, such as:
+You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why Vue prevents rendering of style tags inside templates, such as:
 
 ```html
 <style>{{ userProvidedStyles }}</style>
@@ -159,7 +172,7 @@ The general rule is that if you allow unsanitized, user-provided content to be e
 Beyond the recommendations made above for [Potential Dangers](#Potential-Dangers), we also recommend familiarizing yourself with these resources:
 
 - [HTML5 Security Cheat Sheet](https://html5sec.org/)
-- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet)
+- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
 Then use what you learn to also review the source code of your dependencies for potentially dangerous patterns, if any of them include 3rd-party components or otherwise influence what's rendered to the DOM.
 

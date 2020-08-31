@@ -20,7 +20,7 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+The easiest way to try out Vue.js is using the [Hello World example](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
 
 ``` html
 <!-- development version, includes helpful console warnings -->
@@ -72,6 +72,8 @@ var app = new Vue({
 {% endraw %}
 
 We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+
+Note that we no longer have to interact with the HTML directly. A Vue app attaches itself to a single DOM element (`#app` in our case) then fully controls it. The HTML is our entry point, but everything else happens within the newly created Vue instance.
 
 In addition to text interpolation, we can also bind element attributes like this:
 
