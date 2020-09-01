@@ -111,7 +111,7 @@ When webpack 2+, Rollup, or other modern build tools are used, by default they w
 
 ### SSR Usage
 
-When people use Vue components in "universal" or "isomorphic" apps, the SSR build of Vue is tuned differently than the browser build for performance reasons. By using the option features provided as part of our bundling process, we can produce a build which is compatible with the tuning that Vue SSR expects (see [Packaging Components for npm > How do I configure the the Rollup Build](#How-do-I-configure-the-Rollup-build) for implementation). It is likely that most of these apps will be running on Node.js, so this build should be the `main` build specified. If a developer still wants to utilize the `.vue` source files, they can still be included in the package, but those developers will need to reference them by file path instead of just package name. For example:
+When people use Vue components in "universal" or "isomorphic" apps, the SSR build of Vue is tuned differently than the browser build for performance reasons. By using the optimization features provided as part of our bundling process, we can produce a build which is compatible with the tuning that Vue SSR expects (see [Packaging Components for npm > How do I configure the the Rollup Build](#How-do-I-configure-the-Rollup-build) for implementation). It is likely that most of these apps will be running on Node.js, so this build should be the `main` build specified. If a developer still wants to utilize the `.vue` source files, they can still be included in the package, but those developers will need to reference them by file path instead of just package name. For example:
 
 ```js
 // Node.js app - using 'require' instead of 'import'
@@ -183,8 +183,6 @@ import component from './my-component.vue';
 
 // Declare install function executed by .use()
 const install = function installMyComponent(VueApp) {
-	if (install.installed) return;
-	install.installed = true;
 	VueApp.component('MyComponent', component);
 }
 
