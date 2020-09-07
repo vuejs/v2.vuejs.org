@@ -94,6 +94,9 @@ gold_sponsors:
   - url: 'https://vpn-review.com/netflix-vpn'
     img: vpn_review.png
     name: VPN Review
+  - url: 'https://cosmos.network/'
+    img: tendermint.png
+    name: Tendermint
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
