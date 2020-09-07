@@ -1,9 +1,25 @@
 <div>
-  <% if (page.path === 'index.html') { %>
-  <div id="blm">
-    <span id="blm-hashtag">#B<span>lack</span>L<span>ives</span>M<span>atter</span></span>
-    <a href="https://support.eji.org/give/153413/#!/donation/checkout" target="_blank" rel="noreferrer" id="blm-link">Support the Equal Justice Initiative.</a>
-  </div>
+  <% if (hasBtsBanner) { %>
+  <a id="bts" class="bts-hidden" href="https://vueschool.io/sales/back-to-school?friend=vuejs" target="_blank" rel="noreferrer">
+    <div class="bts-backpack">
+      <img src="/images/banners/bts-backpack.svg">
+    </div>
+    <div class="bts-slogan">
+      <div class="bts-title">
+        Master Vue.js with Vue School<span class="bts-dot">.</span>
+        <span class="bts-title-offer">3 months only <span class="bts-title-green">$49!</span> <span class="bts-title-grey">$75</span></span>
+      </div>
+      <div class="bts-subtitle">
+        Offer expires 13th September 2020
+      </div>
+    </div>
+    <div>
+      <div class="bts-button">GET 30% OFF</div>
+    </div>
+    <div id="bts-close" class="bts-close">
+      &times;
+    </div>
+  </a>
   <% } %>
 
   <header id="header">
