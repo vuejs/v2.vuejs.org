@@ -44,14 +44,16 @@ body.has-bts-banner
   background-image: url(../images/banners/bts-mobile.svg)
   display: flex
   align-items: center
+  justify-content: space-between
   padding: 0 0 0 50px
   &.bts-hidden
     display: none
   @media (min-width: 680px)
-    justify-content: center
     background-image: url(../images/banners/bts-tablet.svg)
-    padding: 0 20px 0 40px
+    padding: 0 10px 0 50px
   @media (min-width: 900px)
+    justify-content: space-between
+    padding: 0 20px 0 40px
     background-image: url(../images/banners/bts-desktop.svg)
     background-position: top right
     &:hover
@@ -59,6 +61,15 @@ body.has-bts-banner
         background-color: #38a1f3
   @media (min-width: 1600px)
     background-position: top right
+  .bts-logo
+    display: none
+    @media (min-width: 900px)
+      display: inline-block
+  .bts-main
+    display: flex
+    justify-content: center
+    align-items: center
+    flex: 1 1 0%
   .bts-backpack
     img
       display: inline-block
@@ -81,13 +92,12 @@ body.has-bts-banner
       color: #FFF
       font-size: 16px
       font-weight: bold
-      width: 253px
+      width: 183px
       @media (min-width: 680px)
         font-size: 17px
-        width: auto
-        margin-bottom: 8px
+        width: 380px
       @media (min-width: 900px)
-        margin-bottom: 0
+        width: auto
         font-size: 22px
       .bts-dot
         display: none
@@ -102,12 +112,6 @@ body.has-bts-banner
         text-decoration: line-through
       .bts-title-green
         color: #1fdb69
-    .bts-subtitle
-      display: none
-      @media (min-width: 680px)
-        color: #c5c2f4
-        font-size: 16px
-        display: inline-block
   .bts-button
     color: #fff
     background-color: #667dff
@@ -123,9 +127,7 @@ body.has-bts-banner
   .bts-close
       color: #fff;
       font-size: 28px
-      position: absolute
-      z-index: 9999
-      right: 10px
+      margin-right: 10px
       line-height: 1
       &:hover
         color: #56D8FF
