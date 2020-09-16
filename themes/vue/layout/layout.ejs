@@ -1,6 +1,5 @@
 <% var isIndex = page.path === 'index.html' %>
 <% var isThemes = page.path === 'resources/themes.html' %>
-<% var hasBtsBanner = true %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,10 +91,13 @@
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button"></a>
+      <a class="menu-button<%- isIndex ? ' blm' : '' %>"></a>
       <a class="logo" href="/"></a>
+      <% if (isIndex) { %>
+        <a class="blm-mobile" href="/#">#BlackLivesMatter</a>
+      <% } %>
     </div>
-    <%- partial('partials/header', { hasBtsBanner }) %>
+    <%- partial('partials/header') %>
     <% if (!isIndex) { %>
       <div id="main" class="fix-sidebar">
         <%- body %>

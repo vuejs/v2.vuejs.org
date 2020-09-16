@@ -1,26 +1,9 @@
 <div>
-  <% if (hasBtsBanner) { %>
-  <a id="bts" class="bts-hidden" href="https://vueschool.io/sales/back-to-school?friend=vuejs" target="_blank" rel="noreferrer">
-    <div class="bts-logo">
-      <img src="/images/banners/bts-logo.svg">
+  <% if (page.path === 'index.html') { %>
+    <div id="blm">
+      <span id="blm-hashtag">#B<span>lack</span>L<span>ives</span>M<span>atter</span></span>
+      <a href="https://support.eji.org/give/153413/#!/donation/checkout" target="_blank" rel="noreferrer" id="blm-link">Support the Equal Justice Initiative.</a>
     </div>
-    <div class="bts-main">
-      <div class="bts-backpack">
-        <img src="/images/banners/bts-backpack.svg">
-      </div>
-      <div class="bts-slogan">
-        <div class="bts-title">
-          Less than <span class="bts-title-green">48 hours</span> left for the Vue School offer
-        </div>
-      </div>
-      <div>
-        <div class="bts-button">GET ACCESS</div>
-      </div>
-    </div>
-    <div id="bts-close" class="bts-close">
-      &times;
-    </div>
-  </a>
   <% } %>
 
   <header id="header">
