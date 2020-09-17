@@ -1,4 +1,3 @@
-@import "_settings"
 $header-height = 40px
 
 red-dot-before(leftPos = -8px)
@@ -13,23 +12,60 @@ red-dot-before(leftPos = -8px)
 
 #header
   background-color: #fff
-  padding: $heading-padding-vertical 30px $heading-padding-vertical 60px
+  height: $header-height
+  padding: $heading-padding-vertical 60px
   position: relative
   z-index: $z-header
-  display: flex
-  justify-content: space-between
+
+#blm
+  background-color: #000
+  min-height: $blm-height
+  padding: $heading-padding-vertical 60px
+  z-index: $z-header - 1
   box-sizing: border-box
+  text-align: center
+  color: #fff
+
+#blm-hashtag
+  font-weight: bold
+  margin-right: 4px
+
+#blm-hashtag span
+  display: none
+
+@media (min-width: 470px)
+  #blm-hashtag span
+    display: inline
+
+#blm-link
+  color: $green
+  white-space: nowrap
 
 body.docs
+  #blm
+    position: fixed
+    top: 0
+    width: 100%
   #header
     position: fixed
     width: 100%
     top: 0
+  #nav
+    position: fixed
+    top: $heading-padding-vertical
+
+@media screen and (max-width: 900px)
+  body.docs #blm
+    display: none
 
 #nav
   list-style-type: none
   margin: 0
   padding: 0
+  position: absolute
+  right: 30px
+  top: $heading-padding-vertical
+  height: $header-height
   line-height: $header-height
   .break
     display: none
@@ -135,6 +171,9 @@ body.docs
     left: 12px
     background: url(../images/menu.png) center center no-repeat
     background-size: 24px
+    &.blm
+      background: url(../images/menu-blm.png) center center no-repeat
+      background-size: 24px
   .logo
     position: absolute
     width: 30px
@@ -144,6 +183,11 @@ body.docs
     left: 50%
     margin-left: -15px
     background-size: 30px
+  .blm-mobile
+    position: absolute
+    right: 12px
+    line-height: 40px
+    font-weight: bold
 
 @media print
   #header

@@ -3,7 +3,6 @@
   initMobileMenu()
   initVideoModal()
   initNewNavLinks()
-  initBtsBanner()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -281,23 +280,6 @@
     })
   }
 
-  /**
-   * Banner closing
-   */
-  function initBtsBanner() {
-    const banner = document.getElementById('bts')
-    if (banner && !localStorage.getItem('BTS_BANNER_CLOSED')) {
-      banner.classList.remove('bts-hidden')
-      document.body.classList.add('has-bts-banner')
-      document.getElementById('bts-close').addEventListener('click', function (e) {
-        e.preventDefault()
-        e.stopPropagation()
-        document.getElementById('bts').remove()
-        document.body.classList.remove('has-bts-banner')
-        localStorage.setItem('BTS_BANNER_CLOSED', 1)
-      })
-    }
-  }
 
   /**
   * Modal Video Player
