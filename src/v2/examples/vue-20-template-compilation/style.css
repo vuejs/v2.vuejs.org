@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  -webkit-user-select: inherit;
+  user-select: inherit;
+  font-size: 14px;
+  color: #34495e;
+}
+
+pre {
+  padding: 10px;
+  overflow-x: auto;
+  background: #f2f2f2;
+}
+
+code {
+  white-space: pre;
+  padding: 0;
+}
+
+code,
+pre,
+textarea {
+  font-family: "Roboto Mono", Monaco, courier, monospace;
+}
+
+textarea {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 8px;
+  border-color: #bbb;
+  padding: 8px;
+  border-bottom-width: 2px;
+  outline: none;
+  color: #34495e;
+}
+
+textarea:focus {
+  background: lightyellow;
+}

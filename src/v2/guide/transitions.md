@@ -479,6 +479,7 @@ new Vue({
   methods: {
     beforeEnter: function (el) {
       el.style.opacity = 0
+      el.style.transformOrigin = 'left'
     },
     enter: function (el, done) {
       Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
@@ -959,6 +960,7 @@ So what about for when we have a whole list of items we want to render simultane
 - Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
 - [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
 - Elements inside are **always required** to have a unique `key` attribute.
+- CSS transition classes will be applied to inner elements and not to the group/container itself.
 
 ### List Entering/Leaving Transitions
 
@@ -1243,7 +1245,7 @@ new Vue({
 
 <p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">

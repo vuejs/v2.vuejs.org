@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-list-move-transitions",
+  "version": "1.0.0",
+  "description": "Example showing list entering/leaving transitions in Sudoku.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

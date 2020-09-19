@@ -15,15 +15,48 @@ red-dot-before(leftPos = -8px)
   height: $header-height
   padding: $heading-padding-vertical 60px
   position: relative
-  z-index: 100
+  z-index: $z-header
+
+#blm
+  background-color: #000
+  min-height: $blm-height
+  padding: $heading-padding-vertical 60px
+  z-index: $z-header - 1
+  box-sizing: border-box
+  text-align: center
+  color: #fff
+
+#blm-hashtag
+  font-weight: bold
+  margin-right: 4px
+
+#blm-hashtag span
+  display: none
+
+@media (min-width: 470px)
+  #blm-hashtag span
+    display: inline
+
+#blm-link
+  color: $green
+  white-space: nowrap
 
 body.docs
+  #blm
+    position: fixed
+    top: 0
+    width: 100%
   #header
     position: fixed
     width: 100%
     top: 0
   #nav
     position: fixed
+    top: $heading-padding-vertical
+
+@media screen and (max-width: 900px)
+  body.docs #blm
+    display: none
 
 #nav
   list-style-type: none
@@ -41,6 +74,11 @@ body.docs
     position: relative
     margin: 0 .6em
 
+  .nav-dropdown-container
+    padding-right: .8em
+    &:last-child
+      padding-right: 0
+
   .nav-dropdown
     .nav-link
       &:hover, &.current
@@ -55,7 +93,7 @@ body.docs
           border-bottom: 3px solid transparent
           position: absolute
           top: 50%
-          margin-top: -4px
+          transform: translateY(-50%)
           left: 8px
       &.new::before
         red-dot-before(8px)
@@ -65,8 +103,6 @@ body.docs
   white-space: nowrap
   &:hover, &.current
     border-bottom: 3px solid $green
-  &.team
-    margin-left: 10px
   &.new::before
     red-dot-before()
 
@@ -121,9 +157,12 @@ body.docs
   width: 100%
   height: 40px
   background-color: #fff
-  z-index: 9
+  z-index: $z-header
   display: none
   box-shadow: 0 0 2px rgba(0,0,0,.25)
+  pointer-events: none
+  > *
+    pointer-events: auto
   .menu-button
     position: absolute
     width: 24px
@@ -132,6 +171,9 @@ body.docs
     left: 12px
     background: url(../images/menu.png) center center no-repeat
     background-size: 24px
+    &.blm
+      background: url(../images/menu-blm.png) center center no-repeat
+      background-size: 24px
   .logo
     position: absolute
     width: 30px
@@ -141,6 +183,11 @@ body.docs
     left: 50%
     margin-left: -15px
     background-size: 30px
+  .blm-mobile
+    position: absolute
+    right: 12px
+    line-height: 40px
+    font-weight: bold
 
 @media print
   #header

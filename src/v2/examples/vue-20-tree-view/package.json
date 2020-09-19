@@ -1,0 +1,14 @@
+{
+  "name": "vue-20-tree-view",
+  "version": "1.0.0",
+  "description": "Example of a simple tree view implementation showcasing recursive usage of components.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

@@ -3,12 +3,13 @@
     <span>Special Sponsor</span>
     <div>
     <%_ for (const sponsor of theme.special_sponsors) {_%>
-    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+    <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo">
       <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>
   </div>
 </div>
-
+<% if (!page.sponsors && !page.partners) { %>
 <%- partial('partials/platinum_sponsors', { context: 'left' }) %>
+<% } %>
