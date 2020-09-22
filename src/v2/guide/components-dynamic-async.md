@@ -106,6 +106,7 @@ new Vue({
   background: #f0f0f0;
   margin-bottom: -1px;
   margin-right: -1px;
+  overflow-anchor: none;
 }
 .dynamic-component-demo-tab-button:hover {
   background: #e0e0e0;
