@@ -2,7 +2,7 @@
 <% var isThemes = page.path === 'resources/themes.html' %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="with-v3-banner">
   <head>
     <title><%- page.title ? page.title + ' — ' : '' %>Vue.js</title>
     <meta charset="utf-8">
@@ -91,11 +91,8 @@
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button<%- isIndex ? ' blm' : '' %>"></a>
+      <a class="menu-button"></a>
       <a class="logo" href="/"></a>
-      <% if (isIndex) { %>
-        <a class="blm-mobile" href="/#">#BlackLivesMatter</a>
-      <% } %>
     </div>
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
