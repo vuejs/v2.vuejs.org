@@ -100,6 +100,9 @@ gold_sponsors:
   - url: 'https://www.okayhq.com/'
     img: okay.png
     name: Okay
+  - url: 'https://www.vpsserver.com'
+    img: vpsserver_com.png
+    name: VPSServer.com
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
