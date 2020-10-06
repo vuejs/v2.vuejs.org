@@ -217,4 +217,30 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 <a @[event]="doSomething"> ... </a>
 ```
 
+### `v-slot` Shorthand
+
+``` html
+<!-- full syntax -->
+<foo>
+  <template v-slot:header="{ msg }">
+    Message from header: {{ msg }}
+  </template>
+
+   <template v-slot:footer>
+    A static footer
+  </template>
+</foo>
+
+<!-- shorthand -->
+<foo>
+  <template #header="{ msg }">
+    Message from header: {{ msg }}
+  </template>
+
+   <template #footer>
+    A static footer
+  </template>
+</foo>
+```
+
 They may look a bit different from normal HTML, but `:` and `@` are valid characters for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
