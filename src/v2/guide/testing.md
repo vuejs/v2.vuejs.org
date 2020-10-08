@@ -116,7 +116,7 @@ While end-to-end (E2E) testing on the web has gained a negative reputation for u
 
 One of the primary benefits that end-to-end (E2E) testing is known for is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, it is important to note that cross browser testing has diminishing returns on a team's resources due the additional time and machine power required to run them consistently. As a result, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
 
-<p class="tip">A recent development in for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).</p>
+<p class="tip">A recent development in E2E for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).</p>
 
 #### Faster feedback loops
 
