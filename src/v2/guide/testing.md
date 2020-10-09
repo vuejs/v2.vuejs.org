@@ -4,8 +4,6 @@ type: guide
 order: 402
 ---
 
-# Testing
-
 ## Introduction
 
 When it comes to building reliable applications, tests can play a critical role in an individual or team's ability to build new features, refactor code, fix bugs, etc. While there are many schools of thought with testing, there are three categories often discussed in the context of web applications:
