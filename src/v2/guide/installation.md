@@ -84,34 +84,47 @@ Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly sca
 
 ## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them.
 
-| | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
-| --- | --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
+### Directly Use
 
-### Terms
+**[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
-- **Full**: builds that contain both the compiler and the runtime.
+|                  | **Full**        | **Runtime-only**   |
+| ---------------- | --------------- | ------------------ |
+| **Development**  | vue.js          | vue.runtime.js     |
+| **Production**   | vue.min.js      | vue.runtime.min.js |
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+**[ES Module](http://exploringjs.com/es6/ch_modules.html)** for browsers (starting from Vue 2.6): intended for direct imports in modern browsers via `<script type="module">`.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+|                  | **Full**               | **Runtime-only** |
+| ---------------- | ---------------------- | ---------------- |
+| **Development**  | vue.esm.browser.js     | -                |
+| **Production**   | vue.esm.browser.min.js | -                |
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+### For Bundlers
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+These builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+**[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+|                  | **Development**       | **Production** |
+| ---------------- | --------------------- | -------------- |
+| **Full**         | vue.common.js         | -              |
+| **Runtime-only** | vue.runtime.common.js | -              |
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+**[ES Module](http://exploringjs.com/es6/ch_modules.html)** for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
-### Runtime + Compiler vs. Runtime-only
+|                  | **Development**    | **Production** |
+| ---------------- | ------------------ | -------------- |
+| **Full**         | vue.esm.js         | -              |
+| **Runtime-only** | vue.runtime.esm.js | -              |
+
+### Full (Runtime + Compiler) vs. Runtime-only
+
+**Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+
+**Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
 
 If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
 
@@ -190,8 +203,6 @@ Add to your project's `package.json`:
 ### Development vs. Production Mode
 
 Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
-
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
 
 CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
 
