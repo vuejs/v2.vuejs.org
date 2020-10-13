@@ -752,7 +752,7 @@ type: api
 
   - **Details:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as its first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
 
