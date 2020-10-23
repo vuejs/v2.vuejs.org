@@ -131,6 +131,13 @@ var themeData = [
     seeMoreUrl: 'https://www.primefaces.org/primevue/#/?af_id=4218',
     products: [
       {
+        name: 'Diamond',
+        price: 59,
+        description: 'Free Vue.js Admin Template',
+        url: 'https://www.primefaces.org/layouts/diamond-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/diamond.jpg'
+      },
+      {
         name: 'Sapphire',
         price: 49,
         description: 'Material Design Admin Template',
