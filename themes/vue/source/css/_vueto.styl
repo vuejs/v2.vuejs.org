@@ -1,0 +1,205 @@
+.vueto-weekend-promo.docs
+  .vueto-banner
+    z-index 100
+
+.vueto-banner
+  display none
+  position relative
+  background -webkit-gradient(linear,right top,left top,from(#96c93d),to(#00b09b))
+  background linear-gradient(270deg,#96c93d,#00b09b)
+  padding 2px
+
+  &:hover
+    &:before
+      transition width .15s ease-in
+      width 50%
+    p
+      transition-delay 0
+
+
+  a
+    display flex
+    height 40px
+    width 100%
+    justify-content center
+
+  .hidden
+    display none
+
+.vueto-banner--wrapper
+  color white
+  display flex
+  height 100%
+  align-items center
+  position relative
+
+
+
+  &:hover
+    + .vueto-banner--close
+      &:before,
+      &:after
+        transform-origin 100%
+        background #fff
+
+  p
+    margin 0 30px 0 0px
+    font-size 1rem
+    position relative
+    transition-delay .15s
+    font-weight 600
+
+  span
+    font-size 1rem
+    display block
+    color #fff
+
+  button
+    cursor pointer
+    font-weight 600
+    padding 5px 18px
+    border-radius 32px
+    background white
+    border 1px solid white
+    color #00b09b
+    font-size .9rem
+    transition .3s all
+
+    &:hover
+      color white
+      background-image -webkit-gradient(linear,right top,left top,from(#96c93d),to(#00b09b))
+      background-image linear-gradient(270deg,#96c93d,#00b09b)
+      transform translateX(10px)
+
+
+.vueto-banner--logo
+  position relative
+  z-index 2
+
+.vueto-banner--close
+  position absolute
+  top 2px
+  right 25px
+  height 40px
+  width 40px
+  -webkit-tap-highlight-color transparent
+  border-radius 50%
+  cursor pointer
+
+  &:before,
+  &:after
+    content ''
+    position absolute
+    top 19px
+    left 14px
+    width 10px
+    height 2px
+    background-color #fff
+    transform-origin 50%
+    transform rotate(-45deg)
+    transition all .2s ease-out
+
+  &:after
+    transform rotate(45deg)
+
+.vueto-weekend-promo
+  #mobile-bar,
+  #mobile-bar.top
+    position relative
+    background-color #fff
+
+  &.docs:not(.vueto-menu-fixed)
+    padding-top 0
+    #header
+      position relative
+      width auto
+    #nav
+      position absolute
+
+  &.vueto-menu-fixed
+    #mobile-bar
+      position fixed
+
+@media screen and (min-width: 901px)
+  .vueto-weekend-promo.docs:not(.vueto-menu-fixed)
+    #main.fix-sidebar .sidebar .sidebar-inner
+      padding-top 110px
+
+    #sidebar-sponsors-platinum-right
+      position absolute
+      top: 170px
+
+@media screen and (min-width: 415px) and (max-width: 900px)
+  .vueto-weekend-promo.docs:not(.vueto-menu-fixed)
+    #main.fix-sidebar .sidebar .sidebar-inner
+      padding-top 140px
+
+    #sidebar-sponsors-platinum-right
+      position absolute
+      top: 170px
+
+  &.vueto-menu-fixed.docs
+    .vueto-banner
+      margin-bottom 0
+
+  .vueto-banner
+    button
+      display none
+
+@media screen and (max-width: 414px)
+  // Docs menu
+  .vueto-weekend-promo.docs:not(.vueto-menu-fixed)
+    #main.fix-sidebar .sidebar .sidebar-inner
+      padding-top 100px
+
+  .vueto-banner
+    .vueto-banner--logo
+      margin-left 0
+
+  .vueto-weekend-promo
+    &.vueto-menu-fixed
+      .vueto-banner
+        margin-bottom 40px
+
+
+@media screen and (max-width: 700px)
+  .vueto-banner
+    a
+      height 40px
+      overflow hidden
+
+    .vueto-banner--logo
+      margin-left 0
+      justify-content flex-start
+
+    p, span
+      font-size .8rem
+
+    .vueto-banner--close
+      top 0px
+      right 0px
+
+      &:before,
+      &:after
+        top 23px
+        left 14px
+        width 10px
+        height 2px
+
+@media screen and (max-width: 425px)
+  .vueto-banner
+    p
+      max-width 100%
+    span
+      display none
+    button
+      display none
+
+@media screen and (max-width 286px)
+  .vueto-banner p
+    font-size 0.6rem
+    margin -3px 28px 0 0px
+
+@media print
+  .vueto-banner
+    display none
