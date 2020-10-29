@@ -412,8 +412,8 @@ order: 803
       languages: ['hi', 'en'],
       work: {
         role: 'Software Engineer',
-        org: 'Myntra',
-        orgUrl: 'https://www.myntra.com/'
+        org: 'Grammarly',
+        orgUrl: 'https://grammarly.com/'
       },
       github: 'znck',
       twitter: 'znck0',
@@ -421,10 +421,10 @@ order: 803
         'rollup-plugin-vue', 'vue-issue-helper'
       ],
       reposPersonal: [
-        'keynote', 'bootstrap-for-vue', 'vue-interop'
+        'vue-developer-experience', 'prop-types', 'grammarly'
       ],
       links: [
-        'https://znck.me', 'https://www.codementor.io/znck'
+        'https://znck.me'
       ]
     },
     {
