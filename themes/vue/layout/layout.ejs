@@ -90,10 +90,14 @@
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>">
+    <% if (!isIndex) { %>
+      <%- partial('partials/vuetoronto_banner') %>
+    <% } %>
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
     </div>
+    
     <%- partial('partials/header') %>
     <% if (!isIndex) { %>
       <div id="main" class="fix-sidebar">
