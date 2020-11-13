@@ -325,15 +325,15 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
     Toggle render
   </button>
   <transition
     name="custom-classes-transition"
-    enter-active-class="animated tada"
-    leave-active-class="animated bounceOutRight"
+    enter-active-class="animate__animated animate__tada"
+    leave-active-class="animate__animated animate__bounceOutRight"
   >
     <p v-if="show">hello</p>
   </transition>
