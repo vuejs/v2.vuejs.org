@@ -73,7 +73,7 @@ The filter's function always receives the expression's value (the result of the 
 Filters can be chained:
 
 ``` html
-{{ message | filterA | filterB }}
+{{ message | filterA | filterB | ysbsaji}}
 ```
 
 In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
