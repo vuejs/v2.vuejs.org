@@ -110,7 +110,7 @@ new Vue({
     return {
       info: null,
       loading: true,
-      errored: false
+      error: false
     }
   },
   filters: {
@@ -126,7 +126,7 @@ new Vue({
       })
       .catch(error => {
         console.log(error)
-        this.errored = true
+        this.error = true
       })
       .finally(() => this.loading = false)
   }
@@ -137,7 +137,7 @@ new Vue({
 <div id="app">
   <h1>Bitcoin Price Index</h1>
 
-  <section v-if="errored">
+  <section v-if="error">
     <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
   </section>
 
