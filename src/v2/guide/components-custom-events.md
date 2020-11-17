@@ -89,8 +89,8 @@ To solve this problem, Vue provides a `$listeners` property containing an object
 
 ```js
 {
-  focus: function (event) { /* ... */ }
-  input: function (value) { /* ... */ },
+  focus: function (event) { /* ... */ },
+  input: function (value) { /* ... */ }
 }
 ```
 
