@@ -1,0 +1,301 @@
+// Screen sizes
+tiny    = 330px
+small   = 465px
+phone   = 700px
+tablet  = 900px
+desktop = 1000px
+
+// Media queries mixins
+mqMax(val)
+  @media all and (max-width: val)
+    {block}
+mqMin(val)
+  @media all and (min-width: val + 1px)
+    {block}
+
+// Animations easing
+animIn  = all cubic-bezier(0.34, 0.06, 0.01, 1) 2s
+animOut = all cubic-bezier(0.34, 0.06, 0.01, 1) 1s
+
+.vuemastery-banner
+  display none
+  background #071532
+  overflow hidden
+  position relative
+  transition animIn
+  cursor pointer
+  z-index 11
+
+  &:after,
+  &:before
+    content ''
+    position absolute
+    pointer-events none
+    transition animOut
+    bottom 0
+    
+  &:after
+    width 100%
+    position absolute
+    transition animIn
+    background-image url(../images/background.png)
+    background-position center
+    background-size: 100% auto;
+    top 0
+
+  &:before
+    height 100%
+    width 100%
+
+  &:hover
+    +mqMin(desktop)
+      &:before,
+      &:after
+        transition animIn
+
+      &:before
+        transform translateX(50%)
+
+      &:after
+        transform scale(1.2)
+
+
+      .vuemastery-planet
+        transform rotate(-35deg) scale(10) translateX(40%)
+        &:after
+          transform translateX(-93px) scale(1.3)
+          opacity 0
+    
+      .vuemastery-banner--close
+        &:before,
+        &:after
+          transform-origin 100%
+
+        &:hover
+          &:before,
+          &:after
+            transition transform .2s ease-in .5s, transform-origin .2s ease-in
+            transform-origin 50%
+
+      .vuemastery-button:after
+        left: 120%;
+        transition: left 1.5s cubic-bezier(.19,1,.22,1);
+
+.vuemastery-banner--link
+  display flex
+  height 80px
+  justify-content center
+  overflow hidden
+  position relative
+  z-index 2
+
+  +mqMax(phone)
+    justify-content start
+    height 65px
+
+.vuemastery-banner--wrapper
+  display flex
+  height 100%
+  align-items center
+  position relative
+  color #fff
+  z-index 3
+  transition animIn
+
+  p
+    margin -3px 50px 0 20px
+    font-size 1.17rem
+    font-weight 600
+    white-space nowrap
+    position relative
+
+  span
+    font-size 1rem
+    display block
+
+  +mqMax(phone)
+    flex-direction: column;
+    width: calc(100% - 172px);
+
+    p, span
+      margin: .5rem 0 0rem 0;
+      font-size .8rem
+      color #fff
+
+  +mqMax(phone)
+    span
+      display none
+
+  +mqMax(tiny)
+    p
+      font-size 0.6rem
+      margin -3px 28px 0 0px
+
+.vuemastery-banner--logo
+  height 102%
+  margin-top -1px
+  margin-left -90px
+  position relative
+  z-index 2
+  transition animIn
+
+  +mqMax(phone)
+    margin-left: -40px;
+    transform: rotateY(190deg);
+    height: 105%;
+  
+.vuemastery-banner--close
+  height 100%
+  width 75px
+  position absolute
+  top 0
+  right 0
+  z-index 2
+  -webkit-tap-highlight-color transparent
+  cursor pointer
+
+  &:before,
+  &:after
+    content ''
+    width 25px
+    height 2px
+    position absolute
+    top 39px
+    right 25px
+    background-color #fff
+    transform-origin 50%
+    transform rotate(-45deg)
+    transition all .2s ease-out
+
+  &:after
+    transform rotate(45deg)
+
+  &:hover
+    &:before,
+    &:after
+      transform rotate(180deg)
+
+  +mqMax(phone)
+    &:before,
+    &:after
+      width 15px
+      top 19px
+      right 14px
+
+.vuemastery-promo
+  #mobile-bar,
+  #mobile-bar.top
+    position relative
+    background-color #fff
+  
+  &.docs:not(.vuemastery-menu-fixed)
+    padding-top 0
+    // #blm,
+    #header
+      position relative
+      width auto
+      top 0
+
+    #nav
+      position absolute
+      top 8px
+
+  &.vuemastery-menu-fixed
+    #mobile-bar
+      position fixed
+
+    +mqMax(tablet)
+      .vuemastery-banner
+        margin-bottom 40px
+
+  +mqMin(tablet)
+    &.docs:not(.vuemastery-menu-fixed)
+      #main.fix-sidebar .sidebar
+        position absolute
+        top 141px
+      
+      #sidebar-sponsors-platinum-right
+        position absolute
+        top 170px
+    
+    &.docs.vuemastery-menu-fixed
+      .vuemastery-banner
+        margin-bottom 0
+
+.vuemastery-planet
+  position absolute
+  z-index 2
+  width 100%
+  height 100%
+  transform-origin bottom right
+  transition animIn
+
+  +mqMax(phone)
+    transform translateX(70px)
+
+  &:after,
+  &:before
+    content ''
+    position absolute
+    pointer-events none
+    bottom 0
+    width 100%
+    top 0
+    right 0
+    background-image url(../images/black-hole.png)
+    background-attachment fixed
+    background-size: auto 200px;
+    background-position: top -52px right -24px;
+    background-repeat: no-repeat;
+
+  &:before
+    +mqMax(phone)
+      background-size: auto 200px;
+      background-position: top -81px right -82px;
+
+  &:after
+    background-image: url(../images/planets.png);
+    transition: all cubic-bezier(0.34, 0.06, 0.01, 1) 3s;
+    background-position: left -80px top -80px;
+    background-size: auto 180px;
+
+    +mqMax(phone)
+      display none
+
+@media print
+  .vuemastery-banner
+    display none
+
+
+.vuemastery-button
+  display: inline-flex;
+  background: linear-gradient(to top right,#3d2c61,#835ec2);
+  height: 38px;
+  margin: .5em 0;
+  line-height: 38px;
+  padding: 0 30px;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 36px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative
+  overflow hidden
+
+  &:before,
+  &:after
+    background: linear-gradient(to top right,transparent,#fff);
+    content: "";
+    height: 150px;
+    left: -175px;
+    opacity: .1;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    width: 100px;
