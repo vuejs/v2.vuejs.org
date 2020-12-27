@@ -6,13 +6,13 @@ order: 2
 
 ## Vue.js nədir?
 
-Vue (tələffüzü /vyuː/, ingilis sözü **view** kimi oxunur) istifadəçi interfeysi yaratmaq üçün **mütərəqqi freymvork-dur** . Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (tələffüzü /vyuː/, ingilis sözü **view** kimi oxunur) istifadəçi interfeysi yaratmaq üçün **mütərəqqi freymvork-dur** .Digər monolitik freymworklardan fəqli olaraq , Vue sadə təməl üzərində inşa edildiyi üçün layihələrdə nisbətən (müyəən bir hissədə) istifadə edilə bilər.Ana kitabxana yalnız görüntü qatına fokuslanır, bu isə digər kitabxanalara və ya hazır layihələrə inteqrasiyanı asanlaşdırır.Digər tərəfdən,Vue [müasir alətlər](single-file-components.html) və [dəstəklənən kitabxanalar](https://github.com/vuejs/awesome-vue#components--libraries) ilə birlikdə istifadə edildikdə Tək Səhifəlik Tətbiqetmələr (Single-Page-Application) üçün mükəmməl yenilikci gücə malikdir.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Əgər Vue öyrənməyə başlamadan öncə Vue haqqında daha çox öyrənmək istəyirsinizsə, Biz əsas prinsipləri və nümunə layihələri əhatə edən <a id="modal-player"  href="#">video hazırlamışıq</a> baxa bilərsiniz.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Əgər siz daha profissional frontend-developersinizsə və Vue-nin digər kitabxana/framevorklarla müqayiyəsini görmək istiyirsinizsə, baxa bilərsiniz  [Digər framevorklar ilə müqayisə](comparison.html).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Vue Mastery-də ödənişsiz video kurs izlə</a></div>
 
 ## Başlayaq
 
