@@ -20,23 +20,23 @@ Vue (tələffüzü /vyuː/, ingilis sözü **view** kimi oxunur) istifadəçi in
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
-The easiest way to try out Vue.js is using the [Hello World example](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Vue.js-i yoxlamaq üçün ən rahat yol  [Salam Dünya Nümunəsini (Hello World example)](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world) istifadə etməkdir. Bu linki digər tabda açıb, mövzuladan bəhs etdikcə kod nümunələrinə nəzər yetirə bilərsiniz.  Və ya, yeni <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer"> <code>index.html</code> faylı yaradın</a> yaradın və Vue-ni aşağıda qeyd edilən script vasitəsi ilə çağırın :
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- İnkişaf etdirmə mühitindədir , yardımçı konsol xəbərdarlıqları var -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 ```
 
-or:
+və ya:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- İstehsalat mühitindədir, ölçü və sürət optimizasiya edilib -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+[Quraşdırma](installation.html) səhifəsi Vue üçün başqa quraşdırma üsulları təqdim edir. Qeyd: Yeni başlayanlar üçün `vue-cli` istifadə etməyi **məsləhət görümürük**,xüsusi ilə əgər hələdə Node.js əsaslı quraşdırma alətləri ilə tanış deyilsinizsə.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/g/gvuedocs), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+Əgər siz daha interaktiv yolu seçmək istəsəniz. [bu video dərsələrə Scrimbada yerləşmiş](https://scrimba.com/g/gvuedocs) versiyada baxa bilərsiniz,Scrimbada screencast və kod ilə işləmə imkanı verir bununla siz istədiyiniz anda dayandırıb testlər edə bilərsiniz.
 
 ## Declarative Rendering
 
