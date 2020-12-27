@@ -38,11 +38,11 @@ və ya:
 
 Əgər siz daha interaktiv yolu seçmək istəsəniz. [bu video dərsələrə Scrimbada yerləşmiş](https://scrimba.com/g/gvuedocs) versiyada baxa bilərsiniz,Scrimbada screencast və kod ilə işləmə imkanı verir bununla siz istədiyiniz anda dayandırıb testlər edə bilərsiniz.
 
-## Declarative Rendering
+## Görüntünü bəyanatlaşdırmaq
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Bu dərsdə Scimba isitfadə et</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Vue.js tərəfindən verilənləri sadə şablon sintaksisi ilə DOM'a bəyan edib əks etdirən sistem mövcuddur:
 
 ``` html
 <div id="app">
@@ -71,11 +71,10 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Biz artıq ilk Vue tətbiq etməmizi yaratdıq! Bu hissə dəyişənin mətin şablonunda əvəzlənməsinə oxşayır, əslində isə Vue bu görüntünün arxasında bir çox iş yerinə yetirir. Hazırda data və DOM bir biri ilə əlaqələnib, və hər şey indi **reaktivdir**. Bunu əyani necə görək? İnternet bələdçinizin Javascipt konsolunu açin (cari səhifədə tətbiq edə bilərsiniz) açın və `app.message` əmri ilə yeni dəyər əlavə edin.Əmrə uyğun olaraq siz yenilənmiş dəyəri görəcəksiniz.
+Qeyd etmək lazımdır ki, artıq HTML ilə bir başa əlaqəli yaratmamalıyıq.Vue özünu DOM elementi (bizim situasiyamızda `#app`) kimi əlavə edir və özü idarə edir. HTML bizim başlanğıc nöqtəmizdir, lakin qalan işlər yeni yaradılmış VUE xətti ilə həyatə keçir.
 
-Note that we no longer have to interact with the HTML directly. A Vue app attaches itself to a single DOM element (`#app` in our case) then fully controls it. The HTML is our entry point, but everything else happens within the newly created Vue instance.
-
-In addition to text interpolation, we can also bind element attributes like this:
+Mətinlərin əvəzlənməsinəndən əlavə olaraq,biz həmçinin HTML attributlarıda qeyd edilən kimi əlaqələndirə bilirik:
 
 ``` html
 <div id="app-2">
@@ -109,9 +108,9 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Burada biz yeniliklə qarşılaşırıq.Gördüyümüz `v-bind` atributu **direktiv** adlanır.Direktivlər `v-` başlanğıcı (prefiks) ilə başlanır ki,Vue tərəfindən xüsusi atribut olunduğu təyin edilsin,təxmin edildiyiz kimi,DOM üzərindən xüsusi bir aktivlik başlanır .Qısaca burda deyilir,"cari Vue nümunəsində (Vue instance) bu elementin `title` atributunun dəyərini `message` dəyişəni ilə eyni saxla".
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Əgər siz yenidən Javascript konsolu açıb  `app2.message = 'some new message'` - bu kodu daxil etsəniz,siz görəcəksiniz ki `title` atributu daxil edilmiş verilənə uyğun yenilənib.
 
 ## Conditionals and Loops
 
