@@ -112,15 +112,15 @@ Burada biz yeniliklə qarşılaşırıq.Gördüyümüz `v-bind` atributu **direk
 
 Əgər siz yenidən Javascript konsolu açıb  `app2.message = 'some new message'` - bu kodu daxil etsəniz,siz görəcəksiniz ki `title` atributu daxil edilmiş verilənə uyğun yenilənib.
 
-## Conditionals and Loops
+## Şərtlər və döngülər
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Dərsə Scrimba ilə bax</a></div>
 
-It's easy to toggle the presence of an element, too:
+Elementin görünüb/görünməməyini dəyişmək çox rahatdır :
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Siz məni görürsüz</span>
 </div>
 ```
 
@@ -135,7 +135,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Siz məni görürsünüz</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -147,11 +147,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Başa qayıdaq və konsol ekran daxil edək `app3.seen = false` .Mətnin gizləndiyini görməlisiniz.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Bu nümunədən aydın olur ki, biz datanı mətin və attributlardan başqa  DOM-un **strukturu** ilədə bağlaya bilərik. Bununla yanaşı, Vue, HTML elementlərinin Vue tərəfindən əlavə edilməsi/yenilənməsi/silinməsi əməliyyatlarında [keçid effektlərini](transitions.html) təmin etmək üçün güclü sistemə malikdir.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Fərqli funksionallıqlara malik başqa direktivlərdə mövcuddur.Nümunə,  `v-for` direktivi massivdə olan məlumatların list kimi görünməsində istifadə edilir :
 
 ``` html
 <div id="app-4">
@@ -167,9 +167,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Javascritp öyrən' },
+      { text: 'Vue öyrən' },
+      { text: 'Gözəl layihələr yarat' }
     ]
   }
 })
@@ -187,16 +187,16 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Javascritp öyrən' },
+      { text: 'Vue öyrən' },
+      { text: 'Gözəl layihələr yarat' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Konsolda daxil edin : `app4.todos.push({ text: 'Yeni əşya' })`. Yeni elementin əlavə edildiyini görməlisiniz.
 
 ## Handling User Input
 
