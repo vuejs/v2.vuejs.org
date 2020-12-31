@@ -391,18 +391,18 @@ Böyük layihələrdə layihəni idarə etmək üçün layihəni kiçik komponen
 </div>
 ```
 
-### Relation to Custom Elements
+### Xüsusi elementlərlə əlaqə (HTML elementlər nəzərdə tutulub)
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+Biz artıq bilirik ki Vue komponentləri [Veb elementləri standartlarının](https://www.w3.org/wiki/WebComponents/) parçası olan **Xüsusi elemetlərə**  çox oxşayır.Bu ona görədir ki, Vuenin komponent sintaksisi həmin elemntlərdən sonra nümunə olaraq modelləşib. Nümunə, Vue komponentləri [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) və `is` xüsusi elementini dəstəkləməkdədir.Lakin, fərqliliklər mövcuddur:
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. Veb elementləri standartları yekunlaşıb lakin hələdə bir sira veb bələdçisi tərəfindən dəstəklənmir.Safari 10.1+, Chrome 54+ və Firefox 63+ veb komponentləri dəstəkləyir.Bunun əksi olaraq Vue komponentləri polyfill tələb etmir və bütün veb bələdçiləri dəstəkləyir (IE9 ve üstü). Ehtiyac olduqda Vue komponentləri xüsusi elementlərin içindədə yerləşə bilər.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2.Vue komponentləri adi elementlərin dəstəkləmədiyi bir çox funksionallığa malikdir.bunlardan vurğulanması ən lazımlılar kimi komponentlər arasında məlumat ötürülməsi,event/listener sistemi və layihə tikmə alətlərini göstərə bilərik.
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+Baxmayaraq ki Vue komponentləri hər yerdə istifadə edilə bilmir,Xüsusi element kimi tədarük edilməsi lazım olduqda o [çarpaz işləmə mexanizminə](https://custom-elements-everywhere.com/#vue) malikdir.VUE CLI(Command-Line-Interface / Əmrlər ilə idarəetmə interfeysi) Vue komponentlərin xüsusi element kimi qeydiyyata alınmasını dəstəkləyir.
 
-## Ready for More?
+## Daha çox öyrənməyə hazırsan ?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+Qısaca Vue.js-in ən əsas xüsusiyyətlərini təqdim etdik  - bu bələdçinin davamı həmin mövzuları detallı şəkildə və digər üst səviyyə mövzularlı əhatə edəcək, əmin olun ki onların hamısını oxumusunuz!
 
 <div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684?dnt=1" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
