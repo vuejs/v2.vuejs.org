@@ -198,23 +198,23 @@ var app4 = new Vue({
 
 Konsolda daxil edin : `app4.todos.push({ text: 'Yeni əşya' })`. Yeni elementin əlavə edildiyini görməlisiniz.
 
-## Handling User Input
+## İstifadəçinin daxil etdiyini məlumatlar
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Dərsə Scrimba ilə bax</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+İstifadəçi hərəkətlərinin tətbiq ilə əlaqə qurmasını təmin etmək üçün `v-on` direktivi istifadə edilir cari direktiv bizim Vue nümunəmizdəki eventlərlə onların dinləyicilərini əlaqələnidirir :
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Mətni tərsinə çevir</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Salam Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -226,13 +226,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Mətni tərsinə çevir</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Salam Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -243,9 +243,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Qeyd edək ki, nümunədəki dəyişim DOM-a toxunulmadan yerinə yetirilmişdir.DOM-a aid işlər Vue tərəfindən həll edilir və sizin yazdığınız kodlar bu məqsədə yönəlir.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue istifadəçi girişi və state arasında iki tərəfli bağlantını təmin etmək üçün `v-model` direktivini təmin edir:
 
 ``` html
 <div id="app-6">
@@ -257,7 +257,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Salam Vue!'
   }
 })
 ```
@@ -270,24 +270,24 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Salam Vue!'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## Komponentlərlə işləmək
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Dərsə Scrimba ilə bax</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+Komponent sistemi Vue-də vacib mövzulardan biridir,komponentlər kiçik,müstəqil və yenidən istifadə edilən hissələrdir, böyük layihələrlə işləməyə imkan verir.Bu haqda düşünsək, demək olar bütün növ tətbiqlərin ön görüntüsü komponent ağacı kimi təsəvvür oluna bilər :
 
-![Component Tree](/images/components.png)
+![Komponent ağacı](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+Vue-də komponentlər öncədən seçimlərlə təmin edilmiş Vue nümunəsidir. Vue-də komponenti qeydiyyata almaq çox rahatdır:
 
 ``` js
-// Define a new component called todo-item
+// todo-item adında yeni komponent əlavə edirik
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
@@ -295,37 +295,38 @@ Vue.component('todo-item', {
 var app = new Vue(...)
 ```
 
-Now you can compose it in another component's template:
+İndi həmin komponenti başqa şablonda istifadə edə bilərik:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- todo-item komponentinin nümunəsini yaradaq -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Lakin bu addım hər bir komponent üçün eyni mətni göstərəcək, hansıkı bu istənilməyə bilər. İstəsək ana şablondan uşaq komponentə data ötürə bilərik.Kodlarımızı [prop](components.html#Props) qəbul etməyə uyğunlaşdıraq:
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // todo-item komponent indi "props" qebul edir.
+  // prop elementi öz attributu kimi tanıyır
+  // istifadə etdiyimi prop todo adlanır.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+İndi təkar istifadə etdiyimiz komponentlərə `v-bind` istifadə edərək məlumat ötürə bilərik:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Artıq hər todo-item üçün todo obyektini ötürə bilərik
+      bununla kontent dinamik hal alır
+      Həmçninin hər komponent "key" (vacib açar söz) ilə
+      təmin edilməlidir.
+      Bu haqda sonradan danışılacaq.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -345,9 +346,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Tərəvəzlər' },
+      { id: 1, text: 'Pendir' },
+      { id: 2, text: 'İnsanların yeyə bildiyi başqa nələrsə' }
     ]
   }
 })
@@ -367,18 +368,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Tərəvəzlər' },
+      { id: 1, text: 'Pendir' },
+      { id: 2, text: 'İnsanların yeyə bildiyi başqa nələrsə' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Bu gerçək nümunə olmasada tətbiqimizi iki hissəyə ayrılmış halda idarə edə bildik və propsun köməyi ilə alt hissə üstdən ayrılmış vəziyyətdədir.Bununla `<todo-item>` komponentini üst komponentdən asılı olmadan daha mürəkkəb şablon kimi inkişaf etdirə bilərik.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+Böyük layihələrdə layihəni idarə etmək üçün layihəni kiçik komponentlərə bölmək zəruridir.Komponentlər haqqında daha sonra [bu mövzuda](components.html) danışacayıq, Aşağıda tətbiqin şablonda komponentlərlə necə işlədiyini nümunə kimi görə bilərik :
 
 ``` html
 <div id="app">
