@@ -27,6 +27,9 @@ platinum_sponsors:
   - url: 'https://www.storyblok.com'
     img: storyblok.png
     name: Storyblok
+  - url: 'https://ionicframework.com/'
+    img: ionic.png
+    name: Ionic
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
