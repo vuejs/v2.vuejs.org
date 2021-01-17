@@ -126,7 +126,7 @@ new Vue({
       })
       .catch(error => {
         console.log(error)
-        this.error = true
+        this.error = error;
       })
       .finally(() => this.loading = false)
   }
