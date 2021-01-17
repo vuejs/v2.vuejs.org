@@ -110,7 +110,7 @@ new Vue({
     return {
       info: null,
       loading: true,
-      error: false
+      error: undefined
     }
   },
   filters: {
