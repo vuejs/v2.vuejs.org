@@ -31,6 +31,9 @@ platinum_sponsors:
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png
     name: Ionic
+  - url: 'https://nuxtjs.org/'
+    img: nuxt.png
+    name: Nuxt
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
