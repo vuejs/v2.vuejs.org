@@ -198,13 +198,13 @@ Angular's learning curve is much steeper. The API surface of the framework is hu
 
 Ember is a full-featured framework that is designed to be highly opinionated. It provides a lot of established conventions and once you are familiar enough with them, it can make you very productive. However, it also means the learning curve is high and flexibility suffers. It's a trade-off when you try to pick between an opinionated framework and a library with a loosely coupled set of tools that work together. The latter gives you more freedom but also requires you to make more architectural decisions.
 
-That said, it would probably make a better comparison between Vue core and Ember's [templating](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) and [object model](https://guides.emberjs.com/v2.10.0/object-model/) layers:
+That said, it would probably make a better comparison between Vue core and Ember's [templating](https://guides.emberjs.com/release/components/) and reactivity layers:
 
-- Vue provides unobtrusive reactivity on plain JavaScript objects and fully automatic computed properties. In Ember, you need to wrap everything in Ember Objects and manually declare dependencies for computed properties.
+- Both Ember and Vue provide unobtrusive reactivity on plain JavaScript objects.  In Vue, reactivity is accomplished through observables and fully automatic computed properties. In Ember, [auto-tracking](https://guides.emberjs.com/release/in-depth-topics/autotracking-in-depth/) through decorating state with `@tracked` drives its reactivity layer.
 
 - Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
 
-- Performance-wise, Vue outperforms Ember [by a fair margin](https://stefankrause.net/js-frameworks-benchmark8/table.html), even after the latest Glimmer engine update in Ember 3.x. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
+- Performance-wise, Vue outperforms Ember [in some benchmarks](https://krausest.github.io/js-framework-benchmark/index.html) such as initial DOM creation.
 
 ## Knockout
 
