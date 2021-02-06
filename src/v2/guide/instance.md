@@ -72,7 +72,7 @@ Ketika data ini berubah, tampilanya akan berubah. Itu harus dicatat bahwa proper
 vm.b = 'halo'
 ```
 
-Lalu mengubah ke `b` tidak akan memicu perubahan lain pada tampilan. Jika Anda mengetahui bahwa Anda memerlukan properti nanti, tapi ini dimulai dengan kosong atau tidak ada, Anda harus memberi beberapa nilai awal. Sebagai contoh:
+Lalu mengubah ke `b` tidak akan memicu perubahan lain pada tampilan. Jika Anda mengetahui bahwa Anda memerlukan sebuah properti nantinya, tapi properti ini dimulai dengan nilai kosong atau tidak ada, Anda harus memberi nilai awal. Sebagai contoh:
 
 
 ```js
