@@ -41,7 +41,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 For prototyping or learning purposes, you can use the latest version with:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 ```
 
 For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
@@ -84,7 +84,7 @@ Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly sca
 
 ## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue@2/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
@@ -101,7 +101,7 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 
 - **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue@2](https://cdn.jsdelivr.net/npm/vue@2) is the Runtime + Compiler UMD build (`vue.js`).
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
 

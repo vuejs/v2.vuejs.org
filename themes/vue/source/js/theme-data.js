@@ -131,46 +131,11 @@ var themeData = [
     seeMoreUrl: 'https://www.primefaces.org/primevue/#/?af_id=4218',
     products: [
       {
-        name: 'Sapphire',
-        price: 79,
-        description: 'Material Design Admin Template',
-        url: 'https://www.primefaces.org/layouts/sapphire-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/sapphire.jpg'
-      },
-      {
-        name: 'Avalon',
-        price: 79,
-        description: 'Bootstrap Inspired Admin Template',
-        url: 'https://www.primefaces.org/layouts/avalon-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/avalon.jpg'
-      },
-      {
-        name: 'Serenity',
-        price: 79,
-        description: 'Material Design Admin Template',
-        url: 'https://www.primefaces.org/layouts/serenity-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/serenity.jpg'
-      },
-      {
-        name: 'Apollo',
-        price: 79,
-        description: 'Admin Template with a Dark Mode',
-        url: 'https://www.primefaces.org/layouts/apollo-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/apollo.jpg'
-      },
-      {
-        name: 'Babylon',
-        price: 79,
-        description: 'Admin Template with Extensive Options',
-        url: 'https://www.primefaces.org/layouts/babylon-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/babylon.jpg'
-      },
-      {
-        name: 'Roma',
+        name: 'Diamond',
         price: 59,
-        description: 'Admin Template with a Clean Design System',
-        url: 'https://www.primefaces.org/layouts/roma-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/roma.jpg'
+        description: 'PrimeOne Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/diamond-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/diamond.jpg'
       },
       {
         name: 'Ultima',
@@ -180,8 +145,50 @@ var themeData = [
         image: 'https://www.primefaces.org/vue-templates/ultima.jpg'
       },
       {
+        name: 'Sapphire',
+        price: 49,
+        description: 'Material Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/sapphire-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/sapphire.jpg'
+      },
+      {
+        name: 'Avalon',
+        price: 49,
+        description: 'Bootstrap Inspired Admin Template',
+        url: 'https://www.primefaces.org/layouts/avalon-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/avalon.jpg'
+      },
+      {
+        name: 'Serenity',
+        price: 49,
+        description: 'Material Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/serenity-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/serenity.jpg'
+      },
+      {
+        name: 'Apollo',
+        price: 49,
+        description: 'Admin Template with a Dark Mode',
+        url: 'https://www.primefaces.org/layouts/apollo-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/apollo.jpg'
+      },
+      {
+        name: 'Babylon',
+        price: 49,
+        description: 'Admin Template with Extensive Options',
+        url: 'https://www.primefaces.org/layouts/babylon-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/babylon.jpg'
+      },
+      {
+        name: 'Roma',
+        price: 39,
+        description: 'Admin Template with a Clean Design System',
+        url: 'https://www.primefaces.org/layouts/roma-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/roma.jpg'
+      },
+      {
         name: 'Prestige',
-        price: 59,
+        price: 39,
         description: 'Highly Customizable Admin Template',
         url: 'https://www.primefaces.org/layouts/prestige-vue?af_id=4218',
         image: 'https://www.primefaces.org/vue-templates/prestige.jpg'
@@ -192,6 +199,55 @@ var themeData = [
         description: 'Free Admin Template',
         url: 'https://www.primefaces.org/sigma-vue/#/?af_id=4218',
         image: 'https://www.primefaces.org/vue-templates/sigma.jpg'
+      }
+    ]
+  },
+  {
+    name: 'Flatlogic',
+    description: `Check the admin dashboards templates built by our partners from [Flatlogic](https://flatlogic.com/templates?ref=x-fdkuTAVW). With these themes you can see how real applications is built. Additionally these templates will help you to start a new application and save you time and money.`,
+    seeMoreUrl: 'https://flatlogic.com/templates?ref=x-fdkuTAVW',
+    products: [
+      {
+        name: 'Sing App Vue',
+        price: 99,
+        description: 'Vue Admin Dashboard Template',
+        url: 'https://flatlogic.com/templates/sing-app-vue?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/sing_vue_full-cb6b9fdd0465a0d60c0fafa2deca1929cc4966957c8e1ce57565a5e2f45ff043.webp'
+      },
+      {
+        name: 'Sing App Vue Node.js',
+        price: 149,
+        description: 'Vue Admin Dashboard Template with Node.JS Backend',
+        url: 'https://flatlogic.com/templates/sing-app-vue-node-js?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/sing_vue_full_nodejs-78af09220a2d085fec9bbc1071879915b30737f25d72669152f3b090291609aa.webp'
+      },
+      {
+        name: 'Light Blue Vue',
+        price: 99,
+        description: 'Vue Admin Dashboard Template',
+        url: 'https://flatlogic.com/templates/light-blue-vue?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/light_blue_vue_full-e044d30242912d5756b190e576bf30ea967b725c09d2e371a7eabf1c6a9c33b2.webp'
+      },
+      {
+        name: 'Light Blue Vue Admin',
+        price: 0,
+        description: 'Free and Open Source Vue JS Template for Admin Dashboard',
+        url: 'https://flatlogic.com/templates/light-blue-vue-lite?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/light_blue_vue_lite-c1937a2a01e5e8e8ede29a3ead011126e9dab5c58b9017daefe36411f9a1089e.webp'
+      },
+      {
+        name: 'Sing App Vue Dashboard',
+        price: 0,
+        description: 'Free and Open Source Vue.js Admin Dashboard Template',
+        url: 'https://flatlogic.com/templates/sing-app-vue-dashboard?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/sing_vue_lite-ae3ec037404bc9ae29599a16afe276e638bd916713d75946c604feb69323ec21.webp'
+      },
+      {
+        name: 'Light Blue Vue Node.js',
+        price: 149,
+        description: 'Vue Admin Template with Node.JS Backend',
+        url: 'https://flatlogic.com/templates/light-blue-vue-node-js?ref=x-fdkuTAVW',
+        image: 'https://flatlogic.com/assets/templates/light_blue_vue_full_nodejs-06f941c849f0a83a3c0d38c728101eace06a7515ea048f12bcd91f165280246f.webp'
       }
     ]
   }

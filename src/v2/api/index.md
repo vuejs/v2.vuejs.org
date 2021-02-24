@@ -1382,9 +1382,13 @@ type: api
 
 - **Read only**
 
+- **Reactive?** No
+
 - **Details:**
 
   Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `vm.$slots.foo`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
+
+  Please note that slots are **not** reactive. If you need a component to re-render based on changes to data passed to a slot, we suggest considering a different strategy that relies on a reactive instance option, such as `props` or `data`.
 
   **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 

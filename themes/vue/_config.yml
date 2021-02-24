@@ -9,7 +9,7 @@ special_sponsors:
   - url: 'https://autocode.com/'
     img: autocode.svg
     name: Autocode
-    description: Instant Webhooks, Scripts and APIs
+    description: 'Instant Webhooks, Scripts and APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -27,6 +27,13 @@ platinum_sponsors:
   - url: 'https://www.storyblok.com'
     img: storyblok.png
     name: Storyblok
+  - url: >-
+      https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
+    img: ionic.png
+    name: Ionic
+  - url: 'https://nuxtjs.org/'
+    img: nuxt.png
+    name: Nuxt
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -85,15 +92,33 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'https://www.vuescreencasts.com/'
-    img: happy_programmer_llc.png
-    name: Happy Programmer LLC
-  - url: 'https://www.primefaces.org/primevue'
-    img: primevue.png
-    name: PrimeVue
-  - url: 'https://cooltechzone.com/netflix-vpn'
-    img: netflix_vpn.png
-    name: Netflix VPN
+  - url: 'https://www.foo.software'
+    img: foo.png
+    name: Foo
+  - url: 'https://flatlogic.com/templates'
+    img: flatlogic_templates.svg
+    name: Flatlogic Templates
+  - url: 'http://moovweb.com/'
+    img: moovweb.png
+    name: Moovweb
+  - url: 'https://vpn-review.com/netflix-vpn'
+    img: vpn_review.png
+    name: VPN Review
+  - url: 'https://cosmos.network/'
+    img: tendermint.png
+    name: Tendermint
+  - url: 'https://www.okayhq.com/'
+    img: okay.png
+    name: Okay
+  - url: 'https://www.vpsserver.com'
+    img: vpsserver_com.png
+    name: VPSServer.com
+  - url: 'https://aussiecasinohex.com/'
+    img: aussiecasinohex.svg
+    name: AussieCasinoHEX
+  - url: 'https://litslink.com'
+    img: litslink.png
+    name: LITSLINK
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -104,6 +129,15 @@ silver_sponsors:
   - url: 'https://www.thecasinodb.com'
     img: isolutions_uk_limited.png
     name: iSolutions UK Limited
+  - url: 'https://teamextension.io'
+    img: team_extension_north_america_inc.png
+    name: Team Extension North America Inc
+  - url: 'https://freebets.us'
+    img: free_bets_us.png
+    name: Free Bets US
+  - url: 'https://betting.bet'
+    img: betting_bet.png
+    name: betting.bet
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
@@ -117,3 +151,6 @@ bronze_sponsors:
   - url: 'https://www.webucator.com'
     img: webucator.png
     name: Webucator
+  - url: 'https://memberful.com/'
+    img: memberful.png
+    name: Memberful
