@@ -138,6 +138,13 @@ var themeData = [
         image: 'https://www.primefaces.org/vue-templates/diamond.jpg'
       },
       {
+        name: 'Ultima',
+        price: 79,
+        description: 'Material Design Admin Template',
+        url: 'https://www.primefaces.org/layouts/ultima-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/ultima.jpg'
+      },
+      {
         name: 'Sapphire',
         price: 49,
         description: 'Material Design Admin Template',
@@ -171,13 +178,6 @@ var themeData = [
         description: 'Admin Template with Extensive Options',
         url: 'https://www.primefaces.org/layouts/babylon-vue?af_id=4218',
         image: 'https://www.primefaces.org/vue-templates/babylon.jpg'
-      },
-      {
-        name: 'Ultima',
-        price: 49,
-        description: 'Material Design Admin Template',
-        url: 'https://www.primefaces.org/layouts/ultima-vue?af_id=4218',
-        image: 'https://www.primefaces.org/vue-templates/ultima.jpg'
       },
       {
         name: 'Roma',
