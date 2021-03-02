@@ -119,6 +119,9 @@ gold_sponsors:
   - url: 'https://litslink.com'
     img: litslink.png
     name: LITSLINK
+  - url: 'https://newicon.net'
+    img: newicon.png
+    name: Newicon
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
