@@ -57,7 +57,7 @@ body.has-vs-banner
   background-color: #1E204D
   background-repeat: no-repeat
   background-position: top right
-  background-image: url(../images/banners/vueschool-banner-bg-mobile.svg)
+  background-image: url(../images/banners/vueschool-banner-bg-mobile-2.svg)
   display: flex
   justify-content: center
   align-items: center
@@ -69,10 +69,10 @@ body.has-vs-banner
   top: 0
   @media (min-width: 680px)
     min-height: $vs-banner-height-desktop
-    background-image: url(../images/banners/vueschool-banner-bg-tablet.svg)
+    background-image: url(../images/banners/vueschool-banner-bg-tablet-2.svg)
   @media (min-width: 900px)
     position: static
-    background-image: url(../images/banners/vueschool-banner-bg-desktop.svg)
+    background-image: url(../images/banners/vueschool-banner-bg-desktop-2.svg)
 
   &.vs-hidden
     display: none
@@ -124,10 +124,12 @@ body.has-vs-banner
       .vs-slogan-down
         color: #fff
         font-size: 12px
+        padding-top: 2px
         @media (min-width: 680px)
           font-size: 16px
         strong
-          color: #48a0ff
+          color: #fff
+          font-weight: bold
 
     .vs-button
       margin-left: 43px
@@ -142,10 +144,10 @@ body.has-vs-banner
         border-radius: 40px
         background: linear-gradient(#dc61da, #b349b0)
         transition: all .25s ease-in
-        padding: 17px 27px
+        padding: 12px 24px 8px
         line-height: 0
         @media (min-width: 680px)
-          padding: 13px 24px
+          padding: 12px 24px 8px
       &.vs-button-alt
         background: linear-gradient(to bottom, #ffcc38, #ffd13d)
         .vs-button-inside
