@@ -1205,12 +1205,12 @@ order: 803
       github: 'filrak',
       twitter: 'filrakowski',
       work: {
-        role: 'Co-founder of Vue Storefront',
-        org: 'Divante',
-        orgUrl: 'https://divante.co/'
+        role: 'Co-founder & CTO',
+        org: 'Vue Storefront',
+        orgUrl: 'https://vuestorefront.io'
       },
       reposPersonal: [
-        'DivanteLtd/vue-storefront', 'DivanteLtd/storefront-ui'
+        'vuestorefront/vue-storefront', 'vuestorefront/storefront-ui'
       ],
       links: [
         'https://vuestorefront.io',
