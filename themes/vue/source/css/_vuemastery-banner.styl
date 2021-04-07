@@ -4,7 +4,7 @@
   background-size 100% auto
   overflow hidden
   position relative
-  transition all .15s ease-out .1s
+  transition all .3s ease-out .1s
 
   &:before
     content ''
@@ -15,7 +15,7 @@
     bottom 0
     left 0
     right 0
-    transition all .15s ease-out .1s
+    transition all .3s ease-out .1s
     transform: scale(1.1)
 
   &:after
@@ -59,7 +59,7 @@
     bottom 0
     left 0
     width 0
-    transition width .15s ease-out
+    transition width .3s ease-out
 
   &:hover
     + .vuemastery-banner--close
@@ -184,7 +184,15 @@
 
 @media screen and (max-width: 1200px)
   .vuemastery-banner
-    background-size cover
+    &,
+    &:hover
+      background-size cover
+
+    &:before
+      transform: scale(1)
+
+    &:hover:before
+      transform: scale(1)
 
 @media screen and (max-width: 1100px)
     .vuemastery-button
