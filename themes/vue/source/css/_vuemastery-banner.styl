@@ -20,7 +20,7 @@
 
   &:after
     content: ''
-    background: url(../images/unlock-vuemastery.svg) right center no-repeat
+    background: url(../images/lock-vuemastery.svg) right center no-repeat
     background-size: auto 100%
     position: absolute
     width: 100%
@@ -36,7 +36,7 @@
       transform: scale(1)
 
     &:after
-      background-image url(../images/lock-vuemastery.svg)
+      background-image url(../images/unlock-vuemastery.svg)
 
   a
     display flex
@@ -86,7 +86,7 @@
 .vuemastery-banner--logo
   height 102%
   margin-top: -1px
-  margin-left 125px
+  margin-left -200px
   position relative
   z-index 2
   
@@ -116,10 +116,38 @@
   &:after
     transform rotate(45deg)
 
-  // &:hover
-  //   &:before,
-  //   &:after
-  //     transform rotate(180deg)
+.vuemastery-button
+  display: inline-flex;
+  background: linear-gradient(to top right,#3d2c61,#835ec2);
+  height: 38px;
+  margin: .5em 0;
+  line-height: 38px;
+  padding: 0 30px;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 36px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative
+  overflow hidden
+
+  &:before,
+  &:after
+    background: linear-gradient(to top right,transparent,#fff);
+    content: "";
+    height: 150px;
+    left: -175px;
+    opacity: .1;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    width: 100px;
 
 .vuemastery-weekend-promo
   #mobile-bar,
@@ -158,11 +186,11 @@
   .vuemastery-banner
     background-size cover
 
-@media screen and (max-width: 900px)
-  .vuemastery-banner
-    .vuemastery-banner--logo
-      margin-left 0
+@media screen and (max-width: 1100px)
+    .vuemastery-button
+      display none
 
+@media screen and (max-width: 900px)
   .vuemastery-weekend-promo
     &.vuemastery-menu-fixed
       .vuemastery-banner
@@ -196,6 +224,8 @@
 
 @media screen and (max-width: 465px)
   .vuemastery-banner
+    &:after
+      display: none
     p
       max-width 185px
 
