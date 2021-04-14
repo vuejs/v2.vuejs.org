@@ -586,7 +586,7 @@ order: 803
     {
       name: 'Natalia Tepluhina',
       title: 'Fox Tech Guru',
-      city: 'Kyiv, Ukraine',
+      city: 'Amsterdam, Netherlands',
       languages: ['uk', 'ru', 'en'],
       reposOfficial: [
         'vuejs.org',
