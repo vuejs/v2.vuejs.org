@@ -1,7 +1,7 @@
 {
-  "name": "vue-20-todomvc",
+  "name": "vue-tools",
   "version": "1.0.0",
-  "description": "This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).",
+  "description": "",
   "main": "index.html",
   "scripts": {
     "start": "serve"
