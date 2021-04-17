@@ -45,7 +45,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 **Component names should always be multi-word, except for root `App` components, and built-in components provided by Vue, such as `<transition>` or `<component>`.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+This [prevents conflicts](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
