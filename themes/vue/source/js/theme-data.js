@@ -96,25 +96,39 @@ var themeData = [
     seeMoreUrl: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
     products: [
       {
-        url: "https://mdbootstrap.com/products/vue-ui-kit?utm_ref_id=82665",
-        name: "Vue Material Bootstrap Pro",
-        description: "Premium Vue.js UI Kit",
+        url: "https://mdbootstrap.com/docs/b5/vue/pro?utm_ref_id=82665",
+        name: "Vue Material Bootstrap 5 Pro",
+        description: "Premium Vue UI Kit for Bootstrap v5 &  Material Design 2.0",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vue-pro.jpg",
+        price: 19
+      },
+      {
+        url: "https://mdbootstrap.com/docs/b5/vue?utm_ref_id=82665",
+        name: "Vue Material Bootstrap 5 Kit",
+        description: "Free Vue UI Kit for Bootstrap v5 &  Material Design 2.0",
+        image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vue-free.jpg",
+        price: 0
+      },
+      {
+        url: "https://mdbootstrap.com/docs/b5/vue/pro?utm_ref_id=82665",
+        name: "Vue Material Bootstrap 4 Pro",
+        description: "Premium Vue UI Kit for Bootstrap v4 &  Material Design",
         image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
-        price: 99
+        price: 19
       },
       {
         url: "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
-        name: "Vue Material Bootstrap Kit",
-        description: "Free Vue.js UI Kit",
+        name: "Vue Material Bootstrap 4 Kit",
+        description: "Free Vue UI Kit for Bootstrap v4 &  Material Design",
         image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/ui-kit.jpg",
         price: 0
       },
       {
-        url: "https://mdbootstrap.com/products/vue-admin-dashboard?utm_ref_id=82665",
+        url: "https://mdbootstrap.com/docs/b5/vue/pro?utm_ref_id=82665",
         name: " Vue Admin Bootstrap Pro",
         description: "Premium Vue.js Templates Pack",
         image: "https://mdbootstrap.com/img/Marketing/mdb-press-pack/vuejs/admin-pack.jpg",
-        price: 79
+        price: 49
       },
       {
         url: "https://mdbootstrap.com/freebies/vue/admin-dashboard?utm_ref_id=82665",
