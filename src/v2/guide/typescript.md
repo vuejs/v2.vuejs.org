@@ -221,6 +221,41 @@ If you find validator not getting type inference or member completion isn't work
 
 
 
+## Annotating Mixins
+
+Likewise, TypeScript cannot automatically infer the types of properties and methods provided by [mixins](./Mixins).
+
+To solve this, you can add a type assertion on the `Vue` object:
+
+```ts
+import Vue, { VueConstructor } from 'vue'
+
+import MyMixin from './MyMixin.vue'
+
+const Component = (Vue as VueConstructor<
+  Vue & InstanceType<typeof MyMixin>
+>).extend({
+  mixins [MyMixin],
+  computed: {
+    message(): string {
+      return this.methodProvidedByMixin("hello")
+    }
+  }
+})
+```
+
+This also works for multiple mixins:
+
+```ts
+const Component = (Vue as VueConstructor<
+  Vue & InstanceType<typeof MixinA> & InstanceType<typeof MixinB>
+>).extend({
+  // ...
+})
+```
+
+
+
 ## Limitations
 
 Please note the following limitations when migrating a Vue project to TypeScript:
