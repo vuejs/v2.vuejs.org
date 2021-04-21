@@ -218,3 +218,13 @@ const Component = Vue.extend({
 })
 ```
 If you find validator not getting type inference or member completion isn't working, annotating the argument with the expected type may help address these problems.
+
+
+
+## Limitations
+
+Please note the following limitations when migrating a Vue project to TypeScript:
+
+- You cannot use TypeScript inside the `<template>…</template>` section.
+- When importing Single File Components, you have to include the `.vue` file extension in the import declaration.
+- Components defined with `Vue.extend` always have the name `"VueComponent"`. This might cause "duplicate key" issues when using `component.name` in the [`key` special attribute](../api/#key).
