@@ -221,6 +221,45 @@ If you find validator not getting type inference or member completion isn't work
 
 
 
+## Annotating `$refs`
+
+The type of [$refs](../api#refs) cannot be inferred automatically, as they can refer both to `HTMLElement`s and child components. To solve this, you can add a type assertion.
+
+Either inline:
+
+```ts
+const Component = Vue.extend({
+  mounted(): void {
+    (this.$refs.checkbox as HTMLInputElement).indeterminate = true
+  }
+})
+```
+
+Or on the `Vue` object:
+
+```ts
+import Vue, { VueConstructor } from 'vue'
+
+import MyChildComponent from './MyChildComponent.vue'
+
+interface Refs {
+  $refs: {
+    checkbox: HTMLInputElement;
+    child: InstanceType<typeof MyChildComponent>;
+  }
+}
+
+const Component = (Vue as VueConstructor<
+  Vue & Refs
+>).extend({
+  mounted(): void {
+    this.$refs.checkbox.indeterminate = child.indeterminateState
+  }
+})
+```
+
+
+
 ## Annotating Mixins
 
 Likewise, TypeScript cannot automatically infer the types of properties and methods provided by [mixins](./Mixins).
