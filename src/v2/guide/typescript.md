@@ -295,6 +295,45 @@ const Component = (Vue as VueConstructor<
 
 
 
+## Wrapped methods
+
+TypeScript cannot infer the type of `this` in the body of wrapped methods:
+
+```ts
+import Vue from "vue"
+import { debounce } from "lodash"
+
+const Component = Vue.extend({
+  methods: {
+    update: debounce(() => {
+      this.$emit('input', this.value)
+    }, 1000)
+  }
+})
+```
+
+However, you can define the method as is and wrap it in the `created()` hook:
+
+```ts
+import Vue from "vue"
+import { debounce } from "lodash"
+
+const Component = Vue.extend({
+  created() {
+    this.update = debounce(this.update, 1000)
+  }
+  methods: {
+    update() {
+      this.$emit('input', this.value)
+    }
+  }
+})
+```
+
+> If you want to wrap a `computed` setter or a `watch` handler, you will have to extract a `method` and apply this pattern to that method.
+
+
+
 ## Limitations
 
 Please note the following limitations when migrating a Vue project to TypeScript:
