@@ -141,9 +141,16 @@ var themeData = [
   },
   {
     name: 'PrimeVue',
-    description: `The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) offers over 50 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look&feel that suits you best.`,
+    description: `The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) offers over 80 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look&feel that suits you best.`,
     seeMoreUrl: 'https://www.primefaces.org/primevue/#/?af_id=4218',
     products: [
+      {
+        name: 'Freya',
+        price: 59,
+        description: 'Premium Admin Template',
+        url: 'https://www.primefaces.org/layouts/freya-vue?af_id=4218',
+        image: 'https://www.primefaces.org/vue-templates/freya.jpg'
+      },
       {
         name: 'Diamond',
         price: 59,
