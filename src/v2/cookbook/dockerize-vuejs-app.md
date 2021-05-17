@@ -73,7 +73,7 @@ RUN npm run build
 # production stage
 FROM nginx:stable-alpine as production-stage
 # Optional line for 404 correction when reloading a page with router history mode
-RUN sed -i '9 a \try_files \$uri \/index.html'  /etc/nginx/conf.d/default.conf
+RUN sed -i '9 a \try_files \$uri \/index.html;'  /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
