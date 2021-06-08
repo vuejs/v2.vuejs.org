@@ -113,6 +113,12 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
+Using the array syntax, you can also bind dynamic classes on the go (e.g within a v-for) like so:
+
+``` html
+<div v-bind:class="[`obj-${obj.id}`]"></div>
+```
+
 ### With Components
 
 > This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
