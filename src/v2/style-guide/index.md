@@ -133,7 +133,9 @@ Vue.component('some-comp', {
 ``` js
 export default {
   data: {
-    foo: 'bar'
+    return {
+     foo: 'bar'
+   }
   }
 }
 ```
