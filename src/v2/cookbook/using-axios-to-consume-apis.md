@@ -14,17 +14,30 @@ There are a number of ways we can request information from the API, but it's nic
 
 ```js
 new Vue({
-  el: '#app',
-  data () {
-    return {
-      info: null
+    el: '#app',
+    data() {
+        return {
+            info: null
+        }
+    },
+
+    methods: {
+        async getInfo() {
+            return await axios.get(`https://api.coindesk.com/v1/bpi/currentprice.json`);
+        },
+
+        appendInfo(info) {
+            this.info = info;
+        },
+
+        async loadInfo() {
+            const response = await this.getInfo()
+            this.appendInfo(response.data);
+        }
+    },
+    async mounted() {
+        await this.loadInfo();
     }
-  },
-  mounted () {
-    axios
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response))
-  }
 })
 ```
 
