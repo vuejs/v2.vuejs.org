@@ -20,10 +20,23 @@ new Vue({
       info: null
     }
   },
-  mounted () {
-    axios
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response))
+ 
+methods:{
+async getInfo(){
+return await axios.get(`https://api.coindesk.com/v1/bpi/currentprice.json`);
+},
+
+appendInfo(info){
+ this.info = info;
+ },
+
+ async loadInfo() {
+  const response = await this.getInfo()
+   this.appendInfo(response.data);
+},
+},
+ async mounted () {
+    await this.loadInfo();
   }
 })
 ```
