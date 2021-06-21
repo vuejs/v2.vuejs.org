@@ -113,11 +113,18 @@ body.has-vs-banner
       color: #FFF
       font-weight: bold
       font-size: 14px
+      width: 150px
+      text-align: center
+      margin-left: 40px
+      @media (min-width: 400px)
+        margin-left: 60px
       @media (min-width: 680px)
+        margin-left: 0
+        width: auto
+        text-align: left
         font-size: 18px
       > .vs-slogan-light
         color: #ff5338
-        display: block
         text-align: left
         @media (min-width: 900px)
           text-align: center
