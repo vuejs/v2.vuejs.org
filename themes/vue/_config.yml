@@ -53,9 +53,6 @@ gold_sponsors:
   - url: 'https://icons8.com/'
     img: icons_8.png
     name: Icons 8
-  - url: 'https://vuejobs.com/?ref=vuejs'
-    img: vuejobs.png
-    name: VueJobs
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
@@ -89,6 +86,9 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
+  - url: 'https://storekit.com'
+    img: storekit.png
+    name: StoreKit
   - url: 'https://www.foo.software'
     img: foo.png
     name: Foo
