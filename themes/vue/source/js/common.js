@@ -3,7 +3,6 @@
   initMobileMenu()
   initVideoModal()
   initNewNavLinks()
-  initVueSchoolBanner()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -441,7 +440,7 @@
           if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
             return 300
           }
-          return localStorage.getItem('VS_SUMMER_BANNER_CLOSED') ? 0 : 80
+          return 0
         }
       })
     }
