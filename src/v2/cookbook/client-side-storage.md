@@ -52,7 +52,7 @@ Type something in the form and then reload this page. You'll note that the value
 
 And here it is in Chrome:
 
-![Storage devtools in Firefox](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/devtools-storage-chrome.png)
+![Storage devtools in Chrome](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/devtools-storage-chrome.png)
 
 And then finally, an example in Microsoft Edge. Note that you can find application storage values under the Debugger tab.
 
