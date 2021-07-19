@@ -41,8 +41,8 @@ Pobierz i uwzględnij tag script. `Vue` zostanie zarejestrowane jako zmienna glo
 
 Aby zacząć prototypowanie lub naukę, możesz skorzystać z najnowszej wersji za pomocą:
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 ```
 
 W produkcji, zalecamy użycie określonego numeru wersji i kompilacji, aby uniknąć niespodziewanych błędów spowodowanych nowszą wersją:

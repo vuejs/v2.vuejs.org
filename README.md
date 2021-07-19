@@ -1,5 +1,7 @@
 ﻿# vuejs.org
 
+> Important: This repository is for Vue 1.x and 2.x only. Issues and pull requests related to 3.x are managed in the [v3 doc repo](https://github.com/vuejs/docs-next).
+
 Niniejsza strona została zbudowana w oparciu o [hexo](http://hexo.io/). Zawartość strony zapisywana jest w formacie Markdown w plikach umieszczonych w `src`. Pull requesty są mile widziane!
 
 ## Pisanie

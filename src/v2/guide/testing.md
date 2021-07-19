@@ -4,8 +4,6 @@ type: guide
 order: 402
 ---
 
-# Testing
-
 ## Introduction
 
 When it comes to building reliable applications, tests can play a critical role in an individual or team's ability to build new features, refactor code, fix bugs, etc. While there are many schools of thought with testing, there are three categories often discussed in the context of web applications:
@@ -64,7 +62,7 @@ Mocha is a JavaScript test framework that is focused on being flexible. Because 
 
 ### Introduction
 
-To test most Vue components, they must be mounted to the DOM (either virtual or real) in order to fully assert that they are working. This is another framework-agnostic concept. As a result, component testing frameworks were created to give users the ability to do this in a reliable way while also providing Vue-specific conveniences such as integrations for Vuex, Vue Router, and other Vue plugins.
+To test most Vue components, they must be mounted to the DOM (either virtual or real) in order to fully assert that they are working. This is another framework-agnostic concept. As a result, component testing frameworks were created to give users the ability to do this reliably while also providing Vue-specific conveniences such as integrations for Vuex, Vue Router, and other Vue plugins.
 
 ### Choosing Your Framework
 
@@ -76,7 +74,7 @@ It should be no surprise that one of the first criteria is that a component test
 
 #### First-class error reporting
 
-When tests fail, it is critical that your component testing framework provides useful error logs that help to minimize the amount of time it takes to debug the problem. In addition to simply telling you what test fails, they should also provides context for why a test fails, e.g., what is expected vs what was received.
+When tests fail, it is critical that your component testing framework provides useful error logs that help to minimize the amount of time it takes to debug the problem. In addition to simply telling you what test fails, they should also provide context for why a test fails, e.g., what is expected vs what was received.
 
 ### Recommendations
 
@@ -116,9 +114,7 @@ While end-to-end (E2E) testing on the web has gained a negative reputation for u
 
 One of the primary benefits that end-to-end (E2E) testing is known for is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, it is important to note that cross browser testing has diminishing returns on a team's resources due the additional time and machine power required to run them consistently. As a result, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
 
-::: tip
-A recent development in for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).
-:::
+<p class="tip">A recent development in E2E for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).</p>
 
 #### Faster feedback loops
 

@@ -24,10 +24,10 @@ A Vue application consists of a **root Vue instance** created with `new Vue`, op
 Root Instance
 └─ TodoList
    ├─ TodoItem
-   │  ├─ DeleteTodoButton
-   │  └─ EditTodoButton
+   │  ├─ TodoButtonDelete
+   │  └─ TodoButtonEdit
    └─ TodoListFooter
-      ├─ ClearTodosButton
+      ├─ TodosButtonClear
       └─ TodoListStatistics
 ```
 

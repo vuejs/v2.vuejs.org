@@ -111,7 +111,7 @@ React is renowned for its steep learning curve. Before you can really get starte
 While Vue scales up just as well as React, it also scales down just as well as jQuery. That's right - to get started, all you have to do is drop a single script tag into the page:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 ```
 
 Then you can start writing Vue code and even ship the minified version to production without feeling guilty or having to worry about performance problems.
