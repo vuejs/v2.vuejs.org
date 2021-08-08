@@ -153,6 +153,9 @@ silver_sponsors:
   - url: 'https://betting.bet'
     img: betting_bet.png
     name: betting.bet
+  - url: 'https://www.takt.io'
+    img: takt.png
+    name: Takt
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
