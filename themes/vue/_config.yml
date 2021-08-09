@@ -134,6 +134,9 @@ gold_sponsors:
   - url: 'https://plaid.co.jp/'
     img: plaid__inc_.svg
     name: 'PLAID, Inc.'
+  - url: 'https://troypoint.com'
+    img: troypoint.png
+    name: TROYPOINT
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
