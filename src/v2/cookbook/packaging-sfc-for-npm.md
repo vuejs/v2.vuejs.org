@@ -117,7 +117,8 @@ There is no need to write your module multiple times. It is possible to prepare 
     "@rollup/plugin-commonjs": "^11.1.0",
     "rollup-plugin-vue": "^5.0.1",
     "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "@vue/compiler-sfc": "^3.2.2"
     ...
   },
   ...
