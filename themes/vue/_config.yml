@@ -137,6 +137,10 @@ gold_sponsors:
   - url: 'https://troypoint.com'
     img: troypoint.png
     name: TROYPOINT
+  - url: >-
+      https://webreinvent.com?utm_source=vuejs.org&utm_medium=logo&utm_campaign=patreon-sponsors
+    img: webreinvent_technologies_pvt_ltd.svg
+    name: WebReinvent Technologies Pvt Ltd
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
