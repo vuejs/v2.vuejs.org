@@ -1,3 +1,4 @@
+<% if (theme.special_sponsors) { %>
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
     <span>Special Sponsor</span>
@@ -10,6 +11,7 @@
     </div>
   </div>
 </div>
+<%_ } _%>
 <% if (!page.sponsors && !page.partners) { %>
 <%- partial('partials/platinum_sponsors', { context: 'left' }) %>
 <% } %>

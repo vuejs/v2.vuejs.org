@@ -5,11 +5,6 @@ vue_version: 2.5.16
 platinum_sponsors_china:
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
-special_sponsors:
-  - url: 'https://autocode.com/'
-    img: autocode.svg
-    name: Autocode
-    description: 'Instant Webhooks, Scripts and APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1

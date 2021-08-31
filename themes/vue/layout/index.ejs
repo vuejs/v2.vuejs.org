@@ -29,6 +29,7 @@
     </div>
   </div>
 
+  <% if (theme.special_sponsors) { %>
   <div id="special">
     <h3>Special Sponsor</h3>
     <% var specialSponsor = theme.special_sponsors[0]; %>
@@ -38,6 +39,7 @@
       <span><%- specialSponsor.description %></span>
     </a>
   </div>
+  <% } %>
 
   <div id="highlights">
     <div class="inner">
