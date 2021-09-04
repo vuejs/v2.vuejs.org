@@ -35,9 +35,8 @@ platinum_sponsors:
     img: nuxt.png
     name: Nuxt
   - url: 'https://www.daskeyboard.com/?utm_source=vuejs&utm_medium=sponsorship'
-    img: daskeyboard.png
+    img: das_keyboard.png
     name: Das Keyboard
-    inline_style: 'margin-top: 15px'
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -145,6 +144,9 @@ gold_sponsors:
       https://webreinvent.com?utm_source=vuejs.org&utm_medium=logo&utm_campaign=patreon-sponsors
     img: webreinvent_technologies_pvt_ltd.svg
     name: WebReinvent Technologies Pvt Ltd
+  - url: 'https://www.dronahq.com/?ref=github_Vuejs'
+    img: dronahq.png
+    name: DronaHQ
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
