@@ -271,7 +271,7 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    question: function (newQuestion, oldQuestion) {
+    question: function () {
       this.answer = 'Waiting for you to stop typing...'
       this.debouncedGetAnswer()
     }
