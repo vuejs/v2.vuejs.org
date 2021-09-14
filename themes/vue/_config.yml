@@ -147,6 +147,9 @@ gold_sponsors:
   - url: 'https://www.dronahq.com/?ref=github_Vuejs'
     img: dronahq.png
     name: DronaHQ
+  - url: 'https://www.emqx.com'
+    img: emq.png
+    name: EMQ
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -169,6 +172,9 @@ silver_sponsors:
   - url: 'https://www.takt.io'
     img: takt.png
     name: Takt
+  - url: 'https://technology.doximity.com/'
+    img: doximity.png
+    name: Doximity
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
