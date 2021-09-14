@@ -5,6 +5,7 @@ order: 803
 ---
 
 {% raw %}
+
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -159,6 +160,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -176,6 +178,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -216,6 +219,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 </div>
 
@@ -469,28 +473,6 @@ order: 803
       ]
     },
     {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, USA',
-      languages: ['en'],
-      work: {
-        role: 'Head of Developer Experience',
-        org: 'Netlify',
-        orgUrl: 'https://www.netlify.com/'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposOfficial: [
-        'vuejs.org'
-      ],
-      reposPersonal: [
-        'intro-to-vue', 'vue-vscode-snippets', 'vue-vscode-extensionpack', 'sample-vue-shop'
-      ],
-      links: [
-        'https://sarah.dev/'
-      ]
-    },
-    {
       name: 'Damian Dulisz',
       title: 'Dark Mage of Plugins, News, and Confs',
       city: 'Wrocław, Poland',
@@ -656,6 +638,28 @@ order: 803
   ]))
 
   var emeriti = shuffle([
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Director of Engineering, Core Developer Web',
+        org: 'Google',
+        orgUrl: 'https://www.google.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-vscode-extensionpack', 'sample-vue-shop'
+      ],
+      links: [
+        'https://sarah.dev/'
+      ]
+    },
      {
       name: 'Chris Fritz',
       title: 'Good Word Putter-Togetherer',
@@ -1513,4 +1517,5 @@ order: 803
   }
 })()
 </script>
+
 {% endraw %}
