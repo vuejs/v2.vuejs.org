@@ -142,6 +142,15 @@ Cypress.io is a testing framework that aims to enhance developer productivity by
 - [Official Vue CLI Cypress Plugin](https://cli.vuejs.org/core-plugins/e2e-cypress.html)
 - [Cypress Testing Library](https://github.com/testing-library/cypress-testing-library)
 
+#### Playwright
+
+Playwright is a testing framework that enables reliable end-to-end and integration testing for modern web apps. This makes it possible to run your tests in Chromium, Firefox, and WebKit across all the platforms headless and headed.
+
+**Resources**
+
+- [Playwright's Official Website](https://playwright.dev)
+- [GitHub repository](https://github.com/microsoft/playwright)
+
 #### Nightwatch.js
 
 Nightwatch.js is an end-to-end testing framework that can be used to test web applications and websites, as well as Node.js unit and integration testing.
