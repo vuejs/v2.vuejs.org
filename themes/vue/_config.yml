@@ -150,6 +150,10 @@ gold_sponsors:
   - url: 'https://www.emqx.com'
     img: emq.png
     name: EMQ
+  - url: >-
+      https://www.tatvasoft.com/software-development-technology/vue-js-development-services
+    img: tatvasoft.png
+    name: TatvaSoft
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
