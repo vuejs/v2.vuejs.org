@@ -154,6 +154,12 @@ gold_sponsors:
       https://www.tatvasoft.com/software-development-technology/vue-js-development-services
     img: tatvasoft.png
     name: TatvaSoft
+  - url: 'https://www.aceonlinecasino.co.uk'
+    img: onyx_gaming_limited.svg
+    name: Onyx Gaming Limited
+  - url: 'http://www.lendio.com'
+    img: lendio.png
+    name: Lendio
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -179,6 +185,9 @@ silver_sponsors:
   - url: 'https://technology.doximity.com/'
     img: doximity.png
     name: Doximity
+  - url: 'https://www.empiricus.com.br/'
+    img: empiricus.png
+    name: Empiricus
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
