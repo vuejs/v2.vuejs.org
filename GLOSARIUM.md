@@ -47,6 +47,7 @@
 
 ## D
 
+- Default: Bawaan
 - Default Value: Nilai Anggapan
 - Define: Mendefinisikan
 - Development: Developmen, Pengembangan, Pembuatan (Pilih senatural mungkin)
