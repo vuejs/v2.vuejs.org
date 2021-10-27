@@ -160,6 +160,10 @@ gold_sponsors:
   - url: 'http://www.lendio.com'
     img: lendio.png
     name: Lendio
+  - url: >-
+      https://flowdash.com/?utm_source=vue&utm_medium=sponsor&utm_campaign=open-source
+    img: flowdash.png
+    name: Flowdash
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
