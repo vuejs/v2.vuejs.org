@@ -334,7 +334,7 @@ When we click on the button, we need to communicate to the parent that it should
 ></blog-post>
 ```
 
-Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](../api/#vm-emit), passing the name of the event:
+Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](../api/#vm-emit-eventName-…args), passing the name of the event:
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
