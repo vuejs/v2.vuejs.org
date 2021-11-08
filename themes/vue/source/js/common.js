@@ -3,6 +3,7 @@
   initMobileMenu()
   initVideoModal()
   initNewNavLinks()
+  initVueSchoolBanner()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -285,7 +286,7 @@
    */
   function initVueSchoolBanner () {
     const banner = document.getElementById('vs')
-    if (banner && !localStorage.getItem('VS_SUMMER_BANNER_CLOSED')) {
+    if (banner && !localStorage.getItem('VS_BF21_BANNER_CLOSED')) {
       banner.classList.remove('vs-hidden')
       document.body.classList.add('has-vs-banner')
       document.getElementById('vs-close').addEventListener('click', function (e) {
@@ -293,7 +294,7 @@
         e.stopPropagation()
         document.getElementById('vs').remove()
         document.body.classList.remove('has-vs-banner')
-        localStorage.setItem('VS_SUMMER_BANNER_CLOSED', 1)
+        localStorage.setItem('VS_BF21_BANNER_CLOSED', 1)
       })
     }
   }
@@ -440,7 +441,7 @@
           if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
             return 300
           }
-          return 0
+          return localStorage.getItem('VS_BF21_BANNER_CLOSED') ? 0 : 80
         }
       })
     }
