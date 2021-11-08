@@ -34,9 +34,6 @@ platinum_sponsors:
   - url: 'https://nuxtjs.org/'
     img: nuxt.png
     name: Nuxt
-  - url: 'https://www.daskeyboard.com/?utm_source=vuejs&utm_medium=sponsorship'
-    img: das_keyboard.png
-    name: Das Keyboard
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -164,6 +161,9 @@ gold_sponsors:
       https://flowdash.com/?utm_source=vue&utm_medium=sponsor&utm_campaign=open-source
     img: flowdash.png
     name: Flowdash
+  - url: 'https://www.fenetre.nl/english/'
+    img: fen_tre_online_solutions.png
+    name: Fenêtre Online Solutions
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
