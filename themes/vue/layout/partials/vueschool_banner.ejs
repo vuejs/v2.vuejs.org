@@ -1,4 +1,25 @@
+<%
+
+const coins = [
+  { id: 'js', direction: 'left' },
+  { id: 'ts', direction: 'right' },
+  { id: 'vue', direction: 'left' },
+  { id: 'vuex', direction: 'left' },
+  { id: 'nuxt', direction: 'right' }
+]
+
+%>
+
 <a id="vs" class="vs-hidden" href="https://vueschool.io/sales/blackfriday?friend=vuejs" target="_blank" rel="noreferrer">
+  <div class="vs-blackfriday-coins">
+  <% for (let i = 0; i < coins.length; i++) { %>
+  <% const coin = coins[i] %>
+    <img
+      alt="<%- coin.id %>"
+      src="<%- `/images/banners/tech-coin-${coin.id}.png` %>"
+      class="<%- ['vs-blackfriday-coin', coin.id, coin.direction].join(' ') %>">
+  <% } %>
+  </div>
   <div class="vs-core">
     <div class="vs-logo">
       <img src="/images/banners/vueschool_blackfriday_logo.svg">

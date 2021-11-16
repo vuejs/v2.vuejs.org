@@ -65,10 +65,9 @@ body.has-vs-banner
   @media (min-width: 680px)
     justify-content: center
     min-height: $vs-banner-height-desktop
-    background-image: url(/images/banners/vueschool_blackfriday_background_tablet.svg)
   @media (min-width: 900px)
-    position: static
-    background-image: url(/images/banners/vueschool_blackfriday_background_desktop.svg)
+    position: relative
+    background-image: none
 
   &.vs-hidden
     display: none
@@ -127,3 +126,80 @@ body.has-vs-banner
         right: 20px
       &:hover
         color: #56D8FF
+
+.vs-blackfriday-coins {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.vs-blackfriday-coin {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .vs-blackfriday-coins {
+    background-image: url(/images/banners/vueschool_blackfriday_background_tablet.svg);
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+@media (min-width: 1024px) {
+  .vs-blackfriday-coins {
+    background: transparent;
+  }
+
+  #vs:hover .vs-blackfriday-coin.left {
+    transform: translateX(-600px);
+    transition: transform 30s linear;
+  }
+
+  #vs:hover .vs-blackfriday-coin.right {
+    transform: translateX(600px);
+    transition: transform 30s linear;
+  }
+
+  .vs-blackfriday-coin {
+    display: inline-block;
+    position: absolute;
+    transition: transform 5s linear;
+    transform: translateX(0);
+  }
+
+  .vs-blackfriday-coin.js {
+    width: 43px;
+    top: 32px;
+    left: calc(50% - 341px);
+  }
+
+  .vs-blackfriday-coin.ts {
+    top: 0;
+    left: 0;
+    width: 54px;
+    left: calc(50% + 457px);
+  }
+
+  .vs-blackfriday-coin.vue {
+    top: 18px;
+    width: 60px;
+    left: calc(50% + 586px);
+  }
+
+  .vs-blackfriday-coin.vuex {
+    top: 23px;
+    left: 0;
+    width: 56px;
+    left: calc(50% - 620px);
+  }
+
+  .vs-blackfriday-coin.nuxt {
+    top: 10px;
+    width: 48px;
+    left: calc(50% - 474px);
+  }
+}
