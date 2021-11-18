@@ -1,7 +1,7 @@
 @import "_settings"
 $mobile-bar-height = 40px
 $vs-banner-height-desktop = 80px
-$vs-banner-height-mobile = 50px
+$vs-banner-height-mobile = 80px
 $menu-height = 63px
 
 body.has-vs-banner
@@ -49,11 +49,11 @@ body.has-vs-banner
         top: 160px
 
 #vs
-  font-family "Roboto", sans-serif
+  font-family "Archivo", sans-serif
   z-index: 8
   box-sizing: border-box
   color: #FFF
-  background: #202A5A
+  background-color: #000c19
   display: flex
   align-items: center
   position: fixed
@@ -66,7 +66,8 @@ body.has-vs-banner
     justify-content: center
     min-height: $vs-banner-height-desktop
   @media (min-width: 900px)
-    position: static
+    position: relative
+    background-image: none
 
   &.vs-hidden
     display: none
@@ -74,78 +75,131 @@ body.has-vs-banner
   &:hover
     .vs-core
       .vs-button
-        background: #f22606
-
-  .vs-iso
-      display: none
-      position: absolute
-      left: 20px
-      height: 26px
-      img
-        height: 26px
-      @media (min-width: 680px)
-        display: inline-block
-        height: 40px
-        img
-          height: 40px
-      @media (min-width: 900px)
-        display: none
-
-  .vs-logo
-    position: absolute
-    display: none
-    left: 40px
-    @media (min-width: 900px)
-      display: block
+        background: linear-gradient(261deg, #e61463 100%, #db5248 3%);
 
   .vs-core
     display: flex
     align-items: center
 
-    .vs-backpack
-      margin-right: 14px
-      img
-        height: 50px
-        @media (min-width: 680px)
-          height: 74px
-
     .vs-slogan
+      font-family: Archivo
       color: #FFF
-      font-weight: bold
-      font-size: 14px
-      width: 150px
-      text-align: center
-      margin-left: 40px
-      @media (min-width: 400px)
-        margin-left: 60px
+      margin-left: 8px
       @media (min-width: 680px)
-        margin-left: 0
-        width: auto
-        text-align: left
-        font-size: 18px
-      > .vs-slogan-light
-        color: #ff5338
-        text-align: left
-        @media (min-width: 900px)
-          text-align: center
-          display: inline
+        margin-left: 24px
+      .vs-slogan-subtitle
+        font-size: 12px
+        @media (min-width: 680px)
+          font-size: 14px
+      .vs-slogan-title
+        margin-top: 6px
+        font-size: 16px
+        font-weight: 600
+        @media (min-width: 680px)
+          font-size: 18px
+        strong
+          color: #ffae29
+          font-weight: 600
 
     .vs-button
-      margin-left: 43px
+      margin-left: 16px
       color: #FFF
-      padding: 13px 24px
-      border-radius: 40px
-      display: none
-      background: #ff5338
-      font-weight: bold
+      padding: 7px 10px
+      border-radius: 4px
+      background: linear-gradient(to left, #e61b60, #dd4a4c)
+      font-weight: 600
+      white-space: nowrap
+      margin-right: 30px
       @media (min-width: 680px)
-        display: inline-block
+        margin-right: 0
+        padding: 8px 24px
+        margin-left: 32px
+      @media (min-width: 680px)
+        margin-left: 69px
 
   .vs-close
-      right: 10px
+      right: 6px
       position: absolute
-      padding: 10px
       @media (min-width: 680px)
+        right: 10px
+        padding: 10px
         right: 20px
       &:hover
         color: #56D8FF
+
+.vs-blackfriday-coins {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.vs-blackfriday-coin {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .vs-blackfriday-coins {
+    background-image: url(/images/banners/vueschool_blackfriday_background_tablet.svg);
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+@media (min-width: 1024px) {
+  .vs-blackfriday-coins {
+    background: transparent;
+  }
+
+  #vs:hover .vs-blackfriday-coin.left {
+    transform: translateX(-600px);
+    transition: transform 30s linear;
+  }
+
+  #vs:hover .vs-blackfriday-coin.right {
+    transform: translateX(600px);
+    transition: transform 30s linear;
+  }
+
+  .vs-blackfriday-coin {
+    display: inline-block;
+    position: absolute;
+    transition: transform 5s linear;
+    transform: translateX(0);
+  }
+
+  .vs-blackfriday-coin.js {
+    width: 43px;
+    top: 32px;
+    left: calc(50% - 341px);
+  }
+
+  .vs-blackfriday-coin.ts {
+    top: 0;
+    left: 0;
+    width: 54px;
+    left: calc(50% + 457px);
+  }
+
+  .vs-blackfriday-coin.vue {
+    top: 18px;
+    width: 60px;
+    left: calc(50% + 586px);
+  }
+
+  .vs-blackfriday-coin.vuex {
+    top: 23px;
+    left: 0;
+    width: 56px;
+    left: calc(50% - 620px);
+  }
+
+  .vs-blackfriday-coin.nuxt {
+    top: 10px;
+    width: 48px;
+    left: calc(50% - 474px);
+  }
+}
