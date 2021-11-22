@@ -61,6 +61,19 @@ Nevertheless, for realistically complex production use cases, it may be wiser to
 
 Let's refactor our `Dockerfile` to use NGINX:
 
+1. Create an NGINX config file called `nginx/nginx.conf`
+
+```conf
+server { 
+ location / {
+   # This would be the directory where Vue's static files are stored.
+   root /usr/share/nginx/html;
+   try_files $uri /index.html;
+ }
+}
+```
+2. Change your Dockerfile to
+
  ```docker
 # build stage
 FROM node:lts-alpine as build-stage
@@ -72,6 +85,7 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
