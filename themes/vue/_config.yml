@@ -164,6 +164,9 @@ gold_sponsors:
   - url: 'https://www.fenetre.nl/english/'
     img: fen_tre_online_solutions.png
     name: Fenêtre Online Solutions
+  - url: 'https://finclip.com/?from=vue'
+    img: finclip.png
+    name: FinClip
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
