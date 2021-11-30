@@ -62,7 +62,11 @@ body.has-vs-banner
   padding: 0 10px
   min-height: $vs-banner-height-mobile
   top: 0
+  background-image: url(/images/banners/vueschool_banner_mobile.png)
+  background-size: cover
+  background-repeat: no-repeat
   @media (min-width: 680px)
+    background-image: none
     justify-content: center
     min-height: $vs-banner-height-desktop
   @media (min-width: 900px)
@@ -78,8 +82,12 @@ body.has-vs-banner
         background: linear-gradient(261deg, #e61463 100%, #db5248 3%);
 
   .vs-core
-    display: flex
-    align-items: center
+    display: none
+    @media (min-width: 680px)
+      position: relative
+      z-index: 1
+      align-items: center
+      display: flex
 
     .vs-slogan
       font-family: Archivo
@@ -113,9 +121,14 @@ body.has-vs-banner
       @media (min-width: 680px)
         margin-right: 0
         padding: 8px 24px
-        margin-left: 32px
-      @media (min-width: 680px)
+        margin-left: 20px
+      @media (min-width: 1024px)
         margin-left: 69px
+
+    .vs-tag
+      margin-left: 10px
+      @media (min-width: 1024px)
+        margin-left: 30px
 
   .vs-close
       right: 6px
@@ -143,7 +156,7 @@ body.has-vs-banner
 
 @media (min-width: 768px) {
   .vs-blackfriday-coins {
-    background-image: url(/images/banners/vueschool_blackfriday_background_tablet.svg);
+    background-image: url(/images/banners/vueschool_blackfriday_background_tablet_2.svg);
     background-position: center;
     background-size: cover;
   }
@@ -174,7 +187,7 @@ body.has-vs-banner
   .vs-blackfriday-coin.js {
     width: 43px;
     top: 32px;
-    left: calc(50% - 341px);
+    left: calc(50% - 420px);
   }
 
   .vs-blackfriday-coin.ts {
