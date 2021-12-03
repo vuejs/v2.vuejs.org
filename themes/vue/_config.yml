@@ -8,6 +8,10 @@ special_sponsors:
     name: HBuilder
     description: An IDE for Vue
 platinum_sponsors_china:
+  - url: 'https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci='
+    img: hbuilder.png
+    name: HBuilder
+    description: An IDE for Vue
   - name: authing
     url: https://authing.cn/welcome?from=vuejs
     img: authing.svg
