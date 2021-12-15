@@ -13,7 +13,8 @@ platinum_sponsors_china:
     name: HBuilder
     description: An IDE for Vue
   - name: authing
-    url: https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
+    url: >-
+      https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
     img: authing.svg
 platinum_sponsors:
   - url: >-
@@ -23,9 +24,6 @@ platinum_sponsors:
   - url: 'https://vehikl.com/'
     img: vehikl.png
     name: Vehikl
-  - url: 'https://retool.com/?utm_source=sponsor&utm_campaign=vue'
-    img: retool.png
-    name: Retool
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
@@ -39,6 +37,9 @@ platinum_sponsors:
   - url: 'https://nuxtjs.org/'
     img: nuxt.png
     name: Nuxt
+  - url: 'https://www.refurbed.org/?utm_source=vuejs'
+    img: refurbed.png
+    name: Refurbed
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
