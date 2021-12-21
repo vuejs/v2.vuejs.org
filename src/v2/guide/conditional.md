@@ -183,7 +183,7 @@ Perbedaannya adalah `v-show` akan selalu melakukan *rendering* dan tetap berada 
 
 Sebagai perbandingan, `v-show` jauh lebih sederhana - elemen akan selalu di-*render* tak terkecuali kondisi awal, dengan melakukan peralihan berbasis CSS.
 
-Secara umum, `v-if` memiliki biaya peralihan yang lebih tinggi sementara `v-show` memiliki biaya *rendering* awal yang lebih tinggi. Jadi lebih baik gunakan `v-show` jika Anda butuh pengalihan yang cukup sering, dan gunakan `v-if` if kondisi tidak mungkin berubah saat *runtime*.
+Secara umum, `v-if` memiliki biaya peralihan yang lebih tinggi sementara `v-show` memiliki biaya *rendering* awal yang lebih tinggi. Jadi lebih baik gunakan `v-show` jika Anda butuh pengalihan yang cukup sering, dan gunakan `v-if` jika kondisi tidak mungkin berubah saat *runtime*.
 
 ## `v-if` dengan `v-for`
 
