@@ -16,7 +16,7 @@ The getter/setters are invisible to the user, but under the hood they enable Vue
 
 Every component instance has a corresponding **watcher** instance, which records any properties "touched" during the component's render as dependencies. Later on when a dependency's setter is triggered, it notifies the watcher, which in turn causes the component to re-render.
 
-![Reactivity Cycle](/images/data.png)
+![Reactivity Cycle](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/data.png)
 
 ## Change Detection Caveats
 

@@ -71,7 +71,7 @@ var vmB = new Vue({
 })
 ```
 
-![State Management](/images/state.png)
+![State Management](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/state.png)
 
 <p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
 

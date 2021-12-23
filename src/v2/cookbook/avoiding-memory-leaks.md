@@ -78,7 +78,7 @@ new Vue({
 
 To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on Mac, choose Chrome Top Navigation > Window > Task Manager or on Windows, use the Shift+Esc shortcut. Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
 
-![Memory Leak Example](/images/memory-leak-example.png)
+![Memory Leak Example](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/memory-leak-example.png)
 
 ## Resolving the Memory Leak
 

@@ -124,7 +124,7 @@ new Vue({ el: '#components-demo3' })
 
 It's common for an app to be organized into a tree of nested components:
 
-![Component Tree](/images/components.png)
+![Component Tree](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/components.png)
 
 For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
 

@@ -48,15 +48,15 @@ You can run this yourself here:
 
 Type something in the form and then reload this page. You'll note that the value you typed previously will show up automatically. Don't forget that your browser provides excellent developer tools for inspecting client-side storage. Here's an example in Firefox:
 
-![Storage devtools in Firefox](/images/devtools-storage.png)
+![Storage devtools in Firefox](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/devtools-storage.png)
 
 And here it is in Chrome:
 
-![Storage devtools in Chrome](/images/devtools-storage-chrome.png)
+![Storage devtools in Chrome](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/devtools-storage-chrome.png)
 
 And then finally, an example in Microsoft Edge. Note that you can find application storage values under the Debugger tab.
 
-![Storage devtools in Edge](/images/devtools-storage-edge.png)
+![Storage devtools in Edge](https://raw.githubusercontent.com/vuejs/vuejs.org/master/src/images/devtools-storage-edge.png)
 
 <p class="tip">As a quick aside, these dev tools also offer you a way to remove storage values. This can be very useful when testing.</p>
 
