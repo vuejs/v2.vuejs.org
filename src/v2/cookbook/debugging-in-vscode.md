@@ -59,7 +59,10 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///src/*": "${webRoot}/*",
+        // If the breakpoint of JS file or Vue file cannot be set, the corresponding wildcard can be configured according to the file in 'webpack://' in the sources column under devtools of chrome. Examples are as follows
+        // "webpack:///./src/*.js": "${webRoot}/*.js", 
+        // "webpack:///src/*.vue": "${webRoot}/*.vue"
       }
     },
     {
