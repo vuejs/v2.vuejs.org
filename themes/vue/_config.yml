@@ -17,7 +17,8 @@ platinum_sponsors_china:
       https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
     img: authing.svg
   - name: qingfuwu
-    url: https://qingfuwu.cn?utm_campaign=TR_eSJH7nqW&utm_content=&utm_medium=Web&utm_source=CH_53OxwryD&utm_term=
+    url: >-
+      https://qingfuwu.cn?utm_campaign=TR_eSJH7nqW&utm_content=&utm_medium=Web&utm_source=CH_53OxwryD&utm_term=
     img: qingfuwu-v2.svg
 platinum_sponsors:
   - url: >-
@@ -170,8 +171,8 @@ gold_sponsors:
       https://flowdash.com/?utm_source=vue&utm_medium=sponsor&utm_campaign=open-source
     img: flowdash.png
     name: Flowdash
-  - url: 'https://www.fenetre.nl/english/'
-    img: fen_tre_online_solutions.png
+  - url: 'https://www.fenetre.nl/'
+    img: fen_tre_online_solutions.svg
     name: Fenêtre Online Solutions
   - url: 'https://finclip.com/?from=vue'
     img: finclip.png
