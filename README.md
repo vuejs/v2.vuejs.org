@@ -6,7 +6,7 @@ This site is built with [hexo](http://hexo.io/). Site content is written in Mark
 
 ## Writing
 
-See the [Vue Docs Writing Guide](https://github.com/vuejs/v2.vuejs.rg/blob/master/writing-guide.md) for our rules and recommendations on writing and maintaining documentation.
+See the [Vue Docs Writing Guide](https://github.com/vuejs/v2.vuejs.org/blob/master/writing-guide.md) for our rules and recommendations on writing and maintaining documentation.
 
 ## Developing
 
@@ -122,7 +122,7 @@ Bahasa Indonesia translation is maintained by [Vue.js Indonesia](https://github.
 
 ### Want to help with the translation?
 
-If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/v2.vuejs.rg/issues/2015) issue page to inform others that you're doing the translation and go for it.
+If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/v2.vuejs.org/issues/2015) issue page to inform others that you're doing the translation and go for it.
 
 If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
 

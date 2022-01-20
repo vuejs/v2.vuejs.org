@@ -53,7 +53,7 @@ Vue has already spread across the globe, with even the core team in at least hal
 
 I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
 
-If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/v2.vuejs.rg/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
+If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/v2.vuejs.org/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
 
 ### Become a Community Leader
 

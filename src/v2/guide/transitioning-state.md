@@ -366,7 +366,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this example](https://codesandbox.io/s/github/vuejs/v2.vuejs.rg/tree/master/src/v2/examples/vue-20-dynamic-state-transitions) for the complete code behind the above demo.
+See [this example](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-dynamic-state-transitions) for the complete code behind the above demo.
 
 ## Organizing Transitions into Components
 
