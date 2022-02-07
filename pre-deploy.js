@@ -13,7 +13,7 @@ const installation = fs.readFileSync(installPath, 'utf-8')
 // get latest Vue version
 console.log(`Checking latest Vue version...`)
 const localVersion = themeconfig.match(/vue_version: (.*)/)[1]
-const version = execSync('npm view vue version').toString().trim()
+const version = execSync('npm view vue@legacy version').toString().trim()
 
 if (localVersion === version) {
   console.log(`Version is up-to-date.`)

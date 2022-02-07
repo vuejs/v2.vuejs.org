@@ -1,7 +1,7 @@
 site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.5.16
+vue_version: 2.6.14
 special_sponsors:
   - url: 'https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci='
     img: hbuilder.png
