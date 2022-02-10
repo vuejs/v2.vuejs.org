@@ -15,6 +15,8 @@
   const preferV3 = localStorage.getItem('prefer-v3')
   if (preferV3 === 'true') {
     location.href = `https://vuejs.org${finalUrl}`
+  } else if (preferV3 === 'false') {
+    return
   }
 
   const today = new Date()
