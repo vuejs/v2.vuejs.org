@@ -89,7 +89,7 @@
     <!-- vimeo analytics -->
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
-  <body class="<%- isIndex ? '' : 'docs' -%>">
+  <body class="<%- isIndex ? '' : 'docs' -%>" data-v3-url="<%- theme.redirects['/' + page.path] || '' -%>">
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
@@ -141,5 +141,6 @@
       })
     }
     </script>
+    <script src="/js/v3-notice.js"></script>
   </body>
 </html>

@@ -4,6 +4,12 @@ type: guide
 order: 5
 ---
 
+<script>
+const __pageRedirects = {
+  '#Watchers': '/guide/essentials/watchers.html'
+}
+</script>
+
 ## Computed Properties
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-computed-properties?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how computed properties work with Vue School">Learn how computed properties work with a free lesson on Vue School</a></div>

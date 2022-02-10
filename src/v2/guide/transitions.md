@@ -4,6 +4,12 @@ type: guide
 order: 201
 ---
 
+<script>
+const __pageRedirects = {
+  '#List-Transitions': '/guide/built-ins/transition-group.html'
+}
+</script>
+
 ## Overview
 
 Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:

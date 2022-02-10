@@ -4,6 +4,14 @@ type: guide
 order: 3
 ---
 
+<script>
+const __pageRedirects = {
+  '#Data-and-Methods': '/guide/essentials/reactivity-fundamentals.html',
+  '#Instance-Lifecycle-Hooks': '/guide/essentials/lifecycle.html',
+  '#Lifecycle-Diagram': '/guide/essentials/lifecycle.html#lifecycle-diagram'
+}
+</script>
+
 ## Creating a Vue Instance
 
 Every Vue application starts by creating a new **Vue instance** with the `Vue` function:

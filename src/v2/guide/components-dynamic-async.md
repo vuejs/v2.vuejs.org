@@ -4,6 +4,12 @@ type: guide
 order: 105
 ---
 
+<script>
+const __pageRedirects = {
+  '#Async-Components': '/guide/components/async.html'
+}
+</script>
+
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
 ## `keep-alive` with Dynamic Components
