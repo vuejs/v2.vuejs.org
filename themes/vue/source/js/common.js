@@ -3,6 +3,7 @@
   initMobileMenu()
   initVideoModal()
   initNewNavLinks()
+  initVueSchoolBanner()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -281,6 +282,24 @@
   }
 
   /**
+   * Banner closing
+   */
+  function initVueSchoolBanner () {
+    const banner = document.getElementById('vs')
+    if (banner && !localStorage.getItem('VS_FW_BANNER_CLOSED')) {
+      banner.classList.remove('vs-hidden')
+      document.body.classList.add('has-vs-banner')
+      document.getElementById('vs-close').addEventListener('click', function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        document.getElementById('vs').remove()
+        document.body.classList.remove('has-vs-banner')
+        localStorage.setItem('VS_FW_BANNER_CLOSED', 1)
+      })
+    }
+  }
+
+  /**
   * Modal Video Player
   */
   function initVideoModal () {
@@ -422,7 +441,7 @@
           if(dataTypeAttr && dataTypeAttr.nodeValue === 'theme-product-title') {
             return 300
           }
-          return 0
+          return localStorage.getItem('VS_FW_BANNER_CLOSED') ? 0 : 80
         }
       })
     }

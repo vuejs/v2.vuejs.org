@@ -165,10 +165,11 @@
   })
 
   window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 165 && !topScrolled) {
+    var offset = 20
+    if (window.pageYOffset > offset && !topScrolled) {
       topScrolled = true
       document.getElementById('mobile-bar').classList.remove('top')
-    } else if (window.pageYOffset <= 165 && topScrolled) {
+    } else if (window.pageYOffset <= offset && topScrolled) {
       topScrolled = false
       document.getElementById('mobile-bar').classList.add('top')
     }

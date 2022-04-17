@@ -1,5 +1,6 @@
 <% var isIndex = page.path === 'index.html' %>
 <% var isThemes = page.path === 'resources/themes.html' %>
+<% var hasVueSchoolBanner = true %>
 
 <!DOCTYPE html>
 <html lang="en" class="with-v3-banner">
@@ -54,7 +55,7 @@
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto|Roboto Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -90,6 +91,11 @@
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="<%- isIndex ? '' : 'docs' -%>" data-v3-url="<%- theme.redirects['/' + page.path] || '' -%>">
+
+    <% if (hasVueSchoolBanner) { %>
+      <%- partial('partials/vueschool_banner') %>
+    <% } %>
+
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
