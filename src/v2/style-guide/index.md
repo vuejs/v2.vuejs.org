@@ -786,6 +786,18 @@ Some advantages of this convention:
     Vue.component(baseComponentName, baseComponentConfig)
   })
   ```
+- With Vite:
+    ``` js
+  const baseComponents = import.meta.glob("./src/Base[A-Z]\w+\.(vue|js)$/");
+  for (const path in baseComponents) {
+    const component = await baseComponents[path]();
+    const baseComponentConfig = component.default || component;
+    const baseComponentName =
+      baseComponentConfig.name || path.replace(/^.+\//, "").replace(/\.\w+$/, "");
+
+    Vue.component(baseComponentName, baseComponentConfig);
+  }
+  ```
 
 {% raw %}</details>{% endraw %}
 
