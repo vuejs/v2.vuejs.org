@@ -2200,7 +2200,7 @@ type: api
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
-  <div :class="[classA, { classB: isB, classC: isC }]">
+  <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
   <!-- style binding -->
   <div :style="{ fontSize: size + 'px' }"></div>
