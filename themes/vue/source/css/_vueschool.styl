@@ -57,7 +57,7 @@ body.has-vs-banner
   background-color: #1E204D
   background-repeat: no-repeat
   background-position: top right
-  background-image: url(../images/banners/vueschool-banner-bg-mobile.svg)
+  background-image: url(../images/banners/vs-fw-bg-small.svg)
   display: flex
   justify-content: center
   align-items: center
@@ -67,12 +67,13 @@ body.has-vs-banner
   padding: 0 10px
   min-height: $vs-banner-height-mobile
   top: 0
+  background-position: bottom right
   @media (min-width: 680px)
     min-height: $vs-banner-height-desktop
-    background-image: url(../images/banners/vueschool-banner-bg-tablet.svg)
+    background-image: url(../images/banners/vs-fw-bg.svg)
   @media (min-width: 900px)
+    background-position: top right
     position: static
-    background-image: url(../images/banners/vueschool-banner-bg-desktop.svg)
 
   &.vs-hidden
     display: none
@@ -81,10 +82,7 @@ body.has-vs-banner
     .vs-core
       .vs-button
         .vs-button-inside
-          background: linear-gradient(#ed81eb, #d457d0)
-        &.vs-button-alt
-          .vs-button-inside
-            background: linear-gradient(#ffea80, #ffba49)
+          background: linear-gradient(257deg, #e19b09 99%, #ffca24 6%)
 
   .vs-iso
       position: absolute
@@ -115,41 +113,43 @@ body.has-vs-banner
       text-align: center
 
       .vs-slogan-up
-        color: #47b785
+        color: #FFF
         font-size: 14px
         font-weight: bold
+        width: 170px
         @media (min-width: 680px)
           font-size: 18px
+          width: 220px
+        @media (min-width: 1024px)
+          width: auto
+          font-size: 24px
+        strong
+          color: #fdc722
 
       .vs-slogan-down
-        color: #fff
+        color: #cdc5dc
         font-size: 12px
         @media (min-width: 680px)
           font-size: 16px
-        strong
-          color: #48a0ff
 
     .vs-button
       margin-left: 43px
       color: #fff
-      background: linear-gradient(to bottom, #b349b0, #dc61da)
       padding: 2px
       border-radius: 40px
       display: none
+      background: linear-gradient(0deg, #ffdf4c, #e29d0a)
       @media (min-width: 680px)
         display: inline-block
       .vs-button-inside
+        color: #000
         border-radius: 40px
-        background: linear-gradient(#dc61da, #b349b0)
-        transition: all .25s ease-in
-        padding: 17px 27px
-        line-height: 0
-        @media (min-width: 680px)
-          padding: 13px 24px
-      &.vs-button-alt
-        background: linear-gradient(to bottom, #ffcc38, #ffd13d)
-        .vs-button-inside
-          background: linear-gradient(to bottom, #ffe24f, #ffa40e)
+        background: linear-gradient(90deg, #FFC828, #E19C0E)
+        padding: 8px 24px
+        font-size: 22px
+        white-space: nowrap
+        border-radius: 30px
+        font-weight: bold
 
   .vs-close
       right: 10px
