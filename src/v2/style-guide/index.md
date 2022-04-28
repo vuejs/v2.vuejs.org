@@ -771,22 +771,6 @@ Some advantages of this convention:
 
 - Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
-
-  ``` js
-  var requireComponent = require.context("./src", true, /Base[A-Z]\w+\.(vue|js)$/)
-  requireComponent.keys().forEach(function (fileName) {
-    var baseComponentConfig = requireComponent(fileName)
-    baseComponentConfig = baseComponentConfig.default || baseComponentConfig
-    var baseComponentName = baseComponentConfig.name || (
-      fileName
-        .replace(/^.+\//, '')
-        .replace(/\.\w+$/, '')
-    )
-    Vue.component(baseComponentName, baseComponentConfig)
-  })
-  ```
-
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
