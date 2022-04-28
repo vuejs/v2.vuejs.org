@@ -285,8 +285,10 @@
    * Banner closing
    */
   function initVueSchoolBanner () {
+    const now = new Date()
+    const end = new Date('2022-05-04T00:00:00+02:00')
     const banner = document.getElementById('vs')
-    if (banner && !localStorage.getItem('VS_FW_BANNER_CLOSED_2')) {
+    if (banner && (now < end) && !localStorage.getItem('VS_FW_BANNER_CLOSED_2')) {
       banner.classList.remove('vs-hidden')
       document.body.classList.add('has-vs-banner')
       document.getElementById('vs-close').addEventListener('click', function (e) {
