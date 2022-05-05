@@ -3,7 +3,6 @@
   initMobileMenu()
   initVideoModal()
   initNewNavLinks()
-  initVueSchoolBanner()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
