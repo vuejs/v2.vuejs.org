@@ -12,18 +12,6 @@
     typeof __pageRedirects !== 'undefined' && __pageRedirects[location.hash]
   const finalUrl = hashRedirect || v3Url
 
-  const preferV3 = localStorage.getItem('prefer-v3')
-  if (preferV3 === 'true') {
-    location.href = `https://vuejs.org${finalUrl}`
-  } else if (preferV3 === 'false') {
-    return
-  }
-
-  const today = new Date()
-  const target = new Date('2022-05-07')
-  const timeinmilisec = target.getTime() - today.getTime()
-  const days = Math.ceil(timeinmilisec / (1000 * 60 * 60 * 24))
-
   const el = document.createElement('div')
   el.className = `v3-notice`
   el.innerHTML = `
@@ -32,21 +20,11 @@
 This page contains documentation for Vue 2. The Vue 3 version of the URL you are visiting is: <a id="v3-url" target="_blank"></a>.
 </p>
 <p>
-The original URL, <code>https://vuejs.org<span id="original-url"></span></code>
-will permanantly redirect to the v3 URL above after <b>May 7th, 2022 (${days} days from now).</b> If you need
-future access to this v2 page, please use the v2-prefixed URL
-<code>https://v2.vuejs.org<span id="current-url"></span></code>.
-</p>
-<p>
 You can learn more about the Vue 2 -> Vue 3 default version switch in
 <a target="_blank" href="https://blog.vuejs.org/posts/vue-3-as-the-new-default.html">this blog post</a>.
 </p>
 <p>
-Would you like to start redirecting all v2 URLs to v3 right now?
-</p>
-<p>
-<a class="go">Yes</a>
-<a class="stay">Not yet</a>
+  <a class="stay">Stay on Vue 2 docs</a>
 </p>
   `.trim()
 
@@ -91,23 +69,10 @@ Would you like to start redirecting all v2 URLs to v3 right now?
   document.body.appendChild(style)
   document.body.appendChild(el)
 
-  el.querySelector('#original-url').textContent = location.pathname
-  el.querySelector('#current-url').textContent = location.pathname
-  const v3Link = el.querySelector('#v3-url')
-
-  v3Link.textContent =
-    v3Link.href =
-    el.querySelector('.go').href =
-      `https://vuejs.org${finalUrl}`
-
-  el.querySelector('.go').addEventListener('click', () => {
-    localStorage.setItem('prefer-v3', 'true')
-  })
-
   el.querySelector('.stay').addEventListener('click', () => {
-    localStorage.setItem('prefer-v3', 'false')
     document.body.removeChild(el)
-    document.body.removeChild(style)
-    location.href = location.pathname
   })
+
+  const v3Link = el.querySelector('#v3-url')
+  v3Link.textContent = v3Link.href = `https://vuejs.org${finalUrl}`
 })()
