@@ -1,0 +1,58 @@
+audits:
+  - axe
+  - size
+  - lighthouse
+  - heap-snapshot
+
+configs:
+  buildDir: public
+  comment:
+    onlyFailures: true
+  lighthouse:
+    threshold:
+      accessibility: 95
+      best-practices: 92
+      performance: 50
+      pwa: 52
+      seo: 100
+    skipAudits:
+      - uses-http2
+      - redirects-http
+      - uses-long-cache-ttl
+      - uses-text-compression
+      - errors-in-console
+      - render-blocking-resources
+      - uses-webp-images
+      - unminified-javascript
+  heap-snapshot:
+    threshold:
+      Documents: 32
+      Frames: 15
+      JSHeapTotalSize: 22574208
+      JSHeapUsedSize: 13445280
+      Nodes: 3000
+      RecalcStyleCount: 22
+      LayoutCount: 15
+  size:
+    - path: public/index.html
+      maxSize: 10 KB
+    - path: public/service-worker.js
+      maxSize: 20 KB
+    - path: public
+      maxSize: 15 MB
+
+outputs:
+  cli:
+    onlyFailures: true
+  html: artifacts/gimbal.html
+  json: artifacts/gimbal.json
+  markdown: artifacts/gimbal.md
+
+plugins:
+  - plugin: '@modus/gimbal-plugin-axe'
+    thresholds:
+      heading-order: moderate
+      region: moderate
+      duplicate-id: minor
+      color-contrast: serious
+      landmark-one-main: moderate

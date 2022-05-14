@@ -28,5 +28,8 @@
     "hexo-server": "^0.3.1",
     "hoek": "^6.1.2",
     "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "@modus/gimbal-plugin-axe": "^1.2.3"
   }
 }
