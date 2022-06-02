@@ -1,44 +1,22 @@
+<% function logo(img) { return `https://sponsors.vuejs.org/images/${img}` } %>
+
 <h3>Patreon Sponsors</h3>
 
-<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+<%_ for (const sponsor of theme.platinum) {_%>
 <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" style="width: 160px;">
-  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;" alt="<%-sponsor.name-%>">
+  <img src="<%- logo(sponsor.img) %>" style="width: 160px;" alt="<%-sponsor.name-%>">
 </a>
 <%_ } _%>
 <br>
 <br>
-<%_ for (const sponsor of theme.gold_sponsors) {_%>
+<%_ for (const sponsor of theme.gold) {_%>
 <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" style="width: 120px;">
-  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 120px;" alt="<%-sponsor.name-%>">
+  <img src="<%- logo(sponsor.img) %>" style="width:auto;max-width:120px;max-height:60px;" alt="<%-sponsor.name-%>">
 </a>
 <%_ } _%>
 <br>
 
 <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Sponsor!</a>
-
-<div class="open-collective-sponsors">
-  <h3>OpenCollective Sponsors</h3>
-  <h4>Platinum</h4>
-  <%_ for (let i = 0; i < 3; i++) {_%>
-  <a
-    href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website"
-    rel="sponsored noopener"
-    target="_blank"
-  >
-    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg" alt="Vue.JS sponsor">
-  </a>
-  <%_ } _%>
-  <h4>Gold</h4>
-  <%_ for (let i = 0; i < 20; i++) {_%>
-  <a
-    href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website"
-    rel="sponsored noopener"
-    target="_blank"
-  >
-    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg" alt="Vue.JS sponsor">
-  </a>
-  <%_ } _%>
-</div>
 
 <script>
 window.addEventListener('load', function () {

@@ -1,3 +1,5 @@
+<% function logo(img) { return `https://sponsors.vuejs.org/images/${img}` } %>
+
 <h1 id="sponsor-Vue-js-Development">Sponsor Vue.js Development</h1>
 
 <p>
@@ -74,79 +76,49 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <h3 id="special-sponsors">Special Sponsors</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.special_sponsors) {_%>
+<%_ for (const sponsor of theme.special) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
+    <img src="<%- logo(sponsor.img) %>">
   </a>
 <%_ } _%>
 </p>
 
-<h3 id="platinum">Platinum</h3>
+<h3 id="platinum">Platinum Sponsors</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+<%_ for (const sponsor of theme.platinum) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+    <img src="<%- logo(sponsor.img) %>">
   </a>
 <%_ } _%>
 </p>
 
-<h3 id="open-collective-platinum">OpenCollective Platinum</h3>
-
-<p class="open-collective-sponsors sponsor-section">
-<%_ for (let i = 0; i < 10; i++) {_%>
-  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank" rel="noopener">
-    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
-  </a>
-<%_ } _%>
-</p>
-
-<h3 id="special-sponsors-china">Special Sponsors (China)</h3>
+<h3 id="special-sponsors-china">Platinum Sponsors (China)</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
+<%_ for (const sponsor of theme.platinum_china) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
+    <img src="<%- logo(sponsor.img) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
   </a>
 <%_ } _%>
 </p>
 
-<h3 id="patreon-gold">Patreon Gold</h3>
+<h3 id="patreon-gold">Gold Sponsors</h3>
 
 <p class="patreon-sponsors sponsor-section">
-<%_ for (const sponsor of theme.gold_sponsors) {_%>
+<%_ for (const sponsor of theme.gold) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+    <img src="<%- logo(sponsor.img) %>">
   </a>
 <%_ } _%>
 </p>
 
-<h3 id="open-collective-gold">OpenCollective Gold</h3>
-
-<p class="open-collective-sponsors sponsor-section">
-<%_ for (let i = 0; i < 10; i++) {_%>
-  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank" rel="noopener">
-    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
-  </a>
-<%_ } _%>
-</p>
-
-<h3 id="patreon-silver">Patreon Silver</h3>
+<h3 id="patreon-silver">Silver Sponsors</h3>
 
 <p class="patreon-sponsors sponsor-section">
-<%_ for (const sponsor of theme.silver_sponsors) {_%>
+<%_ for (const sponsor of theme.silver) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
-  </a>
-<%_ } _%>
-</p>
-
-<h3 id="open-collective-silver">OpenCollective Silver</h3>
-
-<p class="open-collective-sponsors sponsor-section">
-<%_ for (let i = 0; i < 5; i++) {_%>
-  <a href="https://opencollective.com/vuejs/tiers/silver-sponsors/<%- i %>/website" target="_blank" rel="noopener">
-    <img src="https://opencollective.com/vuejs/tiers/silver-sponsors/<%- i %>/avatar.svg">
+    <img src="<%- logo(sponsor.img) %>">
   </a>
 <%_ } _%>
 </p>

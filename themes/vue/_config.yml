@@ -2,225 +2,207 @@ site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.6.14
-special_sponsors:
-  - url: 'https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci='
+# START SPONSORS
+special:
+  - name: HBuilder
+    url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
     img: hbuilder.png
-    name: HBuilder
     description: An IDE for Vue
-platinum_sponsors_china:
-  - url: 'https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci='
-    img: hbuilder.png
-    name: HBuilder
-    description: An IDE for Vue
-  - name: authing
-    url: >-
-      https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
-    img: authing.svg
-  - name: qingfuwu
-    url: >-
-      https://qingfuwu.cn?utm_campaign=TR_eSJH7nqW&utm_content=&utm_medium=Web&utm_source=CH_53OxwryD&utm_term=
-    img: qingfuwu-v2.svg
-platinum_sponsors:
-  - url: >-
-      https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
+platinum:
+  - name: VueSchool
+    url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
-    name: VueSchool
-  - url: 'https://vehikl.com/'
+  - name: Vehikl
+    url: https://vehikl.com/
     img: vehikl.png
-    name: Vehikl
-  - url: 'https://passionatepeople.io/'
+  - name: Passionate People
+    url: https://passionatepeople.io/
     img: passionate_people.png
-    name: Passionate People
-  - url: 'https://www.storyblok.com'
+  - name: Storyblok
+    url: https://www.storyblok.com
     img: storyblok.png
-    name: Storyblok
-  - url: >-
-      https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
+  - name: Ionic
+    url: https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png
-    name: Ionic
-  - url: 'https://nuxtjs.org/'
+  - name: Nuxt
+    url: https://nuxtjs.org/
     img: nuxt.png
-    name: Nuxt
-  - url: 'https://www.refurbed.org/?utm_source=vuejs'
+  - name: Refurbed
+    url: https://www.refurbed.org/?utm_source=vuejs
     img: refurbed.png
-    name: Refurbed
-gold_sponsors:
-  - url: 'https://www.vuemastery.com/'
+  - name: ButterCMS
+    url: https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
+    img: buttercms.svg
+  - name: Sanofi
+    url: https://www.sanofi.com/
+    img: sanofi.png
+  - name: CodeDict
+    url: https://code-dict.com
+    img: codedict.svg
+platinum_china:
+  - name: HBuilder
+    url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
+    img: hbuilder.png
+  - name: Authing
+    url: https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
+    img: authing.svg
+  - name: 稀土掘金技术社区
+    url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
+    img: xitujuejinjishushequ.png
+gold:
+  - name: VueMastery
+    url: https://www.vuemastery.com/
     img: vuemastery.png
-    name: VueMastery
-  - url: 'https://laravel.com'
+  - name: Laravel
+    url: https://laravel.com
     img: laravel.png
-    name: Laravel
-  - url: 'https://htmlburger.com'
+  - name: HTML Burger
+    url: https://htmlburger.com
     img: html_burger.png
-    name: HTML Burger
-  - url: 'https://www.frontenddeveloperlove.com/'
-    img: frontendlove.png
-    name: FrontendLove
-  - url: 'https://neds.com.au/'
+  - name: Neds
+    url: https://neds.com.au/
     img: neds.png
-    name: Neds
-  - url: 'https://icons8.com/'
+  - name: Icons 8
+    url: https://icons8.com/
     img: icons_8.png
-    name: Icons 8
-  - url: 'https://tidelift.com/subscription/npm/vue'
+  - name: Tidelift
+    url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
-    name: Tidelift
-  - url: 'https://www.firesticktricks.com/'
+  - name: Firestick Tricks
+    url: https://www.firesticktricks.com/
     img: firestick_tricks.png
-    name: Firestick Tricks
-  - url: 'https://intygrate.com/'
+  - name: Intygrate
+    url: https://intygrate.com/
     img: intygrate.png
-    name: Intygrate
-  - url: 'http://en.shopware.com/'
-    img: shopware_ag.png
-    name: shopware AG
-  - url: 'https://www.vpnranks.com/'
-    img: vpnranks.png
-    name: VPNRanks
-  - url: 'https://www.bacancytechnology.com/hire-vuejs-developer'
+  - name: Bacancy Technology
+    url: https://www.bacancytechnology.com/hire-vuejs-developer
     img: bacancy_technology.png
-    name: Bacancy Technology
-  - url: 'https://www.bestvpn.co/'
-    img: bestvpn_co.png
-    name: BestVPN.co
-  - url: 'https://www.y8.com/'
+  - name: Y8
+    url: https://www.y8.com/
     img: y8.png
-    name: Y8
-  - url: 'https://js.devexpress.com/'
+  - name: DevExpress
+    url: https://js.devexpress.com/
     img: devexpress.png
-    name: DevExpress
-  - url: 'https://fastcoding.jp/javascript/ '
+  - name: FASTCODING Inc
+    url: "https://fastcoding.jp/javascript/ "
     img: fastcoding_inc.svg
-    name: FASTCODING Inc
-  - url: 'https://usave.co.uk/utilities/broadband'
-    img: usave.png
-    name: usave
-  - url: 'https://storekit.com'
+  - name: StoreKit
+    url: https://storekit.com
     img: storekit.png
-    name: StoreKit
-  - url: 'https://www.foo.software'
-    img: foo.png
-    name: Foo
-  - url: 'https://flatlogic.com/templates'
-    img: flatlogic_templates.svg
-    name: Flatlogic Templates
-  - url: 'https://www.layer0.co'
-    img: layer0.png
-    name: Layer0
-  - url: 'https://vpn-review.com/netflix-vpn'
-    img: vpn_review.png
-    name: VPN Review
-  - url: 'https://cosmos.network/'
-    img: tendermint.png
-    name: Tendermint
-  - url: 'https://www.okayhq.com/'
-    img: okay.png
-    name: Okay
-  - url: 'https://www.vpsserver.com'
+  - name: VPSServer.com
+    url: https://www.vpsserver.com
     img: vpsserver_com.png
-    name: VPSServer.com
-  - url: 'https://aussiecasinohex.com/'
-    img: aussiecasinohex.svg
-    name: AussieCasinoHEX
-  - url: 'https://litslink.com'
-    img: litslink.png
-    name: LITSLINK
-  - url: 'https://newicon.net'
-    img: newicon.png
-    name: Newicon
-  - url: 'https://lowdefy.com?k=w432'
-    img: lowdefy.png
-    name: Lowdefy
-  - url: 'https://quickbookstoolhub.com/'
-    img: quickbooks_tool_hub.png
-    name: Quickbooks Tool Hub
-  - url: 'https://linecorp.com'
+  - name: LINE Corporation
+    url: https://linecorp.com
     img: line_corporation.png
-    name: LINE Corporation
-  - url: 'https://exmax.it/'
-    img: exmax.png
-    name: Exmax
-  - url: 'https://plaid.co.jp/'
+  - name: PLAID, Inc.
+    url: https://plaid.co.jp/
     img: plaid__inc_.svg
-    name: 'PLAID, Inc.'
-  - url: 'https://troypoint.com'
-    img: troypoint.png
-    name: TROYPOINT
-  - url: >-
-      https://webreinvent.com?utm_source=vuejs.org&utm_medium=logo&utm_campaign=patreon-sponsors
-    img: webreinvent_technologies_pvt_ltd.svg
-    name: WebReinvent Technologies Pvt Ltd
-  - url: 'https://www.dronahq.com/?ref=github_Vuejs'
-    img: dronahq.png
-    name: DronaHQ
-  - url: 'https://www.emqx.com'
+  - name: EMQ
+    url: https://www.emqx.com
     img: emq.png
-    name: EMQ
-  - url: >-
-      https://www.tatvasoft.com/software-development-technology/vue-js-development-services
-    img: tatvasoft.png
-    name: TatvaSoft
-  - url: 'https://www.aceonlinecasino.co.uk'
+  - name: Onyx Gaming Limited
+    url: https://www.aceonlinecasino.co.uk
     img: onyx_gaming_limited.svg
-    name: Onyx Gaming Limited
-  - url: 'http://www.lendio.com'
+  - name: Lendio
+    url: http://www.lendio.com
     img: lendio.png
-    name: Lendio
-  - url: >-
-      https://flowdash.com/?utm_source=vue&utm_medium=sponsor&utm_campaign=open-source
-    img: flowdash.png
-    name: Flowdash
-  - url: 'https://www.fenetre.nl/'
+  - name: Fenêtre Online Solutions
+    url: https://www.fenetre.nl/
     img: fen_tre_online_solutions.svg
-    name: Fenêtre Online Solutions
-  - url: 'https://finclip.com/?from=vue'
-    img: finclip.png
-    name: FinClip
-silver_sponsors:
-  - url: 'https://roadster.com'
-    img: roadster.png
-    name: Roadster
-  - url: 'https://www.inkoop.io'
+  - name: MyEtherWallet Inc
+    url: https://www.myetherwallet.com
+    img: myetherwallet_inc.png
+  - name: Barrage
+    url: https://www.barrage.net
+    img: barrage.png
+  - name: Ant Design Vue
+    url: https://antdv.com
+    img: ant_design_vue.png
+  - name: Lemon Law
+    url: https://lemonlaw.site
+    img: lemon_law.png
+  - name: MQTT X
+    url: https://mqttx.app
+    img: mqtt_x.png
+  - name: Crisp
+    url: https://crisp.chat/en/
+    img: crisp.png
+  - name: Cypress.io
+    url: https://cypress.io
+    img: cypress_io.svg
+  - name: QuickBooks Tool Hub
+    url: https://quickbookstoolhub.com
+    img: quickbooks_tool_hub.png
+  - name: "1394"
+    url: https://1394ta.org/buy-instagram-followers/
+    img: 1394.png?v2
+  - name: Snyk
+    url: https://snyk.co/vuejs
+    img: snyk.png?v2
+silver:
+  - name: Inkoop
+    url: https://www.inkoop.io
     img: inkoop.png
-    name: Inkoop
-  - url: 'https://www.thecasinodb.com'
+  - name: iSolutions UK Limited
+    url: https://www.thecasinodb.com
     img: isolutions_uk_limited.png
-    name: iSolutions UK Limited
-  - url: 'https://teamextension.io'
+  - name: Team Extension North America Inc
+    url: https://teamextension.io
     img: team_extension_north_america_inc.png
-    name: Team Extension North America Inc
-  - url: 'https://freebets.us'
+  - name: Free Bets US
+    url: https://freebets.us
     img: free_bets_us.png
-    name: Free Bets US
-  - url: 'https://betting.bet'
-    img: betting_bet.png
-    name: betting.bet
-  - url: 'https://www.takt.io'
-    img: takt.png
-    name: Takt
-  - url: 'https://technology.doximity.com/'
+  - name: Doximity
+    url: https://technology.doximity.com/
     img: doximity.png
-    name: Doximity
-  - url: 'https://www.empiricus.com.br/'
+  - name: Empiricus
+    url: https://www.empiricus.com.br/
     img: empiricus.png
-    name: Empiricus
-bronze_sponsors:
-  - url: 'https://www.accelebrate.com/'
-    img: accelebrate.png
-    name: Accelebrate
-  - url: 'https://polyglotengineer.com/derek.pollard'
+  - name: CircleCI
+    url: https://circleci.com/open-source/
+    img: circleci.png
+  - name: Interflora Group
+    url: https://www.interflora.fr
+    img: interflora_group.png
+  - name: Localazy
+    url: https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
+    img: localazy.png
+  - name: AddWeb Solution
+    url: http://addwebsolution.com/
+    img: addweb_solution.png
+bronze:
+  - name: Derek Pollard
+    url: https://polyglotengineer.com/derek.pollard
     img: derek_pollard.png
-    name: Derek Pollard
-  - url: 'https://www.earthlink.ro'
+  - name: Earthlink
+    url: https://www.earthlink.ro
     img: earthlink.png
-    name: Earthlink
-  - url: 'https://www.webucator.com'
-    img: webucator.png
-    name: Webucator
-  - url: 'https://memberful.com/'
-    img: memberful.png
-    name: Memberful
+  - name: BGASoft
+    url: https://www.bgasoft.com
+    img: bgasoft.png
+  - name: RStudio
+    url: https://rstudio.com
+    img: rstudio.png
+  - name: Custouch Marketing Automation
+    url: http://www.custouch.com
+    img: custouch_marketing_automation.png
+  - name: Darkhorse Analytics
+    url: https://www.darkhorseanalytics.com/
+    img: darkhorse_analytics.png
+  - name: vuejs.de - German Vue Community
+    url: https://vuejs.de
+    img: vuejs_de___german_vue_community.svg
+  - name: Liip AG
+    url: https://www.liip.ch/en
+    img: liip_ag.png
+  - name: FormMaking
+    url: http://form.making.link/
+    img: formmaking.png
+  - name: Monarch Air Group
+    url: https://monarchairgroup.com
+    img: monarch_air_group.png
+# END SPONSORS
 redirects:
   '/v2/api/index.html': '/api/'
   '/v2/guide/index.html': '/guide/introduction.html'
