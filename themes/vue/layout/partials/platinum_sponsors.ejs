@@ -2,9 +2,9 @@
   <div class="main-sponsor">
     <span>Platinum Sponsors</span>
     <div>
-    <%_ for (const sponsor of theme.platinum_sponsors) {_%>
-    <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo"<%- sponsor.inline_style ? ` style="${sponsor.inline_style}"` : `` %>>
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
+    <%_ for (const sponsor of theme.platinum) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/<%- sponsor.img %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>
