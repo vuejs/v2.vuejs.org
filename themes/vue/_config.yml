@@ -10,7 +10,8 @@ special:
     description: An IDE for Vue
 platinum:
   - name: VueSchool
-    url: https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
+    url: >-
+      https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
   - name: Vehikl
     url: https://vehikl.com/
@@ -22,7 +23,8 @@ platinum:
     url: https://www.storyblok.com
     img: storyblok.png
   - name: Ionic
-    url: https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
+    url: >-
+      https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png
   - name: Nuxt
     url: https://nuxtjs.org/
@@ -31,7 +33,8 @@ platinum:
     url: https://www.refurbed.org/?utm_source=vuejs
     img: refurbed.png
   - name: ButterCMS
-    url: https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
+    url: >-
+      https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
     img: buttercms.svg
   - name: Sanofi
     url: https://www.sanofi.com/
@@ -44,7 +47,8 @@ platinum_china:
     url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
     img: hbuilder.png
   - name: Authing
-    url: https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
+    url: >-
+      https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
     img: authing.svg
   - name: 稀土掘金技术社区
     url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
@@ -84,7 +88,7 @@ gold:
     url: https://js.devexpress.com/
     img: devexpress.png
   - name: FASTCODING Inc
-    url: "https://fastcoding.jp/javascript/ "
+    url: 'https://fastcoding.jp/javascript/ '
     img: fastcoding_inc.svg
   - name: StoreKit
     url: https://storekit.com
@@ -134,7 +138,7 @@ gold:
   - name: QuickBooks Tool Hub
     url: https://quickbookstoolhub.com
     img: quickbooks_tool_hub.png
-  - name: "1394"
+  - name: '1394'
     url: https://1394ta.org/buy-instagram-followers/
     img: 1394.png?v2
   - name: Snyk
@@ -166,7 +170,8 @@ silver:
     url: https://www.interflora.fr
     img: interflora_group.png
   - name: Localazy
-    url: https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
+    url: >-
+      https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
     img: localazy.png
   - name: AddWeb Solution
     url: http://addwebsolution.com/
