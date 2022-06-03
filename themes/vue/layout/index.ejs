@@ -10,7 +10,7 @@
   <div id="hero">
     <div class="inner">
       <div class="left">
-        <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
+        <img class="hero-logo" src="<%- url_for("/images/logo.svg") %>" alt="Vue logo">
       </div><div class="right">
         <h2 class="vue">Vue.js</h2>
         <h1>
@@ -29,15 +29,17 @@
     </div>
   </div>
 
+  <%_ if (theme.special_sponsors) { _%>
   <div id="special">
     <h3>Special Sponsor</h3>
     <% var specialSponsor = theme.special_sponsors[0]; %>
     <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
-      <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Code.xyz Logo">
+      <img src="<%- url_for(`/images/${specialSponsor.img}`) %>" style="width:160px" alt="Special sponsor <%- specialSponsor.name %>">
       <br>
-      <span><%- specialSponsor.description %></span>
+      <!-- <span><%- specialSponsor.description %></span> -->
     </a>
   </div>
+  <%_ } _%>
 
   <div id="highlights">
     <div class="inner">
@@ -163,10 +165,11 @@
   })
 
   window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 165 && !topScrolled) {
+    var offset = 20
+    if (window.pageYOffset > offset && !topScrolled) {
       topScrolled = true
       document.getElementById('mobile-bar').classList.remove('top')
-    } else if (window.pageYOffset <= 165 && topScrolled) {
+    } else if (window.pageYOffset <= offset && topScrolled) {
       topScrolled = false
       document.getElementById('mobile-bar').classList.add('top')
     }

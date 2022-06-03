@@ -4,6 +4,12 @@ type: guide
 order: 102
 ---
 
+<script>
+const __pageRedirects = {
+  '#Non-Prop-Attributes': '/guide/components/attrs.html'
+}
+</script>
+
 > This page assumes you've already read the [Components Basics](components.html). Read that first if you are new to components.
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/reusable-components-with-props?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how component props work with Vue School">Learn how component props work with a free lesson on Vue School</a></div>
@@ -219,7 +225,7 @@ Vue.component('my-component', {
     propF: {
       validator: function (value) {
         // The value must match one of these strings
-        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        return ['success', 'warning', 'danger'].includes(value)
       }
     }
   }
@@ -347,6 +353,7 @@ This pattern allows you to use base components more like raw HTML elements, with
 
 ```html
 <base-input
+  label="Username:"
   v-model="username"
   required
   placeholder="Enter your username"

@@ -5,6 +5,7 @@ order: 803
 ---
 
 {% raw %}
+
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -159,6 +160,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -176,6 +178,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 
   <div class="team">
@@ -216,6 +219,7 @@ order: 803
       :profile="profile"
       :title-visible="titleVisible"
     ></vuer-profile>
+
   </div>
 </div>
 
@@ -412,8 +416,8 @@ order: 803
       languages: ['hi', 'en'],
       work: {
         role: 'Software Engineer',
-        org: 'Myntra',
-        orgUrl: 'https://www.myntra.com/'
+        org: 'Grammarly',
+        orgUrl: 'https://grammarly.com/'
       },
       github: 'znck',
       twitter: 'znck0',
@@ -421,10 +425,10 @@ order: 803
         'rollup-plugin-vue', 'vue-issue-helper'
       ],
       reposPersonal: [
-        'keynote', 'bootstrap-for-vue', 'vue-interop'
+        'vue-developer-experience', 'prop-types', 'grammarly'
       ],
       links: [
-        'https://znck.me', 'https://www.codementor.io/znck'
+        'https://znck.me'
       ]
     },
     {
@@ -466,28 +470,6 @@ order: 803
       ],
       links: [
         'http://patreon.com/akryum'
-      ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, USA',
-      languages: ['en'],
-      work: {
-        role: 'Head of Developer Experience',
-        org: 'Netlify',
-        orgUrl: 'https://www.netlify.com/'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposOfficial: [
-        'vuejs.org'
-      ],
-      reposPersonal: [
-        'intro-to-vue', 'vue-vscode-snippets', 'vue-vscode-extensionpack', 'sample-vue-shop'
-      ],
-      links: [
-        'https://sarah.dev/'
       ]
     },
     {
@@ -656,6 +638,28 @@ order: 803
   ]))
 
   var emeriti = shuffle([
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Director of Engineering, Core Developer Web',
+        org: 'Google',
+        orgUrl: 'https://www.google.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-vscode-extensionpack', 'sample-vue-shop'
+      ],
+      links: [
+        'https://sarah.dev/'
+      ]
+    },
      {
       name: 'Chris Fritz',
       title: 'Good Word Putter-Togetherer',
@@ -1205,12 +1209,12 @@ order: 803
       github: 'filrak',
       twitter: 'filrakowski',
       work: {
-        role: 'Co-founder of Vue Storefront',
-        org: 'Divante',
-        orgUrl: 'https://divante.co/'
+        role: 'Co-founder & CTO',
+        org: 'Vue Storefront',
+        orgUrl: 'https://vuestorefront.io'
       },
       reposPersonal: [
-        'DivanteLtd/vue-storefront', 'DivanteLtd/storefront-ui'
+        'vuestorefront/vue-storefront', 'vuestorefront/storefront-ui'
       ],
       links: [
         'https://vuestorefront.io',
@@ -1513,4 +1517,5 @@ order: 803
   }
 })()
 </script>
+
 {% endraw %}

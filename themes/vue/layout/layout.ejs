@@ -1,5 +1,6 @@
 <% var isIndex = page.path === 'index.html' %>
 <% var isThemes = page.path === 'resources/themes.html' %>
+<% var hasVueSchoolBanner = true %>
 
 <!DOCTYPE html>
 <html lang="en" class="with-v3-banner">
@@ -21,7 +22,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
     <meta property="og:description" content="<%- theme.site_description %>">
-    <meta property="og:image" content="https://<%- theme.root_domain %>/<%- url_for("/images/logo.png") %>">
+    <meta property="og:image" content="https://<%- theme.root_domain %>/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
@@ -42,7 +43,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="<%- url_for("/images/icons/favicon-96x96.png") %>">
     <link rel="icon" type="image/png" sizes="16x16" href="<%- url_for("/images/icons/favicon-16x16.png") %>">
     <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
-    <link rel="icon" href="<%- url_for("/images/logo.png") %>" type="image/png">
+    <link rel="icon" href="<%- url_for("/images/logo.svg") %>">
 
     <meta name="msapplication-TileColor" content="#4fc08d">
     <meta name="theme-color" content="#4fc08d">
@@ -54,7 +55,7 @@
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto|Roboto Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -89,7 +90,12 @@
     <!-- vimeo analytics -->
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
-  <body class="<%- isIndex ? '' : 'docs' -%>">
+  <body class="<%- isIndex ? '' : 'docs' -%>" data-v3-url="<%- theme.redirects['/' + page.path] || '' -%>">
+
+    <% if (hasVueSchoolBanner) { %>
+      <%- partial('partials/vueschool_banner') %>
+    <% } %>
+
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
@@ -123,14 +129,24 @@
       var match = window.location.pathname.match(/^\/(v\d+)/)
       var version = match ? match[1] : 'v2'
       docsearch({
-      appId: 'BH4D9OD16A',
-      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-      indexName: 'vuejs',
-      inputSelector: selector,
-      algoliaOptions: { facetFilters: ["version:" + version] },
-      autocompleteOptions: { hint: false, appendTo: 'body'}
+        appId: 'ML0LEBN7FQ',
+        apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
+        indexName: 'vuejs',
+        inputSelector: selector,
+        algoliaOptions: { facetFilters: ["version:" + version] },
+        autocompleteOptions: { hint: false, appendTo: 'body'}
       })
     })
+
+    // unregister service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
     </script>
+    <script src="/js/v3-notice.js"></script>
   </body>
 </html>

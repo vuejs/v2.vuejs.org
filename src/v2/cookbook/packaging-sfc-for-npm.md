@@ -24,7 +24,7 @@ export default {
 Or even used via `<script>` tag in the browser directly:
 
 ```html
-  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue@2"></script>
   <script src="https://unpkg.com/my-component"></script>
   ...
   <my-component></my-component>

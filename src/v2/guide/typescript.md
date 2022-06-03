@@ -4,13 +4,13 @@ type: guide
 order: 403
 ---
 
-> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support. 
+> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support.
 
 ## Official Declaration in NPM Packages
 
 A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also for [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) and [vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
 
-Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
+Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue@2/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
 
 ## Recommended Configuration
 
@@ -195,7 +195,7 @@ If you find type inference or member completion isn't working, annotating certai
 ```ts
 import Vue, { PropType } from 'vue'
 
-interface ComplexMessage { 
+interface ComplexMessage {
   title: string,
   okMessage: string,
   cancelMessage: string
@@ -204,7 +204,7 @@ const Component = Vue.extend({
   props: {
     name: String,
     success: { type: String },
-    callback: { 
+    callback: {
       type: Function as PropType<() => void>
     },
     message: {

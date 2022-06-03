@@ -1,0 +1,161 @@
+@import "_settings"
+$mobile-bar-height = 40px
+$vs-banner-height-desktop = 80px
+$vs-banner-height-mobile = 50px
+$menu-height = 63px
+
+body.has-vs-banner
+
+  #v3-banner
+    margin-top: $vs-banner-height-mobile
+    @media (min-width: 680px)
+      margin-top: $vs-banner-height-desktop
+    @media (min-width: 900px)
+      margin-top: 0
+
+  #mobile-bar
+    top: $vs-banner-height-mobile
+    @media (min-width: 680px)
+      top: $vs-banner-height-desktop
+
+  .sidebar
+    top: $vs-banner-height-mobile + $mobile-bar-height
+    @media (min-width: 680px)
+      top: $vs-banner-height-desktop + $mobile-bar-height
+    @media (min-width: 900px)
+      top: $vs-banner-height-desktop + $menu-height
+
+  .content
+    padding-top: 85px
+    @media (min-width: 680px)
+      padding-top: 125px
+    @media (min-width: 900px)
+      padding-top: 35px
+
+  &.docs
+    @media (min-width: 900px)
+      padding-top: 144px
+
+    #vs
+      position: fixed
+
+    #header
+      top: $vs-banner-height-mobile
+      @media (min-width: 680px)
+        top: $vs-banner-height-desktop
+
+    #sidebar-sponsors-platinum-right
+      @media (min-width: 900px)
+        top: 160px
+
+#vs
+  font-family "Roboto", sans-serif
+  z-index: 8
+  box-sizing: border-box
+  color: #fff
+  background-size: cover
+  background-color: #1E204D
+  background-repeat: no-repeat
+  background-position: top right
+  background-image: url(../images/banners/vs-fw-bg-small.svg)
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  left: 0
+  right: 0
+  padding: 0 10px
+  min-height: $vs-banner-height-mobile
+  top: 0
+  background-position: bottom right
+  @media (min-width: 680px)
+    min-height: $vs-banner-height-desktop
+    background-image: url(../images/banners/vs-fw-bg.svg)
+  @media (min-width: 900px)
+    background-position: top right
+    position: static
+
+  &.vs-hidden
+    display: none
+
+  &:hover
+    .vs-core
+      .vs-button
+        .vs-button-inside
+          background: linear-gradient(257deg, #e19b09 99%, #ffca24 6%)
+
+  .vs-iso
+      position: absolute
+      left: 20px
+      height: 26px
+      img
+        height: 26px
+      @media (min-width: 680px)
+        left: 40px
+        height: 40px
+        img
+          height: 40px
+      @media (min-width: 900px)
+        display: none
+
+  .vs-logo
+    position: absolute
+    display: none
+    left: 40px
+    @media (min-width: 900px)
+      display: block
+
+  .vs-core
+    display: flex
+    align-items: center
+
+    .vs-slogan
+      text-align: center
+
+      .vs-slogan-up
+        color: #FFF
+        font-size: 14px
+        font-weight: bold
+        width: 170px
+        @media (min-width: 680px)
+          font-size: 18px
+          width: 220px
+        @media (min-width: 1024px)
+          width: auto
+          font-size: 24px
+        strong
+          color: #fdc722
+
+      .vs-slogan-down
+        color: #cdc5dc
+        font-size: 12px
+        @media (min-width: 680px)
+          font-size: 16px
+
+    .vs-button
+      margin-left: 43px
+      color: #fff
+      padding: 2px
+      border-radius: 40px
+      display: none
+      background: linear-gradient(0deg, #ffdf4c, #e29d0a)
+      @media (min-width: 680px)
+        display: inline-block
+      .vs-button-inside
+        color: #000
+        border-radius: 40px
+        background: linear-gradient(90deg, #FFC828, #E19C0E)
+        padding: 8px 24px
+        font-size: 22px
+        white-space: nowrap
+        border-radius: 30px
+        font-weight: bold
+
+  .vs-close
+      right: 10px
+      position: absolute
+      padding: 10px
+      @media (min-width: 680px)
+        right: 20px
+      &:hover
+        color: #56D8FF
