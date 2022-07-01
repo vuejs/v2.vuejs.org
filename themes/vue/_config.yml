@@ -1,7 +1,7 @@
 site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.6.14
+vue_version: 2.7.0
 # START SPONSORS
 special:
   - name: HBuilder
@@ -9,6 +9,9 @@ special:
     img: hbuilder.png
     description: An IDE for Vue
 platinum:
+  - name: VueMastery
+    url: https://www.vuemastery.com/
+    img: vuemastery.png
   - name: VueSchool
     url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -25,7 +28,7 @@ platinum:
   - name: Ionic
     url: >-
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
-    img: ionic.png
+    img: ionic.png?v2
   - name: Nuxt
     url: https://nuxtjs.org/
     img: nuxt.png
@@ -46,17 +49,10 @@ platinum_china:
   - name: HBuilder
     url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
     img: hbuilder.png
-  - name: Authing
-    url: >-
-      https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=EN&utm_term=page-EN
-    img: authing.svg
   - name: 稀土掘金技术社区
     url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
     img: xitujuejinjishushequ.png
 gold:
-  - name: VueMastery
-    url: https://www.vuemastery.com/
-    img: vuemastery.png
   - name: Laravel
     url: https://laravel.com
     img: laravel.png
@@ -66,9 +62,6 @@ gold:
   - name: Neds
     url: https://neds.com.au/
     img: neds.png
-  - name: Icons 8
-    url: https://icons8.com/
-    img: icons_8.png
   - name: Tidelift
     url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
@@ -90,9 +83,6 @@ gold:
   - name: FASTCODING Inc
     url: 'https://fastcoding.jp/javascript/ '
     img: fastcoding_inc.svg
-  - name: StoreKit
-    url: https://storekit.com
-    img: storekit.png
   - name: VPSServer.com
     url: https://www.vpsserver.com
     img: vpsserver_com.png
@@ -138,16 +128,16 @@ gold:
   - name: QuickBooks Tool Hub
     url: https://quickbookstoolhub.com
     img: quickbooks_tool_hub.png
-  - name: '1394'
-    url: https://1394ta.org/buy-instagram-followers/
-    img: 1394.png?v2
   - name: Snyk
     url: https://snyk.co/vuejs
     img: snyk.png?v2
+  - name: Handsontable - JavaScript Data Grid
+    url: https://handsontable.com/
+    img: handsontable___javascript_data_grid.svg
 silver:
-  - name: Inkoop
-    url: https://www.inkoop.io
-    img: inkoop.png
+  - name: Draxlr
+    url: https://www.draxlr.com
+    img: draxlr.svg
   - name: iSolutions UK Limited
     url: https://www.thecasinodb.com
     img: isolutions_uk_limited.png
@@ -160,9 +150,6 @@ silver:
   - name: Doximity
     url: https://technology.doximity.com/
     img: doximity.png
-  - name: Empiricus
-    url: https://www.empiricus.com.br/
-    img: empiricus.png
   - name: CircleCI
     url: https://circleci.com/open-source/
     img: circleci.png
@@ -201,9 +188,6 @@ bronze:
   - name: Liip AG
     url: https://www.liip.ch/en
     img: liip_ag.png
-  - name: FormMaking
-    url: http://form.making.link/
-    img: formmaking.png
   - name: Monarch Air Group
     url: https://monarchairgroup.com
     img: monarch_air_group.png
