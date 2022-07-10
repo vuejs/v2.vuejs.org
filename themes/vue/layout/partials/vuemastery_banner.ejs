@@ -1,0 +1,100 @@
+<div id="vm-banner" class="vuemastery-banner hide" role="banner">
+  <a href="https://www.vuemastery.com/free-weekend" target="_blank">
+    <div class="vuemastery-banner--wrapper">
+      <img class="vuemastery-banner--logo" src="/images/logo-vuemastery.svg" alt="vuemastery" />
+      <p>Access the highest quality library of Vue courses free. <span>July 22-24 only</span></p>
+        <button class="vuemastery-button">Secure a spot</button>
+    </div>
+    <div id="vm-close" class="vuemastery-banner--close"></div>
+  </a>
+</div>
+
+<script>
+  (function () {
+    // Get elements
+    var elBody = document.getElementsByTagName("body")[0];
+    var elBanner = document.getElementById("vm-banner");
+    var elClose = document.getElementById("vm-close");
+    var elMenu = document.getElementById("mobile-bar");
+
+    // Variable names
+    var nameWrapper = "vuemastery-weekend-promo";
+    var nameFixMenu = "vuemastery-menu-fixed";
+    var nameStorage = "vuemastery-banner--free-weekend-july-2022";
+
+    // Defaults values
+    var isMenuFixed = false;
+    var posMenu = 80;
+
+    var initBanner = function () {
+      // Add event listeners
+      toggleBannerEvents(true);
+      // Add class to the body to push fixed elements
+      elBody.classList.add(nameWrapper);
+      // Display the banner
+      elBanner.style.display = "block";
+      // Init close button action
+      elClose.onclick = closeBanner;
+      // Get the menu position
+      getMenuPosition();
+      // Check current page offset position
+      isMenuFixed = isUnderBanner();
+      // And position menu accordingly
+      if (isMenuFixed) {
+        elBody.classList.add("fixed");
+      }
+    }
+
+    var closeBanner = function(e) {
+      // Prevent bubbling event that redirect to vuemastery.com
+      e.preventDefault();
+      // Remove events
+      toggleBannerEvents(false);
+      // Hide the banner
+      elBanner.style.display = "none";
+      // Remove class to the body that push fixed elements
+      elBody.classList.remove(nameWrapper);
+      // Save action in the local storage
+      localStorage.setItem(nameStorage, true);
+    }
+
+    var getMenuPosition = function() {
+      posMenu = elBanner.clientHeight;
+    }
+
+    var isUnderBanner = function() {
+      return window.pageYOffset > posMenu;
+    }
+
+    var fixMenuAfterBanner = function() {
+      if (isUnderBanner()) {
+        if (!isMenuFixed) {
+          // The menu will be fixed
+          toggleFixedPosition(true);
+        }
+      } else if (isMenuFixed) {
+        // The menu stay under the banner
+        toggleFixedPosition(false);
+      }
+    }
+
+    var toggleBannerEvents = function (on) {
+      // Add or remove event listerners attached to the DOM
+      var method = on ? "addEventListener" : "removeEventListener";
+      window[method]("resize", getMenuPosition);
+      window[method]("scroll", fixMenuAfterBanner);
+    }
+
+    var toggleFixedPosition = function (on) {
+      // Switch between relative and fixed position
+      var method = on ? "add" : "remove";
+      elBody.classList[method](nameFixMenu);
+      isMenuFixed = on;
+    }
+
+    // Load component according to user preferences
+    if (!localStorage.getItem(nameStorage)) {
+      initBanner();
+    }
+  })()
+</script>

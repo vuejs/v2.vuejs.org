@@ -1,6 +1,6 @@
 <% var isIndex = page.path === 'index.html' %>
 <% var isThemes = page.path === 'resources/themes.html' %>
-<% var hasVueSchoolBanner = true %>
+<% var hasVueMasteryBanner = true %>
 
 <!DOCTYPE html>
 <html lang="en" class="with-v3-banner">
@@ -90,12 +90,11 @@
     <!-- vimeo analytics -->
     <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
+
   <body class="<%- isIndex ? '' : 'docs' -%>" data-v3-url="<%- theme.redirects['/' + page.path] || '' -%>">
-
-    <% if (hasVueSchoolBanner) { %>
-      <%- partial('partials/vueschool_banner') %>
+    <% if (hasVueMasteryBanner) { %>
+      <%- partial('partials/vuemastery_banner') %>
     <% } %>
-
     <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
