@@ -182,4 +182,4 @@ HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) an
 
 ## Server-Side Rendering (SSR)
 
-There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](https://ssr.vuejs.org/) to avoid vulnerabilities.
+There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](https://v2.ssr.vuejs.org/) to avoid vulnerabilities.
