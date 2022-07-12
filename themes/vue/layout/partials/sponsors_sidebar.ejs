@@ -1,11 +1,13 @@
-<%_ if (theme.special_sponsors) { _%>
+<% function logo(img) { return `https://sponsors.vuejs.org/images/${img}` } %>
+
+<%_ if (theme.special) { _%>
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
     <span>Special Sponsor</span>
     <div>
-    <%_ for (const sponsor of theme.special_sponsors) {_%>
+    <%_ for (const sponsor of theme.special) {_%>
     <a href="<%- sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
+      <img src="<%- logo(sponsor.img) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>

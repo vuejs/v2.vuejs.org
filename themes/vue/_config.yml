@@ -169,7 +169,7 @@ silver:
     img: localazy.png
   - name: AddWeb Solution
     url: http://addwebsolution.com/
-    img: addweb_solution.png
+    img: addweb_solution.png?v2
   - name: 1394TA
     url: https://1394ta.org
     img: 1394ta.png
