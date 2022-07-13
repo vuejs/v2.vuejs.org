@@ -96,7 +96,7 @@ Vue Test Utils is the official low-level component testing library that was writ
 
 - [Official Vue Test Utils Documentation](https://vue-test-utils.vuejs.org)
 - [Vue Testing Handbook](https://lmiller1990.github.io/vue-testing-handbook/#what-is-this-guide) by Lachlan Miller
-- [Cookbook: Unit Testing Vue Components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html)
+- [Cookbook: Unit Testing Vue Components](/v2/cookbook/unit-testing-vue-components.html)
 
 ## End-to-End (E2E) Testing
 
