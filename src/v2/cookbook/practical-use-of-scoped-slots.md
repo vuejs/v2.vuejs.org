@@ -139,7 +139,7 @@ So far, so good. With all that done, we could continue adding the other objects 
 
 But, we want to use our `GoogleMapLoader` component only as a loader that prepares the map — we don’t want to render anything on it.
 
-To achieve that, we need to allow the parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the `GoogleMapLoader` component. That’s where [scoped slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) really shine. Scoped slots allow us to expose the properties set in a child component to the parent component. It may sound like Inception, but bear with me one more minute as we break that down further.
+To achieve that, we need to allow the parent component that will use our `GoogleMapLoader` to access `this.google` and `this.map` that are set inside the `GoogleMapLoader` component. That’s where [scoped slots](/v2/guide/components-slots.html#Scoped-Slots) really shine. Scoped slots allow us to expose the properties set in a child component to the parent component. It may sound like Inception, but bear with me one more minute as we break that down further.
 
 ### 2. Create component that uses our initializer component.
 
@@ -206,7 +206,7 @@ Now, when we have the slot in the child component, we need to receive and consum
 
 ### 4. Receive exposed props in the parent component using `slot-scope` attribute.
 
-To receive the props in the parent component, we declare a template element and use the `slot-scope` attribute. This attribute has access to the object carrying all the props exposed from the child component. We can grab the whole object or we can [de-structure that object](https://vuejs.org/v2/guide/components-slots.html#Destructuring-slot-scope) and only what we need.
+To receive the props in the parent component, we declare a template element and use the `slot-scope` attribute. This attribute has access to the object carrying all the props exposed from the child component. We can grab the whole object or we can [de-structure that object](/v2/guide/components-slots.html#Destructuring-slot-scope) and only what we need.
 
 Let’s de-structure this thing to get what we need.
 
