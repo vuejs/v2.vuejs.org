@@ -45,10 +45,6 @@ platinum:
   - name: CodeDict
     url: https://code-dict.com
     img: codedict.svg
-  - name: vuejs.de Conf
-    url: >-
-      https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring
-    img: vuejs_de_conf.svg
 platinum_china:
   - name: HBuilder
     url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
@@ -138,9 +134,6 @@ gold:
   - name: Handsontable - JavaScript Data Grid
     url: https://handsontable.com/
     img: handsontable___javascript_data_grid.svg
-  - name: 1Tool
-    url: https://www.1tool.com
-    img: 1tool.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
