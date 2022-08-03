@@ -10,7 +10,7 @@
     "deploy": "npm run build && hexo deploy"
   },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=14.0.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
