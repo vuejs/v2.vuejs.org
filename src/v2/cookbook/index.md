@@ -8,9 +8,9 @@ order: 0
 
 Bagaimana buku pedoman bisa berbeda dengan Panduan? Mengapa hal ini perlu?
 
-* **Fokus yang Lebih Baik**: Dalam panduan, pada dasarnya kita menceritakan sebuah cerita. Dalam panduan ini, pada dasarnya kami sedang bercerita.Setiap bagian dibangun di atas dan mengasumsikan pengetahuan dari setiap bagian sebelumnya. Dalam buku pedoman, setiap petunjuk dapat dan harus berdiri sendiri. Ini berarti buku pedoman dapat fokus pada satu aspek spesifik Vue, daripada harus memberikan gambaran umum. 
+* **Fokus Yang Lebih Baik**: Dalam panduan, pada dasarnya kita menceritakan sebuah cerita. Dalam panduan ini, pada dasarnya kami sedang bercerita.Setiap bagian dibangun di atas dan mengasumsikan pengetahuan dari setiap bagian sebelumnya. Dalam buku pedoman, setiap petunjuk dapat dan harus berdiri sendiri. Ini berarti buku pedoman dapat fokus pada satu aspek spesifik Vue, daripada harus memberikan gambaran umum. 
 
-* **Kedalaman yang Lebih Baik**: Untuk menghindari membuat Panduan terlalu lama, kami mencoba menyertakan hanya contoh sederhana untuk membantu anda memahami setiap fitur. Kemudian kita melanjutkan. Dalam buku pedoman, kita dapat memasukkan contoh yang lebih kompleks, menggabungkan fitur dengan cara yang menarik. Setiap petunjuk juga bisa sepanjang dan sedetail yang dibutuhkan, sesuai yang dibutuhkan, untuk sepenuhnya menjelajahi ceruknya.
+* **Kedalaman Yang Lebih Baik**: Untuk menghindari membuat Panduan terlalu lama, kami mencoba menyertakan hanya contoh sederhana untuk membantu anda memahami setiap fitur. Kemudian kita melanjutkan. Dalam buku pedoman, kita dapat memasukkan contoh yang lebih kompleks, menggabungkan fitur dengan cara yang menarik. Setiap petunjuk juga bisa sepanjang dan sedetail yang dibutuhkan, sesuai yang dibutuhkan, untuk sepenuhnya menjelajahi ceruknya.
 
 * **Mengajarkan JavaScript**: Dalam Panduan ini, kami mengasumsikan setidaknya mengenal ES5 JavaScript secara menengah. Sebagai contoh, kami tidak akan menjelaskan bagaimana `Array.prototype.filter` bekerja pada properti komputasi yang memfilter daftar. Namun dalam buku pedoman, fitur JavaScript penting (termasuk ES6/2015 ) dapat dieksplorasi dan dijelaskan dalam konteks bagaimana mereka membantu kita membangun aplikasi Vue yang lebih baik.
 
