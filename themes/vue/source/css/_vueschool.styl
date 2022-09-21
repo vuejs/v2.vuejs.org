@@ -1,17 +1,13 @@
 @import "_settings"
 $mobile-bar-height = 40px
-$vs-banner-height-desktop = 80px
-$vs-banner-height-mobile = 50px
+$vs-banner-height-desktop = 72px
+$vs-banner-height-mobile = 72px
 $menu-height = 63px
 
 body.has-vs-banner
-
-  #v3-banner
-    margin-top: $vs-banner-height-mobile
-    @media (min-width: 680px)
-      margin-top: $vs-banner-height-desktop
-    @media (min-width: 900px)
-      margin-top: 0
+  padding-top: $vs-banner-height-mobile
+  @media (min-width: 680px)
+    padding-top: $vs-banner-height-desktop
 
   #mobile-bar
     top: $vs-banner-height-mobile
@@ -48,114 +44,176 @@ body.has-vs-banner
       @media (min-width: 900px)
         top: 160px
 
-#vs
-  font-family "Roboto", sans-serif
-  z-index: 8
-  box-sizing: border-box
-  color: #fff
-  background-size: cover
-  background-color: #1E204D
-  background-repeat: no-repeat
-  background-position: top right
-  background-image: url(../images/banners/vs-fw-bg-small.svg)
-  display: flex
-  justify-content: center
-  align-items: center
-  position: fixed
-  left: 0
-  right: 0
-  padding: 0 10px
-  min-height: $vs-banner-height-mobile
-  top: 0
-  background-position: bottom right
-  @media (min-width: 680px)
-    min-height: $vs-banner-height-desktop
-    background-image: url(../images/banners/vs-fw-bg.svg)
-  @media (min-width: 900px)
-    background-position: top right
-    position: static
+#vs.vs-hidden {
+  display: none;
+}
 
-  &.vs-hidden
-    display: none
+/*******************************************************/
 
-  &:hover
-    .vs-core
-      .vs-button
-        .vs-button-inside
-          background: linear-gradient(257deg, #e19b09 99%, #ffca24 6%)
 
-  .vs-iso
-      position: absolute
-      left: 20px
-      height: 26px
-      img
-        height: 26px
-      @media (min-width: 680px)
-        left: 40px
-        height: 40px
-        img
-          height: 40px
-      @media (min-width: 900px)
-        display: none
+#vs {
+  background-color: #0A1124;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  height: 72px;
+  background: linear-gradient(to left, #161a35, #283065);
+}
 
-  .vs-logo
-    position: absolute
-    display: none
-    left: 40px
-    @media (min-width: 900px)
-      display: block
+#vs .vs-background-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 0 10px;
+  height: 100%;
+  width: 100%;
+  background-image: url(/images/banners/bg-mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top right;
+}
 
-  .vs-core
-    display: flex
-    align-items: center
+#vs:hover {
+  text-decoration: none;
+}
 
-    .vs-slogan
-      text-align: center
+#vs:hover .vs-core .vs-button {
+  background-image: linear-gradient(to bottom, #5ccc45, #419E2D), linear-gradient(to bottom, #388f26, #50b83b);
+}
 
-      .vs-slogan-up
-        color: #FFF
-        font-size: 14px
-        font-weight: bold
-        width: 170px
-        @media (min-width: 680px)
-          font-size: 18px
-          width: 220px
-        @media (min-width: 1024px)
-          width: auto
-          font-size: 24px
-        strong
-          color: #fdc722
+#vs .vs-logo {
+  position: absolute;
+  left: 10px;
+}
 
-      .vs-slogan-down
-        color: #cdc5dc
-        font-size: 12px
-        @media (min-width: 680px)
-          font-size: 16px
+#vs .vs-logo .logo-big {
+  display: none;
+}
 
-    .vs-button
-      margin-left: 43px
-      color: #fff
-      padding: 2px
-      border-radius: 40px
-      display: none
-      background: linear-gradient(0deg, #ffdf4c, #e29d0a)
-      @media (min-width: 680px)
-        display: inline-block
-      .vs-button-inside
-        color: #000
-        border-radius: 40px
-        background: linear-gradient(90deg, #FFC828, #E19C0E)
-        padding: 8px 24px
-        font-size: 22px
-        white-space: nowrap
-        border-radius: 30px
-        font-weight: bold
+#vs .vs-core {
+  display: flex;
+  align-items: center;
+  width: 288px;
+}
 
-  .vs-close
-      right: 10px
-      position: absolute
-      padding: 10px
-      @media (min-width: 680px)
-        right: 20px
-      &:hover
-        color: #56D8FF
+#vs .vs-core .vs-slogan-wrapper {
+  text-align: center;
+  width: 170px;
+  margin: 0 auto;
+}
+
+#vs .vs-core .vs-slogan {
+  color: #fff;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+#vs .vs-core .vs-subline {
+  color: #c6cdf7;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+#vs .vs-core .vs-button-wrapper {
+  padding: 2px;
+  background-image: linear-gradient(to bottom, #388f26, #50b83b);
+  border-radius: 60px;
+  overflow: hidden;
+}
+
+#vs .vs-core .vs-button {
+  border-radius: 60px;
+  color: #FFF;
+  padding: 8px 6px;
+  background-image: linear-gradient(to bottom, #5ccc45, #368c24), linear-gradient(to bottom, #388f26, #50b83b);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+#vs .vs-close {
+  right: 0;
+  position: absolute;
+  padding: 10px;
+}
+
+#vs .vs-close:hover {
+  color: #56d8ff;
+}
+
+@media (min-width: 680px) {
+  #vs .vs-background-wrapper {
+    background-image: url(/images/banners/bg-tablet.svg);
+  }
+
+  #vs .vs-logo {
+    left: 20px;
+  }
+
+  #vs .vs-logo .logo-small {
+    display: none;
+  }
+
+  #vs .vs-logo .logo-big {
+    display: inline-block;
+    width: 90px;
+  }
+
+  #vs .vs-core {
+    width: auto;
+    margin-right: -60px;
+  }
+
+  #vs .vs-core .vs-slogan-wrapper {
+    margin: 0 12px 0 0;
+    width: auto;
+  }
+
+  #vs .vs-core .vs-slogan {
+    font-size: 16px;
+  }
+
+  #vs .vs-core .vs-subline {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  #vs .vs-core .vs-button {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+
+  #vs .vs-close {
+    right: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  #vs .vs-background-wrapper {
+    background-image: url(/images/banners/bg-desktop.svg);
+    background-position: top right -300px;
+  }
+
+  #vs .vs-logo .logo-big {
+    display: inline-block;
+    width: auto;
+  }
+
+  #vs .vs-core {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  #vs .vs-background-wrapper {
+    background-position: top right;
+  }
+}
