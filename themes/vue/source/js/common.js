@@ -342,7 +342,7 @@
       }
     ]
 
-    const now = new Date('2022-10-05')
+    const now = new Date()
     const phases = items.map(phase => ({ ...phase, remaining: new Date(phase.ends) - now }))
     const activePhase = phases.find(phase => phase.remaining > 0)
 
