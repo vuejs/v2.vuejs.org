@@ -285,19 +285,83 @@
    * Banner closing
    */
   function initVueSchoolBanner () {
-    const banner = document.getElementById('vs')
-    const start = new Date('2022-09-21T00:00:00+02:00')
+    const banner = document.getElementById('vs-top')
+
+    const items = [
+      {
+        banner: {
+          assets: "FREE_WEEKEND",
+          cta: "JOIN FOR FREE",
+          link: "/free-weekend",
+          static: "FREE_WEEKEND",
+          subtitle: "Get Access to ALL Vue School premium courses",
+          title: "Free Weekend 1st & 2nd of October"
+        },
+        ends: "2022-09-30T23:59:59+02:00",
+        id: "FREE_WEEKEND_LOBBY",
+        isExtended: false
+      },
+      {
+        banner: {
+          assets: "FREE_WEEKEND",
+          cta: "WATCH FOR FREE",
+          link: "/free-weekend",
+          static: "FREE_WEEKEND_LIVE",
+          subtitle: "Get Access to ALL Vue School premium courses",
+          title: "Free Weekend <strong>NOW LIVE</strong>"
+        },
+        ends: "2022-10-02T23:59:59+02:00",
+        id: "FREE_WEEKEND_LIVE",
+        isExtended: false
+      },
+      {
+        banner: {
+          assets: "LEVELUP2022",
+          cta: "GET OFFER",
+          link: "/sales/levelup2022",
+          static: "LEVELUP2022",
+          subtitle: "Access 800+ lessons including the Vue.js 3 Masterclass",
+          title: "Less than <strong>48 hours</strong> to get 45% off at Vue School"
+        },
+        ends: "2022-10-04T23:59:59+02:00",
+        id: "LEVELUP2022",
+        isExtended: false
+      },
+      {
+        banner: {
+          assets: "LEVELUP2022",
+          cta: "GET OFFER",
+          link: "/sales/levelup2022",
+          static: "LEVELUP2022",
+          subtitle: "Extended! Access 800+ lessons including the Vue.js 3 Masterclass",
+          title: "Less than <strong>48 hours</strong> to get 45% off at Vue School"
+        },
+        ends: "2022-10-06T23:59:59+02:00",
+        id: "LEVELUP2022_EXTENDED",
+        isExtended: true
+      }
+    ]
+
     const now = new Date()
-    if (banner && (now > start) && !localStorage.getItem('VS_FW_OCTOBER')) {
+    const phases = items.map(phase => ({ ...phase, remaining: new Date(phase.ends) - now }))
+    const activePhase = phases.find(phase => phase.remaining > 0)
+
+    if (banner && (activePhase) && !localStorage.getItem('VS_FW_OCTOBER')) {
       banner.classList.remove('vs-hidden')
       document.body.classList.add('has-vs-banner')
       document.getElementById('vs-close').addEventListener('click', function (e) {
         e.preventDefault()
         e.stopPropagation()
-        document.getElementById('vs').remove()
+        document.getElementById('vs-top').remove()
         document.body.classList.remove('has-vs-banner')
         localStorage.setItem('VS_FW_OCTOBER', 1)
       })
+
+      document.getElementById('vs-top').classList.add(activePhase.banner.assets)
+      document.getElementById('vs-top').href = `https://vueschool.io${activePhase.banner.link}?friend=vuejs&utm_source=vuejs&utm_medium=website&utm_campaign=affiliate&utm_content=top_banner`
+      document.getElementById('vs-slogan').innerHTML = activePhase.banner.title
+      document.getElementById('vs-subline').innerHTML = activePhase.banner.subtitle
+      document.getElementById('vs-button').innerHTML = activePhase.banner.cta
     }
   }
 
