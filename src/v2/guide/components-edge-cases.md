@@ -81,7 +81,7 @@ Then inside `<google-map-markers>` you might find yourself reaching for a hack l
 var map = this.$parent.map || this.$parent.$parent.map
 ```
 
-This has quickly gotten out of hand. That's why to provide context information to descendent components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
+This has quickly gotten out of hand. That's why to provide context information to descendant components arbitrarily deep, we instead recommend [dependency injection](#Dependency-Injection).
 
 ### Accessing Child Component Instances & Child Elements
 
@@ -138,7 +138,7 @@ Earlier, when we described [Accessing the Parent Component Instance](#Accessing-
 
 In this component, all descendants of `<google-map>` needed access to a `getMap` method, in order to know which map to interact with. Unfortunately, using the `$parent` property didn't scale well to more deeply nested components. That's where dependency injection can be useful, using two new instance options: `provide` and `inject`.
 
-The `provide` options allows us to specify the data/methods we want to **provide** to descendent components. In this case, that's the `getMap` method inside `<google-map>`:
+The `provide` options allows us to specify the data/methods we want to **provide** to descendant components. In this case, that's the `getMap` method inside `<google-map>`:
 
 ```js
 provide: function () {
@@ -288,7 +288,7 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+When you look closely, you'll see that these components will actually be each other's descendant _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
 
 However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
 
