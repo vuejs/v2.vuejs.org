@@ -395,7 +395,7 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
 There isn't anything special here. So let's go on to the JavaScript.
 
 ``` js
-const apiUrl = 'https://vuecookbook.netlify.com/.netlify/functions/product-name?name=';
+const apiUrl = 'https://vuecookbook.netlify.app/.netlify/functions/product-name?name=';
 
 const app = new Vue({
   el: '#app',
