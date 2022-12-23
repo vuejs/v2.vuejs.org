@@ -21,17 +21,18 @@ red-dot-before(leftPos = -8px)
   box-sizing: border-box
 
 #v3-banner
-  background-color: $green
+  background-color: #4e6981
   min-height: 40px
   padding: $heading-padding-vertical 60px
   z-index: $z-header - 1
   box-sizing: border-box
   text-align: center
-  color: #d6ffec
-  display: none
+  color: #fff
+  display: block
+  // display: none
 
   a
-    color: #fff
+    color: #7adeb2
     font-weight: bold
 
   @media screen and (max-width: 900px)
@@ -40,6 +41,10 @@ red-dot-before(leftPos = -8px)
 
 body.docs
   #header
+    position: fixed
+    width: 100%
+    top: 40px
+  #v3-banner
     position: fixed
     width: 100%
     top: 0

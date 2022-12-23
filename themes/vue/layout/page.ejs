@@ -1,63 +1,57 @@
-<% if (page.type) { %>
-  <%- partial('partials/sidebar', { type: page.type === 'menu' ? 'guide' : page.type, index: page.index }) %>
-<% } else { %>
-  <div class="sidebar">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
-  </div>
+<% if (page.type) { %> <%- partial('partials/sidebar', { type: page.type ===
+'menu' ? 'guide' : page.type, index: page.index }) %> <% } else { %>
+<div class="sidebar">
+  <ul class="main-menu">
+    <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+  </ul>
+</div>
 <% } %>
-<div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
-  <p class="tip warning v3-warning">
-    You’re browsing the documentation for v2.x and earlier.
-    For v3.x, <a href="https://vuejs.org/">click here</a>.
-  </p>
-
-  <% if (page.type) { %>
-    <% if (page.type === 'menu') { %>
-      <form id="search-form">
-        <input type="text" id="search-query-menu" aria-label="Search Vue.JS site" class="search-query st-default-search-input">
-      </form>
-      <%- partial('partials/toc', { type: 'guide' }) %>
-    <% } else { %>
-      <%- partial('partials/ad') %>
+<div
+  class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>"
+>
+  <% if (page.type) { %> <% if (page.type === 'menu') { %>
+  <form id="search-form">
+    <input
+      type="text"
+      id="search-query-menu"
+      aria-label="Search Vue.JS site"
+      class="search-query st-default-search-input"
+    />
+  </form>
+  <%- partial('partials/toc', { type: 'guide' }) %> <% } else { %> <%-
+  partial('partials/ad') %> <% } %> <% } %> <% if (page.title.trim()) { %>
+  <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
+  <% } %> <% if (page.sponsors) { %> <%- partial('sponsors-page') %> <% } else
+  if (page.partners) { %> <%- partial('partners-page') %> <% } else if
+  (page.search) { %> <%- partial('search-page') %> <% } else { %> <%-
+  page.content %> <% } %> <% if (page.type === 'guide') { %>
+  <div class="guide-links">
+    <% const lastPage = site.pages.find({ type: page.type, order: { $lt:
+    page.order }}).sort({ order: -1 }).first(); %> <% if (lastPage) { %>
+    <span
+      >← <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span
+    >
+    <% } %> <% const nextPage = site.pages.find({ type: page.type, order: { $gt:
+    page.order }}).sort({ order: 1 }).first(); %> <% if (nextPage) { %>
+    <span style="float: right"
+      ><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a> →</span
+    >
     <% } %>
-  <% } %>
-  <% if (page.title.trim()) { %>
-    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
-  <% } %>
-  <% if (page.sponsors) { %>
-    <%- partial('sponsors-page') %>
-  <% } else if (page.partners) { %>
-    <%- partial('partners-page') %>
-  <% } else if (page.search) { %>
-    <%- partial('search-page') %>
-  <% } else { %>
-    <%- page.content %>
-  <% } %>
-  <% if (page.type === 'guide') { %>
-    <div class="guide-links">
-      <% const lastPage = site.pages.find({ type: page.type, order: { $lt: page.order }}).sort({ order: -1 }).first(); %>
-      <% if (lastPage) { %>
-        <span>← <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span>
-      <% } %>
-      <% const nextPage = site.pages.find({ type: page.type, order: { $gt: page.order }}).sort({ order: 1 }).first(); %>
-      <% if (nextPage) { %>
-        <span style="float: right;"><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a> →</span>
-      <% } %>
-    </div>
+  </div>
   <% } %>
   <div class="footer">
-    <%_ if (!page.sponsors) { _%>
-      <%- partial('partials/ad-text') %>
-    <%_ } _%>
+    <%_ if (!page.sponsors) { _%> <%- partial('partials/ad-text') %> <%_ } _%>
     Caught a mistake or want to contribute to the documentation?
-    <a href="https://github.com/vuejs/v2.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" rel="noopener" target="_blank">
+    <a
+      href="https://github.com/vuejs/v2.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>"
+      rel="noopener"
+      target="_blank"
+    >
       Edit this on GitHub!
     </a>
     Deployed on
     <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
-      Netlify
-    </a>.
+      Netlify </a
+    >.
   </div>
 </div>

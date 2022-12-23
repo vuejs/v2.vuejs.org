@@ -29,9 +29,6 @@ platinum:
     url: >-
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png?v2
-  - name: Nuxt
-    url: https://nuxtjs.org/
-    img: nuxt.png
   - name: ButterCMS
     url: >-
       https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
@@ -45,11 +42,10 @@ platinum:
   - name: Chrome Frameworks Fund
     url: https://opencollective.com/2021-frameworks-fund
     img: chrome_frameworks_fund.png
-  - name: Marker.io
-    url: >-
-      https://marker.io/?utm_source=vuejs&utm_medium=sponsor&utm_campaign=dev-community
-    img: marker_io.svg
 gold:
+  - name: Volta
+    url: https://volta.net/?utm_source=vuejs.org&utm_campaign=sponsoring/
+    img: volta.svg
   - name: Laravel
     url: https://laravel.com
     img: laravel.png
@@ -80,18 +76,12 @@ gold:
   - name: LINE Corporation
     url: https://linecorp.com
     img: line_corporation.png
-  - name: PLAID, Inc.
-    url: https://plaid.co.jp/
-    img: plaid__inc_.svg
   - name: EMQ
     url: https://www.emqx.com
     img: emq.png
   - name: Onyx Gaming Limited
     url: https://www.aceonlinecasino.co.uk
     img: onyx_gaming_limited.svg
-  - name: Lendio
-    url: http://www.lendio.com
-    img: lendio.png
   - name: Fenêtre Online Solutions
     url: https://www.fenetre.nl/
     img: fen_tre_online_solutions.svg
@@ -107,9 +97,10 @@ gold:
   - name: Cypress.io
     url: https://cypress.io
     img: cypress_io.svg
-  - name: Handsontable - JavaScript Data Grid
-    url: https://handsontable.com/
-    img: handsontable___javascript_data_grid.svg
+  - name: Localazy
+    url: >-
+      https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
+    img: localazy.svg
   - name: LearnVue
     url: https://learnvue.co
     img: learnvue.png
@@ -119,15 +110,34 @@ gold:
   - name: Casinoburst.com
     url: https://casinoburst.com/casino-utan-licens/
     img: casinoburst_com.png
-  - name: uudetkasinot.com
-    url: https://www.uudetkasinot.com
-    img: uudetkasinot_com.png
   - name: spinsify.com/uk
     url: https://www.spinsify.com/uk/new-casinos
     img: spinsify_com_uk.png
   - name: 'Enkrypt: Ethereum and Polkadot Web3 Wallet'
     url: https://www.enkrypt.com
     img: enkrypt__ethereum_and_polkadot_web3_wallet.svg
+  - name: uudetkasinot.com
+    url: https://www.uudetkasinot.com
+    img: uudetkasinot_com.png
+  - name: Fathom Analytics
+    url: https://usefathom.com/
+    img: fathom_analytics.svg
+  - name: RxDB
+    url: >-
+      https://rxdb.info/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=vue-sponsored-gold
+    img: rxdb.svg
+  - name: Goread.io
+    url: https://goread.io/buy-instagram-followers
+    img: goread_io.png
+  - name: Definir Tech
+    url: https://definir-tech.com/
+    img: definir_tech.png
+  - name: Twicsy
+    url: https://opencollective.com/twicsy
+    img: twicsy.png
+  - name: Sentry
+    url: sentry.io/for/vue?utm_source=vuejs.org&utm_medium=paid-community
+    img: sentry.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
@@ -144,16 +154,15 @@ silver:
   - name: Doximity
     url: https://technology.doximity.com/
     img: doximity.png
-  - name: CircleCI
-    url: https://circleci.com/open-source/
-    img: circleci.png
   - name: Interflora Group
     url: https://www.interflora.fr
     img: interflora_group.png
-  - name: Localazy
-    url: >-
-      https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
-    img: localazy.png
+  - name: Codesmith
+    url: https://codesmith.io
+    img: codesmith.png
+  - name: Gcore
+    url: https://gcore.com
+    img: gcore.png
 bronze:
   - name: Derek Pollard
     url: https://polyglotengineer.com/derek.pollard
@@ -176,16 +185,15 @@ bronze:
   - name: Liip AG
     url: https://www.liip.ch/en
     img: liip_ag.png
-  - name: Monarch Air Group
-    url: https://monarchairgroup.com
-    img: monarch_air_group.png
   - name: The Codest
     url: https://thecodest.co/
     img: the_codest.png?v2
-platinum_china:
-  - name: 稀土掘金技术社区
-    url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
-    img: xitujuejinjishushequ.png
+  - name: Bürkert Werke GmbH & Co KG
+    url: https://www.burkert.com
+    img: b_rkert_werke_gmbh___co_kg.png
+  - name: Arcanite
+    url: https://arcanite.ch
+    img: arcanite.png
 # END SPONSORS
 redirects:
   '/v2/api/index.html': '/api/'
