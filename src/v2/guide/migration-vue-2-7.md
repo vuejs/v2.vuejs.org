@@ -4,6 +4,8 @@ type: guide
 order: 704
 ---
 
+Vue 2.7 is the latest minor version of Vue 2. It provides built-in support for the [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html#composition-api-faq).
+
 Despite Vue 3 now being the default version, we understand that there are still many users who have to stay on Vue 2 due to dependency compatibility, browser support requirements, or simply not enough bandwidth to upgrade. In Vue 2.7, we have backported some of the most important features from Vue 3 so that Vue 2 users can benefit from them as well.
 
 ## Backported Features
@@ -115,4 +117,4 @@ Vue Devtools 6.2.0 has added support for inspecting 2.7 Composition API state, b
 
 As stated before, 2.7 is the final minor release of Vue 2.x. After this release, Vue 2 has entered LTS (long-term support) which lasts for 18 months from now, and will no longer receive new features.
 
-This means **Vue 2 will reach End of Life by the end of 2023**. We believe this should provide plenty of time for most of the ecosystem to migrate over to Vue 3. However, we also understand that there could be teams or projects that cannot upgrade by this timeline while still need to fullfil security and compliance requirements. We are planning to provide extended support for Vue 2 for teams with such needs - if your team expects to be using Vue 2 beyond end of 2023, make sure to plan head and register your interest [here](https://airtable.com/shrj37Zf4ZIfrxFzh).
+This means **Vue 2 will reach End of Life on December 31st, 2023**. We believe this should provide plenty of time for most of the ecosystem to migrate over to Vue 3. However, we also understand that there could be teams or projects that cannot upgrade by this timeline while still need to fullfil security and compliance requirements. If your team expects to be using Vue 2 beyond end of 2023, make sure to plan head and understand your options: learn more about [Vue 2 LTS and Extended Support](/lts/).

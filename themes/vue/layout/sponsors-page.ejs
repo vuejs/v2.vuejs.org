@@ -96,7 +96,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <h3 id="special-sponsors-china">Platinum Sponsors (China)</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.platinum_china) {_%>
+<%_ for (const sponsor of theme.platinum_china || []) {_%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
     <img src="<%- logo(sponsor.img) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
   </a>

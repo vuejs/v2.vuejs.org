@@ -34,10 +34,15 @@ red-dot-before(leftPos = -8px)
   a
     color: #7adeb2
     font-weight: bold
+  .only-sm
+    display: none
+    margin: 0 5px
 
   @media screen and (max-width: 900px)
     .hidden-sm
       display: none
+    .only-sm
+      display: inline
 
 body.docs
   #header
@@ -84,6 +89,21 @@ body.docs
           left: 8px
       &.new::before
         red-dot-before(8px)
+  a.badge-parent
+    padding-right 26px
+    position relative
+  sup.badge
+    position absolute
+    top -4px
+    margin-left 4px
+    background-color $green
+    color #fff
+    height 14px
+    font-size 10px
+    line-height 1
+    font-weight bold
+    border-radius 4px
+    padding 3px 4px 0
 
 .nav-link
   padding-bottom: 3px
