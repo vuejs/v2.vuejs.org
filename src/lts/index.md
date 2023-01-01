@@ -38,6 +38,4 @@ For some teams, the main concern lies in security, compliance, and browser compa
 
 - Browsers sometimes ship changes that break legacy libraries. This is extremely rare, but could happen in theory.
 
-To address these concerns, we have partnered with industry experts to provide **Extended LTS for Vue 2**. This service will provide a version of Vue 2 that will continue to receive security and browser compatibility fixes, with SLAs (Service Level Agreements). If you expect to be using Vue 2 beyond the EOL date of December 31st, 2023, make sure to plan ahead.
-
-[Learn more about Extended LTS for Vue 2](TODO:link).
+To address these concerns, we have partnered with industry experts to provide **Extended LTS for Vue 2**. This service will provide a version of Vue 2 that will continue to receive security and browser compatibility fixes, with SLAs (Service Level Agreements). If you expect to be using Vue 2 beyond the EOL date of December 31st, 2023, make sure to plan ahead: [Learn more about HeroDev's NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/vue).
