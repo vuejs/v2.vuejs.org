@@ -27,13 +27,21 @@ Translations for this documentation project are currently maintained in separate
 
 ### Arabic
 
-Arabic translation is maintained by [Interstellar Club](https://github.com/InterstellarClub)
+Arabic translation is maintained by [Arabic Vue.js Community](https://github.com/vuejs-ar)
 
-* Translation Repo - [/interstellarClub/ar.vuejs.org](https://github.com/interstellarClub/ar.vuejs.org)
+* Translation Repo - [/vuejs-ar/ar.vuejs.org](https://github.com/vuejs-ar/ar.vuejs.org)
 * Primary Maintainers :
     * [Ilyes Chouia](https://github.com/celyes)
     * [Ahmed Aissaoui](https://github.com/Aissaoui-Ahmed)
-
+* Secondary Maintainers:
+    * [Imed jaberi](https://github.com/3imed-jaberi)
+    * [Aye7](https://github.com/aissat)
+    * [Atef Ben Ali](https://github.com/atefBB)
+    * [kzelda](https://github.com/kzelda)
+    * [Mohamed Hassan](https://github.com/MohamedHassanWD)
+    * [Mohamed Abdel Nasser](https://github.com/mohamedsgap)
+    * [Mohammad Shbool](https://github.com/mohshbool)
+    * [Ahmed Shahwan](https://github.com/shahwan42)
 ### French
 
 French translation is maintained by Vuejs-FR.
