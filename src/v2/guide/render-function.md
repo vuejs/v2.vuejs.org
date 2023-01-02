@@ -309,6 +309,23 @@ render: function (createElement) {
 }
 ```
 
+#### Data Objects Must Be Unique
+
+All data objects passed to createElement must be unique. That means the following render function is invalid:
+
+``` js
+render: function (createElement) {
+  var data = { class: 'example' }
+  return createElement('div',
+    [
+      return createElement('p', data, 'hi'),
+      return createElement('a', data, 'hello'),
+    ]
+  )
+}
+```
+If you really want to pass the same data object to multiple elements/components, make a deep clone of it and pass that instead.
+
 ## Replacing Template Features with Plain JavaScript
 
 ### `v-if` and `v-for`
