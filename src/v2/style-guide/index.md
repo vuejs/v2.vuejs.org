@@ -1921,6 +1921,63 @@ Vue.component('TodoItem', {
 
 
 
+### Arrow functions for component option values <sup data-p="d">use with caution</sup>
+
+**Arrow functions should be avoided for component option values.**
+
+When using ES6 arrow functions, the value of `this` is lexically bound. Using arrow functions for option values can result in errors, as `this` might be `undefined` instead of referring to the current instance.
+
+It's recommended to use the [method syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions) instead, or a regular [function expression](https://developer.mozilla.org/en-US/docs/web/JavaScript/Reference/Operators/function).
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+props: {
+  price: {
+    type: Number
+  }
+},
+data: () => {
+  return {
+    // `this` is `undefined` because
+    // it's bound to the lexical scope of the exported object
+    initialPrice: this.price
+  }
+},
+computed: {
+  priceWithTip: () => {
+    // `this` is `undefined` here as well
+    return this.initialPrice + (this.initialPrice * 0.2)
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+props: {
+  price: {
+    type: Number
+  }
+},
+data() {
+  return {
+    initialPrice: this.price
+  }
+},
+computed: {
+  priceWithTip() {
+    return this.initialPrice + (this.initialPrice * 0.2)
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Non-flux state management <sup data-p="d">use with caution</sup>
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
