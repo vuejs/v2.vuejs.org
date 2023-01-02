@@ -1965,13 +1965,13 @@ export default {
     list: []
   },
   mutations: {
-    REMOVE_TODO (state, todoId) {
+    todoRemoved (state, todoId) {
       state.list = state.list.filter(todo => todo.id !== todoId)
     }
   },
   actions: {
     removeTodo ({ commit, state }, todo) {
-      commit('REMOVE_TODO', todo.id)
+      commit('todoRemoved', todo.id)
     }
   }
 }
@@ -2004,7 +2004,7 @@ export default {
 ```
 {% raw %}</div>{% endraw %}
 
-
+When naming mutations, a good strategy is to mimic the list operations the mutation mainly performs, e.g., `pushUser`, `unshiftUser`. If that is too limiting an approach, you can also adopt a past-tense narrative style, where a mutation is named after the changes it provokes, e.g., `userAdded`, `userRemoved`. Either way promotes keeping mutations pure, with data wrangling logic best kept in actions.
 
 {% raw %}
 <script>
