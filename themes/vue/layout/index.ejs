@@ -35,8 +35,8 @@
   <div id="special">
     <h3>Special Sponsor</h3>
     <% var specialSponsor = theme.special[0]; %>
-    <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored">
-      <img src="<%- logo(specialSponsor.img) %>" style="width:160px" alt="Special sponsor <%- specialSponsor.name %>">
+    <a href="<%- specialSponsor.url %>" target="_blank" rel="noopener sponsored" class="sponsor" style="width: 160px; height: 80px; line-height: 80px;">
+      <img src="<%- logo(specialSponsor.img) %>" alt="Special sponsor <%- specialSponsor.name %>">
       <br>
       <!-- <span><%- specialSponsor.description %></span> -->
     </a>

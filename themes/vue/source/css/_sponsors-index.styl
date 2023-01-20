@@ -11,11 +11,15 @@
   a
     margin: 20px 15px 0
     position: relative
-  a, img
-    width: 100px
     display: inline-block
-    vertical-align: middle
+    &.sponsor
+      width: 100px
+      height: 60px
+      line-height: 60px
   img
+    max-width: 100%
+    max-height: 100%
+    vertical-align: middle
     transition: all .3s ease
     filter: grayscale(100%)
     opacity: 0.66
@@ -26,8 +30,7 @@
     display: block
     margin: 30px auto 15px
     width: 200px
-    img
-      width: 200px
+    height: auto
   .become-sponsor
     margin-top: 40px
     font-size: .9em
