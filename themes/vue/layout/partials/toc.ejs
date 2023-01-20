@@ -34,4 +34,9 @@
       <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
     </li>
   <% }) %>
+  <% if (type === 'guide') { %>
+    <li>
+      <a href="https://vuejs.org/about/team.html" class="sidebar-link" target="_blank" rel="noopener">Meet the Team</a>
+    </li>
+  <% } %>
 </ul>
