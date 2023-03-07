@@ -222,7 +222,7 @@ At the very least, you'll want to include the post's content:
 <div v-html="content"></div>
 ```
 
-If you try this in your template however, Vue will show an error, explaining that **every component must have a single root element**. You can fix this error by wrapping the template in a parent element, such as:
+If you try this in your template, however, Vue will show an error, explaining that **every component must have a single root element**. You can fix this error by wrapping the template in a parent element, such as:
 
 ```html
 <div class="blog-post">
