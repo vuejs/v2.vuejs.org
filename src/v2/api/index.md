@@ -58,6 +58,11 @@ type: api
   ``` js
   // make sure to set this synchronously immediately after loading Vue
   Vue.config.devtools = true
+
+  // Suggest using the `onload` attribute of the script tag to run the above code
+  // if run on Chrome or other browsers engine based on Blink,
+  // like the following:
+  <script src="path/to/vue.js" onload="Vue.config.devtools = true"></script>
   ```
 
   Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
@@ -170,10 +175,19 @@ type: api
 
 - **Type:** `boolean`
 
-- **Default:** `true`
+- **Default:** `true` (`false` in production builds)
 
 - **Usage**:
 
+  ``` js
+  // make sure to set this synchronously immediately after loading Vue
+  Vue.config.productionTip = true
+
+  // Suggest using the `onload` attribute of the script tag to run the above code
+  // if run on Chrome or other browsers engine based on Blink,
+  // like the following:
+  <script src="path/to/vue.js" onload="Vue.config.productionTip = true"></script>
+  ```
   Set this to `false` to prevent the production tip on Vue startup.
 
 ## Global API
