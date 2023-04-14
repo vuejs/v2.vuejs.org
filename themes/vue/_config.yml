@@ -1,7 +1,7 @@
 site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
-vue_version: 2.7.8
+vue_version: 2.7.14
 # START SPONSORS
 special:
   - name: appwrite
@@ -29,10 +29,6 @@ platinum:
     url: >-
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png?v2
-  - name: ButterCMS
-    url: >-
-      https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
-    img: buttercms.svg
   - name: Sanofi
     url: https://www.sanofi.com/
     img: sanofi.png
@@ -42,6 +38,14 @@ platinum:
   - name: Chrome Frameworks Fund
     url: https://opencollective.com/2021-frameworks-fund
     img: chrome_frameworks_fund.png
+  - name: HeroDevs
+    url: https://www.herodevs.com/support/vue
+    img: herodevs.png
+platinum_china:
+  - name: Aircode
+    url: https://docs-cn.aircode.io/chatgpt/
+    img: aircode.png
+    description: 5 分钟用 JS 接入 ChatGPT
 gold:
   - name: Volta
     url: https://volta.net/?utm_source=vuejs.org&utm_campaign=sponsoring/
@@ -70,18 +74,12 @@ gold:
   - name: FASTCODING Inc
     url: 'https://fastcoding.jp/javascript/ '
     img: fastcoding_inc.svg
-  - name: VPSServer.com
-    url: https://www.vpsserver.com
-    img: vpsserver_com.png
   - name: LINE Corporation
     url: https://linecorp.com
     img: line_corporation.png
   - name: EMQ
     url: https://www.emqx.com
     img: emq.png
-  - name: Onyx Gaming Limited
-    url: https://www.aceonlinecasino.co.uk
-    img: onyx_gaming_limited.svg
   - name: Fenêtre Online Solutions
     url: https://www.fenetre.nl/
     img: fen_tre_online_solutions.svg
@@ -94,9 +92,6 @@ gold:
   - name: Crisp
     url: https://crisp.chat/en/
     img: crisp.png
-  - name: Cypress.io
-    url: https://cypress.io
-    img: cypress_io.svg
   - name: Localazy
     url: >-
       https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
@@ -104,9 +99,6 @@ gold:
   - name: LearnVue
     url: https://learnvue.co
     img: learnvue.png
-  - name: Quickbooks tool hub
-    url: https://quickbookstoolhub.com
-    img: quickbooks_tool_hub.png
   - name: Casinoburst.com
     url: https://casinoburst.com/casino-utan-licens/
     img: casinoburst_com.png
@@ -122,29 +114,34 @@ gold:
   - name: Fathom Analytics
     url: https://usefathom.com/
     img: fathom_analytics.svg
-  - name: RxDB
-    url: >-
-      https://rxdb.info/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=vue-sponsored-gold
-    img: rxdb.svg
   - name: Goread.io
     url: https://goread.io/buy-instagram-followers
     img: goread_io.png
-  - name: Definir Tech
-    url: https://definir-tech.com/
-    img: definir_tech.png
   - name: Twicsy
-    url: https://opencollective.com/twicsy
+    url: https://twicsy.com/buy-instagram-likes
     img: twicsy.png
   - name: Sentry
     url: sentry.io/for/vue?utm_source=vuejs.org&utm_medium=paid-community
     img: sentry.png
+  - name: Famous Fonts
+    url: https://www.fontbolt.com/
+    img: famous_fonts.png
+  - name: Justanotherpanel
+    url: https://justanotherpanel.com/
+    img: justanotherpanel.png
+  - name: Likes.io
+    url: https://likes.io/buy-instagram-followers
+    img: likes_io.png
+  - name: Howsociable
+    url: https://howsociable.com/buy-instagram-followers/
+    img: howsociable.png
+  - name: Poprey.com
+    url: https://poprey.com/
+    img: poprey_com.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
     img: draxlr.svg
-  - name: iSolutions UK Limited
-    url: https://www.thecasinodb.com
-    img: isolutions_uk_limited.png
   - name: Team Extension North America Inc
     url: https://teamextension.io
     img: team_extension_north_america_inc.png
@@ -163,13 +160,16 @@ silver:
   - name: Gcore
     url: https://gcore.com
     img: gcore.png
+  - name: awisee.agency
+    url: https://awisee.agency
+    img: awisee_agency.png
+  - name: Optimizers
+    url: https://www.optimizers.nl
+    img: optimizers.png
 bronze:
   - name: Derek Pollard
     url: https://polyglotengineer.com/derek.pollard
     img: derek_pollard.png
-  - name: Earthlink
-    url: https://www.earthlink.ro
-    img: earthlink.png
   - name: BGASoft
     url: https://www.bgasoft.com
     img: bgasoft.png
@@ -185,15 +185,9 @@ bronze:
   - name: Liip AG
     url: https://www.liip.ch/en
     img: liip_ag.png
-  - name: The Codest
-    url: https://thecodest.co/
-    img: the_codest.png?v2
   - name: Bürkert Werke GmbH & Co KG
     url: https://www.burkert.com
     img: b_rkert_werke_gmbh___co_kg.png
-  - name: Arcanite
-    url: https://arcanite.ch
-    img: arcanite.png
 # END SPONSORS
 redirects:
   '/v2/api/index.html': '/api/'
