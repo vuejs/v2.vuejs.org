@@ -243,13 +243,12 @@ var watchExampleVM = new Vue({
         return
       }
       this.answer = 'Thinking...'
-      var vm = this
       axios.get('https://yesno.wtf/api')
-        .then(function (response) {
-          vm.answer = _.capitalize(response.data.answer)
+        .then((response) => {
+          this.answer = _.capitalize(response.data.answer)
         })
-        .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+        .catch((error) => {
+          this.answer = 'Error! Could not reach the API. ' + error
         })
     }
   }
