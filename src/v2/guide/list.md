@@ -308,7 +308,7 @@ methods: {
 
 ## `v-for` with a Range
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` can also take an integer as a source. In this case it will repeat the template that many times, and automatically increment the alias.
 
 ``` html
 <div>
