@@ -1,5 +1,9 @@
 # Vue 2 LTS, EOL & Extended Support
 
+<p class="info"><b>Expecting to stay on Vue 2?</b>
+If you expect to be using Vue 2 beyond the EOL date (Dec. 31st, 2023), and still need a maintained version that can satisfy security and browser compatibility requirements, make sure to check out [HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/vue).
+</p>
+
 ## How long will Vue 2 be supported?
 
 Vue 2.7 is the current, and final minor release of Vue 2.x. Vue 2.7 receives 18 months of LTS (long-term support) starting from its release date on July 1st, 2022. During this period, Vue 2 will receive necessary bug and security fixes, but will no longer receive new features.

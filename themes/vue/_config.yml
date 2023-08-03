@@ -7,7 +7,7 @@ special:
   - name: appwrite
     url: https://appwrite.io
     img: appwrite.svg
-    description: Open Source Firebase Alternative
+    description: Build Fast. Scale Big. All in One Place.
 platinum:
   - name: VueMastery
     url: https://www.vuemastery.com/
@@ -29,9 +29,6 @@ platinum:
     url: >-
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png?v2
-  - name: Sanofi
-    url: https://www.sanofi.com/
-    img: sanofi.png
   - name: CodeDict
     url: https://code-dict.com
     img: codedict.svg
@@ -41,11 +38,6 @@ platinum:
   - name: HeroDevs
     url: https://www.herodevs.com/support/vue
     img: herodevs.png
-platinum_china:
-  - name: Aircode
-    url: https://docs-cn.aircode.io/chatgpt/
-    img: aircode.png
-    description: 5 分钟用 JS 接入 ChatGPT
 gold:
   - name: Volta
     url: https://volta.net/?utm_source=vuejs.org&utm_campaign=sponsoring/
@@ -53,9 +45,6 @@ gold:
   - name: Laravel
     url: https://laravel.com
     img: laravel.png
-  - name: HTML Burger
-    url: https://htmlburger.com
-    img: html_burger.png
   - name: Tidelift
     url: https://tidelift.com/subscription/npm/vue
     img: tidelift.png
@@ -102,9 +91,6 @@ gold:
   - name: Casinoburst.com
     url: https://casinoburst.com/casino-utan-licens/
     img: casinoburst_com.png
-  - name: spinsify.com/uk
-    url: https://www.spinsify.com/uk/new-casinos
-    img: spinsify_com_uk.png
   - name: 'Enkrypt: Ethereum and Polkadot Web3 Wallet'
     url: https://www.enkrypt.com
     img: enkrypt__ethereum_and_polkadot_web3_wallet.svg
@@ -117,27 +103,43 @@ gold:
   - name: Goread.io
     url: https://goread.io/buy-instagram-followers
     img: goread_io.png
-  - name: Twicsy
-    url: https://twicsy.com/buy-instagram-likes
-    img: twicsy.png
   - name: Sentry
-    url: sentry.io/for/vue?utm_source=vuejs.org&utm_medium=paid-community
+    url: https://sentry.io/for/vue?utm_source=vuejs.org&utm_medium=paid-community
     img: sentry.png
-  - name: Famous Fonts
-    url: https://www.fontbolt.com/
-    img: famous_fonts.png
   - name: Justanotherpanel
     url: https://justanotherpanel.com/
     img: justanotherpanel.png
-  - name: Likes.io
-    url: https://likes.io/buy-instagram-followers
-    img: likes_io.png
   - name: Howsociable
     url: https://howsociable.com/buy-instagram-followers/
     img: howsociable.png
   - name: Poprey.com
     url: https://poprey.com/
     img: poprey_com.png
+  - name: Ilmaiset Pitkävetovihjeet
+    url: https://www.vedonlyontibonukset.com/pitkavetovihjeet
+    img: ilmaiset_pitk_vetovihjeet.png
+  - name: Metoree
+    url: https://us.metoree.com/
+    img: metoree.png
+  - name: Famoid
+    url: https://famoid.com/
+    img: famoid.png
+  - name: Certible
+    url: https://www.certible.com
+    img: certible.svg
+  - name: FORTUNE GAMES
+    url: https://www.fortunegames.com
+    img: fortune_games.png
+  - name: Zammad GmbH
+    url: https://zammad.com
+    img: zammad_gmbh.png
+  - name: TBDC - Agro Software
+    url: http://tbdc.com.br/
+    img: tbdc___agro_software.svg
+  - name: Nokori
+    url: >-
+      https://nokori.com?utm_source=github&utm_medium=banner&utm_campaign=awareness&utm_id=github_vue
+    img: nokori.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
@@ -157,15 +159,15 @@ silver:
   - name: Codesmith
     url: https://codesmith.io
     img: codesmith.png
-  - name: Gcore
-    url: https://gcore.com
-    img: gcore.png
-  - name: awisee.agency
-    url: https://awisee.agency
-    img: awisee_agency.png
   - name: Optimizers
     url: https://www.optimizers.nl
     img: optimizers.png
+  - name: Nettcasino
+    url: https://www.nettcasino.com/
+    img: nettcasino.png
+  - name: FORTUNE GAMES
+    url: https://www.fortunegames.com
+    img: fortune_games.png
 bronze:
   - name: Derek Pollard
     url: https://polyglotengineer.com/derek.pollard
@@ -188,6 +190,12 @@ bronze:
   - name: Bürkert Werke GmbH & Co KG
     url: https://www.burkert.com
     img: b_rkert_werke_gmbh___co_kg.png
+  - name: KingBilly
+    url: http://kingbilly.com/en-CA
+    img: kingbilly.png
+  - name: CRECOHE
+    url: http://www.crecohe.com
+    img: crecohe.png
 # END SPONSORS
 redirects:
   '/v2/api/index.html': '/api/'

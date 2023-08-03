@@ -141,7 +141,7 @@
       code
         background-color: #efefef
   p
-    &.tip, &.success
+    &.tip, &.success, &.info
       padding: 12px 24px 12px 30px
       margin: 2em 0
       border-left-width: 4px
@@ -172,6 +172,8 @@
       &:before
         content: "!"
         background-color: $red
+    &.info
+      border-left-color: $green
     &.success
       border-left-color: $green
       &:before
