@@ -1,7 +1,7 @@
 # Vue 2 LTS, EOL & Extended Support
 
 <p class="info"><b>Expecting to stay on Vue 2?</b>
-If you expect to be using Vue 2 beyond the EOL date (Dec. 31st, 2023), and still need a maintained version that can satisfy security and browser compatibility requirements, make sure to check out [HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/vue).
+If you expect to be using Vue 2 beyond the EOL date (Dec. 31st, 2023), and still need a maintained version that can satisfy security and browser compatibility requirements, make sure to check out [HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=link&utm_campaign=lts-faq).
 </p>
 
 ## How long will Vue 2 be supported?
@@ -58,4 +58,4 @@ For some teams, the main concern lies in security, compliance, and browser compa
 
 - Browsers sometimes ship changes that break legacy libraries. This is extremely rare, but could happen in theory.
 
-To address these concerns, we have partnered with industry experts to provide **Extended LTS for Vue 2**. This service will provide a version of Vue 2 that will continue to receive security and browser compatibility fixes, with SLAs (Service Level Agreements). If you expect to be using Vue 2 beyond the EOL date of December 31st, 2023, make sure to plan ahead: [Learn more about HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/vue).
+To address these concerns, we have partnered with industry experts to provide **Extended LTS for Vue 2**. This service will provide a version of Vue 2 that will continue to receive security and browser compatibility fixes, with SLAs (Service Level Agreements). If you expect to be using Vue 2 beyond the EOL date of December 31st, 2023, make sure to plan ahead: [Learn more about HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=link&utm_campaign=lts-faq).
