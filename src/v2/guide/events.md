@@ -178,6 +178,12 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.passive`
 
 ``` html
+Please note that with the exception of `.once` the modifiers above only work with **native events**.
+
+<p class="tip">
+When emitting native-looking events from components, such as 'click', it is a good practice to also emit the native event. eg. `event.data = {...}; this.$emit('click', event)`. If you haven't read about components yet, don't worry about this for now.
+</p>
+
 <!-- the click event's propagation will be stopped -->
 <a v-on:click.stop="doThis"></a>
 
