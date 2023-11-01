@@ -52,7 +52,7 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "type": "pwa-chrome",
       "request": "launch",
       "name": "vuejs: chrome",
       "url": "http://localhost:8080",
