@@ -86,7 +86,7 @@ type: api
 
   > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
-  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > Error tracking services [Sentry](https://sentry.io/for/vue/), [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) and [Airbrake](https://airbrake.io/docs/installing-airbrake/installing-airbrake-in-a-vuejs-app/) provide official integrations using this option.
 
 ### warnHandler
 
