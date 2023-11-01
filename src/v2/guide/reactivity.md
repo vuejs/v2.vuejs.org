@@ -57,6 +57,12 @@ Sometimes you may want to assign a number of properties to an existing object, f
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
+Similarly, it is also possible to delete object properties in a manner detectable by vue using the `Vue.delete(object, propertyName)` method:
+
+``` js
+Vue.delete(vm.someObject, 'b')
+```
+
 ### For Arrays
 
 Vue cannot detect the following changes to an array:
