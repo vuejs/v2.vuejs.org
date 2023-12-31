@@ -7,8 +7,13 @@ special:
   - name: appwrite
     url: https://appwrite.io
     img: appwrite.svg
-    description: Build Fast. Scale Big. All in One Place.
+    description: Open-source backend cloud platform
+    priority: true
 platinum:
+  - name: Bit
+    url: https://bit.dev
+    img: bit.svg?v2
+    priority: true
   - name: VueMastery
     url: https://www.vuemastery.com/
     img: vuemastery.png
@@ -29,9 +34,9 @@ platinum:
     url: >-
       https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs
     img: ionic.png?v2
-  - name: CodeDict
-    url: https://code-dict.com
-    img: codedict.svg
+  - name: Skilled
+    url: https://skilled.yashio-corp.com
+    img: skilled.svg
   - name: Chrome Frameworks Fund
     url: https://opencollective.com/2021-frameworks-fund
     img: chrome_frameworks_fund.png
@@ -39,9 +44,6 @@ platinum:
     url: https://www.herodevs.com/support/vue
     img: herodevs.png
 gold:
-  - name: Volta
-    url: https://volta.net/?utm_source=vuejs.org&utm_campaign=sponsoring/
-    img: volta.svg
   - name: Laravel
     url: https://laravel.com
     img: laravel.png
@@ -51,9 +53,6 @@ gold:
   - name: Intygrate
     url: https://intygrate.com/
     img: intygrate.png
-  - name: Bacancy Technology
-    url: https://www.bacancytechnology.com/hire-vuejs-developer
-    img: bacancy_technology.png
   - name: Y8
     url: https://www.y8.com/
     img: y8.png
@@ -63,21 +62,15 @@ gold:
   - name: FASTCODING Inc
     url: 'https://fastcoding.jp/javascript/ '
     img: fastcoding_inc.svg
-  - name: LINE Corporation
-    url: https://linecorp.com
-    img: line_corporation.png
-  - name: EMQ
-    url: https://www.emqx.com
-    img: emq.png
+  - name: LY Corporation
+    url: https://www.lycorp.co.jp/en/
+    img: ly_corporation.png?v2
   - name: Fenêtre Online Solutions
     url: https://www.fenetre.nl/
     img: fen_tre_online_solutions.svg
   - name: Ant Design Vue
     url: https://antdv.com
     img: ant_design_vue.png
-  - name: MQTT X
-    url: https://mqttx.app
-    img: mqtt_x.png
   - name: Crisp
     url: https://crisp.chat/en/
     img: crisp.png
@@ -85,9 +78,6 @@ gold:
     url: >-
       https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
     img: localazy.svg
-  - name: LearnVue
-    url: https://learnvue.co
-    img: learnvue.png
   - name: Casinoburst.com
     url: https://casinoburst.com/casino-utan-licens/
     img: casinoburst_com.png
@@ -106,21 +96,12 @@ gold:
   - name: Sentry
     url: https://sentry.io/for/vue?utm_source=vuejs.org&utm_medium=paid-community
     img: sentry.png
-  - name: Justanotherpanel
-    url: https://justanotherpanel.com/
-    img: justanotherpanel.png
-  - name: Howsociable
-    url: https://howsociable.com/buy-instagram-followers/
-    img: howsociable.png
   - name: Poprey.com
     url: https://poprey.com/
     img: poprey_com.png
   - name: Ilmaiset Pitkävetovihjeet
     url: https://www.vedonlyontibonukset.com/pitkavetovihjeet
     img: ilmaiset_pitk_vetovihjeet.png
-  - name: Metoree
-    url: https://us.metoree.com/
-    img: metoree.png
   - name: Famoid
     url: https://famoid.com/
     img: famoid.png
@@ -130,16 +111,22 @@ gold:
   - name: FORTUNE GAMES
     url: https://www.fortunegames.com
     img: fortune_games.png
-  - name: Zammad GmbH
-    url: https://zammad.com
-    img: zammad_gmbh.png
   - name: TBDC - Agro Software
     url: http://tbdc.com.br/
     img: tbdc___agro_software.svg
-  - name: Nokori
+  - name: FineProxy
+    url: https://fineproxy.org/
+    img: fineproxy.svg
+  - name: Daniel
     url: >-
-      https://nokori.com?utm_source=github&utm_medium=banner&utm_campaign=awareness&utm_id=github_vue
-    img: nokori.png
+      https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-vuejs
+    img: daniel.png
+  - name: SurveyJS
+    url: https://surveyjs.io/
+    img: surveyjs.png?v2
+  - name: Stormlikes
+    url: https://www.stormlikes.net/buy-instagram-followers
+    img: stormlikes.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
@@ -162,12 +149,31 @@ silver:
   - name: Optimizers
     url: https://www.optimizers.nl
     img: optimizers.png
-  - name: Nettcasino
-    url: https://www.nettcasino.com/
-    img: nettcasino.png
   - name: FORTUNE GAMES
     url: https://www.fortunegames.com
     img: fortune_games.png
+  - name: Indy
+    url: https://www.indy.fr/
+    img: indy.png
+  - name: Buy Instagram Followers from SocialWick
+    url: https://www.socialwick.com/instagram/followers
+    img: buy_instagram_followers_from_socialwick.png
+  - name: Social Followers
+    url: https://www.socialfollowers.uk/buy-tiktok-followers/
+    img: social_followers.png
+  - name: Nettcasino
+    url: https://www.nettcasino.com/
+    img: nettcasino.png
+  - name: Spelpressen
+    url: https://spelpressen.se/
+    img: spelpressen.png
+  - name: Casino Utan Svensk Licens
+    url: https://casino-utan-svensk-licens.com/
+    img: casino_utan_svensk_licens.png
+  - name: Outlook India
+    url: >-
+      https://www.outlookindia.com/outlook-spotlight/casinos-not-on-gamstop-uk-news-302214/
+    img: outlook_india.png
 bronze:
   - name: Derek Pollard
     url: https://polyglotengineer.com/derek.pollard
@@ -190,12 +196,21 @@ bronze:
   - name: Bürkert Werke GmbH & Co KG
     url: https://www.burkert.com
     img: b_rkert_werke_gmbh___co_kg.png
-  - name: KingBilly
-    url: http://kingbilly.com/en-CA
-    img: kingbilly.png
-  - name: CRECOHE
-    url: http://www.crecohe.com
-    img: crecohe.png
+  - name: codefortynine
+    url: https://codefortynine.com
+    img: codefortynine.png
+  - name: Arcanite
+    url: https://arcanite.ch
+    img: arcanite.png
+platinum_china:
+  - name: CRMEB
+    url: http://github.crmeb.net/u/vue
+    img: crmeb.svg?v2
+    description: 开源电商系统
+  - name: MISBoot
+    url: https://vue.misboot.com/#/user/Login?from=vuejs
+    img: misboot.png?v3
+    description: 低代码开发平台
 # END SPONSORS
 redirects:
   '/v2/api/index.html': '/api/'
