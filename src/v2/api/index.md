@@ -1860,7 +1860,9 @@ type: api
 
 - **Usage:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content(only nominating slot, exclusion naming
+
+ slot and indicate default slot).
 
 ### vm.$nextTick( [callback] )
 
