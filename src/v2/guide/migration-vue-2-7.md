@@ -61,7 +61,7 @@ In addition, the following features are explicitly **NOT** ported:
 - ❌ `createApp()` (Vue 2 doesn't have isolated app scope)
 - ❌ Top-level `await` in `<script setup>` (Vue 2 does not support async component initialization)
 - ❌ TypeScript syntax in template expressions (incompatible w/ Vue 2 parser)
-- ❌ Reactivity transform (still experimental)
+- ❌ Reactivity transform (deprecated)
 - ❌ `expose` option is not supported for options components (but `defineExpose()` is supported in `<script setup>`).
 
 ## Upgrade Guide
