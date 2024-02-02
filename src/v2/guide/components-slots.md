@@ -58,27 +58,28 @@ If `<navigation-link>`'s template did **not** contain a `<slot>` element, any co
 When you want to use data inside a slot, such as in:
 
 ``` html
+<!-- parent component -->
 <navigation-link url="/profile">
   Logged in as {{ user.name }}
 </navigation-link>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work:
+That slot has access to the same instance properties (i.e. the parent "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope (i.e. the child "scope"). For example, trying to access `url` would not work:
 
 ``` html
 <navigation-link url="/profile">
   Clicking here will send you to: {{ url }}
   <!--
   The `url` will be undefined, because this content is passed
-  _to_ <navigation-link>, rather than defined _inside_ the
-  <navigation-link> component.
+  _to_ the child component <navigation-link> after `url` is interpolated in parent component,
+  rather than passed to <navigation-link> component directly and interpolated there.
   -->
 </navigation-link>
 ```
 
 As a rule, remember that:
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> Everything in the parent template is interpolated in parent scope; everything in the child template is interpolated in the child scope.
 
 ## Fallback Content
 
