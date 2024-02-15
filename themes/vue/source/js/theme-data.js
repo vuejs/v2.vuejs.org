@@ -271,6 +271,41 @@ var themeData = [
         image: 'https://flatlogic.com/assets/templates/light_blue_vue_full_nodejs-06f941c849f0a83a3c0d38c728101eace06a7515ea048f12bcd91f165280246f.webp'
       }
     ]
-  }
-  
+  },
+  {
+    name: 'ThemeSelection',
+    description: `<a href="https://themeselection.com" target="_blank">ThemeSelection</a> provides high quality, modern design, professional and easy-to-use Free Admin Dashboard Template,
+HTML Themes and UI Kits to create your applications faster!`,
+    seeMoreUrl: 'https://themeselection.com/products/category/free-admin-templates/',
+    products: [
+      {
+        name: 'Materio - Vuetify Free Admin',
+        price: 0,
+        description: 'Best opensource easy to use vuetify admin template',
+        url: 'https://themeselection.com/products/materio-free-vuetify-vuejs-admin-template/',
+        image: 'https://themeselection.com/wp-content/uploads/edd/2021/08/materio-free-ts-banner.png'
+      },
+      {
+        name: 'Materio - Vuetify Admin',
+        price: 49,
+        description: 'Production ready carefully crafted most comprehensive admin template',
+        url: 'https://themeselection.com/products/materio-vuetify-vuejs-admin-template/',
+        image: 'https://themeselection.com/wp-content/uploads/edd/2021/08/materio-pro-ts-banner-1.png'
+      },
+    ]
+  },
+  {
+    name: 'PIXINVENT',
+    description: `<a href="https://pixinvent.com" target="_blank">PIXINVENT</a> is specialized in designing and developing unique, elegant and premium multipurpose professional themes, plugins and graphics.`,
+    seeMoreUrl: 'https://pixinvent.com/',
+    products: [
+      {
+        name: 'Vuexy - VueJS Admin Template',
+        price: 35,
+        description: 'Best selling production ready, extensive admin template',
+        url: 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/landing/',
+        image: 'https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/item-page/vuexy-github.jpg'
+      },
+    ]
+  },
 ]
