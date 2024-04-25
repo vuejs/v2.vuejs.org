@@ -208,7 +208,7 @@ To let users interact with your app, we can use the `v-on` directive to attach e
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage" type="button">Reverse Message</button>
 </div>
 ```
 ``` js
@@ -227,7 +227,7 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage" type="button">Reverse Message</button>
 </div>
 <script>
 var app5 = new Vue({
@@ -251,7 +251,8 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 ``` html
 <div id="app-6">
   <p>{{ message }}</p>
-  <input v-model="message">
+  <label for="app-6-message">Type a message</label>
+  <input v-model="message" id="app-6-message">
 </div>
 ```
 ``` js
@@ -265,7 +266,8 @@ var app6 = new Vue({
 {% raw %}
 <div id="app-6" class="demo">
   <p>{{ message }}</p>
-  <input v-model="message">
+  <label for="app-6-message">Type a message</label>
+  <input v-model="message" id="app-6-message">
 </div>
 <script>
 var app6 = new Vue({
