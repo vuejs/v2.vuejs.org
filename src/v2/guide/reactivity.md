@@ -96,7 +96,7 @@ vm.$set(vm.items, indexOfItem, newValue)
 To deal with caveat 2, you can use `splice`:
 
 ``` js
-vm.items.splice(newLength)
+vm.items.splice(0, newLength)
 ```
 
 ## Declaring Reactive Properties
