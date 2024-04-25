@@ -37,7 +37,7 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
 
-Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
+Some official plugins provided by Vue.js such as `vue-router` automatically call `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
 ``` js
 // When using CommonJS via Browserify or Webpack
@@ -48,7 +48,7 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+Check out [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
 
 ## Writing a Plugin
 
