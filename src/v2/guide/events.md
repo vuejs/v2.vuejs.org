@@ -104,6 +104,8 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
+<p class="tip">Note that `event.target` might reference a child element of the element on which the `v-on` was set. Use `event.currentTarget` to get the element of the `v-on`.</p>
+
 ## Methods in Inline Handlers
 
 Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:
