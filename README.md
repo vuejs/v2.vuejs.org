@@ -107,6 +107,11 @@ Russian translation is maintained by Translation Gang.
 - [Leonardo Fagundez](https://github.com/lfgdzdev) | [Twitter](https://twitter.com/Lfgdz)
 
 
+### Turkish
+
+* Turkish translation is maintainted by [animyrch](http://blog.traductionturcfrancais.com)
+* Translation Repo - [/animyrch/tr.vuejs.org](https://github.com/animyrch/tr.vuejs.org)
+
 ### Vietnamese
 
 Vietnamese translation is maintained by [Vue.js Vietnam User group](https://github.com/vuejs-vn/).
