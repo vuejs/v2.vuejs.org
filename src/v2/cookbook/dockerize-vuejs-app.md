@@ -57,7 +57,7 @@ In the previous example, we used a simple, zero-configuration command-line [http
 
 > It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 
-Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giant like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
+Nevertheless, for realistically complex production use cases, it may be wiser to stand on the shoulders of some giants like [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) and that is exactly what we are going to do next: we are about to leverage NGINX to serve our Vue.js app because it is considered to be one of the most performant and battle-tested solutions out there.
 
 Let's refactor our `Dockerfile` to use NGINX:
 
@@ -115,7 +115,7 @@ So, committing to this architectural approach most of the time implies developin
 
 ### Effects of DevOps
 
-The adoption of [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) culture, tools and agile engineering practices has, among other things, the nice effect of increasing the collaboration between the roles of development and operations. One of the main problem of the past (but also today in some realities) is that the dev team tended to be uninterested in the operation and maintenance of a system once it was handed over to the ops team, while the latter tended to be not really aware of the system's business goals and, therefore, reluctant in satisfying the operational needs of the system (also referred to as "whims of developers").
+The adoption of [DevOps](https://martinfowler.com/bliki/DevOpsCulture.html) culture, tools and agile engineering practices has, among other things, the nice effect of increasing the collaboration between the roles of development and operations. One of the main problems of the past (but also today in some realities) is that the dev team tended to be uninterested in the operation and maintenance of a system once it was handed over to the ops team, while the latter tended to be not really aware of the system's business goals and, therefore, reluctant in satisfying the operational needs of the system (also referred to as "whims of developers").
 
 So, delivering our Vue.js app as a Docker image helps reducing, if not removing entirely, the difference between running the service on a developer's laptop, the production environment or any environment we may think of.
 
