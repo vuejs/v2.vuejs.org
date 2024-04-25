@@ -42,12 +42,11 @@ partners_list:
         name: Modus Create
         logo: https://res.cloudinary.com/modus-labs/image/upload/v1533109874/modus/logo-vertical-black.svg
         description:
-            "Modus Create is a disruptive consulting firm that helps companies transform for success in the digital future.
+            "Modus Create builds customer-centric products, processes, and platforms to help businesses succeed in the digital economy.
 
-            Clients work with Modus to effect transformational change through a unique collaborative engagement model that focuses on strategy, product design/build, user experience, company culture, and process change to accelerate their response to digital disruption.
+For over 10 years, our global team of strategists, designers, and technologists have helped the world’s biggest brands such as Burger King, Kaplan, AARP, PBS, and Time Inc. deliver powerful digital experiences to their clients. We work in an iterative, outcome-driven way to support our clients with product strategy, customer experience (CX), full stack Agile software development, and security. 
 
-            Modus is uniquely expert at executing within the new reality of global talent sourcing and globally distributed teams. Modus culture is based on recruiting only top talent regardless of their location. Modus delivers time zone-aligned, highly productive, English-speaking teams, accessibility, and a totally collaborative environment regardless of individual location.
-"
+Inc Magazine has rated Modus Create as one of the fastest-growing American companies for 6 years in a row. Our distributed team of 300+ Modites have been pioneers in the open-source community, creating innovations such as the Ionic-Vue integration, RoboDomo, Beep, and Capsule. Visit moduscreate.com to learn more. "
         proficiencies:
             - name: Vue.js
               url: https://moduscreate.com/partners/vue/?utm_source=Vue&utm_medium=Partner-Page&utm_campaign=Vue_partnerpage
