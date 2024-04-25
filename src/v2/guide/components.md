@@ -196,11 +196,13 @@ new Vue({
 Then want to render a component for each one:
 
 ```html
-<blog-post
-  v-for="post in posts"
-  v-bind:key="post.id"
-  v-bind:title="post.title"
-></blog-post>
+<div id="blog-post-demo">
+    <blog-post
+      v-for="post in posts"
+      v-bind:key="post.id"
+      v-bind:title="post.title"
+    ></blog-post>
+</div>
 ```
 
 Above, you'll see that we can use `v-bind` to dynamically pass props. This is especially useful when you don't know the exact content you're going to render ahead of time, like when [fetching posts from an API](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-component-blog-post-example).
