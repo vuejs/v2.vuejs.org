@@ -14,12 +14,16 @@ This recipe shows how to debug [Vue CLI](https://github.com/vuejs/vue-cli) appli
 
 Make sure you have VS Code and the browser of your choice installed, and the latest version of the corresponding Debugger extension installed and enabled:
 
-* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-* [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
+**Note** If you are using updated `VsCode` (2020), probably you don't need to install `debugger for chrome`, because as their developer say in the description `By default, this extension now delegates to the new js-debug extension which is built-in to VS Code.`[read more...](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome):
+
+- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+- [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
 
 Install and create a project with the [vue-cli](https://github.com/vuejs/vue-cli), following the instructions in the [Vue CLI Guide](https://cli.vuejs.org/). Change into the newly created application directory and open VS Code.
 
 ### Displaying Source Code in the Browser
+
+**Note** If you are using Vue CLI 4.5.x, you don't need to set `devtool` in `vue.config.js`, so you can skip this step.
 
 Before you can debug your Vue components from VS Code, you need to update the generated Webpack config to build sourcemaps. We do this so that our debugger has a way to map the code within a compressed file back to its position in the original file. This ensures that you can debug an application even after your assets have been optimized by Webpack.
 
@@ -34,9 +38,9 @@ If you use Vue CLI 3, set or update the `devtool` property inside `vue.config.js
 ```js
 module.exports = {
   configureWebpack: {
-    devtool: 'source-map'
-  }
-}
+    devtool: "source-map",
+  },
+};
 ```
 
 ### Launching the Application from VS Code
@@ -74,23 +78,44 @@ Click on the Debugging icon in the Activity Bar to bring up the Debug view, then
 }
 ```
 
+**Note** `launch.json` config for `Vue CLI 4.5.x` and `new VsCode`:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "vuejs: chrome",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///./src/*": "${webRoot}/*"
+      }
+    }
+  ]
+}
+```
+
 ## Setting a Breakpoint
 
 1.  Set a breakpoint in **src/components/HelloWorld.vue** on `line 90` where the `data` function returns a string.
 
-  ![Breakpoint Renderer](/images/breakpoint_set.png)
+![Breakpoint Renderer](/images/breakpoint_set.png)
 
 2.  Open your favorite terminal at the root folder and serve the app using Vue CLI:
 
-  ```
-  npm run serve
-  ```
+```
+npm run serve
+```
 
 3.  Go to the Debug view, select the **'vuejs: chrome/firefox'** configuration, then press F5 or click the green play button.
 
 4.  Your breakpoint should now be hit as a new browser instance opens `http://localhost:8080`.
 
-  ![Breakpoint Hit](/images/breakpoint_hit.png)
+![Breakpoint Hit](/images/breakpoint_hit.png)
 
 ## Alternative Patterns
 
