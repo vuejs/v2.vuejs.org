@@ -71,7 +71,7 @@ That slot has access to the same instance properties (i.e. the same "scope") as 
   <!--
   The `url` will be undefined, because this content is passed
   _to_ <navigation-link>, rather than defined _inside_ the
-  <navigation-link> component.
+  <navigation-link>'s parent component.
   -->
 </navigation-link>
 ```
