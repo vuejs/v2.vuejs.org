@@ -71,7 +71,7 @@ The package.json file used by npm really only requires one version (`main`), but
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
   "browser": {
-    "./sfc": "src/my-component.vue"
+    "sfc": "./src/my-component.vue"
   },
   ...
 }
@@ -103,7 +103,7 @@ There is no need to write your module multiple times. It is possible to prepare 
   "module": "dist/my-component.esm.js",
   "unpkg": "dist/my-component.min.js",
   "browser": {
-    "./sfc": "src/my-component.vue"
+    "sfc": "./src/my-component.vue"
   },
   "scripts": {
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
