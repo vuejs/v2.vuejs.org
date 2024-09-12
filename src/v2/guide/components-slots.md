@@ -223,6 +223,14 @@ Either way, the rendered HTML will be:
 
 Note that **`v-slot` can only be added to a `<template>`** (with [one exception](#Abbreviated-Syntax-for-Lone-Default-Slots)), unlike the deprecated [`slot` attribute](#Deprecated-Syntax).
 
+### Slot Naming Limitations
+
+The `v-slot:` directive does not currently support names that:
+
+- Start with a square-bracket character **`[`** ( They may contain square brackets elsewhere, so long as they are not the first character. The reason for this is that Vue reserves this for [Dynamic Slot Names](#Dynamic-Slot-Names) )
+- Contain whitespace.
+- Contain special characters used by directive-atributes like `.` in the name for a scoped-slot; Vue will treat this as a directive modifier.
+
 ## Scoped Slots
 
 > Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-scope` attribute.
