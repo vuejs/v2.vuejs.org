@@ -139,18 +139,18 @@ Starting in version 2.6.0, it is also possible to use a JavaScript expression in
 Note that there are some constraints to the argument expression, as explained
 in the "Dynamic Argument Expression Constraints" section below.
 -->
-<a v-bind:[attributeName]="url"> ... </a>
+<a v-bind:[attribute]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+Here `attribute` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attribute`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
 
 Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-on:[event]="doSomething"> ... </a>
 ```
 
-In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+In this example, when `event`'s value is `"focus"`, `v-on:[event]` will be equivalent to `v-on:focus`.
 
 #### Dynamic Argument Value Constraints
 
