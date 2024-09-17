@@ -36,7 +36,7 @@ Using ES6:
 
 ```javascript
 import Butter from 'buttercms';
-const butter = Butter('your_api_token');
+export const butter = Butter('your_api_token');
 ```
 
 Using CDN:
