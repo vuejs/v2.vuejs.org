@@ -182,7 +182,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <a v-on:click.stop="doThis"></a>
 
 <!-- the submit event will no longer reload the page -->
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="doSomething"></form>
 
 <!-- modifiers can be chained -->
 <a v-on:click.stop.prevent="doThat"></a>
