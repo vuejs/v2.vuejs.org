@@ -96,6 +96,41 @@ docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/docke
 
 We should be able to access our Vue.js app on `localhost:8080`.
 
+### Securing your site with ssl
+
+You will need to alter the nginx configuration. Luckily the nginx configuration will pick up every *.conf file in `/etc/nginx/conf.d/`.
+Create a new nginx configuration file for your app in your project (eg in /data/)
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name myserver.com;
+
+    ssl_certificate /ssl/certificate.pem;
+    ssl_certificate_key /ssl/privatekey.key;
+
+    # access_log /var/log/nginx/data-access.log combined;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+   
+}
+```
+
+Then copy that file while building the image
+
+```docker
+COPY data/nginx/app.conf /etc/nginx/conf.d/app.conf
+```
+
+Copy the certificates to your host. When running the container, bind the folder with the certificates to the /ssl folder in your container with the -v option. Do not forget to expose port 443 when starting the container.
+
+```bash
+docker run -it -p 443:443 --rm --name dockerize-vuejs-app-1 -v /folder-on-host:/ssl vuejs-cookbook/dockerize-vuejs-app 
+```
+
 ## Additional Context
 
 If you are reading this cookbook, chances are you already know why you decided to dockerize your Vue.js app. But if you simply landed on this page after hitting the Google's `I'm feeling lucky` button, let me share with you a couple of good reasons for doing that.
