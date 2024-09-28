@@ -72,7 +72,8 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Optional line for 404 correction when reloading a page with router history mode
+RUN sed -i '9 a \try_files \$uri \/index.html;'  /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
@@ -81,6 +82,7 @@ Ok, let's see what's going on here:
 * we have split our original `Dockerfile` in multiple stages by leveraging the Docker [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) feature;
 * the first stage is responsible for building a production-ready artifact of our Vue.js app;
 * the second stage is responsible for serving such artifact using NGINX.
+  *  the optional line enables NGINX to redirect all traffic to the single index.html file, solving 404 problems for direct access or page updates.
 
 Now let's build the Docker image of our Vue.js app:
 
