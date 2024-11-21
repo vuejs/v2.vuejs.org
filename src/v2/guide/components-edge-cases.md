@@ -106,6 +106,9 @@ to access the `<base-input>` instance. This may be useful when you want to, for 
 And even define methods for use by the parent:
 
 ```js
+// Child component
+// this.$refs.input i.e. <input ref="input"> 
+
 methods: {
   // Used to focus the input from the parent
   focus: function () {
@@ -117,6 +120,9 @@ methods: {
 Thus allowing the parent component to focus the input inside `<base-input>` with:
 
 ```js
+// From parent component, invoking focus method of your child component
+// this.$refs.usernameInput i.e. <base-input ref="usernameInput"></base-input>
+
 this.$refs.usernameInput.focus()
 ```
 
