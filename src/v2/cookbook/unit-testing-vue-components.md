@@ -4,6 +4,11 @@ type: cookbook
 order: 6
 ---
 
+## Disclaimer
+
+At first, while the vision of an application is not clear, unit testing might slow down development, but they will ensure that you have a sturdy foundation to build upon.
+This is especially important if you know that the application will grow over time. Once a vision is established and real users start interacting with the application, unit tests (and other types of automated tests) are absolutely essential to ensure the codebase is maintainable and scalable.
+
 ## Base Example
 
 Unit testing is a fundamental part of software development. Unit tests execute the smallest units of code in isolation, in order to increase ease of adding new features and track down bugs. Vue's [single-file components](../guide/single-file-components.html) make it straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other developers understand what your component does.
@@ -253,4 +258,4 @@ More information about testing Vue components can be found in [Testing Vue.js Ap
 
 ## When To Avoid This Pattern
 
-Unit testing is an important part of any serious application. At first, when the vision of an application is not clear, unit testing might slow down development, but once a vision is established and real users will be interacting with the application, unit tests (and other types of automated tests) are absolutely essential to ensure the codebase is maintainable and scalable.
+If you are building a (very) small application, or the logic is very simple and straightforward, spending time on unit tests might be cumbersome. However, if your application starts growing you should definitely consider writing them.
