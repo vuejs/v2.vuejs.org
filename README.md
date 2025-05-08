@@ -12,7 +12,7 @@ See the [Vue Docs Writing Guide](https://github.com/vuejs/v2.vuejs.org/blob/mast
 
 ``` bash
 $ npm install
-$ npm start # dev server at http://localhost:4000
+$ npm run dev # dev server at http://localhost:4000
 ```
 
 ## Deploying
